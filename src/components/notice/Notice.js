@@ -7,7 +7,7 @@ class Notification {
 
     static showSuccess(message) {
         notification["success"]({
-            description: message,
+            message: message,
             duration: Application.notice.duration,
         });
     }
@@ -20,12 +20,9 @@ class Notification {
         });
     }
 
-    /**
-     * notice的信息不支持消息自动消失，需要人为去点击
-     */
     static showNotice(message) {
         notification["info"]({
-            description: message,
+            message: message,
             duration: Application.notice.duration,
         });
        
@@ -33,7 +30,7 @@ class Notification {
 
     static showInfo(message) {
         notification["info"]({
-            description: message,
+            message: message,
             duration: Application.notice.duration,
         });
     }

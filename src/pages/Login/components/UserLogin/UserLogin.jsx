@@ -41,7 +41,7 @@ export default class UserLogin extends Component {
         <img src></img>
         <div style={styles.contentWrapper} className="content-wrapper">
           <h2 style={styles.slogan} className="slogan">
-          {I18NUtils.getClientMessage(i18NCode.WelcomeUse)} <br /> {Application.name} - {Application.version}
+          {I18NUtils.getClientMessage(i18NCode.WelcomeUse)} <br /> {Application.name}
           </h2>
           <div style={styles.formContainer}>
             <h4 style={styles.formTitle}>{I18NUtils.getClientMessage(i18NCode.Login)}</h4>

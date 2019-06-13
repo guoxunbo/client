@@ -47,6 +47,15 @@ class QueryForm extends Component {
     }  
 
     /**
+     * 根据moment不同的dateType获取对应的oracle的dateType
+     */
+    getOracleDateType = (dateFormatType) => {
+        if (DateFormatType.DateTime == dateFormatType) {
+           return SqlType.DateTime;
+        } 
+        return SqlType.Date; 
+    }
+    /**
      * 将时间类型转成语句
      * 针对于oracle和其他数据库的不同，转换语法不一样
      */
@@ -55,6 +64,7 @@ class QueryForm extends Component {
         if (moment.isMoment(momentObject)) {
             let date = momentObject.format(dateFormatType);
             if (Application.database === DataBaseType.oracle) {
+
                 value.append(SqlType.toDate);
                 value.append("(");
                 value.append("'");
@@ -62,7 +72,7 @@ class QueryForm extends Component {
                 value.append("'");
                 value.append(",");
                 value.append("'");
-                value.append(SqlType.Date);
+                value.append(this.getOracleDateType(dateFormatType));
                 value.append("'");
                 value.append(")");
             } else {
