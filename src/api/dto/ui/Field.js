@@ -254,11 +254,20 @@ export default class Field {
         let formValue = form ? form : this.form;
         const { getFieldDecorator } = formValue;
         let rules = this.buildRule(false);
+        let initialValue = record[this.name];
+        if (DateType.includes(this.displayType) && initialValue) {
+            let formatCode = DateFormatType.Date;
+            if (DisplayType.datetime === this.displayType) {
+                formatCode = DateFormatType.DateTime;
+            }
+            initialValue = moment(initialValue, formatCode)
+        }
+
         return (<FormItem>
             {getFieldDecorator(this.name, {
                 rules: rules,
                 valuePropName: valuePropName,
-                initialValue: record[this.name]
+                initialValue: initialValue
             })
           (
             this.buildControl(true)
