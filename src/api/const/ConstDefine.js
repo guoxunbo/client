@@ -22,6 +22,7 @@ const DateFormatType = {
 
 const UrlConstant = {
     UserManagerUrl: ModuleUrlConstant.Security + "userManage",
+    UserImportUrl: ModuleUrlConstant.Security + "importUser",
     TableMangerUrl: ModuleUrlConstant.UI + "tableManage",
     ExporttUrl: ModuleUrlConstant.UI + "export",
     ImportUrl:  ModuleUrlConstant.UI + "importData",

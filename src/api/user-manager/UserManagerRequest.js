@@ -58,4 +58,14 @@ export default class UserManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
     
+    static sendImportRequest = (file) => {
+        let requestBody = UserManagerRequestBody.buildImport();
+        let requestHeader = new UserManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.UserImportUrl);
+        let requestObject = {
+            request: request
+        }
+        MessageUtils.sendImportData(requestObject, file);
+    }
+
 }

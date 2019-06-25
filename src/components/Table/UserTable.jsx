@@ -39,6 +39,10 @@ export default class UserTable extends EntityListTable {
         }
     }
 
+    handleUpload = (option) => {
+        UserManagerRequest.sendImportRequest(option.file);
+    }
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createAddButton());

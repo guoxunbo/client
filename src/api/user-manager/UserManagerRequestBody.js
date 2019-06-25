@@ -6,7 +6,8 @@ const ActionType = {
     ResetPassword: "RestPassword",
     GetAuthority: "GetAuthority",
     Create: "Create",
-    Update: "Update"
+    Update: "Update",
+    Import: "Import"
 }
 export default class UserManagerRequestBody {
 
@@ -41,6 +42,10 @@ export default class UserManagerRequestBody {
         let user = new User();
         user.setUsername(username);
         return new UserManagerRequestBody(ActionType.ResetPassword, user);
+    }
+
+    static buildImport() {
+        return new UserManagerRequestBody(ActionType.Import);
     }
 
     static buildMergeUserBody(values) {
