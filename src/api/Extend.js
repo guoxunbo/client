@@ -33,3 +33,7 @@ String.prototype.formatValue = function(key, obj) {
 	return s;
 };
 
+String.prototype.toBoolean = function() {
+    return (/^true$/i).test(this); 
+};
+

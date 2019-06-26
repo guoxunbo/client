@@ -127,19 +127,25 @@ export default class Field {
         if (this.displayFlag && this.mainFlag) {
             // 文本靠左 数字靠右
             let aligin = Aligin.left;
-            if (DisplayType.number == this.displayType) {
+            if (NumberType.includes(this.displayType)) {
                 aligin = Aligin.right;
             }
             let columnRender;
             // Table对布尔类型的数据会不显示。'true'会显示
             if (DisplayType.radio == this.displayType) {
                 aligin = Aligin.center;
-                columnRender = columnValue => (
-                    <span>
-                        <Tag color={columnValue ? 'green' : 'red'} >{columnValue ? I18NUtils.getClientMessage(i18NCode.Yes)
-                                                                                : I18NUtils.getClientMessage(i18NCode.No)}</Tag>
-                    </span>
-                  )
+                columnRender = columnValue => {
+                    let value = columnValue;
+                    if (typeof columnValue === "string") {
+                        value = columnValue.toBoolean();
+                    }
+                    return (
+                        <span>
+                            <Tag color={value ? 'green' : 'red'} >{value ? I18NUtils.getClientMessage(i18NCode.Yes)
+                                                                                    : I18NUtils.getClientMessage(i18NCode.No)}</Tag>
+                        </span>
+                    );
+                }
             }
             let column = {
                 key: this.name,
@@ -147,9 +153,16 @@ export default class Field {
                 dataIndex: this.name,
                 align: aligin,
                 width: this.width,
-                render: columnRender
+                render: columnRender,
                 // fixed: 'left',
-                // sorter: (a, b) => a.id - b.id
+                sorter: (a, b) => {
+                    // 因为存在了字符串和数字等等一系列，故不能直接用a[this.name] - b[this.name]
+                    if (a[this.name] > b[this.name]) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                }
             }
             return column;
         }
@@ -221,15 +234,9 @@ export default class Field {
             valuePropName = "checked";
         } 
         let rules = this.buildRule(query);
-        if (DateType.includes(this.displayType) && initialValue) {
-            let formatCode = DateFormatType.Date;
-            if (DisplayType.datetime === this.displayType) {
-                formatCode = DateFormatType.DateTime;
-            }
-            initialValue = moment(initialValue, formatCode)
-        }
-        return (<FormItem {...formItemProperties} label={this.title}>
+        initialValue = this.buildInitialValue(initialValue);
 
+        return (<FormItem {...formItemProperties} label={this.title}>
             {getFieldDecorator(this.name, {
                 rules: rules,
                 initialValue: initialValue,
@@ -241,6 +248,24 @@ export default class Field {
         </FormItem>);
     }
 
+    /**
+     * 对initialValue在不同的displayType上做不同的封装
+     */
+    buildInitialValue = (initialValue) => {
+        if (DateType.includes(this.displayType) && initialValue) {
+            let formatCode = DateFormatType.Date;
+            if (DisplayType.datetime === this.displayType) {
+                formatCode = DateFormatType.DateTime;
+            }
+            initialValue = moment(initialValue, formatCode)
+        }
+        if (DisplayType.radio === this.displayType) {
+            if (typeof initialValue === "string") {
+                initialValue = initialValue.toBoolean();
+            }
+        }
+        return initialValue;
+    }
     /**
      * 创建table里面的foritem 不具备显示label功能
      * @param record 记录
@@ -254,15 +279,7 @@ export default class Field {
         let formValue = form ? form : this.form;
         const { getFieldDecorator } = formValue;
         let rules = this.buildRule(false);
-        let initialValue = record[this.name];
-        if (DateType.includes(this.displayType) && initialValue) {
-            let formatCode = DateFormatType.Date;
-            if (DisplayType.datetime === this.displayType) {
-                formatCode = DateFormatType.DateTime;
-            }
-            initialValue = moment(initialValue, formatCode)
-        }
-
+        let initialValue = this.buildInitialValue(record[this.name]);
         return (<FormItem>
             {getFieldDecorator(this.name, {
                 rules: rules,
@@ -322,15 +339,22 @@ export default class Field {
 
         if (DisplayType.radio == this.displayType) {
             rule.type = "boolean";
+            // 因为会有预留栏位，预留栏位会返回字符串类型的true, boolean故此处需要转换下。
+            rule.transform = (value) => {
+                if (typeof value === "string") {
+                    value = value.toBoolean();
+                }
+                return value;
+            }
         }
 
          // 数字
         if (NumberType.includes(this.displayType)) {
             rule.type = "number";
             rule.transform = (value) => {
-                if(value){
+                if(value) {
                     return Number(value);
-                  }
+                }
             }
         }
         
