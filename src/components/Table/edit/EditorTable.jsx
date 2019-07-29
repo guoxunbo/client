@@ -15,6 +15,7 @@ import TableManagerRequest from '../../../api/table-manager/TableManagerRequest'
 import moment from 'moment';
 
 const EditableContext = React.createContext();
+const TableId = "TabTable";
 
 class EditableCell extends React.Component {
   render() {
@@ -101,7 +102,7 @@ class EditableTable extends React.Component {
         
     }
     if (this.props.editFlag) {
-      let oprationColumn = this.buildOperationColumn();
+      let oprationColumn = this.buildOperationColumn(scrollX);
       scrollX += oprationColumn.width;
       columns.push(oprationColumn);
     }
@@ -111,41 +112,43 @@ class EditableTable extends React.Component {
     };
   }
 
-  buildOperationColumn = () => {
-      let operationColumn = {
-        editable: false,
-        title: 'operation',
-        dataIndex: 'operation',
-        fixed: 'right',
-        width: Application.table.oprationColumn.width,
-        render: (text, record) => {
-            return (
-              <div>
-                {this.isEditing(record) ? (
-                  <span>
-                    <EditableContext.Consumer>
-                      {form => (
-                        <Button style={{marginRight:8}} icon="save" 
-                          onClick={() => this.save(form, record)} size="small" href="javascript:;"></Button>
-                      )}
-                    </EditableContext.Consumer>
-                    <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmCancel)} onConfirm={() => this.cancel(record.objectRrn)}>
-                      <Button style={{marginRight:8}} icon="close-circle" size="small" href="javascript:;"></Button>
-                    </Popconfirm>
-                  </span>
-                ) : (
-                  <div>
-                    <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
-                    <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                      <Button icon="delete" size="small" type="danger"></Button>
-                    </Popconfirm>
-                  </div>    
-                )}
-              </div>
-            );
-          }
-      }
-      return operationColumn;
+  buildOperationColumn = (scrollX) => {
+    let maxWidth = document.querySelector('#' + TableId).clientWidth;
+    let operationColumn = {
+      editable: false,
+      title: I18NUtils.getClientMessage(i18NCode.Operation),
+      dataIndex: 'operation',
+      align: "center",
+      fixed: maxWidth > scrollX + Application.table.oprationColumn.width ? false : 'right',
+      width: Application.table.oprationColumn.width,
+      render: (text, record) => {
+          return (
+            <div>
+              {this.isEditing(record) ? (
+                <span>
+                  <EditableContext.Consumer>
+                    {form => (
+                      <Button style={{marginRight:8}} icon="save" 
+                        onClick={() => this.save(form, record)} size="small" href="javascript:;"></Button>
+                    )}
+                  </EditableContext.Consumer>
+                  <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmCancel)} onConfirm={() => this.cancel(record.objectRrn)}>
+                    <Button style={{marginRight:8}} icon="close-circle" size="small" href="javascript:;"></Button>
+                  </Popconfirm>
+                </span>
+              ) : (
+                <div>
+                  <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
+                  <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
+                    <Button icon="delete" size="small" type="danger"></Button>
+                  </Popconfirm>
+                </div>    
+              )}
+            </div>
+          );
+        }
+    }
+    return operationColumn;
   }
 
   isEditing = (record) => {
@@ -309,6 +312,7 @@ class EditableTable extends React.Component {
             columns={columns}
             scroll = {{ x: scrollX, y: 350 }}
             rowClassName={rowClassName.bind(this)}
+            id={TableId}
           />
         </EditableContext.Provider>
       </div>
