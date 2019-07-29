@@ -199,11 +199,11 @@ export default class Field {
         } else if (this.displayType == DisplayType.calendar) {
             return <DatePicker locale={locale} disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.calendarFromTo) {
-            return <RangePicker locale={locale} disabled={this.disabled}/>
+            return query ? <RangePicker locale={locale} disabled={this.disabled}/> : <DatePicker locale={locale} disabled={this.disabled}/> ;
         } else if (this.displayType == DisplayType.datetime) {
             return <DatePicker locale={locale} showTime format={DateFormatType.DateTime} disabled={this.disabled} />
         } else if (this.displayType == DisplayType.datetimeFromTo) {
-            return <RangePicker locale={locale} showTime format={DateFormatType.DateTime} disabled={this.disabled}/>
+            return query ? <RangePicker locale={locale} showTime format={DateFormatType.DateTime} disabled={this.disabled}/> : <DatePicker locale={locale} showTime format={DateFormatType.DateTime} disabled={this.disabled} />
         } else if (this.displayType == DisplayType.sysRefList) {
             return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName} style={query ? styles.queryComboxStyle: undefined} disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.userRefList) {
@@ -360,7 +360,7 @@ export default class Field {
         
         if (DateType.includes(this.displayType)) {
             rule.type = "object";
-            if (this.displayType.endsWith("FromTo")) {
+            if (this.displayType.endsWith("FromTo") && query) {
                 rule.type = "array";
             }
         }
