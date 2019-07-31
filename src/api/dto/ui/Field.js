@@ -122,7 +122,6 @@ export default class Field {
         }
     }
 
-    //TODO 处理fixed和sorter
     buildColumn() {
         if (this.displayFlag && this.mainFlag) {
             // 文本靠左 数字靠右
@@ -253,8 +252,9 @@ export default class Field {
      */
     buildInitialValue = (initialValue) => {
         if (DateType.includes(this.displayType) && initialValue) {
+            debugger;
             let formatCode = DateFormatType.Date;
-            if (DisplayType.datetime === this.displayType) {
+            if (this.displayType.startsWith(DisplayType.datetime)) {
                 formatCode = DateFormatType.DateTime;
             }
             initialValue = moment(initialValue, formatCode)

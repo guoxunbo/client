@@ -139,7 +139,8 @@ class QueryForm extends Component {
     }
 
     handleSearch = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
+        debugger;
         var self = this;
         this.props.form.validateFields((err, values) => {
             if (err) {

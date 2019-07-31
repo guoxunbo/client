@@ -15,8 +15,8 @@ import MaterialProperties from './pages/Properties/components/MaterialProperties
 import MaterialLotProperties from './pages/Properties/components/MaterialLotProperties';
 import MaterialLotInventoryProperties from './pages/Properties/components/MaterialLotInventoryProperties';
 import EntityHistoryProperties from './pages/Properties/components/EntityHistoryProperties';
-import ChangeShiftProperties from './pages/Properties/components/ChangeShiftProperties';
 import DynaxAnalyseProperties from './pages/Properties/components/DynaxAnalyseProperties';
+import QuestionProperties from './pages/Properties/components/QuestionProperties';
 
 const routerConfig = [
   {
@@ -64,6 +64,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  {
+    path: 'System/MergeRuleManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
 
   {
     path: 'Security/UserManager/:tableRrn',
@@ -75,37 +80,17 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: RoleProperties,
   },
-  //DMS
+  //KMS
   {
-    path: 'DMS/ChangeShiftManager/:tableRrn',
+    path: 'KMS/QuestionManager/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
-    component: ChangeShiftProperties,
-  },
+    component: QuestionProperties,
+  }, 
   {
-    path: 'DMS/FaManager/:tableRrn',
+    path: 'KMS/QuestionHisManager/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
-    component: ChangeShiftProperties,
-  },
-  {
-    path: 'DMS/NpiManager/:tableRrn',
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: ChangeShiftProperties,
-  },
-  {
-    path: 'DMS/PesManager/:tableRrn',
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: ChangeShiftProperties,
-  },
-  {
-    path: 'DMS/EvaManager/:tableRrn',
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: ChangeShiftProperties,
-  },
-  {
-    path: 'DMS/ChangeShiftHisManager/:tableRrn',
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityHistoryProperties,
-  },
+    component: EntityProperties,
+  }, 
   //LMS
   {
     path: 'LMS/IDGeneratorRuleManager/:tableRrn',
@@ -159,6 +144,13 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotInventoryProperties,
   },
+  //PackManager
+  {
+    path: '/Pack/PackRuleManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  
   //RTM
   {
     path: '/RTM/DynaxAnalyseManager/:tableRrn',

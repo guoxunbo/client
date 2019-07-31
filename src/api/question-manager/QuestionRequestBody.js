@@ -1,0 +1,31 @@
+
+const ActionType = {
+    Close: "Close",
+    Open: "Open",
+    Create: "Create",
+    Update: "Update"
+}
+export default class QuestionRequestBody {
+    actionType;
+    question;
+
+    constructor(actionType, question) {
+        this.actionType = actionType;
+        this.question = question;
+    }
+    
+    static buildMergeEntity(question) {
+        let actionType;
+        if (question.objectRrn) {
+            actionType = ActionType.Update;         
+        } else {
+            actionType = ActionType.Create;         
+        }
+        return new QuestionRequestBody(actionType, question);
+    }
+
+    static buildClose(question) {
+        return new QuestionRequestBody(ActionType.Close, question);
+    }
+    
+}

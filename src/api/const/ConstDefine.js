@@ -7,7 +7,7 @@ const ModuleUrlConstant = {
     UI: "http://127.0.0.1:8080/ui/",
     StatusMachine: "http://127.0.0.1:8080/common/sm/",
     MMS: "http://127.0.0.1:8080/mms/",
-    DMS: "http://127.0.0.1:8080/dms/",
+    KMS: "http://127.0.0.1:8080/kms/",
     RTM: "http://127.0.0.1:8080/rtm/",
 }
 
@@ -36,8 +36,7 @@ const UrlConstant = {
     RawMaterialManagerUrl: ModuleUrlConstant.MMS + "rawMaterialManage",
     MaterialLotManagerUrl: ModuleUrlConstant.MMS + "materialLotManage",
     MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
-
-    ChangeShiftManagerUrl: ModuleUrlConstant.DMS + "changeShiftManage",
+    QuestionManagerUrl: ModuleUrlConstant.KMS + "questionManage",
     DynaxAnalyseUrl: ModuleUrlConstant.RTM + "analyseFile"
 };
 
