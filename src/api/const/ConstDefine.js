@@ -11,6 +11,13 @@ const ModuleUrlConstant = {
     RTM: "http://127.0.0.1:8080/rtm/",
 }
 
+/**
+ * 一些特殊的栏位关键字
+ */
+const FieldKeywords = {
+    fileName: "fileName"
+};
+
 const DataBaseType = {
     oracle: "oracle"
 }
@@ -37,6 +44,7 @@ const UrlConstant = {
     MaterialLotManagerUrl: ModuleUrlConstant.MMS + "materialLotManage",
     MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
     QuestionManagerUrl: ModuleUrlConstant.KMS + "questionManage",
+    QuestionLineManagerUrl: ModuleUrlConstant.KMS + "questionLineManage",
     DynaxAnalyseUrl: ModuleUrlConstant.RTM + "analyseFile"
 };
 
@@ -118,4 +126,4 @@ const SqlType = {
 }
 
 
-export {UrlConstant, DataBaseType, DateFormatType, SystemRefListName, RefTableName, ErrorCode, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType, i18N};
+export {UrlConstant, FieldKeywords, DataBaseType, DateFormatType, SystemRefListName, RefTableName, ErrorCode, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType, i18N};

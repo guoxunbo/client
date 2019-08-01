@@ -8,10 +8,37 @@ import EntityManagerRequest from '../../api/entity-manager/EntityManagerRequest'
 import { Application } from '../../api/Application';
 import { DefaultRowKey } from '../../api/const/ConstDefine';
 import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
+import QuestionLineRequest from '../../api/question-line-manager/QuestionLineRequest';
+import Field from '../../api/dto/ui/Field';
+import './QuestionTable.scss';
 
 export default class QuestionTable extends EntityListTable {
 
     static displayName = 'QuestionTable';
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            ...this.state,
+            childColumns: [],
+            children:{}
+        };
+    }
+
+    getRowClassName = (record, index) => {
+        const {selectedRows} = this.state;
+        if (selectedRows.indexOf(record) >= 0) {
+            return 'selected-row';
+        } else {
+            console.log(record);
+            console.log(record["status"]);
+            if(record["status"] == "Doing") {
+                return "doing-row";
+            }
+            return ''; 
+        }
+        
+    };
 
     createButtonGroup = () => {
         let buttons = [];
@@ -89,32 +116,50 @@ export default class QuestionTable extends EntityListTable {
     }
 
     expandedRowRender = (record) => {
-        return <Table columns={this.state.childColumns} dataSource={this.state.children} pagination={false} />;
+        return <Table columns={this.state.childColumns} dataSource={this.state.children[record.objectRrn]} pagination={false} />;
     };
     
     onExpand = (expand, record) => {
-        console.log(expand);
-        console.log(record);
-        // 如果是展开 则去查询数据
-        // 如果不是展开，则销毁数据
+        let self = this;
+        // 如果是展开 则去查询数据 如果不是展开，则销毁数据
         if (expand) {
-            
+            let object = {
+                questionRrn: record.objectRrn,
+                success: function(responseBody) {
+                    self.setState({
+                        children: {
+                            ...self.state.children,
+                            [record.objectRrn]: responseBody.questionLines
+                        }
+                    });
+                }
+            }
+            QuestionLineRequest.sendGetByQuestionRrn(object);
         } else {
-
-        }
-        let data = [];
-        for (let i = 0; i < 3; ++i) {
-            data.push({
-              key: i,
-              date: '2014-12-24 23:12:00',
-              name: 'This is production name',
-              upgradeNum: 'Upgraded: 56',
-              fileName: 'Upgraded:561111111111111111111111111111111111111',
+            self.setState({
+                children: {
+                    ...self.state.children,
+                    [record.objectRrn]: []
+                }
             });
-          }
-        this.setState({
-            children: data
-        });
+        }
+    }
+
+    buildChildColumn = (fields) => {
+        let columns = [];
+        let scrollX = 0;
+        for (let field of fields) {
+            let f  = new Field(field);
+            let column = f.buildColumn();
+            if (column != null) {
+                columns.push(column);
+                scrollX += column.width;
+            }
+        }
+        return {
+            columns: columns,
+            scrollX: scrollX
+        };
     }
 
     buildSubTabelColumns() {
@@ -123,7 +168,7 @@ export default class QuestionTable extends EntityListTable {
             name: "KMSQuestionLine",
             success: function(responseBody) {
                 let table = responseBody.table;
-                let columnData = self.buildColumn(table.fields);
+                let columnData = self.buildChildColumn(table.fields);
                 self.setState({
                     childColumns: columnData.columns
                 });
