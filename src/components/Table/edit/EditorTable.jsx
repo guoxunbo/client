@@ -1,6 +1,6 @@
-import { Table, Popconfirm, Button, Form } from 'antd';
+import { Table, Popconfirm, Button, Form, Upload } from 'antd';
 import * as PropTypes from 'prop-types';
-import {DefaultRowKey, DateFormatType} from '../../../api/const/ConstDefine'
+import {DefaultRowKey, DateFormatType, FieldKeywords} from '../../../api/const/ConstDefine'
 import MessageUtils from '../../../api/utils/MessageUtils';
 import Field from '../../../api/dto/ui/Field';
 import '../ListTable.scss';
@@ -102,7 +102,7 @@ class EditableTable extends React.Component {
         
     }
     if (this.props.editFlag) {
-      let oprationColumn = this.buildOperationColumn(scrollX);
+      let oprationColumn = this.buildOperationColumn(scrollX, fields);
       scrollX += oprationColumn.width;
       columns.push(oprationColumn);
     }
@@ -112,8 +112,20 @@ class EditableTable extends React.Component {
     };
   }
 
-  buildOperationColumn = (scrollX) => {
+  /**
+   * 创建操作列
+   * 当filed里面有fileName栏位的时候，说明支持文件上传以及下载
+   */
+  buildOperationColumn = (scrollX, fields) => {
     let maxWidth = document.querySelector('#' + TableId).clientWidth;
+    let uploadFlag = false;
+    for(let field of fields) {  
+      if (field.name === FieldKeywords.fileName) {
+          uploadFlag = true;
+          break;
+      }
+    };  
+    console.log(fields);
     let operationColumn = {
       editable: false,
       title: I18NUtils.getClientMessage(i18NCode.Operation),
@@ -122,31 +134,42 @@ class EditableTable extends React.Component {
       fixed: maxWidth > scrollX + Application.table.oprationColumn.width ? false : 'right',
       width: Application.table.oprationColumn.width,
       render: (text, record) => {
-          return (
-            <div>
-              {this.isEditing(record) ? (
-                <span>
-                  <EditableContext.Consumer>
-                    {form => (
-                      <Button style={{marginRight:8}} icon="save" 
-                        onClick={() => this.save(form, record)} size="small" href="javascript:;"></Button>
-                    )}
-                  </EditableContext.Consumer>
-                  <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmCancel)} onConfirm={() => this.cancel(record.objectRrn)}>
-                    <Button style={{marginRight:8}} icon="close-circle" size="small" href="javascript:;"></Button>
-                  </Popconfirm>
-                </span>
-              ) : (
-                <div>
+        return (
+          <div>
+            {this.isEditing(record) ? (
+              <span>
+                <EditableContext.Consumer>
+                  {form => (
+                    <Button style={{marginRight:8}} icon="save" 
+                      onClick={() => this.save(form, record)} size="small" href="javascript:;"></Button>
+                  )}
+                </EditableContext.Consumer>
+                <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmCancel)} onConfirm={() => this.cancel(record.objectRrn)}>
+                  <Button style={{marginRight:8}} icon="close-circle" size="small" href="javascript:;"></Button>
+                </Popconfirm>
+              </span>
+            ) : (
+              <div>
+                {uploadFlag ? (<div>
                   <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
                   <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
                     <Button icon="delete" size="small" type="danger"></Button>
                   </Popconfirm>
-                </div>    
-              )}
-            </div>
-          );
-        }
+                  <Upload data={record} customRequest={(option) => this.upload(option)} showUploadList={false} >
+                    <Button style={{marginRight:'1px'}} icon="upload" size="small" href="javascript:;"></Button>
+                  </Upload>
+                  <Button style={{marginRight:'1px'}} icon="download" onClick={() => this.download(record)} size="small" href="javascript:;"></Button>
+                </div>) : <div>
+                <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
+                  <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
+                    <Button icon="delete" size="small" type="danger"></Button>
+                  </Popconfirm>
+                </div>}
+              </div>    
+            )}
+          </div>
+        );
+      }
     }
     return operationColumn;
   }
