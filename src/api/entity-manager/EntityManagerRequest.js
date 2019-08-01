@@ -13,9 +13,6 @@ export default class EntityManagerRequest {
     modelClass;
     values;
 
-    /**
-     * 发送merge信息请求
-     */
     static sendMergeRequest = (object) => {
         // 如果数据是新增的，清空objectRrn栏位
         if (object.values.newFlag) {
@@ -31,6 +28,29 @@ export default class EntityManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
     
+    static sendUploadFileRequest = (object, file) => {
+        debugger;
+        let requestBody = EntityManagerRequestBody.buildUploadEntityFile(object.modelClass, object.values, object.fileStrategy);
+        let requestHeader = new EntityManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.EntityUploadFileUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendImportData(requestObject, file);
+    }
+
+    static sendDownloadFileRequest = (object) => {
+        let requestBody = EntityManagerRequestBody.buildDownloadEntityFile(object.modelClass, object.values, object.fileStrategy);
+        let requestHeader = new EntityManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.EntityDownloadFileUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendExpRequest(requestObject, object.fileName);
+    }
+
     static sendDeleteRequest = (object) => {
         let requestBody = EntityManagerRequestBody.buildDeleteEntity(object.modelClass, object.values, object.deleteRelationEntityFlag);
         let requestHeader = new EntityManagerRequestHeader();
@@ -41,6 +61,7 @@ export default class EntityManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
 
 
 }

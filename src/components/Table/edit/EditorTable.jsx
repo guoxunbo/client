@@ -112,6 +112,64 @@ class EditableTable extends React.Component {
     };
   }
 
+  refresh = (responseData) => {
+    var self = this;
+    let datas = self.state.tableData;
+    let dataIndex = -1;
+    datas.map((data, index) => {
+        if (data.objectRrn == responseData.objectRrn) {
+            dataIndex = index;
+        }
+    });
+    if (dataIndex > -1) {
+        datas.splice(dataIndex, 1, responseData);
+    } else {
+        // 新增的就放在第一位
+        datas.unshift(responseData);
+    }
+    self.setState({
+        tableData: datas,
+        editingKey: "",
+    }) 
+    MessageUtils.showOperationSuccess();
+  }
+
+  upload = (option) => {
+    const { table } = this.state;
+    let record = option.data;
+    let self = this;
+    if (record.newFlag) {
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.SaveFirst));
+      return;
+    } else {
+      let object = {
+        fileStrategy: "KMS",
+        modelClass: table.modelClass,
+        values: record,
+        success: function(responseBody) {
+          self.refresh(responseBody.data);
+        }
+      }
+      EntityManagerRequest.sendUploadFileRequest(object, option.file);
+    } 
+  }
+
+  download = (record) => {
+    const { table } = this.state;
+    if (record.newFlag) {
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.SaveFirst));
+      return;
+    } else {
+      let object = {
+        fileStrategy: "KMS",
+        modelClass: table.modelClass,
+        values: record,
+        fileName: record.fileName
+      }
+      EntityManagerRequest.sendDownloadFileRequest(object);
+    }
+  }
+
   /**
    * 创建操作列
    * 当filed里面有fileName栏位的时候，说明支持文件上传以及下载
@@ -125,7 +183,6 @@ class EditableTable extends React.Component {
           break;
       }
     };  
-    console.log(fields);
     let operationColumn = {
       editable: false,
       title: I18NUtils.getClientMessage(i18NCode.Operation),
@@ -221,7 +278,6 @@ class EditableTable extends React.Component {
             });
           }
           tableData.splice(dataIndex, 1, responseData);
-          
           self.setState({
             tableData: tableData,
             editingKey: ""

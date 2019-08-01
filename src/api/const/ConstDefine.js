@@ -36,6 +36,8 @@ const UrlConstant = {
     RefListMangerUrl: ModuleUrlConstant.UI + "refListManage",    
     RefTableManagerUrl: ModuleUrlConstant.UI + "refTableManage",
     EntityManagerUrl: ModuleUrlConstant.Framework + "entityManage",
+    EntityUploadFileUrl: ModuleUrlConstant.Framework + "uploadEntityFile",
+    EntityDownloadFileUrl: ModuleUrlConstant.Framework + "downloadEntityFile",
     RoleManagerUrl: ModuleUrlConstant.Security + "roleManage",
     EntityListManagerUrl: ModuleUrlConstant.Framework + "entityListManage",
     AuthorityManagerUrl: ModuleUrlConstant.Security + "authorityManage",
