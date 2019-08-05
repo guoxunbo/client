@@ -60,11 +60,16 @@ export default class MessageUtils {
      */
     static sendImportData(requestObject, file) {
         let self = this;
-        let request = requestObject.request;
         let formData = new FormData();
         formData.append("file", file);
-        formData.append("request", JSON.stringify(request));
-
+        let request = requestObject.request;
+        for (let propName in requestObject) {
+            if (propName === "request") {
+                formData.append(propName, JSON.stringify(request));
+            } else {
+                formData.append(propName, requestObject[propName]);
+            }
+        }
         axios.post(request.url, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         }).then(function(object) {
@@ -124,6 +129,9 @@ export default class MessageUtils {
             if (ResultIdentify.Fail == response.header.result) {
                 self.handleException(response.header);
             } else {
+                if (object.headers.authorization) {
+                    
+                }
                 if (requestObject.success) {
                     requestObject.success(response.body);
                 } else {
