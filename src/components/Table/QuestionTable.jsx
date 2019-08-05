@@ -30,22 +30,27 @@ export default class QuestionTable extends EntityListTable {
         if (selectedRows.indexOf(record) >= 0) {
             return 'selected-row';
         } else {
-            console.log(record);
-            console.log(record["status"]);
             if(record["status"] == "Doing") {
                 return "doing-row";
             }
+            if(record["status"] == "Watching") {
+                return "watching-row";
+            }
             return ''; 
         }
-        
     };
 
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createAddButton());
+        buttons.push(this.createWatchButton());
         buttons.push(this.createCloseButton());
         buttons.push(this.createExportDataButton());
         return buttons;
+    }
+
+    createWatchButton = () => {
+        return <Button key="close" type="primary" style={styles.tableButton} icon="highlight" onClick={() => this.handleWatch()}>{I18NUtils.getClientMessage(i18NCode.BtnWatch)}</Button>;
     }
 
     createCloseButton = () => {
@@ -71,6 +76,34 @@ export default class QuestionTable extends EntityListTable {
         };
         EntityManagerRequest.sendDeleteRequest(object);
     } 
+
+    handleWatch = () => {
+        let self = this;
+        let selectedRow = this.getSingleSelectedRow();
+        if (selectedRow) {
+            let object = {
+                question: selectedRow,
+                success: function(responseBody) {
+                    self.refresh(responseBody.question)
+                }
+            }
+            QuestionRequest.sendWatchRquest(object);
+        }
+    }
+
+    handleClose = () => {
+        let self = this;
+        let selectedRow = this.getSingleSelectedRow();
+        if (selectedRow) {
+            let object = {
+                question: selectedRow,
+                success: function(responseBody) {
+                    self.refresh(responseBody.question)
+                }
+            }
+            QuestionRequest.sendCloseRquest(object);
+        }
+    }
 
     handleClose = () => {
         let self = this;

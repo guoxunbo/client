@@ -143,6 +143,7 @@ class EditableTable extends React.Component {
       return;
     } else {
       let object = {
+        //TODO 当前还没想好怎么传这个策略
         fileStrategy: "KMS",
         modelClass: table.modelClass,
         values: record,

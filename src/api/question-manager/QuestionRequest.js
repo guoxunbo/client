@@ -30,4 +30,15 @@ export default class QuestionRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendWatchRquest = (object) => {
+        let requestBody = QuestionRequestBody.buildWatching(object.question);
+        let requestHeader = new QuestionRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.QuestionManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
