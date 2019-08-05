@@ -4,7 +4,8 @@ const ActionType = {
     Open: "Open",
     Create: "Create",
     Update: "Update",
-    Watching: "Watching"
+    Watching: "Watching",
+    Delete: "Delete"
 }
 
 export default class QuestionRequestBody {
@@ -30,6 +31,10 @@ export default class QuestionRequestBody {
         return new QuestionRequestBody(ActionType.Close, question);
     }
     
+    static buildDelete(question) {
+        return new QuestionRequestBody(ActionType.Delete, question);
+    }
+
     static buildWatching(question) {
         return new QuestionRequestBody(ActionType.Watching, question);
     }

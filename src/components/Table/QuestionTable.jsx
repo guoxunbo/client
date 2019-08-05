@@ -67,14 +67,12 @@ export default class QuestionTable extends EntityListTable {
     handleDelete = (record) => {
         const self = this;
         let object = {
-            modelClass : self.state.table.modelClass,
-            values: record,
-            deleteRelationEntityFlag: true,
+            question: record,
             success: function(responseBody) {
                 self.refreshDelete(record);
             }
         };
-        EntityManagerRequest.sendDeleteRequest(object);
+        QuestionRequest.sendDeleteRquest(object);
     } 
 
     handleWatch = () => {
@@ -88,20 +86,6 @@ export default class QuestionTable extends EntityListTable {
                 }
             }
             QuestionRequest.sendWatchRquest(object);
-        }
-    }
-
-    handleClose = () => {
-        let self = this;
-        let selectedRow = this.getSingleSelectedRow();
-        if (selectedRow) {
-            let object = {
-                question: selectedRow,
-                success: function(responseBody) {
-                    self.refresh(responseBody.question)
-                }
-            }
-            QuestionRequest.sendCloseRquest(object);
         }
     }
 
