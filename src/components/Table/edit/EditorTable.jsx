@@ -71,7 +71,7 @@ class EditableTable extends React.Component {
       whereClause: this.props.whereClause,
       success: function(responseBody) {
         let table = responseBody.table;
-        let columnData = self.buildColumn(table.fields);
+        let columnData = self.buildColumn(table);
         self.setState({
           tableData: responseBody.dataList,
           table: table,
@@ -84,10 +84,13 @@ class EditableTable extends React.Component {
     TableManagerRequest.sendGetDataByNameRequest(requestObject);
   }
 
-  buildColumn = (fields) => {
+  buildColumn = (table) => {
+    let fields = table.fields;
     let columns = [];
     let scrollX = 0;
     for (let field of fields) {
+        // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
+        field.table = table;
         let f  = new Field(field, this.props.form);
         let column = f.buildColumn();
         if (column != null) {
@@ -155,22 +158,6 @@ class EditableTable extends React.Component {
     } 
   }
 
-  download = (record) => {
-    const { table } = this.state;
-    if (record.newFlag) {
-      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.SaveFirst));
-      return;
-    } else {
-      let object = {
-        fileStrategy: "KMS",
-        modelClass: table.modelClass,
-        values: record,
-        fileName: record.fileName
-      }
-      EntityManagerRequest.sendDownloadFileRequest(object);
-    }
-  }
-
   /**
    * 创建操作列
    * 当filed里面有fileName栏位的时候，说明支持文件上传以及下载
@@ -216,7 +203,6 @@ class EditableTable extends React.Component {
                   <Upload data={record} customRequest={(option) => this.upload(option)} showUploadList={false} >
                     <Button style={{marginRight:'1px'}} icon="upload" size="small" href="javascript:;"></Button>
                   </Upload>
-                  <Button style={{marginRight:'1px'}} icon="download" onClick={() => this.download(record)} size="small" href="javascript:;"></Button>
                 </div>) : <div>
                 <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
                   <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>

@@ -51,10 +51,13 @@ export default class EntityListCheckTable extends EntityListTable {
         });
     }
 
-    buildColumn = (fields) => {
+    buildColumn = (table) => {
+        let fields = table.fields;
         let columns = [];
         let scrollX = 0;
         for (let field of fields) {
+            // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
+            field.table = table;
             let f  = new Field(field);
             let column = f.buildColumn();
             if (column != null) {

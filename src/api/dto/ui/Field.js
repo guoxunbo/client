@@ -1,6 +1,6 @@
-import { Input, InputNumber, DatePicker, Switch,Form, Tag } from 'antd';
+import { Input, InputNumber, DatePicker, Switch,Form, Tag, Button } from 'antd';
 import {SessionContext} from '../../Application'
-import {Language, DateFormatType} from "../../const/ConstDefine";
+import {Language, DateFormatType, FieldKeywords} from "../../const/ConstDefine";
 import RefListField from '../../../components/Field/RefListField';
 import RefTableField from '../../../components/Field/RefTableField';
 import {Icon} from 'antd';
@@ -10,6 +10,7 @@ import I18NUtils from '../../utils/I18NUtils';
 import { i18NCode } from '../../const/i18n';
 
 import moment from 'moment';
+import EntityManagerRequest from '../../entity-manager/EntityManagerRequest';
 
 const { RangePicker} = DatePicker;
 const FormItem = Form.Item;
@@ -85,6 +86,7 @@ export default class Field {
     width;
     minValue;
     style;
+    table;
 
     /**
      * 构造方法
@@ -122,6 +124,17 @@ export default class Field {
         }
     }
 
+    download = (text, record, index) => {
+        let object = {
+            //TODO 此处暂时没想好怎么获取File的策略
+            fileStrategy: "KMS",
+            modelClass: this.table.modelClass,
+            values: record,
+            fileName: text
+        }
+        EntityManagerRequest.sendDownloadFileRequest(object);
+    }
+
     buildColumn() {
         if (this.displayFlag && this.mainFlag) {
             // 文本靠左 数字靠右
@@ -143,6 +156,15 @@ export default class Field {
                             <Tag color={value ? 'green' : 'red'} >{value ? I18NUtils.getClientMessage(i18NCode.Yes)
                                                                                     : I18NUtils.getClientMessage(i18NCode.No)}</Tag>
                         </span>
+                    );
+                }
+            }
+            // 当columnName是fileName的时候，直接就是超链接
+            if (FieldKeywords.fileName === this.name) {
+                aligin = Aligin.center;
+                columnRender = (columnValue, record, index) => {
+                    return (
+                        <Button shape="round" onClick={() => this.download(columnValue, record, index)} size={"small"}>{columnValue}</Button>
                     );
                 }
             }
@@ -252,7 +274,6 @@ export default class Field {
      */
     buildInitialValue = (initialValue) => {
         if (DateType.includes(this.displayType) && initialValue) {
-            debugger;
             let formatCode = DateFormatType.Date;
             if (this.displayType.startsWith(DisplayType.datetime)) {
                 formatCode = DateFormatType.DateTime;

@@ -56,6 +56,7 @@ const Application = {
 };
 
 const SC_STORAGE_NAME = "SessionContext";
+const JWT_TOKEN_STORAGE_NAME = "JwtToken";
 
 class SessionContext {
     language;
@@ -82,10 +83,6 @@ class SessionContext {
         this.orgRrn = orgRrn;
     }
 
-    setToken(token) {
-        this.token = token;
-    }
-
     setDescription(description) {
         this.description = description;
     }
@@ -94,13 +91,19 @@ class SessionContext {
         this.authories = authories;
     }
 
-    static saveSessionContext(username, description, orgRrn, language, token, authories) {
+    /**
+     * 保存token
+     */
+    static saveToken() {
+        
+    }
+
+    static saveSessionContext(username, description, orgRrn, language, authories) {
         let sc = new SessionContext();
         sc.setLanguage(language);
         sc.setUsername(username);
         sc.setDescription(description);
         sc.setOrgRrn(orgRrn);
-        sc.setToken(token);
         sc.setAuthorities(authories);
         sessionStorage.setItem(SC_STORAGE_NAME, JSON.stringify(sc));
     }

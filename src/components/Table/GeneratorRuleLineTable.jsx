@@ -49,7 +49,7 @@ export default class GeneratorRuleLineTable extends EntityListTable {
             whereClause: whereClause,
             success: function(responseBody) {
                 let table = responseBody.table;
-                let columnData = self.buildColumn(table.fields);
+                let columnData = self.buildColumn(table);
                 self.setState({
                     data: responseBody.dataList,
                     table: table,

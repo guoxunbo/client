@@ -29,7 +29,6 @@ export default class EntityManagerRequest {
     }
     
     static sendUploadFileRequest = (object, file) => {
-        debugger;
         let requestBody = EntityManagerRequestBody.buildUploadEntityFile(object.modelClass, object.values, object.fileStrategy);
         let requestHeader = new EntityManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.EntityUploadFileUrl);
