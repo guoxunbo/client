@@ -1,14 +1,19 @@
+
+const ServerAddress = {
+    NewbiestUrl : "http://127.0.0.1:8080"
+}
+
 /**
- * 定义URL 有可能请求多个URL
+ * 定义URL 不同的模块请求不同的地址
  */
 const ModuleUrlConstant = {
-    Framework: "http://127.0.0.1:8080/framework/",
-    Security: "http://127.0.0.1:8080/security/",
-    UI: "http://127.0.0.1:8080/ui/",
-    StatusMachine: "http://127.0.0.1:8080/common/sm/",
-    MMS: "http://127.0.0.1:8080/mms/",
-    KMS: "http://127.0.0.1:8080/kms/",
-    RTM: "http://127.0.0.1:8080/rtm/",
+    Framework: ServerAddress.NewbiestUrl + "/framework/",
+    Security: ServerAddress.NewbiestUrl + "/security/",
+    UI: ServerAddress.NewbiestUrl + "/ui/",
+    StatusMachine: ServerAddress.NewbiestUrl + "/common/sm/",
+    MMS: ServerAddress.NewbiestUrl + "/mms/",
+    KMS: ServerAddress.NewbiestUrl + "/kms/",
+    RTM: ServerAddress.NewbiestUrl + "/rtm/",
 }
 
 /**
