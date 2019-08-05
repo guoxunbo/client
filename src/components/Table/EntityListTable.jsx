@@ -153,7 +153,9 @@ export default class EntityListTable extends Component {
         if (dataIndex > -1 ) {
             datas.splice(dataIndex, 1);
             this.setState({
-                data: datas
+                data: datas,
+                selectedRows: [],
+                selectedRowKeys: []
             })
         }
         MessageUtils.showOperationSuccess();
@@ -194,7 +196,9 @@ export default class EntityListTable extends Component {
         }
         self.setState({
             data: datas,
-            formVisible: false
+            formVisible: false,
+            selectedRows: [],
+            selectedRowKeys: []
         }) 
         MessageUtils.showOperationSuccess();
     }
