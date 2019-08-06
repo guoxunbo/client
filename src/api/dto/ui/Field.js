@@ -164,7 +164,8 @@ export default class Field {
                 aligin = Aligin.center;
                 columnRender = (columnValue, record, index) => {
                     return (
-                        <Button shape="round" onClick={() => this.download(columnValue, record, index)} size={"small"}>{columnValue}</Button>
+                        columnValue ? <Button shape="round" onClick={() => this.download(columnValue, record, index)} size={"small"}>{columnValue}</Button>
+                        : columnValue
                     );
                 }
             }
