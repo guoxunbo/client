@@ -101,7 +101,7 @@ export default class EntityListTable extends Component {
     }
 
     buildOperationColumn(scrollX) {
-        let maxWidth = document.querySelector('.custom-table').clientWidth;
+        let maxWidth = document.querySelector('#entity-table').clientWidth;
         let self = this;
         let oprationColumn = {
             key: "opration",
@@ -381,7 +381,7 @@ export default class EntityListTable extends Component {
                     ref= {el => this.table = el}
                     dataSource={data}
                     bordered
-                    className="custom-table"
+                    id="entity-table"
                     pagination={this.props.pagination || Application.table.pagination}
                     columns = {columns}
                     scroll = {{ x: scrollX }}

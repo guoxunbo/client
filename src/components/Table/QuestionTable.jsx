@@ -209,7 +209,7 @@ export default class QuestionTable extends EntityListTable {
                 <Table
                     ref= {el => this.table = el}
                     dataSource={data}
-                    className="custom-table"
+                    id="entity-table"
                     pagination={this.props.pagination || Application.table.pagination}
                     columns = {columns}
                     scroll = {{ x: scrollX }}
