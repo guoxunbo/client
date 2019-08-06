@@ -10,6 +10,7 @@ import './global.scss';
 import '../src/api/Extend';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import { Application } from './api/Application';
 moment.locale('zh-cn');
 
 const ICE_CONTAINER = document.getElementById('ice-container');
@@ -18,9 +19,7 @@ if (!ICE_CONTAINER) {
   throw new Error('当前页面不存在 <div id="ice-container"></div> 节点.');
 }
 
-ReactDOM.render(
-  <HashRouter>{router}</HashRouter>,
+document.title=Application.name;
 
-  ICE_CONTAINER
-);
+ReactDOM.render(<HashRouter>{router}</HashRouter>, ICE_CONTAINER);
 
