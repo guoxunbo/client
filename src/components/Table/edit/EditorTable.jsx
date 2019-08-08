@@ -1,4 +1,4 @@
-import { Table, Popconfirm, Button, Form, Upload } from 'antd';
+import { Table, Popconfirm, Button, Form } from 'antd';
 import * as PropTypes from 'prop-types';
 import {DefaultRowKey, DateFormatType} from '../../../api/const/ConstDefine'
 import MessageUtils from '../../../api/utils/MessageUtils';
@@ -138,40 +138,11 @@ class EditableTable extends React.Component {
     MessageUtils.showOperationSuccess();
   }
 
-  // upload = (option) => {
-  //   const { table } = this.state;
-  //   let record = option.data;
-  //   let self = this;
-  //   if (record.newFlag) {
-  //     Notification.showInfo(I18NUtils.getClientMessage(i18NCode.SaveFirst));
-  //     return;
-  //   } else {
-  //     let object = {
-  //       //TODO 当前还没想好怎么传这个策略
-  //       fileStrategy: "KMS",
-  //       modelClass: table.modelClass,
-  //       values: record,
-  //       success: function(responseBody) {
-  //         self.refresh(responseBody.data);
-  //       }
-  //     }
-  //     EntityManagerRequest.sendUploadFileRequest(object, option.file);
-  //   } 
-  // }
-
   /**
    * 创建操作列
-   * 当filed里面有fileName栏位的时候，说明支持文件上传以及下载
    */
   buildOperationColumn = (scrollX, fields) => {
     let maxWidth = document.querySelector('#' + TableId).clientWidth;
-    // let uploadFlag = false;
-    // for(let field of fields) {  
-    //   if (field.displayType === "file") {
-    //       uploadFlag = true;
-    //       break;
-    //   }
-    // };  
     let operationColumn = {
       editable: false,
       title: I18NUtils.getClientMessage(i18NCode.Operation),
