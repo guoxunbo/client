@@ -20,6 +20,7 @@ const ExpMenuKey = {
     exportTemplate: "exportTemplate",
     exportData: "exportData"
 }
+const EntityTableId = "entity-table";
 /**
  * 基本表格。具备新建和导出数据
  * 每一行都带有编辑和删除的列
@@ -81,6 +82,7 @@ export default class EntityListTable extends Component {
         let scrollX = 0;
         for (let field of fields) {
             // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
+            // table.refresh = this.refresh;
             field.table = table;
             let f  = new Field(field);
             let column = f.buildColumn();
@@ -101,7 +103,7 @@ export default class EntityListTable extends Component {
     }
 
     buildOperationColumn(scrollX) {
-        let maxWidth = document.querySelector('#entity-table').clientWidth;
+        let maxWidth = document.querySelector('#' + EntityTableId).clientWidth;
         let self = this;
         let oprationColumn = {
             key: "opration",
@@ -381,7 +383,7 @@ export default class EntityListTable extends Component {
                     ref= {el => this.table = el}
                     dataSource={data}
                     bordered
-                    id="entity-table"
+                    id={EntityTableId}
                     pagination={this.props.pagination || Application.table.pagination}
                     columns = {columns}
                     scroll = {{ x: scrollX }}

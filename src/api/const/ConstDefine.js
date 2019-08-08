@@ -16,13 +16,6 @@ const ModuleUrlConstant = {
     RTM: ServerAddress.NewbiestUrl + "/rtm/",
 }
 
-/**
- * 一些特殊的栏位关键字
- */
-const FieldKeywords = {
-    fileName: "fileName"
-};
-
 const DataBaseType = {
     oracle: "oracle"
 }

@@ -4,7 +4,6 @@ import { Form, Button, Table } from 'antd';
 import I18NUtils from '../../api/utils/I18NUtils';
 import { i18NCode } from '../../api/const/i18n';
 import QuestionRequest from '../../api/question-manager/QuestionRequest';
-import EntityManagerRequest from '../../api/entity-manager/EntityManagerRequest';
 import { Application } from '../../api/Application';
 import { DefaultRowKey } from '../../api/const/ConstDefine';
 import TableManagerRequest from '../../api/table-manager/TableManagerRequest';

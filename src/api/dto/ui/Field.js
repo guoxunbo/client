@@ -1,6 +1,6 @@
-import { Input, InputNumber, DatePicker, Switch,Form, Tag, Button } from 'antd';
+import { Input, InputNumber, DatePicker, Switch,Form, Tag, Button, Upload } from 'antd';
 import {SessionContext} from '../../Application'
-import {Language, DateFormatType, FieldKeywords} from "../../const/ConstDefine";
+import {Language, DateFormatType, FieldKeywords, DefaultRowKey} from "../../const/ConstDefine";
 import RefListField from '../../../components/Field/RefListField';
 import RefTableField from '../../../components/Field/RefTableField';
 import {Icon} from 'antd';
@@ -30,7 +30,9 @@ const DisplayType = {
     userRefList: "userRefList",
     referenceTable: "referenceTable",
     //单选
-    radio: "radio"
+    radio: "radio",
+    //文件
+    file: "file"
 }
 
 const NumberType = [DisplayType.int, DisplayType.double];
@@ -124,15 +126,58 @@ export default class Field {
         }
     }
 
+    upload = (option) => {
+        let record = option.data;
+        let refresh = this.table.refresh;
+        let object = {
+            filePropertyName: this.name,
+            modelClass: this.table.modelClass,
+            values: record,
+            success: function(responseBody) {
+                if (refresh) {
+                    refresh(responseBody.data);
+                }
+            }
+        }
+        EntityManagerRequest.sendUploadFileRequest(object, option.file);
+    }
+
     download = (text, record, index) => {
         let object = {
-            //TODO 此处暂时没想好怎么获取File的策略
-            fileStrategy: "KMS",
+            filePropertyName: this.name,
             modelClass: this.table.modelClass,
             values: record,
             fileName: text
         }
         EntityManagerRequest.sendDownloadFileRequest(object);
+    }
+
+    buildBooleanColumnRender(columnValue) {
+        let value = columnValue;
+        if (typeof columnValue === "string") {
+            value = columnValue.toBoolean();
+        }
+        return (
+            <span>
+                <Tag color={value ? 'green' : 'red'} >{value ? I18NUtils.getClientMessage(i18NCode.Yes)
+                                                                        : I18NUtils.getClientMessage(i18NCode.No)}</Tag>
+            </span>
+        );
+    }
+
+    buildFileColumnRender(columnValue, record, index) {
+        let columnRender = [];
+        if (columnValue) {
+            columnRender.push(<Button key="download" shape="round" onClick={() => this.download(columnValue, record, index)} size={"small"}>{columnValue}</Button>)
+        }
+        
+        // 当这个table携带了refresh方法时候，就可以直接支持上传
+        if (this.table.refresh && Number.isInteger(record[DefaultRowKey])) {
+            columnRender.push(<Upload data={record} customRequest={(option) => this.upload(option)} showUploadList={false} >
+                                <Button shape="round" icon="upload" size="small" href="javascript:;"></Button>
+                            </Upload>);
+        }
+        return columnRender;
     }
 
     buildColumn() {
@@ -146,28 +191,12 @@ export default class Field {
             // Table对布尔类型的数据会不显示。'true'会显示
             if (DisplayType.radio == this.displayType) {
                 aligin = Aligin.center;
-                columnRender = columnValue => {
-                    let value = columnValue;
-                    if (typeof columnValue === "string") {
-                        value = columnValue.toBoolean();
-                    }
-                    return (
-                        <span>
-                            <Tag color={value ? 'green' : 'red'} >{value ? I18NUtils.getClientMessage(i18NCode.Yes)
-                                                                                    : I18NUtils.getClientMessage(i18NCode.No)}</Tag>
-                        </span>
-                    );
-                }
+                columnRender = (columnValue, record, index) => this.buildBooleanColumnRender(columnValue)
             }
             // 当columnName是fileName的时候，直接就是超链接
-            if (FieldKeywords.fileName === this.name) {
+            if (DisplayType.file === this.displayType) {
                 aligin = Aligin.center;
-                columnRender = (columnValue, record, index) => {
-                    return (
-                        columnValue ? <Button shape="round" onClick={() => this.download(columnValue, record, index)} size={"small"}>{columnValue}</Button>
-                        : columnValue
-                    );
-                }
+                columnRender = (columnValue, record, index) => this.buildFileColumnRender(columnValue, record, index);
             }
             let column = {
                 key: this.name,
@@ -176,7 +205,6 @@ export default class Field {
                 align: aligin,
                 width: this.width,
                 render: columnRender,
-                // fixed: 'left',
                 sorter: (a, b) => {
                     // 因为存在了字符串和数字等等一系列，故不能直接用a[this.name] - b[this.name]
                     if (a[this.name] > b[this.name]) {
@@ -210,7 +238,7 @@ export default class Field {
      */
     buildControl(edit, query, initialValue) {
         this.buildDisabled(edit, query);
-        if (this.displayType == DisplayType.text) {
+        if (this.displayType == DisplayType.text || this.displayType == DisplayType.file) {
             return <Input placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.int) {
             return <InputNumber min={this.minValue} disabled={this.disabled}/>;
@@ -322,6 +350,11 @@ export default class Field {
         }
         // 当进行编辑(修改)对象的时候，判断其栏位是否是可编辑
         if (edit && !this.editable) {
+            this.disabled = true;
+            this.placeHolder = "";
+        }
+        // 当是文件类型的时候，只能只读
+        if (DisplayType.file === this.displayType) {
             this.disabled = true;
             this.placeHolder = "";
         }

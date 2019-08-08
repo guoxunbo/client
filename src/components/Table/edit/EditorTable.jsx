@@ -1,6 +1,6 @@
 import { Table, Popconfirm, Button, Form, Upload } from 'antd';
 import * as PropTypes from 'prop-types';
-import {DefaultRowKey, DateFormatType, FieldKeywords} from '../../../api/const/ConstDefine'
+import {DefaultRowKey, DateFormatType} from '../../../api/const/ConstDefine'
 import MessageUtils from '../../../api/utils/MessageUtils';
 import Field from '../../../api/dto/ui/Field';
 import '../ListTable.scss';
@@ -15,7 +15,7 @@ import TableManagerRequest from '../../../api/table-manager/TableManagerRequest'
 import moment from 'moment';
 
 const EditableContext = React.createContext();
-const TableId = "TabTable";
+const TableId = "tab-table";
 
 class EditableCell extends React.Component {
   render() {
@@ -91,6 +91,7 @@ class EditableTable extends React.Component {
     for (let field of fields) {
         // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
         field.table = table;
+        table.refresh = this.refresh;
         let f  = new Field(field, this.props.form);
         let column = f.buildColumn();
         if (column != null) {
@@ -137,26 +138,26 @@ class EditableTable extends React.Component {
     MessageUtils.showOperationSuccess();
   }
 
-  upload = (option) => {
-    const { table } = this.state;
-    let record = option.data;
-    let self = this;
-    if (record.newFlag) {
-      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.SaveFirst));
-      return;
-    } else {
-      let object = {
-        //TODO 当前还没想好怎么传这个策略
-        fileStrategy: "KMS",
-        modelClass: table.modelClass,
-        values: record,
-        success: function(responseBody) {
-          self.refresh(responseBody.data);
-        }
-      }
-      EntityManagerRequest.sendUploadFileRequest(object, option.file);
-    } 
-  }
+  // upload = (option) => {
+  //   const { table } = this.state;
+  //   let record = option.data;
+  //   let self = this;
+  //   if (record.newFlag) {
+  //     Notification.showInfo(I18NUtils.getClientMessage(i18NCode.SaveFirst));
+  //     return;
+  //   } else {
+  //     let object = {
+  //       //TODO 当前还没想好怎么传这个策略
+  //       fileStrategy: "KMS",
+  //       modelClass: table.modelClass,
+  //       values: record,
+  //       success: function(responseBody) {
+  //         self.refresh(responseBody.data);
+  //       }
+  //     }
+  //     EntityManagerRequest.sendUploadFileRequest(object, option.file);
+  //   } 
+  // }
 
   /**
    * 创建操作列
@@ -164,13 +165,13 @@ class EditableTable extends React.Component {
    */
   buildOperationColumn = (scrollX, fields) => {
     let maxWidth = document.querySelector('#' + TableId).clientWidth;
-    let uploadFlag = false;
-    for(let field of fields) {  
-      if (field.name === FieldKeywords.fileName) {
-          uploadFlag = true;
-          break;
-      }
-    };  
+    // let uploadFlag = false;
+    // for(let field of fields) {  
+    //   if (field.displayType === "file") {
+    //       uploadFlag = true;
+    //       break;
+    //   }
+    // };  
     let operationColumn = {
       editable: false,
       title: I18NUtils.getClientMessage(i18NCode.Operation),
@@ -195,20 +196,10 @@ class EditableTable extends React.Component {
               </span>
             ) : (
               <div>
-                {uploadFlag ? (<div>
-                  <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
-                  <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                    <Button icon="delete" size="small" type="danger"></Button>
-                  </Popconfirm>
-                  <Upload data={record} customRequest={(option) => this.upload(option)} showUploadList={false} >
-                    <Button style={{marginRight:'1px'}} icon="upload" size="small" href="javascript:;"></Button>
-                  </Upload>
-                </div>) : <div>
                 <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
                   <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
                     <Button icon="delete" size="small" type="danger"></Button>
                   </Popconfirm>
-                </div>}
               </div>    
             )}
           </div>

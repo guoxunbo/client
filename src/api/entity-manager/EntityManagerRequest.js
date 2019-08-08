@@ -29,7 +29,7 @@ export default class EntityManagerRequest {
     }
     
     static sendUploadFileRequest = (object, file) => {
-        let requestBody = EntityManagerRequestBody.buildUploadEntityFile(object.modelClass, object.values, object.fileStrategy);
+        let requestBody = EntityManagerRequestBody.buildUploadEntityFile(object.modelClass, object.values, object.filePropertyName);
         let requestHeader = new EntityManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.EntityUploadFileUrl);
         let requestObject = {
@@ -40,7 +40,7 @@ export default class EntityManagerRequest {
     }
 
     static sendDownloadFileRequest = (object) => {
-        let requestBody = EntityManagerRequestBody.buildDownloadEntityFile(object.modelClass, object.values, object.fileStrategy);
+        let requestBody = EntityManagerRequestBody.buildDownloadEntityFile(object.modelClass, object.values, object.filePropertyName);
         let requestHeader = new EntityManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.EntityDownloadFileUrl);
         let requestObject = {
