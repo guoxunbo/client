@@ -102,17 +102,25 @@ export default class MessageUtils {
             responseType: 'blob'
         }).then(function(object) {
             let type = object.headers['content-type'];
-
             let blob = new Blob([object.data], { type: type}); 
-            let elink = document.createElement('a');
-            elink.download = fileName;
-            elink.style.display = 'none';
-            elink.href = URL.createObjectURL(blob);
-            document.body.appendChild(elink);
-            elink.click();
-            document.body.removeChild(elink);
-
-            self.showOperationSuccess();
+            let reader = new FileReader();
+            reader.onload = e => {
+                if (e.target.result.indexOf("result") != -1) {
+                    let result = JSON.parse(e.target.result);
+                    let response = new Response(result.header, result.body);
+                    self.handleException(response.header);
+                } else {
+                    let elink = document.createElement('a');
+                    elink.download = fileName;
+                    elink.style.display = 'none';
+                    elink.href = URL.createObjectURL(blob);
+                    document.body.appendChild(elink);
+                    elink.click();
+                    document.body.removeChild(elink);
+                    self.showOperationSuccess();
+                }
+            }
+            reader.readAsText(blob);
         }).catch(function(exception) {
             self.handleException(exception);
         }); 
