@@ -1,5 +1,5 @@
 const Application = {
-    name: '智行管理系统',
+    name: '交接班系统',
     version: "1.0.2",
     copyright: {
         name: "© 2018-2019 By Newbiest",
