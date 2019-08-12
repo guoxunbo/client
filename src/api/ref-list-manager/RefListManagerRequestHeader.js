@@ -1,5 +1,5 @@
 import RequestHeader from "../RequestHeader";
-const MESSAGE_NAME = "RefListManager";
+const MESSAGE_NAME = "RefListManage";
 
 export default class RefListManagerRequestHeader extends RequestHeader{
 

@@ -82,7 +82,7 @@ export default class EntityListTable extends Component {
         let scrollX = 0;
         for (let field of fields) {
             // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
-            // table.refresh = this.refresh;
+            table.refresh = this.refresh;
             field.table = table;
             let f  = new Field(field);
             let column = f.buildColumn();

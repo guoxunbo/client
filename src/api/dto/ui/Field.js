@@ -53,13 +53,12 @@ const DisplayLength = {
 export default class Field {
 
     displayFlag;
-    queryFlag;
     mainFlag;
     basicFlag;
     fromParent;
     upperFlag;
     negativeFlag;
-
+    
     objectRrn;
     name;
     label;
@@ -78,7 +77,11 @@ export default class Field {
     editable;
     requiredFlag;
     namingRule;
+
+    // 查询栏位
+    queryFlag;
     queryRequireFlag;
+    queryLikeFlag;
 
     // 前端栏位
     title;

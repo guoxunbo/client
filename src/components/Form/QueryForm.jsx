@@ -117,12 +117,17 @@ class QueryForm extends Component {
                     whereClause.append(value);
                 } else {
                     fieldValue = fieldValue.toString();
-                    if (fieldValue.indexOf('*') != -1) {
+                    if (queryField.queryLikeFlag) {
                         whereClause.append(SqlType.Like);
-                        //加/g表示全部替换
-                        fieldValue = fieldValue.replace(/\*/g, '%');
+                        fieldValue = '%' + fieldValue + '%'
                     } else {
-                        whereClause.append(SqlType.Eq);
+                        if (fieldValue.indexOf('*') != -1) {
+                            whereClause.append(SqlType.Like);
+                            //加/g表示全部替换
+                            fieldValue = fieldValue.replace(/\*/g, '%');
+                        } else {
+                            whereClause.append(SqlType.Eq);
+                        }
                     }
                     if (!fieldValue.startsWith(SqlType.toDate)) {
                         whereClause.append("'")

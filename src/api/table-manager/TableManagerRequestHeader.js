@@ -1,5 +1,5 @@
 import RequestHeader from "../RequestHeader";
-const MESSAGE_NAME = "TableManager";
+const MESSAGE_NAME = "TableManage";
 
 export default class TableManagerRequestHeader extends RequestHeader{
 

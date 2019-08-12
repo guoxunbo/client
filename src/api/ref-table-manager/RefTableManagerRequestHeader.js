@@ -1,5 +1,5 @@
 import RequestHeader from "../RequestHeader";
-const MESSAGE_NAME = "RefTableManager";
+const MESSAGE_NAME = "RefTableManage";
 
 export default class RefTableManagerRequestHeader extends RequestHeader{
 
