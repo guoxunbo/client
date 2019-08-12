@@ -63,17 +63,6 @@ export default class QuestionTable extends EntityListTable {
         this.buildSubTabelColumns();
     }
 
-    handleDelete = (record) => {
-        const self = this;
-        let object = {
-            question: record,
-            success: function(responseBody) {
-                self.refreshDelete(record);
-            }
-        };
-        QuestionRequest.sendDeleteRquest(object);
-    } 
-
     handleWatch = () => {
         let self = this;
         let selectedRow = this.getSingleSelectedRow();

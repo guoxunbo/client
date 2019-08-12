@@ -326,8 +326,6 @@ class EditableTable extends React.Component {
       };
     });
     return (
-      
-      
       <div>
           {(this.props.editFlag && !this.props.newFlag) ? this.createButtonGroup() : ''};
           <EditableContext.Provider value={this.props.form}>
