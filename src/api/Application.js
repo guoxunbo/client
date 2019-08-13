@@ -1,6 +1,6 @@
 const Application = {
-    name: '交接班系统',
-    version: "1.0.2",
+    name: '智行管理系统',
+    version: "1.0.3",
     copyright: {
         name: "© 2018-2019 By Newbiest",
         url: "https://github.com/guoxunbo/newbiest/"
