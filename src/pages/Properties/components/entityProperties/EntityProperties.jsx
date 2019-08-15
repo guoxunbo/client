@@ -4,6 +4,7 @@ import '../../properties.scss'
 import EntityListTable from '../../../../components/Table/EntityListTable';
 import WrappedAdvancedQueryForm from '../../../../components/Form/QueryForm';
 import TableManagerRequest from '../../../../api/table-manager/TableManagerRequest';
+import { BackTop } from 'antd';
 
 export default class EntityProperties extends Component {
   
@@ -55,6 +56,7 @@ export default class EntityProperties extends Component {
             <WrappedAdvancedQueryForm tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
             {this.buildTable()}
           </div>
+          <BackTop visibilityHeight={300}/>
         </div>
       );
     }

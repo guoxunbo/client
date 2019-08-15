@@ -420,6 +420,7 @@ EntityListTable.prototypes = {
     data: PropTypes.array,
     rowClassName: PropTypes.func,
     rowkey: PropTypes.string,
+    pagination: PropTypes.pagination
 }
 
 const styles = {
