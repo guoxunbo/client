@@ -35,6 +35,7 @@ export default class EntityListTable extends Component {
             table: {fields: []},
             columns: [],
             rowClassName: (record, index) => {},
+            pagepagination: Application.table.pagination,
             rowSelection: undefined,
             selectedRowKeys: [],
             selectedRows: [],
@@ -357,6 +358,7 @@ export default class EntityListTable extends Component {
      */
     selectRow = (record) => {
         let selectedRows = [];
+        console.log(this.state);
         selectedRows.push(record);
         this.setState({
             selectedRows: selectedRows
@@ -370,8 +372,14 @@ export default class EntityListTable extends Component {
 
     }
 
+    onChange = (pagepagination) => {
+        this.setState({
+            pagepagination: pagepagination
+        });
+    }
+
     render() {
-        const {data, columns, rowClassName, selectedRowKeys, scrollX} = this.state;
+        const {data, columns, rowClassName, selectedRowKeys, scrollX, pagepagination} = this.state;
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
           <div >
@@ -384,18 +392,20 @@ export default class EntityListTable extends Component {
                     dataSource={data}
                     bordered
                     id={EntityTableId}
-                    pagination={this.props.pagination || Application.table.pagination}
+                    pagination={pagepagination}
                     columns = {columns}
                     scroll = {{ x: scrollX }}
                     rowKey = {this.props.rowkey || DefaultRowKey}
                     loading = {this.props.loading}
                     rowClassName = {rowClassName.bind(this)}
                     rowSelection = {rowSelection}
+                    onChange= {this.onChange.bind(this)}
                     onRow={(record) => ({
                         onClick: () => {
                             this.selectRow(record);
                         },
                     })}
+
                 >
                 </Table>
             </div>
@@ -410,7 +420,6 @@ EntityListTable.prototypes = {
     data: PropTypes.array,
     rowClassName: PropTypes.func,
     rowkey: PropTypes.string,
-    pagination: PropTypes.pagination
 }
 
 const styles = {

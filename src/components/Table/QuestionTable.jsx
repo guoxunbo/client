@@ -186,7 +186,7 @@ export default class QuestionTable extends EntityListTable {
     }
 
     render() {
-        const {data, columns, rowClassName, selectedRowKeys, scrollX} = this.state;
+        const {data, columns, rowClassName, selectedRowKeys, scrollX, pagepagination} = this.state;
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
           <div >
@@ -198,7 +198,7 @@ export default class QuestionTable extends EntityListTable {
                     ref= {el => this.table = el}
                     dataSource={data}
                     id="entity-table"
-                    pagination={this.props.pagination || Application.table.pagination}
+                    pagination={pagepagination}
                     columns = {columns}
                     scroll = {{ x: scrollX }}
                     rowKey = {this.props.rowkey || DefaultRowKey}
@@ -210,6 +210,7 @@ export default class QuestionTable extends EntityListTable {
                             this.selectRow(record);
                         },
                     })}
+                    onChange= {this.onChange.bind(this)}
                     expandedRowRender={this.expandedRowRender.bind(this)}
                     onExpand={this.onExpand}
                 >
