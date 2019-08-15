@@ -7,9 +7,11 @@ export default class QuestionForm extends EntityForm {
 
     handleSave = (formObject) => {
         var self = this;
+        debugger;
         // 默认处理的saveEntity
         let object = {
             values: formObject,
+            tableRrn: this.props.table.objectRrn,
             success: function(responseBody) {
                 if (self.props.onOk) {
                     self.props.onOk(responseBody.question);

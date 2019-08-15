@@ -20,14 +20,16 @@ export default class EntityManagerRequestBody {
     entityString;
     deleteRelationEntityFlag;
     filePropertyName;
+    tableRrn;
 
-    constructor(actionType, entityModel, entity, deleteRelationEntityFlag, filePropertyName){
+    constructor(actionType, entityModel, entity, deleteRelationEntityFlag, filePropertyName, tableRrn){
         this.actionType = actionType;
         this.entityModel = entityModel;
         this.entityString = JSON.stringify(entity);
         this.deleteRelationEntityFlag = deleteRelationEntityFlag;
         this.filePropertyName = filePropertyName;
-    }
+        this.tableRrn = tableRrn;
+    } 
 
     static buildUploadEntityFile(entityModel, entity, filePropertyName) {
         return new EntityManagerRequestBody(ActionType.Upload, entityModel, entity, false, filePropertyName);
@@ -37,14 +39,14 @@ export default class EntityManagerRequestBody {
         return new EntityManagerRequestBody(ActionType.Download, entityModel, entity, false, filePropertyName);
     }
 
-    static buildMergeEntity(entityModel, entity) {
+    static buildMergeEntity(entityModel, entity, tableRrn) {
         let actionType;
         if (entity.objectRrn) {
             actionType = ActionType.Update;         
         } else {
             actionType = ActionType.Creata;         
         }
-        return new EntityManagerRequestBody(actionType, entityModel, entity);
+        return new EntityManagerRequestBody(actionType, entityModel, entity, false, undefined, tableRrn);
     }
 
     static buildDeleteEntity(entityModel, entity, deleteRelationEntityFlag) {

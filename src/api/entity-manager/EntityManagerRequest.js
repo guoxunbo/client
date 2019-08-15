@@ -18,7 +18,7 @@ export default class EntityManagerRequest {
         if (object.values.newFlag) {
             object.values[DefaultRowKey] = undefined;
         }
-        let requestBody = EntityManagerRequestBody.buildMergeEntity(object.modelClass, object.values);
+        let requestBody = EntityManagerRequestBody.buildMergeEntity(object.modelClass, object.values, object.tableRrn);
         let requestHeader = new EntityManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.EntityManagerUrl);
         let requestObject = {

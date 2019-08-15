@@ -10,7 +10,7 @@ export default class QuestionRequest {
         if (object.values.newFlag) {
             object.values[DefaultRowKey] = undefined;
         }
-        let requestBody = QuestionRequestBody.buildMergeEntity(object.values);
+        let requestBody = QuestionRequestBody.buildMergeEntity(object.values, object.tableRrn);
         let requestHeader = new QuestionRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.QuestionManagerUrl);
         let requestObject = {

@@ -210,6 +210,7 @@ class EditableTable extends React.Component {
       let object = {
         modelClass : table.modelClass,
         values: rowData,
+        tableRrn: table.objectRrn,
         success: function(responseBody) {
           let responseData = responseBody.data;
           let dataIndex = -1;

@@ -114,6 +114,7 @@ export default class EntityForm extends Component {
         let object = {
             modelClass: this.props.table.modelClass,
             values: formObject,
+            tableRrn: this.props.table.objectRrn,
             success: function(responseBody) {
                 if (self.props.onOk) {
                     self.props.onOk(responseBody.data);

@@ -10,20 +10,22 @@ const ActionType = {
 export default class QuestionRequestBody {
     actionType;
     question;
+    tableRrn;
 
-    constructor(actionType, question) {
+    constructor(actionType, question, tableRrn) {
         this.actionType = actionType;
         this.question = question;
+        this.tableRrn = tableRrn;
     }
     
-    static buildMergeEntity(question) {
+    static buildMergeEntity(question, tableRrn) {
         let actionType;
         if (question.objectRrn) {
             actionType = ActionType.Update;         
         } else {
             actionType = ActionType.Create;         
         }
-        return new QuestionRequestBody(actionType, question);
+        return new QuestionRequestBody(actionType, question, tableRrn);
     }
 
     static buildClose(question) {
