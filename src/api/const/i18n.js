@@ -44,7 +44,9 @@ const i18NCode = {
     BtnUnConsume: "UnConsume",
     BtnScrap: "Scrap",
     BtnUnScrap: "UnScrap",
-
+    BtnSearch: "Search",
+    BtnReset: "Reset",
+    Collapse: "Collapse",
     TransferItem: "Item",
     TransferItems: "Items",
     TransferNotFoundContent: "NotFoundContents",
@@ -314,8 +316,22 @@ const i18Messages = {
         Chinese: "操作",
         English: "Operation",
         Res: ""
-    }
-    
+    },
+    Search: {
+        Chinese: "查找",
+        English: "Search",
+        Res: ""
+    },
+    Reset: {
+        Chinese: "重置",
+        English: "Reset",
+        Res: ""
+    },
+    Collapse: {
+        Chinese: "展开",
+        English: "Collapse",
+        Res: ""
+    }    
 }
 
 export {i18Messages, i18NCode};

@@ -7,6 +7,8 @@ import StringBuffer from '../../api/StringBuffer';
 import moment from 'moment';
 import { Application } from '../../api/Application';
 import * as PropTypes from 'prop-types';
+import I18NUtils from '../../api/utils/I18NUtils';
+import { i18NCode } from '../../api/const/i18n';
 
 /**
  * 不展开的时候最大的查询数目
@@ -211,14 +213,10 @@ class QueryForm extends React.Component {
                 {queryFields.length > 0 ? 
                     <Row>
                         <Col span={24} style={{ textAlign: 'right' }}>
-                            <Button type="primary" htmlType="submit">
-                            Search
-                            </Button>
-                            <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-                            Clear
-                            </Button>
+                            <Button icon="search" type="primary" htmlType="submit">{I18NUtils.getClientMessage(i18NCode.BtnSearch)}</Button>
+                            <Button icon="redo" style={{ marginLeft: 8 }} onClick={this.handleReset}>{I18NUtils.getClientMessage(i18NCode.BtnReset)}</Button>
                             <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
-                                Collapse <Icon type={this.state.expand ? 'up' : 'down'} />
+                                {I18NUtils.getClientMessage(i18NCode.Collapse)}<Icon type={this.state.expand ? 'up' : 'down'} />
                             </a>
                         </Col>
                     </Row> : ""}
