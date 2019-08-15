@@ -258,11 +258,11 @@ export default class Field {
         } else if (this.displayType == DisplayType.datetimeFromTo) {
             return query ? <RangePicker locale={locale} showTime format={DateFormatType.DateTime} disabled={this.disabled}/> : <DatePicker locale={locale} showTime format={DateFormatType.DateTime} disabled={this.disabled} />
         } else if (this.displayType == DisplayType.sysRefList) {
-            return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName} style={query ? styles.queryComboxStyle: undefined} disabled={this.disabled}/>
+            return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName}  disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.userRefList) {
-            return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName} owner style={query ? styles.queryComboxStyle: undefined} disabled={this.disabled}/>
+            return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName} owner  disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.referenceTable) {
-            return <RefTableField initialValue={initialValue} field={this} form={this.form} style={query ? styles.queryComboxStyle: undefined} disabled={this.disabled}/>
+            return <RefTableField initialValue={initialValue} field={this} form={this.form} disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.radio) {
             return <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
         }
@@ -428,9 +428,6 @@ export default class Field {
 }
 
 const styles = {
-    queryComboxStyle: {
-        width: '160px'
-    },
     textUppercaseStyle: {
         textTransform:"uppercase"
     }

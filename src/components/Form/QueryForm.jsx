@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import { Form, Row, Col, Button } from 'antd';
+import { Form, Row, Col, Button, Icon } from 'antd';
 import './QueryForm.scss';
-import {SqlType, DateFormatType, DataBaseType} from "../../api/const/ConstDefine";
-import Field from '../../api/dto/ui/Field';
-import * as PropTypes from 'prop-types';
-
-import StringBuffer from '../../api/StringBuffer';
 import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
+import { DateFormatType, SqlType, DataBaseType } from '../../api/const/ConstDefine';
+import Field from '../../api/dto/ui/Field';
+import StringBuffer from '../../api/StringBuffer';
 import moment from 'moment';
 import { Application } from '../../api/Application';
+import * as PropTypes from 'prop-types';
 
-class QueryForm extends Component {
+/**
+ * 不展开的时候最大的查询数目
+ */
+const unExpendMaxSize = 6;
+
+class QueryForm extends React.Component {
     static displayName = 'QueryForm';
-    
+
     constructor(props) {
         super(props);
         let tableRrn = this.props.tableRrn;
@@ -22,7 +25,7 @@ class QueryForm extends Component {
             queryFields: []
         };
     }
-    
+
     componentDidMount() {
         this.getQueryFields(this.state.tableRrn);
     }
@@ -55,6 +58,21 @@ class QueryForm extends Component {
         } 
         return SqlType.Date; 
     }
+
+    getFields(queryFields) {
+        const count = this.state.expand ? queryFields.length : unExpendMaxSize;
+        const children = [];
+        for (let i in queryFields) {
+            let field = queryFields[i];
+            children.push(
+                <Col span={8} key={field.name} style={{ display: i < count ? 'block' : 'none' }}>
+                    {field.buildFormItem(undefined, false, true)}
+                </Col>,
+            );
+        }
+        return children;
+    }
+
     /**
      * 将时间类型转成语句
      * 针对于oracle和其他数据库的不同，转换语法不一样
@@ -143,7 +161,7 @@ class QueryForm extends Component {
         return whereClause.toString();
     }
 
-    handleSearch = (e) => {
+    handleSearch = e => {
         e.preventDefault();
         var self = this;
         this.props.form.validateFields((err, values) => {
@@ -174,45 +192,38 @@ class QueryForm extends Component {
                 self.props.onSearch(whereClause);
             } 
         });
-    }
-    
+    };
+
     handleReset = () => {
         this.props.form.resetFields();
-    }
+    };
 
-    getFields = (queryFields) => {
-        const children = [];
-        let colSpan = queryFields.length >= 3 ? 8 : 24 / queryFields.length - 2 ;
-        if(queryFields.length === 1) {
-            colSpan = 16
-        }
-        for (let i in queryFields) {
-          let field = queryFields[i];
-          children.push(
-            <Col span={colSpan} key={i}>
-              {field.buildFormItem(undefined, false, true)}
-            </Col>
-          );
-        }
-        return children;
-    }
+    toggle = () => {
+        const { expand } = this.state;
+        this.setState({ expand: !expand });
+    };
 
     render() {
-        const queryFields = this.getFields(this.state.queryFields)
-        if (Array.isArray(queryFields) && queryFields.length > 0) {
-            return (
-                <div style={styles.tableFilter}>
-                    <Form className="ant-advanced-search-form" >
-                        <Row gutter={24} style={{display:'inline-block'}}>{queryFields}
-                        {queryFields.length > 1 ? <Button type="primary" className="search-button ant-col-3" onClick={this.handleSearch}>查找</Button> :
-                        <Button type="primary" className="search-button ant-col-6" onClick={this.handleSearch}>查找</Button> }
-                        </Row>
-                    </Form>
-                </div>);
-        } else {
-            return <div></div>
-        }
-        
+        const queryFields = this.state.queryFields;
+        return (
+            <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
+                <Row gutter={24}>{this.getFields(queryFields)}</Row>
+                {queryFields.length > 0 ? 
+                    <Row>
+                        <Col span={24} style={{ textAlign: 'right' }}>
+                            <Button type="primary" htmlType="submit">
+                            Search
+                            </Button>
+                            <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
+                            Clear
+                            </Button>
+                            <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
+                                Collapse <Icon type={this.state.expand ? 'up' : 'down'} />
+                            </a>
+                        </Col>
+                    </Row> : ""}
+            </Form>
+        );
     }
 }
 
@@ -222,14 +233,3 @@ QueryForm.prototypes = {
 
 const WrappedAdvancedQueryForm = Form.create()(QueryForm);
 export default WrappedAdvancedQueryForm;
-
-const styles = {
-    tableFilter: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '20px',
-      paddingBottom:'0px',
-      background: '#fff',
-    }
-};
