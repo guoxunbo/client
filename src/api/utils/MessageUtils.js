@@ -71,7 +71,7 @@ export default class MessageUtils {
             }
         }
         axios.post(request.url, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+            headers: { 'Content-Type': 'multipart/form-data',  authorization: SessionContext.getToken() }
         }).then(function(object) {
             let response = new Response(object.data.header, object.data.body);
             if (ResultIdentify.Fail == response.header.result) {
@@ -99,7 +99,10 @@ export default class MessageUtils {
         let self = this;
         let request = requestObject.request;
         axios.post(request.url, request, {
-            responseType: 'blob'
+            responseType: 'blob',
+            headers: {
+                authorization: SessionContext.getToken()
+            }
         }).then(function(object) {
             let type = object.headers['content-type'];
             let blob = new Blob([object.data], { type: type}); 
@@ -132,13 +135,17 @@ export default class MessageUtils {
     static sendRequest(requestObject) {
         let self = this;
         let request = requestObject.request;
-        axios.post(request.url, request).then(function(object) {
+        axios.post(request.url, request, {
+            headers:{
+                authorization: SessionContext.getToken()
+            }
+        }).then(function(object) {
             let response = new Response(object.data.header, object.data.body);
             if (ResultIdentify.Fail == response.header.result) {
                 self.handleException(response.header);
             } else {
                 if (object.headers.authorization) {
-                    
+                    SessionContext.saveToken(object.headers.authorization);
                 }
                 if (requestObject.success) {
                     requestObject.success(response.body);

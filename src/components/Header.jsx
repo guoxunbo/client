@@ -48,6 +48,7 @@ export default class Header extends PureComponent {
       Notification.showInfo("请先登陆");
       this.props.history.push('/');
     }
+    
     const { width, theme, isMobile, className, style } = this.props;
     const WrappedChangePwdForm = Form.create()(ChangePwdForm);
     return (

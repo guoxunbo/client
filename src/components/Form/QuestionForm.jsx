@@ -7,7 +7,6 @@ export default class QuestionForm extends EntityForm {
 
     handleSave = (formObject) => {
         var self = this;
-        debugger;
         // 默认处理的saveEntity
         let object = {
             values: formObject,

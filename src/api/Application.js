@@ -94,8 +94,12 @@ class SessionContext {
     /**
      * 保存token
      */
-    static saveToken() {
-        
+    static saveToken(token) {
+        sessionStorage.setItem(JWT_TOKEN_STORAGE_NAME, token)
+    }
+
+    static getToken() {
+        return sessionStorage.getItem(JWT_TOKEN_STORAGE_NAME);
     }
 
     static saveSessionContext(username, description, orgRrn, language, authories) {
@@ -106,6 +110,15 @@ class SessionContext {
         sc.setOrgRrn(orgRrn);
         sc.setAuthorities(authories);
         sessionStorage.setItem(SC_STORAGE_NAME, JSON.stringify(sc));
+    }
+
+    static clear() {
+        clearToken();
+        clearSessionContext();
+    }
+
+    static clearToken() {
+        sessionStorage.removeItem(JWT_TOKEN_STORAGE_NAME)
     }
 
     static clearSessionContext() {
@@ -134,14 +147,6 @@ class SessionContext {
             return undefined;
         }
         return sessionContext.authories;
-    }
-
-    static getToken() {
-        let sessionContext = this.getSessionContext();
-        if (!sessionContext) {
-            return "";
-        }
-        return sessionContext.token;
     }
 
     static getUsername() {
