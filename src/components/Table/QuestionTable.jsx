@@ -200,7 +200,7 @@ export default class QuestionTable extends EntityListTable {
                     id="entity-table"
                     pagination={pagepagination}
                     columns = {columns}
-                    scroll = {{ x: scrollX }}
+                    scroll = {{ x: scrollX, y: 500 }}
                     rowKey = {this.props.rowkey || DefaultRowKey}
                     loading = {this.props.loading}
                     rowClassName = {rowClassName.bind(this)}

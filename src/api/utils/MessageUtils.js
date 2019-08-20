@@ -25,7 +25,11 @@ export default class MessageUtils {
             let axioses = [];
             requests.forEach((requestObject)=>{
                 let request = requestObject.request;
-                axioses.push(axios.post(request.url, request));
+                axioses.push(axios.post(request.url, request, {
+                    headers:{
+                        authorization: SessionContext.getToken()
+                    }
+                }));
             });
             axios.all(axioses).then(axios.spread(function(responseValue1, responseValue2) {
                 // 处理2个reponse 都成功才回调Object.success
