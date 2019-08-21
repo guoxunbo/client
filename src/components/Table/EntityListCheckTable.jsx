@@ -34,15 +34,16 @@ export default class EntityListCheckTable extends EntityListTable {
     }
 
     selectRow = (record) => {
+        let {rowKey} = this.props;
         const selectedRowKeys = [...this.state.selectedRowKeys];
         const selectedRows = [...this.state.selectedRows];
 
-        let checkIndex = selectedRowKeys.indexOf(record.objectRrn);
+        let checkIndex = selectedRowKeys.indexOf(record[rowKey]);
         if (checkIndex >= 0) {
             selectedRowKeys.splice(checkIndex, 1);
             selectedRows.splice(checkIndex, 1);
         } else {
-            selectedRowKeys.push(record.objectRrn);
+            selectedRowKeys.push(record[rowKey]);
             selectedRows.push(record);
         }
         this.setState({ 
@@ -60,15 +61,17 @@ export default class EntityListCheckTable extends EntityListTable {
             field.table = table;
             let f  = new Field(field);
             let column = f.buildColumn();
-            if (column != null) {
+            if (column) {
                 columns.push(column);
                 scrollX += column.width;
             }
         }
         scrollX += Application.table.checkBox.width;
         let operationColumn = this.buildOperationColumn(scrollX);
-        scrollX += operationColumn.width;
-        columns.push(operationColumn);
+        if (operationColumn) {
+            scrollX += operationColumn.width;
+            columns.push(operationColumn);
+        }
         return {
             columns: columns,
             scrollX: scrollX
