@@ -14,6 +14,7 @@ const ModuleUrlConstant = {
     MMS: ServerAddress.NewbiestUrl + "/mms/",
     KMS: ServerAddress.NewbiestUrl + "/kms/",
     RTM: ServerAddress.NewbiestUrl + "/rtm/",
+    GC: ServerAddress.NewbiestUrl + "/gc/"
 }
 
 const DataBaseType = {
@@ -45,7 +46,9 @@ const UrlConstant = {
     MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
     QuestionManagerUrl: ModuleUrlConstant.KMS + "questionManage",
     QuestionLineManagerUrl: ModuleUrlConstant.KMS + "questionLineManage",
-    DynaxAnalyseUrl: ModuleUrlConstant.RTM + "analyseFile"
+    DynaxAnalyseUrl: ModuleUrlConstant.RTM + "analyseFile",
+    //GC
+    FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
 };
 
 const SystemRefListName = {

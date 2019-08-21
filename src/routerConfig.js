@@ -17,6 +17,7 @@ import MaterialLotInventoryProperties from './pages/Properties/components/Materi
 import EntityHistoryProperties from './pages/Properties/components/EntityHistoryProperties';
 import DynaxAnalyseProperties from './pages/Properties/components/DynaxAnalyseProperties';
 import QuestionProperties from './pages/Properties/components/QuestionProperties';
+import MesFinishGoodProperties from './pages/Properties/components/MesFinishGoodProperties';
 
 const routerConfig = [
   {
@@ -132,6 +133,12 @@ const routerConfig = [
     path: '/MMS/MaterialLotHistoryManager/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
+  },
+  //MES成品接收
+  {
+    path: '/MMS/MESFinishGoodManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MesFinishGoodProperties,
   },
   //WMS
   {

@@ -35,6 +35,7 @@ const i18NCode = {
     BtnDispatchAuthority: "DispatchAuthority",
     BtnDispatchEvent: "DispatchEvent",
     BtnReceiveMaterialLot: "ReceiveMaterialLot",
+    BtnReceive: "Receive",
     BtnStockOut: "StockOut",
     BtnStockTransfer: "StockTransfer",
     BtnPick: "Pick",
@@ -46,6 +47,7 @@ const i18NCode = {
     BtnUnScrap: "UnScrap",
     BtnSearch: "Search",
     BtnReset: "Reset",
+    DataNotFound: "DataNotFound",
     Collapse: "Collapse",
     TransferItem: "Item",
     TransferItems: "Items",
@@ -262,6 +264,11 @@ const i18Messages = {
         English: "DispEvent",
         Res: ""
     },
+    Receive: {
+        Chinese: "接收",
+        English: "Receive",
+        Res: ""
+    },
     ReceiveMaterialLot: {
         Chinese: "接收物料",
         English: "ReceiveMateialLot",
@@ -331,7 +338,12 @@ const i18Messages = {
         Chinese: "展开",
         English: "Collapse",
         Res: ""
-    }    
+    },
+    DataNotFound: {
+        Chinese: "数据没找到",
+        English: "Data is not found",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};
