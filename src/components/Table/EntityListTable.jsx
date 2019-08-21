@@ -35,10 +35,10 @@ export default class EntityListTable extends Component {
             table: {fields: []},
             columns: [],
             rowClassName: (record, index) => {},
-            pagepagination: Application.table.pagination,
+            pagination: Application.table.pagination,
             rowSelection: undefined,
-            selectedRowKeys: [],
-            selectedRows: [],
+            selectedRowKeys: this.props.selectedRowKeys || [],
+            selectedRows: this.props.selectedRows || [],
             formVisible: false,
             editorObject: {},
             scrollX: undefined,
@@ -48,12 +48,20 @@ export default class EntityListTable extends Component {
     }
 
     componentWillReceiveProps = (props) => {
+        // TODO 此处存在刷新多次问题
         let columnData = this.buildColumn(props.table);
+        
+        let pagination = props.pagination != undefined ? props.pagination : Application.table.pagination
+        // let {selectedRowKeys, selectedRows} = this.state;
+        
         this.setState({
             data: props.data,
             table: props.table,
             columns: columnData.columns,
-            scrollX: columnData.scrollX
+            scrollX: columnData.scrollX,
+            selectedRowKeys: props.selectedRowKeys,
+            selectedRows: props.selectedRows,
+            pagination: pagination
         })
     }
 
@@ -227,6 +235,14 @@ export default class EntityListTable extends Component {
         }
     }
 
+    getSelectedRows = () => {
+        const {selectedRows} = this.state;
+        if (!selectedRows || selectedRows.length == 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+        }
+        return selectedRows;
+    }
+
     getSingleSelectedRow = () => {
         const {selectedRows} = this.state;
         if (selectedRows) {
@@ -358,7 +374,6 @@ export default class EntityListTable extends Component {
      */
     selectRow = (record) => {
         let selectedRows = [];
-        console.log(this.state);
         selectedRows.push(record);
         this.setState({
             selectedRows: selectedRows
@@ -372,14 +387,14 @@ export default class EntityListTable extends Component {
 
     }
 
-    onChange = (pagepagination) => {
+    onChange = (pagination) => {
         this.setState({
-            pagepagination: pagepagination
+            pagination: pagination
         });
     }
 
     render() {
-        const {data, columns, rowClassName, selectedRowKeys, scrollX, pagepagination} = this.state;
+        const {data, columns, rowClassName, selectedRowKeys, scrollX, pagination} = this.state;
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
           <div >
@@ -392,10 +407,10 @@ export default class EntityListTable extends Component {
                     dataSource={data}
                     bordered
                     id={EntityTableId}
-                    pagination={pagepagination}
+                    pagination={pagination}
                     columns = {columns}
                     scroll = {{ x: scrollX }}
-                    rowKey = {this.props.rowkey || DefaultRowKey}
+                    rowKey = {this.props.rowKey}
                     loading = {this.props.loading}
                     rowClassName = {rowClassName.bind(this)}
                     rowSelection = {rowSelection}
