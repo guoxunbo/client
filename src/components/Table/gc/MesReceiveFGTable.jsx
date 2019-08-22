@@ -25,14 +25,16 @@ export default class MesReceiveFGTable extends EntityListCheckTable {
         const selectedRows = this.getSelectedRows();
         if (selectedRows && selectedRows.length > 0) {
             let self = this;
+            const {rowKey} = self.state;
+
             let requestObject = {
                 mesPackedLots: selectedRows,
                 success: function(responseBody) {
-                    let datas = self.state.data;    
+                    let datas = self.state.data;   
                     selectedRows.forEach((selectedRow) => {
-                        let dataIndex = datas.indexOf(selectedRow);
-                        if (dataIndex > -1) {
-                            datas.splice(dataIndex, 1);
+                        const existData = datas.find(data => data[rowKey] === selectedRow[rowKey]);
+                        if (existData) {
+                            datas.splice(datas.indexOf(existData), 1);
                         }
                     });
                     self.setState({
@@ -40,6 +42,9 @@ export default class MesReceiveFGTable extends EntityListCheckTable {
                         selectedRows: [],
                         selectedRowKeys: []
                     })
+                    if (self.props.resetData) {
+                        self.props.resetData();
+                    }
                     MessageUtils.showOperationSuccess();
                 }
             }
