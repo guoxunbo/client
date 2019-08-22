@@ -288,7 +288,6 @@ export default class Field {
         } 
         let rules = this.buildRule(query);
         initialValue = this.buildInitialValue(initialValue);
-
         return (<FormItem {...formItemProperties} label={this.title}>
             {getFieldDecorator(this.name, {
                 rules: rules,
@@ -375,9 +374,7 @@ export default class Field {
             rule.required = true;
         }
         if (query) {
-            if (!this.queryRequireFlag) {
-                rule.required = false;
-            }
+            rule.required = this.queryRequireFlag;
         }
         
         if (DisplayType.text == this.displayType) {
