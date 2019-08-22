@@ -9,9 +9,20 @@ import { i18NCode } from '../../../../api/const/i18n';
  * 默认显示数据，支持扫描查询条件，将扫描到的数据添加到表格中
  * 这里面的buildTable方法返回的对象必须继承EntityListTable
  */
-export default class EntityScanCheckProperties extends EntityProperties {
+export default class EntityScanProperties extends EntityProperties {
   
     static displayName = 'EntityScanCheckProperties';
+
+    /**
+     * 当表格里数据做完操作之后，务必调用下此方法把扫描添加进去的state数据清零。不然会把上一次的扫描结果一起带到下一次中去
+     */
+    resetData = () => {
+      this.setState({
+        selectedRowKeys: [],
+        selectedRows: [],
+        tableData: []
+      })
+  }
 
     getTableData = () => {
       const self = this;
