@@ -64,14 +64,15 @@ class QueryForm extends React.Component {
     getFields(queryFields) {
         const count = this.state.expand ? queryFields.length : unExpendMaxSize;
         const children = [];
-        for (let i in queryFields) {
-            let field = queryFields[i];
+        let i = 0;
+        queryFields.forEach((field) => {
             children.push(
                 <Col span={8} key={field.name} style={{ display: i < count ? 'block' : 'none' }}>
                     {field.buildFormItem(undefined, false, true)}
                 </Col>,
             );
-        }
+            i++;
+        });
         return children;
     }
 

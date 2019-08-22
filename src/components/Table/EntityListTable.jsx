@@ -50,17 +50,16 @@ export default class EntityListTable extends Component {
     componentWillReceiveProps = (props) => {
         // TODO 此处存在刷新多次问题
         let columnData = this.buildColumn(props.table);
-        
         let pagination = props.pagination != undefined ? props.pagination : Application.table.pagination
-        // let {selectedRowKeys, selectedRows} = this.state;
-        
+        let stateSeletcedRowKeys = this.state.selectedRowKeys.merge(props.selectedRowKeys);
+        let stateSelectedRows = this.state.selectedRows.merge(props.selectedRows);
         this.setState({
             data: props.data,
             table: props.table,
             columns: columnData.columns,
             scrollX: columnData.scrollX,
-            selectedRowKeys: props.selectedRowKeys,
-            selectedRows: props.selectedRows,
+            selectedRowKeys: stateSeletcedRowKeys || [],
+            selectedRows: stateSelectedRows || [],
             pagination: pagination
         })
     }
@@ -410,7 +409,7 @@ export default class EntityListTable extends Component {
                     pagination={pagination}
                     columns = {columns}
                     scroll = {{ x: scrollX }}
-                    rowKey = {this.props.rowKey}
+                    rowKey = {this.props.rowKey || DefaultRowKey}
                     loading = {this.props.loading}
                     rowClassName = {rowClassName.bind(this)}
                     rowSelection = {rowSelection}
