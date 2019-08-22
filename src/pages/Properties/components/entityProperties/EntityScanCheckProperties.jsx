@@ -21,7 +21,8 @@ export default class EntityScanCheckProperties extends EntityProperties {
         this.setState({
           selectedRowKeys: [],
           selectedRows: []
-        })
+        });
+        this.form.handleReset();
     }
 
     queryData = (whereClause) => {

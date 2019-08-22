@@ -21,7 +21,8 @@ export default class EntityScanProperties extends EntityProperties {
         selectedRowKeys: [],
         selectedRows: [],
         tableData: []
-      })
+      });
+      this.form.handleReset();
   }
 
     getTableData = () => {
