@@ -46,6 +46,7 @@ export default class EntityScanCheckProperties extends EntityProperties {
               resetFlag:false,
               loading: false
             });
+            self.form.resetFormFileds();
           } else {
             self.setState({ 
               loading: false

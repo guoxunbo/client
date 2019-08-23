@@ -49,14 +49,9 @@ export default class EntityListTable extends Component {
 
     componentWillReceiveProps = (props) => {
         // TODO 此处存在刷新多次问题
-        let {selectedRowKeys, selectedRows, table, columns, scrollX} = this.state;
-        let columnData;
-        // 第一次进来的时候生成即可
-        if (!columns || columns.length == 0) {
-            columnData = this.buildColumn(props.table);
-            columns = columnData.columns;
-            scrollX = columnData.scrollX;
-        }
+        let {selectedRowKeys, selectedRows,} = this.state;
+        let columnData = this.buildColumn(props.table);;
+        
         let stateSeletcedRowKeys = selectedRowKeys.merge(props.selectedRowKeys);
         let stateSelectedRows = selectedRows.merge(props.selectedRows);
         
@@ -67,9 +62,9 @@ export default class EntityListTable extends Component {
         
         this.setState({
             data: props.data,
-            table: table || props.table,
-            columns: columns,
-            scrollX: scrollX,
+            table: props.table,
+            columns: columnData.columns,
+            scrollX: columnData.scrollX,
             selectedRowKeys: stateSeletcedRowKeys || [],
             selectedRows: stateSelectedRows || [],
             pagination: props.pagination != undefined ? props.pagination : Application.table.pagination

@@ -204,6 +204,10 @@ class QueryForm extends React.Component {
         this.props.form.resetFields();
     };
 
+    resetFormFileds() {
+        this.props.form.resetFields();
+    }
+
     toggle = () => {
         const { expand } = this.state;
         this.setState({ expand: !expand });

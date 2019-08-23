@@ -57,6 +57,7 @@ export default class EntityScanProperties extends EntityProperties {
               tableData: tableData,
               loading: false
             });
+            self.form.resetFormFileds();
           } else {
             self.setState({ 
               loading: false

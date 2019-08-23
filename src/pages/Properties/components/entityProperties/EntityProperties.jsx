@@ -75,7 +75,9 @@ export default class EntityProperties extends Component {
       return (
         <div className="properties-page">
           <div className="router-body">
-            <WrappedAdvancedQueryForm handleReset={this.resetData.bind(this)} wrappedComponentRef={(form) => this.form = form} tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
+            <WrappedAdvancedQueryForm handleReset={this.resetData.bind(this)} 
+                                      wrappedComponentRef={(form) => this.form = form} 
+                                      tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
             <Divider/>
             {this.buildTable()}
           </div>
