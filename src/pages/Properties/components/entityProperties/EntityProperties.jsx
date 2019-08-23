@@ -63,6 +63,10 @@ export default class EntityProperties extends Component {
       this.queryData(whereClause);
     }
 
+    resetData = () => {
+      
+    }
+    
     buildTable = () => {
         return  <EntityListTable rowKey={this.state.rowKey} selectedRowKeys={this.state.selectedRowKeys} selectedRows={this.state.selectedRows} table={this.state.table} data={this.state.tableData} loading={this.state.loading}/>
     }
@@ -71,7 +75,7 @@ export default class EntityProperties extends Component {
       return (
         <div className="properties-page">
           <div className="router-body">
-            <WrappedAdvancedQueryForm wrappedComponentRef={(form) => this.form = form} tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
+            <WrappedAdvancedQueryForm handleReset={this.resetData.bind(this)} wrappedComponentRef={(form) => this.form = form} tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
             <Divider/>
             {this.buildTable()}
           </div>

@@ -198,6 +198,9 @@ class QueryForm extends React.Component {
     };
 
     handleReset = () => {
+        if (this.props.handleReset) {
+            this.props.handleReset();
+        }
         this.props.form.resetFields();
     };
 
