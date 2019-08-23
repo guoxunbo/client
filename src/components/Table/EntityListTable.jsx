@@ -49,18 +49,30 @@ export default class EntityListTable extends Component {
 
     componentWillReceiveProps = (props) => {
         // TODO 此处存在刷新多次问题
-        let columnData = this.buildColumn(props.table);
-        let pagination = props.pagination != undefined ? props.pagination : Application.table.pagination
-        let stateSeletcedRowKeys = this.state.selectedRowKeys.merge(props.selectedRowKeys);
-        let stateSelectedRows = this.state.selectedRows.merge(props.selectedRows);
+        let {selectedRowKeys, selectedRows, table, columns, scrollX} = this.state;
+        let columnData;
+        // 第一次进来的时候生成即可
+        if (!columns || columns.length == 0) {
+            columnData = this.buildColumn(props.table);
+            columns = columnData.columns;
+            scrollX = columnData.scrollX;
+        }
+        let stateSeletcedRowKeys = selectedRowKeys.merge(props.selectedRowKeys);
+        let stateSelectedRows = selectedRows.merge(props.selectedRows);
+        
+        if (props.resetFlag) {
+            stateSeletcedRowKeys = [];
+            stateSelectedRows = [];
+        }
+        
         this.setState({
             data: props.data,
-            table: props.table,
-            columns: columnData.columns,
-            scrollX: columnData.scrollX,
+            table: table || props.table,
+            columns: columns,
+            scrollX: scrollX,
             selectedRowKeys: stateSeletcedRowKeys || [],
             selectedRows: stateSelectedRows || [],
-            pagination: pagination
+            pagination: props.pagination != undefined ? props.pagination : Application.table.pagination
         })
     }
 
@@ -434,7 +446,11 @@ EntityListTable.prototypes = {
     data: PropTypes.array,
     rowClassName: PropTypes.func,
     rowkey: PropTypes.string,
-    pagination: PropTypes.pagination
+    pagination: PropTypes.pagination,
+    selectedRowKeys: PropTypes.array,
+    selectedRows: PropTypes.array,
+    resetFlag: PropTypes.bool,
+    resetData: PropTypes.func
 }
 
 const styles = {

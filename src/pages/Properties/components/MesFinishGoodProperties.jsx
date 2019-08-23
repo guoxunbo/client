@@ -19,6 +19,7 @@ export default class MesFinishGoodProperties extends EntityScanCheckProperties{
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading} 
-                                    resetData={this.resetData.bind(this)}/>
+                                    resetData={this.resetData.bind(this)}
+                                    resetFlag={this.state.resetFlag}/>
     }
 }

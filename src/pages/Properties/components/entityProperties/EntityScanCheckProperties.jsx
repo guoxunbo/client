@@ -20,7 +20,8 @@ export default class EntityScanCheckProperties extends EntityProperties {
     resetData = () => {
         this.setState({
           selectedRowKeys: [],
-          selectedRows: []
+          selectedRows: [],
+          resetFlag: true,
         });
     }
 
@@ -42,6 +43,7 @@ export default class EntityScanCheckProperties extends EntityProperties {
             self.setState({ 
               selectedRowKeys: selectedRowKeys,
               selectedRows: selectedRows,
+              resetFlag:false,
               loading: false
             });
           } else {
