@@ -28,7 +28,6 @@ export default class EntityScanCheckProperties extends EntityProperties {
     queryData = (whereClause) => {
       const self = this;
       let {rowKey, selectedRowKeys, selectedRows} = this.state;
-      debugger;
       let requestObject = {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,

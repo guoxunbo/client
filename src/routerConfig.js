@@ -18,6 +18,7 @@ import EntityHistoryProperties from './pages/Properties/components/EntityHistory
 import DynaxAnalyseProperties from './pages/Properties/components/DynaxAnalyseProperties';
 import QuestionProperties from './pages/Properties/components/QuestionProperties';
 import MesFinishGoodProperties from './pages/Properties/components/MesFinishGoodProperties';
+import PackageMaterialLotProperties from './pages/Properties/components/PackageMaterialLotProperties';
 
 const routerConfig = [
   {
@@ -65,11 +66,7 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
-  {
-    path: 'System/MergeRuleManager/:tableRrn',
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
-  },
+
 
   {
     path: 'Security/UserManager/:tableRrn',
@@ -134,6 +131,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
   },
+  {
+    path: 'MMS/MLotMergeRuleManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   //MES成品接收
   {
     path: '/MMS/MESFinishGoodManager/:tableRrn',
@@ -157,7 +159,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
-  
+  {
+    path: '/Pack/PackMaterialLot/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: PackageMaterialLotProperties,
+  },
   //RTM
   {
     path: '/RTM/DynaxAnalyseManager/:tableRrn',

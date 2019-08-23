@@ -41,8 +41,10 @@ String.prototype.toBoolean = function() {
  * 合并2个数组并去除相同元素
  */
 Array.prototype.merge = function(obj) {
-    this.push(...obj);
-    let mergeValue = Array.from(new Set(this));
-    return mergeValue;
+    if (obj) {
+        this.push(...obj);
+        let mergeValue = Array.from(new Set(this));
+        return mergeValue;
+    }
 };
 

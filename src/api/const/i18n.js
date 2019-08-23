@@ -36,6 +36,7 @@ const i18NCode = {
     BtnDispatchEvent: "DispatchEvent",
     BtnReceiveMaterialLot: "ReceiveMaterialLot",
     BtnReceive: "Receive",
+    BtnPackage: "Package",
     BtnStockOut: "StockOut",
     BtnStockTransfer: "StockTransfer",
     BtnPick: "Pick",
@@ -343,7 +344,13 @@ const i18Messages = {
         Chinese: "数据没找到",
         English: "Data is not found",
         Res: ""
-    }
+    },
+    Package: {
+        Chinese: "包装",
+        English: "Package",
+        Res: ""
+    },
+
 }
 
 export {i18Messages, i18NCode};

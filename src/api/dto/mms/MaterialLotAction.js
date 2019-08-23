@@ -1,11 +1,16 @@
 export default class MaterialLotAction {
     
+    materialLotId;
     transQty;
     fromWarehouseRrn;
     targetWarehouseRrn;
     actionCode;
     actionReason;
     actionComment;
+   
+    setMaterialLotId(materialLotId) {
+        this.materialLotId = materialLotId;
+    }
 
     setTransQty(transQty) {
         this.transQty = transQty;

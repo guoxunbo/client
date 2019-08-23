@@ -1,6 +1,7 @@
 
 const ServerAddress = {
     NewbiestUrl : "http://127.0.0.1:8080"
+    // NewbiestUrl : "http://192.168.2.164:8080"
 }
 
 /**
@@ -27,26 +28,38 @@ const DateFormatType = {
 }
 
 const UrlConstant = {
-    UserManagerUrl: ModuleUrlConstant.Security + "userManage",
-    UserImportUrl: ModuleUrlConstant.Security + "importUser",
-    TableMangerUrl: ModuleUrlConstant.UI + "tableManage",
-    ExporttUrl: ModuleUrlConstant.UI + "export",
-    ImportUrl:  ModuleUrlConstant.UI + "importData",
-    RefListMangerUrl: ModuleUrlConstant.UI + "refListManage",    
-    RefTableManagerUrl: ModuleUrlConstant.UI + "refTableManage",
+    //Framework
     EntityManagerUrl: ModuleUrlConstant.Framework + "entityManage",
     EntityUploadFileUrl: ModuleUrlConstant.Framework + "uploadEntityFile",
     EntityDownloadFileUrl: ModuleUrlConstant.Framework + "downloadEntityFile",
-    RoleManagerUrl: ModuleUrlConstant.Security + "roleManage",
     EntityListManagerUrl: ModuleUrlConstant.Framework + "entityListManage",
+
+     //Security
+    UserManagerUrl: ModuleUrlConstant.Security + "userManage",
+    UserImportUrl: ModuleUrlConstant.Security + "importUser",
+    RoleManagerUrl: ModuleUrlConstant.Security + "roleManage",
     AuthorityManagerUrl: ModuleUrlConstant.Security + "authorityManage",
+
+    //UI
+    RefListMangerUrl: ModuleUrlConstant.UI + "refListManage",    
+    RefTableManagerUrl: ModuleUrlConstant.UI + "refTableManage",
+    TableMangerUrl: ModuleUrlConstant.UI + "tableManage",
+    ExporttUrl: ModuleUrlConstant.UI + "export",
+    ImportUrl:  ModuleUrlConstant.UI + "importData",
+
+    //SM
     StatusModelManagerUrl: ModuleUrlConstant.StatusMachine + "statusModelManage",
-    RawMaterialManagerUrl: ModuleUrlConstant.MMS + "rawMaterialManage",
-    MaterialLotManagerUrl: ModuleUrlConstant.MMS + "materialLotManage",
-    MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
+
+    //KMS
     QuestionManagerUrl: ModuleUrlConstant.KMS + "questionManage",
     QuestionLineManagerUrl: ModuleUrlConstant.KMS + "questionLineManage",
     DynaxAnalyseUrl: ModuleUrlConstant.RTM + "analyseFile",
+
+    //MMS
+    RawMaterialManagerUrl: ModuleUrlConstant.MMS + "rawMaterialManage",
+    MaterialLotManagerUrl: ModuleUrlConstant.MMS + "materialLotManage",
+    MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
+    PackMaterialLotsUrl: ModuleUrlConstant.MMS + "packMaterialLots",
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
 };
