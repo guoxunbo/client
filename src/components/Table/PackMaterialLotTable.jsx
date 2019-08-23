@@ -2,7 +2,7 @@
 import { Button } from 'antd';
 import I18NUtils from '../../api/utils/I18NUtils';
 import { i18NCode } from '../../api/const/i18n';
-import EntityListTable from './EntityListTable';
+import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import PackageMaterialLotRequest from '../../api/package-material-lot/PackageMaterialLotRequest';
 import MessageUtils from '../../api/utils/MessageUtils';
@@ -10,7 +10,7 @@ import MessageUtils from '../../api/utils/MessageUtils';
 /**
  * 所有历史表的父表。只能导出，不具备新增等其他功能
  */
-export default class PackMaterialLotTable extends EntityListTable {
+export default class PackMaterialLotTable extends EntityScanViewTable {
 
     static displayName = 'PackMaterialLotTable';
 
@@ -42,15 +42,6 @@ export default class PackMaterialLotTable extends EntityListTable {
             }
         }
         PackageMaterialLotRequest.sendPackMaterialLotsRequest(requestObject)
-       
-        
-        // const selectedRows = this.getSelectedRows();
-        // if (selectedRows && selectedRows.length > 0) {
-        //     let self = this;
-        //     const {rowKey} = self.state;
-
-            
-        // }
     }
 
     createPackageButton = () => {
@@ -59,11 +50,14 @@ export default class PackMaterialLotTable extends EntityListTable {
                     </Button>
     }
 
-    /**
-     * 接收数据不具备可删除等操作
-     */
-    buildOperationColumn = () => {
-        
+    handleDelete = (record) => {
+        this.refreshDelete(record);
+    } 
+
+    buildOperation = (record) => {
+        let operations = [];
+        operations.push(this.buildDeletePopConfirm(record));
+        return operations;
     }
 
 }
