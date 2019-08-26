@@ -13,6 +13,11 @@ export default class EntityScanCheckProperties extends EntityProperties {
   
     static displayName = 'EntityScanCheckProperties';
 
+    constructor(props) {
+      super(props);
+      this.state = {...this.state, ...{searchTxt: I18NUtils.getClientMessage(i18NCode.BtnCheck)}};
+    }
+
     /**
      * 当表格里按钮对选中的数据做完操作之后，
      * 务必调用下此方法把扫描添加进去的state数据清零。不然会吧上一次的扫描结果一起带到下一次中去

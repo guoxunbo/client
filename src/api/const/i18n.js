@@ -28,6 +28,7 @@ const i18NCode = {
     BtnWatch: "Watch",
     BtnImp: "Imp",
     BtnExp: "Exp",
+    BtnCheck: "Check",
     BtnExpData: "ExpData",
     BtnExpTemplate: "ExpTemplate",
     BtnResetPassword: "ResetPwd",
@@ -186,6 +187,11 @@ const i18Messages = {
     Print: {
         Chinese: "打印",
         English: "Print",
+        Res: ""
+    },
+    Check: {
+        Chinese: "选择",
+        English: "Check",
         Res: ""
     },
     Add: {

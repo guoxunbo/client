@@ -13,6 +13,10 @@ export default class EntityScanProperties extends EntityProperties {
   
     static displayName = 'EntityScanCheckProperties';
 
+    constructor(props) {
+      super(props);
+      this.state = {...this.state, ...{searchTxt: I18NUtils.getClientMessage(i18NCode.BtnAdd)}};
+    }
     /**
      * 当表格里数据做完操作之后，务必调用下此方法把扫描添加进去的state数据清零。不然会把上一次的扫描结果一起带到下一次中去
      */
@@ -20,7 +24,7 @@ export default class EntityScanProperties extends EntityProperties {
       this.setState({
         selectedRowKeys: [],
         selectedRows: [],
-        tableData: []
+        tableData: [],
       });
   }
 
