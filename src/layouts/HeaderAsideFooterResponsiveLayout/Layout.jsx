@@ -137,6 +137,7 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
    * 获取当前展开的菜单项
    */
   getOpenKeys = (asideMenuConfig) => {
+    debugger;
     const { match } = this.props;
     const matched = match.url;
     let openKeys = [];

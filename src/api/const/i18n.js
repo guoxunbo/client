@@ -48,6 +48,8 @@ const i18NCode = {
     BtnUnScrap: "UnScrap",
     BtnSearch: "Search",
     BtnReset: "Reset",
+    BtnBind: "Bind",
+    BtnUnBind: "UnBind",
     DataNotFound: "DataNotFound",
     Collapse: "Collapse",
     TransferItem: "Item",
@@ -57,6 +59,7 @@ const i18NCode = {
     TransferSource: "Source",
     TransferTarget: "Target",
     Operation: "Operation",
+    
 }
 
 const i18Messages = {
@@ -328,6 +331,16 @@ const i18Messages = {
     Search: {
         Chinese: "查找",
         English: "Search",
+        Res: ""
+    },
+    Bind: {
+        Chinese: "绑定",
+        English: "Bind",
+        Res: ""
+    },
+    UnBind: {
+        Chinese: "UnBind",
+        English: "取消绑定",
         Res: ""
     },
     Reset: {

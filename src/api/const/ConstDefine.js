@@ -62,6 +62,8 @@ const UrlConstant = {
     PackMaterialLotsUrl: ModuleUrlConstant.MMS + "packMaterialLots",
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
+    GCMaterialLotManagerUrl: ModuleUrlConstant.GC + "materialLotManage",
+
 };
 
 const SystemRefListName = {

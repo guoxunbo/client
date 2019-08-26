@@ -1,12 +1,16 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
-import PackMaterialLotTable from "../../../components/Table/PackMaterialLotTable";
+import PackRelayBoxTable from "../../../components/Table/gc/PackRelayBoxTable";
 
-export default class PackageMaterialLotProperties extends EntityScanProperties{
+/**
+ * GC 包装中转箱。
+ * 记录在物料批次上一个属性栏位即可。
+ */
+export default class PackRelayBoxProperties extends EntityScanProperties{
 
-    static displayName = 'PackageMaterialLotProperties';
+    static displayName = 'PackRelayBoxProperties';
       
     buildTable = () => {
-        return <PackMaterialLotTable pagination={false} 
+        return <PackRelayBoxTable pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 

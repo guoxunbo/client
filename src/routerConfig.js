@@ -19,6 +19,7 @@ import DynaxAnalyseProperties from './pages/Properties/components/DynaxAnalysePr
 import QuestionProperties from './pages/Properties/components/QuestionProperties';
 import MesFinishGoodProperties from './pages/Properties/components/MesFinishGoodProperties';
 import PackageMaterialLotProperties from './pages/Properties/components/PackageMaterialLotProperties';
+import PackRelayBoxProperties from './pages/Properties/components/PackRelayBoxProperties';
 
 const routerConfig = [
   {
@@ -163,6 +164,11 @@ const routerConfig = [
     path: '/Pack/PackMaterialLot/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackageMaterialLotProperties,
+  },
+  {
+    path: '/Pack/PackRelayBox/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: PackRelayBoxProperties,
   },
   //RTM
   {

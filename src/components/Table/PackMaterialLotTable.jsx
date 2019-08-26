@@ -8,7 +8,7 @@ import PackageMaterialLotRequest from '../../api/package-material-lot/PackageMat
 import MessageUtils from '../../api/utils/MessageUtils';
 
 /**
- * 所有历史表的父表。只能导出，不具备新增等其他功能
+ * 包装物料批次
  */
 export default class PackMaterialLotTable extends EntityScanViewTable {
 
@@ -48,16 +48,6 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
         return <Button key="receive" type="primary" style={styles.tableButton} icon="inbox" onClick={this.package}>
                         {I18NUtils.getClientMessage(i18NCode.BtnPackage)}
                     </Button>
-    }
-
-    handleDelete = (record) => {
-        this.refreshDelete(record);
-    } 
-
-    buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildDeletePopConfirm(record));
-        return operations;
     }
 
 }

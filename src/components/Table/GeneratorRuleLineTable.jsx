@@ -24,10 +24,7 @@ export default class GeneratorRuleLineTable extends EntityListTable {
 
     constructor(props) {
         super(props);
-        let state = Object.assign(this.state, {
-            formTable: {fields: []}
-        });
-        this.state = state;
+        this.state = {...this.state, ...{formTable: {fields: []}}};
     }
       
     /**
