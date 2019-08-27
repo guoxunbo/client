@@ -29,6 +29,7 @@ const i18NCode = {
     BtnImp: "Imp",
     BtnExp: "Exp",
     BtnCheck: "Check",
+    BtnJudge: "Judge",
     BtnExpData: "ExpData",
     BtnExpTemplate: "ExpTemplate",
     BtnResetPassword: "ResetPwd",
@@ -345,8 +346,8 @@ const i18Messages = {
         Res: ""
     },
     UnBind: {
-        Chinese: "UnBind",
-        English: "取消绑定",
+        Chinese: "取消绑定",
+        English: "UnBind",
         Res: ""
     },
     Reset: {
@@ -369,7 +370,11 @@ const i18Messages = {
         English: "Package",
         Res: ""
     },
-
+    Judge: {
+        Chinese: "判定",
+        English: "Judge",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};

@@ -61,7 +61,6 @@ export default class PackRelayBoxTable extends EntityScanViewTable {
     }
 
     unBindRelayBox = () => {
-        debugger;
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {

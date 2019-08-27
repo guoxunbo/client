@@ -34,7 +34,6 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
             actionReason: "",
             actionComment: "",
             success: function(responseBody) {
-                debugger;
                 if (self.props.resetData) {
                     self.props.resetData();
                 }

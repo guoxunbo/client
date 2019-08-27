@@ -43,7 +43,6 @@ export default class EntityScanProperties extends EntityProperties {
     }
 
     queryData = (whereClause) => {
-      debugger;
       const self = this;
       let {rowKey,tableData} = this.state;
       let requestObject = {

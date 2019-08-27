@@ -20,6 +20,7 @@ import QuestionProperties from './pages/Properties/components/QuestionProperties
 import MesFinishGoodProperties from './pages/Properties/components/MesFinishGoodProperties';
 import PackageMaterialLotProperties from './pages/Properties/components/PackageMaterialLotProperties';
 import PackRelayBoxProperties from './pages/Properties/components/PackRelayBoxProperties';
+import PackCaseCheckProperties from './pages/Properties/components/PackCaseCheckProperties';
 
 const routerConfig = [
   {
@@ -137,6 +138,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  {
+    path: '/MMS/PackedMLotManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotProperties,
+  },
   //MES成品接收
   {
     path: '/MMS/MESFinishGoodManager/:tableRrn',
@@ -169,6 +175,11 @@ const routerConfig = [
     path: '/Pack/PackRelayBox/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackRelayBoxProperties,
+  },
+  {
+    path: '/Pack/PackCaseCheck/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: PackCaseCheckProperties,
   },
   //RTM
   {
