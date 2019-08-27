@@ -160,6 +160,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotInventoryProperties,
   },
+  {
+    path: '/WMS/StorageManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   //PackManager
   {
     path: '/Pack/PackRuleManager/:tableRrn',
