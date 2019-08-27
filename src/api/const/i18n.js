@@ -39,6 +39,7 @@ const i18NCode = {
     BtnReceiveMaterialLot: "ReceiveMaterialLot",
     BtnReceive: "Receive",
     BtnPackage: "Package",
+    BtnStockIn: "StockIn",
     BtnStockOut: "StockOut",
     BtnStockTransfer: "StockTransfer",
     BtnPick: "Pick",
@@ -285,6 +286,11 @@ const i18Messages = {
         English: "ReceiveMateialLot",
         Res: ""
     },
+    StockIn: {
+        Chinese: "入库",
+        English: "StockIn",
+        Res: ""
+    },    
     StockOut: {
         Chinese: "出库",
         English: "StockOut",

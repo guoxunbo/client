@@ -21,6 +21,7 @@ import MesFinishGoodProperties from './pages/Properties/components/MesFinishGood
 import PackageMaterialLotProperties from './pages/Properties/components/PackageMaterialLotProperties';
 import PackRelayBoxProperties from './pages/Properties/components/PackRelayBoxProperties';
 import PackCaseCheckProperties from './pages/Properties/components/PackCaseCheckProperties';
+import MaterialLotStockInProperties from './pages/Properties/components/MaterialLotStockInProperties';
 
 const routerConfig = [
   {
@@ -164,6 +165,11 @@ const routerConfig = [
     path: '/WMS/StorageManager/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  {
+    path: '/WMS/MaterialLotStockIn/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotStockInProperties,
   },
   //PackManager
   {

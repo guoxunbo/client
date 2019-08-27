@@ -215,7 +215,6 @@ class QueryForm extends React.Component {
 
     render() {
         const queryFields = this.state.queryFields;
-        console.log(this.props);
         const searchTxt = this.props.searchTxt || I18NUtils.getClientMessage(i18NCode.BtnSearch);
         return (
             <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
