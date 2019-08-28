@@ -7,11 +7,15 @@ export default class Authority {
     icon;
     tableRrn;
     children;
-    
+    objectRrn;
+    parentRrn;
+
     constructor(authority, language) {
         this.icon = authority.image;
         this.tableRrn = authority.tableRrn;
         this.path = authority.url + "/" + this.tableRrn;
+        this.objectRrn = authority.objectRrn;
+        this.parentRrn = authority.parentRrn;
         if (language == Language.Chinese) {
             this.name = authority.labelZh;
         } else if (language == Language.English) {
