@@ -32,7 +32,6 @@ export default class MaterialLotStockInTable extends EntityScanViewTable {
     }
 
     stockInSuccess = () => {
-        debugger;
         this.setState({formVisible : false});
         if (this.props.resetData) {
             this.props.resetData();

@@ -32,7 +32,6 @@ export default class MutipleMaterialLotActionForm extends EntityForm {
                 materialLots: this.props.object, 
                 materialLotActionList: materialLotActionList,
                 success: function(responseBody) {
-                    debugger;
                     if (self.props.onOk) {
                         self.props.onOk(responseBody.materialLots);
                     }

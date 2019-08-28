@@ -3,6 +3,7 @@ export default class MaterialLotAction {
     materialLotId;
     transQty;
     fromWarehouseRrn;
+    fromStorageRrn;
     targetWarehouseRrn;
     targetStorageRrn;
     actionCode;
@@ -23,6 +24,10 @@ export default class MaterialLotAction {
 
     setFromWarehouseRrn(fromWarehouseRrn) {
         this.fromWarehouseRrn = fromWarehouseRrn;
+    }
+
+    setFromStorageRrn(fromStorageRrn) {
+        this.fromStorageRrn = fromStorageRrn;
     }
 
     setTargetWarehouseRrn(targetWarehouseRrn) {

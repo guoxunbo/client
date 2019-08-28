@@ -31,6 +31,7 @@ export default class MaterialLotInvManagerRequestBody {
 
         let materialLotAction = new MaterialLotAction();
         materialLotAction.setFromWarehouseRrn(materialLotInventory.warehouseRrn);
+        materialLotAction.setFromStorageRrn(materialLotInventory.storageRrn);
         materialLotAction.setTransQty(materialLotInventory.stockQty);
         return new MaterialLotInvManagerRequestBody(ActionType.StockOut, materialLot, materialLotAction);
     }
@@ -42,10 +43,11 @@ export default class MaterialLotInvManagerRequestBody {
     static buildTransferInv(transferInvObject) {
         let materialLot = new MaterialLot();
         materialLot.setMaterialLotId(transferInvObject.materialLotId);
-
         let materialLotAction = new MaterialLotAction();
         materialLotAction.setFromWarehouseRrn(transferInvObject.warehouseRrn);
+        materialLotAction.setFromStorageRrn(transferInvObject.storageRrn);
         materialLotAction.setTargetWarehouseRrn(transferInvObject.targetWarehouseRrn);
+        materialLotAction.setTargetStorageRrn(transferInvObject.targetStorageRrn);
         materialLotAction.setTransQty(transferInvObject.stockQty);
         return new MaterialLotInvManagerRequestBody(ActionType.Transfer, materialLot, materialLotAction);
     }
@@ -61,6 +63,7 @@ export default class MaterialLotInvManagerRequestBody {
 
         let materialLotAction = new MaterialLotAction();
         materialLotAction.setFromWarehouseRrn(materialLotInventory.warehouseRrn);
+        materialLotAction.setFromStorageRrn(materialLotInventory.storageRrn);
         materialLotAction.setTransQty(materialLotInventory.stockQty);
         return new MaterialLotInvManagerRequestBody(ActionType.Pick, materialLot, materialLotAction);
     }
@@ -76,6 +79,7 @@ export default class MaterialLotInvManagerRequestBody {
 
         let materialLotAction = new MaterialLotAction();
         materialLotAction.setFromWarehouseRrn(checkInvObject.warehouseRrn);
+        materialLotAction.setFromStorageRrn(checkInvObject.storageRrn);
         materialLotAction.setTransQty(checkInvObject.currentQty);
         materialLotAction.setActionCode(checkInvObject.actionCode);
         materialLotAction.setActionReason(checkInvObject.actionReason);

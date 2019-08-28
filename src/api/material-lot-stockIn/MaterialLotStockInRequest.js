@@ -14,9 +14,6 @@ export default class MaterialLotStockInRequest {
             request: request,
             success: object.success
         }
-        debugger;
         MessageUtils.sendRequest(requestObject);
     }
-
-
 }
