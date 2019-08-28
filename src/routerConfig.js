@@ -23,6 +23,7 @@ import PackRelayBoxProperties from './pages/Properties/components/PackRelayBoxPr
 import PackCaseCheckProperties from './pages/Properties/components/PackCaseCheckProperties';
 import MaterialLotStockInProperties from './pages/Properties/components/MaterialLotStockInProperties';
 import UnPackagaMaterialLotProperties from './pages/Properties/components/UnPackagaMaterialLotProperties';
+import StockOutCheckProperties from './pages/Properties/components/StockOutCheckProperties';
 
 const routerConfig = [
   {
@@ -192,6 +193,11 @@ const routerConfig = [
     path: '/Pack/PackCaseCheck/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackCaseCheckProperties,
+  },
+  {
+    path: '/Pack/StockOutCheck/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: StockOutCheckProperties,
   },
   //RTM
   {

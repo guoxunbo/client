@@ -39,6 +39,7 @@ const i18NCode = {
     BtnReceiveMaterialLot: "ReceiveMaterialLot",
     BtnReceive: "Receive",
     BtnPackage: "Package",
+    BtnUnPackage: "UnPackage",
     BtnStockIn: "StockIn",
     BtnStockOut: "StockOut",
     BtnStockTransfer: "StockTransfer",
@@ -374,6 +375,11 @@ const i18Messages = {
     Package: {
         Chinese: "包装",
         English: "Package",
+        Res: ""
+    },
+    UnPackage: {
+        Chinese: "拆包",
+        English: "UnPackage",
         Res: ""
     },
     Judge: {
