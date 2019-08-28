@@ -17,13 +17,20 @@ export default class MutipleMaterialLotActionForm extends EntityForm {
 
     handleSave = (formObject) => {
         var self = this;
-        let materialLotAction = new MaterialLotAction();
-        PropertyUtils.copyProperties(formObject, materialLotAction);
-
+        let materialLotActionList = [];
+       
+        let materialLots = this.props.object;
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            PropertyUtils.copyProperties(formObject, materialLotAction);
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotAction.setTransQty(materialLot.currentQty);
+            materialLotActionList.push(materialLotAction);
+        });
         if (ActionType.StockIn === this.props.action) {
             let object = {
                 materialLots: this.props.object, 
-                materialLotAction: materialLotAction,
+                materialLotActionList: materialLotActionList,
                 success: function(responseBody) {
                     debugger;
                     if (self.props.onOk) {

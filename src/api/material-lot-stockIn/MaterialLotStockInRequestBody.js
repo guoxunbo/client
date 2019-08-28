@@ -6,20 +6,20 @@ import PropertyUtils from "../utils/PropertyUtils";
 export default class MaterialLotStockInRequestBody {
 
     materialLots;
-    materialLotAction;
+    materialLotActionList;
     
-    constructor(materialLots, materialLotAction){
+    constructor(materialLots, materialLotActionList){
         this.materialLots = materialLots;
-        this.materialLotAction = materialLotAction;
+        this.materialLotActionList = materialLotActionList;
     }
 
     /**
      * 接收物料批次并入库
      * @param object 
-     * @example {materialLots:[{? extend MaterialLot}], materialLotAction: {? extend MaterialLotAction}}
+     * @example {materialLots:[{? extend MaterialLot}], materialLotActionList: [{? extend MaterialLotAction}}]
      */
     static buildStockIn(object) {
-        return new MaterialLotStockInRequestBody(object.materialLots, object.materialLotAction);
+        return new MaterialLotStockInRequestBody(object.materialLots, object.materialLotActionList);
     }
 
 }
