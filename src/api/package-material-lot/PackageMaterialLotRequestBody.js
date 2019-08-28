@@ -17,7 +17,7 @@ export default class PackageMaterialLotRequestBody {
             materialLotAction.setTransQty(materialLot.currentQty);
             materialLotAction.setActionCode(actionCode);
             materialLotAction.setActionReason(actionReason);
-            materialLotAction.setActionReason(actionReason);
+            materialLotAction.setActionComment(actionComment);
             materialLotActions.push(materialLotAction);
         });
         return new PackageMaterialLotRequestBody(materialLotActions, packageType);

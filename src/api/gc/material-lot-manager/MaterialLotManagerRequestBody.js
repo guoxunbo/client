@@ -30,11 +30,14 @@ export default class MaterialLotManagerRequestBody {
     static buildJudgePackedMaterialLots(packedLotDetails, judgeGrade, judgeCode) {
         let materialLots = [];
         packedLotDetails.forEach(packedLotDetail => {
-            let materialLot = new MaterialLot();
-            materialLot.setMaterialLotId(packedLotDetail.packagedLotId);
-            materialLots.push(materialLot);
+            let existLot = materialLots.find(materialLot => materialLot.materialLotId === packedLotDetail.packagedLotId);
+            if (!existLot) {
+                let materialLot = new MaterialLot();
+                materialLot.setMaterialLotId(packedLotDetail.packagedLotId);
+                materialLots.push(materialLot);
+            } 
         });
-        let materialLotManagerRequestBody =  new MaterialLotManagerRequestBody(ActionType.JudgePackedLot, Array.from(new Set(materialLots)), undefined);
+        let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.JudgePackedLot, Array.from(new Set(materialLots)), undefined);
         materialLotManagerRequestBody.setJudgeCode(judgeCode);
         materialLotManagerRequestBody.setJudgeGrade(judgeGrade);
         return materialLotManagerRequestBody;

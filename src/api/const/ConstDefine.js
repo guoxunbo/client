@@ -60,6 +60,7 @@ const UrlConstant = {
     MaterialLotManagerUrl: ModuleUrlConstant.MMS + "materialLotManage",
     MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
     PackMaterialLotsUrl: ModuleUrlConstant.MMS + "packMaterialLots",
+    UnPackMaterialLotsUrl: ModuleUrlConstant.MMS + "unPackMaterialLots",
     MaterialLotStockInUrl: ModuleUrlConstant.MMS + "stockIn",
 
     //GC

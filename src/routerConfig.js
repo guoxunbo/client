@@ -22,6 +22,7 @@ import PackageMaterialLotProperties from './pages/Properties/components/PackageM
 import PackRelayBoxProperties from './pages/Properties/components/PackRelayBoxProperties';
 import PackCaseCheckProperties from './pages/Properties/components/PackCaseCheckProperties';
 import MaterialLotStockInProperties from './pages/Properties/components/MaterialLotStockInProperties';
+import UnPackagaMaterialLotProperties from './pages/Properties/components/UnPackagaMaterialLotProperties';
 
 const routerConfig = [
   {
@@ -139,11 +140,6 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
-  {
-    path: '/MMS/PackedMLotManager/:tableRrn',
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: MaterialLotProperties,
-  },
   //MES成品接收
   {
     path: '/MMS/MESFinishGoodManager/:tableRrn',
@@ -181,6 +177,11 @@ const routerConfig = [
     path: '/Pack/PackMaterialLot/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackageMaterialLotProperties,
+  },
+  {
+    path: '/Pack/UnPackMaterialLot/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: UnPackagaMaterialLotProperties,
   },
   {
     path: '/Pack/PackRelayBox/:tableRrn',
