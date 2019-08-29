@@ -47,7 +47,7 @@ const Aligin = {
 }
 
 const DisplayLength = {
-    min: 100,
+    min: 20,
     max: 400
 }
 export default class Field {
@@ -239,18 +239,18 @@ export default class Field {
      * @param query 是否是queryForm 如果是queryForm需要改变combox的宽度。
      * //TODO 处理默认时间今天，以及默认时间为最后一个月
      */
-    buildControl(edit, query, initialValue) {
+    buildControl(edit, query, initialValue, onBlur, onPressEnter) {
         this.buildDisabled(edit, query);
         if (this.displayType == DisplayType.text || this.displayType == DisplayType.file) {
-            return <Input placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
+            return <Input onBlur={onBlur} onPressEnter={onPressEnter} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.int) {
-            return <InputNumber min={this.minValue} disabled={this.disabled}/>;
+            return <InputNumber onBlur={onBlur} min={this.minValue} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.double) {
-            return <InputNumber min={this.minValue} step={0.01} disabled={this.disabled}/>;
+            return <InputNumber onBlur={onBlur} min={this.minValue} step={0.01} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.password) {
-            return <Input placeholder = {this.placeHolder} type="password" disabled={this.disabled}/>;
+            return <Input onBlur={onBlur} placeholder = {this.placeHolder} type="password" disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.calendar) {
-            return <DatePicker locale={locale} disabled={this.disabled}/>
+            return <DatePicker onBlur={onBlur} locale={locale} disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.calendarFromTo) {
             return query ? <RangePicker locale={locale} disabled={this.disabled}/> : <DatePicker locale={locale} disabled={this.disabled}/> ;
         } else if (this.displayType == DisplayType.datetime) {
@@ -260,9 +260,9 @@ export default class Field {
         } else if (this.displayType == DisplayType.sysRefList) {
             return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName}  disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.userRefList) {
-            return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName} owner  disabled={this.disabled}/>
+            return <RefListField onBlur={onBlur} initialValue={initialValue} field={this} referenceName={this.refListName} owner  disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.referenceTable) {
-            return <RefTableField initialValue={initialValue} field={this} form={this.form} disabled={this.disabled}/>
+            return <RefTableField onBlur={onBlur} initialValue={initialValue} field={this} form={this.form} disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.radio) {
             return <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
         }
@@ -322,8 +322,10 @@ export default class Field {
      * 创建table里面的foritem 不具备显示label功能
      * @param record 记录
      * @param 表格
+     * @param onBlur 失焦事件
+     * @param onPressEnter 回车事件
      */
-    buildTableFormItem = (record, form) => {
+    buildTableFormItem = (record, form, onBlur, onPressEnter) => {
         let valuePropName = "value";
         if (this.displayType == DisplayType.radio) {
             valuePropName = "checked";
@@ -339,7 +341,7 @@ export default class Field {
                 initialValue: initialValue
             })
           (
-            this.buildControl(true)
+            this.buildControl(true, false, initialValue, onBlur, onPressEnter)
           )}
         </FormItem>);
     }

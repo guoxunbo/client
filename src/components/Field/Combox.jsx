@@ -108,6 +108,7 @@ export default class Combox extends Component {
             onChange={this.handleChange}
             disabled={this.props.disabled}
             filterOption={this.filterOption}
+            onBlur={this.props.onBlur}
           >
             {options}
           </Select>
