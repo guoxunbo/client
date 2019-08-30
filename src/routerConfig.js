@@ -24,6 +24,7 @@ import PackCaseCheckProperties from './pages/Properties/components/PackCaseCheck
 import MaterialLotStockInProperties from './pages/Properties/components/MaterialLotStockInProperties';
 import UnPackagaMaterialLotProperties from './pages/Properties/components/UnPackagaMaterialLotProperties';
 import StockOutCheckProperties from './pages/Properties/components/StockOutCheckProperties';
+import GcOrderProperties from './pages/Properties/components/GcOrderProperties';
 
 const routerConfig = [
   {
@@ -71,8 +72,6 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
-
-
   {
     path: 'Security/UserManager/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
@@ -146,6 +145,12 @@ const routerConfig = [
     path: '/MMS/MESFinishGoodManager/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MesFinishGoodProperties,
+  },
+  //Doc
+  {
+    path: '/Doc/DeliveryOrderManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOrderProperties,
   },
   //WMS
   {

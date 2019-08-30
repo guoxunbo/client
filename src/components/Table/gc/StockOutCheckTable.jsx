@@ -60,7 +60,7 @@ export default class StockOutCheckTable extends EntityScanViewTable {
 
     createJudgeButton = () => {
         return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judge}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnJudge) + "aa"}
+                        {I18NUtils.getClientMessage(i18NCode.BtnJudge)}
                     </Button>
     }
 
