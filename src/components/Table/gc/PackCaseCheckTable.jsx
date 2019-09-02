@@ -19,6 +19,22 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         this.state = {...this.state, ...{formTable: {fields: []}}};
     }
 
+    buildOperationColumn = () => {
+    }
+
+    getRowClassName = (record, index) => {
+        if (record.scaned) {
+            return 'selected-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+        
+    };
+    
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createJudgeButton());

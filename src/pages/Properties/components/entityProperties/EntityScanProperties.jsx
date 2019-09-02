@@ -26,7 +26,14 @@ export default class EntityScanProperties extends EntityProperties {
         selectedRows: [],
         tableData: [],
       });
-  }
+    }
+
+    showDataNotFound = () => {
+      this.setState({ 
+        loading: false
+      });
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+    }
 
     getTableData = () => {
       const self = this;
@@ -62,10 +69,7 @@ export default class EntityScanProperties extends EntityProperties {
             });
             self.form.resetFormFileds();
           } else {
-            self.setState({ 
-              loading: false
-            });
-            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+            self.showDataNotFound();
           }
         
         }

@@ -92,6 +92,8 @@ export default class Field {
     minValue;
     style;
     table;
+    // 实际前端组件比如<Input>
+    node;
 
     /**
      * 构造方法
@@ -242,7 +244,7 @@ export default class Field {
     buildControl(edit, query, initialValue, onBlur, onPressEnter) {
         this.buildDisabled(edit, query);
         if (this.displayType == DisplayType.text || this.displayType == DisplayType.file) {
-            return <Input onBlur={onBlur} onPressEnter={onPressEnter} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
+            return <Input ref={node => (this.node = node)} onBlur={onBlur} onPressEnter={onPressEnter} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.int) {
             return <InputNumber onBlur={onBlur} min={this.minValue} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.double) {

@@ -3,9 +3,17 @@ export default class MaterialLotAction {
     materialLotId;
     transQty;
     fromWarehouseRrn;
+    fromWarehouseId;
+
     fromStorageRrn;
+    fromStorageId;
+
     targetWarehouseRrn;
+    targetWarehouseId;
+
     targetStorageRrn;
+    targetStorageId;
+    
     actionCode;
     actionReason;
     actionComment;
