@@ -1,9 +1,6 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import PackCaseCheckTable from "../../../components/Table/gc/PackCaseCheckTable";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import I18NUtils from "../../../api/utils/I18NUtils";
-import { i18NCode } from "../../../api/const/i18n";
-import { Notification } from "../../../components/notice/Notice";
 
 /**
  * GC 装箱检验

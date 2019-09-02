@@ -19,12 +19,20 @@ export default class StockOutCheckRequestBody {
         return new StockOutCheckRequestBody(ActionType.GetCheckList);
     }
 
-    static buildJudge(packedLotDetails, checkList) {
+    /**
+     * 创建判定请求体
+     *  只能支持判定一个箱或者一个批次。不能批量判定
+     * @param {*} materialLots 
+     * @param {*} checkList 
+     */
+    static buildJudge(materialLots, checkList) {
         let materialLot = new MaterialLot();
-        packedLotDetails.forEach(packedLotDetail => {
-            materialLot.setMaterialLotId(packedLotDetail.packagedLotId);
-        });
-        return new StockOutCheckRequestBody(ActionType.Judge,materialLot, checkList);
+        if (materialLots[0].parentMaterialLotId) {
+            materialLot.setMaterialLotId(materialLots[0].parentMaterialLotId);
+        } else {
+            materialLot.setMaterialLotId(materialLots[0].materialLotId);
+        }
+        return new StockOutCheckRequestBody(ActionType.Judge, materialLot, checkList);
     }
 
 }   

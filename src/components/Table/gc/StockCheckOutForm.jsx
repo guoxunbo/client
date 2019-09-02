@@ -33,8 +33,9 @@ export default class StockCheckOutForm extends EntityForm {
 
     handleSave = () => {
         let self = this;
+        debugger;
         let object = {
-            packedLotDetails : this.props.object,
+            materialLots : this.props.object,
             checkList: this.editorColumnTable.state.dataSource,
             success: function(responseBody) {
                 if (self.props.onOk) {
