@@ -11,11 +11,12 @@ export default class AsyncManagerRequestBody {
     constructor(actionType){
         this.actionType = actionType;
     }
-
     
-    static buildAsyncSo() {
-        return new AsyncManagerRequestBody(ActionType.AsyncSo);
+    static buildAsync(actionType) {
+        return new AsyncManagerRequestBody(actionType);
     }
 
 }
+
+export {ActionType};
 

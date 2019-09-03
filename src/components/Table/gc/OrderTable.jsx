@@ -18,7 +18,11 @@ export default class OrderTable extends EntityListTable {
     }
 
     asyncErp = () => {
-        AsyncManagerRequest.sendAsyncSoRequest({});
+        const {asyncType} = this.props;
+        let object = {
+            actionType : asyncType
+        }
+        AsyncManagerRequest.sendAsyncRequest(object);
     }
 
     buildOperation = (record) => {

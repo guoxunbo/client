@@ -25,6 +25,7 @@ import MaterialLotStockInProperties from './pages/Properties/components/Material
 import UnPackagaMaterialLotProperties from './pages/Properties/components/UnPackagaMaterialLotProperties';
 import StockOutCheckProperties from './pages/Properties/components/StockOutCheckProperties';
 import GcOrderProperties from './pages/Properties/components/GcOrderProperties';
+import GcReTestOrderProperties from './pages/Properties/components/GcReTestOrderProperties';
 
 const routerConfig = [
   {
@@ -151,6 +152,11 @@ const routerConfig = [
     path: '/Doc/DeliveryOrderManager/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOrderProperties,
+  },
+  {
+    path: '/Doc/ReTestOrderManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcReTestOrderProperties,
   },
   //WMS
   {

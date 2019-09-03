@@ -6,8 +6,8 @@ import Request from '../../Request';
 
 export default class AsyncManagerRequest {
 
-    static sendAsyncSoRequest = (object) => {
-        let requestBody = AsyncManagerRequestBody.buildAsyncSo();
+    static sendAsyncRequest = (object) => {
+        let requestBody = AsyncManagerRequestBody.buildAsync(object.actionType);
         let requestHeader = new AsyncManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCAsyncUrl);
         let requestObject = {
@@ -16,5 +16,6 @@ export default class AsyncManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
-    
+
 }
+
