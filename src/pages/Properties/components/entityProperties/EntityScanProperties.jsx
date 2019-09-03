@@ -25,6 +25,8 @@ export default class EntityScanProperties extends EntityProperties {
         selectedRowKeys: [],
         selectedRows: [],
         tableData: [],
+        loading: false,
+        resetFlag: true
       });
     }
 
