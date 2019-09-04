@@ -44,7 +44,7 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
     }
 
     createUnPackageButton = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} icon="dropbox" onClick={this.unPackage}>
+        return <Button key="unpackage" type="primary" style={styles.tableButton} icon="dropbox" onClick={this.unPackage}>
                         {I18NUtils.getClientMessage(i18NCode.BtnUnPackage)}
                     </Button>
     }

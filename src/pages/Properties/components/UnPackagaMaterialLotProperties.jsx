@@ -6,7 +6,7 @@ import UnPackMaterialLotTable from "../../../components/Table/UnPackMaterialLotT
  */
 export default class UnPackagaMaterialLotProperties extends EntityScanProperties{
 
-    static displayName = 'PackCaseCheckProperties';
+    static displayName = 'UnPackagaMaterialLotProperties';
       
     buildTable = () => {
         return <UnPackMaterialLotTable pagination={false} 

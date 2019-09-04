@@ -9,11 +9,12 @@ export default class UnPackageMaterialLotRequestBody {
     
     static buildUnPackMaterialLot(packedLotDetails, actionCode, actionReason, actionComment) {
         let materialLotActions = [];
+        debugger;
         packedLotDetails.forEach(packedLotDetail => {
-            let existActon = materialLotActions.find(action => action.materialLotId === packedLotDetail.packagedLotId);
+            let existActon = materialLotActions.find(action => action.materialLotId === packedLotDetail.parentMaterialLotId);
             if (!existActon) {
                 let materialLotAction = new MaterialLotAction();
-                materialLotAction.setMaterialLotId(packedLotDetail.packagedLotId);
+                materialLotAction.setMaterialLotId(packedLotDetail.parentMaterialLotId);
                 materialLotAction.setActionCode(actionCode);
                 materialLotAction.setActionReason(actionReason);
                 materialLotAction.setActionComment(actionComment);
