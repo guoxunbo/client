@@ -4,7 +4,8 @@ import EntityScanProperties from './EntityScanProperties';
 
 /**
  * 默认不显示数据，支持双重扫描数据，即2个文本查找条件进行查找。
- *  根据第一个条件是查找，第二个条件就是查找数据是否在表格中。 有则标记成scanned
+ *  根据第一个条件是查找数据库输几局，第二个条件就是查找数据数据库以及判断是否在表格中。 有则标记成scanned
+ *  
  */
 export default class EntityDoubleScanProperties extends EntityScanProperties {
   
@@ -16,6 +17,43 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
       }
     }
     
+    /**
+     * 第二个条件查询之后，检索表格数据中是否含有该数据，如果没有，则提示。有则标志为scanned
+     */
+    afterSecondQuery = (queryDatas) => {
+      let {rowKey,tableData, selectedRowKeys, selectedRows} = this.state;
+      if (queryDatas && queryDatas.length > 0) {
+        let queryData = queryDatas[0];
+        let dataIndex = -1;
+        tableData.map((d, index) => {
+            if (d[rowKey] === queryData[rowKey]) {
+                dataIndex = index;
+            }
+        });
+        if (dataIndex > -1) {
+            queryData.scaned = true;
+            tableData.splice(dataIndex, 1, queryData);
+            if (selectedRowKeys.indexOf(queryData[rowKey]) < 0) {
+              selectedRowKeys.push(queryData[rowKey]);
+              selectedRows.push(queryData);
+            }
+            this.setState({ 
+              selectedRowKeys: selectedRowKeys,
+              selectedRows: selectedRows,
+              tableData: tableData,
+              resetFlag:false,
+              loading: false
+            });
+        } else {
+          this.showDataNotFound();
+        }
+        this.nextQueryNodeFocus();
+        this.form.resetFormFileds();
+      } else {
+        this.showDataNotFound();
+      }
+    }
+
     getTableData = () => {
       const self = this;
       let requestObject = {
@@ -38,7 +76,6 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
       if (whereClause.indexOf(firstQueryField.name) != -1) {
           reloadTableData = true;
       }
-      let {rowKey,tableData, selectedRowKeys, selectedRows} = this.state;
       let requestObject = {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
@@ -58,37 +95,7 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
               }
           } else {
               // 扫描表格数据，判断是否包含此数据，查找数据，只会返回一笔，查找第一笔即可
-              if (queryDatas && queryDatas.length > 0) {
-                let queryData = queryDatas[0];
-                let dataIndex = -1;
-                tableData.map((d, index) => {
-                    if (d[rowKey] === queryData[rowKey]) {
-                        dataIndex = index;
-                    }
-                });
-                if (dataIndex > -1) {
-                    debugger;
-                    queryData.scaned = true;
-                    tableData.splice(dataIndex, 1, queryData);
-                    if (selectedRowKeys.indexOf(queryData[rowKey]) < 0) {
-                      selectedRowKeys.push(queryData[rowKey]);
-                      selectedRows.push(queryData);
-                    }
-                    self.setState({ 
-                      selectedRowKeys: selectedRowKeys,
-                      selectedRows: selectedRows,
-                      tableData: tableData,
-                      resetFlag:false,
-                      loading: false
-                    });
-                } else {
-                    self.showDataNotFound();
-                }
-                self.nextQueryNodeFocus();
-                self.form.resetFormFileds();
-              } else {
-                  self.showDataNotFound();
-              }
+              self.afterSecondQuery(queryDatas);
           }
         }
       }
