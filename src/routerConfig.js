@@ -26,6 +26,7 @@ import UnPackagaMaterialLotProperties from './pages/Properties/components/UnPack
 import StockOutCheckProperties from './pages/Properties/components/StockOutCheckProperties';
 import GcOrderProperties from './pages/Properties/components/GcOrderProperties';
 import GcReTestOrderProperties from './pages/Properties/components/GcReTestOrderProperties';
+import AddPackagaMaterialLotProperties from './pages/Properties/components/AddPackagaMaterialLotProperties';
 
 const routerConfig = [
   {
@@ -189,6 +190,11 @@ const routerConfig = [
     path: '/Pack/PackMaterialLot/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackageMaterialLotProperties,
+  },
+  {
+    path: '/Pack/AddPackMaterialLot/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: AddPackagaMaterialLotProperties,
   },
   {
     path: '/Pack/UnPackMaterialLot/:tableRrn',
