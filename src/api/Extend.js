@@ -40,11 +40,20 @@ String.prototype.toBoolean = function() {
 /**
  * 合并2个数组并去除相同元素
  */
-Array.prototype.merge = function(obj) {
+Array.prototype.merge = function(obj, rowkey) {
     if (obj) {
         this.push(...obj);
-        let mergeValue = Array.from(new Set(this));
-        return mergeValue;
+        if (rowkey) {
+            var hash = {};
+            let mergeValue = this.reduce((newArr, item, index, arr)  => {
+                hash[item[rowkey]] ? '' : hash[item[rowkey]] = true && newArr.push(item);
+                return newArr;
+            }, []);
+            return mergeValue;
+        } else {
+            let mergeValue = Array.from(new Set(this));
+            return mergeValue;
+        }
     }
 };
 
