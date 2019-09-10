@@ -49,12 +49,11 @@ export default class EntityListTable extends Component {
 
     componentWillReceiveProps = (props) => {
         // TODO 此处存在刷新多次问题
-        let {selectedRowKeys, selectedRows,} = this.state;
+        let {selectedRowKeys, selectedRows} = this.state;
         let columnData = this.buildColumn(props.table);;
         
         let stateSeletcedRowKeys = selectedRowKeys.merge(props.selectedRowKeys);
-        let stateSelectedRows = selectedRows.merge(props.selectedRows);
-        
+        let stateSelectedRows = selectedRows.merge(props.selectedRows, this.props.rowKey);
         if (props.resetFlag) {
             stateSeletcedRowKeys = [];
             stateSelectedRows = [];
