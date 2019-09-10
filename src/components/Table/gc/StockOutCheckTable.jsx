@@ -7,6 +7,7 @@ import { Notification } from '../../notice/Notice';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
 import StockCheckOutForm from './StockCheckOutForm';
+import StockOutCheckRequest from '../../../api/gc/stock-out-check/StockOutCheckRequest';
 
 const StockOutCheckTableName="GCStockOutCheck";
 
@@ -21,7 +22,8 @@ export default class StockOutCheckTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createJudgeButton());
+        buttons.push(this.createJudgeOkButton());
+        buttons.push(this.createJudgeNgButton());
         return buttons;
     }
 
@@ -39,7 +41,18 @@ export default class StockOutCheckTable extends EntityScanViewTable {
         MessageUtils.showOperationSuccess();
     }
 
-    judge = () => {
+    judgeOk = () => {
+        let self = this;
+        let object = {
+            materialLots : this.state.data,
+            success: function(responseBody) {
+                self.judgeSuccess();
+            }
+        }
+        StockOutCheckRequest.sendJudgeMaterialLotRequest(object);
+    }
+
+    judgeNg = () => {
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
@@ -58,12 +71,17 @@ export default class StockOutCheckTable extends EntityScanViewTable {
         TableManagerRequest.sendGetByNameRequest(requestObject);
     }
 
-    createJudgeButton = () => {
-        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judge}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnJudge)}
+    createJudgeOkButton = () => {
+        return <Button key="OK" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgeOk}>
+                        OK
                     </Button>
     }
 
+    createJudgeNgButton = () => {
+        return <Button key="NG" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgeNg}>
+                        NG
+                    </Button>
+    }
 }
 
 const styles = {

@@ -20,6 +20,7 @@ const i18NCode = {
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
     SaveFirst: "SaveFirst",
+    CheckItemList: "CheckItemList",
     BtnPrint: "Print",
     BtnDownload: "Download",
     BtnAdd: "Add",
@@ -40,6 +41,8 @@ const i18NCode = {
     BtnReceive: "Receive",
     BtnPackage: "Package",
     BtnUnPackage: "UnPackage",
+    BtnUnPackageAll: "UnPackageAll",
+
     BtnAppendPackage: "AppendPackage",
     BtnStockIn: "StockIn",
     BtnStockOut: "StockOut",
@@ -383,6 +386,11 @@ const i18Messages = {
         English: "UnPackage",
         Res: ""
     },
+    UnPackageAll: {
+        Chinese: "全部拆包",
+        English: "UnPackageAll",
+        Res: ""
+    },
     AppendPackage: {
         Chinese: "追加包装",
         English: "AppendPackage",
@@ -393,6 +401,12 @@ const i18Messages = {
         English: "Judge",
         Res: ""
     },
+    CheckItemList: {
+        Chinese: "检查项列表",
+        English: "CheckItemList",
+        Res: ""
+    },
+    
 }
 
 export {i18Messages, i18NCode};

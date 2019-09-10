@@ -4,6 +4,7 @@ import './EditorColumnTable.scss';
 import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
 import Field from '../../../api/dto/ui/Field';
 import StockOutCheckRequest from '../../../api/gc/stock-out-check/StockOutCheckRequest';
+import { DefaultRowKey } from '../../../api/const/ConstDefine';
 
 const EditableContext = React.createContext();
 
@@ -104,7 +105,6 @@ class EditorColumnTable extends React.Component {
         });
       }
     };
-
     StockOutCheckRequest.sendGetTableAndGetCheckDataRequest(requestObject);
   }
 
@@ -174,6 +174,7 @@ class EditorColumnTable extends React.Component {
     return (
       <div>
         <Table
+          rowKey={DefaultRowKey}
           components={components}
           rowClassName={() => 'editable-row'}
           bordered

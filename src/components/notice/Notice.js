@@ -31,7 +31,7 @@ class Notification {
     static showInfo(message) {
         notification["info"]({
             message: message,
-            duration: Application.notice.duration,
+            duration: 0,
         });
     }
 

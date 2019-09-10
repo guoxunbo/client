@@ -33,7 +33,11 @@ export default class StockCheckOutForm extends EntityForm {
 
     handleSave = () => {
         let self = this;
-        debugger;
+        let checkList = this.editorColumnTable.state.dataSource;
+        if (checkList.filter((checkItem) => "NG" === checkItem.result).length === 0){
+            //TODO 当初不知道是否要提示一下没有NG的话是否不让点确定
+        }
+        
         let object = {
             materialLots : this.props.object,
             checkList: this.editorColumnTable.state.dataSource,
@@ -43,7 +47,7 @@ export default class StockCheckOutForm extends EntityForm {
                 }
             }
         }
-        StockOutCheckRequest.sendJudgePackedMaterialLotRequest(object);
+        StockOutCheckRequest.sendJudgeMaterialLotRequest(object);
     }
 
 }

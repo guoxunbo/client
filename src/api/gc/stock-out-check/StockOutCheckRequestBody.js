@@ -9,9 +9,9 @@ export default class StockOutCheckRequestBody {
     actionType;
     checkList;
 
-    constructor(actionType, materialLot, checkList){
+    constructor(actionType, materialLots, checkList){
         this.actionType = actionType;
-        this.materialLot = materialLot;
+        this.materialLots = materialLots;
         this.checkList = checkList;
     }
 
@@ -20,19 +20,12 @@ export default class StockOutCheckRequestBody {
     }
 
     /**
-     * 创建判定请求体
-     *  只能支持判定一个箱或者一个批次。不能批量判定
+     * 创建判定请求体 
      * @param {*} materialLots 
      * @param {*} checkList 
      */
     static buildJudge(materialLots, checkList) {
-        let materialLot = new MaterialLot();
-        if (materialLots[0].parentMaterialLotId) {
-            materialLot.setMaterialLotId(materialLots[0].parentMaterialLotId);
-        } else {
-            materialLot.setMaterialLotId(materialLots[0].materialLotId);
-        }
-        return new StockOutCheckRequestBody(ActionType.Judge, materialLot, checkList);
+        return new StockOutCheckRequestBody(ActionType.Judge, materialLots, checkList);
     }
 
 }   

@@ -71,6 +71,13 @@ export default class EntityProperties extends Component {
         return  <EntityListTable rowKey={this.state.rowKey} selectedRowKeys={this.state.selectedRowKeys} selectedRows={this.state.selectedRows} table={this.state.table} data={this.state.tableData} loading={this.state.loading}/>
     }
 
+    /**
+     * 当页面不止是表格和queryForm的时候，可以继承该方法继续实现
+     */
+    buildOtherComponent = () => {
+
+    }
+
     render() {
       return (
         <div className="properties-page">
@@ -80,6 +87,8 @@ export default class EntityProperties extends Component {
                                       tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
             <Divider/>
             {this.buildTable()}
+            <Divider/>
+            {this.buildOtherComponent()}
           </div>
           <BackTop visibilityHeight={300}/>
         </div>

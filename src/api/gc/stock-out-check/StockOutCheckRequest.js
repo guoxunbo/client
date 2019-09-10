@@ -8,9 +8,20 @@ import TableManagerRequestHeader from '../../table-manager/TableManagerRequestHe
 
 export default class StockOutCheckRequest {
 
-    static sendJudgePackedMaterialLotRequest = (object) => {
+    static sendJudgeMaterialLotRequest = (object) => {
         const {materialLots, checkList} = object;
         let requestBody = StockOutCheckRequestBody.buildJudge(materialLots, checkList);
+        let requestHeader = new StockOutCheckRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutCheckUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendGetCheckDataRequest = (object) => {
+        let requestBody = StockOutCheckRequestBody.buildGetCheckData();
         let requestHeader = new StockOutCheckRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutCheckUrl);
         let requestObject = {
