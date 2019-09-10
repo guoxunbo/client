@@ -7,6 +7,8 @@ import { Notification } from '../../notice/Notice';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import PackCaseCheckForm from './PackCaseCheckForm';
 import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
+import MaterialLotManagerRequest from '../../../api/gc/material-lot-manager/MaterialLotManagerRequest';
+import { JudgeGrade } from '../../../api/gc/material-lot-manager/MaterialLotManagerRequestBody';
 
 const PackCaseCheckTableName="GCPackCaseCheck";
 
@@ -37,7 +39,8 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
     
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createJudgeButton());
+        buttons.push(this.createJudgePassButton());
+        buttons.push(this.createJudgeNgButton());
         return buttons;
     }
 
@@ -55,7 +58,20 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         MessageUtils.showOperationSuccess();
     }
 
-    judge = () => {
+    judgePass = () => {
+        var self = this;
+        let packedLotDetails = this.state.data;
+        let object = {
+            packedLotDetails : packedLotDetails,
+            judgeGrade: JudgeGrade.Pass,
+            success: function(responseBody) {
+                self.judgeSuccess()
+            }
+        }
+        MaterialLotManagerRequest.sendJudgePackedMaterialLotRequest(object);
+    }
+
+    judgeNg = () => {
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
@@ -74,12 +90,17 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         TableManagerRequest.sendGetByNameRequest(requestObject);
     }
 
-    createJudgeButton = () => {
-        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judge}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnJudge)}
+    createJudgePassButton = () => {
+        return <Button key="judgePass" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgePass}>
+                        Pass
                     </Button>
     }
 
+    createJudgeNgButton = () => {
+        return <Button key="judgeNg" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgeNg}>
+                        NG
+                    </Button>
+    }
 }
 
 const styles = {

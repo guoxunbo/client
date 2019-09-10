@@ -1,5 +1,6 @@
 import EntityForm from "../../Form/EntityForm";
 import MaterialLotManagerRequest from "../../../api/gc/material-lot-manager/MaterialLotManagerRequest";
+import { JudgeGrade } from "../../../api/gc/material-lot-manager/MaterialLotManagerRequestBody";
 
 export default class PackCaseCheckForm extends EntityForm {
     static displayName = 'PackCaseCheckForm';
@@ -9,7 +10,7 @@ export default class PackCaseCheckForm extends EntityForm {
         let packedLotDetails = this.props.object;
         let object = {
             packedLotDetails : packedLotDetails,
-            judgeGrade: formObject.judgeGrade,
+            judgeGrade: JudgeGrade.Ng,
             judgeCode: formObject.judgeCode,
             success: function(responseBody) {
                 if (self.props.onOk) {

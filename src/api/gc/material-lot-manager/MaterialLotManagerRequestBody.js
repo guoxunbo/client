@@ -5,6 +5,11 @@ const ActionType = {
     UnbindRelayBox: "UnbindRelayBox",
     JudgePackedLot: "JudgePackedLot",
 }
+const JudgeGrade = {
+    Pass: "Pass",
+    Ng: "Ng"
+}
+
 export default class MaterialLotManagerRequestBody {
 
     materialLots;
@@ -27,17 +32,8 @@ export default class MaterialLotManagerRequestBody {
         this.judgeGrade = judgeGrade;
     }
 
-    static buildJudgePackedMaterialLots(packedLotDetails, judgeGrade, judgeCode) {
-        let materialLots = [];
-        packedLotDetails.forEach(packedLotDetail => {
-            let existLot = materialLots.find(materialLot => materialLot.materialLotId === packedLotDetail.packagedLotId);
-            if (!existLot) {
-                let materialLot = new MaterialLot();
-                materialLot.setMaterialLotId(packedLotDetail.packagedLotId);
-                materialLots.push(materialLot);
-            } 
-        });
-        let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.JudgePackedLot, Array.from(new Set(materialLots)), undefined);
+    static buildJudgePackedMaterialLots(materialLots, judgeGrade, judgeCode) {
+        let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.JudgePackedLot, materialLots, undefined);
         materialLotManagerRequestBody.setJudgeCode(judgeCode);
         materialLotManagerRequestBody.setJudgeGrade(judgeGrade);
         return materialLotManagerRequestBody;
@@ -52,4 +48,4 @@ export default class MaterialLotManagerRequestBody {
     }
 
 }   
-
+export {JudgeGrade}
