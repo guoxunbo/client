@@ -27,6 +27,7 @@ import StockOutCheckProperties from './pages/Properties/components/StockOutCheck
 import GcOrderProperties from './pages/Properties/components/GcOrderProperties';
 import GcReTestOrderProperties from './pages/Properties/components/GcReTestOrderProperties';
 import AddPackagaMaterialLotProperties from './pages/Properties/components/AddPackagaMaterialLotProperties';
+import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCaseLabelProperties';
 
 const routerConfig = [
   {
@@ -215,6 +216,11 @@ const routerConfig = [
     path: '/Pack/StockOutCheck/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: StockOutCheckProperties,
+  },
+  {
+    path: '/Pack/PrintCaseLabel/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPrintCaseLabelProperties,
   },
   //RTM
   {

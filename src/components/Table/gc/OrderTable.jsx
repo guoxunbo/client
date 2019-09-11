@@ -25,10 +25,8 @@ export default class OrderTable extends EntityListTable {
         AsyncManagerRequest.sendAsyncRequest(object);
     }
 
-    buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildEditButton(record));
-        return operations;
+    buildOperationColumn = () => {
+        
     }
 
      /**
