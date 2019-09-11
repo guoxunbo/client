@@ -69,6 +69,7 @@ const UrlConstant = {
     GCMaterialLotManagerUrl: ModuleUrlConstant.GC + "materialLotManage",
     GCStockOutCheckUrl: ModuleUrlConstant.GC + "stockOutCheck",
     GCAsyncUrl: ModuleUrlConstant.GC + "asyncManage",
+    GCCheckInventoryUrl: ModuleUrlConstant.GC + "checkInventory",
 
 };
 

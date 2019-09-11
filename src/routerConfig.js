@@ -28,6 +28,7 @@ import GcOrderProperties from './pages/Properties/components/GcOrderProperties';
 import GcReTestOrderProperties from './pages/Properties/components/GcReTestOrderProperties';
 import AddPackagaMaterialLotProperties from './pages/Properties/components/AddPackagaMaterialLotProperties';
 import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCaseLabelProperties';
+import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
 
 const routerConfig = [
   {
@@ -180,6 +181,11 @@ const routerConfig = [
     path: '/WMS/MaterialLotStockIn/:tableRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotStockInProperties,
+  },
+  {
+    path: '/WMS/CheckManager/:tableRrn',
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCheckProperties,
   },
   //PackManager
   {

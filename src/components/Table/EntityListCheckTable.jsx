@@ -34,7 +34,6 @@ export default class EntityListCheckTable extends EntityListTable {
     }
 
     selectRow = (record) => {
-        debugger;
         let {rowKey} = this.props;
         const selectedRowKeys = [...this.state.selectedRowKeys];
         const selectedRows = [...this.state.selectedRows];
