@@ -8,7 +8,7 @@ export default class GcOrderProperties extends EntityProperties{
     static displayName = 'GcOrderProperties';
     
     buildTable = () => {
-        return <OrderTable ref={(orderTable) => { this.orderTable = orderTable }} asyncType={ActionType.AsyncSo} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <OrderTable scrollY={200} pagination={false} ref={(orderTable) => { this.orderTable = orderTable }} asyncType={ActionType.AsyncSo} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
     }
 
     buildOtherComponent = () => {
