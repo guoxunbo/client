@@ -4,6 +4,7 @@ const ActionType = {
     BindRelayBox: "BindRelayBox",
     UnbindRelayBox: "UnbindRelayBox",
     JudgePackedLot: "JudgePackedLot",
+    GetPackCaseCheckList: "GetPackCaseCheckList"
 }
 const JudgeGrade = {
     Pass: "Pass",
@@ -30,6 +31,11 @@ export default class MaterialLotManagerRequestBody {
 
     setJudgeGrade(judgeGrade) {
         this.judgeGrade = judgeGrade;
+    }
+
+    static buildGetJudgePackCaseItemList() {
+        let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.GetPackCaseCheckList);
+        return materialLotManagerRequestBody;
     }
 
     static buildJudgePackedMaterialLots(materialLots, judgeGrade, judgeCode) {

@@ -1,10 +1,11 @@
 import EntityForm from "../../Form/EntityForm";
 import Tab from "../../../api/dto/ui/Tab";
-import { Tabs, Row } from "antd";
+import { Tabs, Row, Modal } from "antd";
 import EditorColumnTable from "./EditorColumnTable";
 import StockOutCheckRequest from "../../../api/gc/stock-out-check/StockOutCheckRequest";
 
 const TabPane = Tabs.TabPane;
+const { confirm } = Modal;
 
 export default class StockCheckOutForm extends EntityForm {
     static displayName = 'StockCheckOutForm';
@@ -31,13 +32,20 @@ export default class StockCheckOutForm extends EntityForm {
         </Tabs>)
     }
 
-    handleSave = () => {
+    showNoNgConfirm = () => {
         let self = this;
-        let checkList = this.editorColumnTable.state.dataSource;
-        if (checkList.filter((checkItem) => "NG" === checkItem.result).length === 0){
-            //TODO 当初不知道是否要提示一下没有NG的话是否不让点确定
-        }
-        
+        confirm({
+            title: '没有选择NG项。是否确定?',
+            content: "没有选择NG项，将会判定成为OK",
+            onOk() {
+                self.judge();
+            },
+            onCancel() {},
+          });
+    }
+
+    judge = () => {
+        let self = this;
         let object = {
             materialLots : this.props.object,
             checkList: this.editorColumnTable.state.dataSource,
@@ -48,6 +56,16 @@ export default class StockCheckOutForm extends EntityForm {
             }
         }
         StockOutCheckRequest.sendJudgeMaterialLotRequest(object);
+    }
+
+    handleSave = () => {
+        let checkList = this.editorColumnTable.state.dataSource;
+        // 当没有值的时候，要使用showConfirm
+        if (checkList.filter((checkItem) => "NG" === checkItem.result).length === 0){
+            this.showNoNgConfirm();
+        } else {
+            this.judge();
+        }
     }
 
 }

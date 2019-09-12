@@ -54,20 +54,6 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
       }
     }
 
-    getTableData = () => {
-      const self = this;
-      let requestObject = {
-        tableRrn: this.state.tableRrn,
-        success: function(responseBody) {
-          self.setState({
-            table: responseBody.table,
-            loading: false
-          }); 
-        }
-      }
-      TableManagerRequest.sendGetByRrnRequest(requestObject);
-    }
-
     queryData = (whereClause) => {
       const self = this;
       let reloadTableData = false;
@@ -90,8 +76,8 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
                   self.nextQueryNodeFocus();
                   self.form.resetFormFileds();
               } else {
-                  self.resetData();
-                  self.showDataNotFound();
+                self.showDataNotFound();
+                self.resetData();
               }
           } else {
               // 扫描表格数据，判断是否包含此数据，查找数据，只会返回一笔，查找第一笔即可

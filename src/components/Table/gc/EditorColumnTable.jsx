@@ -137,8 +137,9 @@ class EditorColumnTable extends React.Component {
   }
 
   handleSave = row => {
+    debugger;
     const newData = [...this.state.dataSource];
-    const index = newData.findIndex(item => row.key === item.key);
+    const index = newData.findIndex(item => row.name === item.name);
     const item = newData[index];
     newData.splice(index, 1, {
       ...item,
@@ -174,7 +175,7 @@ class EditorColumnTable extends React.Component {
     return (
       <div>
         <Table
-          rowKey={DefaultRowKey}
+          rowKey={"name"}
           components={components}
           rowClassName={() => 'editable-row'}
           bordered

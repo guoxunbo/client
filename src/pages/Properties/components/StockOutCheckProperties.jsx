@@ -10,7 +10,7 @@ import { i18NCode } from "../../../api/const/i18n";
 /**
  * GC 出货前检验
  */
-export default class StockOutCheckProperties extends EntityProperties{
+export default class StockOutCheckProperties extends EntityScanProperties{
 
     static displayName = 'StockOutCheckProperties';
       
@@ -37,22 +37,6 @@ export default class StockOutCheckProperties extends EntityProperties{
       StockOutCheckRequest.sendGetCheckDataRequest(requestCheckDataObject);
     }
 
-    queryData = (whereClause) => {
-      const self = this;
-      let requestObject = {
-        tableRrn: this.state.tableRrn,
-        whereClause: whereClause,
-        success: function(responseBody) {
-          self.setState({
-            tableData: responseBody.dataList,
-            loading: false
-          });
-          self.form.resetFormFileds();
-        }
-      }
-      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
-    }
-
     buildTable = () => {
       return <StockOutCheckTable pagination={false} 
                                   rowKey={this.state.rowKey} 
@@ -65,8 +49,7 @@ export default class StockOutCheckProperties extends EntityProperties{
     }
 
     buildOtherComponent = () => {
-      return <List  bordered
-      header={<div>{I18NUtils.getClientMessage(i18NCode.CheckItemList)}</div>}
+      return <List  bordered header={<div>{I18NUtils.getClientMessage(i18NCode.CheckItemList)}</div>}
                     dataSource={this.state.stockOutCheckList}
                     renderItem={item => <List.Item>{item.name}</List.Item>}></List>
     }
