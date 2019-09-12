@@ -1,18 +1,17 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button } from 'antd';
-import AsyncManagerRequest from '../../../api/gc/async-manager/AsyncManagerRequest';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
-import RetestManagerRequest from '../../../api/gc/retest-manager/RetestManagerRequest';
+import StockOutManagerRequest from '../../../api/gc/stock-out/StockOutManagerRequest';
 
 /**
  * 重测发料的物料批次表格
  */
-export default class GcReTestMLotTable extends EntityScanViewTable {
+export default class GcStockOutMLotTable extends EntityScanViewTable {
 
-    static displayName = 'GcReTestMLotTable';
+    static displayName = 'GcStockOutMLotTable';
 
     createButtonGroup = () => {
         let buttons = [];
@@ -20,7 +19,7 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
         return buttons;
     }
 
-    reTest = () => {
+    stockOut = () => {
         let orderTabel = this.props.orderTable;
         let order = orderTabel.getSingleSelectedRow();
         if (!order) {
@@ -38,15 +37,12 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
                 console.log("ok");
             }
         }
-        RetestManagerRequest.sendRetestRequest(requestObject)
+        StockOutManagerRequest.sendStockOutRequest(requestObject)
     }
 
-     /**
-     * 发料
-     */
     createReTest = () => {
-        return <Button key="reTest" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.reTest}>
-                        发料
+        return <Button key="stockOut" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.stockOut}>
+                        发货
                     </Button>
     }
 }
