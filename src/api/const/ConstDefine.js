@@ -1,7 +1,7 @@
 
 const ServerAddress = {
-    // NewbiestUrl : "http://127.0.0.1:8080"
-    NewbiestUrl : "http://192.168.2.164:8080"
+    NewbiestUrl : "http://127.0.0.1:8080"
+    // NewbiestUrl : "http://192.168.2.164:8080"
 }
 
 /**

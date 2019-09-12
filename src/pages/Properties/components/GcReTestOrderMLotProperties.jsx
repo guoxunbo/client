@@ -11,7 +11,13 @@ export default class GcReTestOrderMLotProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-        return <GcReTestMLotTable orderTable={this.props.orderTable} pagination={false} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <GcReTestMLotTable orderTable={this.props.orderTable} pagination={false} 
+                                    table={this.state.table} 
+                                    data={this.state.tableData} 
+                                    loading={this.state.loading} 
+                                    resetData={this.resetData.bind(this)}
+                                    resetFlag={this.state.resetFlag}
+                                    />
     }
 
 }

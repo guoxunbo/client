@@ -34,8 +34,11 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
         let requestObject = {
             documentLine : order,
             materialLots : materialLots,
-            success: function() {
-                console.log("ok");
+            success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.resetData();
+                }
+                MessageUtils.showOperationSuccess();
             }
         }
         RetestManagerRequest.sendRetestRequest(requestObject)

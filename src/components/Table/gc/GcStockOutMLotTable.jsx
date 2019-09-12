@@ -5,6 +5,7 @@ import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import StockOutManagerRequest from '../../../api/gc/stock-out/StockOutManagerRequest';
+import MessageUtils from '../../../api/utils/MessageUtils';
 
 /**
  * 重测发料的物料批次表格
@@ -20,6 +21,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
     }
 
     stockOut = () => {
+        let self = this;
         let orderTabel = this.props.orderTable;
         let order = orderTabel.getSingleSelectedRow();
         if (!order) {
@@ -33,8 +35,11 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
         let requestObject = {
             documentLine : order,
             materialLots : materialLots,
-            success: function() {
-                console.log("ok");
+            success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.resetData();
+                }
+                MessageUtils.showOperationSuccess();
             }
         }
         StockOutManagerRequest.sendStockOutRequest(requestObject)

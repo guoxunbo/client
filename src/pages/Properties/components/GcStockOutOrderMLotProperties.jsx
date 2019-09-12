@@ -1,5 +1,4 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
-import GcReTestMLotTable from "../../../components/Table/gc/GcReTestMLotTable";
 import GcStockOutMLotTable from "../../../components/Table/gc/GcStockOutMLotTable";
 
 export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
@@ -12,7 +11,15 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-        return <GcStockOutMLotTable orderTable={this.props.orderTable} pagination={false} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <GcStockOutMLotTable 
+                            orderTable={this.props.orderTable} 
+                            pagination={false} 
+                            table={this.state.table} 
+                            data={this.state.tableData} 
+                            loading={this.state.loading} 
+                            resetData={this.resetData.bind(this)}
+                            resetFlag={this.state.resetFlag}
+                            />
     }
 
 }
