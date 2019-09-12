@@ -216,10 +216,11 @@ class QueryForm extends React.Component {
     render() {
         const queryFields = this.state.queryFields;
         const searchTxt = this.props.searchTxt || I18NUtils.getClientMessage(i18NCode.BtnSearch);
+        const showButton = this.props.showButton; 
         return (
             <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
                 <Row gutter={24}>{this.getFields(queryFields)}</Row>
-                {queryFields.length > 0 ? 
+                {queryFields.length > 0 && showButton? 
                     <Row>
                         <Col span={24} style={{ textAlign: 'right' }}>
                             <Button icon="search" type="primary" htmlType="submit">{searchTxt}</Button>
@@ -237,6 +238,7 @@ class QueryForm extends React.Component {
 QueryForm.prototypes = {
     tableRrn: PropTypes.number.isRequired,
     searchlTxt: PropTypes.string,
+    showButton: PropTypes.bool
 }
 
 const WrappedAdvancedQueryForm = Form.create()(QueryForm);

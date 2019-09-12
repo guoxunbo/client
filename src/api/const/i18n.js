@@ -17,6 +17,8 @@ const i18NCode = {
     BasicInfo: "BasicInfo",
     SelectOneRow: "SelectOneRow",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
+    AddAtLeastOneRow: "AddAtLeastOneRow",
+
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
     SaveFirst: "SaveFirst",
@@ -174,6 +176,11 @@ const i18Messages = {
     SaveFirst: {
         Chinese: "请先保存",
         English: "Please SaveFirst",
+        Res: ""
+    },
+    AddAtLeastOneRow: {
+        Chinese: "请添加至少一笔记录",
+        English: "Please add at least one row",
         Res: ""
     },
     SelectAtLeastOneRow: {

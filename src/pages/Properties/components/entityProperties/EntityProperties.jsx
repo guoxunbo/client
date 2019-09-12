@@ -13,8 +13,12 @@ export default class EntityProperties extends Component {
 
     constructor(props) {
       super(props);
+      let tableRrn = this.props.tableRrn;
+      if (!tableRrn) {
+        tableRrn = this.props.match.params.tableRrn;
+      }
       this.state = {
-        tableRrn : this.props.match.params.tableRrn,
+        tableRrn : tableRrn,
         tableData: [],
         table: {fields: []},
         loading: true,
@@ -79,15 +83,18 @@ export default class EntityProperties extends Component {
     }
 
     render() {
+      let showQueryFormButton = this.state.showQueryFormButton;
+      if (showQueryFormButton === undefined) {
+          showQueryFormButton = true;
+      }
       return (
         <div className="properties-page">
           <div className="router-body">
-            <WrappedAdvancedQueryForm searchTxt={this.state.searchTxt} handleReset={this.resetData.bind(this)} 
+            <WrappedAdvancedQueryForm showButton={showQueryFormButton} searchTxt={this.state.searchTxt} handleReset={this.resetData.bind(this)} 
                                       wrappedComponentRef={(form) => this.form = form} 
                                       tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
-            <Divider/>
+            {showQueryFormButton ? <Divider/> : ""}                      
             {this.buildTable()}
-            <Divider/>
             {this.buildOtherComponent()}
           </div>
           <BackTop visibilityHeight={300}/>

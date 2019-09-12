@@ -2,7 +2,6 @@ import PackCaseCheckTable from "../../../components/Table/gc/PackCaseCheckTable"
 import EntityDoubleScanProperties from "./entityProperties/EntityDoubleScanProperties";
 import { List } from "antd";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import StockOutCheckRequest from "../../../api/gc/stock-out-check/StockOutCheckRequest";
 import I18NUtils from "../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../api/const/i18n";
 import MaterialLotManagerRequest from "../../../api/gc/material-lot-manager/MaterialLotManagerRequest";
