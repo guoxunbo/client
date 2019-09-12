@@ -1,10 +1,10 @@
-import EntityScanProperties from "./entityProperties/EntityScanProperties";
+import EntityDoubleScanProperties from "./entityProperties/EntityDoubleScanProperties";
 import UnPackMaterialLotTable from "../../../components/Table/UnPackMaterialLotTable";
 
 /**
  * 拆包
  */
-export default class UnPackagaMaterialLotProperties extends EntityScanProperties{
+export default class UnPackagaMaterialLotProperties extends EntityDoubleScanProperties{
 
     static displayName = 'UnPackagaMaterialLotProperties';
       

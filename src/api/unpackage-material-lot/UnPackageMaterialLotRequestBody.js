@@ -7,19 +7,23 @@ export default class UnPackageMaterialLotRequestBody {
         this.materialLotActions = materialLotActions;
     }
     
+    /**
+     * 拆包
+     * @param {? extends MaterialLot} packedLotDetails 需要拆的包装详情
+     * @param {*} actionCode 
+     * @param {*} actionReason 
+     * @param {*} actionComment 
+     */
     static buildUnPackMaterialLot(packedLotDetails, actionCode, actionReason, actionComment) {
         let materialLotActions = [];
-        debugger;
         packedLotDetails.forEach(packedLotDetail => {
-            let existActon = materialLotActions.find(action => action.materialLotId === packedLotDetail.parentMaterialLotId);
-            if (!existActon) {
-                let materialLotAction = new MaterialLotAction();
-                materialLotAction.setMaterialLotId(packedLotDetail.parentMaterialLotId);
-                materialLotAction.setActionCode(actionCode);
-                materialLotAction.setActionReason(actionReason);
-                materialLotAction.setActionComment(actionComment);
-                materialLotActions.push(materialLotAction);
-            }
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(packedLotDetail.materialLotId);
+            materialLotAction.setTransQty(packedLotDetail.currentQty);
+            materialLotAction.setActionCode(actionCode);
+            materialLotAction.setActionReason(actionReason);
+            materialLotAction.setActionComment(actionComment);
+            materialLotActions.push(materialLotAction);
         });
         return new UnPackageMaterialLotRequestBody(materialLotActions);
     }
