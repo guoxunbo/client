@@ -31,33 +31,4 @@ export default class StockOutCheckRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
-    /**
-     * 同时发送2个请求，一个请求为获取表格，一个请求为获取数据
-     */
-    static sendGetTableAndGetCheckDataRequest = (object) => {
-        let requests = [];
-        // 构建获取表格栏位请求
-        let requestBody = TableManagerRequestBody.buildGetByName(object.tableName);
-        let requestHeader = new TableManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.TableMangerUrl);
-        let requestObject = {
-            request: request,
-        }
-        requests.push(requestObject);
-
-        requestBody = StockOutCheckRequestBody.buildGetCheckData();
-        requestHeader = new StockOutCheckRequestHeader();
-        request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutCheckUrl);
-        requestObject = {
-            request: request,
-        }
-        requests.push(requestObject);
-
-        let messageObject = {
-            requests: requests,
-            success: object.success
-        }
-        MessageUtils.sendTwoRequest(messageObject);
-    }
-    
 }

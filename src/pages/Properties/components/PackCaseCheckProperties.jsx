@@ -29,7 +29,6 @@ export default class PackCaseCheckProperties extends EntityDoubleScanProperties{
 
         let requestCheckDataObject = {
             success: function(responseBody) {
-              console.log(responseBody);
               self.setState({
                 judgePackCaseItemList: responseBody.judgePackCaseItemList
               });
@@ -39,7 +38,7 @@ export default class PackCaseCheckProperties extends EntityDoubleScanProperties{
     }
 
     buildTable = () => {
-        return <PackCaseCheckTable pagination={false} 
+        return <PackCaseCheckTable checkItemList={this.state.judgePackCaseItemList} pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
@@ -51,7 +50,7 @@ export default class PackCaseCheckProperties extends EntityDoubleScanProperties{
     }
 
     buildOtherComponent = () => {
-        return <List  bordered header={<div>{I18NUtils.getClientMessage(i18NCode.CheckItemList)}</div>}
+        return <List bordered header={<div>{I18NUtils.getClientMessage(i18NCode.CheckItemList)}</div>}
                       dataSource={this.state.judgePackCaseItemList}
                       renderItem={item => <List.Item>{item.value}</List.Item>}></List>
     }

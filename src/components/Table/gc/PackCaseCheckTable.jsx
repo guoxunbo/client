@@ -1,4 +1,3 @@
-
 import { Button, Form } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
@@ -46,7 +45,7 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
 
     createForm = () => {
         const WrappedAdvancedPackCaseCheckForm = Form.create()(PackCaseCheckForm);
-        return  <WrappedAdvancedPackCaseCheckForm ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
+        return  <WrappedAdvancedPackCaseCheckForm checkItemList={this.props.checkItemList} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
                                             table={this.state.formTable} onOk={this.judgeSuccess} onCancel={this.handleCancel} />
     }
 
@@ -63,7 +62,6 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         let packedLotDetails = this.state.data;
         let object = {
             packedLotDetails : packedLotDetails,
-            judgeGrade: JudgeGrade.Pass,
             success: function(responseBody) {
                 self.judgeSuccess()
             }

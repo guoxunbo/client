@@ -29,7 +29,7 @@ export default class StockOutCheckTable extends EntityScanViewTable {
 
     createForm = () => {
         const WrappedAdvancedStockCheckOutForm = Form.create()(StockCheckOutForm);
-        return  <WrappedAdvancedStockCheckOutForm ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
+        return  <WrappedAdvancedStockCheckOutForm checkItemList={this.props.checkItemList} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
                                             table={this.state.formTable} onOk={this.judgeSuccess} onCancel={this.handleCancel} />
     }
 

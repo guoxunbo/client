@@ -81,31 +81,32 @@ class EditableCell extends React.Component {
 class EditorColumnTable extends React.Component {
   constructor(props) {
     super(props);
+    let checkList = this.props.dataSource.map((d) => {return {name: d.value}});
     this.state = {
       table:{},
       tableData:[],
       columns:[], 
       scrollX: undefined,
-      dataSource: [],
+      dataSource: checkList,
     };
   }
+
 
   buildTable = () => {
     const self = this;
     let requestObject = {
-      tableName : this.props.refTableName,
-      success: function(tableResponseBody, dataResponseBody) {
+      name : this.props.refTableName,
+      success: function(tableResponseBody) {
         let table = tableResponseBody.table;
         let columnData = self.buildColumn(table);
         self.setState({
           table: table,
           columns: columnData.columns,
           scrollX: columnData.scrollX,
-          dataSource: dataResponseBody.stockOutCheckList
         });
       }
     };
-    StockOutCheckRequest.sendGetTableAndGetCheckDataRequest(requestObject);
+    TableManagerRequest.sendGetByNameRequest(requestObject);
   }
 
   buildColumn = (table) => {
@@ -137,7 +138,6 @@ class EditorColumnTable extends React.Component {
   }
 
   handleSave = row => {
-    debugger;
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.name === item.name);
     const item = newData[index];

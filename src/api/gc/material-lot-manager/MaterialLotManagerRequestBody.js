@@ -6,31 +6,22 @@ const ActionType = {
     JudgePackedLot: "JudgePackedLot",
     GetPackCaseCheckList: "GetPackCaseCheckList"
 }
-const JudgeGrade = {
-    Pass: "Pass",
-    Ng: "Ng"
-}
+
 
 export default class MaterialLotManagerRequestBody {
 
     materialLots;
     relayBoxId;
     actionType;
-    judgeCode;
-    judgeGrade;
+    checkList;
 
     constructor(actionType, materialLots, relayBoxId){
         this.actionType = actionType;
         this.materialLots = materialLots;
         this.relayBoxId = relayBoxId;
     }
-
-    setJudgeCode(judgeCode) {
-        this.judgeCode = judgeCode;
-    }
-
-    setJudgeGrade(judgeGrade) {
-        this.judgeGrade = judgeGrade;
+    setCheckList(checkList) {
+        this.checkList = checkList;
     }
 
     static buildGetJudgePackCaseItemList() {
@@ -38,10 +29,10 @@ export default class MaterialLotManagerRequestBody {
         return materialLotManagerRequestBody;
     }
 
-    static buildJudgePackedMaterialLots(materialLots, judgeGrade, judgeCode) {
+    static buildJudgePackedMaterialLots(materialLots, checkList) {
+        debugger;
         let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.JudgePackedLot, materialLots, undefined);
-        materialLotManagerRequestBody.setJudgeCode(judgeCode);
-        materialLotManagerRequestBody.setJudgeGrade(judgeGrade);
+        materialLotManagerRequestBody.setCheckList(checkList);
         return materialLotManagerRequestBody;
     }
 

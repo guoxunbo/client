@@ -38,7 +38,8 @@ export default class StockOutCheckProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-      return <StockOutCheckTable pagination={false} 
+      return <StockOutCheckTable checkItemList={this.state.stockOutCheckList}
+                                  pagination={false} 
                                   rowKey={this.state.rowKey} 
                                   selectedRowKeys={this.state.selectedRowKeys} 
                                   selectedRows={this.state.selectedRows} 
@@ -51,6 +52,6 @@ export default class StockOutCheckProperties extends EntityScanProperties{
     buildOtherComponent = () => {
       return <List  bordered header={<div>{I18NUtils.getClientMessage(i18NCode.CheckItemList)}</div>}
                     dataSource={this.state.stockOutCheckList}
-                    renderItem={item => <List.Item>{item.name}</List.Item>}></List>
+                    renderItem={item => <List.Item>{item.value}</List.Item>}></List>
     }
 }

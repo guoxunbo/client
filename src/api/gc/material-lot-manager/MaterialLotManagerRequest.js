@@ -18,8 +18,8 @@ export default class MaterialLotManagerRequest {
     }
 
     static sendJudgePackedMaterialLotRequest = (object) => {
-        const {packedLotDetails, judgeGrade, judgeCode} = object;
-        let requestBody = MaterialLotManagerRequestBody.buildJudgePackedMaterialLots(packedLotDetails, judgeGrade, judgeCode);
+        const {packedLotDetails, checkList} = object;
+        let requestBody = MaterialLotManagerRequestBody.buildJudgePackedMaterialLots(packedLotDetails, checkList);
         let requestHeader = new MaterialLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCMaterialLotManagerUrl);
         let requestObject = {
