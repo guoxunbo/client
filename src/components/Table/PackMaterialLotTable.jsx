@@ -30,9 +30,6 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLots: data,
             packageType: "PackCase",
-            actionCode: "",
-            actionReason: "",
-            actionComment: "",
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
