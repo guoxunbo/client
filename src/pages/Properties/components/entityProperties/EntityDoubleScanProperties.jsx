@@ -1,6 +1,9 @@
 
 import TableManagerRequest from '../../../../api/table-manager/TableManagerRequest';
 import EntityScanProperties from './EntityScanProperties';
+import I18NUtils from '../../../../api/utils/I18NUtils';
+import { i18NCode } from '../../../../api/const/i18n';
+import { Notification } from '../../../../components/notice/Notice';
 
 /**
  * 默认不显示数据，支持双重扫描数据，即2个文本查找条件进行查找。
@@ -10,13 +13,33 @@ import EntityScanProperties from './EntityScanProperties';
 export default class EntityDoubleScanProperties extends EntityScanProperties {
   
     static displayName = 'EntityDoubleScanProperties';
-
+  
     nextQueryNodeFocus = () => {
       if (this.form.state.queryFields[1]) {
         this.form.state.queryFields[1].node.focus();
       }
     }
-    
+
+    showDataNotFound = () => {
+      this.setState({ 
+        loading: false,
+        scanErrorFlag: true,
+      });
+
+      let data;
+      let queryFields = this.form.state.queryFields;
+      if (queryFields.length === 2) {
+        data = this.form.props.form.getFieldValue(queryFields[1].name)
+      }
+      // 全部失焦
+      queryFields.forEach(queryField => {
+        if (queryField.node) {
+          queryField.node.blur();
+        }
+      });
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
+    }
+
     /**
      * 第二个条件查询之后，检索表格数据中是否含有该数据，如果没有，则提示。有则标志为scanned
      */
@@ -44,11 +67,11 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
               resetFlag:false,
               loading: false
             });
+            this.nextQueryNodeFocus();
+            this.form.resetFormFileds();
         } else {
           this.showDataNotFound();
         }
-        this.nextQueryNodeFocus();
-        this.form.resetFormFileds();
       } else {
         this.showDataNotFound();
       }
@@ -71,7 +94,8 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
               if (queryDatas && queryDatas.length > 0) {
                   self.setState({ 
                     tableData: queryDatas,
-                    loading: false
+                    loading: false,
+                    scanErrorFlag: false
                   });
                   self.nextQueryNodeFocus();
                   self.form.resetFormFileds();

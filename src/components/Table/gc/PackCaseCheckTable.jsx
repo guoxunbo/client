@@ -7,7 +7,6 @@ import MessageUtils from '../../../api/utils/MessageUtils';
 import PackCaseCheckForm from './PackCaseCheckForm';
 import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
 import MaterialLotManagerRequest from '../../../api/gc/material-lot-manager/MaterialLotManagerRequest';
-import { JudgeGrade } from '../../../api/gc/material-lot-manager/MaterialLotManagerRequestBody';
 
 const PackCaseCheckTableName="GCPackCaseCheck";
 
@@ -59,9 +58,21 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
 
     judgePass = () => {
         var self = this;
-        let packedLotDetails = this.state.data;
+        const {data, selectedRows} = this.state;
+        if (!data || data.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            return;
+        }
+        if (this.props.scanErrorFlag) {
+            Notification.showNotice("出现过扫描错误，请重新查找并重新扫描");
+            return;
+        }
+        if (selectedRows.length != data.length) {
+            Notification.showNotice("数据没有全部扫描");
+            return;
+        }
         let object = {
-            packedLotDetails : packedLotDetails,
+            packedLotDetails : selectedRows,
             success: function(responseBody) {
                 self.judgeSuccess()
             }

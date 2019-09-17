@@ -46,7 +46,8 @@ export default class PackCaseCheckProperties extends EntityDoubleScanProperties{
                                     data={this.state.tableData} 
                                     loading={this.state.loading} 
                                     resetData={this.resetData.bind(this)}
-                                    resetFlag={this.state.resetFlag}/>
+                                    resetFlag={this.state.resetFlag}
+                                    scanErrorFlag={this.state.scanErrorFlag}/>
     }
 
     buildOtherComponent = () => {
