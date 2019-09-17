@@ -1,4 +1,4 @@
-import {ErrorCode, ResultIdentify, Language, i18N} from '../const/ConstDefine';
+import {ErrorCode, ResultIdentify, Language} from '../const/ConstDefine';
 import {Notification} from '../../components/notice/Notice';
 
 import {Response} from "../Response";
@@ -6,6 +6,8 @@ import {ResponseHeader} from "../ResponseHeader";
 
 import axios from "axios";
 import { SessionContext } from '../Application';
+import I18NUtils from './I18NUtils';
+import { i18NCode } from '../const/i18n';
 
 /**
  *  消息主要发送类
@@ -162,20 +164,14 @@ export default class MessageUtils {
         }); 
     }
     
-    static showOperationSuccess = () => {
-        let language = SessionContext.getLanguage();
-        let notice = "";
-        if (!language) {
-            language == Language.Chinese;
+    /**
+     * 操作成功
+     */
+    static showOperationSuccess = (code) => {
+        if (!code) {
+            code = i18NCode.OperationSucceed;
         }
-        if (language == Language.Chinese) {
-            notice = i18N.OperationSucceed.Chinese;
-        } else if (language == Language.English) {
-            notice = i18N.OperationSucceed.English;
-        } else {
-            notice = i18N.OperationSucceed.Res;
-        }
-        Notification.showSuccess(notice);
+        Notification.showSuccess(I18NUtils.getClientMessage(code));
     }
 
     static handleException(exception) {

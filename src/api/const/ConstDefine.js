@@ -90,20 +90,6 @@ const ErrorCode = {
     NetworkError: "common.network_error"
 };
 
-/**
- * 后台返回的错误都不在此处定义由后台返回
- * 定义一些页面错误。比如无法连接后台的错误。
- * 定义一些操作提示。比如操作成功等
- * 定义一些弹出框的名称。比如操作等
- */
-const i18N = {
-    OperationSucceed: {
-        Chinese: "操作成功",
-        English: "Operation Succeed",
-        Res: ""
-    }
-};
-
 const EntityModel = {
     NBMessage: "com.newbiest.base.model.NBMessage",
     NBUser: "com.newbiest.security.model.NBUser",
@@ -153,4 +139,4 @@ const SqlType = {
 }
 
 
-export {UrlConstant, FieldKeywords, DataBaseType, DateFormatType, SystemRefListName, RefTableName, ErrorCode, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType, i18N};
+export {UrlConstant, FieldKeywords, DataBaseType, DateFormatType, SystemRefListName, RefTableName, ErrorCode, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType};

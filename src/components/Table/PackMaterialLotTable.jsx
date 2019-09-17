@@ -37,7 +37,9 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                MessageUtils.showOperationSuccess();
+                let materialLotId = responseBody.materialLot.materialLotId;
+                let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
+                MessageUtils.showOperationSuccess(message);
             }
         }
         PackageMaterialLotRequest.sendPackMaterialLotsRequest(requestObject)
