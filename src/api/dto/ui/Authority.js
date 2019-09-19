@@ -13,9 +13,9 @@ export default class Authority {
     constructor(authority, language) {
         this.icon = authority.image;
         this.tableRrn = authority.tableRrn;
-        this.path = authority.url + "/" + this.tableRrn;
         this.objectRrn = authority.objectRrn;
         this.parentRrn = authority.parentRrn;
+        this.path = authority.url + "/" + this.tableRrn + "/" + this.parentRrn;
         if (language == Language.Chinese) {
             this.name = authority.labelZh;
         } else if (language == Language.English) {

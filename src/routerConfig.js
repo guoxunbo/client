@@ -42,206 +42,206 @@ const routerConfig = [
     component: Home,
   },
   {
-    path: 'System/OnlineTableManager/:tableRrn',
+    path: 'System/OnlineTableManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OnlineTabManager/:tableRrn',
+    path: 'System/OnlineTabManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OnlineFieldManager/:tableRrn',
+    path: 'System/OnlineFieldManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OnlineRefTableManager/:tableRrn',
+    path: 'System/OnlineRefTableManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/SysRefNameManager/:tableRrn',
+    path: 'System/SysRefNameManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OrgRefNameManager/:tableRrn',
+    path: 'System/OrgRefNameManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/MessageManager/:tableRrn',
+    path: 'System/MessageManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'Security/UserManager/:tableRrn',
+    path: 'Security/UserManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: UserProperties,
   },
   {
-    path: 'Security/RoleManager/:tableRrn',
+    path: 'Security/RoleManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: RoleProperties,
   },
   //KMS
   {
-    path: 'KMS/QuestionManager/:tableRrn',
+    path: 'KMS/QuestionManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: QuestionProperties,
   }, 
   {
-    path: 'KMS/QuestionHisManager/:tableRrn',
+    path: 'KMS/QuestionHisManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   }, 
   //LMS
   {
-    path: 'LMS/IDGeneratorRuleManager/:tableRrn',
+    path: 'LMS/IDGeneratorRuleManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: GeneratorRuleProperties,
   },
   //MMS
   {
-    path: '/MMS/StatusModelManager/:tableRrn',
+    path: '/MMS/StatusModelManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialStatusModelProperties,
   },
   {
-    path: '/MMS/StatusCategoryManager/:tableRrn',
+    path: '/MMS/StatusCategoryManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/MMS/StatusManager/:tableRrn',
+    path: '/MMS/StatusManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/MMS/EventManager/:tableRrn',
+    path: '/MMS/EventManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/MMS/RawMaterialManager/:tableRrn',
+    path: '/MMS/RawMaterialManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialProperties,
   },
   {
-    path: '/MMS/MaterialLotManager/:tableRrn',
+    path: '/MMS/MaterialLotManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotProperties,
   },
   {
-    path: '/MMS/MaterialLotHistoryManager/:tableRrn',
+    path: '/MMS/MaterialLotHistoryManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
   },
   {
-    path: 'MMS/MLotMergeRuleManager/:tableRrn',
+    path: 'MMS/MLotMergeRuleManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   //MES成品接收
   {
-    path: '/MMS/MESFinishGoodManager/:tableRrn',
+    path: '/MMS/MESFinishGoodManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MesFinishGoodProperties,
   },
   //Doc
   {
-    path: '/Doc/DeliveryOrderManager/:tableRrn',
+    path: '/Doc/DeliveryOrderManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOrderProperties,
   },
   {
-    path: '/Doc/ReTestOrderManager/:tableRrn',
+    path: '/Doc/ReTestOrderManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcReTestOrderProperties,
   },
   //WMS
   {
-    path: '/WMS/WarehouseManager/:tableRrn',
+    path: '/WMS/WarehouseManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/WMS/MLotInventoryManager/:tableRrn',
+    path: '/WMS/MLotInventoryManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotInventoryProperties,
   },
   {
-    path: '/WMS/StorageManager/:tableRrn',
+    path: '/WMS/StorageManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/WMS/MaterialLotStockIn/:tableRrn',
+    path: '/WMS/MaterialLotStockIn/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotStockInProperties,
   },
   {
-    path: '/WMS/CheckManager/:tableRrn',
+    path: '/WMS/CheckManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCheckProperties,
   },
   //PackManager
   {
-    path: '/Pack/PackRuleManager/:tableRrn',
+    path: '/Pack/PackRuleManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/Pack/PackMaterialLot/:tableRrn',
+    path: '/Pack/PackMaterialLot/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackageMaterialLotProperties,
   },
   {
-    path: '/Pack/AddPackMaterialLot/:tableRrn',
+    path: '/Pack/AddPackMaterialLot/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: AddPackagaMaterialLotProperties,
   },
   {
-    path: '/Pack/UnPackMaterialLot/:tableRrn',
+    path: '/Pack/UnPackMaterialLot/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
   },
   {
-    path: '/Pack/PackRelayBox/:tableRrn',
+    path: '/Pack/PackRelayBox/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackRelayBoxProperties,
   },
   {
-    path: '/Pack/PackCaseCheck/:tableRrn',
+    path: '/Pack/PackCaseCheck/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackCaseCheckProperties,
   },
   {
-    path: '/Pack/StockOutCheck/:tableRrn',
+    path: '/Pack/StockOutCheck/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: StockOutCheckProperties,
   },
   {
-    path: '/Pack/PrintCaseLabel/:tableRrn',
+    path: '/Pack/PrintCaseLabel/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintCaseLabelProperties,
   },
   //RTM
   {
-    path: '/RTM/DynaxAnalyseManager/:tableRrn',
+    path: '/RTM/DynaxAnalyseManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: DynaxAnalyseProperties,
   },
   //RMS
   {
-    path: 'Rms/EquipmentManager/:tableRrn',
+    path: 'Rms/EquipmentManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'Rms/RecipeManager/:tableRrn',
+    path: 'Rms/RecipeManager/:tableRrn/:parentRrn',
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
