@@ -16,6 +16,7 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createStatistic());
         buttons.push(this.createReTest());
         return buttons;
     }
@@ -53,6 +54,7 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
                         发料
                     </Button>
     }
+
 }
 
 const styles = {

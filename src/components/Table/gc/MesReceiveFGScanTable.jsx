@@ -34,10 +34,6 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
         }
     }
 
-    createStatistic = () => {
-        return <Tag color="#2db7f5">{this.state.data.length}</Tag>
-    }
-
     createReceiveButton = () => {
         return <Button key="receive" type="primary" style={styles.tableButton} icon="import" onClick={this.receive}>
                         {I18NUtils.getClientMessage(i18NCode.BtnReceive)}

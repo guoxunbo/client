@@ -16,7 +16,8 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createReTest());
+        buttons.push(this.createStatistic());
+        buttons.push(this.createStockOut());
         return buttons;
     }
 
@@ -45,7 +46,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
         StockOutManagerRequest.sendStockOutRequest(requestObject)
     }
 
-    createReTest = () => {
+    createStockOut = () => {
         return <Button key="stockOut" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.stockOut}>
                         发货
                     </Button>

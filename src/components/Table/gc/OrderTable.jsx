@@ -4,13 +4,27 @@ import EntityListCheckTable from '../EntityListCheckTable';
 import { Button } from 'antd';
 import AsyncManagerRequest from '../../../api/gc/async-manager/AsyncManagerRequest';
 import { DefaultRowKey } from '../../../api/const/ConstDefine';
+import EntityListTable from '../EntityListTable';
 
 /**
  * 单据表单
  */
-export default class OrderTable extends EntityListCheckTable {
+export default class OrderTable extends EntityListTable {
 
     static displayName = 'OrderTable';
+
+    getRowClassName = (record, index) => {
+        const {selectedRows} = this.state;
+        if (selectedRows.indexOf(record) >= 0) {
+            return 'scaned-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
 
     createButtonGroup = () => {
         let buttons = [];
@@ -25,30 +39,6 @@ export default class OrderTable extends EntityListCheckTable {
             actionType : asyncType
         }
         AsyncManagerRequest.sendAsyncRequest(object);
-    }
-
-    /**
-     * GC要求只能选择一笔，但是要是checkBox的选中而非颜色的变化
-     */
-    selectRow = (record) => {
-        let rowKey = this.props.rowKey || DefaultRowKey;
-        let selectedRowKeys = [...this.state.selectedRowKeys];
-        let selectedRows = [...this.state.selectedRows];
-
-        let checkIndex = selectedRowKeys.indexOf(record[rowKey]);
-        if (checkIndex >= 0) {
-            selectedRowKeys.splice(checkIndex, 1);
-            selectedRows.splice(checkIndex, 1);
-        } else {
-            selectedRowKeys = [];
-            selectedRows = [];
-            selectedRowKeys.push(record[rowKey]);
-            selectedRows.push(record);
-        }
-        this.setState({ 
-            selectedRowKeys: selectedRowKeys,
-            selectedRows: selectedRows
-        });
     }
 
     buildOperationColumn = () => {
