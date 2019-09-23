@@ -393,6 +393,10 @@ export default class EntityListTable extends Component {
     }
 
     onChange = (pagination) => {
+        var keys = Object.keys(pagination);
+        if (keys.length === 0) {
+            pagination = false;
+        }
         this.setState({
             pagination: pagination
         });
