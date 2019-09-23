@@ -11,6 +11,19 @@ export default class GcReTestOrderMLotProperties extends EntityScanProperties{
         this.state = {...this.state, ...{showQueryFormButton: false}};
     }
     
+    /**
+     * 20190921 gc要求重置的时候，2个表格数据都要清空
+     */
+    componentWillReceiveProps = (props) => {
+      const {resetFlag} = props;
+      if (resetFlag) {
+          this.setState({
+              tableData: [],
+              loading: false
+          });
+      }
+  }
+
     queryData = (whereClause) => {
         const self = this;
         if (!this.props.orderTable.getSingleSelectedRow()) {
