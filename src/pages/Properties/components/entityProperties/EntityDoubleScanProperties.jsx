@@ -91,21 +91,22 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
         success: function(responseBody) {
           let queryDatas = responseBody.dataList;
           if (reloadTableData) {
-              if (queryDatas && queryDatas.length > 0) {
-                  self.setState({ 
-                    tableData: queryDatas,
-                    loading: false,
-                    scanErrorFlag: false
-                  });
-                  self.nextQueryNodeFocus();
-                  self.form.resetFormFileds();
-              } else {
-                self.showDataNotFound();
-                self.resetData();
-              }
+            if (queryDatas && queryDatas.length > 0) {
+                self.setState({ 
+                  tableData: queryDatas,
+                  loading: false,
+                  scanErrorFlag: false,
+                  resetFlag:true,
+                });
+                self.nextQueryNodeFocus();
+                self.form.resetFormFileds();
+            } else {
+              self.showDataNotFound();
+              self.resetData();
+            }
           } else {
-              // 扫描表格数据，判断是否包含此数据，查找数据，只会返回一笔，查找第一笔即可
-              self.afterSecondQuery(queryDatas);
+            // 扫描表格数据，判断是否包含此数据，查找数据，只会返回一笔，查找第一笔即可
+            self.afterSecondQuery(queryDatas);
           }
         }
       }
