@@ -1,4 +1,5 @@
 import {Language} from "../../const/ConstDefine"
+import PropertyUtils from "../../utils/PropertyUtils";
 
 export default class Authority {
 
@@ -9,13 +10,18 @@ export default class Authority {
     children;
     objectRrn;
     parentRrn;
+    url;
+
+    parameter1;
+    parameter2;
+    parameter3;
+    parameter4;
+    parameter5;
 
     constructor(authority, language) {
+        PropertyUtils.copyProperties(authority, this);
         this.icon = authority.image;
-        this.tableRrn = authority.tableRrn;
-        this.objectRrn = authority.objectRrn;
-        this.parentRrn = authority.parentRrn;
-        this.path = authority.url + "/" + this.tableRrn + "/" + this.parentRrn;
+        this.path = this.buildPath();
         if (language == Language.Chinese) {
             this.name = authority.labelZh;
         } else if (language == Language.English) {
@@ -33,6 +39,31 @@ export default class Authority {
             });
             this.children = subMenus;
         }
+    }
+
+    /**
+     * 创建路径。参数必须从1-5。不能从中间直接设置
+     * 
+     */
+    buildPath = () => {
+        debugger;
+        let path = this.url + "/" + this.tableRrn + "/" + this.parentRrn;
+        if (this.parameter1) {
+            path += "/" + this.parameter1;
+            if (this.parameter2) {
+                path += "/" + this.parameter2;
+                if (this.parameter3) {
+                    path += "/" + this.parameter3;
+                } 
+                if (this.parameter4) {
+                    path += "/" + this.parameter4;
+                    if (this.parameter5) {
+                        path += "/" + this.parameter5;
+                    } 
+                } 
+            } 
+        } 
+        return path;
     }
 
     static buildMenu(authorityList, language) {

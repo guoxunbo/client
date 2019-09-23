@@ -30,6 +30,14 @@ import AddPackagaMaterialLotProperties from './pages/Properties/components/AddPa
 import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCaseLabelProperties';
 import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
 
+/**
+ * 构建url ?表示可选参数
+ * @param {*} url 
+ */
+const buildPath = (url) => {
+  return url + "/:tableRrn/:parentRrn/:parameter1?/:parameter2?/:parameter3?/:parameter4?/:parameter5?"
+}
+
 const routerConfig = [
   {
     path: '/',
@@ -37,211 +45,211 @@ const routerConfig = [
     component: Login,
   },
   {
-    path: '/Home',
+    path: 'Home',
     layout: HeaderAsideFooterResponsiveLayout,
     component: Home,
   },
   {
-    path: 'System/OnlineTableManager/:tableRrn/:parentRrn',
+    path: buildPath('System/OnlineTableManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OnlineTabManager/:tableRrn/:parentRrn',
+    path: buildPath('System/OnlineTabManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OnlineFieldManager/:tableRrn/:parentRrn',
+    path: buildPath('System/OnlineFieldManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OnlineRefTableManager/:tableRrn/:parentRrn',
+    path: buildPath('System/OnlineRefTableManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/SysRefNameManager/:tableRrn/:parentRrn',
+    path: buildPath('System/SysRefNameManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/OrgRefNameManager/:tableRrn/:parentRrn',
+    path: buildPath('System/OrgRefNameManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'System/MessageManager/:tableRrn/:parentRrn',
+    path: buildPath('System/MessageManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'Security/UserManager/:tableRrn/:parentRrn',
+    path: buildPath('Security/UserManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UserProperties,
   },
   {
-    path: 'Security/RoleManager/:tableRrn/:parentRrn',
+    path: buildPath('Security/RoleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: RoleProperties,
   },
   //KMS
   {
-    path: 'KMS/QuestionManager/:tableRrn/:parentRrn',
+    path: buildPath('KMS/QuestionManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: QuestionProperties,
   }, 
   {
-    path: 'KMS/QuestionHisManager/:tableRrn/:parentRrn',
+    path: buildPath('KMS/QuestionHisManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   }, 
   //LMS
   {
-    path: 'LMS/IDGeneratorRuleManager/:tableRrn/:parentRrn',
+    path: buildPath('LMS/IDGeneratorRuleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GeneratorRuleProperties,
   },
   //MMS
   {
-    path: '/MMS/StatusModelManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/StatusModelManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialStatusModelProperties,
   },
   {
-    path: '/MMS/StatusCategoryManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/StatusCategoryManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/MMS/StatusManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/StatusManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/MMS/EventManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/EventManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/MMS/RawMaterialManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/RawMaterialManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialProperties,
   },
   {
-    path: '/MMS/MaterialLotManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/MaterialLotManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotProperties,
   },
   {
-    path: '/MMS/MaterialLotHistoryManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/MaterialLotHistoryManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
   },
   {
-    path: 'MMS/MLotMergeRuleManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/MLotMergeRuleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   //MES成品接收
   {
-    path: '/MMS/MESFinishGoodManager/:tableRrn/:parentRrn',
+    path: buildPath('MMS/MESFinishGoodManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MesFinishGoodProperties,
   },
   //Doc
   {
-    path: '/Doc/DeliveryOrderManager/:tableRrn/:parentRrn',
+    path: buildPath('Doc/DeliveryOrderManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOrderProperties,
   },
   {
-    path: '/Doc/ReTestOrderManager/:tableRrn/:parentRrn',
+    path: buildPath('Doc/ReTestOrderManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcReTestOrderProperties,
   },
   //WMS
   {
-    path: '/WMS/WarehouseManager/:tableRrn/:parentRrn',
+    path: buildPath('WMS/WarehouseManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/WMS/MLotInventoryManager/:tableRrn/:parentRrn',
+    path: buildPath('WMS/MLotInventoryManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotInventoryProperties,
   },
   {
-    path: '/WMS/StorageManager/:tableRrn/:parentRrn',
+    path: buildPath('WMS/StorageManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/WMS/MaterialLotStockIn/:tableRrn/:parentRrn',
+    path: buildPath('WMS/MaterialLotStockIn'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotStockInProperties,
   },
   {
-    path: '/WMS/CheckManager/:tableRrn/:parentRrn',
+    path: buildPath('WMS/CheckManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCheckProperties,
   },
   //PackManager
   {
-    path: '/Pack/PackRuleManager/:tableRrn/:parentRrn',
+    path: buildPath('Pack/PackRuleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: '/Pack/PackMaterialLot/:tableRrn/:parentRrn',
+    path: buildPath('Pack/PackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackageMaterialLotProperties,
   },
   {
-    path: '/Pack/AddPackMaterialLot/:tableRrn/:parentRrn',
+    path: buildPath('Pack/AddPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: AddPackagaMaterialLotProperties,
   },
   {
-    path: '/Pack/UnPackMaterialLot/:tableRrn/:parentRrn',
+    path: buildPath('Pack/UnPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
   },
   {
-    path: '/Pack/PackRelayBox/:tableRrn/:parentRrn',
+    path: buildPath('Pack/PackRelayBox'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackRelayBoxProperties,
   },
   {
-    path: '/Pack/PackCaseCheck/:tableRrn/:parentRrn',
+    path: buildPath('Pack/PackCaseCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackCaseCheckProperties,
   },
   {
-    path: '/Pack/StockOutCheck/:tableRrn/:parentRrn',
+    path: buildPath('Pack/StockOutCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: StockOutCheckProperties,
   },
   {
-    path: '/Pack/PrintCaseLabel/:tableRrn/:parentRrn',
+    path: buildPath('Pack/PrintCaseLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintCaseLabelProperties,
   },
   //RTM
   {
-    path: '/RTM/DynaxAnalyseManager/:tableRrn/:parentRrn',
+    path: buildPath('RTM/DynaxAnalyseManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: DynaxAnalyseProperties,
   },
   //RMS
   {
-    path: 'Rms/EquipmentManager/:tableRrn/:parentRrn',
+    path: buildPath('Rms/EquipmentManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
-    path: 'Rms/RecipeManager/:tableRrn/:parentRrn',
+    path: buildPath('Rms/RecipeManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },

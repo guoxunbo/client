@@ -18,7 +18,7 @@ import { Notification } from '../../components/notice/Notice';
 import IconUtils from '../../api/utils/IconUtils';
 
 // 设置默认的皮肤配置，支持 dark 和 light 两套皮肤配置
-const theme = typeof THEME === 'undefined' ? 'dark' : THEME;
+const theme = typeof THEME === 'undefined' ? 'light' : THEME;
 
 @withRouter
 export default class HeaderAsideFooterResponsiveLayout extends Component {
@@ -137,20 +137,16 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
    * 获取当前展开的菜单项
    */
   getOpenKeys = (asideMenuConfig) => {
-    debugger;
     const { match } = this.props;
-    const matched = match.url;
+    const {parentRrn} = match.params;
     let openKeys = [];
-
     if (Array.isArray(asideMenuConfig)) {
       asideMenuConfig.forEach((item, index) => {
-        let path = item.path.substring(0, item.path.lastIndexOf("/"));
-        if (matched.startsWith(path)) {
+        if (item.objectRrn == parentRrn) {
           openKeys = [`${index}`];
         }
       });
     }
-
     return openKeys;
   };
 

@@ -7,7 +7,7 @@ import { i18NCode } from '../../../../api/const/i18n';
 
 /**
  * 默认显示数据，支持扫描查询条件，将扫描到的数据添加到表格中
- * 这里面的buildTable方法返回的对象必须继承EntityListTable
+ * 这里面的buildTable方法返回的对象必须继承EntityListTable 只支持一个查询条件
  */
 export default class EntityScanProperties extends EntityProperties {
   
@@ -31,10 +31,22 @@ export default class EntityScanProperties extends EntityProperties {
     }
 
     showDataNotFound = () => {
+      // 如果只有一个条件，则提示具体条件
+      let data;
+      let queryFields = this.form.state.queryFields;
+      if (queryFields.length === 1) {
+        data = this.form.props.form.getFieldValue(queryFields[0].name)
+      }
       this.setState({ 
         loading: false
       });
-      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+      // 全部失焦
+      queryFields.forEach(queryField => {
+        if (queryField.node) {
+          queryField.node.blur();
+        }
+      });
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
     }
 
     getTableData = () => {
@@ -73,7 +85,6 @@ export default class EntityScanProperties extends EntityProperties {
           } else {
             self.showDataNotFound();
           }
-        
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
