@@ -1,5 +1,6 @@
 
 import EntityListTable from './EntityListTable';
+import { Tag } from 'antd';
 
 /**
  * 所有扫描条件添加数据的父类
@@ -25,6 +26,10 @@ export default class EntityScanViewTable extends EntityListTable {
         
     }
 
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{this.state.data.length}</Tag>
+    }
+    
     handleDelete = (record) => {
         this.refreshDelete(record);
     } 
