@@ -21,19 +21,6 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
         return buttons;
     }
 
-    getRowClassName = (record, index) => {
-        if (record.scaned) {
-            return 'selected-row';
-        } else {
-            if(index % 2 ===0) {
-                return 'even-row'; 
-            } else {
-                return ''; 
-            }
-        }
-        
-    };
-
     buildOperationColumn = () => {
         
     }

@@ -1,11 +1,5 @@
 
-import { Button } from 'antd';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
 import EntityListTable from './EntityListTable';
-import { Notification } from '../notice/Notice';
-import PackageMaterialLotRequest from '../../api/package-material-lot/PackageMaterialLotRequest';
-import MessageUtils from '../../api/utils/MessageUtils';
 
 /**
  * 所有扫描条件添加数据的父类
@@ -14,6 +8,18 @@ import MessageUtils from '../../api/utils/MessageUtils';
 export default class EntityScanViewTable extends EntityListTable {
 
     static displayName = 'EntityScanViewTable';
+
+    getRowClassName = (record, index) => {
+        if (record.scaned) {
+            return 'scaned-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
 
     createButtonGroup = () => {
         
