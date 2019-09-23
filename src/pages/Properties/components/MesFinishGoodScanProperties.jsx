@@ -34,12 +34,10 @@ export default class MesFinishGoodScanProperties extends EntityScanProperties{
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
           success: function(responseBody) {
-            debugger;
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
               // 20190921 GC要求只能扫描到在上方查询条件查询之后展示的数据 只会扫出一笔
               let queryData = queryDatas[0];
-              debugger;
               if (showData.filter(d => d[rowKey] === queryData[rowKey]).length === 0) {
                 self.showDataNotFound();
               } else {

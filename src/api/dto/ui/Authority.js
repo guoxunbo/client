@@ -46,7 +46,6 @@ export default class Authority {
      * 
      */
     buildPath = () => {
-        debugger;
         let path = this.url + "/" + this.tableRrn + "/" + this.parentRrn;
         if (this.parameter1) {
             path += "/" + this.parameter1;

@@ -30,7 +30,6 @@ export default class MaterialLotManagerRequestBody {
     }
 
     static buildJudgePackedMaterialLots(materialLots, checkList) {
-        debugger;
         let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.JudgePackedLot, materialLots, undefined);
         materialLotManagerRequestBody.setCheckList(checkList);
         return materialLotManagerRequestBody;
