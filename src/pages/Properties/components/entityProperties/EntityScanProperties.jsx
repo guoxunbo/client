@@ -74,7 +74,8 @@ export default class EntityScanProperties extends EntityProperties {
           if (queryDatas && queryDatas.length > 0) {
             queryDatas.forEach(data => {
               if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                tableData.push(data);
+                // 最新扫描则放在第一个
+                tableData.unshift(data);
               }
             });
             self.setState({ 
