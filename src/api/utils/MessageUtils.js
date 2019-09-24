@@ -148,6 +148,9 @@ export default class MessageUtils {
         }).then(function(object) {
             let response = new Response(object.data.header, object.data.body);
             if (ResultIdentify.Fail == response.header.result) {
+                if (requestObject.fail) {
+                    requestObject.fail();
+                }
                 self.handleException(response.header);
             } else {
                 if (object.headers.authorization) {

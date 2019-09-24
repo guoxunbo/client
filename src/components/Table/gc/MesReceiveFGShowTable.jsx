@@ -1,11 +1,3 @@
-
-import EntityListCheckTable from '../EntityListCheckTable';
-
-import { Button } from 'antd';
-import I18NUtils from '../../../api/utils/I18NUtils';
-import { i18NCode } from '../../../api/const/i18n';
-import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest';
-import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityListTable from '../EntityListTable';
 
 /**
@@ -13,7 +5,7 @@ import EntityListTable from '../EntityListTable';
  */
 export default class MesReceiveFGShowTable extends EntityListTable {
 
-    static displayName = 'MesReceiveFGTable';
+    static displayName = 'MesReceiveFGShowTable';
 
     createButtonGroup = () => {
         let buttons = [];

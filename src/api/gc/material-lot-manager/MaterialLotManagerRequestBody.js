@@ -1,5 +1,3 @@
-import MaterialLot from "../../dto/mms/MaterialLot";
-
 const ActionType = {
     BindRelayBox: "BindRelayBox",
     UnbindRelayBox: "UnbindRelayBox",

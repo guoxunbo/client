@@ -26,8 +26,6 @@ export default class EntityViewProperties extends EntityScanProperties{
           success: function(responseBody) {
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
-                //TODO 此处为GC客制化
-                // queryDatas[0].printNumber = 2;
                 self.setState({
                     formObject: queryDatas[0]
                 })  

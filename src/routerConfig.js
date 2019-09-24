@@ -29,6 +29,7 @@ import GcReTestOrderProperties from './pages/Properties/components/GcReTestOrder
 import AddPackagaMaterialLotProperties from './pages/Properties/components/AddPackagaMaterialLotProperties';
 import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCaseLabelProperties';
 import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
+import GcMaterialLotStockInProperties from './pages/Properties/components/GcMaterialLotStockInProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -189,6 +190,11 @@ const routerConfig = [
     path: buildPath('WMS/MaterialLotStockIn'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotStockInProperties,
+  },
+  {
+    path: buildPath('WMS/GCMaterialLotStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcMaterialLotStockInProperties,
   },
   {
     path: buildPath('WMS/CheckManager'),
