@@ -17,8 +17,6 @@ export default class CheckInventoryManagerRequestBody {
         });
         return new CheckInventoryManagerRequestBody(object.existMaterialLots, errorMaterialLots);
     }
-
 }
 
-export {ActionType};
 
