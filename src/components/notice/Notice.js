@@ -28,6 +28,10 @@ class Notification {
        
     }
 
+    /**
+     * 提醒框不会消失
+     * @param {}} message 
+     */
     static showInfo(message) {
         notification["info"]({
             message: message,

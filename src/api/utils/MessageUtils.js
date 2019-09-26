@@ -8,7 +8,7 @@ import axios from "axios";
 import { SessionContext } from '../Application';
 import I18NUtils from './I18NUtils';
 import { i18NCode } from '../const/i18n';
-
+import fetchJsonp from 'fetch-jsonp';
 /**
  *  消息主要发送类
  */
@@ -144,6 +144,7 @@ export default class MessageUtils {
         axios.post(request.url, request, {
             headers:{
                 authorization: SessionContext.getToken()
+                
             }
         }).then(function(object) {
             let response = new Response(object.data.header, object.data.body);
@@ -167,6 +168,47 @@ export default class MessageUtils {
         }); 
     }
     
+    /**
+     * 发送Get请求
+     *  一般用于打印机等
+     */
+    static sendGetRequest(requestObject) {
+        console.log(requestObject);
+        let self = this;
+        axios.get(requestObject.url, {
+            params: requestObject.params
+        }).then(function(object) {
+            debugger;
+            console.log(object);
+        }).catch(function(exception) {
+            debugger;
+            self.handleException(exception);
+        }); 
+    }
+
+    /**
+     * 发送Jsonp请求
+     * 
+     */
+    static sendJsonpRequest(requestObject) {
+        debugger;
+        let url = requestObject.url;
+        let params = requestObject.params;
+        let paramFlag= url.indexOf('?') === -1 ? '?' : '&';
+        url += `${paramFlag}`;
+        if (params) {
+            for (let i in params) {
+                url += `${i}=${params[i]}&`
+            }
+        }
+        url = url.substring(0, url.length-1); 
+        fetchJsonp(url).then(function(response) {
+            console.log(response);
+        }).catch(function(ex) {
+            console.log('parsing failed', ex)
+        })
+    }
+
     /**
      * 操作成功
      */
