@@ -42,6 +42,7 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
     };
 
     appendPackage = () => {
+        debugger;
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
@@ -58,6 +59,10 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
                 packedMaterialLotId = d.parentMaterialLotId;
             }
         });
+        if (waitToPackageLots.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
         let requestObject = {
             packedMaterialLotId: packedMaterialLotId,
             waitToPackMaterialLots: waitToPackageLots,
