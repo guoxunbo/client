@@ -19,10 +19,7 @@ export default class MesFinishGoodScanProperties extends EntityScanProperties{
     componentWillReceiveProps = (props) => {
         const {resetFlag} = props;
         if (resetFlag) {
-            this.setState({
-                tableData: [],
-                loading: false
-            });
+           this.form.handleReset();
         }
     }
 
