@@ -1,6 +1,7 @@
 
 const ServerAddress = {
-    NewbiestUrl : "http://127.0.0.1:8080"
+    // NewbiestUrl : "http://127.0.0.1:8080"
+    NewbiestUrl : "http://172.16.15.188:8080"
     // NewbiestUrl : "http://192.168.2.164:8080"
 }
 
@@ -73,6 +74,7 @@ const UrlConstant = {
     GCReTestUrl: ModuleUrlConstant.GC + "reTest",
     GCStockOutUrl: ModuleUrlConstant.GC + "stockOut",
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
+    GCGetPringBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
 
 };
 

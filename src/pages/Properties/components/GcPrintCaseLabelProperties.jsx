@@ -4,6 +4,10 @@ import I18NUtils from "../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../api/const/i18n";
 import { Button } from "antd";
 import IconUtils from "../../../api/utils/IconUtils";
+import { DefaultRowKey } from "../../../api/const/ConstDefine";
+import { Notification } from "../../../components/notice/Notice";
+import PrintUtils from "../../../api/utils/PrintUtils";
+import GetPrintBboxParameterRequest from "../../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest";
 
 /**
  * 打印箱标签
@@ -44,8 +48,19 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
     }
 
     handlePrint = () => {
-        //TODO 调用bartender打印
-        console.log(this.state.formObject);
+        let materialLotRrn = this.state.formObject[DefaultRowKey];
+        if (!materialLotRrn) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            return;
+        }
+        let requestObject = {
+            materialLotRrn : materialLotRrn,    
+            success: function(responseBody) {
+                let url = "http://127.0.0.1:10010/Integration/wms-print-bbox/Execute";
+                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters);
+            }
+        }
+        GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
     }
 
     createPrintButton = () => {
