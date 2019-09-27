@@ -8,6 +8,9 @@ import MessageUtils from '../../api/utils/MessageUtils';
 import UnPackageMaterialLotRequest from '../../api/unpackage-material-lot/UnPackageMaterialLotRequest';
 import MaterialLotAction from '../../api/dto/mms/MaterialLotAction';
 import AppendPackageMaterialLotRequest from '../../api/append-package-material-lot/AppendPackageMaterialLotRequest';
+import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
+import PrintUtils from '../../api/utils/PrintUtils';
+import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
 
 /**
  * 追加包装
@@ -41,6 +44,18 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
         }
     };
 
+    handlePrint = (materialLot) => {
+        let requestObject = {
+            materialLotRrn : materialLot.objectRrn,    
+            success: function(responseBody) {
+                let url = PrintServiceUrl.Bbox;
+                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
+            }
+        }
+        GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
+    }
+
+
     appendPackage = () => {
         debugger;
         const {data} = this.state;
@@ -73,7 +88,10 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                MessageUtils.showOperationSuccess();
+                let materialLotId = responseBody.materialLot.materialLotId;
+                let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
+                MessageUtils.showOperationSuccess(message);
+                self.handlePrint(responseBody.materialLot);
             }
         }
         AppendPackageMaterialLotRequest.sendAppendPackMaterialLotsRequest(requestObject)

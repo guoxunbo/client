@@ -6,6 +6,9 @@ import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import PackageMaterialLotRequest from '../../api/package-material-lot/PackageMaterialLotRequest';
 import MessageUtils from '../../api/utils/MessageUtils';
+import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
+import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
+import PrintUtils from '../../api/utils/PrintUtils';
 
 /**
  * 包装物料批次
@@ -18,6 +21,17 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
         let buttons = [];
         buttons.push(this.createPackageButton());
         return buttons;
+    }
+
+    handlePrint = (materialLot) => {
+        let requestObject = {
+            materialLotRrn : materialLot.objectRrn,    
+            success: function(responseBody) {
+                let url = PrintServiceUrl.Bbox;
+                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
+            }
+        }
+        GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
     }
 
     package = () => {
@@ -37,6 +51,8 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
                 let materialLotId = responseBody.materialLot.materialLotId;
                 let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
                 MessageUtils.showOperationSuccess(message);
+
+                self.handlePrint(responseBody.materialLot);
             }
         }
         PackageMaterialLotRequest.sendPackMaterialLotsRequest(requestObject)

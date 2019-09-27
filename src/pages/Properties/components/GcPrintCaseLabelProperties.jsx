@@ -8,6 +8,7 @@ import { DefaultRowKey } from "../../../api/const/ConstDefine";
 import { Notification } from "../../../components/notice/Notice";
 import PrintUtils from "../../../api/utils/PrintUtils";
 import GetPrintBboxParameterRequest from "../../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest";
+import { PrintServiceUrl } from "../../../api/gc/GcConstDefine";
 
 /**
  * 打印箱标签
@@ -56,7 +57,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
         let requestObject = {
             materialLotRrn : materialLotRrn,    
             success: function(responseBody) {
-                let url = "http://127.0.0.1:10010/Integration/wms-print-bbox/Execute";
+                let url = PrintServiceUrl.Bbox;
                 PrintUtils.printWithBtIbForWeb(url, responseBody.parameters);
             }
         }

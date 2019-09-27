@@ -6,6 +6,9 @@ import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import MessageUtils from '../../api/utils/MessageUtils';
 import UnPackageMaterialLotRequest from '../../api/unpackage-material-lot/UnPackageMaterialLotRequest';
+import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
+import PrintUtils from '../../api/utils/PrintUtils';
+import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
 
 /**
  * 拆包
@@ -42,6 +45,17 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
         this.unPackage(selectedRows);
     }
 
+    handlePrint = (materialLot) => {
+        let requestObject = {
+            materialLotRrn : materialLot.objectRrn,    
+            success: function(responseBody) {
+                let url = PrintServiceUrl.Bbox;
+                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
+            }
+        }
+        GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
+    }
+
     unPackage = (waitToUnpackDetails) => {
         let self = this;
         if (!waitToUnpackDetails || waitToUnpackDetails.length == 0) {
@@ -54,10 +68,18 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
             actionReason: "",
             actionComment: "",
             success: function(responseBody) {
+                let unpackedMainMaterialLot = responseBody.materialLots[0];
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                MessageUtils.showOperationSuccess();
+                let materialLotId = unpackedMainMaterialLot.materialLotId;
+                let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
+                MessageUtils.showOperationSuccess(message);
+                // 全拆了则不进行打印标签
+                debugger;
+                if (unpackedMainMaterialLot.statusCategory != 'Fin') {
+                    self.handlePrint(unpackedMainMaterialLot);
+                }
             }
         }
         UnPackageMaterialLotRequest.sendUnPackMaterialLotsRequest(requestObject)
