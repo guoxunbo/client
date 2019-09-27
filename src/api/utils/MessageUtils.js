@@ -167,31 +167,31 @@ export default class MessageUtils {
             self.handleException(exception);
         }); 
     }
-    
+
     /**
      * 发送Get请求
      *  一般用于打印机等
      */
     static sendGetRequest(requestObject) {
-        console.log(requestObject);
         let self = this;
         axios.get(requestObject.url, {
             params: requestObject.params
         }).then(function(object) {
-            debugger;
-            console.log(object);
+            if (requestObject.success) {
+                requestObject.success(object.data);
+            } else {
+                self.showOperationSuccess();
+            }
         }).catch(function(exception) {
-            debugger;
             self.handleException(exception);
         }); 
     }
 
     /**
      * 发送Jsonp请求
-     * 
+     *  
      */
     static sendJsonpRequest(requestObject) {
-        debugger;
         let url = requestObject.url;
         let params = requestObject.params;
         let paramFlag= url.indexOf('?') === -1 ? '?' : '&';
