@@ -20,7 +20,7 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
       }
     }
 
-    showDataNotFound = () => {
+    showDataNotFound = (reloadFlag) => {
       this.setState({ 
         loading: false,
         scanErrorFlag: true,
@@ -28,9 +28,14 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
 
       let data;
       let queryFields = this.form.state.queryFields;
-      if (queryFields.length === 2) {
-        data = this.form.props.form.getFieldValue(queryFields[1].name)
+      if (reloadFlag) {
+        data = this.form.props.form.getFieldValue(queryFields[0].name)
+      } else {
+        if (queryFields.length === 2) {
+          data = this.form.props.form.getFieldValue(queryFields[1].name)
+        }
       }
+     
       // 全部失焦
       queryFields.forEach(queryField => {
         if (queryField.node) {
@@ -101,7 +106,7 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
                 self.nextQueryNodeFocus();
                 self.form.resetFormFileds();
             } else {
-              self.showDataNotFound();
+              self.showDataNotFound(reloadTableData);
               self.resetData();
             }
           } else {

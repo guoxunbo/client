@@ -49,6 +49,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
     }
 
     handlePrint = () => {
+        let self = this;
         let materialLotRrn = this.state.formObject[DefaultRowKey];
         if (!materialLotRrn) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
@@ -58,7 +59,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
             materialLotRrn : materialLotRrn,    
             success: function(responseBody) {
                 let url = PrintServiceUrl.Bbox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters);
+                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
             }
         }
         GetPrintBboxParameterRequest.sendQueryRequest(requestObject);

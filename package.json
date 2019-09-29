@@ -71,6 +71,7 @@
   "buildConfig": {
     "theme": "@icedesign/skin",
     "entry": "src/index.js",
+    "hash": true,
     "localization": false,
     "output": {
       "publicPath": "./"

@@ -5,8 +5,6 @@ import { i18NCode } from '../../api/const/i18n';
 import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import MessageUtils from '../../api/utils/MessageUtils';
-import UnPackageMaterialLotRequest from '../../api/unpackage-material-lot/UnPackageMaterialLotRequest';
-import MaterialLotAction from '../../api/dto/mms/MaterialLotAction';
 import AppendPackageMaterialLotRequest from '../../api/append-package-material-lot/AppendPackageMaterialLotRequest';
 import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
 import PrintUtils from '../../api/utils/PrintUtils';
@@ -55,9 +53,7 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
         GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
     }
 
-
     appendPackage = () => {
-        debugger;
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
@@ -95,7 +91,6 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
             }
         }
         AppendPackageMaterialLotRequest.sendAppendPackMaterialLotsRequest(requestObject)
-        // UnPackageMaterialLotRequest.sendUnPackMaterialLotsRequest(requestObject)
     }
 
     createUnPackageButton = () => {

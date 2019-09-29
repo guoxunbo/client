@@ -19,7 +19,7 @@ export default class PrintUtils {
      * @param printCount 打印份数
      */
     static printWithBtIbForWeb = (url, parameters, printCount) => {
-        if (!printCount || !Number(printCount)) {
+        if (!printCount || !Number(printCount) || Number(printCount) == 0) {
             console.info("PrintCount is not a number or not set. [" + printCount + "]. so reset it to 1")
             printCount = 1;
             if (!parameters) {

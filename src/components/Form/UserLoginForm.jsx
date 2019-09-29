@@ -112,7 +112,7 @@ class UserLoginForm extends Component {
                   {I18NUtils.getClientMessage(i18NCode.Login)}
                 </Button>
               </Row>
-    
+{/*     
               <Row className="tips" style={styles.tips}>
                 <a href="/" style={styles.link}>
                     {I18NUtils.getClientMessage(i18NCode.Register)}
@@ -121,7 +121,7 @@ class UserLoginForm extends Component {
                 <a href="/" style={styles.link}>
                     {I18NUtils.getClientMessage(i18NCode.ForgetPwd)}
                 </a>
-              </Row>     
+              </Row>      */}
             </div>
             
          </Form> 

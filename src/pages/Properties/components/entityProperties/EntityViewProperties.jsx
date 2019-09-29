@@ -58,7 +58,7 @@ export default class EntityViewProperties extends EntityScanProperties{
                     <div style={styles.buttonGroup}>
                         {this.createButtonGroup()}
                     </div>
-                    <WrappedAdvancedEntityOtherForm object={this.state.formObject} table={this.state.table}></WrappedAdvancedEntityOtherForm>
+                    <WrappedAdvancedEntityOtherForm ref={(form) => this.entityForm = form}  object={this.state.formObject} table={this.state.table}></WrappedAdvancedEntityOtherForm>
                 </div>);
     }
 
