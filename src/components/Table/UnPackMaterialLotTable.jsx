@@ -19,8 +19,8 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createUnPackageAllButton());
         buttons.push(this.createUnPackageButton());
+        buttons.push(this.createUnPackageAllButton());
         return buttons;
     }
 
