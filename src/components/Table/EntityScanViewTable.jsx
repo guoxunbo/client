@@ -22,6 +22,10 @@ export default class EntityScanViewTable extends EntityListTable {
         }
     };
 
+    selectRow = () => {
+
+    }
+    
     createButtonGroup = () => {
         
     }
