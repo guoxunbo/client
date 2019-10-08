@@ -43,7 +43,7 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
                 MessageUtils.showOperationSuccess();
             }
         }
-        RetestManagerRequest.sendRetestRequest(requestObject)
+        RetestManagerRequest.sendRetestRequest(requestObject);
     }
 
      /**
