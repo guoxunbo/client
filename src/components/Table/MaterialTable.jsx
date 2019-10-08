@@ -52,7 +52,7 @@ export default class MaterialTable extends EntityListTable {
     }
 
     createReceiveMaterialLotButton = () => {
-        return <Button key="ReceiveMaterialLot" type="primary" style={styles.tableButton} icon="plus" onClick={() => this.handleReceiveMaterialLot()}>{I18NUtils.getClientMessage(i18NCode.BtnReceiveMaterialLot)}</Button>;
+        return <Button key="ReceiveMaterialLot" type="primary" style={styles.tableButton} icon="plus" onClick={() => this.handleReceiveMaterialLot()}>{I18NUtils.getClientMessage(i18NCode.BtnReceive)}</Button>;
     }
 
     handleReceiveMaterialLot = () => {

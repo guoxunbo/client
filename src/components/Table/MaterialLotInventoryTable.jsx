@@ -44,8 +44,6 @@ export default class MaterialLotInventoryTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStockOutButton());
-        buttons.push(this.createTransferInvButton());
         buttons.push(this.createPickButton());
         buttons.push(this.createExportDataButton());
         return buttons;

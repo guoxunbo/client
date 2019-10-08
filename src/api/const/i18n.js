@@ -314,7 +314,7 @@ const i18Messages = {
         Res: ""
     },
     Pick: {
-        Chinese: "领料",
+        Chinese: "领用",
         English: "Pick",
         Res: ""
     },
