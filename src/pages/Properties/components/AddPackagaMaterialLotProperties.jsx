@@ -1,6 +1,9 @@
 import AddPackMaterialLotTable from "../../../components/Table/AddPackMaterialLotTable";
-import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import EntityDoubleScanProperties from "./entityProperties/EntityDoubleScanProperties";
+import PackageValidationRequest from "../../../api/package-validation/PackageValidationRequest";
+import { Notification } from "../../../components/notice/Notice";
+import I18NUtils from "../../../api/utils/I18NUtils";
+import { i18NCode } from "../../../api/const/i18n";
 
 /**
  * 追加包装
@@ -14,32 +17,52 @@ export default class AddPackagaMaterialLotProperties extends EntityDoubleScanPro
      *  如果没有则添加数据，并将数据的标志成newFlag
      */
     afterSecondQuery = (queryDatas) => {
-        let {rowKey,tableData} = this.state;
+        let {tableData} = this.state;
+        if (tableData.length == 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            this.setState({ 
+                loading: false
+            });
+            this.form.resetFormFileds();
+            return;
+        }
         if (queryDatas && queryDatas.length > 0) {
             let queryData = queryDatas[0];
-            let dataIndex = -1;
-            tableData.map((d, index) => {
-                if (d[rowKey] === queryData[rowKey]) {
-                    dataIndex = index;
-                }
-            });
-            if (dataIndex > -1) {
-                this.setState({ 
-                    loading: false
-                });
-            } else {
-                queryData.newFlag = true;
-                tableData.push(queryData);
-                this.setState({ 
+            this.validationPackgeRule(queryData);
+        } else {
+            this.showDataNotFound();
+        }
+    }
+    
+    validationPackgeRule(materialLot) {
+        let self = this;
+        let {rowKey,tableData} = this.state;
+        let parentMaterialLotId = tableData[0].parentMaterialLotId;
+        if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+            materialLot.newFlag = true;
+            tableData.push(materialLot);
+        }
+        let requestObject = {
+            packagedMaterialLotId: parentMaterialLotId,
+            materialLots: tableData,
+            success: function() {
+                self.setState({ 
                     tableData: tableData,
                     loading: false
                 });
+                self.nextQueryNodeFocus();
+                self.form.resetFormFileds();
+            },
+            fail: function() { 
+                tableData.pop();
+                self.setState({ 
+                    tableData: tableData,
+                    loading: false
+                });
+                self.allFieldBlur();
             }
-            this.nextQueryNodeFocus();
-            this.form.resetFormFileds();
-        } else {
-          this.showDataNotFound();
         }
+        PackageValidationRequest.sendValidationAppendPackRequest(requestObject);
     }
 
     buildTable = () => {

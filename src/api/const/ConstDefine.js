@@ -1,7 +1,7 @@
 
 const ServerAddress = {
-    // NewbiestUrl : "http://127.0.0.1:8080"
-    NewbiestUrl : "http://172.16.15.188:8080"
+    NewbiestUrl : "http://127.0.0.1:8080"
+    // NewbiestUrl : "http://172.16.15.188:8080"
     // NewbiestUrl : "http://192.168.2.164:8080"
 }
 
@@ -60,6 +60,7 @@ const UrlConstant = {
     RawMaterialManagerUrl: ModuleUrlConstant.MMS + "rawMaterialManage",
     MaterialLotManagerUrl: ModuleUrlConstant.MMS + "materialLotManage",
     MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
+    ValidationPackMaterialLotsUrl: ModuleUrlConstant.MMS + "validationPackMaterialLots",
     PackMaterialLotsUrl: ModuleUrlConstant.MMS + "packMaterialLots",
     UnPackMaterialLotsUrl: ModuleUrlConstant.MMS + "unPackMaterialLots",
     MaterialLotStockInUrl: ModuleUrlConstant.MMS + "stockIn",
@@ -75,6 +76,8 @@ const UrlConstant = {
     GCStockOutUrl: ModuleUrlConstant.GC + "stockOut",
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPringBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
+    GCValidationSoOrReTestUrl: ModuleUrlConstant.GC + "validationSoOrReTest",
+
 
 };
 

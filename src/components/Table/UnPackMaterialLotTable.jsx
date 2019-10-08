@@ -76,7 +76,6 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
                 let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
                 MessageUtils.showOperationSuccess(message);
                 // 全拆了则不进行打印标签
-                debugger;
                 if (unpackedMainMaterialLot.statusCategory != 'Fin') {
                     self.handlePrint(unpackedMainMaterialLot);
                 }

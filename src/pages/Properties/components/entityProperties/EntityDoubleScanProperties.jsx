@@ -20,6 +20,19 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
       }
     }
 
+    /**
+     * 焦点全部失焦
+     */
+    allFieldBlur = () => {
+      let queryFields = this.form.state.queryFields;
+      // 全部失焦
+      queryFields.forEach(queryField => {
+        if (queryField.node) {
+          queryField.node.blur();
+        }
+      });
+    }
+
     showDataNotFound = (reloadFlag) => {
       this.setState({ 
         loading: false,
@@ -35,13 +48,7 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
           data = this.form.props.form.getFieldValue(queryFields[1].name)
         }
       }
-     
-      // 全部失焦
-      queryFields.forEach(queryField => {
-        if (queryField.node) {
-          queryField.node.blur();
-        }
-      });
+      this.allFieldBlur();
       Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
     }
 

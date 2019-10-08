@@ -1,8 +1,8 @@
 const Application = {
-    name: '智行管理系统',
+    name: 'FA-WMS',
     version: "1.0.4",
     copyright: {
-        name: "© 2018-2019 By Newbiest",
+        name: "© 2018-至今By Newbiest",
         url: "https://github.com/guoxunbo/newbiest/"
     },
     database: "oracle",

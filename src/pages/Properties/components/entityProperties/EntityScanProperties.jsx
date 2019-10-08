@@ -30,6 +30,19 @@ export default class EntityScanProperties extends EntityProperties {
       });
     }
 
+    /**
+     * 焦点全部失焦
+     */
+    allFieldBlur = () => {
+      let queryFields = this.form.state.queryFields;
+      // 全部失焦
+      queryFields.forEach(queryField => {
+        if (queryField.node) {
+          queryField.node.blur();
+        }
+      });
+    }
+
     showDataNotFound = () => {
       // 如果只有一个条件，则提示具体条件
       let queryFields = this.form.state.queryFields;
@@ -37,12 +50,7 @@ export default class EntityScanProperties extends EntityProperties {
       this.setState({ 
         loading: false
       });
-      // 全部失焦
-      queryFields.forEach(queryField => {
-        if (queryField.node) {
-          queryField.node.blur();
-        }
-      });
+      this.allFieldBlur();
       Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
     }
 
@@ -67,7 +75,6 @@ export default class EntityScanProperties extends EntityProperties {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
         success: function(responseBody) {
-          debugger;
           let queryDatas = responseBody.dataList;
           if (queryDatas && queryDatas.length > 0) {
             queryDatas.forEach(data => {

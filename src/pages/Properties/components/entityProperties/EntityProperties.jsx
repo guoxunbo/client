@@ -7,6 +7,9 @@ import { BackTop, Divider } from 'antd';
 import WrappedAdvancedQueryForm from '../../../../components/Form/QueryForm';
 import { DefaultRowKey } from '../../../../api/const/ConstDefine';
 
+/**
+ * 系统最基层的页面表单。
+ */
 export default class EntityProperties extends Component {
   
     static displayName = 'EntityProperties';
