@@ -1,8 +1,11 @@
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button } from 'antd';
+import I18NUtils from '../../../api/utils/I18NUtils';
+import { i18NCode } from '../../../api/const/i18n';
 import IconUtils from '../../../api/utils/IconUtils';
 import CheckInventoryManagerRequest from '../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
+import { Notification } from '../../notice/Notice';
 
 /**
  * 格科盘点表
@@ -31,7 +34,12 @@ export default class CheckTable extends EntityScanViewTable {
     }
 
     handleCheck = () => {
+        const {data} = this.state;
         let self = this;
+        if (!data || data.length == 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            return;
+        }
         let existMaterialLots = this.state.data.filter((d) => d.errorFlag === undefined || d.errorFlag === false);
         let errorMaterialLots = this.state.data.filter((d) => d.errorFlag && d.errorFlag === true);
         let requestObject = {
