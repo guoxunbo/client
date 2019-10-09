@@ -95,13 +95,13 @@ export default class MaterialLotTable extends EntityListTable {
     }
     
     /**
-     * 物料批次不可更新和删除
+     * 物料批次隐藏操作列
      */
-    buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildBarCodeButton(record));
-        operations.push(this.buildQrCodeButton(record));
-        return operations;
+    buildOperationColumn = () => {
+        // let operations = [];
+        // operations.push(this.buildBarCodeButton(record));
+        // operations.push(this.buildQrCodeButton(record));
+        // return operations;
     }
 
     handlePrintOk = () => {
