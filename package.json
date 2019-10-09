@@ -14,12 +14,11 @@
     ".eslintrc"
   ],
   "dependencies": {
-    "@icedesign/base": "^0.2.5",
+    "@alifd/next": "^1.18.3",
     "@icedesign/container": "^0.1.7",
-    "@icedesign/icon": "^0.1.1",
-    "@icedesign/layout": "^0.1.1",
-    "@icedesign/menu": "^0.1.1",
-    "@icedesign/skin": "^0.1.0",
+    "@icedesign/layout": "^1.0.8",
+    "@icedesign/theme": "^1.0.0",
+    "@icedesign/styled-menu": "^0.1.4",
     "add": "^2.0.6",
     "antd": "^3.16.3",
     "axios": "^0.17.1",
@@ -35,7 +34,7 @@
     "jsbarcode": "^3.11.0",
     "moment": "^2.24.0",
     "node-forge": "^0.7.5",
-    "npm": "^6.11.3",
+    "npm": "^6.12.0",
     "prop-types": "^15.6.2",
     "qrcode.react": "^0.9.3",
     "qs": "^6.5.2",
@@ -58,24 +57,17 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "ice-scripts": "^1.1.1"
+    "ice-scripts": "^2.0.0",
+    "ice-plugin-fusion": "^0.1.4",
+    "ice-plugin-moment-locales": "^0.1.0"
   },
   "scripts": {
-    "start": "ice dev",
-    "build": "ice build",
+    "start": "ice-scripts dev",
+    "build": "ice-scripts build",
     "lint": "eslint . --ext '.js,.jsx' --fix"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "buildConfig": {
-    "theme": "@icedesign/skin",
-    "entry": "src/index.js",
-    "hash": true,
-    "localization": false,
-    "output": {
-      "publicPath": "./"
-    }
   },
   "scaffoldConfig": {
     "name": "ice-design-lite",

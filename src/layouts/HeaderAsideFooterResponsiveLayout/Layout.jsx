@@ -2,9 +2,8 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import Layout from '@icedesign/layout';
-import Menu, { SubMenu, Item as MenuItem } from '@icedesign/menu';
+import Menu, { SubMenu, Item as MenuItem } from '@icedesign/styled-menu';
 import { Link } from 'react-router-dom';
-
 import { withRouter } from 'react-router';
 import { enquire } from 'enquire-js';
 import Header from './../../components/Header';
@@ -16,6 +15,7 @@ import './scss/dark.scss';
 import { SessionContext } from '../../api/Application';
 import { Notification } from '../../components/notice/Notice';
 import IconUtils from '../../api/utils/IconUtils';
+
 
 // 设置默认的皮肤配置，支持 dark 和 light 两套皮肤配置
 const theme = typeof THEME === 'undefined' ? 'dark' : THEME;

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { Balloon, Icon } from '@icedesign/base';
+import { Balloon, Icon } from '@alifd/next';
 import Layout from '@icedesign/layout';
-import Menu from '@icedesign/menu';
+import Menu from '@icedesign/styled-menu';
 import FoundationSymbol from 'foundation-symbol';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';

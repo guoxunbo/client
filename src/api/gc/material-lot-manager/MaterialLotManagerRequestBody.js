@@ -5,7 +5,6 @@ const ActionType = {
     GetPackCaseCheckList: "GetPackCaseCheckList"
 }
 
-
 export default class MaterialLotManagerRequestBody {
 
     materialLots;
@@ -42,4 +41,3 @@ export default class MaterialLotManagerRequestBody {
     }
 
 }   
-export {JudgeGrade}
