@@ -1,5 +1,4 @@
 
-import TableManagerRequest from '../../../../api/table-manager/TableManagerRequest';
 import EntityProperties from './EntityProperties';
 import { Notification } from '../../../../components/notice/Notice';
 import I18NUtils from '../../../../api/utils/I18NUtils';
@@ -37,35 +36,26 @@ export default class EntityScanCheckProperties extends EntityProperties {
         });
     }
 
-    queryData = (whereClause) => {
-      const self = this;
+    afterQuery = (responseBody) => {
       let {rowKey, selectedRowKeys, selectedRows} = this.state;
-      let requestObject = {
-        tableRrn: this.state.tableRrn,
-        whereClause: whereClause,
-        success: function(responseBody) {
-          let queryDatas = responseBody.dataList;
-          if (queryDatas && queryDatas.length > 0) {
-            queryDatas.forEach(data => {
-              if (selectedRowKeys.indexOf(data[rowKey]) < 0) {
-                selectedRowKeys.push(data[rowKey]);
-                selectedRows.push(data);
-              }
-            });
-            self.setState({ 
-              selectedRowKeys: selectedRowKeys,
-              selectedRows: selectedRows,
-              resetFlag:false,
-              loading: false
-            });
-            self.form.resetFormFileds();
-          } else {
-            self.showDataNotFound();
+      let queryDatas = responseBody.dataList;
+      if (queryDatas && queryDatas.length > 0) {
+        queryDatas.forEach(data => {
+          if (selectedRowKeys.indexOf(data[rowKey]) < 0) {
+            selectedRowKeys.push(data[rowKey]);
+            selectedRows.push(data);
           }
-        
-        }
+        });
+        this.setState({ 
+          selectedRowKeys: selectedRowKeys,
+          selectedRows: selectedRows,
+          resetFlag:false,
+          loading: false
+        });
+        this.form.resetFormFileds();
+      } else {
+        this.showDataNotFound();
       }
-      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
     
 }

@@ -1,6 +1,5 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import PackMaterialLotTable from "../../../components/Table/PackMaterialLotTable";
-import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import PackageValidationRequest from "../../../api/package-validation/PackageValidationRequest";
 
 const PackageType = "PackCase";
@@ -9,23 +8,15 @@ export default class PackageMaterialLotProperties extends EntityScanProperties{
 
     static displayName = 'PackageMaterialLotProperties';
       
-    queryData = (whereClause) => {
-        const self = this;
-        let requestObject = {
-          tableRrn: this.state.tableRrn,
-          whereClause: whereClause,
-          success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
-            if (queryDatas && queryDatas.length > 0) {
-              self.validationPackgeRule(queryDatas[0]);
-            } else {
-              self.showDataNotFound();
-            }
-          }
+    afterQuery = (responseBody) => {
+        let queryDatas = responseBody.dataList;
+        if (queryDatas && queryDatas.length > 0) {
+            this.validationPackgeRule(queryDatas[0]);
+        } else {
+            this.showDataNotFound();
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
-
+    
     validationPackgeRule(materialLot) {
         let self = this;
         let {rowKey,tableData} = this.state;

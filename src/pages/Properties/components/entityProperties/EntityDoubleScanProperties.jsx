@@ -7,7 +7,7 @@ import { Notification } from '../../../../components/notice/Notice';
 
 /**
  * 默认不显示数据，支持双重扫描数据，即2个文本查找条件进行查找。
- *  根据第一个条件是查找数据库输几局，第二个条件就是查找数据数据库以及判断是否在表格中。 有则标记成scanned
+ *  根据第一个条件是查找数据库数据，第二个条件就是查找数据数据库以及判断是否在表格中。 有则标记成scanned
  *  
  */
 export default class EntityDoubleScanProperties extends EntityScanProperties {

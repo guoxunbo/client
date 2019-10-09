@@ -9,7 +9,7 @@ import I18NUtils from '../../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../../api/const/i18n';
 
 // 寻找背景图片可以从 https://unsplash.com/ 寻找
-const backgroundImage = require('./images/background.png');
+const backgroundImage = require('./images/background.jpg');
 
 @withRouter
 export default class UserLogin extends Component {

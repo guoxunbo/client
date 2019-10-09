@@ -1,6 +1,6 @@
 const Application = {
     name: 'VCIM',
-    version: "1.0.4",
+    version: "1.0.5",
     copyright: {
         name: "© 2018-至今By Newbiest",
         url: "https://github.com/guoxunbo/newbiest/"

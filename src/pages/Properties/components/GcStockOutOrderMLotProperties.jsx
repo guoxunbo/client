@@ -22,6 +22,17 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
       }
     }
 
+    afterQuery = (responseBody) => {
+      let documentLine = this.props.orderTable.getSingleSelectedRow();
+      let queryDatas = responseBody.dataList;
+      if (queryDatas && queryDatas.length > 0) {
+        let data = queryDatas[0];
+        this.validationRule(documentLine, data);
+      } else {
+        this.showDataNotFound();
+      }
+    }
+
     queryData = (whereClause) => {
         const self = this;
         let documentLine = this.props.orderTable.getSingleSelectedRow();
@@ -35,23 +46,7 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
           success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
-            if (queryDatas && queryDatas.length > 0) {
-              let data = queryDatas[0];
-              self.validationRule(documentLine, data);
-              // queryDatas.forEach(data => {
-              //   if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-              //     tableData.unshift(data);
-              //   }
-              // });
-              // self.setState({ 
-              //   tableData: tableData,
-              //   loading: false
-              // });
-              // self.form.resetFormFileds();
-            } else {
-              self.showDataNotFound();
-            }
+            self.afterQuery(responseBody);
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);

@@ -50,16 +50,20 @@ export default class EntityProperties extends Component {
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
     
+    afterQuery = (responseBody) => {
+        this.setState({
+          tableData: responseBody.dataList,
+          loading: false
+        });
+    }
+
     queryData = (whereClause) => {
       const self = this;
       let requestObject = {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
         success: function(responseBody) {
-          self.setState({
-            tableData: responseBody.dataList,
-            loading: false
-          });
+          self.afterQuery(responseBody);
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);

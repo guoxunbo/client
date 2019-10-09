@@ -68,32 +68,24 @@ export default class EntityScanProperties extends EntityProperties {
       TableManagerRequest.sendGetByRrnRequest(requestObject);
     }
 
-    queryData = (whereClause) => {
-      const self = this;
+    afterQuery = (responseBody) => {
       let {rowKey,tableData} = this.state;
-      let requestObject = {
-        tableRrn: this.state.tableRrn,
-        whereClause: whereClause,
-        success: function(responseBody) {
-          let queryDatas = responseBody.dataList;
-          if (queryDatas && queryDatas.length > 0) {
-            queryDatas.forEach(data => {
-              if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                // 最新扫描则放在第一个
-                tableData.unshift(data);
-              }
-            });
-            self.setState({ 
-              tableData: tableData,
-              loading: false
-            });
-            self.form.resetFormFileds();
-          } else {
-            self.showDataNotFound();
+      let queryDatas = responseBody.dataList;
+      if (queryDatas && queryDatas.length > 0) {
+        queryDatas.forEach(data => {
+          if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+            // 最新扫描则放在第一个
+            tableData.unshift(data);
           }
-        }
+        });
+        this.setState({ 
+          tableData: tableData,
+          loading: false
+        });
+        this.form.resetFormFileds();
+      } else {
+        this.showDataNotFound();
       }
-      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
     
 }
