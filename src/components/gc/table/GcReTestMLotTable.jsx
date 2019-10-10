@@ -1,7 +1,7 @@
 
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import { Button } from 'antd';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import RetestManagerRequest from '@api/gc/retest-manager/RetestManagerRequest';
@@ -30,7 +30,7 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
         }
         let materialLots = this.state.data;
         if (materialLots.length === 0 ) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
         let requestObject = {

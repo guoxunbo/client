@@ -1,12 +1,12 @@
 import {ErrorCode, ResultIdentify, Language} from '@const/ConstDefine';
-import {Notification} from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 
 import {Response} from "@api/Response";
 import {ResponseHeader} from "@api/ResponseHeader";
 
 import axios from "axios";
 import { SessionContext } from '@api/Application';
-import I18NUtils from './I18NUtils';
+import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import fetchJsonp from 'fetch-jsonp';
 /**
@@ -216,7 +216,7 @@ export default class MessageUtils {
         if (!code) {
             code = i18NCode.OperationSucceed;
         }
-        Notification.showSuccess(I18NUtils.getClientMessage(code));
+        NoticeUtils.showSuccess(I18NUtils.getClientMessage(code));
     }
 
     static handleException(exception) {

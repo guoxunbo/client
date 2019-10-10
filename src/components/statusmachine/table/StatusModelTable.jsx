@@ -5,7 +5,7 @@ import I18NUtils from "@api/utils/I18NUtils";
 import DispatchForm from "@components/framework/form/DispatchForm";
 import EntityForm from "@components/framework/form/EntityForm";
 import StatusModelRequest from "@api/status-model-manager/StatusModelRequest";
-import { Notification } from "@components/notice/Notice";
+import NoticeUtils from "@utils/NoticeUtils";
 
 export default class StatusModelTable extends EntityListTable {
 
@@ -85,7 +85,7 @@ export default class StatusModelTable extends EntityListTable {
         const {selectedRows} = this.state;
         if (selectedRows) {
             if (selectedRows.length != 1) {
-                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+                NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
                 return;
             } 
         }

@@ -9,7 +9,7 @@ import cx from 'classnames';
 import { Link } from 'react-router-dom';
 import { headerMenuConfig } from './../menuConfig';
 import Logo from './logo/components/Logo';
-import {Notification} from './notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import {SessionContext} from '@api/Application';
 import MessageUtils from '@api/utils/MessageUtils';
 import ChangePwdForm from '@components/framework/form/ChangePwdForm';
@@ -45,7 +45,7 @@ export default class Header extends PureComponent {
   render() {
     let sessionContext = SessionContext.getSessionContext();
     if (!sessionContext) {
-      Notification.showInfo("请先登陆");
+      NoticeUtils.showNotice("请先登陆");
       this.props.history.push('/');
     }
     

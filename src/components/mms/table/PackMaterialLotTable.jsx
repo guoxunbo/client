@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import PackageMaterialLotRequest from '@api/package-material-lot/PackageMaterialLotRequest';
 import MessageUtils from '@api/utils/MessageUtils';
 import { PrintServiceUrl, PrintBboxCount } from '@api/gc/GcConstDefine';
@@ -38,7 +38,7 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
         let requestObject = {

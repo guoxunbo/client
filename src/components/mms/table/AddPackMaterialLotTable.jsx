@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import MessageUtils from '@api/utils/MessageUtils';
 import AppendPackageMaterialLotRequest from '@api/append-package-material-lot/AppendPackageMaterialLotRequest';
 import GetPrintBboxParameterRequest from '@api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
@@ -57,7 +57,7 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
         // 检验数据
@@ -71,7 +71,7 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
             }
         });
         if (waitToPackageLots.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
         let requestObject = {

@@ -1,6 +1,6 @@
-import MessageUtils from './MessageUtils';
+import MessageUtils from '@utils/MessageUtils';
 import BtPrintResponse, { ResponseStatus, ResponseWaitStatus } from '@api/dto/bartender/BtPrintResponse';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 
 const PrintParamterName = {
     printCount: "printCount"
@@ -40,7 +40,7 @@ export default class PrintUtils {
                     let message = btPrintResponse.Messages[0].Text;
                     // 具备库数据只不过是.btw模板文件上，进行了空的提示。还是会执行打印。所以不算打印失败
                     if (message.indexOf("具有空数据") != -1) {
-                        Notification.showNotice("打印成功，但是有栏位是空数据。" + message)
+                        NoticeUtils.showNotice("打印成功，但是有栏位是空数据。" + message)
                     } else {
                         Notification.showError("打印失败:" + message);
                     }

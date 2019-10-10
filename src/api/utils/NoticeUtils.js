@@ -3,7 +3,7 @@ import { notification } from 'antd';
 
 import {Application} from '@api/Application';
 
-class Notification {
+export default class NoticeUtils {
 
     static showSuccess(message) {
         notification["success"]({
@@ -39,17 +39,4 @@ class Notification {
         });
     }
 
-}
-
-/**
- * 构建Mobile组件
- */
-function buildMobile() {
-    return {
-        swipeDismiss: Application.notice.mobile.swipeDismiss,
-        styling: Application.notice.mobile.styling
-    }
-};
-
-export {Notification};
- 
+} 

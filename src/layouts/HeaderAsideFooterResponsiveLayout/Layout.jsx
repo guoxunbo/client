@@ -6,14 +6,14 @@ import Menu, { SubMenu, Item as MenuItem } from '@icedesign/styled-menu';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { enquire } from 'enquire-js';
-import Header from './../../components/Header';
-import Footer from './../../components/Footer';
-import Logo from '../../components/logo/components/Logo';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
+import Logo from '@components/logo/components/Logo';
 import './scss/light.scss';
 import './scss/dark.scss';
 
 import { SessionContext } from '@api/Application';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import IconUtils from '@api/utils/IconUtils';
 
 
@@ -119,7 +119,7 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
   getAsideMenuConfig = () => {
     let sessionContext = SessionContext.getSessionContext();
     if (sessionContext == undefined) {
-      Notification.showInfo("请先登陆");
+      NoticeUtils.showNotice("请先登陆");
       this.props.history.push('/');
       return;
     }

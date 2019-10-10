@@ -1,7 +1,7 @@
 import AddPackMaterialLotTable from "@components/mms/table/AddPackMaterialLotTable";
 import EntityDoubleScanProperties from "@properties/framework/EntityDoubleScanProperties";
 import PackageValidationRequest from "@api/package-validation/PackageValidationRequest";
-import { Notification } from "@components/notice/Notice";
+import NoticeUtils from "@utils/NoticeUtils";
 import I18NUtils from "@utils/I18NUtils";
 import { i18NCode } from "@const/i18n";
 
@@ -19,7 +19,7 @@ export default class AddPackagaMaterialLotProperties extends EntityDoubleScanPro
     afterSecondQuery = (queryDatas) => {
         let {tableData} = this.state;
         if (tableData.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             this.setState({ 
                 loading: false
             });

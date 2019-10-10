@@ -4,7 +4,7 @@ import { i18NCode } from "@const/i18n";
 import { Button } from "antd";
 import IconUtils from "@utils/IconUtils";
 import { DefaultRowKey } from "@const/ConstDefine";
-import { Notification } from "@components/notice/Notice";
+import NoticeUtils from "@utils/NoticeUtils";
 import PrintUtils from "@utils/PrintUtils";
 import GetPrintBboxParameterRequest from "@api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest";
 import { PrintServiceUrl } from "@api/gc/GcConstDefine";
@@ -42,7 +42,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
         let self = this;
         let materialLotRrn = this.state.formObject[DefaultRowKey];
         if (!materialLotRrn) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
         let requestObject = {

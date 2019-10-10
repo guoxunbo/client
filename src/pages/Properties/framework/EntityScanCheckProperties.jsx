@@ -1,6 +1,6 @@
 
 import EntityProperties from '@properties/framework/EntityProperties';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 
@@ -21,7 +21,7 @@ export default class EntityScanCheckProperties extends EntityProperties {
       this.setState({ 
         loading: false
       });
-      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+      NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
     }
 
     /**

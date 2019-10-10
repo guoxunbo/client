@@ -2,7 +2,7 @@ import { Button, Form } from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import MessageUtils from '@api/utils/MessageUtils';
 import PackCaseCheckForm from '@components/gc/form/PackCaseCheckForm';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
@@ -47,15 +47,15 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         var self = this;
         const {data, selectedRows} = this.state;
         if (!data || data.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
         if (this.props.scanErrorFlag) {
-            Notification.showNotice("出现过扫描错误，请重新查找并重新扫描");
+            NoticeUtils.showNotice("出现过扫描错误，请重新查找并重新扫描");
             return;
         }
         if (selectedRows.length != data.length) {
-            Notification.showNotice("数据没有全部扫描");
+            NoticeUtils.showNotice("数据没有全部扫描");
             return;
         }
         let object = {
@@ -71,7 +71,7 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
         let requestObject = {

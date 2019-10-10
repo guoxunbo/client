@@ -3,7 +3,7 @@ import { Button, Form } from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import MessageUtils from '@api/utils/MessageUtils';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import StockCheckOutForm from '@components/gc/form/StockCheckOutForm';
@@ -56,7 +56,7 @@ export default class StockOutCheckTable extends EntityScanViewTable {
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
         let requestObject = {

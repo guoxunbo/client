@@ -14,7 +14,7 @@ import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { Upload } from 'antd';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 
 const ExpMenuKey = {
     exportTemplate: "exportTemplate",
@@ -243,7 +243,7 @@ export default class EntityListTable extends Component {
     getSelectedRows = () => {
         const {selectedRows} = this.state;
         if (!selectedRows || selectedRows.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
         }
         return selectedRows;
     }
@@ -252,7 +252,7 @@ export default class EntityListTable extends Component {
         const {selectedRows} = this.state;
         if (selectedRows) {
             if (selectedRows.length != 1) {
-                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+                NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             } 
         }
         return selectedRows[0];

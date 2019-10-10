@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import MessageUtils from '@api/utils/MessageUtils';
 import UnPackageMaterialLotRequest from '@api/unpackage-material-lot/UnPackageMaterialLotRequest';
 import { PrintServiceUrl, PrintBboxCount } from '@api/gc/GcConstDefine';
@@ -59,7 +59,7 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
     unPackage = (waitToUnpackDetails) => {
         let self = this;
         if (!waitToUnpackDetails || waitToUnpackDetails.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
         let requestObject = {

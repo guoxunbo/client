@@ -3,7 +3,7 @@ import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import EntityScanProperties from '@properties/framework/EntityScanProperties';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 
 /**
  * 默认不显示数据，支持双重扫描数据，即2个文本查找条件进行查找。
@@ -49,7 +49,7 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
         }
       }
       this.allFieldBlur();
-      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
+      NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
     }
 
     /**

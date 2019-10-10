@@ -1,7 +1,7 @@
 
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import EntityProperties from '@properties/framework/EntityProperties';
-import { Notification } from '@components/notice/Notice';
+import NoticeUtils from '@utils/NoticeUtils';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 
@@ -51,7 +51,7 @@ export default class EntityScanProperties extends EntityProperties {
         loading: false
       });
       this.allFieldBlur();
-      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
+      NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound) + (data || ""));
     }
 
     getTableData = () => {

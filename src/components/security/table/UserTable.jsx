@@ -1,11 +1,11 @@
 import {Button} from 'antd';
 import UserManagerRequest from '@api/user-manager/UserManagerRequest';
-import { Notification } from "@components/notice/Notice";
 import I18NUtils from "@api/utils/I18NUtils";
 import { i18NCode } from "@api/const/i18n";
 import UserForm from "@components/security/form/UserForm";
 import {Form} from 'antd';
 import EntityListTable from "@components/framework/table/EntityListTable";
+import NoticeUtils from '@utils/NoticeUtils';
 
 export default class UserTable extends EntityListTable {
 
@@ -26,7 +26,7 @@ export default class UserTable extends EntityListTable {
         const self = this;
         if (selectedRows) {
             if (selectedRows.length != 1) {
-                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+                NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
                 return;
             } 
             let object = {

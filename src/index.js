@@ -7,10 +7,10 @@ import '@alifd/next/reset.scss';
 import router from './router';
 import "antd/dist/antd.css";
 import './global.scss';
-import '../src/api/Extend';
+import '@api/Extend';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import { Application } from './api/Application';
+import { Application } from '@api/Application';
 moment.locale('zh-cn');
 
 const ICE_CONTAINER = document.getElementById('ice-container');
