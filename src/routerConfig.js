@@ -1,35 +1,47 @@
-import Home from './pages/Home';
+import Home from '@pages/Home';
+import Login from '@pages/Login';
+import NotFound from '@pages/NotFound';
 
-import BlankLayout from './layouts/BlankLayout';
-import Login from './pages/Login';
+import HeaderAsideFooterResponsiveLayout from '@layouts/HeaderAsideFooterResponsiveLayout';
+import BlankLayout from '@layouts/BlankLayout';
 
-import HeaderAsideFooterResponsiveLayout from './layouts/HeaderAsideFooterResponsiveLayout';
+// framework
+import EntityProperties from '@properties/framework/EntityProperties';
+import EntityHistoryProperties from '@properties/framework/EntityHistoryProperties';
+import EntityScanProperties from '@properties/framework/EntityScanProperties';
+import EntityDoubleScanProperties from '@properties/framework/EntityDoubleScanProperties';
+import EntityScanCheckProperties from '@properties/framework/EntityScanCheckProperties';
+import EntityViewProperties from '@properties/framework/EntityViewProperties';
+import GeneratorRuleProperties from '@properties/idgenerator/GeneratorRuleProperties';
 
-import NotFound from './pages/NotFound';
-import EntityProperties from './pages/Properties';
-import UserProperties from './pages/Properties/components/userProperties/UserProperties';
-import RoleProperties from './pages/Properties/components/RoleProperties';
-import GeneratorRuleProperties from './pages/Properties/components/GeneratorRuleProperties';
-import MaterialStatusModelProperties from './pages/Properties/components/MaterialStatusModelProperties';
-import MaterialProperties from './pages/Properties/components/MaterialProperties';
-import MaterialLotProperties from './pages/Properties/components/MaterialLotProperties';
-import MaterialLotInventoryProperties from './pages/Properties/components/MaterialLotInventoryProperties';
-import EntityHistoryProperties from './pages/Properties/components/EntityHistoryProperties';
-import DynaxAnalyseProperties from './pages/Properties/components/DynaxAnalyseProperties';
-import QuestionProperties from './pages/Properties/components/QuestionProperties';
-import MesFinishGoodProperties from './pages/Properties/components/MesFinishGoodProperties';
-import PackageMaterialLotProperties from './pages/Properties/components/PackageMaterialLotProperties';
-import PackRelayBoxProperties from './pages/Properties/components/PackRelayBoxProperties';
-import PackCaseCheckProperties from './pages/Properties/components/PackCaseCheckProperties';
-import MaterialLotStockInProperties from './pages/Properties/components/MaterialLotStockInProperties';
-import UnPackagaMaterialLotProperties from './pages/Properties/components/UnPackagaMaterialLotProperties';
-import StockOutCheckProperties from './pages/Properties/components/StockOutCheckProperties';
-import GcOrderProperties from './pages/Properties/components/GcOrderProperties';
-import GcReTestOrderProperties from './pages/Properties/components/GcReTestOrderProperties';
-import AddPackagaMaterialLotProperties from './pages/Properties/components/AddPackagaMaterialLotProperties';
-import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCaseLabelProperties';
-import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
-import GcMaterialLotStockInProperties from './pages/Properties/components/GcMaterialLotStockInProperties';
+//security
+import UserProperties from '@properties/security/UserProperties';
+import RoleProperties from '@properties/security/RoleProperties';
+
+//kms
+import QuestionProperties from '@properties/kms/QuestionProperties';
+
+//mms
+import AddPackagaMaterialLotProperties from '@properties/mms/AddPackagaMaterialLotProperties';
+import UnPackagaMaterialLotProperties from '@properties/mms/UnPackagaMaterialLotProperties';
+import StockOutCheckProperties from '@properties/mms/StockOutCheckProperties';
+import PackageMaterialLotProperties from '@properties/mms/PackageMaterialLotProperties';
+import MaterialLotProperties from '@properties/mms/MaterialLotProperties';
+import MaterialStatusModelProperties from '@properties/mms/MaterialStatusModelProperties';
+import MaterialProperties from '@properties/mms/MaterialProperties';
+import MaterialLotStockInProperties from '@properties/mms/MaterialLotStockInProperties';
+import MaterialLotInventoryProperties from '@properties/mms/MaterialLotInventoryProperties';
+
+//gc
+import GcCheckProperties from '@properties/gc/GcCheckProperties';
+import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
+import MesFinishGoodProperties from '@properties/gc/MesFinishGoodProperties';
+import GcOrderProperties from '@properties/gc/GcOrderProperties';
+import PackCaseCheckProperties from '@properties/gc/PackCaseCheckProperties';
+import GcPrintCaseLabelProperties from '@properties/gc/GcPrintCaseLabelProperties';
+import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
+//dynax
+import DynaxAnalyseProperties from '@properties/dynax/DynaxAnalyseProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -221,11 +233,6 @@ const routerConfig = [
     path: buildPath('Pack/UnPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
-  },
-  {
-    path: buildPath('Pack/PackRelayBox'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: PackRelayBoxProperties,
   },
   {
     path: buildPath('Pack/PackCaseCheck'),

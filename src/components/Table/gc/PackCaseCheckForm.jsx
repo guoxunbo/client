@@ -1,4 +1,4 @@
-import MaterialLotManagerRequest from "../../../api/gc/material-lot-manager/MaterialLotManagerRequest";
+import MaterialLotManagerRequest from "@api/gc/material-lot-manager/MaterialLotManagerRequest";
 import CheckItemForm from "./CheckItemForm";
 
 

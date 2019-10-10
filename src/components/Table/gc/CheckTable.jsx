@@ -1,6 +1,6 @@
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button } from 'antd';
-import IconUtils from '../../../api/utils/IconUtils';
+import IconUtils from '@utils/IconUtils';
 import CheckInventoryManagerRequest from '../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 

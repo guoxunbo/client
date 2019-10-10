@@ -1,9 +1,9 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button } from 'antd';
-import I18NUtils from '../../../api/utils/I18NUtils';
-import { i18NCode } from '../../../api/const/i18n';
-import StockInManagerRequest from '../../../api/gc/stock-in/StockInManagerRequest';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
+import StockInManagerRequest from '@api/gc/stock-in/StockInManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 
 /**

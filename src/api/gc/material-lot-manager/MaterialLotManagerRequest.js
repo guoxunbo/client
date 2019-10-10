@@ -29,26 +29,4 @@ export default class MaterialLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
-    static sendBindRelaxBoxRequest = (object) => {
-        let requestBody = MaterialLotManagerRequestBody.buildBindRelayBox(object.materialLots, object.relayBoxId);
-        let requestHeader = new MaterialLotManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.GCMaterialLotManagerUrl);
-        let requestObject = {
-            request: request,
-            success: object.success
-        }
-        MessageUtils.sendRequest(requestObject);
-    }
-    
-    static sendUnBindRelaxBoxRequest = (object) => {
-        let requestBody = MaterialLotManagerRequestBody.buildUnbindRelayBox(object.materialLots);
-        let requestHeader = new MaterialLotManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.GCMaterialLotManagerUrl);
-        let requestObject = {
-            request: request,
-            success: object.success
-        }
-        MessageUtils.sendRequest(requestObject);
-    }
-
 }

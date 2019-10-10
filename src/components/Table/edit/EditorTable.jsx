@@ -1,6 +1,6 @@
 import { Table, Popconfirm, Button, Form } from 'antd';
 import * as PropTypes from 'prop-types';
-import {DefaultRowKey, DateFormatType} from '../../../api/const/ConstDefine'
+import {DefaultRowKey, DateFormatType} from '@const/ConstDefine'
 import MessageUtils from '../../../api/utils/MessageUtils';
 import Field from '../../../api/dto/ui/Field';
 import '../ListTable.scss';
@@ -9,9 +9,9 @@ import TableObject from '../../../api/dto/ui/Table';
 import PropertyUtils from '../../../api/utils/PropertyUtils';
 import uuid from 'react-native-uuid';
 import EntityManagerRequest from '../../../api/entity-manager/EntityManagerRequest'; 
-import I18NUtils from '../../../api/utils/I18NUtils';
-import { i18NCode } from '../../../api/const/i18n';
-import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import moment from 'moment';
 
 const EditableContext = React.createContext();

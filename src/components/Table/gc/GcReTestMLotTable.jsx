@@ -2,8 +2,8 @@
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button } from 'antd';
 import { Notification } from '../../notice/Notice';
-import I18NUtils from '../../../api/utils/I18NUtils';
-import { i18NCode } from '../../../api/const/i18n';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
 import RetestManagerRequest from '../../../api/gc/retest-manager/RetestManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 

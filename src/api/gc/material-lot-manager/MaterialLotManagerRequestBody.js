@@ -32,12 +32,4 @@ export default class MaterialLotManagerRequestBody {
         return materialLotManagerRequestBody;
     }
 
-    static buildBindRelayBox(materialLots, relayBoxId) {
-        return new MaterialLotManagerRequestBody(ActionType.BindRelayBox, materialLots, relayBoxId);
-    }
-
-    static buildUnbindRelayBox(materialLots) {
-        return new MaterialLotManagerRequestBody(ActionType.UnbindRelayBox, materialLots);
-    }
-
 }   

@@ -1,12 +1,12 @@
 import { Button, Form } from 'antd';
-import I18NUtils from '../../../api/utils/I18NUtils';
-import { i18NCode } from '../../../api/const/i18n';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import PackCaseCheckForm from './PackCaseCheckForm';
-import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
-import MaterialLotManagerRequest from '../../../api/gc/material-lot-manager/MaterialLotManagerRequest';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import MaterialLotManagerRequest from '@api/gc/material-lot-manager/MaterialLotManagerRequest';
 
 const PackCaseCheckTableName="GCPackCaseCheck";
 

@@ -5,8 +5,8 @@ import './UserLogin.scss';
 import {Application, SessionContext} from '../../../../api/Application';
 import Authority from '../../../../api/dto/ui/Authority';
 import UserLoginForm from '../../../../components/Form/UserLoginForm';
-import I18NUtils from '../../../../api/utils/I18NUtils';
-import { i18NCode } from '../../../../api/const/i18n';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
 
 // 寻找背景图片可以从 https://unsplash.com/ 寻找
 const backgroundImage = require('./images/background.jpg');
@@ -38,7 +38,6 @@ export default class UserLogin extends Component {
             backgroundImage: `url(${backgroundImage})`,
           }}
         />
-        <img src></img>
         <div style={styles.contentWrapper} className="content-wrapper">
           <h2 style={styles.slogan} className="slogan">
           {I18NUtils.getClientMessage(i18NCode.WelcomeUse)} <br /> {Application.name}

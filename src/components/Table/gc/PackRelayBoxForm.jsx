@@ -1,5 +1,5 @@
 import EntityForm from "../../Form/EntityForm";
-import MaterialLotManagerRequest from "../../../api/gc/material-lot-manager/MaterialLotManagerRequest";
+import MaterialLotManagerRequest from "@api/gc/material-lot-manager/MaterialLotManagerRequest";
 
 export default class PackRelayBoxForm extends EntityForm {
     static displayName = 'PackRelayBoxForm';

@@ -18,7 +18,7 @@ import IconUtils from '../../api/utils/IconUtils';
 
 
 // 设置默认的皮肤配置，支持 dark 和 light 两套皮肤配置
-const theme = typeof THEME === 'undefined' ? 'dark' : THEME;
+const theme = typeof THEME === 'undefined' ? 'light' : THEME;
 
 @withRouter
 export default class HeaderAsideFooterResponsiveLayout extends Component {
