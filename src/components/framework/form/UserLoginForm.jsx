@@ -45,7 +45,7 @@ class UserLoginForm extends Component {
     buildLoginForm = () => {
         const {getFieldDecorator} = this.props.form;    
         return (
-         <Form>
+         <Form onSubmit={this.handleLogin}>
             <div style={styles.formItems}>
               <Row>
                 <Col>
@@ -108,7 +108,7 @@ class UserLoginForm extends Component {
                 </Col>
               </Row>           
               <Row >
-                <Button type="primary" onClick={this.handleLogin} style={styles.submitBtn}>
+                <Button type="primary" style={styles.submitBtn} htmlType="submit">
                   {I18NUtils.getClientMessage(i18NCode.Login)}
                 </Button>
               </Row>
