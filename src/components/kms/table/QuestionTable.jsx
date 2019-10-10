@@ -49,7 +49,7 @@ export default class QuestionTable extends EntityListTable {
     }
 
     createWatchButton = () => {
-        return <Button key="close" type="primary" style={styles.tableButton} icon="highlight" onClick={() => this.handleWatch()}>{I18NUtils.getClientMessage(i18NCode.BtnWatch)}</Button>;
+        return <Button key="watch" type="primary" style={styles.tableButton} icon="highlight" onClick={() => this.handleWatch()}>{I18NUtils.getClientMessage(i18NCode.BtnWatch)}</Button>;
     }
 
     createCloseButton = () => {
