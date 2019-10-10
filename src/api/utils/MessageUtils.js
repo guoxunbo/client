@@ -262,7 +262,7 @@ export default class MessageUtils {
                 error = exception;
             }
         }
-        Notification.showError(errroCode, error);
+        NoticeUtils.showError(errroCode, error);
     }
 }
 

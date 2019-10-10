@@ -42,7 +42,7 @@ export default class PrintUtils {
                     if (message.indexOf("具有空数据") != -1) {
                         NoticeUtils.showNotice("打印成功，但是有栏位是空数据。" + message)
                     } else {
-                        Notification.showError("打印失败:" + message);
+                        NoticeUtils.showError("打印失败:" + message);
                     }
                 }
             }
