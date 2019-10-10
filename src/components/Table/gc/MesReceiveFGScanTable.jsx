@@ -26,6 +26,7 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
                 success: function(responseBody) {
                     if (self.props.resetData) {
                         self.props.resetData();
+                        window.location.reload(true);
                     }
                     MessageUtils.showOperationSuccess();
                 }
