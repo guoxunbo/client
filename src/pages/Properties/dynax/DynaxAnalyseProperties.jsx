@@ -1,5 +1,5 @@
 import EntityProperties from "@properties/framework/EntityProperties";
-import DynaxAnalyseTable from "@components/Table/DynaxAnalyseTable";
+import DynaxAnalyseTable from "@components/dynax/table/DynaxAnalyseTable";
 
 export default class DynaxAnalyseProperties extends EntityProperties{
 

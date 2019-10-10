@@ -1,4 +1,4 @@
-import MesReceiveFGShowTable from "@components/Table/gc/MesReceiveFGShowTable";
+import MesReceiveFGShowTable from "@components/gc/table/MesReceiveFGShowTable";
 import EntityProperties from "@properties/framework/EntityProperties";
 import MesFinishGoodScanProperties from "./MesFinishGoodScanProperties";
 

@@ -1,5 +1,5 @@
 import EntityDoubleScanProperties from "@properties/framework/EntityDoubleScanProperties";
-import UnPackMaterialLotTable from "@components/Table/UnPackMaterialLotTable";
+import UnPackMaterialLotTable from "@components/mms/table/UnPackMaterialLotTable";
 
 /**
  * 拆包

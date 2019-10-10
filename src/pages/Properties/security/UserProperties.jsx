@@ -1,5 +1,5 @@
 import EntityProperties from "@properties/framework/EntityProperties";
-import UserTable from "@components/Table/UserTable";
+import UserTable from "@components/security/table/UserTable";
 
 export default class UserProperties extends EntityProperties{
 

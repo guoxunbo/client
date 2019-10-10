@@ -1,5 +1,5 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
-import MaterialLotStockInTable from "@components/Table/MaterialLotStockInTable";
+import MaterialLotStockInTable from "@components/mms/table/MaterialLotStockInTable";
 
 /**
  * 物料批次扫描添加后入库

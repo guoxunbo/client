@@ -1,5 +1,5 @@
 import EntityProperties from "@properties/framework/EntityProperties";
-import RoleTable from "@components/Table/RoleTable";
+import RoleTable from "@components/security/table/RoleTable";
 
 export default class RoleProperties extends EntityProperties{
 

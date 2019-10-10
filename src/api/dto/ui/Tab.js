@@ -2,7 +2,7 @@ import Field from './Field';
 import { Row, Col, Tabs} from 'antd';
 import {SessionContext} from '@api/Application';
 import {Language} from '@const/ConstDefine';
-import EditorTable from '@components/Table/edit/EditorTable'
+import EditorTable from '@components/framework/table/EditorTable'
 
 const TabPane = Tabs.TabPane;
 

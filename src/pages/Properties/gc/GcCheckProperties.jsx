@@ -1,5 +1,5 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
-import CheckTable from "@components/Table/gc/CheckTable";
+import CheckTable from "@components/gc/table/CheckTable";
 import uuid from 'react-native-uuid';
 
 /**

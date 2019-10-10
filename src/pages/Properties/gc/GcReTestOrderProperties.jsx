@@ -1,5 +1,5 @@
 import EntityProperties from "@properties/framework/EntityProperties";
-import OrderTable from "@components/Table/gc/OrderTable";
+import OrderTable from "@components/gc/table/OrderTable";
 import { ActionType } from "@api/gc/async-manager/AsyncManagerRequestBody";
 import GcReTestOrderMLotProperties from "./GcReTestOrderMLotProperties";
 

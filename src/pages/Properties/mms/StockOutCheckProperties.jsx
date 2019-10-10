@@ -1,5 +1,5 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
-import StockOutCheckTable from "@components/Table/gc/StockOutCheckTable";
+import StockOutCheckTable from "@components/gc/table/StockOutCheckTable";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 import { List } from "antd";
 import StockOutCheckRequest from "@api/gc/stock-out-check/StockOutCheckRequest";

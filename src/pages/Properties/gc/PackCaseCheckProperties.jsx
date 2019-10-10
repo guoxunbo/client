@@ -1,4 +1,4 @@
-import PackCaseCheckTable from "@components/Table/gc/PackCaseCheckTable";
+import PackCaseCheckTable from "@components/gc/table/PackCaseCheckTable";
 import EntityDoubleScanProperties from "@properties/framework/EntityDoubleScanProperties";
 import { List } from "antd";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";

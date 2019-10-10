@@ -1,5 +1,5 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
-import GcReTestMLotTable from "@components/Table/gc/GcReTestMLotTable";
+import GcReTestMLotTable from "@components/gc/table/GcReTestMLotTable";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 import ValidationSoOrTestRequest from "@api/gc/validation-so-test/ValidationSoOrTestRequest";
 

@@ -1,5 +1,5 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
-import GcStockOutMLotTable from "@components/Table/gc/GcStockOutMLotTable";
+import GcStockOutMLotTable from "@components/gc/table/GcStockOutMLotTable";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 import ValidationSoOrTestRequest from "@api/gc/validation-so-test/ValidationSoOrTestRequest";
 

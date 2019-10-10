@@ -1,5 +1,5 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
-import PackMaterialLotTable from "@components/Table/PackMaterialLotTable";
+import PackMaterialLotTable from "@components/mms/table/PackMaterialLotTable";
 import PackageValidationRequest from "@api/package-validation/PackageValidationRequest";
 
 const PackageType = "PackCase";

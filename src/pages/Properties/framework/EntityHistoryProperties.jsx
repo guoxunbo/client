@@ -1,5 +1,5 @@
 import EntityProperties from "@properties/framework/EntityProperties";
-import EntityHistoryTable from "@components/Table/EntityHistoryTable";
+import EntityHistoryTable from "@components/framework/table/EntityHistoryTable";
 
 export default class EntityHistoryProperties extends EntityProperties{
 

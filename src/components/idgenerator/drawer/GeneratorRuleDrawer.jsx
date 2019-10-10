@@ -2,7 +2,7 @@ import  React from 'react';
 
 import {Tabs, Row } from "antd";
 import Tab from '@api/dto/ui/Tab';
-import GeneratorRuleLineTable from '../../Table/GeneratorRuleLineTable';
+import GeneratorRuleLineTable from '@components/idgenerator/table/GeneratorRuleLineTable';
 import EntityDrawer from '@components/framework/drawer/EntityDrawer';
 
 const TabPane = Tabs.TabPane;

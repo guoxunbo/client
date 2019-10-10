@@ -1,5 +1,5 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
-import StockInStorageTable from "@components/Table/gc/StockInStorageTable";
+import StockInStorageTable from "@components/gc/table/StockInStorageTable";
 import StockInManagerRequest from "@api/gc/stock-in/StockInManagerRequest";
 
 /**

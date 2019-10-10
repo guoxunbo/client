@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import EntityListTable from '@components/Table/EntityListTable';
+import EntityListTable from '@components/framework/table/EntityListTable';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { BackTop, Divider } from 'antd';
 import WrappedAdvancedQueryForm from '@components/framework/form/QueryForm';

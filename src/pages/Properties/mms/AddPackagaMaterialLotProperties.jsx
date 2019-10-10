@@ -1,4 +1,4 @@
-import AddPackMaterialLotTable from "@components/Table/AddPackMaterialLotTable";
+import AddPackMaterialLotTable from "@components/mms/table/AddPackMaterialLotTable";
 import EntityDoubleScanProperties from "@properties/framework/EntityDoubleScanProperties";
 import PackageValidationRequest from "@api/package-validation/PackageValidationRequest";
 import { Notification } from "@components/notice/Notice";

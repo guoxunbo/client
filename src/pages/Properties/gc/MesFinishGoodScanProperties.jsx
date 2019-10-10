@@ -1,4 +1,4 @@
-import MesReceiveFGScanTable from "@components/Table/gc/MesReceiveFGScanTable";
+import MesReceiveFGScanTable from "@components/gc/table/MesReceiveFGScanTable";
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
 
 const rowKey = "packedLotRrn";

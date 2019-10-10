@@ -1,5 +1,5 @@
 import EntityProperties from "@properties/framework/EntityProperties";
-import MaterialLotTable from "@components/Table/MaterialLotTable";
+import MaterialLotTable from "@components/mms/table/MaterialLotTable";
 
 export default class MaterialLotProperties extends EntityProperties{
 
