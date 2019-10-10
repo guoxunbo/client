@@ -1,4 +1,4 @@
-import { DefaultRowKey } from "../../const/ConstDefine";
+import { DefaultRowKey } from "@const/ConstDefine";
 
 export default class CheckInventoryManagerRequestBody {
 

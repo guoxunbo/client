@@ -1,8 +1,8 @@
 import RetestManagerRequestHeader from './RetestManagerRequestHeader';
 import RetestManagerRequestBody from './RetestManagerRequestBody';
-import {UrlConstant} from '../../const/ConstDefine';
-import MessageUtils from '../../utils/MessageUtils';
-import Request from '../../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class RetestManagerRequest {
 

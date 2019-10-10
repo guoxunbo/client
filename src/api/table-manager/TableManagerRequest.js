@@ -1,8 +1,8 @@
 import TableManagerRequestBody from "./TableManagerRequestBody";
 import TableManagerRequestHeader from "./TableManagerRequestHeader";
-import Request from "../Request";
-import MessageUtils from "../utils/MessageUtils";
-import { UrlConstant } from "../const/ConstDefine";
+import Request from "@api/Request";
+import MessageUtils from "@utils/MessageUtils";
+import { UrlConstant } from "@const/ConstDefine";
 
 export default class TableManagerRequest {
 

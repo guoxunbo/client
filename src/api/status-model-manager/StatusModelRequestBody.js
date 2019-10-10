@@ -1,5 +1,5 @@
-import StatusModel from "../dto/common/status-machine/StatusModel";
-import Event from "../dto/common/status-machine/Event";
+import StatusModel from "@api/dto/common/status-machine/StatusModel";
+import Event from "@api/dto/common/status-machine/Event";
 
 const ActionType = {
     GetByRrn: "GetByRrn",

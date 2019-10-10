@@ -1,8 +1,8 @@
 import FinishGoodManagerRequestHeader from './FinishGoodManagerRequestHeader';
 import FinishGoodManagerRequestBody from './FinishGoodManagerRequestBody';
-import {UrlConstant} from '../../const/ConstDefine';
-import MessageUtils from '../../utils/MessageUtils';
-import Request from '../../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class FinishGoodInvManagerRequest {
 

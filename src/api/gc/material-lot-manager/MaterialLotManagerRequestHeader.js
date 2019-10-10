@@ -1,4 +1,4 @@
-import RequestHeader from "../../RequestHeader";
+import RequestHeader from "@api/RequestHeader";
 const MESSAGE_NAME = "GCMaterialLotManage";
 
 export default class MaterialLotManagerRequestHeader extends RequestHeader{

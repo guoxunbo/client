@@ -1,4 +1,4 @@
-import Table from "../dto/ui/Table"
+import Table from "@api/dto/ui/Table"
 
 const ActionType = {
     GetByRrn: "GetByRrn",

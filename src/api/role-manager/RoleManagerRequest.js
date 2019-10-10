@@ -1,14 +1,14 @@
 import RoleManagerRequestBody from "./RoleManagerRequestBody";
 
 import RoleManagerRequestHeader from "./RoleManagerRequestHeader";
-import Request from "../Request";
-import { UrlConstant, EntityModel } from "../const/ConstDefine";
-import MessageUtils from "../utils/MessageUtils";
-import EntityListManagerRequestBody from "../entity-list-manager/EntityListManagerRequestBody";
-import EntityListManagerRequestHeader from "../entity-list-manager/EntityListManagerRequestHeader";
+import Request from "@api/Request";
+import { UrlConstant, EntityModel } from "@const/ConstDefine";
+import MessageUtils from "@utils/MessageUtils";
+import EntityListManagerRequestBody from "@api/entity-list-manager/EntityListManagerRequestBody";
+import EntityListManagerRequestHeader from "@api/entity-list-manager/EntityListManagerRequestHeader";
 
-import AuthorityManagerRequestBody from "../authority-manager/AuthorityManagerRequestBody";
-import AuthorityManagerRequestHeader from "../authority-manager/AuthorityManagerRequestHeader";
+import AuthorityManagerRequestBody from "@api/authority-manager/AuthorityManagerRequestBody";
+import AuthorityManagerRequestHeader from "@api/authority-manager/AuthorityManagerRequestHeader";
 
 export default class RoleManagerRequest {
 

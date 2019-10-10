@@ -1,4 +1,3 @@
-import MaterialLotAction from "../dto/mms/MaterialLotAction";
 
 const ActionType = {
     ValidationPack: "ValidationPack",

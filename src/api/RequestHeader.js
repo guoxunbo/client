@@ -1,4 +1,4 @@
-import { SessionContext } from "./Application";
+import { SessionContext } from "@api/Application";
 import uuid from 'react-native-uuid';
 
 export default class RequestHeader{  

@@ -1,5 +1,5 @@
-import {Language} from "../../const/ConstDefine"
-import PropertyUtils from "../../utils/PropertyUtils";
+import {Language} from "@const/ConstDefine"
+import PropertyUtils from "@utils/PropertyUtils";
 
 export default class Authority {
 

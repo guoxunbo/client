@@ -1,7 +1,7 @@
-import {i18Messages} from '../const/i18n';
-import {Language} from '../const/ConstDefine';
+import {i18Messages} from '@const/i18n';
+import {Language} from '@const/ConstDefine';
 
-import { SessionContext } from '../Application';
+import { SessionContext } from '@api/Application';
 
 
 /**

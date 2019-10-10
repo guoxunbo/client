@@ -1,4 +1,4 @@
-import ReferenceTable from '../dto/ui/ReferenceTable'
+import ReferenceTable from '@api/dto/ui/ReferenceTable'
 
 const ActionType = {
     GetData: "GetData",

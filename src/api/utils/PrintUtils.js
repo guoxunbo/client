@@ -1,6 +1,6 @@
 import MessageUtils from './MessageUtils';
-import BtPrintResponse, { ResponseStatus, ResponseWaitStatus } from '../dto/bartender/BtPrintResponse';
-import { Notification } from '../../components/notice/Notice';
+import BtPrintResponse, { ResponseStatus, ResponseWaitStatus } from '@api/dto/bartender/BtPrintResponse';
+import { Notification } from '@components/notice/Notice';
 
 const PrintParamterName = {
     printCount: "printCount"

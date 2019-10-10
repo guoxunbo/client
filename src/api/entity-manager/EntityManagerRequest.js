@@ -3,10 +3,10 @@
  */
 import EntityManagerRequestHeader from './EntityManagerRequestHeader';
 import EntityManagerRequestBody from './EntityManagerRequestBody';
-import {UrlConstant, DefaultRowKey} from '../const/ConstDefine';
-import MessageUtils from '../utils/MessageUtils';
+import {UrlConstant, DefaultRowKey} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
 import * as PropTypes from 'prop-types';
-import Request from '../Request';
+import Request from '@api/Request';
 
 export default class EntityManagerRequest {
 

@@ -1,8 +1,8 @@
-import MessageUtils from "../utils/MessageUtils";
+import MessageUtils from "@utils/MessageUtils";
 import DynaxAnalyseRequestHeader from "./DynaxAnalyseRequestHeader";
-import Request from "../Request";
+import Request from "@api/Request";
 import DynaxAnalyseRequestBody from "./DynaxAnalyseRequestBody";
-import { UrlConstant } from "../const/ConstDefine";
+import { UrlConstant } from "@const/ConstDefine";
 
 export default class DynaxAnalyseRequest {
 

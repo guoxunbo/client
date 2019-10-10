@@ -1,8 +1,3 @@
-import MaterialLot from "../dto/mms/MaterialLot";
-import MaterialLotAction from "../dto/mms/MaterialLotAction";
-import PropertyUtils from "../utils/PropertyUtils";
-
-
 export default class MaterialLotStockInRequestBody {
 
     materialLots;

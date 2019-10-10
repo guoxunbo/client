@@ -1,8 +1,8 @@
 import RawMaterialManagerRequestHeader from './RawMaterialManagerRequestHeader';
 import RawMaterialManagerRequestBody from './RawMaterialManagerRequestBody';
-import {UrlConstant, DefaultRowKey} from '../const/ConstDefine';
-import MessageUtils from '../utils/MessageUtils';
-import Request from '../Request';
+import {UrlConstant, DefaultRowKey} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class RawMaterialManagerRequest {
 

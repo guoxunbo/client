@@ -1,8 +1,8 @@
 import AsyncManagerRequestHeader from './AsyncManagerRequestHeader';
 import AsyncManagerRequestBody from './AsyncManagerRequestBody';
-import {UrlConstant} from '../../const/ConstDefine';
-import MessageUtils from '../../utils/MessageUtils';
-import Request from '../../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class AsyncManagerRequest {
 

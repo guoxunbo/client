@@ -1,4 +1,4 @@
-import MaterialLotAction from "../../dto/mms/MaterialLotAction";
+import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
 
 export default class StockOutManagerRequestBody {
 

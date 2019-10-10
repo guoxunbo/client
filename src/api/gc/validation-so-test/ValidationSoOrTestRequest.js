@@ -1,8 +1,8 @@
 import ValidationSoOrTestRequestHeader from './ValidationSoOrTestRequestHeader';
 import ValidationSoOrTestRequestBody from './ValidationSoOrTestRequestBody';
-import {UrlConstant} from '../../const/ConstDefine';
-import MessageUtils from '../../utils/MessageUtils';
-import Request from '../../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class ValidationSoOrTestRequest {
 

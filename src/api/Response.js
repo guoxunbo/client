@@ -1,4 +1,4 @@
-import {ResponseHeader  } from "./ResponseHeader";
+import {ResponseHeader  } from "@api/ResponseHeader";
 class Response{
 
     constructor(responseHeader, responseBody) {

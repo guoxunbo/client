@@ -1,8 +1,8 @@
 import PackageMaterialLotRequestBody from "./PackageMaterialLotRequestBody";
 import PackageMaterialLotRequestHeader from "./PackageMaterialLotRequestHeader";
-import { UrlConstant } from "../const/ConstDefine";
-import Request from "../Request";
-import MessageUtils from "../utils/MessageUtils";
+import { UrlConstant } from "@const/ConstDefine";
+import Request from "@api/Request";
+import MessageUtils from "@utils/MessageUtils";
 
 export default class PackageMaterialLotRequest {
 

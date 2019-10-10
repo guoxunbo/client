@@ -13,7 +13,7 @@ import './scss/light.scss';
 import './scss/dark.scss';
 
 import { SessionContext } from '../../api/Application';
-import { Notification } from '../../components/notice/Notice';
+import { Notification } from '@components/notice/Notice';
 import IconUtils from '../../api/utils/IconUtils';
 
 

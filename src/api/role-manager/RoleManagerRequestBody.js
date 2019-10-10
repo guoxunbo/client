@@ -1,6 +1,6 @@
-import Role from "../dto/security/Role";
-import User from "../dto/security/User";
-import Authoritity from "../dto/security/Authority";
+import Role from "@api/dto/security/Role";
+import User from "@api/dto/security/User";
+import Authoritity from "@api/dto/security/Authority";
 
 const ActionType = {
     GetByRrn: "GetByRrn",

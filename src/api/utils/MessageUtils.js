@@ -1,13 +1,13 @@
-import {ErrorCode, ResultIdentify, Language} from '../const/ConstDefine';
-import {Notification} from '../../components/notice/Notice';
+import {ErrorCode, ResultIdentify, Language} from '@const/ConstDefine';
+import {Notification} from '@components/notice/Notice';
 
-import {Response} from "../Response";
-import {ResponseHeader} from "../ResponseHeader";
+import {Response} from "@api/Response";
+import {ResponseHeader} from "@api/ResponseHeader";
 
 import axios from "axios";
-import { SessionContext } from '../Application';
+import { SessionContext } from '@api/Application';
 import I18NUtils from './I18NUtils';
-import { i18NCode } from '../const/i18n';
+import { i18NCode } from '@const/i18n';
 import fetchJsonp from 'fetch-jsonp';
 /**
  *  消息主要发送类

@@ -1,4 +1,4 @@
-import User from "../dto/security/User"
+import User from "@api/dto/security/User"
 
 const ActionType = {
     Login: "Login",

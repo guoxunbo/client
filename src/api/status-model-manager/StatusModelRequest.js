@@ -1,10 +1,10 @@
 import StatusModelRequestBody from "./StatusModelRequestBody";
 import StatusModelRequestHeader from "./StatusModelRequestHeader";
-import { UrlConstant } from "../const/ConstDefine";
-import EntityListManagerRequestBody from "../entity-list-manager/EntityListManagerRequestBody";
-import EntityListManagerRequestHeader from "../entity-list-manager/EntityListManagerRequestHeader";
-import Request from "../Request";
-import MessageUtils from "../utils/MessageUtils";
+import { UrlConstant } from "@const/ConstDefine";
+import EntityListManagerRequestBody from "@api/entity-list-manager/EntityListManagerRequestBody";
+import EntityListManagerRequestHeader from "@api/entity-list-manager/EntityListManagerRequestHeader";
+import Request from "@api/Request";
+import MessageUtils from "@utils/MessageUtils";
 
 export default class StatusModelRequest {
 

@@ -1,4 +1,4 @@
-import {UrlConstant} from "./const/ConstDefine"
+import {UrlConstant} from "@const/ConstDefine"
 
 export default class Request{
 

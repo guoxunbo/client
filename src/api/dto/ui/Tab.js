@@ -1,8 +1,8 @@
 import Field from './Field';
 import { Row, Col, Tabs} from 'antd';
-import {SessionContext} from '../../Application';
-import {Language} from '../../const/ConstDefine';
-import EditorTable from '../../../components/Table/edit/EditorTable'
+import {SessionContext} from '@api/Application';
+import {Language} from '@const/ConstDefine';
+import EditorTable from '@components/Table/edit/EditorTable'
 
 const TabPane = Tabs.TabPane;
 

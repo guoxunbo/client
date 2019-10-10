@@ -1,8 +1,8 @@
 import CheckInventoryManagerRequestHeader from './CheckInventoryManagerRequestHeader';
 import CheckInventoryManagerRequestBody from './CheckInventoryManagerRequestBody';
-import {UrlConstant} from '../../const/ConstDefine';
-import MessageUtils from '../../utils/MessageUtils';
-import Request from '../../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class CheckInventoryManagerRequest {
 

@@ -1,8 +1,8 @@
 import MaterialLotInvManagerRequestHeader from './MaterialLotInvManagerRequestHeader';
 import MaterialLotInvManagerRequestBody from './MaterialLotInvManagerRequestBody';
-import {UrlConstant} from '../const/ConstDefine';
-import MessageUtils from '../utils/MessageUtils';
-import Request from '../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class MaterialLotInvManagerRequest {
 

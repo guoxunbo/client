@@ -1,16 +1,16 @@
 import { Input, InputNumber, DatePicker, Switch,Form, Tag, Button, Upload } from 'antd';
-import {SessionContext} from '../../Application'
-import {Language, DateFormatType, FieldKeywords, DefaultRowKey} from "../../const/ConstDefine";
-import RefListField from '../../../components/Field/RefListField';
-import RefTableField from '../../../components/Field/RefTableField';
+import {SessionContext} from '@api/Application'
+import {Language, DateFormatType, DefaultRowKey} from "@const/ConstDefine";
+import RefListField from '@components/Field/RefListField';
+import RefTableField from '@components/Field/RefTableField';
 import {Icon} from 'antd';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
-import PropertyUtils from '../../utils/PropertyUtils';
-import I18NUtils from '../../utils/I18NUtils';
-import { i18NCode } from '../../const/i18n';
+import PropertyUtils from '@utils/PropertyUtils';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
 
 import moment from 'moment';
-import EntityManagerRequest from '../../entity-manager/EntityManagerRequest';
+import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
 
 const { RangePicker} = DatePicker;
 const FormItem = Form.Item;

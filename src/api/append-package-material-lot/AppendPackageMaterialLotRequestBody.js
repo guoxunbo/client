@@ -1,5 +1,5 @@
-import MaterialLotAction from "../dto/mms/MaterialLotAction";
-import MaterialLot from "../dto/mms/MaterialLot";
+import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import MaterialLot from "@api/dto/mms/MaterialLot";
 
 export default class AppendPackageMaterialLotRequestBody {
     packedMaterialLot;

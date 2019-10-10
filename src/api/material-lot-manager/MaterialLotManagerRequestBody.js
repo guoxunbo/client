@@ -1,6 +1,6 @@
-import MaterialLot from "../dto/mms/MaterialLot";
-import MaterialLotAction from "../dto/mms/MaterialLotAction";
-import PropertyUtils from "../utils/PropertyUtils";
+import MaterialLot from "@api/dto/mms/MaterialLot";
+import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import PropertyUtils from "@utils/PropertyUtils";
 
 const ActionType = {
     Receive2Warehouse: "Receive2Warehouse",

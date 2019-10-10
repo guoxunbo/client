@@ -1,8 +1,8 @@
 import StockInManagerRequestHeader from './StockInManagerRequestHeader';
 import StockInManagerRequestBody from './StockInManagerRequestBody';
-import {UrlConstant} from '../../const/ConstDefine';
-import MessageUtils from '../../utils/MessageUtils';
-import Request from '../../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 
 export default class StockInManagerRequest {
 

@@ -1,4 +1,4 @@
-import PropertyUtils from "../../utils/PropertyUtils";
+import PropertyUtils from "@utils/PropertyUtils";
 
 /**
  * Bartender打印的回复的DTO

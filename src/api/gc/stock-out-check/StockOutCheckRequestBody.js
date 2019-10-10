@@ -1,4 +1,4 @@
-import MaterialLot from "../../dto/mms/MaterialLot";
+import MaterialLot from "@api/dto/mms/MaterialLot";
 
 const ActionType = {
     GetCheckList: "GetCheckList",

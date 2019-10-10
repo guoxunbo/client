@@ -1,8 +1,8 @@
 import StockOutCheckRequestHeader from './StockOutCheckRequestHeader';
 import StockOutCheckRequestBody from './StockOutCheckRequestBody';
-import {UrlConstant} from '../../const/ConstDefine';
-import MessageUtils from '../../utils/MessageUtils';
-import Request from '../../Request';
+import {UrlConstant} from '@const/ConstDefine';
+import MessageUtils from '@utils/MessageUtils';
+import Request from '@api/Request';
 import TableManagerRequestBody from '../../table-manager/TableManagerRequestBody';
 import TableManagerRequestHeader from '../../table-manager/TableManagerRequestHeader';
 
