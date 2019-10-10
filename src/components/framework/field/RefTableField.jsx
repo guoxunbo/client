@@ -1,9 +1,9 @@
-import RefTableManagerRequestBody from '../../api/ref-table-manager/RefTableManagerRequestBody';
-import RefTableManagerRequestHeader from '../../api/ref-table-manager/RefTableManagerRequestHeader';
-import {UrlConstant} from "../../api/const/ConstDefine";
-import MessageUtils from "../../api/utils/MessageUtils";
+import RefTableManagerRequestBody from '@api/ref-table-manager/RefTableManagerRequestBody';
+import RefTableManagerRequestHeader from '@api/ref-table-manager/RefTableManagerRequestHeader';
+import {UrlConstant} from "@api/const/ConstDefine";
+import MessageUtils from "@api/utils/MessageUtils";
 
-import Request from '../../api/Request';
+import Request from '@api/Request';
 import Combox from './Combox';
 import * as PropTypes from 'prop-types';
 

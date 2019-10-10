@@ -1,8 +1,8 @@
 import { Input, InputNumber, DatePicker, Switch,Form, Tag, Button, Upload } from 'antd';
 import {SessionContext} from '@api/Application'
 import {Language, DateFormatType, DefaultRowKey} from "@const/ConstDefine";
-import RefListField from '@components/Field/RefListField';
-import RefTableField from '@components/Field/RefTableField';
+import RefListField from '@components/framework/field/RefListField';
+import RefTableField from '@components/framework/field/RefTableField';
 import {Icon} from 'antd';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 import PropertyUtils from '@utils/PropertyUtils';

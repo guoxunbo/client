@@ -1,6 +1,6 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
 
-import WrappedAdvancedEntityOtherForm from '@components/Form/EntityOtherForm';
+import WrappedAdvancedEntityOtherForm from '@components/framework/form/EntityOtherForm';
 import I18NUtils from "@utils/I18NUtils";
 import { i18NCode } from "@const/i18n";
 

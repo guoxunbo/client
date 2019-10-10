@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Select } from 'antd';
-import EventUtils from '../../api/utils/EventUtils';
+import EventUtils from '@utils/EventUtils';
 
 const { Option} = Select;
 

@@ -1,8 +1,8 @@
 import EntityListTable from "./EntityListTable";
 import { Form } from "antd";
-import GeneratorRuleDrawer from "../drawer/GeneratorRuleDrawer";
-import TableObject from '../../api/dto/ui/Table';
-import MessageUtils from "../../api/utils/MessageUtils";
+import GeneratorRuleDrawer from "../idgenerator/drawer/GeneratorRuleDrawer";
+import TableObject from '@api/dto/ui/Table';
+import MessageUtils from "@api/utils/MessageUtils";
 
 export default class GeneratorRuleTable extends EntityListTable {
 

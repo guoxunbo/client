@@ -1,8 +1,8 @@
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button } from 'antd';
 import IconUtils from '@utils/IconUtils';
-import CheckInventoryManagerRequest from '../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest';
-import MessageUtils from '../../../api/utils/MessageUtils';
+import CheckInventoryManagerRequest from '@api/gc/check-inventory-manager/CheckInventoryManagerRequest';
+import MessageUtils from '@api/utils/MessageUtils';
 
 /**
  * 格科盘点表

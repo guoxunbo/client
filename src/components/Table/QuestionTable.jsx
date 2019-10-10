@@ -1,14 +1,14 @@
 import EntityListTable from './EntityListTable';
-import QuestionForm from '../Form/QuestionForm';
+import QuestionForm from '@components/kms/form/QuestionForm';
 import { Form, Button, Table } from 'antd';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
-import QuestionRequest from '../../api/question-manager/QuestionRequest';
-import { Application } from '../../api/Application';
-import { DefaultRowKey } from '../../api/const/ConstDefine';
-import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
-import QuestionLineRequest from '../../api/question-line-manager/QuestionLineRequest';
-import Field from '../../api/dto/ui/Field';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
+import QuestionRequest from '@api/question-manager/QuestionRequest';
+import { Application } from '@api/Application';
+import { DefaultRowKey } from '@const/ConstDefine';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import QuestionLineRequest from '@api/question-line-manager/QuestionLineRequest';
+import Field from '@api/dto/ui/Field';
 import './QuestionTable.scss';
 
 export default class QuestionTable extends EntityListTable {

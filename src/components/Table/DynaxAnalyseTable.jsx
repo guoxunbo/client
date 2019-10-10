@@ -2,10 +2,10 @@ import React from 'react';
 
 import './ListTable.scss';
 import EntityListTable from './EntityListTable';
-import DynaxAnalyseRequest from '../../api/rtm-dynax-manager/DynaxAnalyseRequest';
+import DynaxAnalyseRequest from '@api/rtm-dynax-manager/DynaxAnalyseRequest';
 import { Upload,Button } from 'antd';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
 
 /**
  * 分析文件。只具备修改

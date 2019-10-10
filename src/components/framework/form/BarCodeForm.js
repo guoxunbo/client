@@ -1,7 +1,7 @@
 import  React, { Component } from 'react';
 
-import EntityForm from './EntityForm';
-import SimpleBarCode from '../code/SimpleBarCode';
+import EntityForm from '@components/framework/form/EntityForm';
+import SimpleBarCode from '../../code/SimpleBarCode';
 import QRCode from 'qrcode.react';
 import * as PropTypes from 'prop-types';
 

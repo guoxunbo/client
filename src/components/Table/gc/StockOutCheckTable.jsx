@@ -4,7 +4,7 @@ import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
-import MessageUtils from '../../../api/utils/MessageUtils';
+import MessageUtils from '@api/utils/MessageUtils';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import StockCheckOutForm from './StockCheckOutForm';
 import StockOutCheckRequest from '@api/gc/stock-out-check/StockOutCheckRequest';

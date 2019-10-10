@@ -1,14 +1,14 @@
 import { Form, Row, Col, Button, Icon } from 'antd';
 import './QueryForm.scss';
-import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
-import { DateFormatType, SqlType, DataBaseType } from '../../api/const/ConstDefine';
-import Field from '../../api/dto/ui/Field';
-import StringBuffer from '../../api/StringBuffer';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import { DateFormatType, SqlType, DataBaseType } from '@api/const/ConstDefine';
+import Field from '@api/dto/ui/Field';
+import StringBuffer from '@api/StringBuffer';
 import moment from 'moment';
-import { Application } from '../../api/Application';
+import { Application } from '@api/Application';
 import * as PropTypes from 'prop-types';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
 
 /**
  * 不展开的时候最大的查询数目

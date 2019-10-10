@@ -1,4 +1,4 @@
-import EntityForm from "../../Form/EntityForm";
+import EntityForm from "@components/framework/form/EntityForm";
 import MaterialLotManagerRequest from "@api/gc/material-lot-manager/MaterialLotManagerRequest";
 
 export default class PackRelayBoxForm extends EntityForm {

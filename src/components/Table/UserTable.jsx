@@ -1,9 +1,9 @@
 import {Button} from 'antd';
-import UserManagerRequest from '../../api/user-manager/UserManagerRequest';
+import UserManagerRequest from '@api/user-manager/UserManagerRequest';
 import { Notification } from "../notice/Notice";
-import I18NUtils from "../../api/utils/I18NUtils";
-import { i18NCode } from "../../api/const/i18n";
-import UserForm from "../Form/UserForm";
+import I18NUtils from "@api/utils/I18NUtils";
+import { i18NCode } from "@api/const/i18n";
+import UserForm from "@components/security/form/UserForm";
 import {Form} from 'antd';
 import EntityListTable from "./EntityListTable";
 

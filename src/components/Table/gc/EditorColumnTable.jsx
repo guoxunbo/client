@@ -2,7 +2,7 @@ import { Table, Input, Button, Popconfirm, Form } from 'antd';
 
 import './EditorColumnTable.scss';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
-import Field from '../../../api/dto/ui/Field';
+import Field from '@api/dto/ui/Field';
 import StockOutCheckRequest from '@api/gc/stock-out-check/StockOutCheckRequest';
 import { DefaultRowKey } from '@const/ConstDefine';
 

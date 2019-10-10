@@ -1,5 +1,5 @@
-import EntityForm from "./EntityForm";
-import UserManagerRequest from "../../api/user-manager/UserManagerRequest";
+import EntityForm from "@components/framework/form/EntityForm";
+import UserManagerRequest from "@api/user-manager/UserManagerRequest";
 
 export default class UserForm extends EntityForm {
 

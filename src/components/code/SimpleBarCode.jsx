@@ -1,7 +1,7 @@
 import  React, { Component } from 'react';
 import JsBarcode from 'jsbarcode';
 import './SimpleBarCode.scss';
-import { Application } from '../../api/Application';
+import { Application } from '@api/Application';
 
 export default class SimpleBarCode extends Component {
 

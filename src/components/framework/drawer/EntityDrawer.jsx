@@ -1,13 +1,13 @@
 import  React, { Component } from 'react';
 
 import { Drawer, Form, Tabs, Row, Input, Col, Button } from "antd";
-import I18NUtils from "../../api/utils/I18NUtils";
-import { i18NCode } from "../../api/const/i18n";
-import Tab from '../../api/dto/ui/Tab';
-import Field from '../../api/dto/ui/Field';
-import PropertyUtils from '../../api/utils/PropertyUtils';
-import { DefaultOrderKey, DefaultRowKey } from '../../api/const/ConstDefine';
-import EntityManagerRequest from '../../api/entity-manager/EntityManagerRequest';
+import I18NUtils from "@api/utils/I18NUtils";
+import { i18NCode } from "@api/const/i18n";
+import Tab from '@api/dto/ui/Tab';
+import Field from '@api/dto/ui/Field';
+import PropertyUtils from '@api/utils/PropertyUtils';
+import { DefaultOrderKey, DefaultRowKey } from '@api/const/ConstDefine';
+import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
 
 export default class EntityDrawer extends Component {
     static displayName = 'EntityDrawer';

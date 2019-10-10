@@ -1,5 +1,5 @@
-import EntityForm from './EntityForm';
-import MaterialLotManagerRequest from '../../api/material-lot-manager/MaterialLotManagerRequest';
+import EntityForm from '@components/framework/form/EntityForm';
+import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
 
 export default class MaterialLotActionForm extends EntityForm {
 

@@ -2,13 +2,13 @@
 import  React, { Component } from 'react';
 
 import { Form, Input, Row, Col,Button} from 'antd';
-import IconUtils from '../../api/utils/IconUtils';
-import RefListField from '../Field/RefListField';
-import RefTableField from '../Field/RefTableField';
-import I18NUtils from '../../api/utils/I18NUtils';
-import {i18NCode} from '../../api/const/i18n';
-import { RefTableName, SystemRefListName } from '../../api/const/ConstDefine';
-import UserManagerRequest from '../../api/user-manager/UserManagerRequest';
+import IconUtils from '@api/utils/IconUtils';
+import RefListField from '@components/framework/field/RefListField';
+import RefTableField from '@components/framework/field/RefTableField';
+import I18NUtils from '@api/utils/I18NUtils';
+import {i18NCode} from '@api/const/i18n';
+import { RefTableName, SystemRefListName } from '@api/const/ConstDefine';
+import UserManagerRequest from '@api/user-manager/UserManagerRequest';
 
 const FormItem = Form.Item;
 

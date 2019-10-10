@@ -1,9 +1,9 @@
 import {Component} from "react";
-import I18NUtils from "../../api/utils/I18NUtils";
-import { i18NCode } from "../../api/const/i18n";
+import I18NUtils from "@api/utils/I18NUtils";
+import { i18NCode } from "@api/const/i18n";
 import { Transfer, Modal } from "antd";
 import * as PropTypes from 'prop-types';
-import { Application } from "../../api/Application";
+import { Application } from "@api/Application";
 
 /**
  * DispatchForm

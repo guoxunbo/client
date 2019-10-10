@@ -3,14 +3,14 @@ import React from 'react';
 import './ListTable.scss';
 import EntityListTable from './EntityListTable';
 import { Form, Button } from 'antd';
-import IconUtils from '../../api/utils/IconUtils';
-import BarCodeForm, { CodeType } from '../Form/BarCodeForm';
-import MaterialLotActionForm from '../Form/MaterialLotActionForm';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
-import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
-import TableObject from '../../api/dto/ui/Table';
-import { ActionType } from '../../api/material-lot-manager/MaterialLotManagerRequestBody';
+import IconUtils from '@api/utils/IconUtils';
+import BarCodeForm, { CodeType } from '@components/framework/form/BarCodeForm';
+import MaterialLotActionForm from '@components/mms/form/MaterialLotActionForm';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import TableObject from '@api/dto/ui/Table';
+import { ActionType } from '@api/material-lot-manager/MaterialLotManagerRequestBody';
 
 const TableName = {
     MLotConsumeAction: "MMLotComsume"

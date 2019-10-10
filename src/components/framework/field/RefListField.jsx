@@ -1,8 +1,8 @@
-import RefListManagerRequestBody from '../../api/ref-list-manager/RefListManagerRequestBody';
-import RefListManagerRequestHeader from '../../api/ref-list-manager/RefListManagerRequestHeader';
-import {UrlConstant} from "../../api/const/ConstDefine";
-import MessageUtils from "../../api/utils/MessageUtils";
-import Request from '../../api/Request';
+import RefListManagerRequestBody from '@api/ref-list-manager/RefListManagerRequestBody';
+import RefListManagerRequestHeader from '@api/ref-list-manager/RefListManagerRequestHeader';
+import {UrlConstant} from "@api/const/ConstDefine";
+import MessageUtils from "@api/utils/MessageUtils";
+import Request from '@api/Request';
 import Combox from './Combox';
 
 import * as PropTypes from 'prop-types';

@@ -1,12 +1,12 @@
 
 import { Button, Form } from 'antd';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
-import MessageUtils from '../../api/utils/MessageUtils';
-import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
-import MutipleMaterialLotActionForm, { ActionType } from '../Form/MutipleMaterialLotActionForm';
+import MessageUtils from '@api/utils/MessageUtils';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import MutipleMaterialLotActionForm, { ActionType } from '@components/mms/form/MutipleMaterialLotActionForm';
 
 const TableName="MMLotStockIn";
 

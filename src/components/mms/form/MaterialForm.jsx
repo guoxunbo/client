@@ -1,5 +1,5 @@
-import EntityForm from './EntityForm';
-import RawMaterialManagerRequest from '../../api/raw-material-manager/RawMaterialManagerRequest';
+import EntityForm from '@components/framework/form/EntityForm';
+import RawMaterialManagerRequest from '@api/raw-material-manager/RawMaterialManagerRequest';
 
 export default class MaterialForm extends EntityForm {
     static displayName = 'MaterialForm';

@@ -1,14 +1,14 @@
 
 import { Button } from 'antd';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
-import PackageMaterialLotRequest from '../../api/package-material-lot/PackageMaterialLotRequest';
-import MessageUtils from '../../api/utils/MessageUtils';
-import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
-import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
-import PrintUtils from '../../api/utils/PrintUtils';
+import PackageMaterialLotRequest from '@api/package-material-lot/PackageMaterialLotRequest';
+import MessageUtils from '@api/utils/MessageUtils';
+import { PrintServiceUrl, PrintBboxCount } from '@api/gc/GcConstDefine';
+import GetPrintBboxParameterRequest from '@api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
+import PrintUtils from '@api/utils/PrintUtils';
 
 /**
  * 包装物料批次

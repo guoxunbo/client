@@ -1,5 +1,5 @@
-import EntityForm from './EntityForm';
-import QuestionRequest from '../../api/question-manager/QuestionRequest';
+import EntityForm from '@components/framework/form/EntityForm';
+import QuestionRequest from '@api/question-manager/QuestionRequest';
 
 export default class QuestionForm extends EntityForm {
 

@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './UserLogin.scss';
-import {Application, SessionContext} from '../../../../api/Application';
-import Authority from '../../../../api/dto/ui/Authority';
-import UserLoginForm from '../../../../components/Form/UserLoginForm';
+import {Application, SessionContext} from '@api/Application';
+import Authority from '@api/dto/ui/Authority';
+import UserLoginForm from '@components/framework/form/UserLoginForm';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 

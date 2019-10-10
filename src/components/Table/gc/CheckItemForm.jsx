@@ -1,5 +1,5 @@
-import EntityForm from "../../Form/EntityForm";
-import Tab from "../../../api/dto/ui/Tab";
+import EntityForm from "@components/framework/form/EntityForm";
+import Tab from "@api/dto/ui/Tab";
 import { Tabs, Row, Modal } from "antd";
 import EditorColumnTable from "./EditorColumnTable";
 import StockOutCheckRequest from "@api/gc/stock-out-check/StockOutCheckRequest";

@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Row, Col, Tabs } from 'antd';
+import { Form, Input, Row, Col, Tabs } from 'antd';
 import * as PropTypes from 'prop-types';
-import Field from '../../api/dto/ui/Field';
-import Tab from '../../api/dto/ui/Tab';
-import EntityManagerRequest from '../../api/entity-manager/EntityManagerRequest';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
-import PropertyUtils from '../../api/utils/PropertyUtils';
-import { DefaultOrderKey, DefaultRowKey, DateFormatType } from '../../api/const/ConstDefine';
-import moment from 'moment';
+import Field from '@api/dto/ui/Field';
+import Tab from '@api/dto/ui/Tab';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
+import { DefaultRowKey } from '@api/const/ConstDefine';
 
 class EntityOtherForm extends Component {
     static displayName = 'EntityForm';

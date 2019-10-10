@@ -1,5 +1,5 @@
-import EntityForm from './EntityForm';
-import MaterialLotInvManagerRequest from '../../api/material-lot-inv-manager/MaterialLotInvManagerRequest';
+import EntityForm from '@components/framework/form/EntityForm';
+import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
 
 export default class TransferMLotInventoryForm extends EntityForm {
     static displayName = 'TransferMLotInventoryForm';

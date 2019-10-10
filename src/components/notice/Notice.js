@@ -1,7 +1,7 @@
 
 import { notification } from 'antd';
 
-import {Application} from '../../api/Application';
+import {Application} from '@api/Application';
 
 class Notification {
 

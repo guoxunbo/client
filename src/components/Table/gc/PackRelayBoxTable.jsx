@@ -4,7 +4,7 @@ import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
-import MessageUtils from '../../../api/utils/MessageUtils';
+import MessageUtils from '@api/utils/MessageUtils';
 import MaterialLotManagerRequest from '@api/gc/material-lot-manager/MaterialLotManagerRequest';
 import PackRelayBoxForm from './PackRelayBoxForm';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';

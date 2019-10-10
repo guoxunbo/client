@@ -2,17 +2,17 @@ import  React, { Component } from 'react';
 
 import { Table, Popconfirm, Button,Form, Dropdown, Menu, Icon } from 'antd';
 import './ListTable.scss';
-import {Application, SessionContext} from '../../api/Application'
-import {DefaultRowKey, Language} from '../../api/const/ConstDefine'
-import MessageUtils from '../../api/utils/MessageUtils';
-import Field from '../../api/dto/ui/Field';
-import EntityForm from '../Form/EntityForm';
+import {Application, SessionContext} from '@api/Application'
+import {DefaultRowKey, Language} from '@api/const/ConstDefine'
+import MessageUtils from '@api/utils/MessageUtils';
+import Field from '@api/dto/ui/Field';
+import EntityForm from '@components/framework/form/EntityForm';
 import * as PropTypes from 'prop-types';
-import TableObject from '../../api/dto/ui/Table';
-import EntityManagerRequest from '../../api/entity-manager/EntityManagerRequest';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
-import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
+import TableObject from '@api/dto/ui/Table';
+import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { Upload } from 'antd';
 import { Notification } from '../notice/Notice';
 

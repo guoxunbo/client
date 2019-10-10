@@ -1,9 +1,9 @@
 import EntityListTable from "./EntityListTable";
 import { Button, Form } from "antd";
-import TableManagerRequest from "../../api/table-manager/TableManagerRequest";
-import TableObject from '../../api/dto/ui/Table';
-import IconUtils from "../../api/utils/IconUtils";
-import EntityForm from "../Form/EntityForm";
+import TableManagerRequest from "@api/table-manager/TableManagerRequest";
+import TableObject from '@api/dto/ui/Table';
+import IconUtils from "@api/utils/IconUtils";
+import EntityForm from "@components/framework/form/EntityForm";
 
 const DataType = {
     FixedString: "F",

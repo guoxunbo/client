@@ -2,8 +2,8 @@
 import { Button, Tag } from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
-import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest';
-import MessageUtils from '../../../api/utils/MessageUtils';
+import FinishGoodInvManagerRequest from '@api/gc/finish-good-manager/FinishGoodInvManagerRequest';
+import MessageUtils from '@api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
 
 export default class MesReceiveFGScanTable extends EntityScanViewTable {

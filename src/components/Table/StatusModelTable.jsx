@@ -1,10 +1,10 @@
 import EntityListTable from "./EntityListTable";
 import { Button, Form } from "antd";
-import { i18NCode } from "../../api/const/i18n";
-import I18NUtils from "../../api/utils/I18NUtils";
-import DispatchForm from "../Form/DispatchForm";
-import EntityForm from "../Form/EntityForm";
-import StatusModelRequest from "../../api/status-model-manager/StatusModelRequest";
+import { i18NCode } from "@api/const/i18n";
+import I18NUtils from "@api/utils/I18NUtils";
+import DispatchForm from "@components/framework/form/DispatchForm";
+import EntityForm from "@components/framework/form/EntityForm";
+import StatusModelRequest from "@api/status-model-manager/StatusModelRequest";
 import { Notification } from "../notice/Notice";
 
 export default class StatusModelTable extends EntityListTable {

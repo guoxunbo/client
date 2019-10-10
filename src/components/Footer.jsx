@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Layout from '@icedesign/layout';
 import Logo from './logo/components/Logo';
-import {Application} from '../api/Application'
+import {Application} from '@api/Application'
 
 import styles from './index.module.scss';
 export default class Footer extends PureComponent {

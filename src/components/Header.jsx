@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom';
 import { headerMenuConfig } from './../menuConfig';
 import Logo from './logo/components/Logo';
 import {Notification} from './notice/Notice';
-import {SessionContext} from '../api/Application';
-import MessageUtils from '../api/utils/MessageUtils';
-import ChangePwdForm from './Form/ChangePwdForm';
+import {SessionContext} from '@api/Application';
+import MessageUtils from '@api/utils/MessageUtils';
+import ChangePwdForm from '@components/framework/form/ChangePwdForm';
 import { Avatar, Form } from 'antd';
 
 @withRouter

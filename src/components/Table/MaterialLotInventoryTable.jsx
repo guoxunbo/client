@@ -3,14 +3,14 @@ import React from 'react';
 import './ListTable.scss';
 import EntityListTable from './EntityListTable';
 import { Form, Button } from 'antd';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
-import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
-import TableObject from '../../api/dto/ui/Table';
-import IconUtils from '../../api/utils/IconUtils';
-import TransferMLotInventoryForm from '../Form/TransferMLotInventoryForm';
-import MaterialLotInvManagerRequest from '../../api/material-lot-inv-manager/MaterialLotInvManagerRequest';
-import CheckMLotInventoryForm from '../Form/CheckMLotInventoryForm';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import TableObject from '@api/dto/ui/Table';
+import IconUtils from '@api/utils/IconUtils';
+import TransferMLotInventoryForm from '@components/mms/form/TransferMLotInventoryForm';
+import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
+import CheckMLotInventoryForm from '@components/mms/form/CheckMLotInventoryForm';
 
 const TableName = {
     MLotTransferInventory: "MMLotTransferInv",

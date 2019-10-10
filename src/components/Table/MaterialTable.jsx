@@ -1,15 +1,15 @@
 import React from 'react';
 
 import './ListTable.scss';
-import MaterialForm from '../Form/MaterialForm';
+import MaterialForm from '@components/mms/form/MaterialForm';
 import EntityListTable from './EntityListTable';
 import { Form, Button, Table } from 'antd';
-import I18NUtils from '../../api/utils/I18NUtils';
-import { i18NCode } from '../../api/const/i18n';
-import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
-import TableObject from '../../api/dto/ui/Table';
-import ReceiveMaterialForm from '../Form/ReceiveMaterialForm';
-import MessageUtils from '../../api/utils/MessageUtils';
+import I18NUtils from '@api/utils/I18NUtils';
+import { i18NCode } from '@api/const/i18n';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import TableObject from '@api/dto/ui/Table';
+import ReceiveMaterialForm from '@components/mms/form/ReceiveMaterialForm';
+import MessageUtils from '@api/utils/MessageUtils';
 
 const TableName = {
     ReceiveMLot: "MMReceiveMLot"

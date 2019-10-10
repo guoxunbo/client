@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import {Application} from '../../../api/Application';
+import {Application} from '@api/Application';
 
 const logo = require('./images/logo.png');
 

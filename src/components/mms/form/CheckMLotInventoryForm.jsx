@@ -1,5 +1,5 @@
-import EntityForm from './EntityForm';
-import MaterialLotInvManagerRequest from '../../api/material-lot-inv-manager/MaterialLotInvManagerRequest';
+import EntityForm from '@components/framework/form/EntityForm';
+import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
 
 export default class CheckMLotInventoryForm extends EntityForm {
     static displayName = 'CheckMLotInventoryForm';
@@ -14,7 +14,6 @@ export default class CheckMLotInventoryForm extends EntityForm {
                     self.props.onOk(responseBody.materialLotInventory);
                 }
             }
-            
         }
         MaterialLotInvManagerRequest.sendCheckRequest(object);
     }

@@ -1,7 +1,7 @@
 import EntityListTable from "./EntityListTable";
-import Field from '../../api/dto/ui/Field';
-import {Application} from '../../api/Application'
-import { DefaultRowKey } from "../../api/const/ConstDefine";
+import Field from '@api/dto/ui/Field';
+import {Application} from '@api/Application'
+import { DefaultRowKey } from "@api/const/ConstDefine";
 
 /**
  * 具有选择框的table。不具备操作列

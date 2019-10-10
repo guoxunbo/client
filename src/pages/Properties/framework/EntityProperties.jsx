@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import EntityListTable from '@components/Table/EntityListTable';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { BackTop, Divider } from 'antd';
-import WrappedAdvancedQueryForm from '@components/Form/QueryForm';
+import WrappedAdvancedQueryForm from '@components/framework/form/QueryForm';
 import { DefaultRowKey } from '@api/const/ConstDefine';
 
 /**

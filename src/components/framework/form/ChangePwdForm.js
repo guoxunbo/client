@@ -2,10 +2,10 @@ import  React from 'react';
 
 import { Form, Input, } from 'antd';
 import EntityForm from './EntityForm';
-import {SessionContext} from '../../api/Application';
-import I18NUtils from '../../api/utils/I18NUtils';
-import {i18NCode} from '../../api/const/i18n';
-import UserManagerRequest from '../../api/user-manager/UserManagerRequest';
+import {SessionContext} from '@api/Application';
+import I18NUtils from '@api/utils/I18NUtils';
+import {i18NCode} from '@api/const/i18n';
+import UserManagerRequest from '@api/user-manager/UserManagerRequest';
 
 const FormItem = Form.Item;
 

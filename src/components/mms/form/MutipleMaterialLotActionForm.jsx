@@ -1,8 +1,7 @@
-import EntityForm from './EntityForm';
-import MaterialLotManagerRequest from '../../api/material-lot-manager/MaterialLotManagerRequest';
-import MaterialLotAction from '../../api/dto/mms/MaterialLotAction';
-import PropertyUtils from '../../api/utils/PropertyUtils';
-import MaterialLotStockInRequest from '../../api/material-lot-stockIn/MaterialLotStockInRequest';
+import EntityForm from '@components/framework/form/EntityForm';
+import MaterialLotAction from '@api/dto/mms/MaterialLotAction';
+import PropertyUtils from '@api/utils/PropertyUtils';
+import MaterialLotStockInRequest from '@api/material-lot-stockIn/MaterialLotStockInRequest';
 
 const ActionType = {
     StockIn: "StockIn",
