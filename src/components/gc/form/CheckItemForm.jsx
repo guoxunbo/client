@@ -1,4 +1,4 @@
-import EntityForm from "@components/framework/form/EntityForm";
+import EntityDialog from "@components/framework/dialog/EntityDialog";
 import Tab from "@api/dto/ui/Tab";
 import { Tabs, Row, Modal } from "antd";
 import EditorColumnTable from "@components/gc/table/EditorColumnTable";
@@ -7,7 +7,7 @@ import StockOutCheckRequest from "@api/gc/stock-out-check/StockOutCheckRequest";
 const TabPane = Tabs.TabPane;
 const { confirm } = Modal;
 
-export default class CheckItemForm extends EntityForm {
+export default class CheckItemForm extends EntityDialog {
     static displayName = 'CheckItemForm';
 
     buildBasicSection = () => {

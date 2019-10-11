@@ -1,7 +1,7 @@
-import EntityForm from '@components/framework/form/EntityForm';
+import EntityDialog from '@components/framework/dialog/EntityDialog';
 import QuestionRequest from '@api/question-manager/QuestionRequest';
 
-export default class QuestionForm extends EntityForm {
+export default class QuestionForm extends EntityDialog {
 
     static displayName = 'QuestionForm';
 

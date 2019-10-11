@@ -12,7 +12,6 @@ import UserManagerRequest from '@api/user-manager/UserManagerRequest';
 
 const FormItem = Form.Item;
 
-
 class UserLoginForm extends Component {
 
     static displayName = 'UserLoginForm';
@@ -29,6 +28,7 @@ class UserLoginForm extends Component {
     }
 
     handleLogin = () => {
+        let self = this;
         const form = this.props.form;
         form.validateFields((err, values) => {
             if (err) {
@@ -36,7 +36,9 @@ class UserLoginForm extends Component {
             }
             let object = {
                 user: values,
-                success: (responseBody) => this.props.handleOk(responseBody, values.org, values.language)
+                success: function(responseBody) {
+                  self.props.handleOk(responseBody, values.org, values.language)
+                }
             }
             UserManagerRequest.sendLoginRequest(object);
         });
@@ -108,7 +110,7 @@ class UserLoginForm extends Component {
                 </Col>
               </Row>           
               <Row >
-                <Button type="primary" style={styles.submitBtn} htmlType="submit">
+                <Button type="primary" style={styles.submitBtn} onClick={this.handleLogin}>
                   {I18NUtils.getClientMessage(i18NCode.Login)}
                 </Button>
               </Row>

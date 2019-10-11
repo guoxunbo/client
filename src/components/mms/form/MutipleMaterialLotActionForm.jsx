@@ -1,4 +1,4 @@
-import EntityForm from '@components/framework/form/EntityForm';
+import EntityDialog from '@components/framework/dialog/EntityDialog';
 import MaterialLotAction from '@api/dto/mms/MaterialLotAction';
 import PropertyUtils from '@api/utils/PropertyUtils';
 import MaterialLotStockInRequest from '@api/material-lot-stockIn/MaterialLotStockInRequest';
@@ -10,7 +10,7 @@ const ActionType = {
 /**
  * 物料批次批量处理
  */
-export default class MutipleMaterialLotActionForm extends EntityForm {
+export default class MutipleMaterialLotActionForm extends EntityDialog {
 
     static displayName = 'MutipleMaterialLotActionForm';
 

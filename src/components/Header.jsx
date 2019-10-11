@@ -12,8 +12,8 @@ import Logo from './logo/components/Logo';
 import NoticeUtils from '@utils/NoticeUtils';
 import {SessionContext} from '@api/Application';
 import MessageUtils from '@api/utils/MessageUtils';
-import ChangePwdForm from '@components/framework/form/ChangePwdForm';
-import { Avatar, Form } from 'antd';
+import ChangePwdDialog from '@components/framework/dialog/ChangePwdDialog';
+import { Avatar } from 'antd';
 
 @withRouter
 export default class Header extends PureComponent {
@@ -50,7 +50,6 @@ export default class Header extends PureComponent {
     }
     
     const { width, theme, isMobile, className, style } = this.props;
-    const WrappedChangePwdForm = Form.create()(ChangePwdForm);
     return (
       <div>
       <Layout.Header
@@ -160,7 +159,7 @@ export default class Header extends PureComponent {
           </Balloon>
         </div>
       </Layout.Header>
-      <WrappedChangePwdForm object={{}} destroyOnClose onOk={this.changePwdOk} onCancel={this.canelChangePwd} visible={this.state.changePwdVisiable} />
+      <ChangePwdDialog object={{}} destroyOnClose onOk={this.changePwdOk} onCancel={this.canelChangePwd} visible={this.state.changePwdVisiable} />
       </div>
       
     );

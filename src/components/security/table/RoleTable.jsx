@@ -2,8 +2,8 @@ import {Button, Form} from 'antd';
 import { i18NCode } from "@api/const/i18n";
 import I18NUtils from "@api/utils/I18NUtils";
 import RoleManagerRequest from "@api/role-manager/RoleManagerRequest";
-import EntityForm from "@components/framework/form/EntityForm";
-import DispatchUserForm from "@components/security/form/DispatchUserForm";
+import EntityDialog from "@components/framework/dialog/EntityDialog";
+import DispatchDialog from "@components/framework/dialog/DispatchDialog";
 import DispatchAuthorityForm from "@components/security/form/DispatchAuthorityForm";
 import EntityListTable from "@components/framework/table/EntityListTable";
 import NoticeUtils from '@utils/NoticeUtils';
@@ -14,13 +14,10 @@ export default class RoleTable extends EntityListTable {
 
     createForm = () => {
         let childrens = [];
-
-        const WrappedAdvancedEntityForm = Form.create()(EntityForm);
-        childrens.push(<WrappedAdvancedEntityForm key="EntityForm" ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+        childrens.push(<EntityDialog key="EntityForm" ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                             table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);
         
-        const WrappedAdvancedDispatchUserForm = Form.create()(DispatchUserForm);      
-        childrens.push(<WrappedAdvancedDispatchUserForm key="DispatchUserForm" 
+        childrens.push(<DispatchDialog key="DispatchDialog" 
                             ref={this.formRef} visible={this.state.dispatchUserFormVisible} 
                             dataSource={this.state.allUsers} targetKeys={this.state.roleUsers}
                             onOk={this.handleDispatchUser} onCancel={this.cancelDispatchUser} />);
@@ -74,6 +71,7 @@ export default class RoleTable extends EntityListTable {
     }
 
     openDispatchUserForm = () => {
+        debugger;
         let self = this;
         let selectedRow = this.validateSelectedRow();
         if (selectedRow) {
@@ -88,7 +86,7 @@ export default class RoleTable extends EntityListTable {
                     if (users && Array.isArray(users)) {
                         // 全部用户转换成transferItem
                         users.forEach((user) => {
-                            let transferItem = DispatchUserForm.buildTransferItem(user.objectRrn, user.username, user.description);
+                            let transferItem = DispatchDialog.buildTransferItem(user.objectRrn, user.username, user.description);
                             allUsers.push(transferItem);
                         });
                         // 转换role已经存在用户

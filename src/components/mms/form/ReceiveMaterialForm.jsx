@@ -1,7 +1,7 @@
-import EntityForm from '@components/framework/form/EntityForm';
+import EntityDialog from '@components/framework/dialog/EntityDialog';
 import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
 
-export default class ReceiveMaterialForm extends EntityForm {
+export default class ReceiveMaterialForm extends EntityDialog {
     static displayName = 'ReceiveMaterialForm';
 
     handleSave = () => {

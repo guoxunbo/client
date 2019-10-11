@@ -1,7 +1,7 @@
 import Field from './Field';
 import { Row, Col, Tabs} from 'antd';
 import {SessionContext} from '@api/Application';
-import {Language} from '@const/ConstDefine';
+import {Language, DefaultOrderKey} from '@const/ConstDefine';
 import EditorTable from '@components/framework/table/EditorTable'
 
 const TabPane = Tabs.TabPane;
@@ -67,7 +67,7 @@ export default class Tab {
             const fields = this.fields;
             for (let f of fields) {
                 let field = new Field(f, form);
-                if (!field.basicFlag && field.displayFlag && field.name != "objectRrn") {
+                if (!field.basicFlag && field.displayFlag && field.name != DefaultOrderKey) {
                     children.push(<Col span={12} key={field.objectRrn}>
                         {field.buildFormItem(formLayout, false, undefined, formObject[field.name])}
                     </Col>);

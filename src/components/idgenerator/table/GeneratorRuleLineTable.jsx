@@ -3,7 +3,7 @@ import { Button, Form } from "antd";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 import TableObject from '@api/dto/ui/Table';
 import IconUtils from "@api/utils/IconUtils";
-import EntityForm from "@components/framework/form/EntityForm";
+import EntityDialog from "@components/framework/dialog/EntityDialog";
 
 const DataType = {
     FixedString: "F",
@@ -63,8 +63,7 @@ export default class GeneratorRuleLineTable extends EntityListTable {
      * 此处因为点击不同的Button要展现不同的form信息。故此处的table用formTable去代替
      */
     createForm = () => {
-        const WrappedAdvancedEntityForm = Form.create()(EntityForm);
-        return  <WrappedAdvancedEntityForm ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+        return  <EntityDialog ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                             table={this.state.formTable} tableData={this.state.data} onOk={this.refresh} onCancel={this.handleCancel} />
     }
 

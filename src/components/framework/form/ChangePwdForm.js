@@ -1,11 +1,10 @@
 import  React from 'react';
 
 import { Form, Input, } from 'antd';
-import EntityForm from './EntityForm';
+import EntityForm from '@components/framework/form/EntityForm';
 import {SessionContext} from '@api/Application';
 import I18NUtils from '@api/utils/I18NUtils';
 import {i18NCode} from '@api/const/i18n';
-import UserManagerRequest from '@api/user-manager/UserManagerRequest';
 
 const FormItem = Form.Item;
 
@@ -16,7 +15,7 @@ const formItemLayout = {
     labelCol: {span: 4},
     wrapperCol: {span: 18},
 };
-export default class ChangePwdForm extends EntityForm {
+class ChangePwdForm extends EntityForm {
 
     static displayName = 'ChangePwdDialog';
 
@@ -35,21 +34,6 @@ export default class ChangePwdForm extends EntityForm {
         } else {
           callback();
         }
-    }
-
-    handleSave = (values) => {
-        let self = this;
-        let object = {
-            username: values.username,
-            password: values.password,
-            newPassword: values.newPassword,
-            success: function(){
-                if (self.props.onOk) {
-                    self.props.onOk();
-                }
-            }
-        }
-        UserManagerRequest.sendChangePassword(object);
     }
 
     buildForm = () => {
@@ -103,4 +87,4 @@ export default class ChangePwdForm extends EntityForm {
             </Form>)
     }
 }
-// export default Form.create()(ChangePwdForm);
+export default Form.create()(ChangePwdForm);

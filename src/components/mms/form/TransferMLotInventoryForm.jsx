@@ -1,7 +1,7 @@
-import EntityForm from '@components/framework/form/EntityForm';
+import EntityDialog from '@components/framework/dialog/EntityDialog';
 import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
 
-export default class TransferMLotInventoryForm extends EntityForm {
+export default class TransferMLotInventoryForm extends EntityDialog {
     static displayName = 'TransferMLotInventoryForm';
 
     handleSave = () => {

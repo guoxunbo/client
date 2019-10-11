@@ -1,7 +1,7 @@
-import EntityForm from "@components/framework/form/EntityForm";
+import EntityDialog from "@components/framework/dialog/EntityDialog";
 import UserManagerRequest from "@api/user-manager/UserManagerRequest";
 
-export default class UserForm extends EntityForm {
+export default class UserForm extends EntityDialog {
 
     handleSave = () => {
         let self = this;

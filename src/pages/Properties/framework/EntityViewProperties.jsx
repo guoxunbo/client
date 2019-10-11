@@ -1,6 +1,6 @@
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
 
-import WrappedAdvancedEntityOtherForm from '@components/framework/form/EntityOtherForm';
+import {WrappedAdvancedEntityForm} from '@components/framework/form/EntityForm';
 import I18NUtils from "@utils/I18NUtils";
 import { i18NCode } from "@const/i18n";
 
@@ -49,7 +49,7 @@ export default class EntityViewProperties extends EntityScanProperties{
                     <div style={styles.buttonGroup}>
                         {this.createButtonGroup()}
                     </div>
-                    <WrappedAdvancedEntityOtherForm ref={(form) => this.entityForm = form}  object={this.state.formObject} table={this.state.table}></WrappedAdvancedEntityOtherForm>
+                    <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form}  object={this.state.formObject} table={this.state.table}/>
                 </div>);
     }
 

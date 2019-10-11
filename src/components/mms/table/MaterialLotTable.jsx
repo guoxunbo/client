@@ -3,7 +3,7 @@ import React from 'react';
 import EntityListTable from '@components/framework/table/EntityListTable';
 import { Form, Button } from 'antd';
 import IconUtils from '@api/utils/IconUtils';
-import BarCodeForm, { CodeType } from '@components/framework/form/BarCodeForm';
+import BarCodeDialog, { CodeType } from '@components/framework/dialog/BarCodeDialog';
 import MaterialLotActionForm from '@components/mms/form/MaterialLotActionForm';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
@@ -31,8 +31,7 @@ export default class MaterialLotTable extends EntityListTable {
     
     createForm = () => {
         let children = [];
-        const WrappedAdvancedBarCodeForm = Form.create()(BarCodeForm);
-        children.push(<WrappedAdvancedBarCodeForm width={400} type={this.state.showCodeType} key={BarCodeForm.displayName} ref={this.formRef} value={this.state.codeValue} visible={this.state.barCodeFormVisible} 
+        children.push(<BarCodeDialog width={400} type={this.state.showCodeType} key={BarCodeDialog.displayName} ref={this.formRef} value={this.state.codeValue} visible={this.state.barCodeFormVisible} 
                                                             okText={this.state.okText} onOk={this.handlePrintOk} onCancel={this.handleCancelPrint} />);                                   
         
         const WrappedAdvancedMaterialActionForm = Form.create()(MaterialLotActionForm);

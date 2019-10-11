@@ -1,7 +1,7 @@
-import EntityForm from '@components/framework/form/EntityForm';
+import EntityDialog from '@components/framework/dialog/EntityDialog';
 import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
 
-export default class MaterialLotActionForm extends EntityForm {
+export default class MaterialLotActionForm extends EntityDialog {
 
     static displayName = 'MaterialLotActionForm';
 

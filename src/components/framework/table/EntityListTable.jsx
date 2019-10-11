@@ -6,7 +6,7 @@ import {Application, SessionContext} from '@api/Application'
 import {DefaultRowKey, Language} from '@api/const/ConstDefine'
 import MessageUtils from '@api/utils/MessageUtils';
 import Field from '@api/dto/ui/Field';
-import EntityForm from '@components/framework/form/EntityForm';
+import EntityDialog from '@components/framework/dialog/EntityDialog';
 import * as PropTypes from 'prop-types';
 import TableObject from '@api/dto/ui/Table';
 import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
@@ -369,8 +369,7 @@ export default class EntityListTable extends Component {
     }
 
     createForm = () => {
-        const WrappedAdvancedEntityForm = Form.create()(EntityForm);
-        return  <WrappedAdvancedEntityForm ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+        return  <EntityDialog ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                             table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
     }
     

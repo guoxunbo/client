@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Row, Col, Tabs } from 'antd';
+import { Form, Input, Row, Col, Tabs } from 'antd';
 import * as PropTypes from 'prop-types';
 import Field from '@api/dto/ui/Field';
 import Tab from '@api/dto/ui/Tab';
-import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
-import PropertyUtils from '@api/utils/PropertyUtils';
-import { DefaultOrderKey, DefaultRowKey, DateFormatType } from '@api/const/ConstDefine';
-import moment from 'moment';
+import { DefaultRowKey } from '@api/const/ConstDefine';
 
 export default class EntityForm extends Component {
     static displayName = 'EntityForm';
@@ -34,7 +31,7 @@ export default class EntityForm extends Component {
         let children = [];
         for (let f of fields) {
             let field = new Field(f, this.props.form);
-            if (field.basicFlag && field.displayFlag && field.name != "objectRrn") {
+            if (field.basicFlag && field.displayFlag && field.name != DefaultRowKey) {
                 children.push(<Col span={12} key={field.objectRrn}>
                     {field.buildFormItem(formItemLayout, this.state.editFlag, undefined, formObject[field.name])}
                 </Col>);
@@ -72,58 +69,6 @@ export default class EntityForm extends Component {
         )
     }
 
-    handleOk = (e) => {
-        const form = this.props.form;
-        form.validateFields((err, values) => {
-            if (err) {
-                return;
-            }
-            let formObject = this.props.object;
-            PropertyUtils.copyProperties(values, formObject);
-            // 如果当前values具备seqNo栏位并且该栏位没手动给值。则说明需要自动给个seqNo的值
-            if (formObject.hasOwnProperty(DefaultOrderKey) && !formObject[DefaultOrderKey]) {
-                // 只有对象有seqNo栏位，则tableData必定有seqNo
-                if (this.props.tableData && Array.isArray(this.props.tableData)) {
-                    if (this.props.tableData.length == 0) {
-                        formObject[DefaultOrderKey] = 1;
-                    } else {
-                        let data = this.props.tableData.sort(function(a,b) {
-                            if (a[DefaultOrderKey] - b[DefaultOrderKey] < 0) {
-                                return -1;
-                            } else {
-                                return 1;
-                            }
-                        });
-                        formObject[DefaultOrderKey] = data[data.length - 1][DefaultOrderKey] + 1;
-                    }
-                }
-            }
-            for (let property in formObject) {
-                if (formObject[property] && moment.isMoment(formObject[property])) {
-                    // 如果是单独的时间类型，不是个区域时间(dateFromTo)的话
-                    formObject[property] = formObject[property].format(DateFormatType.DateTime)
-                }
-            }
-            this.handleSave(formObject);
-        });
-    }
-
-    handleSave = (formObject) => {
-        var self = this;
-        // 默认处理的saveEntity
-        let object = {
-            modelClass: this.props.table.modelClass,
-            values: formObject,
-            tableRrn: this.props.table.objectRrn,
-            success: function(responseBody) {
-                if (self.props.onOk) {
-                    self.props.onOk(responseBody.data);
-                }
-            }
-        };
-        EntityManagerRequest.sendMergeRequest(object);
-    }
-
     buildForm = () =>  {
         const {getFieldDecorator} = this.props.form;
         return (
@@ -139,34 +84,18 @@ export default class EntityForm extends Component {
     }
 
     render() {
-        const width = this.props.width || 1040;
-        const title = this.props.title || I18NUtils.getClientMessage(i18NCode.Edit);
-        const okText = this.props.okText || I18NUtils.getClientMessage(i18NCode.Ok);
         return (
             <div>
-                <Modal centered 
-                    width={width}
-                    title={title} 
-                    object={this.props.object} 
-                    visible={this.props.visible} 
-                    maskClosable={false} 
-                    onOk={this.handleOk}
-                    onCancel={this.props.onCancel} 
-                    okText={okText}>
-                    {this.buildForm()}
-                </Modal>
+                {this.buildForm()}
             </div>
         );
     }
 }
 
 EntityForm.propTypes={
-    title: PropTypes.string,
-    visible: PropTypes.bool,
     object: PropTypes.object,
-    onCancel: PropTypes.func,
-    onOk: PropTypes.func,
     table: PropTypes.object,
-    tableData: PropTypes.array
 }
+const WrappedAdvancedEntityForm = Form.create()(EntityForm);
+export {WrappedAdvancedEntityForm};
 

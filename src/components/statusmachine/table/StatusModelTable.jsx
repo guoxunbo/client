@@ -2,8 +2,8 @@ import EntityListTable from "@components/framework/table/EntityListTable";
 import { Button, Form } from "antd";
 import { i18NCode } from "@api/const/i18n";
 import I18NUtils from "@api/utils/I18NUtils";
-import DispatchForm from "@components/framework/form/DispatchForm";
-import EntityForm from "@components/framework/form/EntityForm";
+import DispatchDialog from "@components/framework/dialog/DispatchDialog";
+import EntityDialog from "@components/framework/dialog/EntityDialog";
 import StatusModelRequest from "@api/status-model-manager/StatusModelRequest";
 import NoticeUtils from "@utils/NoticeUtils";
 
@@ -14,12 +14,10 @@ export default class StatusModelTable extends EntityListTable {
     createForm = () => {
         let childrens = [];
 
-        const WrappedAdvancedEntityForm = Form.create()(EntityForm);
-        childrens.push(<WrappedAdvancedEntityForm key={EntityForm.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+        childrens.push(<EntityDialog key={EntityDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                             table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);
         
-        const WrappedAdvancedDispatchUserForm = Form.create()(DispatchForm);      
-        childrens.push(<WrappedAdvancedDispatchUserForm key="DispatchEventForm" 
+        childrens.push(<DispatchDialog key="DispatchEvent" 
                             ref={this.formRef} visible={this.state.dispatchFormVisible} 
                             dataSource={this.state.allEvents} targetKeys={this.state.modelEventKeys}
                             onOk={this.handleDispatchEvent} onCancel={this.cancelDispatchEvent} />);
@@ -44,7 +42,7 @@ export default class StatusModelTable extends EntityListTable {
                     if (events && Array.isArray(events)) {
                         // 全部事件转换成transferItem
                         events.forEach((event) => {
-                            let transferItem = DispatchForm.buildTransferItem(event.objectRrn, event.name, event.description);
+                            let transferItem = DispatchDialog.buildTransferItem(event.objectRrn, event.name, event.description);
                             allEvents.push(transferItem);
                         });
                         // 转换statusModel已经存在的事件
