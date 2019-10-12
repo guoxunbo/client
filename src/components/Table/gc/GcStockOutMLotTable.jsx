@@ -37,34 +37,20 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
             return;
         }
 
-        let materialLot = materialLots[0];
-        self.validationRule(documentLine, materialLot, materialLots);
+        let requestObj = {
+            documentLine : documentLine,
+            materialLots : materialLots,
+            success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.resetData();
+                }
+                MessageUtils.showOperationSuccess();
+            }
+        }
+
+        StockOutManagerRequest.sendStockOutRequest(requestObj);
     }
 
-    /*
-    *  gc要求出货时验证出库单与物料的产品信息是否符符合要求
-    */
-    validationRule = (documentLine, materialLot, materialLots) => {
-        let self = this;
-        let requestObject = {
-          documentLine : documentLine,
-          materialLot : materialLot,
-          success: function(responseBody) {
-            let requestObj = {
-                documentLine : documentLine,
-                materialLots : materialLots,
-                success: function(responseBody) {
-                    if (self.props.resetData) {
-                        self.props.resetData();
-                    }
-                    MessageUtils.showOperationSuccess();
-                }
-            }
-            StockOutManagerRequest.sendStockOutRequest(requestObj)
-          }
-        }
-        ValidationSoOrTestRequest.sendValidationRequest(requestObject);
-      }
 
     createStatistic = () => {
         let materialLots = this.state.data;
