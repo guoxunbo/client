@@ -20,10 +20,7 @@ export default class MaterialTable extends EntityListTable {
 
     constructor(props) {
         super(props);
-        let state = Object.assign(this.state, {
-            receiveMaterialTable: {fields: []},
-        });
-        this.state = state;
+        this.state = {...this.state, ...{receiveMaterialTable: {fields: []}}};
     }
 
     createForm = () => {

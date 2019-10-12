@@ -22,11 +22,7 @@ export default class MaterialLotInventoryTable extends EntityListTable {
 
     constructor(props) {
         super(props);
-        let state = Object.assign(this.state, {
-            transferMLotInventoryTable: {fields: []},
-            checkMLotInventoryTable: {fields: []},
-        });
-        this.state = state;
+        this.state = {...this.state, ...{transferMLotInventoryTable: {fields: []}, checkMLotInventoryTable: {fields: []}}};
     }
 
     createForm = () => {

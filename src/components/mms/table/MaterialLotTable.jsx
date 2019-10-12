@@ -20,13 +20,7 @@ export default class MaterialLotTable extends EntityListTable {
 
     constructor(props) {
         super(props);
-        let state = Object.assign(this.state, {
-            materialLotActionTable: {fields:[]},
-            showCodeType: "",
-            okText: "",
-            codeValue: ""
-        });
-        this.state = state;
+        this.state = {...this.state, ...{materialLotActionTable: {fields: []}, showCodeType: "", okText: "", codeValue: ""}};
     }
     
     createForm = () => {
