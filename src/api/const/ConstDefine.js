@@ -77,6 +77,8 @@ const UrlConstant = {
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPringBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
     GCValidationSoOrReTestUrl: ModuleUrlConstant.GC + "validationSoOrReTest",
+    GCValidationMaterialUrl: ModuleUrlConstant.GC + "validationMaterial",
+
 
 
 };
