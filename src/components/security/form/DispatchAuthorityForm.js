@@ -1,8 +1,5 @@
 import {Component} from "react";
-import I18NUtils from "@api/utils/I18NUtils";
-import { i18NCode } from "@api/const/i18n";
-import { Tree, Modal } from "antd";
-import { Application } from "@api/Application";
+import { Tree } from "antd";
 import IconUtils from "@api/utils/IconUtils";
 
 const { TreeNode } = Tree;
@@ -20,7 +17,6 @@ export default class DispatchAuthorityForm extends Component {
         checkedKeys: checkedKeys,
         roleAuthorities: roleAuthorities,
       }
-
     }
 
     /**
@@ -47,32 +43,20 @@ export default class DispatchAuthorityForm extends Component {
     buildForm = () => {
         return (
             <Tree
-            showIcon
-            checkable
-            onCheck={this.onCheck}
-            checkedKeys={this.state.checkedKeys}
+              showIcon
+              checkable
+              onCheck={this.onCheck}
+              checkedKeys={this.state.checkedKeys}
             >
             {this.renderTreeNodes(this.props.authorities)}
             </Tree>
         );
     }
 
-    handleOk = () => {
-      const {roleAuthorities} = this.state;
-      if (this.props.onOk) {
-        this.props.onOk(roleAuthorities);
-      }
-    }
-
     render() {
         return (
             <div>
-                <Modal width={Application.dispatchForm.modalWidth} centered title={I18NUtils.getClientMessage(i18NCode.Edit)} object={this.props.object} visible={this.props.visible} 
-                    maskClosable={false} onOk={this.handleOk} onCancel={this.props.onCancel} 
-                    okText={I18NUtils.getClientMessage(i18NCode.Ok)} 
-                    cancelText={I18NUtils.getClientMessage(i18NCode.Cancel)}>
-                    {this.buildForm()}
-                </Modal>
+               {this.buildForm()}
             </div>
         );
     }

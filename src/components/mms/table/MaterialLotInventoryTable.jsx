@@ -1,15 +1,15 @@
 import React from 'react';
 
 import EntityListTable from '@components/framework/table/EntityListTable';
-import { Form, Button } from 'antd';
+import { Button } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import TableObject from '@api/dto/ui/Table';
 import IconUtils from '@api/utils/IconUtils';
-import TransferMLotInventoryForm from '@components/mms/form/TransferMLotInventoryForm';
+import TransferMLotInventoryDialog from '@components/mms/dialog/TransferMLotInventoryDialog';
 import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
-import CheckMLotInventoryForm from '@components/mms/form/CheckMLotInventoryForm';
+import CheckMLotInventoryDialog from '@components/mms/dialog/CheckMLotInventoryDialog';
 
 const TableName = {
     MLotTransferInventory: "MMLotTransferInv",
@@ -31,11 +31,9 @@ export default class MaterialLotInventoryTable extends EntityListTable {
 
     createForm = () => {
         let childrens = [];
-        const WrappedAdvancedTransferMLotInventoryForm = Form.create()(TransferMLotInventoryForm);
-        childrens.push(<WrappedAdvancedTransferMLotInventoryForm key={TransferMLotInventoryForm.displayName} ref={this.formRef} object={this.state.mLotInventory} visible={this.state.transferMLotInvFormVisible} 
+        childrens.push(<TransferMLotInventoryDialog key={TransferMLotInventoryDialog.displayName} ref={this.formRef} object={this.state.mLotInventory} visible={this.state.transferMLotInvFormVisible} 
                             table={this.state.transferMLotInventoryTable} onOk={this.handleTransferOk} onCancel={this.handleCancelTransfer} />);                                   
-        const WrappedAdvancedCheckMLotInventoryForm = Form.create()(CheckMLotInventoryForm);
-        childrens.push(<WrappedAdvancedCheckMLotInventoryForm key={CheckMLotInventoryForm.displayName} ref={this.formRef} object={this.state.mLotInventory} visible={this.state.checkMLotInvFormVisible} 
+        childrens.push(<CheckMLotInventoryDialog key={CheckMLotInventoryDialog.displayName} ref={this.formRef} object={this.state.mLotInventory} visible={this.state.checkMLotInvFormVisible} 
                             table={this.state.checkMLotInventoryTable} onOk={this.handleCheckOk} onCancel={this.handleCancelCheck} />);                                   
             
         return childrens;

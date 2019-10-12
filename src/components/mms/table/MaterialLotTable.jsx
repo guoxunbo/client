@@ -1,10 +1,10 @@
 import React from 'react';
 
 import EntityListTable from '@components/framework/table/EntityListTable';
-import { Form, Button } from 'antd';
+import { Button } from 'antd';
 import IconUtils from '@api/utils/IconUtils';
 import BarCodeDialog, { CodeType } from '@components/framework/dialog/BarCodeDialog';
-import MaterialLotActionForm from '@components/mms/form/MaterialLotActionForm';
+import MaterialLotActionDialog from '@components/mms/dialog/MaterialLotActionDialog';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
@@ -34,8 +34,7 @@ export default class MaterialLotTable extends EntityListTable {
         children.push(<BarCodeDialog width={400} type={this.state.showCodeType} key={BarCodeDialog.displayName} ref={this.formRef} value={this.state.codeValue} visible={this.state.barCodeFormVisible} 
                                                             okText={this.state.okText} onOk={this.handlePrintOk} onCancel={this.handleCancelPrint} />);                                   
         
-        const WrappedAdvancedMaterialActionForm = Form.create()(MaterialLotActionForm);
-        children.push(<WrappedAdvancedMaterialActionForm key={MaterialLotActionForm.displayName} ref={this.formRef} object={this.state.materialLotAction} visible={this.state.materialLotActionVisible} 
+        children.push(<MaterialLotActionDialog key={MaterialLotActionDialog.displayName} ref={this.formRef} object={this.state.materialLotAction} visible={this.state.materialLotActionVisible} 
                         action={this.state.action} table={this.state.materialLotActionTable} onOk={this.handleActionOk} onCancel={this.handleCancelAction} />);                                   
         return children;
     }

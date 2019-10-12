@@ -1,8 +1,8 @@
 import EntityDialog from '@components/framework/dialog/EntityDialog';
 import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
 
-export default class CheckMLotInventoryForm extends EntityDialog {
-    static displayName = 'CheckMLotInventoryForm';
+export default class CheckMLotInventoryDialog extends EntityDialog {
+    static displayName = 'CheckMLotInventoryDialog';
 
     handleSave = () => {
         var self = this;

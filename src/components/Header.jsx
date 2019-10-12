@@ -97,10 +97,6 @@ export default class Header extends PureComponent {
               })}
             </Menu>
           ) : null}
-          {/* Header 菜单项 end */}
-
-          {/* Header 右侧内容块 */}
-
           <Balloon
             trigger={
               <div

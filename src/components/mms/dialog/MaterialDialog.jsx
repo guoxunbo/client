@@ -1,8 +1,8 @@
 import EntityDialog from '@components/framework/dialog/EntityDialog';
 import RawMaterialManagerRequest from '@api/raw-material-manager/RawMaterialManagerRequest';
 
-export default class MaterialForm extends EntityDialog {
-    static displayName = 'MaterialForm';
+export default class MaterialDialog extends EntityDialog {
+    static displayName = 'MaterialDialog';
 
     handleSave = () => {
         var self = this;

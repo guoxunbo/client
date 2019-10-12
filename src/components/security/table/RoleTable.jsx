@@ -4,7 +4,7 @@ import I18NUtils from "@api/utils/I18NUtils";
 import RoleManagerRequest from "@api/role-manager/RoleManagerRequest";
 import EntityDialog from "@components/framework/dialog/EntityDialog";
 import DispatchDialog from "@components/framework/dialog/DispatchDialog";
-import DispatchAuthorityForm from "@components/security/form/DispatchAuthorityForm";
+import DispatchAuthorityDialog from "@components/security/dialog/DispatchAuthorityDialog";
 import EntityListTable from "@components/framework/table/EntityListTable";
 import NoticeUtils from '@utils/NoticeUtils';
 
@@ -17,13 +17,12 @@ export default class RoleTable extends EntityListTable {
         childrens.push(<EntityDialog key="EntityForm" ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                             table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);
         
-        childrens.push(<DispatchDialog key="DispatchDialog" 
+        childrens.push(<DispatchDialog key="DispatchUserDialog" 
                             ref={this.formRef} visible={this.state.dispatchUserFormVisible} 
                             dataSource={this.state.allUsers} targetKeys={this.state.roleUsers}
                             onOk={this.handleDispatchUser} onCancel={this.cancelDispatchUser} />);
         
-        const WrappedAdvancedDispatchAuthorityForm = Form.create()(DispatchAuthorityForm);      
-        childrens.push(<WrappedAdvancedDispatchAuthorityForm key="DispatchAuthorityForm" 
+        childrens.push(<DispatchAuthorityDialog key="DispatchAuthorityDialog" 
                             ref={this.formRef} visible={this.state.dispatchAuthorityFormVisible} 
                             authorities={this.state.allAuthorities} checkedKeys={this.state.checkedAuthorities}
                             roleAuthorities={this.state.roleAuthorities}

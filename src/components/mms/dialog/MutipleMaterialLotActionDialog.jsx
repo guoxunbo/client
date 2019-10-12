@@ -10,9 +10,9 @@ const ActionType = {
 /**
  * 物料批次批量处理
  */
-export default class MutipleMaterialLotActionForm extends EntityDialog {
+export default class MutipleMaterialLotActionDialog extends EntityDialog {
 
-    static displayName = 'MutipleMaterialLotActionForm';
+    static displayName = 'MutipleMaterialLotActionDialog';
 
     handleSave = (formObject) => {
         var self = this;

@@ -1,5 +1,5 @@
 import EntityListTable from '@components/framework/table/EntityListTable';
-import QuestionForm from '@components/kms/form/QuestionForm';
+import QuestionDialog from '@components/kms/dialog/QuestionDialog';
 import { Form, Button, Table } from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
@@ -92,8 +92,7 @@ export default class QuestionTable extends EntityListTable {
     }
 
     createForm = () => {
-        const WrappedAdvancedEntityForm = Form.create()(QuestionForm);
-        return  <WrappedAdvancedEntityForm ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+        return  <QuestionDialog object={this.state.editorObject} visible={this.state.formVisible} 
                                             table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
     }
 

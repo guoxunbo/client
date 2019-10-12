@@ -1,13 +1,13 @@
 import React from 'react';
 
-import MaterialForm from '@components/mms/form/MaterialForm';
+import MaterialDialog from '@components/mms/dialog/MaterialDialog';
 import EntityListTable from '@components/framework/table/EntityListTable';
-import { Form, Button, Table } from 'antd';
+import { Button } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import TableObject from '@api/dto/ui/Table';
-import ReceiveMaterialForm from '@components/mms/form/ReceiveMaterialForm';
+import ReceiveMaterialDialog from '@components/mms/dialog/ReceiveMaterialDialog';
 import MessageUtils from '@api/utils/MessageUtils';
 
 const TableName = {
@@ -28,11 +28,9 @@ export default class MaterialTable extends EntityListTable {
 
     createForm = () => {
         let childrens = [];
-        const WrappedAdvancedMaterialForm = Form.create()(MaterialForm);
-        childrens.push(<WrappedAdvancedMaterialForm key={MaterialForm.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+        childrens.push(<MaterialDialog key={MaterialDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);
-        const WrappedAdvancedReceiveMaterialForm = Form.create()(ReceiveMaterialForm);
-        childrens.push(<WrappedAdvancedReceiveMaterialForm key={ReceiveMaterialForm.displayName} ref={this.formRef} object={this.state.receiveMaterialObject} visible={this.state.receiveMaterialFormVisible} 
+        childrens.push(<ReceiveMaterialDialog key={ReceiveMaterialDialog.displayName} ref={this.formRef} object={this.state.receiveMaterialObject} visible={this.state.receiveMaterialFormVisible} 
                                                             table={this.state.receiveMaterialTable} onOk={this.handleReceiveMaterialOk} onCancel={this.handleCancelReceiveMaterialLot} />);                                   
         return childrens;
 

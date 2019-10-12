@@ -1,9 +1,9 @@
 import EntityDialog from '@components/framework/dialog/EntityDialog';
 import QuestionRequest from '@api/question-manager/QuestionRequest';
 
-export default class QuestionForm extends EntityDialog {
+export default class QuestionDialog extends EntityDialog {
 
-    static displayName = 'QuestionForm';
+    static displayName = 'QuestionDialog';
 
     handleSave = (formObject) => {
         var self = this;

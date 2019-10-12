@@ -1,12 +1,12 @@
 
-import { Button, Form } from 'antd';
+import { Button } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
 import MessageUtils from '@api/utils/MessageUtils';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
-import MutipleMaterialLotActionForm, { ActionType } from '@components/mms/form/MutipleMaterialLotActionForm';
+import MutipleMaterialLotActionDialog, { ActionType } from '@components/mms/dialog/MutipleMaterialLotActionDialog';
 
 const TableName="MMLotStockIn";
 
@@ -26,8 +26,7 @@ export default class MaterialLotStockInTable extends EntityScanViewTable {
     }
 
     createForm = () => {
-        const WrappedAdvancedMutipleMaterialLotActionForm = Form.create()(MutipleMaterialLotActionForm);
-        return  <WrappedAdvancedMutipleMaterialLotActionForm action={ActionType.StockIn} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
+        return  <MutipleMaterialLotActionDialog action={ActionType.StockIn} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
                                             table={this.state.formTable} onOk={this.stockInSuccess} onCancel={this.handleCancel} />
     }
 

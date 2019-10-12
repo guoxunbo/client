@@ -1,9 +1,9 @@
 import EntityDialog from '@components/framework/dialog/EntityDialog';
 import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
 
-export default class MaterialLotActionForm extends EntityDialog {
+export default class MaterialLotActionDialog extends EntityDialog {
 
-    static displayName = 'MaterialLotActionForm';
+    static displayName = 'MaterialLotActionDialog';
 
     handleSave = () => {
         var self = this;
