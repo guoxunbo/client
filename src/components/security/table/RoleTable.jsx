@@ -163,20 +163,9 @@ export default class RoleTable extends EntityListTable {
         buttons.push(this.createAddButton());
         buttons.push(this.createImportButton());
         buttons.push(this.createExportDataAndTemplateButton());
-        buttons.push(<Button key="dispatchUser" type="primary" style={styles.tableButton} icon="user-add" onClick={() => this.openDispatchUserForm()}>{I18NUtils.getClientMessage(i18NCode.BtnDispatchUser)}</Button>);
-        buttons.push(<Button key="dispatchAutority" type="primary" style={styles.tableButton} icon="audit" onClick={() => this.openDispatchAuthorityForm()}>{I18NUtils.getClientMessage(i18NCode.BtnDispatchAuthority)}</Button>);
+        buttons.push(<Button key="dispatchUser" type="primary" className="table-button" icon="user-add" onClick={() => this.openDispatchUserForm()}>{I18NUtils.getClientMessage(i18NCode.BtnDispatchUser)}</Button>);
+        buttons.push(<Button key="dispatchAutority" type="primary" className="table-button" icon="audit" onClick={() => this.openDispatchAuthorityForm()}>{I18NUtils.getClientMessage(i18NCode.BtnDispatchAuthority)}</Button>);
         return buttons;
     }
 
 }
-
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    },
-    buttonGroup:{
-        marginBottom:'10px',
-        marginRight:'30px',
-        textAlign:'right'
-    }
-};

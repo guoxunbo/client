@@ -48,14 +48,10 @@ export default class UserTable extends EntityListTable {
         buttons.push(this.createAddButton());
         buttons.push(this.createImportButton());
         buttons.push(this.createExportDataAndTemplateButton());
-        buttons.push(<Button key="resetPwd" type="primary" style={styles.tableButton} icon="lock" onClick={() => this.resetPassword()}>{I18NUtils.getClientMessage(i18NCode.BtnResetPassword)}</Button>);
+        buttons.push(<Button key="resetPwd" type="primary" className="table-button" icon="lock" onClick={() => this.resetPassword()}>{I18NUtils.getClientMessage(i18NCode.BtnResetPassword)}</Button>);
         return buttons;
     }
 
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

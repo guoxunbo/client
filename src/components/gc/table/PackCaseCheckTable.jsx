@@ -87,20 +87,16 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
     }
 
     createJudgePassButton = () => {
-        return <Button key="judgePass" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgePass}>
+        return <Button key="judgePass" type="primary" className="table-button" icon="inbox" onClick={this.judgePass}>
                         Pass
                     </Button>
     }
 
     createJudgeNgButton = () => {
-        return <Button key="judgeNg" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgeNg}>
+        return <Button key="judgeNg" type="primary" className="table-button" icon="inbox" onClick={this.judgeNg}>
                         NG
                     </Button>
     }
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

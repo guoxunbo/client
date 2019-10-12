@@ -46,7 +46,7 @@ export default class EntityViewProperties extends EntityScanProperties{
     
     buildOtherComponent = () => {
         return (<div>
-                    <div style={styles.buttonGroup}>
+                    <div className="table-button-group">
                         {this.createButtonGroup()}
                     </div>
                     <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form}  object={this.state.formObject} table={this.state.table}/>
@@ -54,14 +54,3 @@ export default class EntityViewProperties extends EntityScanProperties{
     }
 
 }
-
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    },
-    buttonGroup:{
-        marginBottom:'10px',
-        marginRight:'30px',
-        textAlign:'right'
-    }
-};

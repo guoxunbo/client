@@ -313,7 +313,7 @@ export default class EntityListTable extends Component {
     }
 
     createAddButton = () => {
-        return <Button key="add" type="primary" style={styles.tableButton} icon="plus" onClick={() => this.handleAdd()}>{I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>;
+        return <Button key="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}>{I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>;
     }
 
     /**
@@ -332,7 +332,7 @@ export default class EntityListTable extends Component {
             </Menu>
         );
         return <Dropdown key="export" overlay={exportMenu}>
-                    <Button type="primary" style={styles.tableButton} icon="export" >
+                    <Button type="primary" className="table-button" icon="export" >
                         {I18NUtils.getClientMessage(i18NCode.BtnExp)} <Icon type="down" />
                     </Button>
                 </Dropdown>;
@@ -342,7 +342,7 @@ export default class EntityListTable extends Component {
      * 创建导出数据功能。基本功能具备
      */
     createExportDataButton = () => {
-        return <Button key="exportData" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.exportData}>
+        return <Button key="exportData" type="primary" className="table-button" icon="file-excel" onClick={this.exportData}>
                         {I18NUtils.getClientMessage(i18NCode.BtnExp)}
                     </Button>
     }
@@ -353,7 +353,7 @@ export default class EntityListTable extends Component {
     createImportButton = () => {
         return (<Upload key="import" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
                     customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <Button type="primary" style={styles.tableButton} icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImp)}</Button>
+                    <Button type="primary" className="table-button" icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImp)}</Button>
                 </Upload>);
     }
 
@@ -406,10 +406,10 @@ export default class EntityListTable extends Component {
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
           <div >
-            <div style={styles.buttonGroup}>
+            <div className="table-button-group">
                 {this.createButtonGroup()}
             </div>
-            <div style={styles.tableContainer}>
+            <div>
                 <Table
                     ref= {el => this.table = el}
                     dataSource={data}
@@ -449,14 +449,3 @@ EntityListTable.prototypes = {
     resetFlag: PropTypes.bool,
     resetData: PropTypes.func
 }
-
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    },
-    buttonGroup:{
-        marginBottom:'10px',
-        marginRight:'30px',
-        textAlign:'right'
-    }
-};

@@ -54,15 +54,10 @@ export default class CheckTable extends EntityScanViewTable {
     }
 
     createCheckButton = () => {
-        return <Button key="check" type="primary" style={styles.tableButton} onClick={() => this.handleCheck()}>
+        return <Button key="check" type="primary" className="table-button" onClick={() => this.handleCheck()}>
                  {IconUtils.buildIcon("icon-pandian")} {"盘点"}
                 </Button>;
     }
 
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};

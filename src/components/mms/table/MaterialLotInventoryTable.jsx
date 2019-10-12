@@ -49,7 +49,7 @@ export default class MaterialLotInventoryTable extends EntityListTable {
     }
 
     createStockOutButton = () => {
-        return <Button key="stockOut" type="primary" style={styles.tableButton} onClick={this.handleStockOut}>
+        return <Button key="stockOut" type="primary" className="table-button" onClick={this.handleStockOut}>
                         {IconUtils.buildIcon("icon-chuku")} {I18NUtils.getClientMessage(i18NCode.BtnStockOut)}
                     </Button>
     }
@@ -75,7 +75,7 @@ export default class MaterialLotInventoryTable extends EntityListTable {
     }
 
     createTransferInvButton = () => {
-        return <Button key="transferInv" type="primary" style={styles.tableButton} onClick={this.handleTransferMLotInv}>
+        return <Button key="transferInv" type="primary" className="table-button" onClick={this.handleTransferMLotInv}>
                         {IconUtils.buildIcon("icon-zhongzhuanku")} {I18NUtils.getClientMessage(i18NCode.BtnStockTransfer)}
                     </Button>
     }
@@ -115,7 +115,7 @@ export default class MaterialLotInventoryTable extends EntityListTable {
     }
 
     createPickButton = () => {
-        return <Button key="pick" type="primary" style={styles.tableButton} onClick={this.handlePick}>
+        return <Button key="pick" type="primary" className="table-button" onClick={this.handlePick}>
                         {IconUtils.buildIcon("icon-lingliao")}{I18NUtils.getClientMessage(i18NCode.BtnPick)}
                     </Button>
     }
@@ -191,14 +191,3 @@ export default class MaterialLotInventoryTable extends EntityListTable {
         });
     }
 }
-
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    },
-    buttonGroup:{
-        marginBottom:'10px',
-        marginRight:'30px',
-        textAlign:'right'
-    }
-};

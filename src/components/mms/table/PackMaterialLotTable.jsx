@@ -59,15 +59,11 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
     }
 
     createPackageButton = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} icon="inbox" onClick={this.package}>
+        return <Button key="receive" type="primary" className="table-button" icon="inbox" onClick={this.package}>
                         {I18NUtils.getClientMessage(i18NCode.BtnPackage)}
                     </Button>
     }
 
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

@@ -35,15 +35,11 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
     }
 
     createReceiveButton = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} icon="import" onClick={this.receive}>
+        return <Button key="receive" type="primary" className="table-button" icon="import" onClick={this.receive}>
                         {I18NUtils.getClientMessage(i18NCode.BtnReceive)}
                     </Button>
     }
 
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

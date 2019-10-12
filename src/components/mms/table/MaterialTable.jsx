@@ -49,7 +49,7 @@ export default class MaterialTable extends EntityListTable {
     }
 
     createReceiveMaterialLotButton = () => {
-        return <Button key="ReceiveMaterialLot" type="primary" style={styles.tableButton} icon="plus" onClick={() => this.handleReceiveMaterialLot()}>{I18NUtils.getClientMessage(i18NCode.BtnReceiveMaterialLot)}</Button>;
+        return <Button key="ReceiveMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot()}>{I18NUtils.getClientMessage(i18NCode.BtnReceiveMaterialLot)}</Button>;
     }
 
     handleReceiveMaterialLot = () => {
@@ -87,8 +87,3 @@ export default class MaterialTable extends EntityListTable {
     }
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};

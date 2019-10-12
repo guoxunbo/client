@@ -50,7 +50,7 @@ export default class MaterialLotTable extends EntityListTable {
     }
 
     createConsumeButton = () => {
-        return <Button key="consume" type="primary" style={styles.tableButton} onClick={() => this.handleAction(ActionType.Consume, TableName.MLotConsumeAction)}>
+        return <Button key="consume" type="primary" className="table-button" onClick={() => this.handleAction(ActionType.Consume, TableName.MLotConsumeAction)}>
                         {IconUtils.buildIcon("icon-consume")}  {I18NUtils.getClientMessage(i18NCode.BtnConsume)}
                     </Button>
     }
@@ -144,14 +144,3 @@ export default class MaterialLotTable extends EntityListTable {
         })
     }
 }
-
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    },
-    buttonGroup:{
-        marginBottom:'10px',
-        marginRight:'30px',
-        textAlign:'right'
-    }
-};

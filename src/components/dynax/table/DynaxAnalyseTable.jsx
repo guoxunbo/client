@@ -19,7 +19,7 @@ export default class DynaxAnalyseTable extends EntityListTable {
     createImportButton = () => {
         return (<Upload key="import" accept=".txt" 
                     customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <Button type="primary" style={styles.tableButton} icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImp)}</Button>
+                    <Button type="primary" className="table-button" icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImp)}</Button>
                 </Upload>);
     }
 
@@ -44,9 +44,3 @@ export default class DynaxAnalyseTable extends EntityListTable {
     }
 
 }
-
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};

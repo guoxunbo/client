@@ -72,20 +72,16 @@ export default class StockOutCheckTable extends EntityScanViewTable {
     }
 
     createJudgeOkButton = () => {
-        return <Button key="OK" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgeOk}>
+        return <Button key="OK" type="primary" className="table-button" icon="inbox" onClick={this.judgeOk}>
                         OK
                     </Button>
     }
 
     createJudgeNgButton = () => {
-        return <Button key="NG" type="primary" style={styles.tableButton} icon="inbox" onClick={this.judgeNg}>
+        return <Button key="NG" type="primary" className="table-button" icon="inbox" onClick={this.judgeNg}>
                         NG
                     </Button>
     }
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

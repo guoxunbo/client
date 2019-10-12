@@ -47,14 +47,10 @@ export default class OrderTable extends EntityListTable {
      * 同步EPR
      */
     createAsyncErpButton = () => {
-        return <Button key="asyncErp" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.asyncErp}>
+        return <Button key="asyncErp" type="primary" className="table-button" icon="file-excel" onClick={this.asyncErp}>
                         {"ERP"}
                     </Button>
     }
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

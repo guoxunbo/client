@@ -47,14 +47,10 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
     }
 
     createStockOut = () => {
-        return <Button key="stockOut" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.stockOut}>
+        return <Button key="stockOut" type="primary" className="table-button" icon="file-excel" onClick={this.stockOut}>
                         发货
                     </Button>
     }
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

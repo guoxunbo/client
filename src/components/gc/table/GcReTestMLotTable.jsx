@@ -50,15 +50,11 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
      * 发料
      */
     createReTest = () => {
-        return <Button key="reTest" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.reTest}>
+        return <Button key="reTest" type="primary" className="table-button" icon="file-excel" onClick={this.reTest}>
                         发料
                     </Button>
     }
 
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+

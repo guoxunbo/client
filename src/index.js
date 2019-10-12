@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 
-// 载入默认全局样式 normalize 、.clearfix 和一些 mixin 方法等
 import '@alifd/next/reset.scss';
 import router from './router';
 import "antd/dist/antd.css";
-import './global.scss';
+import globalStyles from './global.scss';
 import '@api/Extend';
 import moment from 'moment';
 import 'moment/locale/zh-cn';

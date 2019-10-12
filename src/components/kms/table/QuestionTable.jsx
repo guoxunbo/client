@@ -1,6 +1,6 @@
 import EntityListTable from '@components/framework/table/EntityListTable';
 import QuestionDialog from '@components/kms/dialog/QuestionDialog';
-import { Form, Button, Table } from 'antd';
+import { Button, Table } from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import QuestionRequest from '@api/question-manager/QuestionRequest';
@@ -49,11 +49,11 @@ export default class QuestionTable extends EntityListTable {
     }
 
     createWatchButton = () => {
-        return <Button key="watch" type="primary" style={styles.tableButton} icon="highlight" onClick={() => this.handleWatch()}>{I18NUtils.getClientMessage(i18NCode.BtnWatch)}</Button>;
+        return <Button key="watch" type="primary" className="table-button" icon="highlight" onClick={() => this.handleWatch()}>{I18NUtils.getClientMessage(i18NCode.BtnWatch)}</Button>;
     }
 
     createCloseButton = () => {
-        return <Button key="close" type="primary" style={styles.tableButton} icon="close-circle" onClick={() => this.handleClose()}>{I18NUtils.getClientMessage(i18NCode.BtnClose)}</Button>;
+        return <Button key="close" type="primary" className="table-button" icon="close-circle" onClick={() => this.handleClose()}>{I18NUtils.getClientMessage(i18NCode.BtnClose)}</Button>;
     }
 
     componentWillMount = () => {
@@ -189,10 +189,10 @@ export default class QuestionTable extends EntityListTable {
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
           <div >
-            <div style={styles.buttonGroup}>
+            <div className="table-button-group">
                 {this.createButtonGroup()}
             </div>
-            <div style={styles.tableContainer}>
+            <div>
                 <Table
                     ref= {el => this.table = el}
                     dataSource={data}
@@ -221,14 +221,3 @@ export default class QuestionTable extends EntityListTable {
     }
 }
 
-
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    },
-    buttonGroup:{
-        marginBottom:'10px',
-        marginRight:'30px',
-        textAlign:'right'
-    }
-};

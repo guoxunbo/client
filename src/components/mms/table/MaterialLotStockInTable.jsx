@@ -58,15 +58,11 @@ export default class MaterialLotStockInTable extends EntityScanViewTable {
     }
 
     createStockInButton = () => {
-        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.stockIn}>
+        return <Button key="packCaseCheck" type="primary" className="table-button" icon="inbox" onClick={this.stockIn}>
                         {I18NUtils.getClientMessage(i18NCode.BtnStockIn)}
                     </Button>
     }
 
 }
 
-const styles = {
-    tableButton: {
-        marginLeft:'20px'
-    }
-};
+
