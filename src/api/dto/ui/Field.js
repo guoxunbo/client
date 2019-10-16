@@ -37,7 +37,7 @@ const DisplayType = {
 
 const NumberType = [DisplayType.int, DisplayType.double];
 const DateType = [DisplayType.calendar, DisplayType.calendarFromTo, DisplayType.datetime, DisplayType.datetimeFromTo]
-
+const DataFromTo = [DisplayType.calendarFromTo,DisplayType.datetimeFromTo];
 const DisplaySelectType = [DisplayType.sysRefList, DisplayType.userRefList, DisplayType.referenceTable];
 
 const Aligin = {
@@ -306,12 +306,16 @@ export default class Field {
      * 对initialValue在不同的displayType上做不同的封装
      */
     buildInitialValue = (initialValue) => {
-        if (DateType.includes(this.displayType) && initialValue) {
+        if (DateType.includes(this.displayType)) {
             let formatCode = DateFormatType.Date;
             if (this.displayType.startsWith(DisplayType.datetime)) {
                 formatCode = DateFormatType.DateTime;
             }
-            initialValue = moment(initialValue, formatCode)
+            if (DataFromTo.includes(this.displayType)){
+                return initialValue;
+            } else {
+                initialValue = moment(new Date(), formatCode);
+            }
         }
         if (DisplayType.radio === this.displayType) {
             if (typeof initialValue === "string") {
