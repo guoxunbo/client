@@ -9,6 +9,7 @@ import MessageUtils from '@api/utils/MessageUtils';
 import { PrintServiceUrl, PrintBboxCount } from '@api/gc/GcConstDefine';
 import GetPrintBboxParameterRequest from '@api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
 import PrintUtils from '@api/utils/PrintUtils';
+import * as PropTypes from 'prop-types';
 
 /**
  * 包装物料批次
@@ -43,7 +44,7 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
         }
         let requestObject = {
             materialLots: data,
-            packageType: "PackCase",
+            packageType: this.props.packageType,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
@@ -66,4 +67,16 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
 
 }
 
+PackMaterialLotTable.prototypes = {
+    table: PropTypes.object.isRequired,
+    data: PropTypes.array,
+    rowClassName: PropTypes.func,
+    rowkey: PropTypes.string,
+    pagination: PropTypes.pagination,
+    selectedRowKeys: PropTypes.array,
+    selectedRows: PropTypes.array,
+    resetFlag: PropTypes.bool,
+    resetData: PropTypes.func,
+    packageType: PropTypes.string.isRequired
+}
 

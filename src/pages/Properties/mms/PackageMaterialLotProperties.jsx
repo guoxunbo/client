@@ -2,12 +2,20 @@ import EntityScanProperties from "@properties/framework/EntityScanProperties";
 import PackMaterialLotTable from "@components/mms/table/PackMaterialLotTable";
 import PackageValidationRequest from "@api/package-validation/PackageValidationRequest";
 
-const PackageType = "PackCase";
-
+/**
+ * 所有包装都需要用的页面。
+ * 如果有包装需要，务必继承此页面
+ * paramter1值表示PackageType
+ */
 export default class PackageMaterialLotProperties extends EntityScanProperties{
 
     static displayName = 'PackageMaterialLotProperties';
-      
+
+    constructor(props) {
+        super(props);
+        this.state = {...this.state, packageType: this.props.match.params.parameter1};
+      }
+
     afterQuery = (responseBody) => {
         let queryDatas = responseBody.dataList;
         if (queryDatas && queryDatas.length > 0) {
@@ -19,7 +27,7 @@ export default class PackageMaterialLotProperties extends EntityScanProperties{
     
     validationPackgeRule(materialLot) {
         let self = this;
-        let {rowKey,tableData} = this.state;
+        let {rowKey,tableData, packageType} = this.state;
         if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
             tableData.unshift(materialLot);
         }
@@ -31,7 +39,7 @@ export default class PackageMaterialLotProperties extends EntityScanProperties{
             self.form.resetFormFileds();
         } else {
             let requestObject = {
-                packageType: PackageType,
+                packageType: packageType,
                 materialLots: tableData,
                 success: function() {
                     self.setState({ 
@@ -62,7 +70,8 @@ export default class PackageMaterialLotProperties extends EntityScanProperties{
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading} 
-                                    resetData={this.resetData.bind(this)}/>
+                                    resetData={this.resetData.bind(this)}
+                                    packageType={this.state.packageType}/>
     }
 
 }
