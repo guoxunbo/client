@@ -69,6 +69,7 @@ const i18NCode = {
     TransferSource: "Source",
     TransferTarget: "Target",
     Operation: "Operation",
+    NoMatchingOrder: "NoMatchingOrder",
     
 }
 
@@ -413,7 +414,11 @@ const i18Messages = {
         English: "CheckItemList",
         Res: ""
     },
-    
+    NoMatchingOrder: {
+        Chinese: "没有匹配的订单",
+        English: "NoMatchingOrder",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};

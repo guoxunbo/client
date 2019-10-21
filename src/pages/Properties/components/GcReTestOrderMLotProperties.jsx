@@ -3,6 +3,10 @@ import GcReTestMLotTable from "../../../components/Table/gc/GcReTestMLotTable";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import ValidationSoOrTestRequest from "../../../api/gc/validation-so-test/ValidationSoOrTestRequest";
 import ValidationMaterialRequest from "../../../api/gc/validation -material/ValidationMaterialRequest";
+import ValidateDocumentLineRequest from "../../../api/gc/validate-documentline/ValidateDocumentLineRequest";
+import I18NUtils from "../../../api/utils/I18NUtils";
+import { i18NCode } from "../../../api/const/i18n";
+import { Notification } from "../../../components/notice/Notice";
 
 export default class GcReTestOrderMLotProperties extends EntityScanProperties{
 
@@ -24,6 +28,7 @@ export default class GcReTestOrderMLotProperties extends EntityScanProperties{
     }
 
     queryData = (whereClause) => {
+        debugger;
         const self = this;
         let {rowKey,tableData} = this.state;
         let requestObject = {
@@ -40,6 +45,7 @@ export default class GcReTestOrderMLotProperties extends EntityScanProperties{
                 queryDatas.forEach(data => {
                   if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                     tableData.unshift(data);
+                    self.getMatchesOrder(data);
                   }
                 });
                 self.setState({ 
@@ -54,6 +60,57 @@ export default class GcReTestOrderMLotProperties extends EntityScanProperties{
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    }
+
+    /**
+     * 20191018 gc要求扫描Box信息的同时查询出能匹配该BOX的订单信息，如果订单信息只有
+     * 一条默认选中，如果订单有多条，默认选择第一条
+     */
+    getMatchesOrder = (materialLot) => {
+      debugger;
+      let self = this;
+      let orderTabel = this.props.orderTable;
+      let {selectedRowKeys, selectedRows} = orderTabel.state;
+      let documentLines = orderTabel.props.data;
+      let requestObject = {
+        documentLines : documentLines,
+        materialLot : materialLot,
+        success: function(responseBody) {
+          let queryDatas = responseBody.documentLineList;
+          if (queryDatas && queryDatas.length > 0) {
+            self.resetOrderData(orderTabel);
+            selectedRowKeys.push(queryDatas[0]);
+            selectedRows.push(queryDatas[0]);
+            orderTabel.setState({
+              selectedRowKeys: selectedRowKeys,
+              selectedRows: selectedRows,
+              data: queryDatas,
+              loading: false,
+              resetFlag: true
+            });
+
+          } else {
+            self.showNoMatchingOrder();
+            self.resetOrderData(orderTabel);
+          }
+        }
+      }
+      ValidateDocumentLineRequest.sendValidationRequest(requestObject);
+    }
+
+    resetOrderData = (orderTabel) => {
+      orderTabel.setState({
+        data: [],
+        loading: false,
+        resetFlag: true
+      });
+  }
+
+    showNoMatchingOrder = () => {
+      this.setState({ 
+        loading: false
+      });
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.NoMatchingOrder));
     }
 
     /**

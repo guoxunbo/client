@@ -41,6 +41,8 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
                     self.props.resetData();
                 }
                 MessageUtils.showOperationSuccess();
+                //重测发料完成后刷新页面
+                window.location.reload(true);
             }
         }
         RetestManagerRequest.sendRetestRequest(requestObject);
