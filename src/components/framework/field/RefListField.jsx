@@ -1,8 +1,4 @@
-import RefListManagerRequestBody from '@api/ref-list-manager/RefListManagerRequestBody';
-import RefListManagerRequestHeader from '@api/ref-list-manager/RefListManagerRequestHeader';
-import {UrlConstant} from "@api/const/ConstDefine";
-import MessageUtils from "@api/utils/MessageUtils";
-import Request from '@api/Request';
+import RefListManagerRequest from '@api/ref-list-manager/RefListManagerRequest';
 import Combox from './Combox';
 
 import * as PropTypes from 'prop-types';
@@ -17,23 +13,16 @@ export default class RefListField extends Combox {
 
     queryData = () => {
         let self = this;
-        let requestBody = {};
-        if (this.props.owner) {
-            requestBody = RefListManagerRequestBody.buildOwnerData(this.props.referenceName)
-        } else {
-            requestBody = RefListManagerRequestBody.buildSystemData(this.props.referenceName)
-        }
-        let requestHeader = new RefListManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.RefListMangerUrl);
-        let requestObject = {
-            request: request,
+        let object = {
+            owner:this.props.owner,
+            referenceName: this.props.referenceName,
             success: function(responseBody) {
                 self.setState({
                     data: responseBody.dataList,
                 });
             }
         }
-        MessageUtils.sendRequest(requestObject);
+        RefListManagerRequest.sendGetDataRequest(object);
     }
 }
 

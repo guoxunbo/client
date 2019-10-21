@@ -1,19 +1,18 @@
 
-import { Button, Form } from 'antd';
+import { Button } from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
 import MessageUtils from '@api/utils/MessageUtils';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
-import StockCheckOutForm from '@components/gc/form/StockCheckOutForm';
-import StockOutCheckRequest from '@api/gc/stock-out-check/StockOutCheckRequest';
+import QualityCheckItemDialog from '@components/mms/dialog/QualityCheckItemDialog';
 
-const StockOutCheckTableName="GCStockOutCheck";
+const QualityCheckTableName="COMQualityCheck";
 
-export default class StockOutCheckTable extends EntityScanViewTable {
+export default class QualityCheckTable extends EntityScanViewTable {
 
-    static displayName = 'StockOutCheckTable';
+    static displayName = 'QualityCheckTable';
 
     constructor(props) {
         super(props);
@@ -28,11 +27,13 @@ export default class StockOutCheckTable extends EntityScanViewTable {
     }
 
     createForm = () => {
-        const WrappedAdvancedStockCheckOutForm = Form.create()(StockCheckOutForm);
-        return  <WrappedAdvancedStockCheckOutForm checkItemList={this.props.checkItemList} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
+        return  <QualityCheckItemDialog checkItemList={this.props.checkItemList} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
                                             table={this.state.formTable} onOk={this.judgeSuccess} onCancel={this.handleCancel} />
     }
-
+    
+    /**
+     * 判定之后的回调函数
+     */
     judgeSuccess = () => {
         this.setState({formVisible : false});
         if (this.props.resetData) {
@@ -41,15 +42,12 @@ export default class StockOutCheckTable extends EntityScanViewTable {
         MessageUtils.showOperationSuccess();
     }
 
+    /**
+     * 各自的判定调用不同的接口 需要各自业务实现
+     *  调用成功之后务必调用judgeSuccess进行清空数据
+     */
     judgeOk = () => {
-        let self = this;
-        let object = {
-            materialLots : this.state.data,
-            success: function(responseBody) {
-                self.judgeSuccess();
-            }
-        }
-        StockOutCheckRequest.sendJudgeMaterialLotRequest(object);
+        
     }
 
     judgeNg = () => {
@@ -60,7 +58,7 @@ export default class StockOutCheckTable extends EntityScanViewTable {
             return;
         }
         let requestObject = {
-            name: StockOutCheckTableName,
+            name: QualityCheckTableName,
             success: function(responseBody) {
                 self.setState({
                     formTable: responseBody.table,

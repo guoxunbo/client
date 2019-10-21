@@ -1,8 +1,9 @@
 import EntityDialog from "@components/framework/dialog/EntityDialog";
 import Tab from "@api/dto/ui/Tab";
 import { Tabs, Row, Modal } from "antd";
-import EditorColumnTable from "@components/gc/table/EditorColumnTable";
+import EditorColumnTable from "@components/framework/table/EditorColumnTable";
 import StockOutCheckRequest from "@api/gc/stock-out-check/StockOutCheckRequest";
+import * as PropTypes from 'prop-types';
 
 const TabPane = Tabs.TabPane;
 const { confirm } = Modal;
@@ -22,7 +23,7 @@ export default class CheckItemForm extends EntityDialog {
                 let tabPanel = new Tab(tab);
                 tabPanels.push(<TabPane tab={tabPanel.title} key={tabPanel.name}>
                     <Row gutter={16}>
-                        <EditorColumnTable dataSource={this.props.checkItemList} ref={(editorColumnTable) => { this.editorColumnTable = editorColumnTable }}refTableName={tabPanel.refTableName}></EditorColumnTable>
+                        <EditorColumnTable dataSource={this.props.checkItemList} ref={(editorColumnTable) => { this.editorColumnTable = editorColumnTable }} refTableName={tabPanel.refTableName}></EditorColumnTable>
                     </Row>
                 </TabPane>);
             }) 
@@ -69,5 +70,13 @@ export default class CheckItemForm extends EntityDialog {
     }
 
 }
-
+CheckItemForm.propTypes={
+    title: PropTypes.string,
+    visible: PropTypes.bool,
+    object: PropTypes.array,
+    onCancel: PropTypes.func,
+    onOk: PropTypes.func,
+    table: PropTypes.object,
+    tableData: PropTypes.array
+}
 

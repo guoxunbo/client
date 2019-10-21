@@ -24,7 +24,9 @@ import QuestionProperties from '@properties/kms/QuestionProperties';
 //mms
 import AddPackagaMaterialLotProperties from '@properties/mms/AddPackagaMaterialLotProperties';
 import UnPackagaMaterialLotProperties from '@properties/mms/UnPackagaMaterialLotProperties';
-import StockOutCheckProperties from '@properties/mms/StockOutCheckProperties';
+import QualityCheckProperties from '@properties/mms/QualityCheckProperties';
+import OQCCheckProperties from '@properties/mms/OQCCheckProperties';
+
 import PackageMaterialLotProperties from '@properties/mms/PackageMaterialLotProperties';
 import MaterialLotProperties from '@properties/mms/MaterialLotProperties';
 import MaterialStatusModelProperties from '@properties/mms/MaterialStatusModelProperties';
@@ -242,7 +244,7 @@ const routerConfig = [
   {
     path: buildPath('Pack/StockOutCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: StockOutCheckProperties,
+    component: OQCCheckProperties,
   },
   {
     path: buildPath('Pack/PrintCaseLabel'),

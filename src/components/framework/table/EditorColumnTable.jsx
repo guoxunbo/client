@@ -89,7 +89,6 @@ class EditorColumnTable extends React.Component {
     };
   }
 
-
   buildTable = () => {
     const self = this;
     let requestObject = {
