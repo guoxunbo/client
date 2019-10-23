@@ -89,13 +89,6 @@ const RefTableName = {
     NBOrg: "NBOrg"
 };
 
-/**
- * 错误码 需要前端自行国际化
- */
-const ErrorCode = {
-    NetworkError: "common.network_error"
-};
-
 const EntityModel = {
     NBMessage: "com.newbiest.base.model.NBMessage",
     NBUser: "com.newbiest.security.model.NBUser",
@@ -145,4 +138,4 @@ const SqlType = {
 }
 
 
-export {UrlConstant, DataBaseType, DateFormatType, SystemRefListName, RefTableName, ErrorCode, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType};
+export {UrlConstant, DataBaseType, DateFormatType, SystemRefListName, RefTableName, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType};

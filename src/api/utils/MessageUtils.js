@@ -1,4 +1,4 @@
-import {ErrorCode, ResultIdentify, Language} from '@const/ConstDefine';
+import {ResultIdentify, Language} from '@const/ConstDefine';
 import NoticeUtils from '@utils/NoticeUtils';
 
 import {Response} from "@api/Response";
@@ -257,7 +257,7 @@ export default class MessageUtils {
         } else {
             // String的不是后台的错误 需要去加载Client端的i18N信息
             if (exception == "Error: Network Error") {
-                error = ErrorCode.NetworkError;
+                error = I18NUtils.getClientMessage(i18NCode.NetworkError);
             } else {
                 error = exception;
             }

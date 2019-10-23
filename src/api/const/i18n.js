@@ -1,4 +1,5 @@
 const i18NCode = {
+    NetworkError: "NetworkError",
     Yes: "Yes",
     No: "No",
     Login: "Login",
@@ -413,7 +414,11 @@ const i18Messages = {
         English: "CheckItemList",
         Res: ""
     },
-    
+    NetworkError: {
+        Chinese: "网络错误",
+        English: "NetworkError",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};
