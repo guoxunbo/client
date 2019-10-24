@@ -1,5 +1,6 @@
 
 const ServerAddress = {
+    // NewbiestUrl : "http://127.0.0.1:8080"
     NewbiestUrl : "http://10.110.160.71:10010"
 }
 

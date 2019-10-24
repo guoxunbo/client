@@ -1,10 +1,24 @@
 import QuestionLineRequestBody from "./QuestionLineRequestBody";
 import QuestionLineRequestHeader from "./QuestionLineRequestHeader";
-import { UrlConstant } from "../const/ConstDefine";
+import { UrlConstant, DefaultRowKey } from "../const/ConstDefine";
 import Request from "../Request";
 import MessageUtils from "../utils/MessageUtils";
 
 export default class QuestionLineRequest {
+
+    static sendMergeRequest = (object) => {
+        if (object.values.newFlag) {
+            object.values[DefaultRowKey] = undefined;
+        }
+        let requestBody = QuestionLineRequestBody.buildMergeEntity(object.values);
+        let requestHeader = new QuestionLineRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.QuestionLineManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 
     static sendGetByQuestionRrn = (object) => {
         let requestBody = QuestionLineRequestBody.GetByQuestionRrn(object.questionRrn);

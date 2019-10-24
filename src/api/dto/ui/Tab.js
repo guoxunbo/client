@@ -3,6 +3,7 @@ import { Row, Col, Tabs} from 'antd';
 import {SessionContext} from '../../Application';
 import {Language} from '../../const/ConstDefine';
 import EditorTable from '../../../components/Table/edit/EditorTable'
+import QuestionLineTabTable from '../../../components/Table/edit/QuestionLineTabTable';
 
 const TabPane = Tabs.TabPane;
 
@@ -80,7 +81,12 @@ export default class Tab {
             }
             // 如果是新增的话不显示TAB为Table的新增和保存按钮
             let newFlag = !formObject.objectRrn ? true : false;
-            children.push(<EditorTable parentObject={formObject} editFlag={this.editFlag} newFlag={newFlag} refTableName={this.refTableName} whereClause={whereClause} key={this.name}></EditorTable>)
+            // TODO 这里seeya客制化，后续可以直接废弃
+            if (this.name === "QuestionLineInfo") {
+                children.push(<QuestionLineTabTable parentObject={formObject} editFlag={this.editFlag} newFlag={newFlag} refTableName={this.refTableName} whereClause={whereClause} key={this.name}></QuestionLineTabTable>)
+            } else {
+                children.push(<EditorTable parentObject={formObject} editFlag={this.editFlag} newFlag={newFlag} refTableName={this.refTableName} whereClause={whereClause} key={this.name}></EditorTable>)
+            }
         }
         return <TabPane tab={this.title} key={this.name}>
                     <Row gutter={16}>

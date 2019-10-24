@@ -1,5 +1,7 @@
 import EntityForm from './EntityForm';
 import QuestionRequest from '../../api/question-manager/QuestionRequest';
+import Tab from '../../api/dto/ui/Tab';
+import { Tabs } from 'antd';
 
 export default class QuestionForm extends EntityForm {
 
