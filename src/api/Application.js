@@ -21,29 +21,18 @@ const Application = {
         // 默认的分页配置
         pagination: {
             // 默认页数
-            pageSize: 10,
+            pageSize: 15,
             // 是否允许快速跳转到第几页
             showQuickJumper: true,
             // 是否可以改变 pageSize
             showSizeChanger: true,
             // 当只有1页的时候是否隐藏分页器
-            hideOnSinglePage: true
+            hideOnSinglePage: true,
+            pageSizeOptions:['15', '20', '50', '100']
         },
     },
     notice: {
         duration: 10,
-        // 构建button组件是否支持关闭 支持点击锁定
-        button: {
-            closer: true,
-            sticker: true,
-            labels: {
-                close: 'Close', stick: 'Stick', unstick: 'Unstick'
-            }
-        },
-        mobile: {
-            swipeDismiss: true,
-            styling: true
-        }
     },
     jsBarCode: {
         // 是否在条形码下方显示文字

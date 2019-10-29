@@ -23,14 +23,11 @@ export default class MaterialLotManagerRequestBody {
      * @param formObject 接收表单对象，页面显示的栏位如果需要保存到后台，都要在materialAction中体现
      */
     static buildReceiveMaterialLot(formObject) {
-        // receiveMaterial.materialName, receiveMaterial.warehouseRrn, receiveMaterial.transQty
         let materialLot = new MaterialLot();
-        materialLot.setMaterialName(formObject.materialName);
-        
+        PropertyUtils.copyProperties(formObject, materialLot);
+
         let materialLotAction = new MaterialLotAction();
         PropertyUtils.copyProperties(formObject, materialLotAction);
-        // materialLotAction.setTargetWarehouseRrn(warehouseRrn);
-        // materialLotAction.setTransQty(qty);
         return new MaterialLotManagerRequestBody(ActionType.Receive2Warehouse, materialLot, materialLotAction);
     }
 

@@ -100,6 +100,12 @@ const routerConfig = [
     component: EntityProperties,
   },
   {
+    path: buildPath('System/ParameterManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+
+  {
     path: buildPath('Security/UserManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UserProperties,
