@@ -10,6 +10,7 @@ import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
 import TableObject from '../../api/dto/ui/Table';
 import ReceiveMaterialForm from '../Form/ReceiveMaterialForm';
 import MessageUtils from '../../api/utils/MessageUtils';
+import AsyncManagerRequest from '../../api/gc/async-manager/AsyncManagerRequest';
 
 const TableName = {
     ReceiveMLot: "MMReceiveMLot"
@@ -48,7 +49,20 @@ export default class MaterialTable extends EntityListTable {
         buttons.push(this.createImportButton());
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createReceiveMaterialLotButton());
+        buttons.push(this.createAsyncProductInfoButton());
         return buttons;
+    }
+
+    createAsyncProductInfoButton = () => {
+        return <Button key="AsyncMesProductInfo" type="primary" style={styles.tableButton} icon="file-excel" onClick={() => this.handleAsyncProductInfo()}>{"Product"}</Button>;
+    }
+
+    handleAsyncProductInfo = () => {
+        const {asyncType} = this.props;
+        let object = {
+            actionType : asyncType
+        }
+        AsyncManagerRequest.sendAsyncRequest(object);
     }
 
     createReceiveMaterialLotButton = () => {

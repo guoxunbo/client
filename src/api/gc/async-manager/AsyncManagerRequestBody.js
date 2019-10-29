@@ -2,7 +2,8 @@
 const ActionType = {
     AsyncSo : "AsyncSo",
     AsyncMaterialOutOrder : "AsyncMaterialOutOrder",
-    AsyncMaterial : "AsyncMaterial"
+    AsyncMaterial : "AsyncMaterial",
+    AsyncMesProduct: "AsyncProduct"
 }
 export default class AsyncManagerRequestBody {
 
