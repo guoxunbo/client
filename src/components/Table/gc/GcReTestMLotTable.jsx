@@ -6,6 +6,7 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import RetestManagerRequest from '../../../api/gc/retest-manager/RetestManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
+import { Tag } from 'antd';
 
 /**
  * 重测发料的物料批次表格
@@ -17,8 +18,24 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());
+        buttons.push(this.createTotalNumber());
         buttons.push(this.createReTest());
         return buttons;
+    }
+    
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                count = count + data.currentQty;
+            });
+        }
+        return <Tag color="#2db7f5">颗数：{count}</Tag>
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
     }
 
     reTest = () => {

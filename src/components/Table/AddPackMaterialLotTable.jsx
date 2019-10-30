@@ -9,6 +9,7 @@ import AppendPackageMaterialLotRequest from '../../api/append-package-material-l
 import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
 import PrintUtils from '../../api/utils/PrintUtils';
 import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
+import { Tag } from 'antd';
 
 /**
  * 追加包装
@@ -19,9 +20,26 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createStatistic());
+        buttons.push(this.createTotalNumber());
         buttons.push(this.createUnPackageButton());
         return buttons;
     }
+
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                count = count + data.currentQty;
+            });
+        }
+        return <Tag color="#2db7f5">颗数：{count}</Tag>
+    }
+    createStatistic = () => {
+        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
+    }
+
     buildOperation = (record) => {
         let operations = [];
         if (record.newFlag) {

@@ -18,6 +18,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());
+        buttons.push(this.createTotalNumber());
         buttons.push(this.createStockOut());
         return buttons;
     }
@@ -51,8 +52,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
         StockOutManagerRequest.sendStockOutRequest(requestObj);
     }
 
-
-    createStatistic = () => {
+    createTotalNumber = () => {
         let materialLots = this.state.data;
         let count = 0;
         if(materialLots && materialLots.length > 0){
@@ -60,7 +60,11 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">{count}</Tag>
+        return <Tag color="#2db7f5">颗数：{count}</Tag>
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
     }
 
     createStockOut = () => {

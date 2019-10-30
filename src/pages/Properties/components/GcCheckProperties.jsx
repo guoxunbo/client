@@ -22,7 +22,7 @@ export default class GcCheckProperties extends EntityScanProperties{
             if (queryDatas && queryDatas.length > 0) {
               queryDatas.forEach(data => {
                 if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  tableData.push(data);
+                  tableData.unshift(data);
                 }
               });
               self.setState({ 
