@@ -13,6 +13,8 @@ import EntityDoubleScanProperties from '@properties/framework/EntityDoubleScanPr
 import EntityScanCheckProperties from '@properties/framework/EntityScanCheckProperties';
 import EntityViewProperties from '@properties/framework/EntityViewProperties';
 import GeneratorRuleProperties from '@properties/idgenerator/GeneratorRuleProperties';
+import MessageProperties from '@properties/framework/MessageProperties';
+import ParameterProperties from '@properties/framework/ParameterProperties';
 
 //security
 import UserProperties from '@properties/security/UserProperties';
@@ -44,6 +46,7 @@ import GcPrintCaseLabelProperties from '@properties/gc/GcPrintCaseLabelPropertie
 import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 //dynax
 import DynaxAnalyseProperties from '@properties/dynax/DynaxAnalyseProperties';
+
 
 /**
  * 构建url ?表示可选参数
@@ -97,12 +100,12 @@ const routerConfig = [
   {
     path: buildPath('System/MessageManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: MessageProperties,
   },
   {
     path: buildPath('System/ParameterManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: ParameterProperties,
   },
 
   {

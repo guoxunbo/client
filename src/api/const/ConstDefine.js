@@ -34,6 +34,7 @@ const UrlConstant = {
     EntityUploadFileUrl: ModuleUrlConstant.Framework + "uploadEntityFile",
     EntityDownloadFileUrl: ModuleUrlConstant.Framework + "downloadEntityFile",
     EntityListManagerUrl: ModuleUrlConstant.Framework + "entityListManage",
+    ParameterManagerUrl: ModuleUrlConstant.Framework + "parameterManage",
 
      //Security
     UserManagerUrl: ModuleUrlConstant.Security + "userManage",
@@ -47,6 +48,7 @@ const UrlConstant = {
     TableMangerUrl: ModuleUrlConstant.UI + "tableManage",
     ExporttUrl: ModuleUrlConstant.UI + "export",
     ImportUrl:  ModuleUrlConstant.UI + "importData",
+    MessageManagerUrl: ModuleUrlConstant.UI + "messageManage",
 
     //SM
     StatusModelManagerUrl: ModuleUrlConstant.StatusMachine + "statusModelManage",
