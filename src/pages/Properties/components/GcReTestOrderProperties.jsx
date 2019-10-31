@@ -2,6 +2,7 @@ import EntityProperties from "./entityProperties/EntityProperties";
 import OrderTable from "../../../components/Table/gc/OrderTable";
 import { ActionType } from "../../../api/gc/async-manager/AsyncManagerRequestBody";
 import GcReTestOrderMLotProperties from "./GcReTestOrderMLotProperties";
+import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 
 export default class GcReTestOrderProperties extends EntityProperties{
 
@@ -18,6 +19,22 @@ export default class GcReTestOrderProperties extends EntityProperties{
           loading: false,
           resetFlag: true
         });
+    }
+
+    getTableData = () => {
+        const self = this;
+        let requestObject = {
+          tableRrn: this.state.tableRrn,
+          success: function(responseBody) {
+            self.setState({
+              tableData: responseBody.dataList,
+              table: responseBody.table,
+              loading: false
+            }); 
+            self.form.handleSearch();
+          }
+        }
+        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
 
     buildTable = () => {

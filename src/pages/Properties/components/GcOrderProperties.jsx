@@ -2,6 +2,7 @@ import EntityProperties from "./entityProperties/EntityProperties";
 import OrderTable from "../../../components/Table/gc/OrderTable";
 import { ActionType } from "../../../api/gc/async-manager/AsyncManagerRequestBody";
 import GcStockOutOrderMLotProperties from "./GcStockOutOrderMLotProperties";
+import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 
 export default class GcOrderProperties extends EntityProperties{
 
@@ -19,6 +20,22 @@ export default class GcOrderProperties extends EntityProperties{
           resetFlag: true
         });
     }
+
+    getTableData = () => {
+        const self = this;
+        let requestObject = {
+          tableRrn: this.state.tableRrn,
+          success: function(responseBody) {
+            self.setState({
+              tableData: responseBody.dataList,
+              table: responseBody.table,
+              loading: false
+            }); 
+            self.form.handleSearch();
+          }
+        }
+        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+      }
 
     buildTable = () => {
         return <OrderTable scrollY={200} pagination={false} ref={(orderTable) => { this.orderTable = orderTable }} asyncType={ActionType.AsyncSo} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
