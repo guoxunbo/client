@@ -9,7 +9,7 @@ export default class GetPrintBboxParameterRequest {
     static sendQueryRequest = (object) => {
         let requestBody = GetPrintBboxParameterRequestBody.buildQuery(object.materialLotRrn);
         let requestHeader = new GetPrintBboxParameterRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.GCGetPringBboxParameterUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCGetPrintBboxParameterUrl);
         let requestObject = {
             request: request,
             success: object.success,

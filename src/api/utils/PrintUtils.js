@@ -49,4 +49,29 @@ export default class PrintUtils {
         };
         MessageUtils.sendGetRequest(requestObject);
     }
+
+    /**
+     * 批量调用bartender的IntergrationBuilder的web服务打印 不判断打印结果
+     * @param url 路径
+     * @param parameters 参数
+     * @param printCount 打印份数
+     */
+    static MultiPrintWithBtIbForWeb = (url, parameters, printCount) => {
+        if (!printCount || !Number(printCount) || Number(printCount) == 0) {
+            console.info("PrintCount is not a number or not set. [" + printCount + "]. so reset it to 1")
+            printCount = 1;
+            if (!parameters) {
+                parameters = {};
+            }
+        }
+        parameters[PrintParamterName.printCount] = printCount;
+        let requestObject = {
+            url: url,
+            params: parameters,
+            success: function(response) {
+                
+            }
+        };
+        MessageUtils.sendGetRequest(requestObject);
+    }
 }

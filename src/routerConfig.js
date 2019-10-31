@@ -30,6 +30,7 @@ import AddPackagaMaterialLotProperties from './pages/Properties/components/AddPa
 import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCaseLabelProperties';
 import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
 import GcMaterialLotStockInProperties from './pages/Properties/components/GcMaterialLotStockInProperties';
+import GcPrintVBoxLabelProperties from './pages/Properties/components/GcPrintVBoxLabelProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -241,6 +242,11 @@ const routerConfig = [
     path: buildPath('Pack/PrintCaseLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintCaseLabelProperties,
+  },
+  {
+    path: buildPath('Pack/PrintVBoxLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPrintVBoxLabelProperties,
   },
   //RTM
   {
