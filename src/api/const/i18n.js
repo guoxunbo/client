@@ -59,6 +59,7 @@ const i18NCode = {
     BtnSearch: "Search",
     BtnReset: "Reset",
     BtnBind: "Bind",
+    BtnRecordExpress: "RecordExpress",
     BtnUnBind: "UnBind",
     DataNotFound: "DataNotFound",
     Collapse: "Collapse",
@@ -252,6 +253,11 @@ const i18Messages = {
     UnConsume: {
         Chinese: "反消耗",
         English: "UnConsume",
+        Res: ""
+    },
+    RecordExpress: {
+        Chinese: "记录快递单号",
+        English: "RecordExpress",
         Res: ""
     },
     Scrap: {
