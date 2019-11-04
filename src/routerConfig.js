@@ -31,6 +31,7 @@ import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCas
 import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
 import GcMaterialLotStockInProperties from './pages/Properties/components/GcMaterialLotStockInProperties';
 import GcPrintVBoxLabelProperties from './pages/Properties/components/GcPrintVBoxLabelProperties';
+import GcRecordExpressNumberProperties from './pages/Properties/components/GcRecordExpressNumberProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -170,6 +171,11 @@ const routerConfig = [
     path: buildPath('Doc/ReTestOrderManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcReTestOrderProperties,
+  },
+  {
+    path: buildPath('Doc/RecordExpressNumber'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRecordExpressNumberProperties,
   },
   //WMS
   {
