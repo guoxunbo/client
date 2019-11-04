@@ -70,6 +70,10 @@ const i18NCode = {
     TransferTarget: "Target",
     Operation: "Operation",
     NoMatchingOrder: "NoMatchingOrder",
+    ErrorNumber: "ErrorNumber",
+    TotalStrokeCount: "TotalStrokeCount",
+    TotalNumber : "TotalNumber",
+    DataAlreadyExists: "DataAlreadyExists",
     
 }
 
@@ -417,6 +421,26 @@ const i18Messages = {
     NoMatchingOrder: {
         Chinese: "没有匹配的订单",
         English: "NoMatchingOrder",
+        Res: ""
+    },
+    ErrorNumber: {
+        Chinese: "异常笔数",
+        English: "ErrorNumber",
+        Res: ""
+    },
+    TotalStrokeCount: {
+        Chinese: "总笔数",
+        English: "StrokeCount",
+        Res: ""
+    },
+    TotalNumber: {
+        Chinese: "总数量",
+        English: "TotalNumber",
+        Res: ""
+    },
+    DataAlreadyExists: {
+        Chinese: "数据已经存在",
+        English: "Data already exists",
         Res: ""
     },
 }

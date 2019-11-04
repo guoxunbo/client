@@ -6,6 +6,7 @@ import IconUtils from '../../../api/utils/IconUtils';
 import CheckInventoryManagerRequest from '../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Notification } from '../../notice/Notice';
+import { Tag } from 'antd';
 
 /**
  * 格科盘点表
@@ -57,8 +58,50 @@ export default class CheckTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createNumberStatistic());
+        buttons.push(this.createTotalNumberStatistic());
+        buttons.push(this.createErrorNumberStatistic());
         buttons.push(this.createCheckButton());
         return buttons;
+    }
+
+    createTotalNumberStatistic = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if(!data.errorFlag){
+                    count = count + data.currentQty;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count}</Tag>
+    }
+
+    createNumberStatistic = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if(!data.errorFlag){
+                    count = count +1;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{count}</Tag>
+    }
+
+    createErrorNumberStatistic = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if(data.errorFlag){
+                    count = count +1;
+                }
+            });
+        }
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{count}</Tag>
     }
 
     createCheckButton = () => {
