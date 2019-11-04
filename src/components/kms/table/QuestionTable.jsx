@@ -9,7 +9,7 @@ import { DefaultRowKey } from '@const/ConstDefine';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import QuestionLineRequest from '@api/question-line-manager/QuestionLineRequest';
 import Field from '@api/dto/ui/Field';
-import './QuestionTable.scss';
+import styles from './QuestionTable.module.scss';
 
 export default class QuestionTable extends EntityListTable {
 
@@ -30,10 +30,10 @@ export default class QuestionTable extends EntityListTable {
             return 'selected-row';
         } else {
             if(record["status"] == "Doing") {
-                return "doing-row";
+                return styles.doingRow;
             }
             if(record["status"] == "Watching") {
-                return "watching-row";
+                return styles.watchingRow;
             }
             return ''; 
         }
