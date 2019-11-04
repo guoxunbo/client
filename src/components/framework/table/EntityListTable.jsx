@@ -166,17 +166,28 @@ export default class EntityListTable extends Component {
         EntityManagerRequest.sendDeleteRequest(object);
     } 
 
-    refreshDelete = (record) => {
+    refreshDelete = (records) => {
+        debugger;
         let datas = this.state.data;
-        let dataIndex = datas.indexOf(record);
-        if (dataIndex > -1 ) {
-            datas.splice(dataIndex, 1);
-            this.setState({
-                data: datas,
-                selectedRows: [],
-                selectedRowKeys: []
-            })
+
+        let recordList = [];
+        //支持批量删除
+        if (!(records instanceof Array)) {
+            recordList.push(records);
+        } else {
+            recordList = records;
         }
+        recordList.forEach((record) => {
+            let dataIndex = datas.indexOf(record);
+            if (dataIndex > -1 ) {
+                datas.splice(dataIndex, 1);
+            }
+        });
+        this.setState({
+            data: datas,
+            selectedRows: [],
+            selectedRowKeys: []
+        })
         MessageUtils.showOperationSuccess();
     }
 
@@ -201,18 +212,29 @@ export default class EntityListTable extends Component {
     refresh = (responseData) => {
         var self = this;
         let datas = self.state.data;
-        let dataIndex = -1;
-        datas.map((data, index) => {
-            if (data.objectRrn == responseData.objectRrn) {
-                dataIndex = index;
+        let rowKey = self.props.rowKey || DefaultRowKey;
+
+        let responseDatas = [];
+        //支持批量刷新
+        if (!(responseData instanceof Array)) {
+            responseDatas.push(responseData);
+        } else {
+            responseDatas = responseData;
+        }
+        responseDatas.forEach((response) => {
+            let dataIndex = -1;
+            datas.map((data, index) => {
+                if (data[rowKey] == response[rowKey]) {
+                    dataIndex = index;
+                }
+            });
+            if (dataIndex > -1) {
+                datas.splice(dataIndex, 1, response);
+            } else {
+                // 新增的就放在第一位
+                datas.unshift(response);
             }
         });
-        if (dataIndex > -1) {
-            datas.splice(dataIndex, 1, responseData);
-        } else {
-            // 新增的就放在第一位
-            datas.unshift(responseData);
-        }
         self.setState({
             data: datas,
             formVisible: false,
