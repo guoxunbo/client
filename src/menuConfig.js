@@ -19,7 +19,7 @@ const headerMenuConfig = [
     path: 'https://github.com/guoxunbo/newbiest/wiki',
     external: true,
     newWindow: true,
-    icon: 'bangzhu',
+    icon: 'alert',
   },
 ];
 

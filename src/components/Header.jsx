@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { Balloon, Icon } from '@alifd/next';
+import { Balloon } from '@alifd/next';
 import Layout from '@icedesign/layout';
 import Menu from '@icedesign/styled-menu';
-import FoundationSymbol from 'foundation-symbol';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
 import { headerMenuConfig } from './../menuConfig';
@@ -13,7 +12,7 @@ import NoticeUtils from '@utils/NoticeUtils';
 import {SessionContext} from '@api/Application';
 import MessageUtils from '@api/utils/MessageUtils';
 import ChangePwdDialog from '@components/framework/dialog/ChangePwdDialog';
-import { Avatar } from 'antd';
+import { Avatar, Icon } from 'antd';
 
 @withRouter
 export default class Header extends PureComponent {
@@ -80,14 +79,14 @@ export default class Header extends PureComponent {
                     {linkProps.to ? (
                       <Link {...linkProps}>
                         {nav.icon ? (
-                          <FoundationSymbol type={nav.icon} size="small" />
+                          <Icon type={nav.icon} size="small" />
                         ) : null}
                         {!isMobile ? nav.name : null}
                       </Link>
                     ) : (
                       <a {...linkProps}>
                         {nav.icon ? (
-                          <FoundationSymbol type={nav.icon} size="small" />
+                          <Icon type={nav.icon} size="small" />
                         ) : null}
                         {!isMobile ? nav.name : null}
                       </a>
@@ -107,7 +106,7 @@ export default class Header extends PureComponent {
                   fontSize: 12,
                 }}
               >
-                  <Avatar size="large" icon="user" className="user-avatar"/>
+                <Avatar size="large" icon="user" className="user-avatar"/>
                  <div className="user-profile">
                   <span className="user-name" style={{ fontSize: '13px' }}>
                     {sessionContext ? sessionContext.username + ":" + sessionContext.description : ""}
@@ -120,11 +119,6 @@ export default class Header extends PureComponent {
                     {sessionContext ? sessionContext.orgName : ""}
                   </span>
                 </div>
-                <Icon
-                  type="arrow-down-filling"
-                  size="xxs"
-                  className="icon-down"
-                />
               </div>
             }
             closable={false}
@@ -133,22 +127,22 @@ export default class Header extends PureComponent {
             <ul>
               <li className="user-profile-menu-item">
                 <Link to="/">
-                  <FoundationSymbol type="person" size="small" />我的主页
+                  <Icon type="user" size="small" />我的主页
                 </Link>
               </li>
               <li className="user-profile-menu-item">
                 <Link to="/" onClick={this.changePassword}>
-                  <FoundationSymbol type="lock" size="small" />修改密码
+                  <Icon type="idcard" size="small" />修改密码
                 </Link>
               </li>
               <li className="user-profile-menu-item">
                 <Link to="/">
-                  <FoundationSymbol type="repair" size="small" />设置
+                  <Icon type="setting" size="small" />设置
                 </Link>
               </li>
               <li className="user-profile-menu-item">
                 <Link to="/" onClick={this.logout}>
-                  <FoundationSymbol type="compass" size="small" />退出
+                  <Icon type="compass" size="small" />退出
                 </Link>
               </li>
             </ul>
