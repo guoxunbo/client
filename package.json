@@ -21,7 +21,7 @@
     "@icedesign/theme": "^1.0.0",
     "add": "^2.0.6",
     "antd": "^3.16.3",
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "bizcharts": "latest",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^5.0.2",
