@@ -5,6 +5,9 @@ module.exports = {
   hash: true,
   publicPath: './',
   vendor: false,
+  define: {
+    ENV_MODE: JSON.stringify(process.env.ENV_MODE),
+  },
   alias: {
     '@': path.resolve(__dirname, './src/'),
     '@components': path.resolve(__dirname, './src/components/'),

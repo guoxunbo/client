@@ -1,22 +1,39 @@
 
-const ServerAddress = {
-    NewbiestUrl : "http://127.0.0.1:8080"
-    // NewbiestUrl : "http://172.16.15.188:8080"
-    // NewbiestUrl : "http://192.168.2.164:8080"
+const EnvMode = {
+    Local: "LOCAL",
+    Test: "TEST",
+    Prod: "PROD",
+    Dev: "DEV"
+}
+
+/**
+ * 根据不同环境取不同的url
+ */
+const getServerAddress = () => {
+    // 默认是local开发地址
+    let serverAddress = "http://127.0.0.1:8080";
+    if (ENV_MODE === EnvMode.Prod) {
+        serverAddress = "http://127.0.0.1:8080";
+    } else if (ENV_MODE === EnvMode.Dev) {
+        serverAddress = "http://127.0.0.1:8080";
+    } else if (ENV_MODE === EnvMode.Test) {
+        serverAddress = "http://127.0.0.1:8080";
+    }
+    return serverAddress;
 }
 
 /**
  * 定义URL 不同的模块请求不同的地址
  */
 const ModuleUrlConstant = {
-    Framework: ServerAddress.NewbiestUrl + "/framework/",
-    Security: ServerAddress.NewbiestUrl + "/security/",
-    UI: ServerAddress.NewbiestUrl + "/ui/",
-    StatusMachine: ServerAddress.NewbiestUrl + "/common/sm/",
-    MMS: ServerAddress.NewbiestUrl + "/mms/",
-    KMS: ServerAddress.NewbiestUrl + "/kms/",
-    RTM: ServerAddress.NewbiestUrl + "/rtm/",
-    GC: ServerAddress.NewbiestUrl + "/gc/"
+    Framework: getServerAddress() + "/framework/",
+    Security: getServerAddress() + "/security/",
+    UI: getServerAddress() + "/ui/",
+    StatusMachine: getServerAddress() + "/common/sm/",
+    MMS: getServerAddress() + "/mms/",
+    KMS: getServerAddress() + "/kms/",
+    RTM: getServerAddress() + "/rtm/",
+    GC: getServerAddress() + "/gc/"
 }
 
 const DataBaseType = {

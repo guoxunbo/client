@@ -1,5 +1,5 @@
 const Application = {
-    name: 'VCIM',
+    name: 'VCIM-' + ENV_MODE,
     version: "1.0.5",
     copyright: {
         name: "© 2018-至今By Newbiest",
