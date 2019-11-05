@@ -37,8 +37,10 @@ const DisplayType = {
 
 const NumberType = [DisplayType.int, DisplayType.double];
 const DateType = [DisplayType.calendar, DisplayType.calendarFromTo, DisplayType.datetime, DisplayType.datetimeFromTo]
+const DateFromToType = [DisplayType.calendarFromTo, DisplayType.datetimeFromTo];
 
 const DisplaySelectType = [DisplayType.sysRefList, DisplayType.userRefList, DisplayType.referenceTable];
+const DefaultFromToDuration = 10;
 
 const Aligin = {
     left : "left",
@@ -289,7 +291,7 @@ export default class Field {
             valuePropName = "checked";
         } 
         let rules = this.buildRule(query);
-        initialValue = this.buildInitialValue(initialValue);
+        initialValue = this.buildInitialValue(initialValue, query);
         return (<FormItem {...formItemProperties} label={this.title}>
             {getFieldDecorator(this.name, {
                 rules: rules,
@@ -305,13 +307,29 @@ export default class Field {
     /**
      * 对initialValue在不同的displayType上做不同的封装
      */
-    buildInitialValue = (initialValue) => {
-        if (DateType.includes(this.displayType) && initialValue) {
+    buildInitialValue = (initialValue, query) => {
+        // build栏位的初始值
+        if (DateType.includes(this.displayType)) {
             let formatCode = DateFormatType.Date;
             if (this.displayType.startsWith(DisplayType.datetime)) {
                 formatCode = DateFormatType.DateTime;
             }
-            initialValue = moment(initialValue, formatCode)
+            // 如果是fromTo并且是queryForm
+            // 不是queryForm的话，fromTo是无效的。会自动变成calender和datetime组件
+            if (DateFromToType.includes(this.displayType) && query) {
+                let date = new Date();
+                let fromTime = moment(date, formatCode);
+                
+                date.setDate(date.getDate() + DefaultFromToDuration);
+                let endTime = moment(date, formatCode);
+                initialValue= [fromTime, endTime];
+            } else {
+                if (initialValue) {
+                    initialValue = moment(initialValue, formatCode)
+                } else {
+                    initialValue = moment(new Date(), formatCode);
+                }
+            }
         }
         if (DisplayType.radio === this.displayType) {
             if (typeof initialValue === "string") {
