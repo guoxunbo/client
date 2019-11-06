@@ -15,7 +15,6 @@ export default class GetPrintVboxParameterRequest {
             success: object.success,
             fail: object.fail
         }
-        debugger;
         MessageUtils.sendRequest(requestObject);
     }
 

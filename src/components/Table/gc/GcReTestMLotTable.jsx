@@ -15,20 +15,54 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
 
     static displayName = 'GcReTestMLotTable';
 
+    getRowClassName = (record, index) => {
+        // 如果是扫描到不存在的批次，则进行高亮显示
+        if (record.errorFlag) {
+            return 'error-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+        
+    };
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
+        buttons.push(this.createErrorNumberStatistic());
         buttons.push(this.createReTest());
         return buttons;
     }
     
+    getErrorCount = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if(data.errorFlag){
+                    count = count +1;
+                }
+            });
+        }
+        return count;
+    }
+
+    createErrorNumberStatistic = () => {
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{this.getErrorCount()}</Tag>
+    }
+
     createTotalNumber = () => {
         let materialLots = this.state.data;
         let count = 0;
         if(materialLots && materialLots.length > 0){
             materialLots.forEach(data => {
-                count = count + data.currentQty;
+                if (data.currentQty != undefined) {
+                    count = count + data.currentQty;
+                }
             });
         }
         return <Tag color="#2db7f5">颗数：{count}</Tag>
@@ -40,20 +74,26 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
 
     reTest = () => {
         let self = this;
-        let orderTabel = this.props.orderTable;
-        let order = orderTabel.getSingleSelectedRow();
-        if (!order) {
+        if (this.getErrorCount() > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
+        let orderTable = this.props.orderTable;
+        let orders = orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
         let materialLots = this.state.data;
-        if (materialLots.length === 0 ) {
+        if (materialLots.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
         let requestObject = {
-            documentLine : order,
+            documentLines : orders,
             materialLots : materialLots,
             success: function(responseBody) {
+                debugger;
                 if (self.props.resetData) {
                     self.props.resetData();
                 }

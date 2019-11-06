@@ -15,7 +15,6 @@ export default class GcCheckProperties extends EntityScanProperties{
     static displayName = 'GcOrderProperties';
     
     queryData = (whereClause) => {
-      debugger;
         const self = this;
         let {rowKey,tableData} = this.state;
         let requestObject = {

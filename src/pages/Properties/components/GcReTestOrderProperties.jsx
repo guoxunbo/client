@@ -44,4 +44,5 @@ export default class GcReTestOrderProperties extends EntityProperties{
     buildOtherComponent = () => {
         return <GcReTestOrderMLotProperties orderTable={this.orderTable} tableRrn={9912} resetFlag={this.state.resetFlag}></GcReTestOrderMLotProperties>
     }
+    
 }

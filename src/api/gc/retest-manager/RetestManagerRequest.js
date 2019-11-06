@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class RetestManagerRequest {
 
     static sendRetestRequest = (object) => {
-        let {documentLine, materialLots} = object;
-        let requestBody = RetestManagerRequestBody.buildRetest(documentLine, materialLots);
+        let {documentLines, materialLots} = object;
+        let requestBody = RetestManagerRequestBody.buildRetest(documentLines, materialLots);
         let requestHeader = new RetestManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReTestUrl);
         let requestObject = {

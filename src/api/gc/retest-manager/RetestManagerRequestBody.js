@@ -2,15 +2,15 @@ import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 
 export default class RetestManagerRequestBody {
 
-    documentLine;
+    documentLines;
     materialLotActions;
 
-    constructor(documentLine, materialLotActions){
-        this.documentLine = documentLine;
+    constructor(documentLines, materialLotActions){
+        this.documentLines = documentLines;
         this.materialLotActions = materialLotActions;
     }
     
-    static buildRetest(documentLine, materialLots) {
+    static buildRetest(documentLines, materialLots) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
@@ -18,7 +18,7 @@ export default class RetestManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
 
-        return new RetestManagerRequestBody(documentLine, materialLotActions);
+        return new RetestManagerRequestBody(documentLines, materialLotActions);
     }
 
 }

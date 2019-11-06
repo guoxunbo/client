@@ -18,6 +18,7 @@ const i18NCode = {
     SelectOneRow: "SelectOneRow",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
+    ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -432,6 +433,11 @@ const i18Messages = {
     ErrorNumber: {
         Chinese: "异常笔数",
         English: "ErrorNumber",
+        Res: ""
+    },
+    ErrorNumberMoreThanZero: {
+        Chinese: "异常笔数大于0",
+        English: "ErrorNumberMoreThanZero",
         Res: ""
     },
     TotalStrokeCount: {
