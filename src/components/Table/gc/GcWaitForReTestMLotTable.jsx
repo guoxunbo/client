@@ -27,6 +27,13 @@ export default class GcWaitForReTestMLotTable extends EntityScanViewTable {
         return <Tag color="#2db7f5">颗数：{count}</Tag>
     }
 
+    /**
+     * 待重测发料列表不需要操作列
+     */
+    buildOperationColumn = () => {
+        
+    }
+
     createStatistic = () => {
         return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
     }
