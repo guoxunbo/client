@@ -92,6 +92,7 @@ export default class RecordExpressNumberTable extends EntityListTable {
     }
 
     onExpressInput = () => {
+        debugger;
         let expressNumber = this.input.state.value;
         if (!expressNumber) {
             return;
@@ -99,6 +100,11 @@ export default class RecordExpressNumberTable extends EntityListTable {
         let recordCount = this.state.recordCount;
 
         let datas = this.state.data;
+        if(datas.length == 0){
+            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.NoDeliveryOrder));
+            this.input.setState({value:""})
+            return;
+        }
         datas[recordCount].reserved2 = expressNumber;
         datas.splice(recordCount, 1, datas[recordCount]);
 

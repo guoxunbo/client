@@ -76,6 +76,7 @@ const i18NCode = {
     TotalStrokeCount: "TotalStrokeCount",
     TotalNumber : "TotalNumber",
     DataAlreadyExists: "DataAlreadyExists",
+    NoDeliveryOrder: "NoDeliveryOrder",
     
 }
 
@@ -453,6 +454,11 @@ const i18Messages = {
     DataAlreadyExists: {
         Chinese: "数据已经存在",
         English: "Data already exists",
+        Res: ""
+    },
+    NoDeliveryOrder: {
+        Chinese: "没有出库单",
+        English: "No delivery order",
         Res: ""
     },
 }
