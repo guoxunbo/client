@@ -30,37 +30,41 @@ export default class GcMaterialLotStockInProperties extends EntityScanProperties
          // MB开头的则是中装箱号 扫描到MB开头的，则更新当前操作的物料批次的中装箱号
         let dataIndex = -1;
         if (data.startsWith("MB")) {
-            console.log(currentHandleMLots);
-            currentHandleMLots.forEach((materialLot) => {
+            // console.log(currentHandleMLots);
+            tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {
                     if (data[rowKey] == materialLot[rowKey]) {
                         dataIndex = index;
                     }
                 });
-                materialLot["relaxBoxId"] = data;
-                tableData.splice(dataIndex, 1, materialLot);
+                if(!materialLot.relaxBoxId){
+                    materialLot["relaxBoxId"] = data;
+                    tableData.splice(dataIndex, 1, materialLot);
+                }
             });
             self.setState({ 
                 tableData: tableData,
                 loading: false,
-                scanRelaxBoxOrStorageFlag: true,
+                // scanRelaxBoxOrStorageFlag: true,
             });
             self.form.resetFormFileds();
         } else if (data.startsWith("ZHJ") || data.startsWith("HJ") ) {
             // ZHJ/HJ 开头的则是库位号 扫描到ZHJ/HJ开头的，则更新当前操作的物料批次的库位号
-            currentHandleMLots.forEach((materialLot) => {
+            tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {
                     if (data[rowKey] == materialLot[rowKey]) {
                         dataIndex = index;
                     }
                 });
-                materialLot["storageId"] = data;
-                tableData.splice(dataIndex, 1, materialLot);
+                if(!materialLot.storageId){
+                    materialLot["storageId"] = data;
+                    tableData.splice(dataIndex, 1, materialLot);
+                }
             });
             self.setState({ 
                 tableData: tableData,
                 loading: false,
-                scanRelaxBoxOrStorageFlag: true,
+                // scanRelaxBoxOrStorageFlag: true,
             });
             self.form.resetFormFileds();
         } else {
@@ -73,15 +77,15 @@ export default class GcMaterialLotStockInProperties extends EntityScanProperties
                         tableData.unshift(materialLot);
                     }
                     // 如果扫描过中装箱号或者库位号，则表示上次操作的批次已经结束，作为新起点继续下次操作
-                    if (scanRelaxBoxOrStorageFlag) {
-                        currentHandleMLots = []; 
-                    }
-                    currentHandleMLots.push(materialLot);
+                    // if (scanRelaxBoxOrStorageFlag) {
+                    //     currentHandleMLots = []; 
+                    // }
+                    // currentHandleMLots.push(materialLot);
                     self.setState({ 
                         tableData: tableData,
                         loading: false,
-                        scanRelaxBoxOrStorageFlag: false,
-                        currentHandleMLots: currentHandleMLots
+                        // scanRelaxBoxOrStorageFlag: false,
+                        // currentHandleMLots: currentHandleMLots
                     });
                     self.form.resetFormFileds();
                 },
