@@ -66,6 +66,7 @@ const UrlConstant = {
     ExporttUrl: ModuleUrlConstant.UI + "export",
     ImportUrl:  ModuleUrlConstant.UI + "importData",
     MessageManagerUrl: ModuleUrlConstant.UI + "messageManage",
+    TreeManagerUrl: ModuleUrlConstant.UI + "treeManage",
 
     //SM
     StatusModelManagerUrl: ModuleUrlConstant.StatusMachine + "statusModelManage",
