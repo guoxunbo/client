@@ -3,7 +3,6 @@ import EntityListCheckTable from '../EntityListCheckTable';
 
 import { Button } from 'antd';
 import AsyncManagerRequest from '../../../api/gc/async-manager/AsyncManagerRequest';
-import { DefaultRowKey } from '../../../api/const/ConstDefine';
 import EntityListTable from '../EntityListTable';
 
 /**

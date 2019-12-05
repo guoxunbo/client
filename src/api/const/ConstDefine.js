@@ -81,6 +81,7 @@ const UrlConstant = {
     GCValidationMaterialUrl: ModuleUrlConstant.GC + "validationMaterial",
     GCValidationDocumentLineUrl: ModuleUrlConstant.GC + "validationDocumentLine",
     GCRecordExpressUrl: ModuleUrlConstant.GC + "recordExpress",
+    GCReservedUrl: ModuleUrlConstant.GC + "reserved",
 
 
 };

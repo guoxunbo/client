@@ -1,7 +1,6 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import GcStockOutMLotTable from "../../../components/Table/gc/GcStockOutMLotTable";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import ValidationSoOrTestRequest from "../../../api/gc/validation-so-test/ValidationSoOrTestRequest";
 import ValidationMaterialRequest from "../../../api/gc/validation -material/ValidationMaterialRequest";
 
 export default class GcStockOutOrderMLotProperties extends EntityScanProperties{

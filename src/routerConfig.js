@@ -32,6 +32,7 @@ import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
 import GcMaterialLotStockInProperties from './pages/Properties/components/GcMaterialLotStockInProperties';
 import GcPrintVBoxLabelProperties from './pages/Properties/components/GcPrintVBoxLabelProperties';
 import GcRecordExpressNumberProperties from './pages/Properties/components/GcRecordExpressNumberProperties';
+import GcOrderReservedProperties from './pages/Properties/components/GcOrderReservedProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -167,6 +168,17 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOrderProperties,
   },
+  {
+    path: buildPath('Doc/DeliveryOrderReservedManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOrderReservedProperties,
+  },
+  {
+    path: buildPath('/Doc/UnReservedMaterialLotManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  
   {
     path: buildPath('Doc/ReTestOrderManager'),
     layout: HeaderAsideFooterResponsiveLayout,
