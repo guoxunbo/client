@@ -28,5 +28,16 @@ export default class ReservedManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendUnReserved= (object) => {
+        let requestBody = ReservedManagerRequestBody.buildUnReserved(object.materialLots);
+        let requestHeader = new ReservedManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

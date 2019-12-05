@@ -33,6 +33,7 @@ import GcMaterialLotStockInProperties from './pages/Properties/components/GcMate
 import GcPrintVBoxLabelProperties from './pages/Properties/components/GcPrintVBoxLabelProperties';
 import GcRecordExpressNumberProperties from './pages/Properties/components/GcRecordExpressNumberProperties';
 import GcOrderReservedProperties from './pages/Properties/components/GcOrderReservedProperties';
+import GCUnReservedMaterialLotProperties from './pages/Properties/components/GCUnReservedMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -176,7 +177,7 @@ const routerConfig = [
   {
     path: buildPath('/Doc/UnReservedMaterialLotManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: GCUnReservedMaterialLotProperties,
   },
   
   {

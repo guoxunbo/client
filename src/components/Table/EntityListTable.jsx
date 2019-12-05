@@ -166,17 +166,20 @@ export default class EntityListTable extends Component {
         EntityManagerRequest.sendDeleteRequest(object);
     } 
 
-    refreshDelete = (record) => {
+    refreshDelete = (records) => {
         let datas = this.state.data;
-        let dataIndex = datas.indexOf(record);
-        if (dataIndex > -1 ) {
-            datas.splice(dataIndex, 1);
-            this.setState({
-                data: datas,
-                selectedRows: [],
-                selectedRowKeys: []
-            })
+        let recordList = [];
+        if (!(records instanceof Array)) {
+            recordList.push(records);
+        } else {
+            recordList = records;
         }
+        recordList.forEach((record) => {
+            let dataIndex = datas.indexOf(record);
+            if (dataIndex > -1 ) {
+                datas.splice(dataIndex, 1);
+            }
+        });
         MessageUtils.showOperationSuccess();
     }
 
