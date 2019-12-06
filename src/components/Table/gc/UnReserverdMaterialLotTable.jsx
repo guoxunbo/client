@@ -5,9 +5,6 @@ import { Button } from 'antd';
 import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 
-/**
- * 所有历史表的父表。只能导出，不具备新增等其他功能
- */
 export default class UnReserverdMaterialLotTable extends EntityListCheckTable {
 
     static displayName = 'UnReserverdMaterialLotTable';

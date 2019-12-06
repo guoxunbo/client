@@ -3,7 +3,8 @@ import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 const ActionType = {
     GetMLot : "GetMLot",
     Reserved : "Reserved",
-    UnReserved: "UnReserved"
+    UnReserved: "UnReserved",
+    GetPackedMLots: "GetPackedMLots"
 }
 export default class ReservedManagerRequestBody {
 
@@ -31,6 +32,16 @@ export default class ReservedManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new ReservedManagerRequestBody(ActionType.Reserved, docLineRrn, undefined, materialLotActions);
+    }
+
+    static buildGetPackageDetails(materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new ReservedManagerRequestBody(ActionType.GetPackedMLots, undefined, undefined, materialLotActions);
     }
 
     static buildUnReserved(materialLots) {

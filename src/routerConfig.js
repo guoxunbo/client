@@ -34,6 +34,7 @@ import GcPrintVBoxLabelProperties from './pages/Properties/components/GcPrintVBo
 import GcRecordExpressNumberProperties from './pages/Properties/components/GcRecordExpressNumberProperties';
 import GcOrderReservedProperties from './pages/Properties/components/GcOrderReservedProperties';
 import GCUnReservedMaterialLotProperties from './pages/Properties/components/GCUnReservedMaterialLotProperties';
+import GcOrderReservedCaseProperties from './pages/Properties/components/GcOrderReservedCaseProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -173,6 +174,11 @@ const routerConfig = [
     path: buildPath('Doc/DeliveryOrderReservedManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOrderReservedProperties,
+  },
+  {
+    path: buildPath('Doc/ReservedCaseManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOrderReservedCaseProperties,
   },
   {
     path: buildPath('/Doc/UnReservedMaterialLotManager'),

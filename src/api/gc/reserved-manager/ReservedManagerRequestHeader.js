@@ -1,5 +1,5 @@
 import RequestHeader from "../../RequestHeader";
-const MESSAGE_NAME = "AsyncManager";
+const MESSAGE_NAME = "GCReserved";
 
 export default class AsyncManagerRequestHeader extends RequestHeader{
 

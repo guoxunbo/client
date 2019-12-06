@@ -1,14 +1,14 @@
 import EntityProperties from "./entityProperties/EntityProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import GcReservedStockOutOrderMLotProperties from "./GcReservedStockOutOrderMLotProperties";
 import ReservedOrderTable from "../../../components/Table/gc/ReservedOrderTable";
+import GcReservedCaseProperties from "./GcReservedCaseProperties";
 
 /**
- * 真空包备货
+ * 箱备货
  */
-export default class GcOrderReservedProperties extends EntityProperties{
+export default class GcOrderReservedCaseProperties extends EntityProperties{
 
-    static displayName = 'GcOrderReservedProperties';
+    static displayName = 'GcOrderReservedCaseProperties';
     
      /**
      * 当表格里数据做完操作之后，务必调用下此方法把扫描添加进去的state数据清零。不然会把上一次的扫描结果一起带到下一次中去
@@ -46,13 +46,13 @@ export default class GcOrderReservedProperties extends EntityProperties{
     }
 
     buildOtherComponent = () => {
-        return <GcReservedStockOutOrderMLotProperties 
+        return <GcReservedCaseProperties 
                   ref={(reservedLotTable) => { this.reservedLotTable = reservedLotTable }} 
                   orderTable={this.orderTable} 
-                  tableRrn={9751} 
+                  tableRrn={9753} 
                   resetFlag={this.state.resetFlag}>
 
-                  </GcReservedStockOutOrderMLotProperties>
+                  </GcReservedCaseProperties>
     }
 
 }

@@ -75,7 +75,12 @@ export default class EntityProperties extends Component {
     }
     
     buildTable = () => {
-        return  <EntityListTable rowKey={this.state.rowKey} selectedRowKeys={this.state.selectedRowKeys} selectedRows={this.state.selectedRows} table={this.state.table} data={this.state.tableData} loading={this.state.loading}/>
+        return  <EntityListTable rowKey={this.state.rowKey} 
+                                  selectedRowKeys={this.state.selectedRowKeys} 
+                                  selectedRows={this.state.selectedRows} 
+                                  table={this.state.table} 
+                                  data={this.state.tableData} 
+                                  loading={this.state.loading}/>
     }
 
     /**

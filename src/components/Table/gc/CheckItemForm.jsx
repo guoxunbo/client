@@ -22,7 +22,7 @@ export default class CheckItemForm extends EntityForm {
                 let tabPanel = new Tab(tab);
                 tabPanels.push(<TabPane tab={tabPanel.title} key={tabPanel.name}>
                     <Row gutter={16}>
-                        <EditorColumnTable dataSource={this.props.checkItemList} ref={(editorColumnTable) => { this.editorColumnTable = editorColumnTable }}refTableName={tabPanel.refTableName}></EditorColumnTable>
+                        <EditorColumnTable dataSource={this.props.checkItemList} ref={(editorColumnTable) => { this.editorColumnTable = editorColumnTable }} refTableName={tabPanel.refTableName}></EditorColumnTable>
                     </Row>
                 </TabPane>);
             }) 

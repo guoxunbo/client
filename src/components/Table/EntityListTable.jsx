@@ -180,6 +180,11 @@ export default class EntityListTable extends Component {
                 datas.splice(dataIndex, 1);
             }
         });
+        this.setState({
+            data: datas,
+            selectedRows: [],
+            selectedRowKeys: []
+        })
         MessageUtils.showOperationSuccess();
     }
 

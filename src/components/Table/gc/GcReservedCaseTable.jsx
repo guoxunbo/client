@@ -1,19 +1,19 @@
-
 import { Button, Tag } from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
-import StockOutManagerRequest from '../../../api/gc/stock-out/StockOutManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityListCheckTable from '../EntityListCheckTable';
 import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedManagerRequest';
+import ReservedCaseMLotForm from './ReservedCaseMLotForm';
+import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
 
 /**
  * 备货表格
  */
-export default class GcReservedMLotTable extends EntityListCheckTable {
+export default class GcReservedCaseTable extends EntityListCheckTable {
 
-    static displayName = 'GcStockOutMLotTable';
+    static displayName = 'GcReservedCaseTable';
 
     createButtonGroup = () => {
         let buttons = [];
@@ -23,32 +23,20 @@ export default class GcReservedMLotTable extends EntityListCheckTable {
         return buttons;
     }
 
+    createForm = () => {
+        return  <ReservedCaseMLotForm docLineRrn={this.props.docLineRrn} visible={this.state.formVisible} packageLots={this.state.packageLots} onOk={this.handleCancel} onCancel={this.handleCancel} />
+    }
+
     reserved = () => {
-        let self = this;
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
-        if (!documentLine) {
-            self.setState({ 
-                loading: false
-            });
-            return;
-        }
-        let materialLots = this.getSelectedRows();
-        if (materialLots.length === 0 ) {
+        let packageLots = this.getSelectedRows();
+        if (packageLots.length === 0 ) {
             return;
         }
 
-        let requestObj = {
-            docLineRrn : documentLine.objectRrn,
-            materialLots : materialLots,
-            success: function(responseBody) {
-                if (self.props.resetData) {
-                    self.props.resetData();
-                }
-                MessageUtils.showOperationSuccess();
-            }
-        }
-
-        ReservedManagerRequest.sendReserved(requestObj);
+        this.setState({
+            formVisible : true,
+            packageLots: packageLots
+        }); 
     }
 
     createTotalNumber = () => {
@@ -63,7 +51,7 @@ export default class GcReservedMLotTable extends EntityListCheckTable {
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.selectedRows.length}</Tag>
+        return <Tag color="#2db7f5">箱数：{this.state.selectedRows.length}</Tag>
     }
 
     createReserved = () => {

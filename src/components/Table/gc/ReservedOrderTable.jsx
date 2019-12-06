@@ -33,7 +33,7 @@ export default class ReservedOrderTable extends EntityListTable {
             docLineRrn: record.objectRrn,
             tableRrn: this.props.reservedLotTable.state.table.objectRrn,
             success: function(responseBody) {
-                self.props.reservedLotTable.setState({tableData: responseBody.materialLotList})
+                self.props.reservedLotTable.setState({docLineRrn: record.objectRrn, tableData: responseBody.materialLotList})
             }
         }
         ReservedManagerRequest.sendGetMaterialLot(object);
