@@ -77,7 +77,7 @@ const i18NCode = {
     TotalNumber : "TotalNumber",
     DataAlreadyExists: "DataAlreadyExists",
     NoDeliveryOrder: "NoDeliveryOrder",
-    RelaxBoxAndStorageCannotEmpty: "RelaxBoxAndStorageCannotEmpty",
+    StorageCannotEmpty: "StorageCannotEmpty",
 }
 
 const i18Messages = {
@@ -461,9 +461,9 @@ const i18Messages = {
         English: "No delivery order",
         Res: ""
     },
-    RelaxBoxAndStorageCannotEmpty: {
-        Chinese: "中转箱和库位号不能为空",
-        English: "RelaxBox And Storage Cannot Empty",
+    StorageCannotEmpty: {
+        Chinese: "库位号不能为空",
+        English: "Storage Cannot Empty",
         Res: ""
     },
 }

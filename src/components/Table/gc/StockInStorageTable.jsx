@@ -29,8 +29,8 @@ export default class StockInStorageTable extends EntityScanViewTable {
             return;
         }
 
-        if(!this.validationRelaxBoxIdAndStorageId(data)) {
-            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.RelaxBoxAndStorageCannotEmpty));
+        if(!this.validationStorageId(data)) {
+            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.StorageCannotEmpty));
             return;
         }
        
@@ -46,10 +46,10 @@ export default class StockInStorageTable extends EntityScanViewTable {
         StockInManagerRequest.sendStockInRequest(requestObject);
     }
     
-    validationRelaxBoxIdAndStorageId = (data) =>{
+    validationStorageId = (data) =>{
         let flag = true;
         data.forEach((materialLot) => {
-            if(materialLot.relaxBoxId == undefined || materialLot.storageId == undefined){
+            if( materialLot.storageId == undefined){
                 flag = false;
                 return flag;
             }
