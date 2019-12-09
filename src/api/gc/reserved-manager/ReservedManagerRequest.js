@@ -18,7 +18,7 @@ export default class ReservedManagerRequest {
     }
 
     static sendReserved= (object) => {
-        let requestBody = ReservedManagerRequestBody.buildReserved(object.docLineRrn, object.materialLots);
+        let requestBody = ReservedManagerRequestBody.buildReserved(object.docLineRrn, object.materialLots, object.stockNote);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {

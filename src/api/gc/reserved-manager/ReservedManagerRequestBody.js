@@ -12,26 +12,29 @@ export default class ReservedManagerRequestBody {
     docLineRrn;
     tableRrn;
     materialLotActions;
+    stockNote;
+    
 
-    constructor(actionType, docLineRrn, tableRrn, materialLotActions){
+    constructor(actionType, docLineRrn, tableRrn, materialLotActions, stockNote){
         this.actionType = actionType;
         this.docLineRrn = docLineRrn;
         this.tableRrn = tableRrn;
         this.materialLotActions = materialLotActions;
+        this.stockNote = stockNote;
     }
     
     static buildGetMaterialLot(docLineRrn, tableRrn) {
         return new ReservedManagerRequestBody(ActionType.GetMLot, docLineRrn, tableRrn);
     }
 
-    static buildReserved(docLineRrn, materialLots) {
+    static buildReserved(docLineRrn, materialLots, stockNote) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
-        return new ReservedManagerRequestBody(ActionType.Reserved, docLineRrn, undefined, materialLotActions);
+        return new ReservedManagerRequestBody(ActionType.Reserved, docLineRrn, undefined, materialLotActions, stockNote);
     }
 
     static buildGetPackageDetails(materialLots) {
