@@ -13,6 +13,7 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());
+        buttons.push(this.createDeleteAllButton());
         buttons.push(this.createReceiveButton());
         return buttons;
     }
@@ -32,6 +33,22 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
                 }
             }
             FinishGoodInvManagerRequest.sendReceiveRequest(requestObject);
+        }
+    }
+    
+    createDeleteAllButton = () => {
+        return <Button key="deleteAll" type="primary" style={styles.tableButton} icon="delete" onClick={this.deleteAllMaterialLot}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnDeleteAll)}
+                    </Button>
+    }
+
+    deleteAllMaterialLot = () => {
+        let self = this;
+        if( self.props.data.length == 0){
+            return;
+        } else {
+            self.props.resetData();
+            MessageUtils.showOperationSuccess();
         }
     }
 

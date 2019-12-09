@@ -78,6 +78,7 @@ const i18NCode = {
     DataAlreadyExists: "DataAlreadyExists",
     NoDeliveryOrder: "NoDeliveryOrder",
     StorageCannotEmpty: "StorageCannotEmpty",
+    BtnDeleteAll: "DeleteAll",
 }
 
 const i18Messages = {
@@ -464,6 +465,11 @@ const i18Messages = {
     StorageCannotEmpty: {
         Chinese: "库位号不能为空",
         English: "Storage Cannot Empty",
+        Res: ""
+    },
+    DeleteAll: {
+        Chinese: "清空",
+        English: "DeleteAll",
         Res: ""
     },
 }
