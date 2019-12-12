@@ -57,7 +57,7 @@ export default class GcReservedCaseMLotTable extends EntityListCheckTable {
         const self = this;
         self.getMaterialLots();
         let requestObject = {
-            tableRrn: 9753,
+            tableRrn: 9754,
             success: function(responseBody) {
                 let table = responseBody.table;
                 let columnData = self.buildColumn(table);

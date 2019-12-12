@@ -1,4 +1,4 @@
-import { Button, Tag } from 'antd';
+import { Button, Tag , Input} from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
@@ -20,11 +20,19 @@ export default class GcReservedCaseTable extends EntityListCheckTable {
         buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
         buttons.push(this.createReserved());
+        buttons.push(this.createInput());
         return buttons;
     }
 
+    createInput = () => {
+        return <div style={styles.input}>
+            <Input ref={(input) => { this.input = input }} key="stockNote" placeholder="备货备注" onPressEnter={this.onExpressInput} />
+        </div>
+    }
+
+
     createForm = () => {
-        return  <ReservedCaseMLotForm docLineRrn={this.props.docLineRrn} visible={this.state.formVisible} packageLots={this.state.packageLots} onOk={this.handleCancel} onCancel={this.handleCancel} />
+        return  <ReservedCaseMLotForm docLineRrn={this.props.docLineRrn} stockNote={this.state.stockNote} visible={this.state.formVisible} packageLots={this.state.packageLots} onOk={this.handleCancel} onCancel={this.handleCancel} />
     }
 
     reserved = () => {
@@ -32,10 +40,12 @@ export default class GcReservedCaseTable extends EntityListCheckTable {
         if (packageLots.length === 0 ) {
             return;
         }
+        let stockNote = this.input.state.value;
 
         this.setState({
             formVisible : true,
-            packageLots: packageLots
+            packageLots: packageLots,
+            stockNote: stockNote,
         }); 
     }
 
@@ -59,9 +69,16 @@ export default class GcReservedCaseTable extends EntityListCheckTable {
                         备货
                     </Button>
     }
+
+        buildOperationColumn = () => {
+        
+    }
 }
 
 const styles = {
+    input: {
+        width: 300
+    },
     tableButton: {
         marginLeft:'20px'
     }

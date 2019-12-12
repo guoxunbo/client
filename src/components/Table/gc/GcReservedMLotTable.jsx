@@ -81,6 +81,10 @@ export default class GcReservedMLotTable extends EntityListCheckTable {
                         备货
                     </Button>
     }
+
+    buildOperationColumn = () => {
+        
+    }
 }
 
 const styles = {

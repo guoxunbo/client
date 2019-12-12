@@ -29,9 +29,11 @@ export default class ReservedCaseMLotForm extends EntityForm {
         let requestObj = {
             docLineRrn : this.props.docLineRrn,
             materialLots : materialLots,
+            stockNote : this.props.stockNote,
             success: function(responseBody) {
                 MessageUtils.showOperationSuccess();
                 self.props.onOk();
+                window.location.reload(true);
             }
         }
         ReservedManagerRequest.sendReserved(requestObj);
