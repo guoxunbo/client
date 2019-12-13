@@ -201,7 +201,7 @@ export default class QuestionTable extends EntityListTable {
                     columns = {columns}
                     scroll = {{ x: scrollX, y: 500 }}
                     rowKey = {this.props.rowkey || DefaultRowKey}
-                    loading = {this.props.loading}
+                    loading = {this.state.loading}
                     rowClassName = {rowClassName.bind(this)}
                     rowSelection = {rowSelection}
                     onRow={(record) => ({
