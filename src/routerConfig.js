@@ -45,8 +45,6 @@ import GcOrderProperties from '@properties/gc/GcOrderProperties';
 import PackCaseCheckProperties from '@properties/gc/PackCaseCheckProperties';
 import GcPrintCaseLabelProperties from '@properties/gc/GcPrintCaseLabelProperties';
 import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
-//dynax
-import DynaxAnalyseProperties from '@properties/dynax/DynaxAnalyseProperties';
 
 
 /**
@@ -260,12 +258,6 @@ const routerConfig = [
     path: buildPath('Pack/PrintCaseLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintCaseLabelProperties,
-  },
-  //RTM
-  {
-    path: buildPath('RTM/DynaxAnalyseManager'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: DynaxAnalyseProperties,
   },
   //RMS
   {
