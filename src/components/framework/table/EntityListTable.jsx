@@ -53,6 +53,7 @@ export default class EntityListTable extends Component {
         const self = this;
         let requestObject = {
             tableRrn: this.props.tableRrn,
+            initFlag: true,
             success: function(responseBody) {
                 let table = responseBody.table;
                 let columnData = self.buildColumn(table);

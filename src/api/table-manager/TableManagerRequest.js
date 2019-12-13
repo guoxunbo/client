@@ -43,7 +43,7 @@ export default class TableManagerRequest {
      * @param object 动态表 @example {tableRrn: 10}
      */
     static sendGetDataByRrnRequest = (object) => {
-        let requestBody = TableManagerRequestBody.buildGetDataByRrn(object.tableRrn, object.whereClause);
+        let requestBody = TableManagerRequestBody.buildGetDataByRrn(object.tableRrn, object.whereClause, object.initFlag);
         let requestHeader = new TableManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.TableMangerUrl);
         let requestObject = {

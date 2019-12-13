@@ -13,10 +13,12 @@ export default class TableManagerRequestBody {
 
     actionType;
     table;
+    initFlag;
 
-    constructor(actionType, table){
+    constructor(actionType, table, initFlag){
         this.actionType = actionType;
         this.table = table;
+        this.initFlag = initFlag;
     }
 
     static buildGetByRrn(objectRrn) {
@@ -38,11 +40,11 @@ export default class TableManagerRequestBody {
         return new TableManagerRequestBody(ActionType.GetData, table);
     }
 
-    static buildGetDataByRrn(objectRrn, whereClause) {
+    static buildGetDataByRrn(objectRrn, whereClause, initFlag) {
         let table = new Table();
         table.setObjectRrn(objectRrn);
         table.setWhereClause(whereClause);
-        return new TableManagerRequestBody(ActionType.GetData, table);
+        return new TableManagerRequestBody(ActionType.GetData, table, initFlag);
     }
     
     static buildExport(objectRrn, expTemplate) {
