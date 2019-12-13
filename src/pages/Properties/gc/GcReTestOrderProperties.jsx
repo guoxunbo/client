@@ -21,10 +21,16 @@ export default class GcReTestOrderProperties extends EntityProperties{
     }
 
     buildTable = () => {
-        return <OrderTable scrollY={200} ref={(orderTable) => { this.orderTable = orderTable }} pagination={false} asyncType={ActionType.AsyncMaterialOutOrder} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <OrderTable {...this.getDefaultTableProps()} scrollY={200} 
+                            ref={(orderTable) => { this.orderTable = orderTable }} 
+                            pagination={false} 
+                            asyncType={ActionType.AsyncMaterialOutOrder} />
     }
 
     buildOtherComponent = () => {
-        return <GcReTestOrderMLotProperties orderTable={this.orderTable} tableRrn={9912} resetFlag={this.state.resetFlag}></GcReTestOrderMLotProperties>
+        return <GcReTestOrderMLotProperties {...this.getDefaultTableProps()} 
+                                            orderTable={this.orderTable} 
+                                            tableRrn={9912} 
+                                            resetFlag={this.state.resetFlag}></GcReTestOrderMLotProperties>
     }
 }

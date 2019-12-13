@@ -21,11 +21,18 @@ export default class GcOrderProperties extends EntityProperties{
     }
 
     buildTable = () => {
-        return <OrderTable scrollY={200} pagination={false} ref={(orderTable) => { this.orderTable = orderTable }} asyncType={ActionType.AsyncSo} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <OrderTable {...this.getDefaultTableProps()} scrollY={200} 
+                            pagination={false} 
+                            ref={(orderTable) => { this.orderTable = orderTable }} 
+                            asyncType={ActionType.AsyncSo}  />
     }
 
     buildOtherComponent = () => {
-        return <GcStockOutOrderMLotProperties orderTable={this.orderTable} tableRrn={9913} resetFlag={this.state.resetFlag}></GcStockOutOrderMLotProperties>
+        return <GcStockOutOrderMLotProperties 
+                                {...this.getDefaultTableProps()}
+                                orderTable={this.orderTable} 
+                                tableRrn={9913} 
+                                resetFlag={this.state.resetFlag}></GcStockOutOrderMLotProperties>
     }
 
 }

@@ -6,7 +6,7 @@ export default class UserProperties extends EntityProperties{
     static displayName = 'UserProperties';
     
     buildTable = () => {
-        return <UserTable table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <UserTable {...this.getDefaultTableProps()} />
     }
 
 }

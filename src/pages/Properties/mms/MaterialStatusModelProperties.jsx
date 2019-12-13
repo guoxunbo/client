@@ -7,7 +7,7 @@ export default class MaterialStatusModelProperties extends EntityProperties{
     static displayName = 'MaterialStatusModelProperties';
     
     buildTable = () => {
-        return <StatusModelTable eventModelClass={EntityModel.MaterialEvent} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <StatusModelTable eventModelClass={EntityModel.MaterialEvent} {...this.getDefaultTableProps()}  />
     }
 
 }

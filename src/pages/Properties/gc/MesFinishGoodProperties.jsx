@@ -27,20 +27,29 @@ export default class MesFinishGoodProperties extends EntityProperties{
     }
 
     buildTable = () => {
-        return <MesReceiveFGShowTable scrollY={200} 
-                                      pagination={false} 
-                                      rowKey={this.state.rowKey} 
-                                      ref={(showTable) => { this.showTable = showTable }} 
-                                      table={this.state.table} 
-                                      data={this.state.tableData} 
-                                      loading={this.state.loading} />
+      return <MesReceiveFGShowTable {...this.getDefaultTableProps()}
+                                    scrollY={200} 
+                                    pagination={false} 
+                                    ref={(showTable) => { this.showTable = showTable }} />
     }
 
+    // buildTable = () => {
+    //     return <MesReceiveFGShowTable scrollY={200} 
+    //                                   pagination={false} 
+    //                                   rowKey={this.state.rowKey} 
+    //                                   ref={(showTable) => { this.showTable = showTable }} 
+    //                                   tableRrn={this.state.tableRrn} 
+    //                                   table={this.state.table}
+    //                                   data={this.state.tableData} 
+    //                                   loading={this.state.loading} />
+    // }
+
     buildOtherComponent = () => {
+      console.log(this);
+      console.log(this.showTable);
       return <MesFinishGoodScanProperties showTable={this.showTable} 
                                             tableRrn={7728}
-                                            resetFlag={this.state.resetFlag}>
-      </MesFinishGoodScanProperties>
+                                            resetFlag={this.state.resetFlag}/>
   }
 
 }

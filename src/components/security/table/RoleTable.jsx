@@ -70,7 +70,6 @@ export default class RoleTable extends EntityListTable {
     }
 
     openDispatchUserForm = () => {
-        debugger;
         let self = this;
         let selectedRow = this.validateSelectedRow();
         if (selectedRow) {

@@ -63,13 +63,10 @@ export default class PackageMaterialLotProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-        return <PackMaterialLotTable pagination={false} 
-                                    rowKey={this.state.rowKey} 
+        return <PackMaterialLotTable {...this.getDefaultTableProps()} 
+                                    pagination={false} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
-                                    table={this.state.table} 
-                                    data={this.state.tableData} 
-                                    loading={this.state.loading} 
                                     resetData={this.resetData.bind(this)}
                                     packageType={this.state.packageType}/>
     }

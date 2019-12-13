@@ -38,13 +38,11 @@ export default class PackCaseCheckProperties extends EntityDoubleScanProperties{
     }
 
     buildTable = () => {
-        return <PackCaseCheckTable checkItemList={this.state.judgePackCaseItemList} pagination={false} 
-                                    rowKey={this.state.rowKey} 
+        return <PackCaseCheckTable {...this.getDefaultTableProps()} 
+                                    checkItemList={this.state.judgePackCaseItemList} 
+                                    pagination={false} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
-                                    table={this.state.table} 
-                                    data={this.state.tableData} 
-                                    loading={this.state.loading} 
                                     resetData={this.resetData.bind(this)}
                                     resetFlag={this.state.resetFlag}
                                     scanErrorFlag={this.state.scanErrorFlag}/>

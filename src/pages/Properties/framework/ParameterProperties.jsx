@@ -6,7 +6,7 @@ export default class ParameterProperties extends EntityProperties{
     static displayName = 'ParameterProperties';
     
     buildTable = () => {
-        return <ParameterTable table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <ParameterTable {...this.getDefaultTableProps()} />
     }
 
 }

@@ -30,25 +30,6 @@ export default class EntityProperties extends Component {
       };
     }
 
-    componentDidMount =() => {
-      this.getTableData();
-    }
-
-    getTableData = () => {
-      const self = this;
-      let requestObject = {
-        tableRrn: this.state.tableRrn,
-        success: function(responseBody) {
-          self.setState({
-            tableData: responseBody.dataList,
-            table: responseBody.table,
-            loading: false
-          }); 
-        }
-      }
-      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
-    }
-    
     afterQuery = (responseBody) => {
         this.setState({
           tableData: responseBody.dataList,
@@ -57,6 +38,7 @@ export default class EntityProperties extends Component {
     }
 
     queryData = (whereClause) => {
+      debugger;
       const self = this;
       let requestObject = {
         tableRrn: this.state.tableRrn,
@@ -76,9 +58,21 @@ export default class EntityProperties extends Component {
     resetData = () => {
       
     }
-    
+
+    getDefaultTableProps = () => {
+      return {
+        rowKey: this.state.rowKey,
+        selectedRowKeys: this.state.selectedRowKeys,
+        selectedRows: this.state.selectedRows,
+        data: this.state.tableData,
+        tableRrn: this.state.tableRrn,
+        loading: this.state.loading,
+        scanAddFlag: this.state.scanAddFlag
+      }
+    }
+
     buildTable = () => {
-        return  <EntityListTable rowKey={this.state.rowKey} selectedRowKeys={this.state.selectedRowKeys} selectedRows={this.state.selectedRows} table={this.state.table} data={this.state.tableData} loading={this.state.loading}/>
+      return  <EntityListTable {...this.getDefaultTableProps()}/>
     }
 
     /**

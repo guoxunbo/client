@@ -32,6 +32,7 @@ export default class EntityListTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            tableRrn: undefined,
             table: {fields: []},
             columns: [],
             rowClassName: (record, index) => {},
@@ -44,29 +45,51 @@ export default class EntityListTable extends Component {
             scrollX: undefined,
             scrollY:undefined,
             data: [],
+            loading: true,
         };
     }
 
+    initTable = () => {
+        const self = this;
+        let requestObject = {
+            tableRrn: this.props.tableRrn,
+            success: function(responseBody) {
+                let table = responseBody.table;
+                let columnData = self.buildColumn(table);
+                let data = responseBody.dataList;
+                if (self.props.scanAddFlag) {
+                    data = [];
+                }
+                self.setState({
+                    data: data,
+                    table: table,
+                    loading: false,
+                    columns: columnData.columns,
+                    scrollX: columnData.scrollX,
+                    pagination: self.props.pagination != undefined ? self.props.pagination : Application.table.pagination
+                }); 
+            }
+        }
+        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    }
+
+    componentDidMount = () => {
+        this.initTable();
+    }
+
     componentWillReceiveProps = (props) => {
-        // TODO 此处存在刷新多次问题
         let {selectedRowKeys, selectedRows} = this.state;
-        let columnData = this.buildColumn(props.table);;
-        
         let stateSeletcedRowKeys = selectedRowKeys.merge(props.selectedRowKeys);
         let stateSelectedRows = selectedRows.merge(props.selectedRows, this.props.rowKey);
         if (props.resetFlag) {
             stateSeletcedRowKeys = [];
             stateSelectedRows = [];
         }
-        
         this.setState({
-            data: props.data,
-            table: props.table,
-            columns: columnData.columns,
-            scrollX: columnData.scrollX,
+            loading: props.loading,
             selectedRowKeys: stateSeletcedRowKeys || [],
             selectedRows: stateSelectedRows || [],
-            pagination: props.pagination != undefined ? props.pagination : Application.table.pagination
+            data: props.data
         })
     }
 
@@ -167,9 +190,7 @@ export default class EntityListTable extends Component {
     } 
 
     refreshDelete = (records) => {
-        debugger;
         let datas = this.state.data;
-
         let recordList = [];
         //支持批量删除
         if (!(records instanceof Array)) {
@@ -424,7 +445,7 @@ export default class EntityListTable extends Component {
     }
 
     render() {
-        const {data, columns, rowClassName, selectedRowKeys, scrollX, pagination} = this.state;
+        const {data, columns, rowClassName, selectedRowKeys, scrollX, pagination, loading} = this.state;
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
           <div >
@@ -441,7 +462,7 @@ export default class EntityListTable extends Component {
                     columns = {columns}
                     scroll = {{ x: scrollX, y:this.props.scrollY}}
                     rowKey = {this.props.rowKey || DefaultRowKey}
-                    loading = {this.props.loading}
+                    loading = {loading}
                     rowClassName = {rowClassName.bind(this)}
                     rowSelection = {rowSelection}
                     onChange= {this.onChange.bind(this)}
@@ -461,7 +482,7 @@ export default class EntityListTable extends Component {
 }
 
 EntityListTable.prototypes = {
-    table: PropTypes.object.isRequired,
+    tableRrn: PropTypes.number.isRequired,
     data: PropTypes.array,
     rowClassName: PropTypes.func,
     rowkey: PropTypes.string,
@@ -469,5 +490,5 @@ EntityListTable.prototypes = {
     selectedRowKeys: PropTypes.array,
     selectedRows: PropTypes.array,
     resetFlag: PropTypes.bool,
-    resetData: PropTypes.func
+    resetData: PropTypes.func,
 }
