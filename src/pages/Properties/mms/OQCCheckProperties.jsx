@@ -14,10 +14,7 @@ export default class OQCCheckProperties extends QualityCheckProperties{
         checkItemList = this.refList.state.dataList;
       }
       return <OQCCheckTable checkItemList={checkItemList} {...this.getDefaultTableProps()} 
-                                  pagination={false} 
-                                  selectedRowKeys={this.state.selectedRowKeys} 
-                                  selectedRows={this.state.selectedRows} 
-                                  resetData={this.resetData.bind(this)}/>
+                                  pagination={false} />
     }
     
 }

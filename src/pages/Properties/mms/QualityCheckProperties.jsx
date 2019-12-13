@@ -22,10 +22,7 @@ export default class QualityCheckProperties extends EntityScanProperties{
         checkItemList = this.refList.state.dataList;
       }
       return <QualityCheckTable checkItemList={checkItemList} {...this.getDefaultTableProps()} 
-                                  pagination={false} 
-                                  selectedRowKeys={this.state.selectedRowKeys} 
-                                  selectedRows={this.state.selectedRows} 
-                                  resetData={this.resetData.bind(this)}/>
+                                  pagination={false} />
     }
 
     buildOtherComponent = () => {

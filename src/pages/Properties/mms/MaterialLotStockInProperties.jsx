@@ -11,10 +11,7 @@ export default class MaterialLotStockInProperties extends EntityScanProperties{
     
     buildTable = () => {
         return <MaterialLotStockInTable {...this.getDefaultTableProps()} 
-                                    pagination={false} 
-                                    selectedRowKeys={this.state.selectedRowKeys} 
-                                    selectedRows={this.state.selectedRows} 
-                                    resetData={this.resetData.bind(this)}/>
+                                    pagination={false} />
     }
 
 }

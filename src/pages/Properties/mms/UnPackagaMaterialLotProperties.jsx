@@ -9,11 +9,7 @@ export default class UnPackagaMaterialLotProperties extends EntityDoubleScanProp
     static displayName = 'UnPackagaMaterialLotProperties';
       
     buildTable = () => {
-        return <UnPackMaterialLotTable pagination={false} {...this.getDefaultTableProps()} 
-                                    selectedRowKeys={this.state.selectedRowKeys} 
-                                    selectedRows={this.state.selectedRows} 
-                                    resetData={this.resetData.bind(this)}
-                                    resetFlag={this.state.resetFlag}/>
+        return <UnPackMaterialLotTable pagination={false} {...this.getDefaultTableProps()} />
     }
 
 }

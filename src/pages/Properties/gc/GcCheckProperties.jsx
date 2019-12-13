@@ -40,10 +40,7 @@ export default class GcCheckProperties extends EntityScanProperties {
     }
 
     buildTable = () => {
-        return <CheckTable {...this.getDefaultTableProps()} pagination={false} 
-                                    selectedRowKeys={this.state.selectedRowKeys} 
-                                    selectedRows={this.state.selectedRows} 
-                                    resetData={this.resetData.bind(this)}/>
+        return <CheckTable {...this.getDefaultTableProps()} pagination={false} />
     }
 
 }

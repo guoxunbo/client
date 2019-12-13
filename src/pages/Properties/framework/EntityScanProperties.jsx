@@ -17,6 +17,26 @@ export default class EntityScanProperties extends EntityProperties {
       super(props);
       this.state = {...this.state, ...{scanAddFlag:true, searchTxt: I18NUtils.getClientMessage(i18NCode.BtnAdd)}};
     }
+
+    getDefaultTableProps = () => {
+      return {
+        rowKey: this.state.rowKey,
+        selectedRowKeys: this.state.selectedRowKeys,
+        selectedRows: this.state.selectedRows,
+        data: this.state.tableData,
+        tableRrn: this.state.tableRrn,
+        loading: this.state.loading,
+        scanAddFlag: this.state.scanAddFlag,
+        selectedRowKeys: this.state.selectedRowKeys,
+        selectedRows: this.state.selectedRows,
+        resetData: this.resetData.bind(this),
+        resetFlag: this.state.resetFlag
+      }
+    }
+
+    
+                                    
+
     /**
      * 当表格里数据做完操作之后，务必调用下此方法把扫描添加进去的state数据清零。不然会把上一次的扫描结果一起带到下一次中去
      */

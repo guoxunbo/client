@@ -33,17 +33,6 @@ export default class MesFinishGoodProperties extends EntityProperties{
                                     ref={(showTable) => { this.showTable = showTable }} />
     }
 
-    // buildTable = () => {
-    //     return <MesReceiveFGShowTable scrollY={200} 
-    //                                   pagination={false} 
-    //                                   rowKey={this.state.rowKey} 
-    //                                   ref={(showTable) => { this.showTable = showTable }} 
-    //                                   tableRrn={this.state.tableRrn} 
-    //                                   table={this.state.table}
-    //                                   data={this.state.tableData} 
-    //                                   loading={this.state.loading} />
-    // }
-
     buildOtherComponent = () => {
       console.log(this);
       console.log(this.showTable);

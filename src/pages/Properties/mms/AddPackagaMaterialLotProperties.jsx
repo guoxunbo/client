@@ -66,10 +66,7 @@ export default class AddPackagaMaterialLotProperties extends EntityDoubleScanPro
     }
 
     buildTable = () => {
-        return <AddPackMaterialLotTable {...this.getDefaultTableProps()} pagination={false} 
-                                    selectedRowKeys={this.state.selectedRowKeys} 
-                                    selectedRows={this.state.selectedRows} 
-                                    resetData={this.resetData.bind(this)}/>
+        return <AddPackMaterialLotTable {...this.getDefaultTableProps()} pagination={false} />
     }
 
 }

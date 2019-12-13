@@ -100,10 +100,7 @@ export default class GcMaterialLotStockInProperties extends EntityScanProperties
 
     buildTable = () => {
         return <StockInStorageTable {...this.getDefaultTableProps()}
-                                    pagination={false} 
-                                    selectedRowKeys={this.state.selectedRowKeys} 
-                                    selectedRows={this.state.selectedRows} 
-                                    resetData={this.resetData.bind(this)}/>
+                                    pagination={false} />
     }
 
 }
