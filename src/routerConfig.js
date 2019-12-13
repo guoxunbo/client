@@ -15,7 +15,6 @@ import EntityViewProperties from '@properties/framework/EntityViewProperties';
 import GeneratorRuleProperties from '@properties/idgenerator/GeneratorRuleProperties';
 import MessageProperties from '@properties/framework/MessageProperties';
 import ParameterProperties from '@properties/framework/ParameterProperties';
-import EntityTreeProperties from '@properties/framework/EntityTreeProperties';
 
 //security
 import UserProperties from '@properties/security/UserProperties';
@@ -273,7 +272,7 @@ const routerConfig = [
   {
     path: buildPath('Rms/EquipmentRecipe'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityTreeProperties,
+    component: EntityProperties,
   },
   {
     path: '*',
