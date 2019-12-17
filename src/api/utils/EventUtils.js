@@ -6,8 +6,9 @@ import {EventEmitter} from 'events';
  */
 const EventModel = new EventEmitter();
 
-const EventName = {
-    ComboxValueChanged : "ComboxValueChanged"
+const EventNameList = {
+    ComboxValueChanged : "ComboxValueChanged",
+    ParentTableRowSelected: "ParentTableRowSelected"
 }
 
 export default class EventUtils {
@@ -18,6 +19,10 @@ export default class EventUtils {
     }
 
     static getEventNames() {
-        return EventName;
+        return EventNameList;
+    }
+
+    static removeAllListener(eventName) {
+        EventModel.removeAllListeners(eventName);
     }
 }

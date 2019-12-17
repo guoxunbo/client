@@ -38,7 +38,6 @@ export default class EntityProperties extends Component {
     }
 
     queryData = (whereClause) => {
-      debugger;
       const self = this;
       let requestObject = {
         tableRrn: this.state.tableRrn,

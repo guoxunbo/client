@@ -29,14 +29,13 @@ export default class Combox extends Component {
         this.setState = (state,callback)=>{
           return;
         };
+        EventUtils.removeAllListener(EventUtils.getEventNames().ComboxValueChanged);
     }
 
     componentDidMount() {
         this.queryData();
         // 监听值变化事件
-        EventUtils.getEventEmitter().on(EventUtils.getEventNames.ComboxValueChanged, (sender, value) => {
-            this.valueChanged(sender, value);
-        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ComboxValueChanged, (sender, value) => this.valueChanged(sender, value));
     }
 
     componentWillReceiveProps(nextProps) {
@@ -85,7 +84,7 @@ export default class Combox extends Component {
      */
     notifyValueChanged = (changedValue) => {
         // 发送事件变化
-        EventUtils.getEventEmitter().emit(EventUtils.getEventNames.ComboxValueChanged, this, changedValue);
+        EventUtils.getEventEmitter().emit(EventUtils.getEventNames().ComboxValueChanged, this, changedValue);
     }
 
     /**

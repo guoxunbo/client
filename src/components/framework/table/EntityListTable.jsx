@@ -15,6 +15,7 @@ import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { Upload } from 'antd';
 import NoticeUtils from '@utils/NoticeUtils';
+import EventUtils from '@api/utils/EventUtils';
 
 const ExpMenuKey = {
     exportTemplate: "exportTemplate",
@@ -77,6 +78,7 @@ export default class EntityListTable extends Component {
     componentDidMount = () => {
         this.initTable();
     }
+
 
     componentWillReceiveProps = (props) => {
         let {selectedRowKeys, selectedRows} = this.state;
@@ -426,6 +428,8 @@ export default class EntityListTable extends Component {
         this.setState({
             selectedRows: selectedRows
         });
+        // 发送事件变化
+        EventUtils.getEventEmitter().emit(EventUtils.getEventNames().ParentTableRowSelected, this, record, this.props.rowKey);
     }
 
     /**
