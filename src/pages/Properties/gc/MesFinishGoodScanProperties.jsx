@@ -48,6 +48,6 @@ export default class MesFinishGoodScanProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-        return <MesReceiveFGScanTable  {...this.getDefaultTableProps()} pagination={false} />
+        return <MesReceiveFGScanTable {...this.getDefaultTableProps()} loading={false} pagination={false} />
     }
 }
