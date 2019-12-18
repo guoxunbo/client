@@ -35,6 +35,7 @@ import GcRecordExpressNumberProperties from './pages/Properties/components/GcRec
 import GcOrderReservedProperties from './pages/Properties/components/GcOrderReservedProperties';
 import GCUnReservedMaterialLotProperties from './pages/Properties/components/GCUnReservedMaterialLotProperties';
 import GcOrderReservedCaseProperties from './pages/Properties/components/GcOrderReservedCaseProperties';
+import GcMaterialLotWeighProperties from './pages/Properties/components/GcMaterialLotWeighProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -226,6 +227,11 @@ const routerConfig = [
     path: buildPath('WMS/CheckManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCheckProperties,
+  },
+  {
+    path: buildPath('WMS/MaterialLotWeigh'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcMaterialLotWeighProperties,
   },
   //PackManager
   {

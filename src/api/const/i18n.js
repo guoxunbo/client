@@ -79,6 +79,13 @@ const i18NCode = {
     NoDeliveryOrder: "NoDeliveryOrder",
     StorageCannotEmpty: "StorageCannotEmpty",
     BtnDeleteAll: "DeleteAll",
+    BtnWeigh: "Weigh",
+    CaseWeightNotScanned: "CaseWeightNotScanned",
+    AddOneRowPlease: "AddOneRowPlease",
+    ThereScanFieldCanOnlyBeOne: "ThereScanFieldCanOnlyBeOne",
+    AllBoxWeightMustBeEmpty: "AllBoxWeightMustBeEmpty",
+    SearchFieldCannotEmpty: "SearchFieldCannotEmpty",
+    BoxWeightCannotEmpty: "BoxWeightCannotEmpty",
 }
 
 const i18Messages = {
@@ -472,6 +479,41 @@ const i18Messages = {
         English: "DeleteAll",
         Res: ""
     },
+    Weigh: {
+        Chinese: "称重",
+        English: "Weigh",
+        Res: ""
+    },
+    ThereScanFieldCanOnlyBeOne: {
+        Chinese: "查询条件只能有一个",
+        English: "There scanField can only be one",
+        Res: ""
+    },
+    CaseWeightNotScanned: {
+        Chinese: "多箱重量未扫描，请正确操作！",
+        English: "Case weight not scanned",
+        Res: ""
+    },
+    AddOneRowPlease: {
+        Chinese: "请先扫描箱号",
+        English: "Add one row please",
+        Res: ""
+    },
+    AllBoxWeightMustBeEmpty: {
+        Chinese: "所有的箱重量必须为空！",
+        English: "All box weight must be empty",
+        Res: ""
+    },
+    SearchFieldCannotEmpty: {
+        Chinese: "查询条件不能为空",
+        English: "Scan field cannot empty",
+        Res: ""
+    },
+    BoxWeightCannotEmpty: {
+        Chinese: "箱重量不能为空",
+        English: "Box weight cannot empty",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};
