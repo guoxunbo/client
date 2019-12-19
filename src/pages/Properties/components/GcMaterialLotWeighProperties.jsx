@@ -63,7 +63,7 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
             }
             WeightManagerRequest.sendQueryRequest(requestObject);
             // 如果扫描的是第一个扫描框，并且扫描的是数字，则更新当前列表中没有添加重量的箱号
-        } else if (data != undefined &&  parseFloat(data) != "NaN") {
+        } else if (data != undefined &&  parseFloat(data).toString() != "NaN") {
             currentHandleMLots = this.getNotScanWeightMaterialLots(tableData);
             if(currentHandleMLots.length == 0){
                 Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AddOneRowPlease));
@@ -89,22 +89,26 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
             self.form.resetFormFileds();
             //如果扫描的是多箱称重，则更新列表中所有箱号的重量
         } else if (boxsWeight != undefined) {
-            currentHandleMLots = this.getNotScanWeightMaterialLots(tableData);
-            if (tableData.length == 0){
-                Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
-            } else if(currentHandleMLots.length != tableData.length){
-                Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AllBoxWeightMustBeEmpty));
+            if(parseFloat(boxsWeight).toString() == "NaN"){
+                Notification.showInfo(I18NUtils.getClientMessage(i18NCode.WeightMustBeNumber));
             } else {
-                tableData.forEach((materialLot) => {
-                    tableData.map((data, index) => {
-                        if (data[rowKey] == materialLot[rowKey]) {
-                            dataIndex = index;
-                            materialLot["weight"] = boxsWeight;
-                            materialLot["boxsWeightFlag"] = 1;
-                            tableData.splice(dataIndex, 1, materialLot);
-                        }
-                    });      
-                });
+                currentHandleMLots = this.getNotScanWeightMaterialLots(tableData);
+                if (tableData.length == 0){
+                    Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+                } else if(currentHandleMLots.length != tableData.length){
+                    Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AllBoxWeightMustBeEmpty));
+                } else {
+                    tableData.forEach((materialLot) => {
+                        tableData.map((data, index) => {
+                            if (data[rowKey] == materialLot[rowKey]) {
+                                dataIndex = index;
+                                materialLot["weight"] = boxsWeight;
+                                materialLot["boxsWeightFlag"] = 1;
+                                tableData.splice(dataIndex, 1, materialLot);
+                            }
+                        });      
+                    });
+                }
             }
             self.setState({ 
                 tableData: tableData,

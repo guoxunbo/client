@@ -44,6 +44,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
+                window.location.reload(true);
                 MessageUtils.showOperationSuccess();
             }
         }

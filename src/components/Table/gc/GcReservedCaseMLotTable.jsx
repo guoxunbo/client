@@ -73,6 +73,10 @@ export default class GcReservedCaseMLotTable extends EntityListCheckTable {
         TableManagerRequest.sendGetByRrnRequest(requestObject);
     }
 
+    buildOperationColumn = () => {
+        
+    }
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());

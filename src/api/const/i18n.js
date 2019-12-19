@@ -86,6 +86,7 @@ const i18NCode = {
     AllBoxWeightMustBeEmpty: "AllBoxWeightMustBeEmpty",
     SearchFieldCannotEmpty: "SearchFieldCannotEmpty",
     BoxWeightCannotEmpty: "BoxWeightCannotEmpty",
+    WeightMustBeNumber: "WeightMustBeNumber",
 }
 
 const i18Messages = {
@@ -512,6 +513,11 @@ const i18Messages = {
     BoxWeightCannotEmpty: {
         Chinese: "箱重量不能为空",
         English: "Box weight cannot empty",
+        Res: ""
+    },
+    WeightMustBeNumber: {
+        Chinese: "重量只能时数字",
+        English: "Weight must be number",
         Res: ""
     }
 }
