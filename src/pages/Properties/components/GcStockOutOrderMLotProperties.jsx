@@ -2,6 +2,7 @@ import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import GcStockOutMLotTable from "../../../components/Table/gc/GcStockOutMLotTable";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import ValidationMaterialRequest from "../../../api/gc/validation -material/ValidationMaterialRequest";
+import ValidateMLotReservedRequest from "../../../api/gc/validate-materialLot-reserved/ValidateMLotReservedRequest";
 
 export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
 
@@ -33,21 +34,24 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
               let data = queryDatas[0];
-              if(tableData && tableData.length > 0){
-                let materialFirst = tableData[0];
-                self.validationMaterialRule(materialFirst, data);
-              } else {
-                queryDatas.forEach(data => {
-                  if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                    tableData.unshift(data);
-                  }
-                });
-                self.setState({ 
-                  tableData: tableData,
-                  loading: false
-                });
-                self.form.resetFormFileds();
-              }
+              //验证箱中的所有真空包是否全部备货
+              if(self.validationMaterialLotReserved(data)){
+                if(tableData && tableData.length > 0){
+                  let materialFirst = tableData[0];
+                  self.validationMaterialRule(materialFirst, data);
+                } else {
+                  queryDatas.forEach(data => {
+                    if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                      tableData.unshift(data);
+                    }
+                  });
+                  self.setState({ 
+                    tableData: tableData,
+                    loading: false
+                  });
+                  self.form.resetFormFileds();
+                }
+              } 
             } else {
               self.showDataNotFound();
             }
@@ -66,6 +70,24 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
         materialLotFirst : materialLotFirst,
         materialLot : materialLot,
         success: function(responseBody) {
+          return true;
+        },
+        fail: function() {
+          return false;
+        }
+      }
+      ValidationMaterialRequest.sendValidationRequest(requestObject);
+    }
+
+    /**
+     * 20191220 gc要求扫描箱信息时验证箱中所有真空包是否已经备货
+     */
+    validationMaterialLotReserved = (materialLot) => {
+      let self = this;
+      let {rowKey,tableData} = this.state;
+      let requestObject = {
+        materialLot : materialLot,
+        success: function(responseBody) {
           if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
             tableData.unshift(materialLot);
           }
@@ -82,9 +104,8 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
           self.form.resetFormFileds();
         }
       }
-      ValidationMaterialRequest.sendValidationRequest(requestObject);
+      ValidateMLotReservedRequest.sendValidationRequest(requestObject);
     }
-
 
     buildTable = () => {
         return <GcStockOutMLotTable 

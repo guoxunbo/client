@@ -3,6 +3,7 @@ const ServerAddress = {
     NewbiestUrl : "http://127.0.0.1:8080"
     // NewbiestUrl : "http://172.16.15.188:8080"
     // NewbiestUrl : "http://10.181.160.18:8080"
+    // NewbiestUrl : "http://10.181.160.31:10010"
 }
 
 /**
@@ -83,7 +84,7 @@ const UrlConstant = {
     GCRecordExpressUrl: ModuleUrlConstant.GC + "recordExpress",
     GCReservedUrl: ModuleUrlConstant.GC + "reserved",
     GCWightUrl : ModuleUrlConstant.GC + "weight",
-
+    GCValidationMLotReservedUrl: ModuleUrlConstant.GC + "validationMLotReserved",
 
 };
 
