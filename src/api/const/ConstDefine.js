@@ -85,7 +85,7 @@ const UrlConstant = {
     GCReservedUrl: ModuleUrlConstant.GC + "reserved",
     GCWightUrl : ModuleUrlConstant.GC + "weight",
     GCValidationMLotReservedUrl: ModuleUrlConstant.GC + "validationMLotReserved",
-
+    GCRelayBoxStockInUrl: ModuleUrlConstant.GC + "relayBoxStockIn",
 };
 
 const SystemRefListName = {

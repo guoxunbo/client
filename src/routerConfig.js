@@ -36,6 +36,7 @@ import GcOrderReservedProperties from './pages/Properties/components/GcOrderRese
 import GCUnReservedMaterialLotProperties from './pages/Properties/components/GCUnReservedMaterialLotProperties';
 import GcOrderReservedCaseProperties from './pages/Properties/components/GcOrderReservedCaseProperties';
 import GcMaterialLotWeighProperties from './pages/Properties/components/GcMaterialLotWeighProperties';
+import GCRelayBoxChangeStorageIdProperties from './pages/Properties/components/GCRelayBoxChangeStorageIdProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -232,6 +233,11 @@ const routerConfig = [
     path: buildPath('WMS/MaterialLotWeigh'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcMaterialLotWeighProperties,
+  },
+  {
+    path: buildPath('WMS/GCMaterialLotChangeStorage'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRelayBoxChangeStorageIdProperties,
   },
   //PackManager
   {
