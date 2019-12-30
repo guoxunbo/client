@@ -3,11 +3,10 @@ import  React, { Component } from 'react';
 
 import { Form, Input, Row, Col,Button} from 'antd';
 import IconUtils from '@api/utils/IconUtils';
-import RefListField from '@components/framework/field/RefListField';
-import RefTableField from '@components/framework/field/RefTableField';
+import LanguageField from '@components/framework/field/LanguageField';
+import OrgField from '@components/framework/field/OrgField';
 import I18NUtils from '@api/utils/I18NUtils';
 import {i18NCode} from '@api/const/i18n';
-import { RefTableName, SystemRefListName } from '@api/const/ConstDefine';
 import UserManagerRequest from '@api/user-manager/UserManagerRequest';
 
 const FormItem = Form.Item;
@@ -88,7 +87,7 @@ class UserLoginForm extends Component {
                                 required: true
                             }]
                         })(
-                          <RefTableField initialValue={this.state.org} field = {{refTableName : RefTableName.NBOrg}} style={styles.formSelect} />
+                          <OrgField initialValue={this.state.org} style={styles.formSelect} />
                         )}
                   </FormItem>
                 </Col>
@@ -104,7 +103,7 @@ class UserLoginForm extends Component {
                             required: true
                           }]
                         })(
-                          <RefListField initialValue={this.state.language} field={{name:"language", form:this.props.form}} referenceName={SystemRefListName.Language} style={styles.formSelect}/>
+                          <LanguageField initialValue={this.state.language} style={styles.formSelect}/>
                         )}
                   </FormItem>
                 </Col>

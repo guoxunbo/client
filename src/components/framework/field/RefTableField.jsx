@@ -1,26 +1,19 @@
-import RefTableManagerRequestBody from '@api/ref-table-manager/RefTableManagerRequestBody';
-import RefTableManagerRequestHeader from '@api/ref-table-manager/RefTableManagerRequestHeader';
-import {UrlConstant} from "@api/const/ConstDefine";
-import MessageUtils from "@api/utils/MessageUtils";
-
-import Request from '@api/Request';
 import Combox from './Combox';
 import * as PropTypes from 'prop-types';
+import RefTableManagerRequest from '@api/ref-table-manager/RefTableManagerRequest';
 
 export default class RefTableField extends Combox {
 
     static displayName = 'RefTableField';
     
-    refTable;
+    field;
 
     queryData = (parameters) => {
         let self = this;
         let field = self.props.field;
-        let requestBody = RefTableManagerRequestBody.buildGetData(field.refTableName, parameters);
-        let requestHeader = new RefTableManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.RefTableManagerUrl);
         let requestObject = {
-            request: request,
+            refTableName: field.refTableName,
+            parameters: parameters,
             success: function(responseBody) {
                 self.refTable = responseBody.referenceTable;
                 let data = [];
@@ -50,7 +43,7 @@ export default class RefTableField extends Combox {
                 // console.log(self.props.field.name);
             }
         }
-        MessageUtils.sendRequest(requestObject);
+        RefTableManagerRequest.sendGetDataRequest(requestObject);
     }
 
     valueChanged = (sender, value) => {
