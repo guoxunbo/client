@@ -37,6 +37,7 @@ import GCUnReservedMaterialLotProperties from './pages/Properties/components/GCU
 import GcOrderReservedCaseProperties from './pages/Properties/components/GcOrderReservedCaseProperties';
 import GcMaterialLotWeighProperties from './pages/Properties/components/GcMaterialLotWeighProperties';
 import GCRelayBoxChangeStorageIdProperties from './pages/Properties/components/GCRelayBoxChangeStorageIdProperties';
+import GCMesFinishGoodReceiveProperties from './pages/Properties/components/GCMesFinishGoodReceiveProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -165,6 +166,11 @@ const routerConfig = [
     path: buildPath('MMS/MESFinishGoodManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MesFinishGoodProperties,
+  },
+  {
+    path: buildPath('MMS/MESFinishGoodReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMesFinishGoodReceiveProperties,
   },
   //Doc
   {
