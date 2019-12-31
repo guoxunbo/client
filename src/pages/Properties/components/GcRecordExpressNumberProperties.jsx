@@ -6,6 +6,11 @@ export default class GcRecordExpressNumberProperties extends EntityProperties{
 
     static displayName = 'GcRecordExpressNumberProperties';
     
+
+    resetData = () => {
+      window.location.reload(true);
+    }
+
     getTableData = () => {
         const self = this;
         let requestObject = {
@@ -23,8 +28,13 @@ export default class GcRecordExpressNumberProperties extends EntityProperties{
     }
 
     buildTable = () => {
-        return <RecordExpressNumberTable table={this.state.table} pagination={false}
-                        data={this.state.tableData} loading={this.state.loading} />
+        return <RecordExpressNumberTable 
+                            table={this.state.table} 
+                            pagination={false}
+                            data={this.state.tableData} 
+                            loading={this.state.loading}
+                            resetData={this.resetData.bind(this)}
+                            resetFlag={this.state.resetFlag} />
     }
 
     
