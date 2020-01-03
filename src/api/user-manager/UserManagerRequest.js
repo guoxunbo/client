@@ -17,7 +17,7 @@ export default class UserManagerRequest {
         requestHeader.orgRrn = user.org;
         requestHeader.language = user.language;
 
-        let request = new Request(requestHeader, requestBody, UrlConstant.UserManagerUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.UserLoginUrl);
         let requestObject = {
             request: request,
             success: object.success
