@@ -1,6 +1,6 @@
 import  React, { Component } from 'react';
 
-import { Table, Popconfirm, Button,Form, Dropdown, Menu, Icon } from 'antd';
+import { Table, Popconfirm, Button, Dropdown, Menu, Icon } from 'antd';
 import './ListTable.scss';
 import {Application, SessionContext} from '@api/Application'
 import {DefaultRowKey, Language} from '@api/const/ConstDefine'
@@ -16,6 +16,7 @@ import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { Upload } from 'antd';
 import NoticeUtils from '@utils/NoticeUtils';
 import EventUtils from '@api/utils/EventUtils';
+import AuthorityButton from '../button/AuthorityButton';
 
 const ExpMenuKey = {
     exportTemplate: "exportTemplate",
@@ -24,7 +25,7 @@ const ExpMenuKey = {
 const EntityTableId = "entity-table";
 /**
  * 基本表格。具备新建和导出数据
- * 每一行都带有编辑和删除的列
+ * 每一行都带有编辑和删除的列 
  */
 export default class EntityListTable extends Component {
 
@@ -171,12 +172,13 @@ export default class EntityListTable extends Component {
     }
 
     buildEditButton = (record) => {
-        return <Button key="edit" style={{marginRight:'1px'}} icon="edit" onClick={() => this.handleEdit(record)} size="small" href="javascript:;"></Button>;
+        return <AuthorityButton key="edit" style={{marginRight:'1px'}} icon="edit" inRow
+                    onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>;
     }
 
     buildDeletePopConfirm = (record) => {
         return <Popconfirm key="delete" title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                    <Button icon="delete" size="small" type="danger"></Button>
+                    <AuthorityButton inRow icon="delete" size="small" type="danger"/>
                 </Popconfirm>;
     }
     
@@ -359,7 +361,7 @@ export default class EntityListTable extends Component {
     }
 
     createAddButton = () => {
-        return <Button key="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}>{I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>;
+        return <AuthorityButton i18NCode={i18NCode.BtnAdd} key="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}/>
     }
 
     /**
@@ -388,9 +390,7 @@ export default class EntityListTable extends Component {
      * 创建导出数据功能。基本功能具备
      */
     createExportDataButton = () => {
-        return <Button key="exportData" type="primary" className="table-button" icon="file-excel" onClick={this.exportData}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnExp)}
-                    </Button>
+        return <AuthorityButton i18NCode={i18NCode.BtnExp} key="exportData" type="primary" className="table-button" icon="file-excel" onClick={this.exportData}/>
     }
 
     /**
@@ -399,7 +399,7 @@ export default class EntityListTable extends Component {
     createImportButton = () => {
         return (<Upload key="import" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
                     customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <Button type="primary" className="table-button" icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImp)}</Button>
+                    <AuthorityButton type="primary" className="table-button" icon="file-add" i18NCode={i18NCode.BtnImp}/>
                 </Upload>);
     }
 

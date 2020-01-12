@@ -7,6 +7,7 @@ import {ResponseHeader} from "@api/ResponseHeader";
 import axios from "axios";
 import { SessionContext } from '@api/Application';
 import I18NUtils from '@utils/I18NUtils';
+import EventUtils from '@utils/EventUtils';
 import { i18NCode } from '@const/i18n';
 import fetchJsonp from 'fetch-jsonp';
 /**
@@ -130,6 +131,7 @@ export default class MessageUtils {
                 }
             }
             reader.readAsText(blob);
+            EventUtils.sendButtonLoaded();
         }).catch(function(exception) {
             self.handleException(exception);
         }); 
@@ -141,12 +143,14 @@ export default class MessageUtils {
     static sendRequest(requestObject) {
         let self = this;
         let request = requestObject.request;
+        debugger;
         axios.post(request.url, request, {
+            timeout: 10000,
             headers:{
-                authorization: SessionContext.getToken()
-                
+                authorization: SessionContext.getToken(),
             }
         }).then(function(object) {
+            console.log(object);
             let response = new Response(object.data.header, object.data.body);
             if (ResultIdentify.Fail == response.header.result) {
                 if (requestObject.fail) {
@@ -155,6 +159,7 @@ export default class MessageUtils {
                 self.handleException(response.header);
             } else {
                 if (object.headers.authorization) {
+                    console.log("aaa");
                     SessionContext.saveToken(object.headers.authorization);
                 }
                 if (requestObject.success) {
@@ -220,6 +225,7 @@ export default class MessageUtils {
     }
 
     static handleException(exception) {
+        console.log(exception);
         let error = "";
         let errroCode = 0;
         let language = SessionContext.getLanguage();
@@ -258,6 +264,9 @@ export default class MessageUtils {
             // String的不是后台的错误 需要去加载Client端的i18N信息
             if (exception == "Error: Network Error") {
                 error = I18NUtils.getClientMessage(i18NCode.NetworkError);
+            } else if (exception == "Error: timeout of 10000ms exceeded") {
+                //TODO
+                error = "Error: timeout of 10000ms exceeded";
             } else {
                 error = exception;
             }

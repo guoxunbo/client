@@ -13,7 +13,7 @@ const Application = {
     },
     table: {
         oprationColumn: {
-            width: 100
+            width: 110
         },
         checkBox: {
             width: 10
@@ -21,14 +21,14 @@ const Application = {
         // 默认的分页配置
         pagination: {
             // 默认页数
-            pageSize: 15,
+            pageSize: 10,
             // 是否允许快速跳转到第几页
             showQuickJumper: true,
             // 是否可以改变 pageSize
             showSizeChanger: true,
             // 当只有1页的时候是否隐藏分页器
             hideOnSinglePage: true,
-            pageSizeOptions:['15', '20', '50', '100']
+            pageSizeOptions:['10', '20', '50', '100']
         },
     },
     notice: {

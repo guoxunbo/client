@@ -8,7 +8,8 @@ const EventModel = new EventEmitter();
 
 const EventNameList = {
     ComboxValueChanged : "ComboxValueChanged",
-    ParentTableRowSelected: "ParentTableRowSelected"
+    ParentTableRowSelected: "ParentTableRowSelected",
+    ButtonLoaded: "ButtonLoaded",
 }
 
 export default class EventUtils {
@@ -24,5 +25,10 @@ export default class EventUtils {
 
     static removeAllListener(eventName) {
         EventModel.removeAllListeners(eventName);
+    }
+
+
+    static sendButtonLoaded() {
+        this.getEventEmitter().emit(EventNameList.ButtonLoaded);
     }
 }

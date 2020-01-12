@@ -8,6 +8,7 @@ import PropertyUtils from '@api/utils/PropertyUtils';
 import { DefaultOrderKey, DateFormatType } from '@api/const/ConstDefine';
 import moment from 'moment';
 import {WrappedAdvancedEntityForm} from '@components/framework/form/EntityForm';
+import EventUtils from '@utils/EventUtils';
 
 export default class EntityDialog extends Component {
     static displayName = 'EntityDialog';
@@ -63,6 +64,13 @@ export default class EntityDialog extends Component {
         EntityManagerRequest.sendMergeRequest(object);
     }
 
+    handleCancel = () => {
+        EventUtils.sendButtonLoaded();
+        if (this.props.onCancel) {
+            this.props.onCancel();
+        }
+    }
+
     buildForm = () =>  {
        return <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form} object={this.props.object} table={this.props.table}/>
     }
@@ -80,7 +88,7 @@ export default class EntityDialog extends Component {
                     visible={this.props.visible} 
                     maskClosable={false} 
                     onOk={this.handleOk}
-                    onCancel={this.props.onCancel} 
+                    onCancel={this.handleCancel} 
                     okText={okText}
                     destroyOnClose={true}>
                     {this.buildForm()}
