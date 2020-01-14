@@ -1,5 +1,6 @@
 const i18NCode = {
     NetworkError: "NetworkError",
+    TimeOut: "TimeOut",
     Yes: "Yes",
     No: "No",
     Login: "Login",
@@ -417,6 +418,11 @@ const i18Messages = {
     NetworkError: {
         Chinese: "网络错误",
         English: "NetworkError",
+        Res: ""
+    },
+    TimeOut: {
+        Chinese: "请求超时",
+        English: "RequestTimeOut",
         Res: ""
     }
 }

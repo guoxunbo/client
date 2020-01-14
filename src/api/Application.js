@@ -1,6 +1,7 @@
 const Application = {
     name: 'VCIM-' + ENV_MODE,
     version: "1.0.5",
+    timeOut: 10000,
     copyright: {
         name: "© 2018-至今By Newbiest",
         url: "https://github.com/guoxunbo/newbiest/"
