@@ -6,6 +6,7 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import StockOutManagerRequest from '../../../api/gc/stock-out/StockOutManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
+import EventUtils from '../../../api/utils/EventUtils';
 
 /**
  * 重测发料的物料批次表格
@@ -36,6 +37,11 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
             documentLine : documentLine,
@@ -68,7 +74,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
     }
 
     createStockOut = () => {
-        return <Button key="stockOut" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.stockOut}>
+        return <Button key="stockOut" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.stockOut}>
                         发货
                     </Button>
     }

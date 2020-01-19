@@ -9,6 +9,7 @@ import { SessionContext } from '../Application';
 import I18NUtils from './I18NUtils';
 import { i18NCode } from '../const/i18n';
 import fetchJsonp from 'fetch-jsonp';
+import EventUtils from './EventUtils';
 /**
  *  消息主要发送类
  */
@@ -163,6 +164,8 @@ export default class MessageUtils {
                     self.showOperationSuccess();
                 }
             }
+            EventUtils.sendButtonLoaded();
+            EventUtils.removeAllListener(EventUtils.getEventNames().ButtonLoaded);
         }).catch(function(exception) {
             self.handleException(exception);
         }); 
@@ -263,6 +266,8 @@ export default class MessageUtils {
             }
         }
         Notification.showError(errroCode, error);
+        EventUtils.sendButtonLoaded();
+        EventUtils.removeAllListener(EventUtils.getEventNames().ButtonLoaded);
     }
 }
 

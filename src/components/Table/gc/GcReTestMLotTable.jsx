@@ -7,6 +7,7 @@ import { i18NCode } from '../../../api/const/i18n';
 import RetestManagerRequest from '../../../api/gc/retest-manager/RetestManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Tag } from 'antd';
+import EventUtils from '../../../api/utils/EventUtils';
 
 /**
  * 重测发料的物料批次表格
@@ -89,11 +90,15 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
         let requestObject = {
             documentLines : orders,
             materialLots : materialLots,
             success: function(responseBody) {
-                debugger;
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
@@ -109,7 +114,7 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
      * 发料
      */
     createReTest = () => {
-        return <Button key="reTest" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.reTest}>
+        return <Button key="reTest" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.reTest}>
                         发料
                     </Button>
     }

@@ -4,6 +4,7 @@ import EntityListCheckTable from '../EntityListCheckTable';
 import { Button } from 'antd';
 import AsyncManagerRequest from '../../../api/gc/async-manager/AsyncManagerRequest';
 import EntityListTable from '../EntityListTable';
+import EventUtils from '../../../api/utils/EventUtils';
 
 /**
  * 单据表单
@@ -34,6 +35,12 @@ export default class OrderTable extends EntityListTable {
 
     asyncErp = () => {
         const {asyncType} = this.props;
+        
+        this.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+
         let object = {
             actionType : asyncType
         }
@@ -48,7 +55,7 @@ export default class OrderTable extends EntityListTable {
      * 同步EPR
      */
     createAsyncErpButton = () => {
-        return <Button key="asyncErp" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.asyncErp}>
+        return <Button key="asyncErp" type="primary" loading={this.state.loading} style={styles.tableButton} icon="file-excel" onClick={this.asyncErp}>
                         {"ERP"}
                     </Button>
     }
