@@ -1,10 +1,13 @@
 
 const ActionType = {
-    AsyncSo : "AsyncSo",
-    AsyncMaterialOutOrder : "AsyncMaterialOutOrder",
-    AsyncMaterial : "AsyncMaterial",
+    AsyncReTestIssueOrder : "AsyncReTestIssueOrder",
+    AsyncWaferIssueOrder : "AsyncWaferIssueOrder",
+    AsyncReceiveOrder : "AsyncReceiveOrder",
+    AsyncShipOrder : "AsyncShipOrder",
     AsyncMesProduct: "AsyncProduct"
+
 }
+
 export default class AsyncManagerRequestBody {
 
     actionType;

@@ -4,6 +4,9 @@ import { ActionType } from "../../../api/gc/async-manager/AsyncManagerRequestBod
 import GcStockOutOrderMLotProperties from "./GcStockOutOrderMLotProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 
+/**
+ * 出货单
+ */
 export default class GcOrderProperties extends EntityProperties{
 
     static displayName = 'GcOrderProperties';
@@ -38,7 +41,7 @@ export default class GcOrderProperties extends EntityProperties{
       }
 
     buildTable = () => {
-        return <OrderTable scrollY={200} pagination={false} ref={(orderTable) => { this.orderTable = orderTable }} asyncType={ActionType.AsyncSo} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <OrderTable scrollY={200} pagination={false} ref={(orderTable) => { this.orderTable = orderTable }} asyncType={ActionType.AsyncShipOrder} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
     }
 
     buildOtherComponent = () => {

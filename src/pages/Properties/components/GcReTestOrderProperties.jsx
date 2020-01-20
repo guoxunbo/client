@@ -38,7 +38,7 @@ export default class GcReTestOrderProperties extends EntityProperties{
     }
 
     buildTable = () => {
-        return <OrderTable scrollY={200} ref={(orderTable) => { this.orderTable = orderTable }} pagination={false} asyncType={ActionType.AsyncMaterialOutOrder} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <OrderTable scrollY={200} ref={(orderTable) => { this.orderTable = orderTable }} pagination={false} asyncType={ActionType.AsyncReTestIssueOrder} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
     }
 
     buildOtherComponent = () => {
