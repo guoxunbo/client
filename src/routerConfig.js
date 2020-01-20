@@ -162,10 +162,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  // Wafer相关
   {
-    path: buildPath('MMS/MMWaferImport'),
+    path: buildPath('Wafer/GCWaferImport'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WaferImportProperties,
+  },
+  {
+    path: buildPath('Wafer/GCWaferCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCheckProperties,
   },
   //MES成品接收
   {

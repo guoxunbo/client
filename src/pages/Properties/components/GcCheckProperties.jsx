@@ -64,9 +64,9 @@ export default class GcCheckProperties extends EntityScanProperties{
         loading: false
       });
       this.allFieldBlur();
-      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataAlreadyExists) + (data || ""));
       self.form.resetFormFileds();
       this.form.state.queryFields[0].node.focus();
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataAlreadyExists) + (data || ""));
     }
 
     buildTable = () => {
