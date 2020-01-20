@@ -66,6 +66,8 @@ const UrlConstant = {
     UnPackMaterialLotsUrl: ModuleUrlConstant.MMS + "unPackMaterialLots",
     MaterialLotStockInUrl: ModuleUrlConstant.MMS + "stockIn",
     AppendPackMaterialLotsUrl: ModuleUrlConstant.MMS + "appendPackMaterialLots",
+    MMWaferShowUrl: ModuleUrlConstant.MMS + "materialLotUnitShowManage",
+    WaferImportUrl: ModuleUrlConstant.MMS + "materialLotUnitImportManage",
 
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",

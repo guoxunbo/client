@@ -38,6 +38,7 @@ import GcOrderReservedCaseProperties from './pages/Properties/components/GcOrder
 import GcMaterialLotWeighProperties from './pages/Properties/components/GcMaterialLotWeighProperties';
 import GCRelayBoxChangeStorageIdProperties from './pages/Properties/components/GCRelayBoxChangeStorageIdProperties';
 import GCMesFinishGoodReceiveProperties from './pages/Properties/components/GCMesFinishGoodReceiveProperties';
+import WaferImportProperties from './pages/Properties/components/WaferImportProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -160,6 +161,11 @@ const routerConfig = [
     path: buildPath('MMS/MLotMergeRuleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  {
+    path: buildPath('MMS/MMWaferImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WaferImportProperties,
   },
   //MES成品接收
   {

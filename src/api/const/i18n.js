@@ -87,6 +87,9 @@ const i18NCode = {
     SearchFieldCannotEmpty: "SearchFieldCannotEmpty",
     BoxWeightCannotEmpty: "BoxWeightCannotEmpty",
     WeightMustBeNumber: "WeightMustBeNumber",
+    BtnPreview: "Preview",
+    AbnormalInfoOnThePage: "AbnormalInfoOnThePage",
+    BtnImportTemplate: "ImportTemplate",
 }
 
 const i18Messages = {
@@ -519,7 +522,22 @@ const i18Messages = {
         Chinese: "重量只能时数字",
         English: "Weight must be number",
         Res: ""
-    }
+    },
+    ImportTemplate: {
+        Chinese: "导入模板下载",
+        English: "import template download",
+        Res: ""
+    },
+    AbnormalInfoOnThePage: {
+        Chinese: "页面上有异常数据",
+        English: "abnormal info on the page",
+        Res: ""
+    },
+    Preview: {
+        Chinese: "选择文件",
+        English: "preview file",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};
