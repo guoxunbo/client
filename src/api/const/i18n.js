@@ -90,6 +90,8 @@ const i18NCode = {
     BtnPreview: "Preview",
     AbnormalInfoOnThePage: "AbnormalInfoOnThePage",
     BtnImportTemplate: "ImportTemplate",
+    DataNotImported: "DataNotImported",
+    ReservedListCannotEmpty: "ReservedListCannotEmpty",
 }
 
 const i18Messages = {
@@ -538,6 +540,16 @@ const i18Messages = {
         English: "preview file",
         Res: ""
     },
+    DataNotImported: {
+        Chinese: "数据未导入",
+        English: "Data not imported",
+        Res: ""
+    },
+    ReservedListCannotEmpty: {
+        Chinese: "备货列表不能为空！",
+        English: "Reserved list cannot empty",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};
