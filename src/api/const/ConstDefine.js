@@ -76,6 +76,7 @@ const UrlConstant = {
     GCAsyncUrl: ModuleUrlConstant.GC + "asyncManage",
     GCCheckInventoryUrl: ModuleUrlConstant.GC + "checkInventory",
     GCReTestUrl: ModuleUrlConstant.GC + "reTest",
+    GCReceiveWaferUrl: ModuleUrlConstant.GC + "receiveWafer",
     GCStockOutUrl: ModuleUrlConstant.GC + "stockOut",
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPrintBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",

@@ -39,6 +39,7 @@ import GcMaterialLotWeighProperties from './pages/Properties/components/GcMateri
 import GCRelayBoxChangeStorageIdProperties from './pages/Properties/components/GCRelayBoxChangeStorageIdProperties';
 import GCMesFinishGoodReceiveProperties from './pages/Properties/components/GCMesFinishGoodReceiveProperties';
 import WaferImportProperties from './pages/Properties/components/WaferImportProperties';
+import GcWaferReceiveOrderProperties from './pages/Properties/components/GcWaferReceiveOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -167,6 +168,11 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferImport'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WaferImportProperties,
+  },
+  {
+    path: buildPath('Wafer/GCWaferReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferReceiveOrderProperties,
   },
   {
     path: buildPath('Wafer/GCWaferCheck'),
