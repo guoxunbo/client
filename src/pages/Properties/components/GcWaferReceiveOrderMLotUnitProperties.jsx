@@ -29,7 +29,7 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
-        let waitForReTestMLotsProperties = this.waitForReTestMLotsProperties.state.tableData;
+        let waitForReceiveMLotUnitProperties = this.waitForReceiveMLotUnitProperties.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
@@ -38,7 +38,7 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
             let data = undefined;
             if (queryDatas && queryDatas.length > 0) {
               data = queryDatas[0];
-              if (waitForReTestMLotsProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+              if (waitForReceiveMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                 data.errorFlag = true;
               }
             } else {
@@ -81,6 +81,6 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
     }
 
     buildOtherComponent = () => {
-      return <GcWaitForReceiveMLotUnitProperties ref={(waitForReTestMLotsProperties) => { this.waitForReTestMLotsProperties = waitForReTestMLotsProperties }} tableRrn={99141} />
+      return <GcWaitForReceiveMLotUnitProperties ref={(waitForReceiveMLotUnitProperties) => { this.waitForReceiveMLotUnitProperties = waitForReceiveMLotUnitProperties }} tableRrn={99141} />
   }
 }

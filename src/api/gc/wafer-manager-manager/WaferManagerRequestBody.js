@@ -2,7 +2,8 @@ import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 
 const ActionType = {
     Receive: "Receive",
-    Issue: "Issue"
+    Issue: "Issue",
+    ValidationIssue: "ValidationIssue"
 }
 export default class WaferManagerRequestBody {
 
@@ -25,6 +26,17 @@ export default class WaferManagerRequestBody {
         });
 
         return new WaferManagerRequestBody(ActionType.Receive, documentLines, materialLotActions);
+    }
+
+    static buildValidationWaferIssue(documentLines, materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+
+        return new WaferManagerRequestBody(ActionType.ValidationIssue, documentLines, materialLotActions);
     }
 
     static buildIssue(documentLines, materialLots) {

@@ -8,7 +8,7 @@ export default class WaferManagerRequest {
 
     static sendReceiveWaferRequest = (object) => {
         let {documentLines, materialLots} = object;
-        let requestBody = WaferManagerRequestBody.buildRetest(documentLines, materialLots);
+        let requestBody = WaferManagerRequestBody.buildReceive(documentLines, materialLots);
         let requestHeader = new WaferManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReceiveWaferUrl);
         let requestObject = {
@@ -18,5 +18,28 @@ export default class WaferManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendValidationWaferIssueRequest = (object) => {
+        let {documentLines, materialLots} = object;
+        let requestBody = WaferManagerRequestBody.buildValidationWaferIssue(documentLines, materialLots);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReceiveWaferUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendWaferIssueRequest = (object) => {
+        let {documentLines, materialLots} = object;
+        let requestBody = WaferManagerRequestBody.buildIssue(documentLines, materialLots);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReceiveWaferUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

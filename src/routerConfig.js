@@ -40,6 +40,7 @@ import GCRelayBoxChangeStorageIdProperties from './pages/Properties/components/G
 import GCMesFinishGoodReceiveProperties from './pages/Properties/components/GCMesFinishGoodReceiveProperties';
 import WaferImportProperties from './pages/Properties/components/WaferImportProperties';
 import GcWaferReceiveOrderProperties from './pages/Properties/components/GcWaferReceiveOrderProperties';
+import GcWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -173,6 +174,11 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferReceiveOrderProperties,
+  },
+  {
+    path: buildPath('Wafer/GCWaferIssue'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferIssueOrderProperties,
   },
   {
     path: buildPath('Wafer/GCWaferCheck'),

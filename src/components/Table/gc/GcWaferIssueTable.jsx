@@ -10,11 +10,11 @@ import EventUtils from '../../../api/utils/EventUtils';
 import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferManagerRequest';
 
 /**
- * 晶圆接收
+ * 晶圆发料
  */
-export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
+export default class GcWaferIssueTable extends EntityScanViewTable {
 
-    static displayName = 'GcReceiveMLotUnitTable';
+    static displayName = 'GcWaferIssueTable';
 
     getRowClassName = (record, index) => {
         // 如果是扫描到不存在的批次，则进行高亮显示
@@ -87,7 +87,7 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
         return <Tag color="#2db7f5">颗数：{count}</Tag>
     }
 
-    receive = () => {
+    issue = () => {
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
@@ -120,15 +120,15 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
                 window.location.reload(true);
             }
         }
-        WaferManagerRequest.sendReceiveWaferRequest(requestObject);
+        WaferManagerRequest.sendWaferIssueRequest(requestObject);
     }
 
      /**
      * 发料
      */
     createReceive = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.receive}>
-                        接收
+        return <Button key="issue" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.issue}>
+                        发料
                     </Button>
     }
 
