@@ -185,6 +185,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCheckProperties,
   },
+  {
+    path: buildPath('Wafer/GCWaferInStorage'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcMaterialLotStockInProperties,
+  },
+  
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),
