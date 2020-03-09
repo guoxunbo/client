@@ -18,5 +18,17 @@ export default class StockOutManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendValidationRequest = (object) => {
+        let {queryMaterialLot, materialLots} = object;
+        let requestBody = StockOutManagerRequestBody.buildValidateMaterial(queryMaterialLot, materialLots);
+        let requestHeader = new StockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }
 
