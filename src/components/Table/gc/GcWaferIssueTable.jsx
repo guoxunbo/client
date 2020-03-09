@@ -123,6 +123,21 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
         WaferManagerRequest.sendWaferIssueRequest(requestObject);
     }
 
+    /**
+     * 删除同一箱号的所有晶圆
+     */
+    handleDelete = (record) => {
+        const self = this;
+        let tableData = this.state.data;
+        let materialLotUnits = [];
+        tableData.forEach(materialLotUnit => {
+            if(materialLotUnit.materialLotId == record.materialLotId){
+                materialLotUnits.push(materialLotUnit);
+            }
+        });
+        self.refreshDelete(materialLotUnits);
+    } 
+
      /**
      * 发料
      */

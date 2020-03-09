@@ -10,7 +10,7 @@ export default class WaferManagerRequest {
         let {documentLines, materialLots} = object;
         let requestBody = WaferManagerRequestBody.buildReceive(documentLines, materialLots);
         let requestHeader = new WaferManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.GCReceiveWaferUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {
             request: request,
             success: object.success
@@ -22,7 +22,7 @@ export default class WaferManagerRequest {
         let {documentLines, materialLots} = object;
         let requestBody = WaferManagerRequestBody.buildValidationWaferIssue(documentLines, materialLots);
         let requestHeader = new WaferManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.GCReceiveWaferUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {
             request: request,
             success: object.success
@@ -34,7 +34,7 @@ export default class WaferManagerRequest {
         let {documentLines, materialLots} = object;
         let requestBody = WaferManagerRequestBody.buildIssue(documentLines, materialLots);
         let requestHeader = new WaferManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.GCReceiveWaferUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {
             request: request,
             success: object.success

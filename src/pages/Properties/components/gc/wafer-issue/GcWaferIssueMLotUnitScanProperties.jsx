@@ -33,6 +33,10 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
         let orders = this.props.orderTable.state.data;
         if (orders.length == 0) {
           Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+          self.setState({ 
+            tableData: tableData,
+            loading: false
+          });
           return;
         }
         let requestObject = {
@@ -52,9 +56,11 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
                 documentLines: orders,
                 materialLots: materialLots,
                 success: function(responseBody) {
-                  if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                    tableData.unshift(data);
-                  }
+                  queryDatas.forEach(data => {
+                    if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                      tableData.unshift(data);
+                    }
+                  });
                   self.setState({ 
                     tableData: tableData,
                     loading: false

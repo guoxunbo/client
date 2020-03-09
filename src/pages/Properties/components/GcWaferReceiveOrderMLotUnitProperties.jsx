@@ -37,19 +37,23 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
             let queryDatas = responseBody.dataList;
             let data = undefined;
             if (queryDatas && queryDatas.length > 0) {
-              data = queryDatas[0];
-              if (waitForReceiveMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                data.errorFlag = true;
-              }
+              queryDatas.forEach(data => {
+                if (waitForReceiveMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                  data.errorFlag = true;
+                }
+                if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                  tableData.unshift(data);
+                }
+              });
             } else {
               data = new MaterialLotUnit();
               let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
               data[rowKey] = materialLotId;
               data.setMaterialLotId(materialLotId);
               data.errorFlag = true;
-            }
-            if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-              tableData.unshift(data);
+              if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                tableData.unshift(data);
+              }
             }
            
             self.setState({ 
