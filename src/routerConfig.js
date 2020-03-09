@@ -41,6 +41,7 @@ import GCMesFinishGoodReceiveProperties from './pages/Properties/components/GCMe
 import WaferImportProperties from './pages/Properties/components/WaferImportProperties';
 import GcWaferReceiveOrderProperties from './pages/Properties/components/GcWaferReceiveOrderProperties';
 import GcWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOrderProperties';
+import GCIncomingMaterialImportProperties from './pages/Properties/components/GCIncomingMaterialImportProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -275,6 +276,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRelayBoxChangeStorageIdProperties,
   },
+  {
+    path: buildPath('WMS/IncomingMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMaterialImportProperties,
+  },
   //PackManager
   {
     path: buildPath('Pack/PackRuleManager'),

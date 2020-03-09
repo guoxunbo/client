@@ -1,6 +1,6 @@
 
 const ServerAddress = {
-    NewbiestUrl : "http://172.16.13.116:8080"
+    NewbiestUrl : "http://127.0.0.1:8080"
     // NewbiestUrl : "http://172.16.15.188:8080"
     // NewbiestUrl : "http://10.181.160.18:8080"
     // NewbiestUrl : "http://10.181.160.31:10010"
@@ -76,19 +76,19 @@ const UrlConstant = {
     GCAsyncUrl: ModuleUrlConstant.GC + "asyncManage",
     GCCheckInventoryUrl: ModuleUrlConstant.GC + "checkInventory",
     GCReTestUrl: ModuleUrlConstant.GC + "reTest",
-    GCReceiveWaferUrl: ModuleUrlConstant.GC + "receiveWafer",
+    GCWaferManagerUrl: ModuleUrlConstant.GC + "waferManage",
     GCStockOutUrl: ModuleUrlConstant.GC + "stockOut",
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPrintBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
     GCGetPrintVboxParameterUrl: ModuleUrlConstant.GC + "getPrintVboxParameter",
     GCValidationSoOrReTestUrl: ModuleUrlConstant.GC + "validationSoOrReTest",
-    GCValidationMaterialUrl: ModuleUrlConstant.GC + "validationMaterial",
     GCValidationDocumentLineUrl: ModuleUrlConstant.GC + "validationDocumentLine",
     GCRecordExpressUrl: ModuleUrlConstant.GC + "recordExpress",
     GCReservedUrl: ModuleUrlConstant.GC + "reserved",
     GCWightUrl : ModuleUrlConstant.GC + "weight",
-    GCValidationMLotReservedUrl: ModuleUrlConstant.GC + "validationMLotReserved",
     GCRelayBoxStockInUrl: ModuleUrlConstant.GC + "relayBoxStockIn",
+    GCIncomingImportUrl: ModuleUrlConstant.GC + "IncomingImport",
+    GCIncomingMaterialSave: ModuleUrlConstant.GC + "IncomingMaterialSave",
 };
 
 const SystemRefListName = {

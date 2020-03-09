@@ -92,6 +92,9 @@ const i18NCode = {
     BtnImportTemplate: "ImportTemplate",
     DataNotImported: "DataNotImported",
     ReservedListCannotEmpty: "ReservedListCannotEmpty",
+    ChooseImportTypePlease: "ChooseImportTypePlease",
+    ImportTypeAndFileNameAreNotConsistent: "ImportTypeAndFileNameAreNotConsistent",
+    ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
 }
 
 const i18Messages = {
@@ -548,6 +551,21 @@ const i18Messages = {
     ReservedListCannotEmpty: {
         Chinese: "备货列表不能为空！",
         English: "Reserved list cannot empty",
+        Res: ""
+    },
+    ChooseImportTypePlease: {
+        Chinese: "请选择导入类型！",
+        English: "Choose import type  please!",
+        Res: ""
+    },
+    ImportTypeAndFileNameAreNotConsistent: {
+        Chinese: "导入类型和文件名不一致",
+        English: "Import type and file name are not consistent!",
+        Res: ""
+    },
+    ChooseWarehouseIdPlease: {
+        Chinese: "请选择仓库！",
+        English: "Choose warehouseId please!",
         Res: ""
     }
 }
