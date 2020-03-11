@@ -50,6 +50,7 @@ export default class MaterialTable extends EntityListTable {
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createReceiveMaterialLotButton());
         buttons.push(this.createAsyncProductInfoButton());
+        buttons.push(this.createAsyncWaferInfoButton());
         return buttons;
     }
 
@@ -57,8 +58,20 @@ export default class MaterialTable extends EntityListTable {
         return <Button key="AsyncMesProductInfo" type="primary" style={styles.tableButton} icon="file-excel" onClick={() => this.handleAsyncProductInfo()}>{"Product"}</Button>;
     }
 
+    createAsyncWaferInfoButton = () => {
+        return <Button key="AsyncMesWaferInfo" type="primary" style={styles.tableButton} icon="file-excel" onClick={() => this.handleAsyncWaferInfo()}>{"Wafer"}</Button>;
+    }
+
+    handleAsyncWaferInfo = () => {
+        let asyncType = "AsyncWaferType";
+        let object = {
+            actionType : asyncType
+        }
+        AsyncManagerRequest.sendAsyncRequest(object);
+    }
+
     handleAsyncProductInfo = () => {
-        const {asyncType} = this.props;
+        let asyncType = "AsyncProduct";
         let object = {
             actionType : asyncType
         }
