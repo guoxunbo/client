@@ -25,6 +25,7 @@ export default class IncomingImportRequestBody {
                 materialLotUnit.reserved4 = materialLotUnit.reserved6;
                 materialLotUnit.reserved6 = "";
                 materialLotUnit.reserved13 = warehouseId;
+                materialLotUnit.reserved47 = importType;
             });
             return new IncomingImportRequestBody(importType, warehouseId, undefined, materialLotUnitList);
         } else {

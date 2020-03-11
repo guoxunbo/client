@@ -30,10 +30,10 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         
     };
 
-
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());
+        buttons.push(this.createTotalNumber());
         buttons.push(this.createErrorTag());
         buttons.push(this.createImportButton());
         buttons.push(this.createSaveButton());
@@ -43,7 +43,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
 
     createErrorTag = () => {
         let errorInfoList = this.state.data.filter((d) => d.errorFlag && d.errorFlag === true);
-        return <Tag color="#D2480A">{errorInfoList.length}</Tag>
+        return <Tag color="#D2480A">异常数量：{errorInfoList.length}</Tag>
     }
 
     handleUpload = (option) => {
@@ -140,6 +140,9 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
     
     getMaterialLotListByImportType = (importType, materialLotList) => {
+        materialLotList.forEach(materialLot =>{
+            materialLot.reserved47 = importType;
+        });
         if(importType == "WLA未测（-2.5）"){
             materialLotList.forEach(materialLot =>{
                 let fabLotId = materialLot.materialLotId;
@@ -149,7 +152,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 } 
                 materialLot.unitId = fabLotId +"-"+ waferId;
             });
-        }
+        } 
         return materialLotList;
     }
 
@@ -163,8 +166,19 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 </Upload>);
     }
 
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                count = count + data.currentQty;
+            });
+        }
+        return <Tag color="#2db7f5">颗数：{count}</Tag>
+    }
+
     createStatistic = () => {
-        return <Tag color="#2db7f5">{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
     }
 
     createSaveButton = () => {
