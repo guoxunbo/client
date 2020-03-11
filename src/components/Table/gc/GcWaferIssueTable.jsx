@@ -62,8 +62,8 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
         let materialLotIdList = [];
         if(materialLotUnits && materialLotUnits.length > 0){
             materialLotUnits.forEach(data => {
-                if (materialLotIdList.indexOf(data.materialLots) == -1) {
-                    materialLotIdList.push(data.materialLots);
+                if (materialLotIdList.indexOf(data.materialLotId) == -1) {
+                    materialLotIdList.push(data.materialLotId);
                 }
             });
         }
