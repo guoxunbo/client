@@ -45,6 +45,9 @@ import PackCaseCheckProperties from '@properties/gc/PackCaseCheckProperties';
 import GcPrintCaseLabelProperties from '@properties/gc/GcPrintCaseLabelProperties';
 import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 
+//rms
+import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
+
 
 /**
  * 构建url ?表示可选参数
@@ -272,7 +275,7 @@ const routerConfig = [
   {
     path: buildPath('Rms/EquipmentRecipe'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: EquipmentRecipeProperties,
   },
   {
     path: '*',

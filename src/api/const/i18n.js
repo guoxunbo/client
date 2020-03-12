@@ -28,6 +28,12 @@ const i18NCode = {
     BtnPrint: "Print",
     BtnDownload: "Download",
     BtnAdd: "Add",
+    BtnUnForzen: "UnForzen",
+    BtnForzen: "Forzen",
+    BtnActive: "Active",
+    BtnInActive: "InActive",
+    BtnDelete: 'Delete',
+
     BtnOpen: "Open",
     BtnClose: "Close",
     BtnWatch: "Watch",
@@ -213,6 +219,26 @@ const i18Messages = {
     Add: {
         Chinese: "添加",
         English: "Add",
+        Res: ""
+    },
+    Forzen: {
+        Chinese: "冻结",
+        English: "Forzen",
+        Res: ""
+    },
+    UnForzen: {
+        Chinese: "解冻",
+        English: "UnForzen",
+        Res: ""
+    },
+    Active: {
+        Chinese: "激活",
+        English: "Active",
+        Res: ""
+    },
+    InActive: {
+        Chinese: "失效",
+        English: "InActive",
         Res: ""
     },
     Download: {

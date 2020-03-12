@@ -260,11 +260,12 @@ export default class MessageUtils {
         } else {
             let errorMessage = exception.message;
             // String的不是后台的错误 需要去加载Client端的i18N信息
-            if (errorMessage === "Error: Network Error") {
+            if (errorMessage === "Network Error") {
                 error = I18NUtils.getClientMessage(i18NCode.NetworkError);
             } else if (errorMessage.indexOf("timeout") != -1) {
                 error = I18NUtils.getClientMessage(i18NCode.TimeOut);
             } else {
+                console.error(exception);
                 error = exception;
             }
         }

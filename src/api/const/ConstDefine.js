@@ -11,7 +11,7 @@ const EnvMode = {
  */
 const getServerAddress = () => {
     // 默认是local开发地址
-    let serverAddress = "http://172.16.13.116:8080";
+    let serverAddress = "http://127.0.0.1:8080";
     if (ENV_MODE === EnvMode.Prod) {
         serverAddress = "http://127.0.0.1:8090";
     } else if (ENV_MODE === EnvMode.Dev) {

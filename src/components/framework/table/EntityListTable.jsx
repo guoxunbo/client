@@ -16,7 +16,7 @@ import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { Upload } from 'antd';
 import NoticeUtils from '@utils/NoticeUtils';
 import EventUtils from '@api/utils/EventUtils';
-import AuthorityButton from '../button/AuthorityButton';
+import AuthorityButton from '@components/framework/button/AuthorityButton';
 
 const ExpMenuKey = {
     exportTemplate: "exportTemplate",
@@ -152,7 +152,7 @@ export default class EntityListTable extends Component {
             dataIndex: "opration",
             align: "center",
             fixed: maxWidth > scrollX + Application.table.oprationColumn.width ? false : 'right',
-            width: Application.table.oprationColumn.width,
+            width: this.state.oprationColumnWidth || Application.table.oprationColumn.width,
             render: (text, record) => {
                 return (
                     <div>
