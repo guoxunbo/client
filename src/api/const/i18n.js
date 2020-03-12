@@ -62,6 +62,7 @@ const i18NCode = {
     BtnBind: "Bind",
     BtnRecordExpress: "RecordExpress",
     BtnUnBind: "UnBind",
+    BtnDelete: "Delete",
     DataNotFound: "DataNotFound",
     Collapse: "Collapse",
     TransferItem: "Item",
@@ -566,6 +567,11 @@ const i18Messages = {
     ChooseWarehouseIdPlease: {
         Chinese: "请选择仓库！",
         English: "Choose warehouseId please!",
+        Res: ""
+    },
+    Delete: {
+        Chinese: "删除",
+        English: "Delete",
         Res: ""
     }
 }

@@ -42,6 +42,7 @@ import WaferImportProperties from './pages/Properties/components/WaferImportProp
 import GcWaferReceiveOrderProperties from './pages/Properties/components/GcWaferReceiveOrderProperties';
 import GcWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOrderProperties';
 import GCIncomingMaterialImportProperties from './pages/Properties/components/GCIncomingMaterialImportProperties';
+import GCIncomingMLotDeleteProperties from './pages/Properties/components/GCIncomingMLotDeleteProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -281,6 +282,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMaterialImportProperties,
   },
+  {
+    path: buildPath('WMS/GCIncomingMLotDelete'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMLotDeleteProperties,
+  },
   //PackManager
   {
     path: buildPath('Pack/PackRuleManager'),

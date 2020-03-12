@@ -89,6 +89,7 @@ const UrlConstant = {
     GCRelayBoxStockInUrl: ModuleUrlConstant.GC + "relayBoxStockIn",
     GCIncomingImportUrl: ModuleUrlConstant.GC + "IncomingImport",
     GCIncomingMaterialSave: ModuleUrlConstant.GC + "IncomingMaterialSave",
+    GCIncomingMaterialDelete: ModuleUrlConstant.GC + "IncomingMaterialDelete",
 };
 
 const SystemRefListName = {
