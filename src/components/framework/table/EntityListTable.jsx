@@ -172,13 +172,12 @@ export default class EntityListTable extends Component {
     }
 
     buildEditButton = (record) => {
-        return <AuthorityButton key="edit" style={{marginRight:'1px'}} icon="edit" inRow
-                    onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>;
+        return <Button key="edit" style={{marginRight:'1px'}} icon="edit" onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>
     }
 
     buildDeletePopConfirm = (record) => {
         return <Popconfirm key="delete" title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                    <AuthorityButton inRow icon="delete" size="small" type="danger"/>
+                    <Button icon="delete" size="small" type="danger"/>
                 </Popconfirm>;
     }
     
@@ -436,7 +435,7 @@ export default class EntityListTable extends Component {
      * 默认的table框的选择框属性 此处不实现。
      */
     getRowSelection = (selectedRowKeys) => {
-
+            
     }
 
     onChange = (pagination) => {

@@ -15,7 +15,6 @@ export default class AuthorityButton extends Component {
     onClick;
     authorityName;
     className;
-    inRow;
     /**
      * 后缀Icon
      */
@@ -30,10 +29,7 @@ export default class AuthorityButton extends Component {
     }
 
     getClassName() {
-        const {inRow, className} = this.props;
-        if (inRow) {
-            return "in-row-button"
-        }
+        const {className} = this.props;
         return className || "table-button";
     }
 
@@ -47,21 +43,27 @@ export default class AuthorityButton extends Component {
     }
 
     getIcon = () => {
-        const {inRow, icon} = this.props;
-        if (inRow) {
-            return;
-        }
+        const {icon} = this.props;
         return icon ? IconUtils.buildIcon(icon) : "";
     }
 
     componentDidMount = () => {
         //TODO 根据authoriytName去验证是否能用
-
+        
     }
 
     render() {
-        const {type, icon, i18NCode,inRow} = this.props;
-        const {loading, disabled} = this.state;
+        const {type, icon, i18NCode} = this.props;
+        const {loading} = this.state;
+        const propsDisabled = this.props.disabled;
+        const stateDisabled = this.state.disabled;
+        let disabled = false;
+        // state里面的disabled>props里面的disabled
+        if (stateDisabled) {
+            disabled = stateDisabled;
+        } else {
+            disabled = propsDisabled;
+        }
         return <Button 
                 type={type || "primary"}
                 className={this.getClassName()}
@@ -70,7 +72,6 @@ export default class AuthorityButton extends Component {
                 loading={loading || false}
                 onClick={() => this.handleClick()}
             >
-            {/* {""} */}
             {I18NUtils.getClientMessage(i18NCode)}
         </Button>
     }
@@ -81,6 +82,5 @@ AuthorityButton.prototypes = {
     type: PropTypes.string,
     icon: PropTypes.string,
     onClick: PropTypes.func,
-    i18NCode: PropTypes.string,
-    inRow:PropTypes.bool
+    i18NCode: PropTypes.string
 }

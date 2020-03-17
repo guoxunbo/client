@@ -12,60 +12,72 @@ export default class EntityListVersionControlTable extends EntityListTable {
 
     constructor(props) {
         super(props);
-        this.state= {...this.state, oprationColumnWidth:200}
+        this.state= {...this.state, }
     }
-    /**
-     * 创建btn组。不同的table对button的组合要求不一样时。可以重载其方法做处理
-     */
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createAddButton());
+        buttons.push(this.createUnForzenOrForzenButton());
+        buttons.push(this.createActiveOrInActiveButton());
+
         return buttons;
     }
     
-    buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildEditButton(record));
-        operations.push(this.createUnForzenButton(record));
-        operations.push(this.createForzenButton(record));
-        operations.push(this.buildDeletePopConfirm(record));
-        return operations;
+    selectRow = (record) => {
+        let selectedRows = [];
+        selectedRows.push(record);
+        this.setState({
+            selectedRows: selectedRows
+        });
+        // 发送事件变化
+        EventUtils.getEventEmitter().emit(EventUtils.getEventNames().ParentTableRowSelected, this, record, this.props.rowKey);
     }
 
-    createUnForzenButton = (record) => {
-        return <AuthorityButton key="edit" style={{marginRight:'1px'}} icon="edit" inRow
-                    onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>;
+    /**
+     * 冻结或者解冻按钮
+     */
+    createUnForzenOrForzenButton = () => {
+        const {selectedRows}  = this.state;
+        let icon = "icon-forzen";
+        let buttonCode = i18NCode.BtnFrozen;
+        let buttonDisable = true;
+        if (selectedRows && selectedRows.length > 0 ) {
+            let selectdRow = selectedRows[0];
+            if (selectdRow.status == "UnFrozen") {
+                buttonDisable = false;
+            } else if (selectdRow.status == "Frozen"){
+                icon = "icon-unfrozen";
+                buttonCode = i18NCode.BtnUnFrozen;
+                buttonDisable = false;
+            }
+        }
+        let buttonKey = buttonCode;
+        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} key={buttonKey} type="primary" icon={icon} onClick={() => this.handleAdd()}/>
     }
 
-    createForzenButton = (record) => {
-        return <AuthorityButton key="edit" style={{marginRight:'1px'}} icon="edit" inRow
-                    onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>;
+    /**
+     * 激活或者失效按钮
+     */
+    createActiveOrInActiveButton = () => {
+        const {selectedRows}  = this.state;
+        let icon = "icon-active";
+        let buttonCode = i18NCode.BtnActive;
+        let buttonDisable = true;
+        if (selectedRows && selectedRows.length > 0 ) {
+            let selectdRow = selectedRows[0];
+            if (selectdRow.status == "Active") {
+                buttonDisable = false;
+            } else if (selectdRow.status == "InActive"){
+                icon = "icon-inactive";
+                buttonCode = i18NCode.BtnInActive;
+                buttonDisable = false;
+            }
+        }
+        let buttonKey = buttonCode;
+        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable}  key={buttonKey} type="primary"  icon={icon} onClick={() => this.handleAdd()}/>
     }
 
-    createActiveButton = (record) => {
-        return <AuthorityButton key="edit" style={{marginRight:'1px'}} icon="edit" inRow
-                    onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>;
-    }
-
-    createInActiveButton = (record) => {
-        return <AuthorityButton key="edit" style={{marginRight:'1px'}} icon="edit" inRow
-                    onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>;
-    }
-    // createUnForzenButton = () => {
-    //     return <AuthorityButton i18NCode={i18NCode.BtnUnForzen} key="add" type="primary" className="table-button" icon="icon-unforzen" onClick={() => this.handleAdd()}/>
-    // }
-
-    // createForzenButton = () => {
-    //     return <AuthorityButton i18NCode={i18NCode.BtnForzen} key="add" type="primary" className="table-button" icon="icon-forzen" onClick={() => this.handleAdd()}/>
-    // }
-
-    // createActiveButton = () => {
-    //     return <AuthorityButton i18NCode={i18NCode.BtnActive} key="add" type="primary" className="table-button" icon="icon-active" onClick={() => this.handleAdd()}/>
-    // }
-
-    // createInActiveButton = () => {
-    //     return <AuthorityButton i18NCode={i18NCode.BtnInActive} key="add" type="primary" className="table-button" icon="icon-inactive" onClick={() => this.handleAdd()}/>
-    // }
 }
 
 
