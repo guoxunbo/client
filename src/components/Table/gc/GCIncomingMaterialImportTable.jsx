@@ -142,15 +142,19 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     getMaterialLotListByImportType = (importType, materialLotList) => {
         materialLotList.forEach(materialLot =>{
             materialLot.reserved47 = importType;
+            if(materialLot.materialName == "" || materialLot.materialName == undefined){
+                materialLot.errorFlag = true;
+            }
         });
         if(importType == "WLA未测（-2.5）"){
             materialLotList.forEach(materialLot =>{
-                let fabLotId = materialLot.materialLotId;
-                let waferId = materialLot.unitId;
+                let fabLotId = materialLot.reserved30;
+                let waferId = materialLot.reserved31;
                 if(waferId.length < 2){
                     waferId = "0" + waferId;
                 } 
                 materialLot.unitId = fabLotId +"-"+ waferId;
+                materialLot.durable = materialLot.materialLotId;
             });
         } 
         return materialLotList;
