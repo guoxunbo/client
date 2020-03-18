@@ -38,6 +38,10 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        if(deleteNote.trim() == "" || deleteNote.trim() == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DeleteNoteCannotEmpty));
+            return;
+        }
         self.setState({
             loading: true
         });

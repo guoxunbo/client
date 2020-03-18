@@ -96,6 +96,7 @@ const i18NCode = {
     ChooseImportTypePlease: "ChooseImportTypePlease",
     ImportTypeAndFileNameAreNotConsistent: "ImportTypeAndFileNameAreNotConsistent",
     ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
+    DeleteNoteCannotEmpty: "DeleteNoteCannotEmpty"
 }
 
 const i18Messages = {
@@ -572,6 +573,11 @@ const i18Messages = {
     Delete: {
         Chinese: "删除",
         English: "Delete",
+        Res: ""
+    },
+    DeleteNoteCannotEmpty: {
+        Chinese: "删除备注不能为空！",
+        English: "Delete Note cannot empty",
         Res: ""
     }
 }
