@@ -145,6 +145,9 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             if(materialLot.materialName == "" || materialLot.materialName == undefined){
                 materialLot.errorFlag = true;
             }
+            if(materialLot.currentQty == "" || isNaN(materialLot.currentQty) || isNaN(materialLot.reserved44) || materialLot.reserved44 == ""){
+                materialLot.errorFlag = true;
+            }
         });
         if(importType == "WLA未测（-2.5）"){
             materialLotList.forEach(materialLot =>{
