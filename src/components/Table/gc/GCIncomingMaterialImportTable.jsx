@@ -57,10 +57,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.ChooseImportTypePlease));
             return;
         }
-        if((importType + ".csv") != fileName){
-            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.ImportTypeAndFileNameAreNotConsistent));
-            return;
-        }
         if(tableData.length > 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImported));
             return;
@@ -142,10 +138,10 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     getMaterialLotListByImportType = (importType, materialLotList) => {
         materialLotList.forEach(materialLot =>{
             materialLot.reserved47 = importType;
-            if(materialLot.materialName == "" || materialLot.materialName == undefined){
+            if(materialLot.currentQty && isNaN(materialLot.currentQty)){
                 materialLot.errorFlag = true;
             }
-            if(materialLot.currentQty == "" || isNaN(materialLot.currentQty) || isNaN(materialLot.reserved44) || materialLot.reserved44 == ""){
+            if(materialLot.reserved44 && isNaN(materialLot.reserved44)){
                 materialLot.errorFlag = true;
             }
         });

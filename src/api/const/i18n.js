@@ -94,7 +94,6 @@ const i18NCode = {
     DataNotImported: "DataNotImported",
     ReservedListCannotEmpty: "ReservedListCannotEmpty",
     ChooseImportTypePlease: "ChooseImportTypePlease",
-    ImportTypeAndFileNameAreNotConsistent: "ImportTypeAndFileNameAreNotConsistent",
     ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
     DeleteNoteCannotEmpty: "DeleteNoteCannotEmpty"
 }
@@ -558,11 +557,6 @@ const i18Messages = {
     ChooseImportTypePlease: {
         Chinese: "请选择导入类型！",
         English: "Choose import type  please!",
-        Res: ""
-    },
-    ImportTypeAndFileNameAreNotConsistent: {
-        Chinese: "导入类型和文件名不一致",
-        English: "Import type and file name are not consistent!",
         Res: ""
     },
     ChooseWarehouseIdPlease: {

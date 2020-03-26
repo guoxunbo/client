@@ -32,7 +32,6 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
      * 扫描到的晶圆如果不存在在下面的待发料晶圆，也要异常显示
      */
     queryData = (whereClause) => {
-      debugger;
         const self = this;
         let {rowKey,tableData} = this.state;
         let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
@@ -71,11 +70,6 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
                       tableData.unshift(data);
                     }
                   });
-                  self.setState({ 
-                    tableData: tableData,
-                    loading: false
-                  });
-                  self.form.resetFormFileds();
                 }         
               }
               WaferManagerRequest.sendValidationWaferIssueRequest(validationRequestObject);
@@ -88,12 +82,12 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
               if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                 tableData.unshift(data);
               }
-              self.setState({ 
-                tableData: tableData,
-                loading: false
-              });
-              self.form.resetFormFileds();
             }
+            self.setState({ 
+              tableData: tableData,
+              loading: false
+            });
+            self.form.resetFormFileds();
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);
