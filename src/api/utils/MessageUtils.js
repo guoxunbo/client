@@ -165,9 +165,11 @@ export default class MessageUtils {
                 } else {
                     self.showOperationSuccess();
                 }
+                EventUtils.sendButtonLoaded();
             }
         }).catch(function(exception) {
             self.handleException(exception);
+            
         }); 
     }
 
@@ -270,6 +272,7 @@ export default class MessageUtils {
             }
         }
         NoticeUtils.showError(errroCode, error);
+        EventUtils.sendButtonLoaded();
     }
 }
 

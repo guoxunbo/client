@@ -56,5 +56,9 @@ export default class EntityManagerRequestBody {
         return new EntityManagerRequestBody(ActionType.Delete, entityModel, entity, deleteRelationEntityFlag);
     }
 
+    static buildStatusChangeEntity(entityModel, entity, actionType) {
+        return new EntityManagerRequestBody(actionType, entityModel, entity);
+    }
+
 }
 

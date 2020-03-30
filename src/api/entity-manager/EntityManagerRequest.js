@@ -61,7 +61,16 @@ export default class EntityManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
-
+    static sendStatusChangedRequest = (object) => {
+        let requestBody = EntityManagerRequestBody.buildStatusChangeEntity(object.modelClass, object.values, object.actionType);
+        let requestHeader = new EntityManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.EntityManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 
 }
 EntityManagerRequest.prototypes = {
