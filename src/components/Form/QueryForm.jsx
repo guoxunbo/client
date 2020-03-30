@@ -68,7 +68,7 @@ class QueryForm extends React.Component {
         queryFields.forEach((field) => {
             children.push(
                 <Col span={8} key={field.name} style={{ display: i < count ? 'block' : 'none' }}>
-                    {field.buildFormItem(undefined, false, true)}
+                    {field.buildFormItem(undefined, false, true, field.defaultValue)}
                 </Col>,
             );
             i++;
