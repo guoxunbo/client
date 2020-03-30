@@ -69,6 +69,10 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
                     if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                       tableData.unshift(data);
                     }
+                  })
+                  self.setState({ 
+                    tableData: tableData,
+                    loading: false
                   });
                 }         
               }
