@@ -3,6 +3,7 @@ import StockInModel from "./StockInModel";
 const ActionType = {
     Query: "Query",
     StockIn: "StockIn",
+    QueryWafer: "QueryWafer",
 }
 
 export default class StockInManagerRequestBody {
@@ -10,10 +11,12 @@ export default class StockInManagerRequestBody {
     actionType;
     materialLotId;
     stockInModels;
+    lotId;
 
-    constructor(actionType, materialLotId){
+    constructor(actionType, materialLotId, lotId){
         this.actionType = actionType;
         this.materialLotId = materialLotId;
+        this.lotId = lotId;
     }
     
     setStockInModels(stockInModels) {
@@ -22,6 +25,10 @@ export default class StockInManagerRequestBody {
 
     static buildQuery(materialLotId) {
         return new StockInManagerRequestBody(ActionType.Query, materialLotId);
+    }
+
+    static buildQueryWafer(lotId) {
+        return new StockInManagerRequestBody(ActionType.QueryWafer, undefined, lotId);
     }
 
     static buildStockIn(materialLots) {

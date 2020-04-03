@@ -100,7 +100,9 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseWarehouseIdPlease));
             return;
         }
-        
+        if(warehouseId == "ZJ_STOCK"){
+            warehouseId = 8143;
+        }
         self.setState({
             loading: true
         });
@@ -145,7 +147,11 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 materialLot.errorFlag = true;
             }
         });
-        if(importType == "WLA未测（-2.5）"){
+        if(importType == "COB（-4成品）"){
+            materialLotList.forEach(materialLot =>{
+                materialLot.lotId = materialLot.materialLotId;
+            });
+        } else if(importType == "WLA未测（-2.5）"){
             materialLotList.forEach(materialLot =>{
                 let fabLotId = materialLot.reserved30;
                 let waferId = materialLot.reserved31;
@@ -153,7 +159,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                     waferId = "0" + waferId;
                 } 
                 materialLot.unitId = fabLotId +"-"+ waferId;
-                materialLot.durable = materialLot.materialLotId;
             });
         } 
         return materialLotList;
