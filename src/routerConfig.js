@@ -43,6 +43,7 @@ import GcWaferReceiveOrderProperties from './pages/Properties/components/GcWafer
 import GcWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOrderProperties';
 import GCIncomingMaterialImportProperties from './pages/Properties/components/GCIncomingMaterialImportProperties';
 import GCIncomingMLotDeleteProperties from './pages/Properties/components/GCIncomingMLotDeleteProperties';
+import GcWaferStockInProperties from './pages/Properties/components/GcWaferStockInProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -190,7 +191,7 @@ const routerConfig = [
   {
     path: buildPath('Wafer/GCWaferInStorage'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GcMaterialLotStockInProperties,
+    component: GcWaferStockInProperties,
   },
   
   //MES成品接收
