@@ -2,7 +2,7 @@
 import EntityListTable from '@components/framework/table/EntityListTable';
 import { i18NCode } from '@api/const/i18n';
 import AuthorityButton from '@components/framework/button/AuthorityButton';
-import EntityManagerRequest from '../../../api/entity-manager/EntityManagerRequest';
+import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
 
 /**
  * 具备版本管控的基础表格

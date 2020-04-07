@@ -1,12 +1,12 @@
 import EntityProperties from "@properties/framework/EntityProperties";
-import EntityListVersionControlTable from "@components/framework/table/EntityListVersionControlTable";
+import EqpRecipeTable from "@components/rms/table/EqpRecipeTable";
 
 export default class EquipmentRecipeProperties extends EntityProperties{
 
     static displayName = 'EquipmentRecipeProperties';
     
     buildTable = () => {
-        return <EntityListVersionControlTable {...this.getDefaultTableProps()}/>
+        return <EqpRecipeTable {...this.getDefaultTableProps()}/>
     }
     
 }

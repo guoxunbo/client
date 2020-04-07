@@ -53,6 +53,8 @@ const i18NCode = {
     BtnUnPackage: "UnPackage",
     BtnUnPackageAll: "UnPackageAll",
 
+    BtnGetRecipe: "GetRecipe",
+
     BtnAppendPackage: "AppendPackage",
     BtnStockIn: "StockIn",
     BtnStockOut: "StockOut",
@@ -311,6 +313,7 @@ const i18Messages = {
         English: "DispAuthority",
         Res: ""
     },
+    
     DispatchEvent: {
         Chinese: "分配事件",
         English: "DispEvent",
@@ -449,6 +452,11 @@ const i18Messages = {
     TimeOut: {
         Chinese: "请求超时",
         English: "RequestTimeOut",
+        Res: ""
+    },
+    GetRecipe: {
+        Chinese: "获取Recipe",
+        English: "GetRecipe",
         Res: ""
     }
 }

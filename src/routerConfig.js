@@ -47,6 +47,7 @@ import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 
 //rms
 import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
+import EquipmentProperties from '@properties/rms/EquipmentProperties';
 
 
 /**
@@ -261,11 +262,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintCaseLabelProperties,
   },
+
   //RMS
   {
     path: buildPath('Rms/EquipmentManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: EquipmentProperties,
   },
   {
     path: buildPath('Rms/RecipeManager'),

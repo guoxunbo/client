@@ -33,7 +33,8 @@ const ModuleUrlConstant = {
     MMS: getServerAddress() + "/mms/",
     KMS: getServerAddress() + "/kms/",
     RTM: getServerAddress() + "/rtm/",
-    GC: getServerAddress() + "/gc/"
+    GC: getServerAddress() + "/gc/",
+    RMS: getServerAddress() + "/rms/",
 }
 
 const DataBaseType = {
@@ -76,6 +77,10 @@ const UrlConstant = {
     QuestionManagerUrl: ModuleUrlConstant.KMS + "questionManage",
     QuestionLineManagerUrl: ModuleUrlConstant.KMS + "questionLineManage",
     DynaxAnalyseUrl: ModuleUrlConstant.RTM + "analyseFile",
+
+    //RMS
+    EqpRecipeManagerUrl: ModuleUrlConstant.RMS + "eqpRecipeManage",
+    
 
     //MMS
     RawMaterialManagerUrl: ModuleUrlConstant.MMS + "rawMaterialManage",
