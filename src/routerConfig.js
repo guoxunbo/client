@@ -45,6 +45,7 @@ import GCIncomingMaterialImportProperties from './pages/Properties/components
 import GCIncomingMLotDeleteProperties from './pages/Properties/components/GCIncomingMLotDeleteProperties';
 import GcWaferStockInProperties from './pages/Properties/components/GcWaferStockInProperties';
 import WLTFinishGoodProperties from './pages/Properties/components/WLTFinishGoodProperties';
+import WltPackMaterialLotProperties from './pages/Properties/components/WltPackMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -199,6 +200,12 @@ const routerConfig = [
     path: buildPath('WLT/WLTFinishGoodManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WLTFinishGoodProperties,
+  },
+  //WLT装箱
+  {
+    path: buildPath('WLT/WLTPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltPackMaterialLotProperties,
   },
   //MES成品接收
   {

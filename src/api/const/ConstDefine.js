@@ -1,6 +1,6 @@
 
 const ServerAddress = {
-    NewbiestUrl : "http://127.0.0.1:8080"
+    NewbiestUrl : "http://172.16.12.94:8080"
     // NewbiestUrl : "http://172.16.15.188:8080"
     // NewbiestUrl : "http://10.181.160.18:8080"
     // NewbiestUrl : "http://10.181.160.31:10010"
@@ -81,6 +81,7 @@ const UrlConstant = {
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPrintBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
     GCGetPrintVboxParameterUrl: ModuleUrlConstant.GC + "getPrintVboxParameter",
+    GCGetPrintWltBboxParameterUrl: ModuleUrlConstant.GC + "getPrintWltBboxParameter",
     GCValidationSoOrReTestUrl: ModuleUrlConstant.GC + "validationSoOrReTest",
     GCValidationDocumentLineUrl: ModuleUrlConstant.GC + "validationDocumentLine",
     GCRecordExpressUrl: ModuleUrlConstant.GC + "recordExpress",
