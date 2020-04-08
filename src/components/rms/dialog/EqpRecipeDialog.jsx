@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
+import React from 'react';
 import {WrappedAdvancedEntityForm} from '@components/framework/form/EntityForm';
 import EntityDialog from '@components/framework/dialog/EntityDialog';
 import EqpRecipeRequest from '@api/rms/eqp-recipe-manager/EqpRecipeRequest';

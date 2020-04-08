@@ -53,7 +53,7 @@ export default class AuthorityButton extends Component {
     }
 
     render() {
-        const {type, icon, i18NCode} = this.props;
+        const {type, icon, i18NCode, key} = this.props;
         const {loading} = this.state;
         const propsDisabled = this.props.disabled;
         const stateDisabled = this.state.disabled;
@@ -65,6 +65,7 @@ export default class AuthorityButton extends Component {
             disabled = propsDisabled;
         }
         return <Button 
+                key={key}
                 type={type || "primary"}
                 className={this.getClassName()}
                 icon={icon}

@@ -1,8 +1,8 @@
-
 import EntityListTable from '@components/framework/table/EntityListTable';
 import { i18NCode } from '@api/const/i18n';
 import AuthorityButton from '@components/framework/button/AuthorityButton';
 import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
+import { DefaultStatusList } from '@const/ConstDefine';
 
 /**
  * 具备版本管控的基础表格
@@ -15,7 +15,7 @@ export default class EntityListVersionControlTable extends EntityListTable {
         super(props);
         this.state= {...this.state, }
     }
-
+    
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createAddButton());
@@ -31,8 +31,20 @@ export default class EntityListVersionControlTable extends EntityListTable {
         this.setState({
             selectedRows: selectedRows
         });
-        // 发送事件变化
-        // EventUtils.getEventEmitter().emit  (EventUtils.getEventNames().ParentTableRowSelected, this, record, this.props.rowKey);
+    }
+
+    hasEditBtnAuthority = (record) => {
+        if (record.status == DefaultStatusList.UnFrozen) {
+           return true
+        }
+        return false;
+    }
+
+    hasDeleteBtnAuthority = (record) => {
+        if (record.status == DefaultStatusList.UnFrozen) {
+            return true
+         }
+         return false;
     }
 
     handleStatusChanged = (buttonCode) => {
@@ -68,18 +80,18 @@ export default class EntityListVersionControlTable extends EntityListTable {
         let buttonDisable = true;
         if (selectedRows && selectedRows.length > 0 ) {
             let selectdRow = selectedRows[0];
-            if (selectdRow.status == "InActive") {
+            if (selectdRow.status == DefaultStatusList.InActive) {
                 buttonDisable = false;
-            } else if (selectdRow.status == "UnFrozen") {
+            } else if (selectdRow.status == DefaultStatusList.UnFrozen) {
                 buttonDisable = false;
-            } else if (selectdRow.status == "Frozen"){
+            } else if (selectdRow.status == DefaultStatusList.Frozen){
                 icon = "icon-unfrozen";
                 buttonCode = i18NCode.BtnUnFrozen;
                 buttonDisable = false;
             }
         }
         let buttonKey = buttonCode;
-        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} key={buttonKey} type="primary" icon={icon} onClick={() => this.handleUnFrozenOrFrozen(buttonCode)}/>
+        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} key={buttonKey} icon={icon} onClick={() => this.handleUnFrozenOrFrozen(buttonCode)}/>
     }
 
     /**
@@ -92,19 +104,19 @@ export default class EntityListVersionControlTable extends EntityListTable {
         let buttonDisable = true;
         if (selectedRows && selectedRows.length > 0 ) {
             let selectdRow = selectedRows[0];
-            if (selectdRow.status == "Frozen") {
+            if (selectdRow.status == DefaultStatusList.Frozen) {
                 buttonDisable = false;
-            } else if (selectdRow.status == "Active") {
+            } else if (selectdRow.status == DefaultStatusList.Active) {
                 buttonDisable = false;
                 icon = "icon-inactive";
                 buttonCode = i18NCode.BtnInActive;
                 buttonDisable = false;
-            } else if (selectdRow.status == "InActive"){
+            } else if (selectdRow.status == DefaultStatusList.InActive){
                 buttonDisable = false;
             }
         }
         let buttonKey = buttonCode;
-        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable}  key={buttonKey} type="primary"  icon={icon} onClick={() => this.handleActiveOrInActive(buttonCode)}/>
+        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} key={buttonKey} icon={icon} onClick={() => this.handleActiveOrInActive(buttonCode)}/>
     }
 
 }

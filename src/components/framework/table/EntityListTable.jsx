@@ -171,13 +171,25 @@ export default class EntityListTable extends Component {
         return operations;
     }
 
+    hasEditBtnAuthority = (record) => {
+        return true;
+    }
+
     buildEditButton = (record) => {
-        return <Button key="edit" style={{marginRight:'1px'}} icon="edit" onClick={() => this.handleEdit(record)} size="small" href="javascript:;"/>
+        let hasEditBtnAuthority = this.hasEditBtnAuthority(record)
+        return <Button key="edit" style={{marginRight:'1px'}} icon="edit" size="small" 
+                        onClick={() => this.handleEdit(record)} 
+                        disabled={!hasEditBtnAuthority} href="javascript:;"/>
+    }
+
+    hasDeleteBtnAuthority = (record) => {
+        return true;
     }
 
     buildDeletePopConfirm = (record) => {
+        let hasDeleteBtnAuthority = this.hasDeleteBtnAuthority(record)
         return <Popconfirm key="delete" title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                    <Button icon="delete" size="small" type="danger"/>
+                    <Button disabled={!hasDeleteBtnAuthority} icon="delete" size="small" type="danger"/>
                 </Popconfirm>;
     }
     

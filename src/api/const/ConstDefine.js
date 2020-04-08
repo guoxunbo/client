@@ -136,6 +136,12 @@ const Language = {
     English: "English"
 };
 
+const DefaultStatusList = {
+    InActive: "InActive",
+    UnFrozen: "UnFrozen",
+    Frozen: "Frozen",
+    Active: "Active"
+};
 /**
  * 所有对象都有自动带出的主键
  */
@@ -164,4 +170,4 @@ const SqlType = {
 }
 
 
-export {UrlConstant, DataBaseType, DateFormatType, SystemRefListName, RefTableName, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType};
+export {UrlConstant, DefaultStatusList, DataBaseType, DateFormatType, SystemRefListName, RefTableName, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType};
