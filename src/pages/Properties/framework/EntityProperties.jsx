@@ -96,7 +96,7 @@ export default class EntityProperties extends Component {
             {this.buildTable()}
             {this.buildOtherComponent()}
           </div>
-          <BackTop visibilityHeight={300}/>
+          <BackTop visibilityHeight={100}/>
         </div>
       );
     }

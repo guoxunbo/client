@@ -1,6 +1,6 @@
 import  React, { Component } from 'react';
 
-import { Table, Popconfirm, Button, Dropdown, Menu, Icon } from 'antd';
+import { Table, Popconfirm, Button, Dropdown, Menu, Icon, Tabs } from 'antd';
 import './ListTable.scss';
 import {Application, SessionContext} from '@api/Application'
 import {DefaultRowKey, Language} from '@api/const/ConstDefine'
@@ -17,6 +17,7 @@ import { Upload } from 'antd';
 import NoticeUtils from '@utils/NoticeUtils';
 import EventUtils from '@api/utils/EventUtils';
 import AuthorityButton from '@components/framework/button/AuthorityButton';
+import Tab, { TabType } from '@api/dto/ui/Tab';
 
 const ExpMenuKey = {
     exportTemplate: "exportTemplate",
@@ -216,7 +217,7 @@ export default class EntityListTable extends Component {
         }
         recordList.forEach((record) => {
             let dataIndex = datas.indexOf(record);
-            if (dataIndex > -1 ) {
+            if (dataIndex > -1) {
                 datas.splice(dataIndex, 1);
             }
         });
@@ -460,6 +461,43 @@ export default class EntityListTable extends Component {
         });
     }
 
+    /**
+     * 如果tab类型是table的话直接在这里显示
+     */
+    createTableTab = () => {
+        const {table} = this.state;
+        const tabs = table.tabs;
+        const tabPanels = [];
+        const {selectedRows} = this.state;
+        let selectedObject = undefined;
+        if (selectedRows && selectedRows.length > 0) {
+            selectedObject = selectedRows[0];
+        }
+
+        if (tabs && tabs.length > 0) {
+            let tableTabs = tabs.filter((tab) => TabType.Table === tab.tabType);
+            if (tableTabs && tableTabs.length > 0) {
+                tableTabs.forEach((tableTab) => {
+                    let tabPanel = new Tab(tableTab);
+                    tabPanels.push(this.buildTab(tabPanel, selectedObject));
+                });
+            }
+        }
+        return (<Tabs>
+            {tabPanels}
+         </Tabs>)
+    }
+
+    /**
+     * 创建tab。抽象此方法方便后续有页面构建复杂类型的tab
+     * @param tab 使用new Tab()之后传递的信息
+     * @param selectedObject 选择的具体对象
+     * @returns <TabPanel>
+     */
+    buildTab = (tab, selectedObject) => {
+        return tab.buildTableTab(selectedObject);
+    }
+
     render() {
         const {data, columns, rowClassName, selectedRowKeys, scrollX, pagination, loading} = this.state;
         const rowSelection = this.getRowSelection(selectedRowKeys);
@@ -469,7 +507,7 @@ export default class EntityListTable extends Component {
                 {this.createButtonGroup()}
             </div>
             <div>
-                <Table
+                <Table  
                     ref= {el => this.table = el}
                     dataSource={data}
                     bordered
@@ -491,6 +529,7 @@ export default class EntityListTable extends Component {
                 >
                 </Table>
             </div>
+            {this.createTableTab()}
             {this.createForm()}
           </div>
         );

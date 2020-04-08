@@ -1,6 +1,6 @@
 import { Table, Popconfirm, Button, Form } from 'antd';
 import * as PropTypes from 'prop-types';
-import {DefaultRowKey, DateFormatType} from '@const/ConstDefine'
+import {DefaultRowKey, DateFormatType, SqlType} from '@const/ConstDefine'
 import MessageUtils from '@api/utils/MessageUtils';
 import Field from '@api/dto/ui/Field';
 import {Application} from '@api/Application';
@@ -59,15 +59,36 @@ class EditableTable extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    this.buildTable();
-  }
-
-  buildTable = () => {
+  componentWillReceiveProps = (props) => {
+    const {whereClause} = props;
+    if (whereClause === SqlType.NoResultCondition) {
+      return;
+    }
+    if (whereClause === this.props.whereClause) {
+      return;
+    }
     const self = this;
     let requestObject = {
       tableName: this.props.refTableName,
-      whereClause: this.props.whereClause,
+      whereClause: whereClause,
+      success: function(responseBody) {
+        self.setState({
+          tableData: responseBody.dataList,
+        });
+      }
+    }
+    TableManagerRequest.sendGetDataByNameRequest(requestObject);
+  }
+  
+  componentDidMount = () => {
+    this.initTable();
+  }
+
+  initTable = () => {
+    const self = this;
+    let requestObject = {
+      tableName: this.props.refTableName,
+      whereClause: SqlType.NoResultCondition,
       success: function(responseBody) {
         let table = responseBody.table;
         let columnData = self.buildColumn(table);
@@ -327,7 +348,7 @@ class EditableTable extends React.Component {
     });
     return (
       <div>
-          {(this.props.editFlag && !this.props.newFlag) ? this.createButtonGroup() : ''};
+          {(this.props.editFlag && this.props.parentObject) ? this.createButtonGroup() : ''};
           <EditableContext.Provider value={this.props.form}>
           <Table
             rowKey={DefaultRowKey}

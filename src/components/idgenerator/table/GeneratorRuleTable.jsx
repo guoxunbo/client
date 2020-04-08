@@ -1,8 +1,11 @@
 import EntityListTable from "@components/framework/table/EntityListTable";
-import { Form } from "antd";
-import GeneratorRuleDrawer from "@components/idgenerator/drawer/GeneratorRuleDrawer";
-import TableObject from '@api/dto/ui/Table';
-import MessageUtils from "@api/utils/MessageUtils";
+
+import {Tabs, Row } from "antd";
+import GeneratorRuleLineTable from "@components/idgenerator/table/GeneratorRuleLineTable";
+import { SqlType } from "@const/ConstDefine";
+
+const TabPane = Tabs.TabPane;
+const TAB_RULE_INFO_NAME = "GeneratorRuleInfo";
 
 export default class GeneratorRuleTable extends EntityListTable {
 
@@ -14,58 +17,24 @@ export default class GeneratorRuleTable extends EntityListTable {
         return buttons;
     }
 
-    handleAdd = () => {
-        this.setState({
-            drawerVisiable : true,
-            editorObject: TableObject.buildDefaultModel(this.state.table.fields)
-        })
-    }
-
-    handleEdit = (record) => {
-        this.setState({
-            drawerVisiable : true,
-            editorObject: record
-        })
-    }
-
-    /**
-     * 更新表格数据
-     * @param responseData 数据如用户、
-     */
-    refresh = (responseData) => {
-        var self = this;
-        let datas = self.state.data;
-        let dataIndex = -1;
-        datas.map((data, index) => {
-            if (data.objectRrn == responseData.objectRrn) {
-                dataIndex = index;
-            }
-        });
-        if (dataIndex > -1) {
-            datas.splice(dataIndex, 1, responseData);
+    buildTab = (tab, selectedObject) => {
+        if (tab.name === TAB_RULE_INFO_NAME) {
+            return this.buildGeneratorRuleLineTab(tab, selectedObject);
         } else {
-            // 新增的就放在第一位
-            datas.unshift(responseData);
+            return tab.buildTableTab(selectedObject);
         }
-        self.setState({
-            data: datas,
-            drawerVisiable: false
-        }) 
-        MessageUtils.showOperationSuccess();
     }
 
-    onDrawerClose = () => {
-        this.setState({
-            drawerVisiable : false,
-        })
+    buildGeneratorRuleLineTab = (tab, selectedObject) => {
+        let whereClause = SqlType.NoResultCondition;
+        if (tab.whereClause && selectedObject) {
+            whereClause = tab.whereClause.format(selectedObject);
+        }
+
+        return <TabPane tab={tab.title} key={tab.name}>
+                    <Row gutter={16}>
+                        <GeneratorRuleLineTable refTableName={tab.refTableName} whereClause={whereClause} parentObject={selectedObject} />
+                    </Row>
+            </TabPane>
     }
-
-    createForm = () => {
-        let childrens = [];
-        const WrappedAdvancedGeneratorRuleDrawer = Form.create()(GeneratorRuleDrawer);
-        childrens.push(<WrappedAdvancedGeneratorRuleDrawer key={GeneratorRuleDrawer.displayName} onOk={this.refresh} table={this.state.table} object={this.state.editorObject} onDrawerClose={this.onDrawerClose} visible={this.state.drawerVisiable}/>);
-        return childrens;
-    }
-
-
 }

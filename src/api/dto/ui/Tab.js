@@ -1,7 +1,7 @@
 import Field from './Field';
 import { Row, Col, Tabs} from 'antd';
 import {SessionContext} from '@api/Application';
-import {Language, DefaultOrderKey} from '@const/ConstDefine';
+import {Language, DefaultOrderKey, SqlType} from '@const/ConstDefine';
 import EditorTable from '@components/framework/table/EditorTable'
 
 const TabPane = Tabs.TabPane;
@@ -62,31 +62,38 @@ export default class Tab {
     }
 
     buildTab = (form, formLayout, formObject) => {
-        let children = [];
         if (TabType.Field == this.tabType) {
-            const fields = this.fields;
-            for (let f of fields) {
-                let field = new Field(f, form);
-                if (!field.basicFlag && field.displayFlag && field.name != DefaultOrderKey) {
-                    children.push(<Col span={12} key={field.objectRrn}>
-                        {field.buildFormItem(formLayout, false, undefined, formObject[field.name])}
-                    </Col>);
-                }
+            return this.buildFieldTab(form, formLayout, formObject);
+        } 
+    }
+
+    buildFieldTab = (form, formLayout, formObject) => {
+        let children = [];
+        const fields = this.fields;
+        for (let f of fields) {
+            let field = new Field(f, form);
+            if (!field.basicFlag && field.displayFlag && field.name != DefaultOrderKey) {
+                children.push(<Col span={12} key={field.objectRrn}>
+                    {field.buildFormItem(formLayout, false, undefined, formObject[field.name])}
+                </Col>);
             }
-        } else if (TabType.Table == this.tabType) {
-            let whereClause = " 1 != 1";
-            if (this.whereClause) {
-                whereClause = this.whereClause.format(formObject);
-            }
-            // 如果是新增的话不显示TAB为Table的新增和保存按钮
-            let newFlag = !formObject.objectRrn ? true : false;
-            children.push(<EditorTable parentObject={formObject} editFlag={this.editFlag} newFlag={newFlag} refTableName={this.refTableName} whereClause={whereClause} key={this.name}></EditorTable>)
         }
         return <TabPane tab={this.title} key={this.name}>
                     <Row gutter={16}>
                         {children}
                     </Row>
                 </TabPane>
-    }
+    }  
+
+    buildTableTab = (parentObject) => {
+        let whereClause = SqlType.NoResultCondition;
+        if (this.whereClause && parentObject) {
+            whereClause = this.whereClause.format(parentObject);
+        }
+        return <TabPane tab={this.title} key={this.name}>
+                    <EditorTable parentObject={parentObject} editFlag={this.editFlag} refTableName={this.refTableName} whereClause={whereClause} key={this.name} />
+                </TabPane>;
+    }   
 
 }
+export {TabType}

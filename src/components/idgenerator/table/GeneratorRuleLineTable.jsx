@@ -1,9 +1,10 @@
 import EntityListTable from "@components/framework/table/EntityListTable";
-import { Button, Form } from "antd";
+import { Button } from "antd";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 import TableObject from '@api/dto/ui/Table';
 import IconUtils from "@api/utils/IconUtils";
 import EntityDialog from "@components/framework/dialog/EntityDialog";
+import { SqlType } from "@const/ConstDefine";
 
 const DataType = {
     FixedString: "F",
@@ -27,23 +28,36 @@ export default class GeneratorRuleLineTable extends EntityListTable {
         this.state = {...this.state, ...{formTable: {fields: []}}};
     }
       
-    /**
-     * 重写此方法。因为当前的Table不是从props传递。
-     */
-    componentWillReceiveProps = () => {
-
+    componentWillReceiveProps = (props) => {
+        const {whereClause} = props;
+        if (whereClause === SqlType.NoResultCondition) {
+            return;
+        }
+        if (whereClause === this.props.whereClause) {
+            return;
+        }
+        const self = this;
+        let requestObject = {
+            tableName: this.props.refTableName,
+            whereClause: whereClause,
+            success: function(responseBody) {
+                self.setState({
+                    data: responseBody.dataList,
+                });
+            }
+        }
+        TableManagerRequest.sendGetDataByNameRequest(requestObject);
     }
     
     componentDidMount = () => {
-        let tab = this.props.tab;
-        let self = this;
-        let whereClause = " 1 != 1";
-        if (tab.whereClause && this.props.parentObject) {
-            whereClause = tab.whereClause.format(this.props.parentObject);
-        }
+        this.initTable();
+    }
+    
+    initTable = () => {
+        const self = this;
         let requestObject = {
-            tableName: tab.refTableName,
-            whereClause: whereClause,
+            tableName: this.props.refTableName,
+            whereClause: SqlType.NoResultCondition,
             success: function(responseBody) {
                 let table = responseBody.table;
                 let columnData = self.buildColumn(table);
@@ -56,7 +70,7 @@ export default class GeneratorRuleLineTable extends EntityListTable {
                 });
             }
         }
-        TableManagerRequest.sendGetDataByNameRequest(requestObject);  
+        TableManagerRequest.sendGetDataByNameRequest(requestObject);
     }
 
     /**
@@ -102,7 +116,7 @@ export default class GeneratorRuleLineTable extends EntityListTable {
     }
 
     createButtonGroup = () => {
-        if (!this.props.parentObject.objectRrn) {
+        if (!this.props.parentObject) {
             return;
         }
         return (<div>

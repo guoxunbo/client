@@ -166,7 +166,8 @@ const SqlType = {
     Lt: " <= ",
     toDate: "to_date",
     DateTime: "YYYY-MM-DD HH24:mi:ss",
-    Date: "YYYY-MM-DD"
+    Date: "YYYY-MM-DD",
+    NoResultCondition: "1 != 1"
 }
 
 
