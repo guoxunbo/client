@@ -95,7 +95,10 @@ const i18NCode = {
     ReservedListCannotEmpty: "ReservedListCannotEmpty",
     ChooseImportTypePlease: "ChooseImportTypePlease",
     ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
-    DeleteNoteCannotEmpty: "DeleteNoteCannotEmpty"
+    DeleteNoteCannotEmpty: "DeleteNoteCannotEmpty",
+    BoxQty: "BoxQty",
+    PieceQty: "PieceQty",
+    TotalQty: "TotalQty",
 }
 
 const i18Messages = {
@@ -573,7 +576,22 @@ const i18Messages = {
         Chinese: "删除备注不能为空！",
         English: "Delete Note cannot empty",
         Res: ""
-    }
+    },
+    BoxQty: {
+        Chinese: "箱数",
+        English: "BoxQty",
+        Res: ""
+    },
+    PieceQty: {
+        Chinese: "片数",
+        English: "PieceQty",
+        Res: ""
+    },
+    TotalQty: {
+        Chinese: "颗数",
+        English: "TotalQty",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};

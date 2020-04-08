@@ -11,7 +11,9 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createMaterialLotsNumber());
         buttons.push(this.createStatistic());
+        buttons.push(this.createTotalNumber());
         buttons.push(this.createDeleteAllButton());
         buttons.push(this.createReceiveButton());
         return buttons;
@@ -33,6 +35,36 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
             }
             FinishGoodInvManagerRequest.sendWLTReceiveRequest(requestObject);
         }
+    }
+
+    createMaterialLotsNumber = () => {
+        let materialLotUnits = this.state.data;
+        let cstIdList = [];
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (cstIdList.indexOf(data.cstId) == -1) {
+                    cstIdList.push(data.cstId);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{cstIdList.length}</Tag>
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{this.state.data.length}</Tag>
+    }
+
+    createTotalNumber = () => {
+        let materialLotUnits = this.state.data;
+        let count = 0;
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (data.quantity != undefined) {
+                    count = count + data.quantity;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
     
     createDeleteAllButton = () => {
