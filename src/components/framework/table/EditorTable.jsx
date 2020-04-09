@@ -12,6 +12,7 @@ import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import moment from 'moment';
+import './ListTable.scss';
 
 const EditableContext = React.createContext();
 const TableId = "tab-table";
@@ -126,7 +127,7 @@ class EditableTable extends React.Component {
         
     }
     if (this.props.editFlag) {
-      let oprationColumn = this.buildOperationColumn(scrollX, fields);
+      let oprationColumn = this.buildOperationColumn(scrollX);
       scrollX += oprationColumn.width;
       columns.push(oprationColumn);
     }
@@ -161,7 +162,7 @@ class EditableTable extends React.Component {
   /**
    * 创建操作列
    */
-  buildOperationColumn = (scrollX, fields) => {
+  buildOperationColumn = (scrollX) => {
     let maxWidth = document.querySelector('#' + TableId).clientWidth;
     let operationColumn = {
       editable: false,
@@ -315,8 +316,9 @@ class EditableTable extends React.Component {
 
   createButtonGroup = () => {
     return (
-      <div>
-          <Button style={{marginRight:'1px', marginLeft:'10px'}} icon="plus" onClick={() => this.handleAdd()} size="small" href="javascript:;">添加</Button>
+      <div className="table-button-group">
+        <Button style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">
+          {I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>
       </div>
      );
   }
@@ -348,20 +350,20 @@ class EditableTable extends React.Component {
     });
     return (
       <div>
-          {(this.props.editFlag && this.props.parentObject) ? this.createButtonGroup() : ''};
-          <EditableContext.Provider value={this.props.form}>
-          <Table
-            rowKey={DefaultRowKey}
-            components={components}
-            bordered
-            pagination={Application.table.pagination}
-            dataSource={tableData}
-            columns={columns}
-            scroll = {{ x: scrollX, y: 350 }}
-            rowClassName={rowClassName.bind(this)}
-            id={TableId}
-          />
-        </EditableContext.Provider>
+          {(this.props.editFlag && this.props.parentObject) ? this.createButtonGroup() : ''}
+            <EditableContext.Provider value={this.props.form}>
+              <Table
+                rowKey={DefaultRowKey}
+                components={components}
+                bordered
+                pagination={Application.table.pagination}
+                dataSource={tableData}
+                columns={columns}
+                scroll = {{ x: scrollX, y: 350 }}
+                rowClassName={rowClassName.bind(this)}
+                id={TableId}
+              />
+          </EditableContext.Provider>
       </div>
     );
   }
