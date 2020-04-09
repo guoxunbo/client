@@ -89,7 +89,7 @@ class EditableTable extends React.Component {
     const self = this;
     let requestObject = {
       tableName: this.props.refTableName,
-      whereClause: SqlType.NoResultCondition,
+      whereClause: this.props.whereClause,
       success: function(responseBody) {
         let table = responseBody.table;
         let columnData = self.buildColumn(table);
