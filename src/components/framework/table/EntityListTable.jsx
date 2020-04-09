@@ -447,7 +447,7 @@ export default class EntityListTable extends Component {
      * 默认的table框的选择框属性 此处不实现。
      */
     getRowSelection = (selectedRowKeys) => {
-            
+        
     }
 
     onChange = (pagination) => {
@@ -461,6 +461,16 @@ export default class EntityListTable extends Component {
     }
 
     /**
+     * 选中的数据，根据业务决定其是否能操作tableTab的数据
+     * @param selectedObject 选中的数据
+     * 
+     */
+    isTableTabReadOnly = (selectedObject) => {
+        selectedObject["readonly"] = false;
+        return selectedObject;
+    }
+
+    /**
      * 如果tab类型是table的话直接在这里显示
      */
     createTableTab = () => {
@@ -470,9 +480,9 @@ export default class EntityListTable extends Component {
         const {selectedRows} = this.state;
         let selectedObject = undefined;
         if (selectedRows && selectedRows.length > 0) {
-            selectedObject = selectedRows[0];
+            selectedObject = this.isTableTabReadOnly(selectedRows[0]);
         }
-
+        
         if (tabs && tabs.length > 0) {
             let tableTabs = tabs.filter((tab) => TabType.Table === tab.tabType);
             if (tableTabs && tableTabs.length > 0) {
@@ -524,9 +534,7 @@ export default class EntityListTable extends Component {
                             this.selectRow(record);
                         },
                     })}
-
-                >
-                </Table>
+                />
             </div>
             {this.createTableTab()}
             {this.createForm()}

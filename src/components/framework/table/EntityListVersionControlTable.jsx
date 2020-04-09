@@ -47,6 +47,15 @@ export default class EntityListVersionControlTable extends EntityListTable {
          return false;
     }
 
+    isTableTabReadOnly = (selectedObject) => {
+        if (selectedObject.status == DefaultStatusList.UnFrozen) {
+            selectedObject["readonly"] = false;
+        } else {
+            selectedObject["readonly"] = true;
+        }
+        return selectedObject;
+    }
+
     handleStatusChanged = (buttonCode) => {
         const self = this;
         const {selectedRows}  = this.state;

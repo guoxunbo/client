@@ -57,11 +57,12 @@ class EditableTable extends React.Component {
       columns:[], 
       scrollX: undefined,
       rowClassName: (record, index) => {},
+      parentReadOnly: false
     };
   }
 
   componentWillReceiveProps = (props) => {
-    const {whereClause} = props;
+    const {whereClause, parentObject} = props;
     if (whereClause === SqlType.NoResultCondition) {
       return;
     }
@@ -75,6 +76,7 @@ class EditableTable extends React.Component {
       success: function(responseBody) {
         self.setState({
           tableData: responseBody.dataList,
+          parentReadOnly: parentObject && parentObject["readonly"]
         });
       }
     }
@@ -187,9 +189,9 @@ class EditableTable extends React.Component {
               </span>
             ) : (
               <div>
-                <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"/>
-                  <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                    <Button icon="delete" size="small" type="danger"/>
+                <Button disabled={this.state.parentReadOnly} style={{marginRight:'1px'}} size="small" icon="edit" onClick={() => this.edit(record)} href="javascript:;"/>
+                  <Popconfirm disabled={this.state.parentReadOnly} title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
+                    <Button disabled={this.state.parentReadOnly} icon="delete" size="small" type="danger"/>
                   </Popconfirm>
               </div>    
             )}
@@ -316,7 +318,7 @@ class EditableTable extends React.Component {
   createButtonGroup = () => {
     return (
       <div className="table-button-group">
-        <Button style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">
+        <Button disabled={this.state.parentReadOnly} style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">
           {I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>
       </div>
      );
