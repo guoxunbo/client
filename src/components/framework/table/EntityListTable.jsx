@@ -115,7 +115,6 @@ export default class EntityListTable extends Component {
                 return ''; 
             }
         }
-        
     };
 
     buildColumn = (table) => {
@@ -189,7 +188,7 @@ export default class EntityListTable extends Component {
 
     buildDeletePopConfirm = (record) => {
         let hasDeleteBtnAuthority = this.hasDeleteBtnAuthority(record)
-        return <Popconfirm key="delete" title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
+        return <Popconfirm key="delete" disabled={true} title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
                     <Button disabled={!hasDeleteBtnAuthority} icon="delete" size="small" type="danger"/>
                 </Popconfirm>;
     }
