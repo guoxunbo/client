@@ -178,19 +178,18 @@ class EditableTable extends React.Component {
               <span>
                 <EditableContext.Consumer>
                   {form => (
-                    <Button style={{marginRight:8}} icon="save" 
-                      onClick={() => this.save(form, record)} size="small" href="javascript:;"></Button>
+                    <Button style={{marginRight:8}} icon="save" onClick={() => this.save(form, record)} size="small" href="javascript:;"/>
                   )}
                 </EditableContext.Consumer>
                 <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmCancel)} onConfirm={() => this.cancel(record.objectRrn)}>
-                  <Button style={{marginRight:8}} icon="close-circle" size="small" href="javascript:;"></Button>
+                  <Button style={{marginRight:8}} icon="close-circle" size="small" href="javascript:;"/>
                 </Popconfirm>
               </span>
             ) : (
               <div>
-                <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"></Button>
+                <Button style={{marginRight:'1px'}} icon="edit" onClick={() => this.edit(record)} size="small" href="javascript:;"/>
                   <Popconfirm title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                    <Button icon="delete" size="small" type="danger"></Button>
+                    <Button icon="delete" size="small" type="danger"/>
                   </Popconfirm>
               </div>    
             )}
