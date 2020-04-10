@@ -8,7 +8,6 @@ export default class EqpRecipeDialog extends EntityDialog {
     static displayName = 'EqpRecipeDialog';
 
     handleSave = (formObject) => {
-        debugger;
         var self = this;
         let object = {
             values: formObject,

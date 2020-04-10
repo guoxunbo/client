@@ -20,5 +20,26 @@ export default class EqpRecipeRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
-    
+    static sendActiveRequest = (object) => {
+        let requestBody = EqpRecipeRequestBody.buildActiveEntity(object.values);
+        let requestHeader = new EqpRecipeRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.EqpRecipeManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendDeleteRequest = (object) => {
+        let requestBody = EqpRecipeRequestBody.buildDeleteEntity(object.values);
+        let requestHeader = new EqpRecipeRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.EqpRecipeManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

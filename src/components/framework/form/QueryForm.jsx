@@ -198,7 +198,6 @@ class QueryForm extends React.Component {
     };
 
     handleReset = () => {
-        debugger;
         if (this.props.handleReset) {
             this.props.handleReset();
         }

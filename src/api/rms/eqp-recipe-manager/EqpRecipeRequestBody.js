@@ -2,6 +2,8 @@
 const ActionType = {
     Create: "Create",
     Update: "Update",
+    Active: "Active",
+    Delete: "Delete"
 }
 
 export default class EqpRecipeRequestBody {
@@ -21,5 +23,13 @@ export default class EqpRecipeRequestBody {
             actionType = ActionType.Create;         
         }
         return new EqpRecipeRequestBody(actionType, recipeEquipment);
+    }
+
+    static buildActiveEntity(recipeEquipment) {
+        return new EqpRecipeRequestBody(ActionType.Active, recipeEquipment);
+    }
+
+    static buildDeleteEntity(recipeEquipment) {
+        return new EqpRecipeRequestBody(ActionType.Delete, recipeEquipment);
     }
 }
