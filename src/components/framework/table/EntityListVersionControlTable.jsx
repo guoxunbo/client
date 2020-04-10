@@ -56,27 +56,56 @@ export default class EntityListVersionControlTable extends EntityListTable {
         return selectedObject;
     }
 
-    handleStatusChanged = (buttonCode) => {
+    handleStatusChanged = (event) => {
         const self = this;
         const {selectedRows}  = this.state;
-
         let object = {
             modelClass : self.state.table.modelClass,
             values: selectedRows[0],
-            actionType: buttonCode,
+            actionType: event,
             success: function(responseBody) {
-                self.refresh(responseBody.data);
+                let dataList = [];
+                let data = responseBody.data;
+                dataList.push(data);
+                if (data.effectObject) {
+                    dataList.push(data.effectObject);
+                }
+                self.refresh(dataList);
             }
         };
         EntityManagerRequest.sendStatusChangedRequest(object);
     }
     
+    handleFrozen = () => {
+        this.handleStatusChanged(DefaultStatusList.Frozen);
+    }
+
+    handleUnFrozen = () => {
+        this.handleStatusChanged(DefaultStatusList.UnFrozen);
+    }
+
     handleUnFrozenOrFrozen = (buttonCode) => {
-        this.handleStatusChanged(buttonCode);
+        if (buttonCode === DefaultStatusList.Frozen) {
+            this.handleFrozen();
+        } else if (buttonCode === DefaultStatusList.UnFrozen) {
+            this.handleUnFrozen();
+        }
+    }
+
+    handleActive = () => {
+        this.handleStatusChanged(DefaultStatusList.Active);
+    }
+
+    handleInActive = () => {
+        this.handleStatusChanged(DefaultStatusList.InActive);
     }
 
     handleActiveOrInActive = (buttonCode) => {
-        this.handleStatusChanged(buttonCode);
+        if (buttonCode === DefaultStatusList.Active) {
+            this.handleActive();
+        } else if (buttonCode === DefaultStatusList.InActive) {
+            this.handleInActive();
+        }
     }
 
     /**
