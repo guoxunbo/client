@@ -11,12 +11,17 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createStatistic());
-        buttons.push(this.createTotalNumber());
         buttons.push(this.createDeleteAllButton());
         buttons.push(this.createReceiveButton());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tags = [];
+        tags.push(this.createMaterialLotsNumber());
+        tags.push(this.createStatistic());
+        tags.push(this.createTotalNumber());
+        return tags;
     }
 
     receive = () => {

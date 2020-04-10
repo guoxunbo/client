@@ -19,24 +19,55 @@ export default class WltPackMaterialLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStatistic());
-        buttons.push(this.createTotalNumber());
         buttons.push(this.createPackageButton());
         return buttons;
     }
 
-    createTotalNumber = () => {
-        let materialLots = this.state.data;
-        let count = 0;
-        if(materialLots && materialLots.length > 0){
-            materialLots.forEach(data => {
-                count = count + data.currentQty;
+    createTagGroup = () => {
+        let tags = [];
+        tags.push(this.createMaterialLotsNumber());
+        tags.push(this.createWaferNumber());
+        tags.push(this.createTotalNumber());
+        return tags;
+    }
+
+    createMaterialLotsNumber = () => {
+        let materialLotUnits = this.state.data;
+        let lotIdList = [];
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (lotIdList.indexOf(data.lotId) == -1) {
+                    lotIdList.push(data.lotId);
+                }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{lotIdList.length}</Tag>
     }
-    createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
+
+    createWaferNumber = () => {
+        let materialLotUnits = this.state.data;
+        let count = 0;
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (data.reserved44 != undefined) {
+                    count = count + Number(data.reserved44);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{count}</Tag>
+    }
+
+    createTotalNumber = () => {
+        let materialLotUnits = this.state.data;
+        let count = 0;
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (data.currentQty != undefined) {
+                    count = count + data.currentQty;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     handlePrint = (materialLot) => {
@@ -60,7 +91,7 @@ export default class WltPackMaterialLotTable extends EntityScanViewTable {
         }
         let requestObject = {
             materialLots: data,
-            packageType: "PackCase",
+            packageType: "WltPackCase",
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

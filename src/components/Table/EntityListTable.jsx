@@ -376,6 +376,10 @@ export default class EntityListTable extends Component {
         return buttons;
     }
 
+    createTagGroup = () => {
+
+    }
+
     createForm = () => {
         const WrappedAdvancedEntityForm = Form.create()(EntityForm);
         return  <WrappedAdvancedEntityForm ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
@@ -416,6 +420,7 @@ export default class EntityListTable extends Component {
         return (
           <div >
             <div style={styles.buttonGroup}>
+                {this.createTagGroup()}
                 {this.createButtonGroup()}
             </div>
             <div style={styles.tableContainer}>
@@ -467,5 +472,5 @@ const styles = {
         marginBottom:'10px',
         marginRight:'30px',
         textAlign:'right'
-    }
+    },
 };
