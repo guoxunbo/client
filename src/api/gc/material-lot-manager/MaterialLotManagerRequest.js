@@ -17,6 +17,17 @@ export default class MaterialLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendGetWltJudgePackCaseItemListRequest = (object) => {
+        let requestBody = MaterialLotManagerRequestBody.buildGetWltJudgePackCaseItemList();
+        let requestHeader = new MaterialLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendJudgePackedMaterialLotRequest = (object) => {
         const {packedLotDetails, checkList} = object;
         let requestBody = MaterialLotManagerRequestBody.buildJudgePackedMaterialLots(packedLotDetails, checkList);

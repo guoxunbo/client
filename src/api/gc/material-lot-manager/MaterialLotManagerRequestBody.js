@@ -2,7 +2,8 @@ const ActionType = {
     BindRelayBox: "BindRelayBox",
     UnbindRelayBox: "UnbindRelayBox",
     JudgePackedLot: "JudgePackedLot",
-    GetPackCaseCheckList: "GetPackCaseCheckList"
+    GetPackCaseCheckList: "GetPackCaseCheckList",
+    GetWltPackCaseCheckList: "GetWltPackCaseCheckList"
 }
 
 
@@ -24,6 +25,11 @@ export default class MaterialLotManagerRequestBody {
 
     static buildGetJudgePackCaseItemList() {
         let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.GetPackCaseCheckList);
+        return materialLotManagerRequestBody;
+    }
+
+    static buildGetWltJudgePackCaseItemList() {
+        let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.GetWltPackCaseCheckList);
         return materialLotManagerRequestBody;
     }
 
