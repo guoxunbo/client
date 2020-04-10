@@ -62,14 +62,21 @@ class EditableTable extends React.Component {
   }
 
   componentWillReceiveProps = (props) => {
+    const self = this;
     const {whereClause, parentObject} = props;
+    if (!parentObject) {
+      self.setState({
+        tableData: [],
+      });
+      return;
+    }
     if (whereClause === SqlType.NoResultCondition) {
       return;
     }
     if (whereClause === this.props.whereClause) {
       return;
     }
-    const self = this;
+    
     let requestObject = {
       tableName: this.props.refTableName,
       whereClause: whereClause,
