@@ -9,6 +9,7 @@ import { Notification } from "../../../components/notice/Notice";
 import PrintUtils from "../../../api/utils/PrintUtils";
 import GetPrintBboxParameterRequest from "../../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest";
 import { PrintServiceUrl } from "../../../api/gc/GcConstDefine";
+import GetPrintWltBboxParameterRequest from "../../../api/gc/get-print-wltbbox-parameter/GetPrintWltBboxParameterRequest";
 
 /**
  * 打印箱标签
@@ -55,14 +56,26 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
-        let requestObject = {
-            materialLotRrn : materialLotRrn,    
-            success: function(responseBody) {
-                let url = PrintServiceUrl.Bbox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+        let packageType = this.state.formObject.packageType;
+        if(packageType == "WltPackCase"){
+            let requestObject = {
+                materialLotRrn : materialLotRrn,    
+                success: function(responseBody) {
+                    let url = PrintServiceUrl.WltBbox;
+                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                }
             }
+            GetPrintWltBboxParameterRequest.sendQueryRequest(requestObject);
+        } else {
+            let requestObject = {
+                materialLotRrn : materialLotRrn,    
+                success: function(responseBody) {
+                    let url = PrintServiceUrl.Bbox;
+                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                }
+            }
+            GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
         }
-        GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
     }
 
     createPrintButton = () => {
