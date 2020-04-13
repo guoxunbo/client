@@ -19,8 +19,7 @@ export default class GcReservedStockOutOrderMLotProperties extends EntityScanPro
     componentWillReceiveProps = (props) => {
       const {resetFlag} = props;
       if (resetFlag) {
-        window.location.reload(true);
-          // this.form.handleReset();
+        this.form.handleReset();
       }
     }
 

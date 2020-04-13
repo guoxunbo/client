@@ -22,8 +22,7 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
     componentWillReceiveProps = (props) => {
       const {resetFlag} = props;
       if (resetFlag) {
-        window.location.reload(true);
-        // this.form.handleReset();
+        this.form.handleReset();
       }
     }
 

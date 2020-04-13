@@ -18,13 +18,11 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
     componentWillReceiveProps = (props) => {
       const {resetFlag} = props;
       if (resetFlag) {
-        window.location.reload(true);
-          // this.form.handleReset();
+          this.form.handleReset();
       }
     }
 
     queryData = (whereClause) => {
-      debugger;
         const self = this;
         let {rowKey,tableData} = this.state;
         let requestObject = {

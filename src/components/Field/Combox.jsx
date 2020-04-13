@@ -40,7 +40,7 @@ export default class Combox extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if ('value' in nextProps && nextProps.value && this.state.value !== nextProps.value) {
+        if ('value' in nextProps && this.state.value !== nextProps.value) {
             this.setState({
               value: nextProps.value
             });
@@ -101,8 +101,8 @@ export default class Combox extends Component {
         return (
           <Select
             showSearch
-            allowClear
-            defaultValue={this.state.value}
+            allowClearvalue
+            value={this.state.value}
             placeholder={this.props.placeholder}
             style={this.props.style ? this.props.style : { width: '100%'}}
             onChange={this.handleChange}

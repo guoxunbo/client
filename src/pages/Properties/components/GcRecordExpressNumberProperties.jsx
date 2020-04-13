@@ -8,7 +8,13 @@ export default class GcRecordExpressNumberProperties extends EntityProperties{
     
 
     resetData = () => {
-      window.location.reload(true);
+      this.setState({
+        selectedRowKeys: [],
+        selectedRows: [],
+        tableData: [],
+        loading: false,
+        resetFlag: true
+      });
     }
 
     getTableData = () => {
