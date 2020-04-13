@@ -47,6 +47,7 @@ import GcWaferStockInProperties from './pages/Properties/components/GcWaferStock
 import WLTFinishGoodProperties from './pages/Properties/components/WLTFinishGoodProperties';
 import WltPackMaterialLotProperties from './pages/Properties/components/WltPackMaterialLotProperties';
 import WltPackCaseCheckProperties from './pages/Properties/components/WltPackCaseCheckProperties';
+import WltStockOutCheckProperties from './pages/Properties/components/WltStockOutCheckProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -213,6 +214,12 @@ const routerConfig = [
     path: buildPath('WLT/WLTPackCaseCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltPackCaseCheckProperties,
+  },
+  //WLT出货检
+  {
+    path: buildPath('WLT/WLTStockOutCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltStockOutCheckProperties,
   },
   //MES成品接收
   {

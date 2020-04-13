@@ -2,6 +2,7 @@ import MaterialLot from "../../dto/mms/MaterialLot";
 
 const ActionType = {
     GetCheckList: "GetCheckList",
+    GetWltCheckList: "GetWltCheckList",
     Judge: "Judge",
 }
 export default class StockOutCheckRequestBody {
@@ -17,6 +18,10 @@ export default class StockOutCheckRequestBody {
 
     static buildGetCheckData() {
         return new StockOutCheckRequestBody(ActionType.GetCheckList);
+    }
+
+    static buildGetWltCheckData() {
+        return new StockOutCheckRequestBody(ActionType.GetWltCheckList);
     }
 
     /**

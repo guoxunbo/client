@@ -31,4 +31,15 @@ export default class StockOutCheckRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendGetWltCheckDataRequest = (object) => {
+        let requestBody = StockOutCheckRequestBody.buildGetWltCheckData();
+        let requestHeader = new StockOutCheckRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutCheckUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }
