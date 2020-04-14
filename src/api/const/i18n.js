@@ -99,6 +99,7 @@ const i18NCode = {
     BoxQty: "BoxQty",
     PieceQty: "PieceQty",
     TotalQty: "TotalQty",
+    PrintLable: "PrintLable",
 }
 
 const i18Messages = {
@@ -592,6 +593,11 @@ const i18Messages = {
         English: "TotalQty",
         Res: ""
     },
+    PrintLable: {
+        Chinese: "打印标签",
+        English: "PrintLable",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};

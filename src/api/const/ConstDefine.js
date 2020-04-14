@@ -82,6 +82,7 @@ const UrlConstant = {
     GCGetPrintBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
     GCGetPrintVboxParameterUrl: ModuleUrlConstant.GC + "getPrintVboxParameter",
     GCGetPrintWltBboxParameterUrl: ModuleUrlConstant.GC + "getPrintWltBboxParameter",
+    GCGetPrintWltBoxParameterUrl: ModuleUrlConstant.GC + "getPrintWltBoxParameter",
     GCValidationSoOrReTestUrl: ModuleUrlConstant.GC + "validationSoOrReTest",
     GCValidationDocumentLineUrl: ModuleUrlConstant.GC + "validationDocumentLine",
     GCRecordExpressUrl: ModuleUrlConstant.GC + "recordExpress",
