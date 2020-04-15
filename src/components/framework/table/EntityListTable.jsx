@@ -18,6 +18,7 @@ import NoticeUtils from '@utils/NoticeUtils';
 import EventUtils from '@api/utils/EventUtils';
 import AuthorityButton from '@components/framework/button/AuthorityButton';
 import Tab, { TabType } from '@api/dto/ui/Tab';
+import EntitySubTreeTable from './EntitySubTreeTable';
 
 const ExpMenuKey = {
     exportTemplate: "exportTemplate",
@@ -81,7 +82,6 @@ export default class EntityListTable extends Component {
         this.initTable();
     }
 
-
     componentWillReceiveProps = (props) => {
         let {selectedRowKeys, selectedRows} = this.state;
         let stateSeletcedRowKeys = selectedRowKeys.merge(props.selectedRowKeys);
@@ -144,14 +144,19 @@ export default class EntityListTable extends Component {
     }
 
     buildOperationColumn(scrollX) {
+        const nextTreeNode = this.getNextTreeNode();
         let maxWidth = document.querySelector('#' + EntityTableId).clientWidth;
+        let fixed = false;
+        if (!nextTreeNode) {
+            fixed = maxWidth > scrollX + Application.table.oprationColumn.width ? false : 'right';
+        }
         let self = this;
         let oprationColumn = {
             key: "opration",
             title: I18NUtils.getClientMessage(i18NCode.Operation),
             dataIndex: "opration",
             align: "center",
-            fixed: maxWidth > scrollX + Application.table.oprationColumn.width ? false : 'right',
+            fixed: fixed,
             width: this.state.oprationColumnWidth || Application.table.oprationColumn.width,
             render: (text, record) => {
                 return (
@@ -244,7 +249,7 @@ export default class EntityListTable extends Component {
 
     /**
      * 更新表格数据
-     * @param responseData 数据如用户、
+     * @param responseData 
      */
     refresh = (responseData) => {
         var self = this;
@@ -461,11 +466,11 @@ export default class EntityListTable extends Component {
     }
 
     /**
-     * 选中的数据，根据业务决定其是否能操作tableTab的数据
+     * 选中的数据，根据业务决定其是否能操作tableTab以及树形结构的数据的数据
      * @param selectedObject 选中的数据
      * 
      */
-    isTableTabReadOnly = (selectedObject) => {
+    isObjectReadOnly = (selectedObject) => {
         selectedObject["readonly"] = false;
         return selectedObject;
     }
@@ -480,7 +485,7 @@ export default class EntityListTable extends Component {
         const {selectedRows} = this.state;
         let selectedObject = undefined;
         if (selectedRows && selectedRows.length > 0) {
-            selectedObject = this.isTableTabReadOnly(selectedRows[0]);
+            selectedObject = this.isObjectReadOnly(selectedRows[0]);
         }
         
         if (tabs && tabs.length > 0) {
@@ -507,8 +512,31 @@ export default class EntityListTable extends Component {
         return tab.buildTableTab(selectedObject);
     }
 
+    expandedRowRender = (record) => {
+        const nextTreeNode = this.getNextTreeNode();
+        record = this.isObjectReadOnly(record);
+        return <EntitySubTreeTable currentTreeNode={nextTreeNode} treeList={this.props.treeList} parentObject={record}/>
+    };
+    
+    /**
+     * 获取下一级TreeNode 
+     */
+    getNextTreeNode = () => {
+        const {treeList, rootTreeNode} = this.props;
+        let nextTreeNode = undefined;
+        if (treeList && rootTreeNode) {
+            let nextTreeNodes = treeList.filter((tree) => tree.parentRrn == rootTreeNode.objectRrn);
+            if (nextTreeNodes && nextTreeNodes.length > 0) {
+                return nextTreeNodes[0];
+            }
+        }
+        return nextTreeNode;
+    }
+    
     render() {
         const {data, columns, rowClassName, selectedRowKeys, scrollX, pagination, loading} = this.state;
+        const nextTreeNode = this.getNextTreeNode();
+
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
           <div >
@@ -523,7 +551,7 @@ export default class EntityListTable extends Component {
                     id={EntityTableId}
                     pagination={pagination}
                     columns = {columns}
-                    scroll = {{ x: scrollX, y:this.props.scrollY}}
+                    scroll = {{ x: scrollX, y: this.props.scrollY}}
                     rowKey = {this.props.rowKey || DefaultRowKey}
                     loading = {loading}
                     rowClassName = {rowClassName.bind(this)}
@@ -534,6 +562,7 @@ export default class EntityListTable extends Component {
                             this.selectRow(record);
                         },
                     })}
+                    expandedRowRender={nextTreeNode ? this.expandedRowRender.bind(this) : undefined}
                 />
             </div>
             {this.createTableTab()}
@@ -553,4 +582,6 @@ EntityListTable.prototypes = {
     selectedRows: PropTypes.array,
     resetFlag: PropTypes.bool,
     resetData: PropTypes.func,
+    treeList: PropTypes.array,
+    currentTreeNode: PropTypes.object
 }

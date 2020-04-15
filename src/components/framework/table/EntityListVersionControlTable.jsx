@@ -47,7 +47,7 @@ export default class EntityListVersionControlTable extends EntityListTable {
          return false;
     }
 
-    isTableTabReadOnly = (selectedObject) => {
+    isObjectReadOnly = (selectedObject) => {
         if (selectedObject.status == DefaultStatusList.UnFrozen) {
             selectedObject["readonly"] = false;
         } else {

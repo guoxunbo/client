@@ -23,7 +23,7 @@ export default class EntityProperties extends Component {
         tableRrn : tableRrn,
         tableData: [],
         table: {fields: []},
-        loading: true,
+        loading: false,
         selectedRowKeys:[],
         selectedRows:[],
         rowKey: DefaultRowKey
