@@ -102,7 +102,7 @@ export default class EntityListTable extends Component {
     }
 
     buildOperation = (record) => {
-        TableUtils.buildOperation(this, record);
+        return TableUtils.buildOperation(this, record);
     }
 
     hasEditBtnAuthority = (record) => {
@@ -366,13 +366,18 @@ export default class EntityListTable extends Component {
     }
 
     expandedRowRender = (record) => {
-        const {rootTreeNode, treeList} = this.props;
+        const {rootTreeNode} = this.props;
         const nextTreeNode = TableUtils.getNextTreeNode(this, rootTreeNode);
 
         record = this.isObjectReadOnly(record);
-        return <EntitySubTreeTable currentTreeNode={nextTreeNode} treeList={treeList} parentObject={record}/>
+        return this.createEntitySubTreeTable(record, nextTreeNode);
     };
     
+    createEntitySubTreeTable = (record, currentTreeNode) => {
+        const {treeList} = this.props;
+        return <EntitySubTreeTable currentTreeNode={currentTreeNode} treeList={treeList} parentObject={record}/>
+    }
+
     render() {
         const {data, columns, rowClassName, selectedRowKeys, scrollX, pagination, loading} = this.state;
         const {rootTreeNode} = this.props;

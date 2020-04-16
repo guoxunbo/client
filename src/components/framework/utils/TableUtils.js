@@ -31,6 +31,7 @@ export default class TableUtils {
             parentReadOnly: false
         };
     }
+
     /**
      * 初始化表格。一般在componentDidMount中调用
      * @param component 对应组件，一般是this
@@ -92,9 +93,10 @@ export default class TableUtils {
      * @param tableName 具体的动态表名
      */
     static buildColumn = (component, table) => {
+        debugger;
         const fields = table.fields;
         const {checkd} = component.state;
-        const {parentObject, editFlag} = component.props;
+        const {parentObject, editFlag, currentTreeNode} = component.props;
         let columns = [];
         let scrollX = 0;
         for (let field of fields) {
@@ -113,8 +115,7 @@ export default class TableUtils {
         }
         let operationColumn;
         if (parentObject) {
-            debugger;
-            if (editFlag) {
+            if (editFlag || currentTreeNode) {
                 operationColumn = component.buildOperationColumn(scrollX);
             }
         } else {

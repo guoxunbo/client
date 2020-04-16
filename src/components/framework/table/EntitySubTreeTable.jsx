@@ -105,7 +105,7 @@ export default class EntitySubTreeTable extends Component {
     }
 
     buildOperation = (record) => {
-        TableUtils.buildOperation(this, record);
+        return TableUtils.buildOperation(this, record);
     }
 
     buildEditButton = (record) => {
