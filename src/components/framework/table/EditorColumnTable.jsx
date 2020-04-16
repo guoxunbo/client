@@ -1,8 +1,6 @@
 import { Table, Form } from 'antd';
 
 import './EditorColumnTable.scss';
-import TableManagerRequest from '@api/table-manager/TableManagerRequest';
-import Field from '@api/dto/ui/Field';
 
 const EditableContext = React.createContext();
 
@@ -89,49 +87,8 @@ class EditorColumnTable extends React.Component {
     };
   }
 
-  buildTable = () => {
-    const self = this;
-    let requestObject = {
-      name : this.props.refTableName,
-      success: function(tableResponseBody) {
-        let table = tableResponseBody.table;
-        let columnData = self.buildColumn(table);
-        self.setState({
-          table: table,
-          columns: columnData.columns,
-          scrollX: columnData.scrollX,
-        });
-      }
-    };
-    TableManagerRequest.sendGetByNameRequest(requestObject);
-  }
-
-  buildColumn = (table) => {
-    let fields = table.fields;
-    let columns = [];
-    let scrollX = 0;
-    for (let field of fields) {
-        field.table = table;
-        table.refresh = this.refresh;
-        let f  = new Field(field, this.props.form);
-        let column = f.buildColumn();
-        if (column != null) {
-          if (f.editable) {
-            column.editable = true;     
-          }
-          column.field = f;
-          columns.push(column);
-          scrollX += column.width;
-        }
-    }
-    return {
-        columns: columns,
-        scrollX: scrollX
-    };
-  }
-
   componentDidMount = () => {
-    this.buildTable();
+    TableUtils.initTable(this, undefined, this.props.refTableName);
   }
 
   handleSave = row => {

@@ -13,7 +13,7 @@ export default class EntityChildrenListTable extends EntityListTable {
     }
 
     componentDidMount = () => {
-        this.initTable();
+        TableUtils.initTable(this, undefined);
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ParentTableRowSelected, (sender, parentObject, rowKey) => this.onParentTabelRowSelected(sender, parentObject, rowKey));
     };
 
@@ -23,5 +23,4 @@ export default class EntityChildrenListTable extends EntityListTable {
         console.log(rowKey);
     }
 
-    build
 }

@@ -5,6 +5,7 @@ import TableObject from '@api/dto/ui/Table';
 import IconUtils from "@api/utils/IconUtils";
 import EntityDialog from "@components/framework/dialog/EntityDialog";
 import { SqlType } from "@const/ConstDefine";
+import TableUtils from "@components/framework/utils/TableUtils";
 
 const DataType = {
     FixedString: "F",
@@ -50,29 +51,9 @@ export default class GeneratorRuleLineTable extends EntityListTable {
     }
     
     componentDidMount = () => {
-        this.initTable();
+        TableUtils.initTable(this, SqlType.NoResultCondition, this.props.refTableName);
     }
     
-    initTable = () => {
-        const self = this;
-        let requestObject = {
-            tableName: this.props.refTableName,
-            whereClause: SqlType.NoResultCondition,
-            success: function(responseBody) {
-                let table = responseBody.table;
-                let columnData = self.buildColumn(table);
-                self.setState({
-                    data: responseBody.dataList,
-                    table: table,
-                    columns: columnData.columns,
-                    scrollX: columnData.scrollX,
-                    loading: false
-                });
-            }
-        }
-        TableManagerRequest.sendGetDataByNameRequest(requestObject);
-    }
-
     /**
      * 此处因为点击不同的Button要展现不同的form信息。故此处的table用formTable去代替
      */

@@ -2,7 +2,6 @@ import { Table, Popconfirm, Button, Form } from 'antd';
 import * as PropTypes from 'prop-types';
 import {DefaultRowKey, DateFormatType, SqlType} from '@const/ConstDefine'
 import MessageUtils from '@api/utils/MessageUtils';
-import Field from '@api/dto/ui/Field';
 import {Application} from '@api/Application';
 import TableObject from '@api/dto/ui/Table';
 import PropertyUtils from '@api/utils/PropertyUtils';
@@ -13,6 +12,7 @@ import { i18NCode } from '@const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import moment from 'moment';
 import './ListTable.scss';
+import TableUtils from '../utils/TableUtils';
 
 const EditableContext = React.createContext();
 const TableId = "tab-table";
@@ -52,7 +52,7 @@ class EditableTable extends React.Component {
     super(props);
     this.state = {
       table:{},
-      tableData:[],
+      data:[],
       editingKey: '', 
       columns:[], 
       scrollX: undefined,
@@ -66,7 +66,7 @@ class EditableTable extends React.Component {
     const {whereClause, parentObject} = props;
     if (!parentObject) {
       self.setState({
-        tableData: [],
+        data: [],
       });
       return;
     }
@@ -82,7 +82,7 @@ class EditableTable extends React.Component {
       whereClause: whereClause,
       success: function(responseBody) {
         self.setState({
-          tableData: responseBody.dataList,
+          data: responseBody.dataList,
           parentReadOnly: parentObject && parentObject["readonly"]
         });
       }
@@ -91,64 +91,12 @@ class EditableTable extends React.Component {
   }
   
   componentDidMount = () => {
-    this.initTable();
-  }
-
-  initTable = () => {
-    const self = this;
-    let requestObject = {
-      tableName: this.props.refTableName,
-      whereClause: this.props.whereClause,
-      success: function(responseBody) {
-        let table = responseBody.table;
-        let columnData = self.buildColumn(table);
-        self.setState({
-          tableData: responseBody.dataList,
-          table: table,
-          columns: columnData.columns,
-          scrollX: columnData.scrollX,
-          rowClassName: (record, index) => self.getRowClassName(record, index),
-        });
-      }
-    }
-    TableManagerRequest.sendGetDataByNameRequest(requestObject);
-  }
-
-  buildColumn = (table) => {
-    let fields = table.fields;
-    let columns = [];
-    let scrollX = 0;
-    for (let field of fields) {
-        // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
-        field.table = table;
-        table.refresh = this.refresh;
-        let f  = new Field(field, this.props.form);
-        let column = f.buildColumn();
-        if (column != null) {
-          // 如果可以编辑
-          if (f.editable) {
-            column.editable = true;     
-          }
-          column.field = f;
-          columns.push(column);
-          scrollX += column.width;
-        }
-        
-    }
-    if (this.props.editFlag) {
-      let oprationColumn = this.buildOperationColumn(scrollX);
-      scrollX += oprationColumn.width;
-      columns.push(oprationColumn);
-    }
-    return {
-        columns: columns,
-        scrollX: scrollX
-    };
+    TableUtils.initTable(this, this.props.whereClause, this.props.refTableName);
   }
 
   refresh = (responseData) => {
     var self = this;
-    let datas = self.state.tableData;
+    let datas = self.state.data;
     let dataIndex = -1;
     datas.map((data, index) => {
         if (data.objectRrn == responseData.objectRrn) {
@@ -162,7 +110,7 @@ class EditableTable extends React.Component {
         datas.unshift(responseData);
     }
     self.setState({
-        tableData: datas,
+        data: datas,
         editingKey: "",
     }) 
     MessageUtils.showOperationSuccess();
@@ -235,7 +183,7 @@ class EditableTable extends React.Component {
         }
       }
       let self = this;
-      const { tableData, table } = this.state;
+      const { data, table } = this.state;
       let object = {
         modelClass : table.modelClass,
         values: rowData,
@@ -244,21 +192,21 @@ class EditableTable extends React.Component {
           let responseData = responseBody.data;
           let dataIndex = -1;
           if (rowData.objectRrn) {
-            tableData.map((data, index) => {
-              if (data.objectRrn == responseData.objectRrn) {
+            data.map((d, index) => {
+              if (d.objectRrn == responseData.objectRrn) {
                   dataIndex = index;
               }
             });
           } else {
-            tableData.map((data, index) => {
-              if (!data.objectRrn) {
+            data.map((d, index) => {
+              if (!d.objectRrn) {
                   dataIndex = index;
               }
             });
           }
-          tableData.splice(dataIndex, 1, responseData);
+          data.splice(dataIndex, 1, responseData);
           self.setState({
-            tableData: tableData,
+            data: data,
             editingKey: ""
           }); 
           MessageUtils.showOperationSuccess();
@@ -281,58 +229,34 @@ class EditableTable extends React.Component {
   };
 
   handleAdd = () => {
-    const { tableData, table } = this.state;
+    const { data, table } = this.state;
     // 新建的时候如果有栏位是来源于父值的话，对其进行赋值
     const newData = TableObject.buildDefaultModel(table.fields, this.props.parentObject);
     newData[DefaultRowKey] = uuid.v1();
     newData["newFlag"] = true;
 
     this.setState({
-      tableData: [...tableData, newData],
+      data: [...data, newData],
       editingKey: newData.objectRrn,
     });
   }
 
+  refreshDelete = (records) => {
+    TableUtils.refreshDelete(this, records);
+  }
+
   handleDelete = (record) => {
-    let {tableData, table } = this.state;
-    let self = this;
-    let dataIndex = tableData.indexOf(record);
-    // 如果是新增的数据，没做过保存直接删除
-    if (record.newFlag) {
-      tableData.splice(dataIndex, 1);
-      this.setState({
-        tableData: tableData,
-        editingKey: ""
-      });
-    } else {
-      // 调用后台删除
-      let object = {
-        modelClass : table.modelClass,
-        values: record,
-        success: function(responseBody) {
-          tableData.splice(dataIndex, 1);
-          self.setState({
-            tableData: tableData,
-            editingKey: ""
-          }) 
-          MessageUtils.showOperationSuccess();
-        }
-      }
-      EntityManagerRequest.sendDeleteRequest(object);
-    }
+    TableUtils.handleDelete(this, record);
   }
 
   createButtonGroup = () => {
-    return (
-      <div className="table-button-group">
-        <Button disabled={this.state.parentReadOnly} style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">
-          {I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>
-      </div>
-    );
+    let buttons = [];
+    buttons.push(<Button key="add" disabled={this.state.parentReadOnly} style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">{I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>);
+    return buttons;
   }
 
   render() {
-    const {tableData, scrollX, rowClassName} = this.state;
+    const {data, scrollX, rowClassName} = this.state;
 
     const components = {
       body: {
@@ -358,14 +282,14 @@ class EditableTable extends React.Component {
     });
     return (
       <div>
-          {(this.props.editFlag && this.props.parentObject) ? this.createButtonGroup() : ''}
+          {(this.props.editFlag && this.props.parentObject) ? <div className="table-button-group"> {this.createButtonGroup()}</div> : ''}
             <EditableContext.Provider value={this.props.form}>
               <Table
                 rowKey={DefaultRowKey}
                 components={components}
                 bordered
                 pagination={Application.table.pagination}
-                dataSource={tableData}
+                dataSource={data}
                 columns={columns}
                 scroll = {{ x: scrollX, y: 350 }}
                 rowClassName={rowClassName.bind(this)}

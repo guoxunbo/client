@@ -1,4 +1,5 @@
 import EntityListTable from '@components/framework/table/EntityListTable';
+
 import MessageRequest from '@api/message-manager/MessageRequest';
 import MessageDialog from '@components/framework/dialog/MessageDialog';
 

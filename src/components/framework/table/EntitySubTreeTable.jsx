@@ -1,17 +1,12 @@
 import  React, { Component } from 'react';
 import { Table, Button, Popconfirm } from 'antd';
-import TableManagerRequest from '@api/table-manager/TableManagerRequest';
-import Field from '@api/dto/ui/Field';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import { Application } from '@api/Application';
 import { DefaultRowKey } from '@const/ConstDefine';
 import TreeManagerRequest from '@api/framework/tree-manager/TreeManagerRequest';
 import EntityDialog from '../dialog/EntityDialog';
-import MessageUtils from '@utils/MessageUtils';
-import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
-import TableObject from '@api/dto/ui/Table';
-import uuid from 'react-native-uuid';
+import TableUtils from '../utils/TableUtils';
 
 const EntitySubTreeTableId = "entity-sub-tree-table";
 
@@ -24,25 +19,8 @@ export default class EntitySubTreeTable extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            tableRrn: undefined,
-            table: {fields: []},
-            columns: [],
-            rowClassName: (record, index) => {},
-            pagination: Application.table.pagination,
-            rowSelection: undefined,
-            selectedRowKeys: this.props.selectedRowKeys || [],
-            selectedRows: this.props.selectedRows || [],
-            formVisible: false,
-            editorObject: {},
-            scrollX: undefined,
-            scrollY:undefined,
-            data: [],
-            loading: true,
-            parentReadOnly: false
-        };
+        this.state = {...TableUtils.getDefaultTableState(), parentReadOnly: false};
     }
-    
    
     componentWillReceiveProps = (props) => {
         let parentReadOnly = props.parentObject["readonly"];
@@ -51,7 +29,6 @@ export default class EntitySubTreeTable extends Component {
                 parentReadOnly: parentReadOnly,
                 data: data
             });
-        console.log(props.parentObject);
     }
 
     componentDidMount = () => {
@@ -68,14 +45,13 @@ export default class EntitySubTreeTable extends Component {
     initTable = () => {
         let self = this;
         const {currentTreeNode, parentObject} = this.props;
-        debugger;
         let request = {
             treeNode: currentTreeNode,
             parentObject: parentObject,
             success: function(responseBody) {
                 let treeNode = responseBody.treeNode;
                 let table = treeNode.table;
-                let columnData = self.buildColumn(table);
+                let columnData = TableUtils.buildColumn(self, table);
                 let parentReadOnly = parentObject["readonly"];
                 let data = self.isObjectReadOnly(treeNode.dataList, parentReadOnly);
                 self.setState({
@@ -92,48 +68,16 @@ export default class EntitySubTreeTable extends Component {
     }
 
     createButtonGroup = () => {
-        return (
-          <div className="table-button-group">
-            <Button disabled={this.props.parentObject["readonly"]} style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">
-              {I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>
-          </div>
-        );
+        let buttons = [];
+        buttons.push(<Button key="add" disabled={this.props.parentObject["readonly"]} style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;"> {I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>)
+        return buttons;
     }
 
     handleAdd = () => {
-        this.setState({
-            formVisible : true,
-            editorObject: TableObject.buildDefaultModel(this.state.table.fields, this.props.parentObject)
-        })
+        TableUtils.openDialog(this, undefined, true, this.props.parentObject);
     }
 
-    buildColumn = (table) => {
-        let fields = table.fields;
-        let columns = [];
-        let scrollX = 0;
-        for (let field of fields) {
-            // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
-            table.refresh = this.refresh;
-            field.table = table;
-            let f  = new Field(field);
-            let column = f.buildColumn();
-            if (column != null) {
-                columns.push(column);
-                scrollX += column.width;
-            }
-        }
-        let operationColumn = this.buildOperationColumn(scrollX);
-        if (operationColumn) {
-            scrollX += operationColumn.width;
-            columns.push(operationColumn);
-        }
-        return {
-            columns: columns,
-            scrollX: scrollX
-        };
-    }
-
-    buildOperationColumn(scrollX) {
+    buildOperationColumn() {
         let self = this;
         let oprationColumn = {
             key: "opration",
@@ -153,23 +97,15 @@ export default class EntitySubTreeTable extends Component {
     }
 
     handleEdit = (record) => {
-        this.setState({
-            formVisible : true,
-            editorObject: record
-        })
+        TableUtils.openDialog(this, record);
     }
 
     onChange = () => {
-        this.setState({
-            pagination: false
-        });
+        TableUtils.onChange(this, pagination);
     }
 
     buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildEditButton(record));
-        operations.push(this.buildDeletePopConfirm(record));
-        return operations;
+        TableUtils.buildOperation(this, record);
     }
 
     buildEditButton = (record) => {
@@ -186,103 +122,25 @@ export default class EntitySubTreeTable extends Component {
     }
     
     handleDelete = (record) => {
-        const self = this;
-        let object = {
-            modelClass : self.state.table.modelClass,
-            values: record,
-            success: function(responseBody) {
-                self.refreshDelete(record);
-            }
-        };
-        EntityManagerRequest.sendDeleteRequest(object);
+        TableUtils.handleDelete(this, record);
     } 
 
     expandedRowRender = (record) => {
-        const nextTreeNode = this.getNextTreeNode();
-        return <EntitySubTreeTable currentTreeNode={nextTreeNode} parentObject={record}/>
+        const {currentTreeNode, treeList} = this.props;
+        const nextTreeNode = TableUtils.getNextTreeNode(this, currentTreeNode);
+        return <EntitySubTreeTable treeList={treeList} currentTreeNode={nextTreeNode} parentObject={record}/>
     };
-
-    /**
-     * 获取下一级TreeNode 
-     */
-    getNextTreeNode = () => {
-        const {treeList, currentTreeNode} = this.props;
-        let nextTreeNode = undefined;
-        if (treeList && currentTreeNode) {
-            let nextTreeNodes = treeList.filter((tree) => tree.parentRrn == currentTreeNode.objectRrn);
-            if (nextTreeNodes && nextTreeNodes.length > 0) {
-                return nextTreeNodes[0];
-            }
-        }
-        return nextTreeNode;
-    }
     
     handleCancel = (e) => {
-        this.setState({
-            formVisible: false
-        })
+        TableUtils.closeDialog(this);
     }
 
     refreshDelete = (records) => {
-        let datas = this.state.data;
-        let recordList = [];
-        //支持批量删除
-        if (!(records instanceof Array)) {
-            recordList.push(records);
-        } else {
-            recordList = records;
-        }
-        recordList.forEach((record) => {
-            let dataIndex = datas.indexOf(record);
-            if (dataIndex > -1) {
-                datas.splice(dataIndex, 1);
-            }
-        });
-        this.setState({
-            data: datas,
-            selectedRows: [],
-            selectedRowKeys: []
-        })
-        MessageUtils.showOperationSuccess();
+        TableUtils.refreshDelete(this, records);
     }
-
-    /**
-     * 更新表格数据
-     * @param responseData 
-     */
+    
     refresh = (responseData) => {
-        var self = this;
-        let datas = self.state.data;
-        let rowKey = self.props.rowKey || DefaultRowKey;
-
-        let responseDatas = [];
-        //支持批量刷新
-        if (!(responseData instanceof Array)) {
-            responseDatas.push(responseData);
-        } else {
-            responseDatas = responseData;
-        }
-        responseDatas.forEach((response) => {
-            let dataIndex = -1;
-            datas.map((data, index) => {
-                if (data[rowKey] == response[rowKey]) {
-                    dataIndex = index;
-                }
-            });
-            if (dataIndex > -1) {
-                datas.splice(dataIndex, 1, response);
-            } else {
-                // 新增的就放在第一位
-                datas.unshift(response);
-            }
-        });
-        self.setState({
-            data: datas,
-            formVisible: false,
-            selectedRows: [],
-            selectedRowKeys: []
-        }) 
-        MessageUtils.showOperationSuccess();
+        TableUtils.refreshEdit(this, responseData);
     }
 
     createForm = () => {
@@ -292,12 +150,14 @@ export default class EntitySubTreeTable extends Component {
 
     render() {
         const {data, columns, scrollX, loading} = this.state;
-        const nextTreeNode = this.getNextTreeNode();
-
+        const {currentTreeNode} = this.props;
+        const nextTreeNode = TableUtils.getNextTreeNode(this, currentTreeNode)
         return (
           <div >
             <div>
-                {this.createButtonGroup()}
+                <div className="table-button-group">
+                    {this.createButtonGroup()}
+                </div>
                 <Table  
                     ref= {el => this.table = el}
                     dataSource={data}

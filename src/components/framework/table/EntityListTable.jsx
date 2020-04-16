@@ -4,12 +4,8 @@ import { Table, Popconfirm, Button, Dropdown, Menu, Icon, Tabs } from 'antd';
 import './ListTable.scss';
 import {Application, SessionContext} from '@api/Application'
 import {DefaultRowKey, Language} from '@api/const/ConstDefine'
-import MessageUtils from '@api/utils/MessageUtils';
-import Field from '@api/dto/ui/Field';
 import EntityDialog from '@components/framework/dialog/EntityDialog';
 import * as PropTypes from 'prop-types';
-import TableObject from '@api/dto/ui/Table';
-import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
@@ -19,6 +15,7 @@ import EventUtils from '@api/utils/EventUtils';
 import AuthorityButton from '@components/framework/button/AuthorityButton';
 import Tab, { TabType } from '@api/dto/ui/Tab';
 import EntitySubTreeTable from './EntitySubTreeTable';
+import TableUtils from '../utils/TableUtils';
 
 const ExpMenuKey = {
     exportTemplate: "exportTemplate",
@@ -35,51 +32,11 @@ export default class EntityListTable extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            tableRrn: undefined,
-            table: {fields: []},
-            columns: [],
-            rowClassName: (record, index) => {},
-            pagination: Application.table.pagination,
-            rowSelection: undefined,
-            selectedRowKeys: this.props.selectedRowKeys || [],
-            selectedRows: this.props.selectedRows || [],
-            formVisible: false,
-            editorObject: {},
-            scrollX: undefined,
-            scrollY:undefined,
-            data: [],
-            loading: true,
-        };
-    }
-
-    initTable = () => {
-        const self = this;
-        let requestObject = {
-            tableRrn: this.props.tableRrn,
-            initFlag: true,
-            success: function(responseBody) {
-                let table = responseBody.table;
-                let columnData = self.buildColumn(table);
-                let data = responseBody.dataList;
-                if (self.props.scanAddFlag) {
-                    data = [];
-                }
-                self.setState({
-                    data: data,
-                    table: table,
-                    loading: false,
-                    columns: columnData.columns,
-                    scrollX: columnData.scrollX,
-                    pagination: self.props.pagination != undefined ? self.props.pagination : Application.table.pagination
-                }); 
-            }
-        }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        this.state = TableUtils.getDefaultTableState();
     }
 
     componentDidMount = () => {
-        this.initTable();
+        TableUtils.initTable(this, undefined);
     }
 
     componentWillReceiveProps = (props) => {
@@ -117,34 +74,9 @@ export default class EntityListTable extends Component {
         }
     };
 
-    buildColumn = (table) => {
-        let fields = table.fields;
-        let columns = [];
-        let scrollX = 0;
-        for (let field of fields) {
-            // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
-            table.refresh = this.refresh;
-            field.table = table;
-            let f  = new Field(field);
-            let column = f.buildColumn();
-            if (column != null) {
-                columns.push(column);
-                scrollX += column.width;
-            }
-        }
-        let operationColumn = this.buildOperationColumn(scrollX);
-        if (operationColumn) {
-            scrollX += operationColumn.width;
-            columns.push(operationColumn);
-        }
-        return {
-            columns: columns,
-            scrollX: scrollX
-        };
-    }
-
     buildOperationColumn(scrollX) {
-        const nextTreeNode = this.getNextTreeNode();
+        const {rootTreeNode} = this.props;
+        const nextTreeNode = TableUtils.getNextTreeNode(this, rootTreeNode);
         let maxWidth = document.querySelector('#' + EntityTableId).clientWidth;
         let fixed = false;
         if (!nextTreeNode) {
@@ -170,10 +102,7 @@ export default class EntityListTable extends Component {
     }
 
     buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildEditButton(record));
-        operations.push(this.buildDeletePopConfirm(record));
-        return operations;
+        TableUtils.buildOperation(this, record);
     }
 
     hasEditBtnAuthority = (record) => {
@@ -199,97 +128,27 @@ export default class EntityListTable extends Component {
     }
     
     handleDelete = (record) => {
-        const self = this;
-        let object = {
-            modelClass : self.state.table.modelClass,
-            values: record,
-            success: function(responseBody) {
-                self.refreshDelete(record);
-            }
-        };
-        EntityManagerRequest.sendDeleteRequest(object);
+        TableUtils.handleDelete(this, record);
     } 
 
     refreshDelete = (records) => {
-        let datas = this.state.data;
-        let recordList = [];
-        //支持批量删除
-        if (!(records instanceof Array)) {
-            recordList.push(records);
-        } else {
-            recordList = records;
-        }
-        recordList.forEach((record) => {
-            let dataIndex = datas.indexOf(record);
-            if (dataIndex > -1) {
-                datas.splice(dataIndex, 1);
-            }
-        });
-        this.setState({
-            data: datas,
-            selectedRows: [],
-            selectedRowKeys: []
-        })
-        MessageUtils.showOperationSuccess();
+        TableUtils.refreshDelete(this, records);
     }
 
     handleEdit = (record) => {
-        this.setState({
-            formVisible : true,
-            editorObject: record
-        })
+        TableUtils.openDialog(this, record);
     }
 
     handleAdd = () => {
-        this.setState({
-            formVisible : true,
-            editorObject: TableObject.buildDefaultModel(this.state.table.fields)
-        })
+        TableUtils.openDialog(this, undefined, true);
     }
 
-    /**
-     * 更新表格数据
-     * @param responseData 
-     */
     refresh = (responseData) => {
-        var self = this;
-        let datas = self.state.data;
-        let rowKey = self.props.rowKey || DefaultRowKey;
-
-        let responseDatas = [];
-        //支持批量刷新
-        if (!(responseData instanceof Array)) {
-            responseDatas.push(responseData);
-        } else {
-            responseDatas = responseData;
-        }
-        responseDatas.forEach((response) => {
-            let dataIndex = -1;
-            datas.map((data, index) => {
-                if (data[rowKey] == response[rowKey]) {
-                    dataIndex = index;
-                }
-            });
-            if (dataIndex > -1) {
-                datas.splice(dataIndex, 1, response);
-            } else {
-                // 新增的就放在第一位
-                datas.unshift(response);
-            }
-        });
-        self.setState({
-            data: datas,
-            formVisible: false,
-            selectedRows: [],
-            selectedRowKeys: []
-        }) 
-        MessageUtils.showOperationSuccess();
+        TableUtils.refreshEdit(this, responseData);
     }
 
     handleCancel = (e) => {
-        this.setState({
-            formVisible: false
-        })
+        TableUtils.closeDialog(this);
     }
 
     formRef = (form) => {
@@ -456,13 +315,7 @@ export default class EntityListTable extends Component {
     }
 
     onChange = (pagination) => {
-        var keys = Object.keys(pagination);
-        if (keys.length === 0) {
-            pagination = false;
-        }
-        this.setState({
-            pagination: pagination
-        });
+        TableUtils.onChange(this, pagination);
     }
 
     /**
@@ -513,29 +366,17 @@ export default class EntityListTable extends Component {
     }
 
     expandedRowRender = (record) => {
-        const nextTreeNode = this.getNextTreeNode();
+        const {rootTreeNode, treeList} = this.props;
+        const nextTreeNode = TableUtils.getNextTreeNode(this, rootTreeNode);
+
         record = this.isObjectReadOnly(record);
-        return <EntitySubTreeTable currentTreeNode={nextTreeNode} treeList={this.props.treeList} parentObject={record}/>
+        return <EntitySubTreeTable currentTreeNode={nextTreeNode} treeList={treeList} parentObject={record}/>
     };
-    
-    /**
-     * 获取下一级TreeNode 
-     */
-    getNextTreeNode = () => {
-        const {treeList, rootTreeNode} = this.props;
-        let nextTreeNode = undefined;
-        if (treeList && rootTreeNode) {
-            let nextTreeNodes = treeList.filter((tree) => tree.parentRrn == rootTreeNode.objectRrn);
-            if (nextTreeNodes && nextTreeNodes.length > 0) {
-                return nextTreeNodes[0];
-            }
-        }
-        return nextTreeNode;
-    }
     
     render() {
         const {data, columns, rowClassName, selectedRowKeys, scrollX, pagination, loading} = this.state;
-        const nextTreeNode = this.getNextTreeNode();
+        const {rootTreeNode} = this.props;
+        const nextTreeNode = TableUtils.getNextTreeNode(this, rootTreeNode)
 
         const rowSelection = this.getRowSelection(selectedRowKeys);
         return (
