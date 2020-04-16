@@ -10,6 +10,8 @@ import TreeManagerRequest from '@api/framework/tree-manager/TreeManagerRequest';
 import EntityDialog from '../dialog/EntityDialog';
 import MessageUtils from '@utils/MessageUtils';
 import EntityManagerRequest from '@api/entity-manager/EntityManagerRequest';
+import TableObject from '@api/dto/ui/Table';
+import uuid from 'react-native-uuid';
 
 const EntitySubTreeTableId = "entity-sub-tree-table";
 
@@ -87,6 +89,22 @@ export default class EntitySubTreeTable extends Component {
             }
         }
         TreeManagerRequest.sendGetTreeDataRequest(request);
+    }
+
+    createButtonGroup = () => {
+        return (
+          <div className="table-button-group">
+            <Button disabled={this.props.parentObject["readonly"]} style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">
+              {I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>
+          </div>
+        );
+    }
+
+    handleAdd = () => {
+        this.setState({
+            formVisible : true,
+            editorObject: TableObject.buildDefaultModel(this.state.table.fields, this.props.parentObject)
+        })
     }
 
     buildColumn = (table) => {
@@ -279,6 +297,7 @@ export default class EntitySubTreeTable extends Component {
         return (
           <div >
             <div>
+                {this.createButtonGroup()}
                 <Table  
                     ref= {el => this.table = el}
                     dataSource={data}

@@ -328,7 +328,7 @@ class EditableTable extends React.Component {
         <Button disabled={this.state.parentReadOnly} style={{marginRight:'1px', marginLeft:'10px'}} size="small" icon="plus" onClick={() => this.handleAdd()}  href="javascript:;">
           {I18NUtils.getClientMessage(i18NCode.BtnAdd)}</Button>
       </div>
-     );
+    );
   }
 
   render() {
