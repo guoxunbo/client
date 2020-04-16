@@ -12,7 +12,7 @@ import Field from "@api/dto/ui/Field";
  */
 export default class TableUtils {
     
-    static getDefaultTableState = () => {
+    static getDefaultTableState = (component) => {
         return {
             tableRrn: undefined,
             table: {fields: []},
@@ -20,8 +20,8 @@ export default class TableUtils {
             rowClassName: (record, index) => {},
             pagination: Application.table.pagination,
             rowSelection: undefined,
-            selectedRowKeys: this.props.selectedRowKeys || [],
-            selectedRows: this.props.selectedRows || [],
+            selectedRowKeys: component.props.selectedRowKeys || [],
+            selectedRows: component.props.selectedRows || [],
             formVisible: false,
             editorObject: {},
             scrollX: undefined,

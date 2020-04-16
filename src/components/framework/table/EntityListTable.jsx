@@ -32,7 +32,7 @@ export default class EntityListTable extends Component {
 
     constructor(props) {
         super(props);
-        this.state = TableUtils.getDefaultTableState();
+        this.state = TableUtils.getDefaultTableState(this);
     }
 
     componentDidMount = () => {

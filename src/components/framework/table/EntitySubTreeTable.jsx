@@ -19,7 +19,7 @@ export default class EntitySubTreeTable extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {...TableUtils.getDefaultTableState(), parentReadOnly: false};
+        this.state = {...TableUtils.getDefaultTableState(this), parentReadOnly: false};
     }
    
     componentWillReceiveProps = (props) => {
