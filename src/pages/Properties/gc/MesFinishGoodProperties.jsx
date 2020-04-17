@@ -34,8 +34,6 @@ export default class MesFinishGoodProperties extends EntityProperties{
     }
 
     buildOtherComponent = () => {
-      console.log(this);
-      console.log(this.showTable);
       return <MesFinishGoodScanProperties showTable={this.showTable} 
                                             tableRrn={7728}
                                             resetFlag={this.state.resetFlag}/>

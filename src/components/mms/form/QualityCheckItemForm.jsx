@@ -12,7 +12,6 @@ export default class QualityCheckItemForm extends EntityForm {
     static displayName = 'QualityCheckItemForm';
 
     buildForm = () => {
-        console.log(this.props);
         const tabs = this.props.table.tabs;
         const tabPanels = [];
         if (Array.isArray(tabs)) {

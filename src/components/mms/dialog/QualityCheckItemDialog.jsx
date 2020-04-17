@@ -43,7 +43,6 @@ export default class QualityCheckItemDialog extends EntityDialog {
 
     handleOk = () => {
         let checkList = this.entityForm.editorColumnTable.state.dataSource;
-        console.log(checkList);
         // 当没有选择NG的时候，进行提示
         if (checkList.filter((checkItem) => "NG" === checkItem.result).length === 0){
             this.showNoNgConfirm();

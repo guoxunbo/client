@@ -93,7 +93,6 @@ export default class TableUtils {
      * @param tableName 具体的动态表名
      */
     static buildColumn = (component, table) => {
-        debugger;
         const fields = table.fields;
         const {checkd} = component.state;
         const {parentObject, editFlag, currentTreeNode} = component.props;

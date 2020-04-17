@@ -3,7 +3,7 @@
   "parser": "babel-eslint",
   "extends": "eslint-config-airbnb",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "ecmaFeatures": {
       "jsx": true,
       "experimentalObjectRestSpread": true

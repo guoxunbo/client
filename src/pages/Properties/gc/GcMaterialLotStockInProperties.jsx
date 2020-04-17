@@ -30,7 +30,6 @@ export default class GcMaterialLotStockInProperties extends EntityScanProperties
          // MB开头的则是中装箱号 扫描到MB开头的，则更新当前操作的物料批次的中装箱号
         let dataIndex = -1;
         if (data.startsWith("MB")) {
-            console.log(currentHandleMLots);
             currentHandleMLots.forEach((materialLot) => {
                 tableData.map((data, index) => {
                     if (data[rowKey] == materialLot[rowKey]) {
