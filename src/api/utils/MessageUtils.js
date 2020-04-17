@@ -1,4 +1,4 @@
-import {ResultIdentify, Language} from '@const/ConstDefine';
+import {ResultIdentify, Language, UrlConstant} from '@const/ConstDefine';
 import NoticeUtils from '@utils/NoticeUtils';
 
 import {Response} from "@api/Response";
@@ -10,6 +10,9 @@ import I18NUtils from '@utils/I18NUtils';
 import EventUtils from '@utils/EventUtils';
 import { i18NCode } from '@const/i18n';
 import fetchJsonp from 'fetch-jsonp';
+import MessageRequestBody from '@api/message-manager/MessageRequestBody';
+import MessageRequestHeader from '@api/message-manager/MessageRequestHeader';
+import Request from '@api/Request';
 /**
  *  消息主要发送类
  */
@@ -138,6 +141,36 @@ export default class MessageUtils {
     }
 
     /**
+     * 发送同步请求 需要配合await使用
+     * @param {} requestObject 
+     * @return Promise对象。取出里面的值需要通过Promise.resolve取出
+     */
+    static async sendSyncRequest(requestObject) {
+        let self = this;
+        let request = requestObject.request;
+        let timeOut = request.timeOut || Application.timeOut;
+        return axios.post(request.url, request, {
+            timeout: timeOut,
+            headers:{
+                authorization: SessionContext.getToken(),
+            }
+        }).then(function(object) {
+            let response = new Response(object.data.header, object.data.body);
+            if (ResultIdentify.Fail == response.header.result) {
+                if (requestObject.fail) {
+                    requestObject.fail();
+                }
+                self.handleException(response.header);
+            } else {
+                EventUtils.sendButtonLoaded();
+                return response.body;
+            }
+        }).catch(function(exception) {
+            self.handleException(exception);
+        }); 
+    }
+
+    /**
      * 发送异步请求
      */
     static sendRequest(requestObject) {
@@ -169,7 +202,6 @@ export default class MessageUtils {
             }
         }).catch(function(exception) {
             self.handleException(exception);
-            
         }); 
     }
 
@@ -224,7 +256,7 @@ export default class MessageUtils {
         NoticeUtils.showSuccess(I18NUtils.getClientMessage(code));
     }
 
-    static handleException(exception) {
+    static async handleException(exception) {
         let error = "";
         let errroCode = 0;
         let language = SessionContext.getLanguage();
@@ -232,15 +264,21 @@ export default class MessageUtils {
             language = Language.Chinese;
         }
         if (exception instanceof ResponseHeader) {
-            if (language == Language.Chinese) {
-                error = exception.resultChinese;
-            } else if (language == Language.English) {
-                error = exception.resultEnglish;
+            error = exception.resultCode;
+            let requestBody = MessageRequestBody.buildGetByKeyId(error, exception.parameters);
+            let requestHeader = new MessageRequestHeader();
+            let requestObject = {
+                request: new Request(requestHeader, requestBody, UrlConstant.MessageManagerUrl),
             }
-            if (error == null || error == "") {
-                error = exception.resultCode;
-            }
-            errroCode = exception.messageRrn;
+            let responseBody = await this.sendSyncRequest(requestObject);
+            if (responseBody.message) {
+                if (language == Language.Chinese) {
+                    error = responseBody.message.messageZh;
+                } else if (language == Language.English) {
+                    error = responseBody.message.message;
+                }
+                errroCode = responseBody.message.objectRrn;
+            } 
         } else if (exception.response) {
             // 处理一些server内部错误，比如拦截器里抛出的异常，无法回复200的异常
             let response = exception.response;

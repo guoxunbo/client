@@ -3,6 +3,8 @@ const ActionType = {
     Create: "Create",
     Update: "Update",
     Delete: "Delete",
+    GetByKeyId: "GetByKeyId",
+
 }
 
 export default class MessageRequestBody {
@@ -26,6 +28,14 @@ export default class MessageRequestBody {
 
     static buildDelete(message) {
         return new MessageRequestBody(ActionType.Delete, message);
+    }   
+    
+    static buildGetByKeyId(keyId, parameters) {
+        let message = {
+            keyId: keyId,
+            parameters: parameters
+        }
+        return new MessageRequestBody(ActionType.GetByKeyId, message);
     }
     
 }
