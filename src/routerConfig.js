@@ -48,6 +48,7 @@ import WLTFinishGoodProperties from './pages/Properties/components/WLTFinishGood
 import WltPackMaterialLotProperties from './pages/Properties/components/WltPackMaterialLotProperties';
 import WltPackCaseCheckProperties from './pages/Properties/components/WltPackCaseCheckProperties';
 import WltStockOutCheckProperties from './pages/Properties/components/WltStockOutCheckProperties';
+import GCProductSubcodeSetProperties from './pages/Properties/components/GCProductSubcodeSetProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -220,6 +221,12 @@ const routerConfig = [
     path: buildPath('WLT/WLTStockOutCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltStockOutCheckProperties,
+  },
+  //GC产品型号二级代码设定
+  {
+    path: buildPath('GC/GCProductSubcodeSetManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCProductSubcodeSetProperties,
   },
   //MES成品接收
   {

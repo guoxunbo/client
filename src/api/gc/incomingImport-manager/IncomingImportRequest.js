@@ -7,7 +7,7 @@ import { UrlConstant } from "../../const/ConstDefine";
 export default class IncomingImportRequest {
     
     static sendSelectRequest = (object, file) => {
-        let requestBody = IncomingImportRequestBody.buildSelectFile(object.importType);
+        let requestBody = IncomingImportRequestBody.buildSelectFile(object.importType, object.fileName);
         let requestHeader = new IncomingImportRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCIncomingImportUrl);
         let requestObject = {

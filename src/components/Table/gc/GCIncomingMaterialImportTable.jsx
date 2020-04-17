@@ -32,13 +32,38 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStatistic());
-        buttons.push(this.createTotalNumber());
-        buttons.push(this.createErrorTag());
         buttons.push(this.createImportButton());
         buttons.push(this.createSaveButton());
         buttons.push(this.createDeleteAllButton());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tagList = [];
+        tagList.push(this.createMaterialLotsNumber());
+        tagList.push(this.createStatistic());
+        tagList.push(this.createTotalNumber());
+        tagList.push(this.createErrorTag());
+        return tagList;
+    }
+
+    createMaterialLotsNumber = () => {
+        let materialLotUnits = this.state.data;
+        let materialLotIdList = [];
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if(data.materialLotId){
+                    if (materialLotIdList.indexOf(data.materialLotId) == -1) {
+                        materialLotIdList.push(data.materialLotId);
+                    }
+                } else{
+                    if (materialLotIdList.indexOf(data.reserved30) == -1) {
+                        materialLotIdList.push(data.reserved30);
+                    }
+                }
+            });
+        }
+        return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
     }
 
     createErrorTag = () => {
@@ -69,9 +94,11 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
 
         let object = {
             importType: importType,
+            fileName: fileName,
             success: function(responseBody) {
                 let materialLotList = responseBody.dataList;
-                materialLotList = self.getMaterialLotListByImportType(importType, materialLotList);
+                let bondedProperty = responseBody.bondedProperty;
+                materialLotList = self.getMaterialLotListByImportType(importType, bondedProperty, materialLotList);
                 self.setState({
                     data: materialLotList,
                     loading: false
@@ -137,9 +164,10 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         }
     }
     
-    getMaterialLotListByImportType = (importType, materialLotList) => {
+    getMaterialLotListByImportType = (importType, bondedProperty, materialLotList) => {
         materialLotList.forEach(materialLot =>{
             materialLot.reserved47 = importType;
+            materialLot.reserved6 = bondedProperty;
             if(materialLot.currentQty && isNaN(materialLot.currentQty)){
                 materialLot.errorFlag = true;
             }
