@@ -2,7 +2,7 @@ import EntityScanViewTable from '@components/framework/table/EntityScanViewTable
 import { Button } from 'antd';
 import IconUtils from '@utils/IconUtils';
 import CheckInventoryManagerRequest from '@api/gc/check-inventory-manager/CheckInventoryManagerRequest';
-import MessageUtils from '@api/utils/MessageUtils';
+import NoticeUtils from '@utils/NoticeUtils';
 
 /**
  * 格科盘点表
@@ -41,7 +41,7 @@ export default class CheckTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                MessageUtils.showOperationSuccess();
+                NoticeUtils.showSuccess();
             }
         }
         CheckInventoryManagerRequest.sendCheckInventory(requestObject);

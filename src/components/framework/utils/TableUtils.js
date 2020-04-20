@@ -1,10 +1,10 @@
 import EntityManagerRequest from "@api/entity-manager/EntityManagerRequest";
-import MessageUtils from "@utils/MessageUtils";
 import Table from "@api/dto/ui/Table";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 import { Application } from "@api/Application";
 import { DefaultRowKey } from "@const/ConstDefine";
 import Field from "@api/dto/ui/Field";
+import NoticeUtils from "@utils/NoticeUtils";
 
 /**
  * Table上一些公共方法的抽象
@@ -254,7 +254,7 @@ export default class TableUtils {
             selectedRows: [],
             selectedRowKeys: []
         }) 
-        MessageUtils.showOperationSuccess();
+        NoticeUtils.showSuccess();
     }
 
     /**
@@ -296,7 +296,7 @@ export default class TableUtils {
             selectedRowKeys: [],
             editingKey: ""
         })
-        MessageUtils.showOperationSuccess();
+        NoticeUtils.showSuccess();
     }
 
 }

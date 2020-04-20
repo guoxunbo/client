@@ -4,7 +4,6 @@ import { Button } from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import StockInManagerRequest from '@api/gc/stock-in/StockInManagerRequest';
-import MessageUtils from '@api/utils/MessageUtils';
 import NoticeUtils from '@utils/NoticeUtils';
 
 /**
@@ -34,7 +33,7 @@ export default class StockInStorageTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                MessageUtils.showOperationSuccess();
+                NoticeUtils.showSuccess();
             }
         }
         StockInManagerRequest.sendStockInRequest(requestObject);

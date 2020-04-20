@@ -4,7 +4,6 @@ import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
-import MessageUtils from '@api/utils/MessageUtils';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import QualityCheckItemDialog from '@components/mms/dialog/QualityCheckItemDialog';
 
@@ -39,7 +38,7 @@ export default class QualityCheckTable extends EntityScanViewTable {
         if (this.props.resetData) {
             this.props.resetData();
         }
-        MessageUtils.showOperationSuccess();
+        NoticeUtils.showSuccess();
     }
 
     /**

@@ -10,7 +10,6 @@ import { headerMenuConfig } from './../menuConfig';
 import Logo from './logo/components/Logo';
 import NoticeUtils from '@utils/NoticeUtils';
 import {SessionContext} from '@api/Application';
-import MessageUtils from '@api/utils/MessageUtils';
 import ChangePwdDialog from '@components/framework/dialog/ChangePwdDialog';
 import { Avatar, Icon } from 'antd';
 
@@ -37,7 +36,7 @@ export default class Header extends PureComponent {
   }
   
   changePwdOk = () => {
-    MessageUtils.showOperationSuccess();
+    NoticeUtils.showSuccess();
     this.setState({changePwdVisiable: false})
   }
   

@@ -4,7 +4,6 @@ import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
-import MessageUtils from '@api/utils/MessageUtils';
 import UnPackageMaterialLotRequest from '@api/unpackage-material-lot/UnPackageMaterialLotRequest';
 import { PrintServiceUrl, PrintBboxCount } from '@api/gc/GcConstDefine';
 import PrintUtils from '@api/utils/PrintUtils';
@@ -74,7 +73,7 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
                 }
                 let materialLotId = unpackedMainMaterialLot.materialLotId;
                 let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
-                MessageUtils.showOperationSuccess(message);
+                NoticeUtils.showSuccess(message);
                 // 全拆了则不进行打印标签
                 if (unpackedMainMaterialLot.statusCategory != 'Fin') {
                     self.handlePrint(unpackedMainMaterialLot);

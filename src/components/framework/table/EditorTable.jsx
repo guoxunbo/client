@@ -1,7 +1,6 @@
 import { Table, Popconfirm, Button, Form } from 'antd';
 import * as PropTypes from 'prop-types';
 import {DefaultRowKey, DateFormatType, SqlType} from '@const/ConstDefine'
-import MessageUtils from '@api/utils/MessageUtils';
 import {Application} from '@api/Application';
 import TableObject from '@api/dto/ui/Table';
 import PropertyUtils from '@api/utils/PropertyUtils';
@@ -13,6 +12,7 @@ import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import moment from 'moment';
 import './ListTable.scss';
 import TableUtils from '../utils/TableUtils';
+import NoticeUtils from '@utils/NoticeUtils';
 
 const EditableContext = React.createContext();
 const TableId = "tab-table";
@@ -113,7 +113,7 @@ class EditableTable extends React.Component {
         data: datas,
         editingKey: "",
     }) 
-    MessageUtils.showOperationSuccess();
+    NoticeUtils.showSuccess();
   }
 
   /**
@@ -209,7 +209,7 @@ class EditableTable extends React.Component {
             data: data,
             editingKey: ""
           }); 
-          MessageUtils.showOperationSuccess();
+          NoticeUtils.showSuccess();
         }
       }
       EntityManagerRequest.sendMergeRequest(object);

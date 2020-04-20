@@ -8,7 +8,7 @@ import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import TableObject from '@api/dto/ui/Table';
 import ReceiveMaterialDialog from '@components/mms/dialog/ReceiveMaterialDialog';
-import MessageUtils from '@api/utils/MessageUtils';
+import NoticeUtils from '@utils/NoticeUtils';
 
 const TableName = {
     ReceiveMLot: "MMReceiveMLot"
@@ -74,7 +74,7 @@ export default class MaterialTable extends EntityListTable {
         this.setState({
             receiveMaterialFormVisible : false
         });
-        MessageUtils.showOperationSuccess();
+        NoticeUtils.showSuccess();
     }
 
     handleCancelReceiveMaterialLot = () => {

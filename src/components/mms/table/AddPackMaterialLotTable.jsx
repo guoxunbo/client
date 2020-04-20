@@ -4,7 +4,6 @@ import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
-import MessageUtils from '@api/utils/MessageUtils';
 import AppendPackageMaterialLotRequest from '@api/append-package-material-lot/AppendPackageMaterialLotRequest';
 import GetPrintBboxParameterRequest from '@api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
 import PrintUtils from '@api/utils/PrintUtils';
@@ -86,7 +85,7 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
                 }
                 let materialLotId = responseBody.materialLot.materialLotId;
                 let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
-                MessageUtils.showOperationSuccess(message);
+                NoticeUtils.showSuccess(message);
                 self.handlePrint(responseBody.materialLot);
             }
         }

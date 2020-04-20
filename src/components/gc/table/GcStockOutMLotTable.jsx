@@ -5,7 +5,6 @@ import NoticeUtils from '@utils/NoticeUtils';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import StockOutManagerRequest from '@api/gc/stock-out/StockOutManagerRequest';
-import MessageUtils from '@api/utils/MessageUtils';
 
 /**
  * 重测发料的物料批次表格
@@ -40,7 +39,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                MessageUtils.showOperationSuccess();
+                NoticeUtils.showSuccess();
             }
         }
         StockOutManagerRequest.sendStockOutRequest(requestObject)

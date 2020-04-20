@@ -4,7 +4,6 @@ import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
-import MessageUtils from '@api/utils/MessageUtils';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import MutipleMaterialLotActionDialog, { ActionType } from '@components/mms/dialog/MutipleMaterialLotActionDialog';
 
@@ -35,7 +34,7 @@ export default class MaterialLotStockInTable extends EntityScanViewTable {
         if (this.props.resetData) {
             this.props.resetData();
         }
-        MessageUtils.showOperationSuccess();
+        NoticeUtils.showSuccess();
     }
 
     stockIn = () => {

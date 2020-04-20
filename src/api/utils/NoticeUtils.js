@@ -2,13 +2,19 @@
 import { notification } from 'antd';
 
 import {Application} from '@api/Application';
+import { i18NCode } from '@const/i18n';
+import I18NUtils from '@utils/I18NUtils';
 
 export default class NoticeUtils {
 
     static showSuccess(message) {
+        if (!message) {
+            message = I18NUtils.getClientMessage(i18NCode.OperationSucceed);
+        }
         notification["success"]({
             message: message,
             duration: Application.notice.duration,
+            key: i18NCode.OperationSucceed
         });
     }
 

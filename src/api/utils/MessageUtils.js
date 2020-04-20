@@ -52,7 +52,7 @@ export default class MessageUtils {
                 if (requestObject.success) {
                     requestObject.success(response1.body, response2.body);
                 } else {
-                    this.showOperationSuccess();
+                    NoticeUtils.showSuccess();
                 }
             })).catch(function(exception) {
                 self.handleException(exception);
@@ -90,7 +90,7 @@ export default class MessageUtils {
                 if (requestObject.success) {
                     requestObject.success(response.body);
                 } else {
-                    self.showOperationSuccess();
+                    NoticeUtils.showSuccess();
                 }
             }
         }).catch(function(exception) {
@@ -130,7 +130,7 @@ export default class MessageUtils {
                     document.body.appendChild(elink);
                     elink.click();
                     document.body.removeChild(elink);
-                    self.showOperationSuccess();
+                    NoticeUtils.showSuccess();
                 }
             }
             reader.readAsText(blob);
@@ -196,7 +196,7 @@ export default class MessageUtils {
                 if (requestObject.success) {
                     requestObject.success(response.body);
                 } else {
-                    self.showOperationSuccess();
+                    NoticeUtils.showSuccess();
                 }
                 EventUtils.sendButtonLoaded();
             }
@@ -217,7 +217,7 @@ export default class MessageUtils {
             if (requestObject.success) {
                 requestObject.success(object.data);
             } else {
-                self.showOperationSuccess();
+                NoticeUtils.showSuccess();
             }
         }).catch(function(exception) {
             self.handleException(exception);
@@ -244,16 +244,6 @@ export default class MessageUtils {
         }).catch(function(ex) {
             console.log('parsing failed', ex)
         })
-    }
-
-    /**
-     * 操作成功
-     */
-    static showOperationSuccess = (code) => {
-        if (!code) {
-            code = i18NCode.OperationSucceed;
-        }
-        NoticeUtils.showSuccess(I18NUtils.getClientMessage(code));
     }
 
     static async handleException(exception) {
