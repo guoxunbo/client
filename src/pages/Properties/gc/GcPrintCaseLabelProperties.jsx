@@ -62,11 +62,3 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
     }
     
 }
-
-const styles = {
-    buttonGroup:{
-        marginBottom:'10px',
-        marginRight:'30px',
-        textAlign:'right'
-    }
-};

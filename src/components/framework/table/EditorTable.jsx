@@ -32,7 +32,6 @@ class EditableCell extends React.Component {
     return (
       <EditableContext.Consumer>
         {(form) => {
-          debugger;
           let formItem =null;
           if (editing) {
             formItem = field.buildTableFormItem(record, form);
@@ -266,7 +265,6 @@ class EditableTable extends React.Component {
     };
 
     const columns = this.state.columns.map((col) => {
-      debugger;
       if (!col.editable) {
         return col;
       }

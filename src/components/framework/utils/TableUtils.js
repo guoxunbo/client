@@ -25,7 +25,7 @@ export default class TableUtils {
             formVisible: false,
             editorObject: {},
             scrollX: undefined,
-            scrollY:undefined,
+            scrollY: undefined,
             data: [],
             loading: true,
             parentReadOnly: false
@@ -126,35 +126,6 @@ export default class TableUtils {
         } else {
             operationColumn = component.buildOperationColumn(scrollX);
         }
-        if (operationColumn) {
-            scrollX += operationColumn.width;
-            columns.push(operationColumn);
-        }
-        return {
-            columns: columns,
-            scrollX: scrollX
-        };
-    }
-
-    /**
-     * 创建Column
-     */
-    buildColumn = (table) => {
-        let fields = table.fields;
-        let columns = [];
-        let scrollX = 0;
-        for (let field of fields) {
-            // 传递table，记录每个filed对应真实的table数据。而不是只有一个tableRrn.省去后面查询
-            table.refresh = this.refresh;
-            field.table = table;
-            let f  = new Field(field);
-            let column = f.buildColumn();
-            if (column != null) {
-                columns.push(column);
-                scrollX += column.width;
-            }
-        }
-        let operationColumn = this.buildOperationColumn(scrollX);
         if (operationColumn) {
             scrollX += operationColumn.width;
             columns.push(operationColumn);

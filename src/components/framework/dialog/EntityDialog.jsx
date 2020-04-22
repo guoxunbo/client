@@ -79,6 +79,8 @@ export default class EntityDialog extends Component {
         const width = this.props.width || 1040;
         const title = this.props.title || I18NUtils.getClientMessage(i18NCode.Edit);
         const okText = this.props.okText || I18NUtils.getClientMessage(i18NCode.Ok);
+        const cancelText = this.props.cancelText || I18NUtils.getClientMessage(i18NCode.Cancel);
+
         return (
             <div>
                 <Modal centered 
@@ -90,6 +92,7 @@ export default class EntityDialog extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel} 
                     okText={okText}
+                    cancelText={cancelText}
                     destroyOnClose={true}>
                     {this.buildForm()}
                 </Modal>
