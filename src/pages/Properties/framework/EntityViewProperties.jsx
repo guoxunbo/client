@@ -45,11 +45,12 @@ export default class EntityViewProperties extends EntityScanProperties{
     }
     
     buildOtherComponent = () => {
+        console.log(this.state);
         return (<div>
                     <div className="table-button-group">
                         {this.createButtonGroup()}
                     </div>
-                    <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form}  object={this.state.formObject} table={this.state.table}/>
+                    <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form} object={this.state.formObject} tableRrn={this.state.tableRrn} table={this.state.table}/>
                 </div>);
     }
 

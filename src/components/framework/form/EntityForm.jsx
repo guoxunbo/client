@@ -6,6 +6,7 @@ import Tab from '@api/dto/ui/Tab';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import { DefaultRowKey } from '@api/const/ConstDefine';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 
 export default class EntityForm extends Component {
     static displayName = 'EntityForm';
@@ -17,12 +18,29 @@ export default class EntityForm extends Component {
             editFlag = true;
         }
         this.state = {
-            editFlag : editFlag
+            editFlag : editFlag,
+            table: this.props.table,
+            tableRrn: this.props.tableRrn
         };
     }  
 
+    componentDidMount = () => {
+        const {table, tableRrn} = this.state;
+        if (!(table && table.fields && table.fields.length > 0)) {
+            let self = this;
+            let requestObject = {
+                tableRrn: tableRrn,
+                success: function(responseBody) {
+                    self.setState({table: responseBody.table})
+                }
+            }
+            TableManagerRequest.sendGetByRrnRequest(requestObject);
+        } 
+
+    }
+    
     buildBasicSectionField = () => {
-        const fields = this.props.table.fields;
+        const fields = this.state.table.fields;
         const formObject = this.props.object;
         const formItemLayout = {
             labelCol: {span: 6},
@@ -41,7 +59,7 @@ export default class EntityForm extends Component {
     }
 
     buildTabs = () => {
-        const tabs = this.props.table.tabs;
+        const tabs = this.state.table.tabs;
         const tabPanels = [];
         const formItemLayout = {
             labelCol: {span: 6},
