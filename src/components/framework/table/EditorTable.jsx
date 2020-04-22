@@ -122,7 +122,7 @@ class EditableTable extends React.Component {
   buildOperationColumn = (scrollX) => {
     let maxWidth = document.querySelector('#' + TableId).clientWidth;
     let operationColumn = {
-      editable: false,
+      operation: true,
       title: I18NUtils.getClientMessage(i18NCode.Operation),
       dataIndex: 'operation',
       align: "center",
@@ -265,7 +265,7 @@ class EditableTable extends React.Component {
     };
 
     const columns = this.state.columns.map((col) => {
-      if (!col.editable) {
+      if (col.operation) {
         return col;
       }
       return {

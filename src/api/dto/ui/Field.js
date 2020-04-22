@@ -354,6 +354,7 @@ export default class Field {
         const { getFieldDecorator } = formValue;
         let rules = this.buildRule(false);
         let initialValue = this.buildInitialValue(record[this.name]);
+        let edit = !record["newFlag"];
         return (<FormItem>
             {getFieldDecorator(this.name, {
                 rules: rules,
@@ -361,13 +362,14 @@ export default class Field {
                 initialValue: initialValue
             })
           (
-            this.buildControl(true, false, initialValue, onBlur, onPressEnter)
+            this.buildControl(edit, false, initialValue, onBlur, onPressEnter)
           )}
         </FormItem>);
     }
 
 
     buildDisabled = (edit, query) => {
+        this.disabled = false;
         if (this.readonlyFlag && !query) {
             this.disabled = true;
             this.placeHolder = "";

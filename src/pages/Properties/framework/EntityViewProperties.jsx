@@ -45,7 +45,6 @@ export default class EntityViewProperties extends EntityScanProperties{
     }
     
     buildOtherComponent = () => {
-        console.log(this.state);
         return (<div>
                     <div className="table-button-group">
                         {this.createButtonGroup()}

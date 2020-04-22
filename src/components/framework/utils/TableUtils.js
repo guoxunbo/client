@@ -105,10 +105,6 @@ export default class TableUtils {
             let f = new Field(field);
             let column = f.buildColumn();
             if (column != null) {
-                // EditorTable需要Editor和Field进行创建栏位
-                if (f.editable) {
-                    column.editable = true;     
-                }
                 column.field = f;
 
                 columns.push(column);
