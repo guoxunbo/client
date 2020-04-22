@@ -5,6 +5,8 @@ import IconUtils from '@utils/IconUtils';
 import EntityListVersionControlTable from '@components/framework/table/EntityListVersionControlTable';
 import EqpRecipeDialog from '@components/rms/dialog/EqpRecipeDialog';
 import EqpRecipeRequest from '@api/rms/eqp-recipe-manager/EqpRecipeRequest';
+import AuthorityButton from '@components/framework/button/AuthorityButton';
+import EqpSubRecipeTable from './EqpSubRecipeTable';
 
 export default class EqpRecipeTable extends EntityListVersionControlTable {
 
@@ -21,6 +23,30 @@ export default class EqpRecipeTable extends EntityListVersionControlTable {
         EqpRecipeRequest.sendDeleteRequest(object);
     } 
 
+    createButtonGroup = () => {
+        let buttons = [];
+        buttons.push(this.createDownloadButton());
+
+        buttons.push(this.createAddButton());
+        buttons.push(this.createUnForzenOrForzenButton());
+        buttons.push(this.createActiveOrInActiveButton());
+        buttons.push(this.createGoldenButton());
+        return buttons;
+    }
+
+    createDownloadButton = () => {
+        return <AuthorityButton i18NCode={"下达"} key="add" type="primary" className="table-button" icon="download" onClick={() => this.handleAdd()}/>
+    }
+
+    createGoldenButton = () => {
+        return <AuthorityButton i18NCode={"Golden"} key="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}/>
+    }
+    
+    createEntitySubTreeTable = (record, currentTreeNode) => {
+        const {treeList} = this.props;
+        return <EqpSubRecipeTable currentTreeNode={currentTreeNode} treeList={treeList} parentObject={record}/>
+    }
+
     handleActive = () => {
         const self = this;
         const {selectedRows}  = this.state;
@@ -32,7 +58,7 @@ export default class EqpRecipeTable extends EntityListVersionControlTable {
                 dataList.push(data);
                 if (data.effectObject) {
                     dataList.push(data.effectObject);
-                }
+                } 
                 self.refresh(dataList);
             }
         };
