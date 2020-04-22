@@ -30,10 +30,11 @@ export default class EntityProperties extends Component {
       };
     }
 
-    afterQuery = (responseBody) => {
+    afterQuery = (responseBody, whereClause) => {
         this.setState({
           tableData: responseBody.dataList,
-          loading: false
+          loading: false,
+          whereClause: whereClause
         });
     }
 
@@ -43,7 +44,7 @@ export default class EntityProperties extends Component {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
         success: function(responseBody) {
-          self.afterQuery(responseBody);
+          self.afterQuery(responseBody, whereClause);
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
@@ -66,7 +67,8 @@ export default class EntityProperties extends Component {
         data: this.state.tableData,
         tableRrn: this.state.tableRrn,
         loading: this.state.loading,
-        scanAddFlag: this.state.scanAddFlag
+        scanAddFlag: this.state.scanAddFlag, 
+        whereClause: this.state.whereClause
       }
     }
 
