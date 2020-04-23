@@ -21,7 +21,7 @@ export default class IncomingImportRequestBody {
     }
 
     static buildImportInfo(importType, warehouseId, materialLotList) {
-        if(importType == "COB（-4成品）" || importType == "WLA未测（-2.5）"){
+        if(importType == "COB（-4成品）" || importType == "WLA未测（-2.5）" || importType == "FAB sensor(-2未测)" || importType == "LCD CP未测（-2.5未测）"){
             let materialLotUnitList = materialLotList;
             return new IncomingImportRequestBody(importType, warehouseId, undefined, materialLotUnitList);
         } else {

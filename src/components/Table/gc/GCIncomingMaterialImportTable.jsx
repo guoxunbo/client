@@ -179,7 +179,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             materialLotList.forEach(materialLot =>{
                 materialLot.lotId = materialLot.materialLotId;
             });
-        } else if(importType == "WLA未测（-2.5）"){
+        } else if(importType == "WLA未测（-2.5）" || importType == "FAB sensor(-2未测)" || importType == "LCD CP未测（-2.5未测）"){
             materialLotList.forEach(materialLot =>{
                 let fabLotId = materialLot.reserved30;
                 let waferId = materialLot.reserved31;
