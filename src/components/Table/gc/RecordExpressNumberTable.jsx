@@ -92,7 +92,6 @@ export default class RecordExpressNumberTable extends EntityListTable {
     }
 
     onExpressInput = () => {
-        debugger;
         let expressNumber = this.input.state.value;
         if (!expressNumber) {
             return;

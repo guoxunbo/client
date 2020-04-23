@@ -32,7 +32,8 @@ export default class GcReservedCaseProperties extends EntityScanProperties{
                             loading={this.state.loading} 
                             resetData={this.resetData.bind(this)}
                             resetFlag={this.state.resetFlag}
-                            docLineRrn={this.state.docLineRrn}/>
+                            docLineRrn={this.state.docLineRrn}
+                            onSearch={this.props.onSearch}/>
     }
 
 }

@@ -111,6 +111,7 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
                                     loading={this.state.loading} 
                                     resetData={this.resetData.bind(this)}
                                     resetFlag={this.state.resetFlag}
+                                    onSearch={this.props.onSearch}
                                     />
     }
 

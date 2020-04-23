@@ -82,6 +82,7 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
                             loading={this.state.loading} 
                             resetData={this.resetData.bind(this)}
                             resetFlag={this.state.resetFlag}
+                            onSearch={this.props.onSearch}
                             />
     }
 

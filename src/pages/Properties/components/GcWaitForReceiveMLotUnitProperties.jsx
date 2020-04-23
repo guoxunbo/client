@@ -4,6 +4,10 @@ import GcWaitForReceiveMLotUnitTable from "../../../components/Table/gc/GcWaitFo
 export default class GcWaitForReceiveMLotUnitProperties extends EntityProperties{
 
     static displayName = 'GcWaitForReceiveMLotUnitProperties';
+
+    componentWillReceiveProps = () => {
+        this.queryData();
+      }
     
     buildTable = () => {
         return <GcWaitForReceiveMLotUnitTable 

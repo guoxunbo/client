@@ -72,7 +72,8 @@ export default class GcReservedStockOutOrderMLotProperties extends EntityScanPro
                             resetData={this.resetData.bind(this)}
                             resetFlag={this.state.resetFlag}
                             selectedRowKeys={this.state.selectedRowKeys} 
-                            selectedRows={this.state.selectedRows} />
+                            selectedRows={this.state.selectedRows}
+                            onSearch={this.props.onSearch} />
     }
 
 }

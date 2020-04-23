@@ -80,6 +80,7 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
                                     loading={this.state.loading} 
                                     resetData={this.resetData.bind(this)}
                                     resetFlag={this.state.resetFlag}
+                                    onSearch={this.props.onSearch}
                                     />
     }
 

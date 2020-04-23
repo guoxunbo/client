@@ -90,7 +90,6 @@ export default class WaferImportTable extends EntityScanViewTable {
         let object = {
             tableRrn: table.objectRrn,
             success: function(responseBody) {
-                debugger;
                 let waferInfoList = responseBody.materialLotUnits;
                 waferInfoList.forEach(record => {
                     if(!record.unitId || !record.materialLotId || !record.materialName || 

@@ -115,9 +115,9 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
+                    self.props.onSearch();
                 }
                 MessageUtils.showOperationSuccess();
-                window.location.reload(true);
             }
         }
         WaferManagerRequest.sendWaferIssueRequest(requestObject);

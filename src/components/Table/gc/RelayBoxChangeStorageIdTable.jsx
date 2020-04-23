@@ -20,7 +20,6 @@ export default class RelayBoxChangeStorageIdTable extends EntityScanViewTable {
     }
 
     changeStroage = () => {
-        debugger;
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {

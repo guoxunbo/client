@@ -32,8 +32,8 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
                 mesPackedLots: data,
                 success: function(responseBody) {
                     if (self.props.resetData) {
+                        self.props.onSearch();
                         self.props.resetData();
-                        window.location.reload(true);
                     }
                     MessageUtils.showOperationSuccess();
                 }

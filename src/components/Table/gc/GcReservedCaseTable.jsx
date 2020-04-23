@@ -32,7 +32,7 @@ export default class GcReservedCaseTable extends EntityListCheckTable {
 
 
     createForm = () => {
-        return  <ReservedCaseMLotForm docLineRrn={this.props.docLineRrn} stockNote={this.state.stockNote} visible={this.state.formVisible} packageLots={this.state.packageLots} onOk={this.handleCancel} onCancel={this.handleCancel} />
+        return  <ReservedCaseMLotForm docLineRrn={this.props.docLineRrn} stockNote={this.state.stockNote} visible={this.state.formVisible} packageLots={this.state.packageLots} onOk={this.handleCancel} onCancel={this.handleCancel} onSearch={this.props.onSearch} resetData={this.props.resetData}/>
     }
 
     reserved = () => {

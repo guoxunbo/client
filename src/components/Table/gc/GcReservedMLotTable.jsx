@@ -51,9 +51,9 @@ export default class GcReservedMLotTable extends EntityListCheckTable {
             stockNote : stockNote,
             success: function(responseBody) {
                 if (self.props.resetData) {
+                    self.props.onSearch();
                     self.props.resetData();
                 }
-                window.location.reload(true);
                 MessageUtils.showOperationSuccess();
             }
         }

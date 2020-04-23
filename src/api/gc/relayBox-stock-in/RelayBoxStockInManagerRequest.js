@@ -31,7 +31,6 @@ export default class RelayBoxStockInManagerRequest {
     }
 
     static sendRelayBoxChangeStorageRequest = (object) => {
-        debugger;
         let reqreuestBody = RelayBoxStockInManagerRequestBody.buildRelayBoxChangeStorage(object.materialLots);
         let requestHeader = new RelayBoxStockInManagerRequestHeader();
         let request = new Request(requestHeader, reqreuestBody, UrlConstant.GCRelayBoxStockInUrl);

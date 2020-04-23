@@ -42,7 +42,7 @@ export default class GcWaferReceiveOrderProperties extends EntityProperties{
     }
 
     buildOtherComponent = () => {
-        return <GcWaferReceiveOrderMLotUnitProperties orderTable={this.orderTable} tableRrn={99121} resetFlag={this.state.resetFlag}/>
+        return <GcWaferReceiveOrderMLotUnitProperties orderTable={this.orderTable} tableRrn={99121} resetFlag={this.state.resetFlag} onSearch={this.getTableData.bind(this)}/>
     }
     
 }

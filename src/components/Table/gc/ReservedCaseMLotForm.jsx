@@ -33,7 +33,8 @@ export default class ReservedCaseMLotForm extends EntityForm {
             success: function(responseBody) {
                 MessageUtils.showOperationSuccess();
                 self.props.onOk();
-                window.location.reload(true);
+                self.props.onSearch();
+                self.props.resetData();
             }
         }
         ReservedManagerRequest.sendReserved(requestObj);

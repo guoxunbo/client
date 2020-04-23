@@ -66,7 +66,10 @@ export default class EntityProperties extends Component {
     }
 
     handleSearch = (whereClause) => {
-      this.setState({loading: true});
+      this.setState({
+        loading: true,
+        resetFlag: false
+      });
       this.queryData(whereClause);
     }
 

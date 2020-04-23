@@ -74,7 +74,6 @@ export default class WltPackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
             success: function(responseBody) {
-                debugger;
                 let url = PrintServiceUrl.WltBbox;
                 PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
             }

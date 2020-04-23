@@ -114,10 +114,10 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
             materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {
+                    self.props.onSearch();
                     self.props.resetData();
                 }
                 MessageUtils.showOperationSuccess();
-                window.location.reload(true);
             }
         }
         WaferManagerRequest.sendReceiveWaferRequest(requestObject);

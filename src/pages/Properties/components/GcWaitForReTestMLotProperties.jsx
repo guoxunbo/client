@@ -4,6 +4,10 @@ import GcWaitForReTestMLotTable from "../../../components/Table/gc/GcWaitForReTe
 export default class GcWaitForReTestMLotProperties extends EntityProperties{
 
     static displayName = 'GcWaitForReTestMLotProperties';
+
+    componentWillReceiveProps = () => {
+        this.queryData();
+    }
     
     buildTable = () => {
         return <GcWaitForReTestMLotTable 

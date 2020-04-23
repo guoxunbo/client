@@ -31,7 +31,6 @@ export default class StockOutManagerRequestBody {
     }
 
     static buildValidateMaterial(queryMaterialLot, materialLots) {
-        debugger;
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();

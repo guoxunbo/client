@@ -45,7 +45,7 @@ export default class GcOrderProperties extends EntityProperties{
     }
 
     buildOtherComponent = () => {
-        return <GcStockOutOrderMLotProperties orderTable={this.orderTable} tableRrn={9913} resetFlag={this.state.resetFlag}></GcStockOutOrderMLotProperties>
+        return <GcStockOutOrderMLotProperties orderTable={this.orderTable} tableRrn={9913} resetFlag={this.state.resetFlag} onSearch={this.getTableData.bind(this)}></GcStockOutOrderMLotProperties>
     }
 
 }

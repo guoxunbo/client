@@ -4,6 +4,10 @@ import EntityProperties from "../../entityProperties/EntityProperties";
 export default class GcWaitForIssueMLotUnitProperties extends EntityProperties{
 
     static displayName = 'GcWaitForIssueMLotUnitProperties';
+
+    componentWillReceiveProps = () => {
+        this.queryData();
+    }
     
     buildTable = () => {
         return <GcWaitForIssueMLotUnitTable
