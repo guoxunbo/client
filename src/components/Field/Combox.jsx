@@ -101,7 +101,7 @@ export default class Combox extends Component {
         return (
           <Select
             showSearch
-            allowClearvalue
+            allowClear
             value={this.state.value}
             placeholder={this.props.placeholder}
             style={this.props.style ? this.props.style : { width: '100%'}}
