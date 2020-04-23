@@ -33,7 +33,7 @@
     "jsbarcode": "^3.11.0",
     "moment": "^2.24.0",
     "node-forge": "^0.7.5",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "npm": "^6.14.4",
     "prop-types": "^15.6.2",
     "qrcode.react": "^0.9.3",
@@ -52,21 +52,22 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
+    "cross-env": "^7.0.2",
     "eslint": "^4.13.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "ice-scripts": "^2.0.0",
     "ice-plugin-fusion": "^0.1.4",
-    "ice-plugin-moment-locales": "^0.1.0"
+    "ice-plugin-moment-locales": "^0.1.0",
+    "ice-scripts": "^2.0.0"
   },
   "scripts": {
-    "start": "ENV_MODE=LOCAL ice-scripts dev",
-    "build": "ENV_MODE=PROD ice-scripts build",
-    "build_dev": "ENV_MODE=DEV ice-scripts build",
-    "build_test": "ENV_MODE=TEST ice-scripts build",
+    "start": "cross-env ENV_MODE=LOCAL ice-scripts dev",
+    "build": "cross-env ENV_MODE=PROD ice-scripts build",
+    "build_dev": "cross-env ENV_MODE=DEV ice-scripts build",
+    "build_test": "cross-env ENV_MODE=TEST ice-scripts build",
     "lint": "eslint . --ext '.js,.jsx' --fix"
   },
   "publishConfig": {
