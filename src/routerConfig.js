@@ -49,6 +49,7 @@ import WltPackMaterialLotProperties from './pages/Properties/components/WltPackM
 import WltPackCaseCheckProperties from './pages/Properties/components/WltPackCaseCheckProperties';
 import WltStockOutCheckProperties from './pages/Properties/components/WltStockOutCheckProperties';
 import GCProductSubcodeSetProperties from './pages/Properties/components/GCProductSubcodeSetProperties';
+import GCMLotsUpdateTreasuryNoteProperties from './pages/Properties/components/GCMLotsUpdateTreasuryNoteProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -321,6 +322,12 @@ const routerConfig = [
     path: buildPath('WMS/GCIncomingMLotDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
+  },
+  //WarehouseManager
+  {
+    path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMLotsUpdateTreasuryNoteProperties,
   },
   //PackManager
   {

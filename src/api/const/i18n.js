@@ -63,6 +63,7 @@ const i18NCode = {
     BtnRecordExpress: "RecordExpress",
     BtnUnBind: "UnBind",
     BtnDelete: "Delete",
+    BtnUpdate: "Update",
     DataNotFound: "DataNotFound",
     Collapse: "Collapse",
     TransferItem: "Item",
@@ -100,6 +101,7 @@ const i18NCode = {
     PieceQty: "PieceQty",
     TotalQty: "TotalQty",
     PrintLable: "PrintLable",
+    TreasuryNoteCannotEmpty: "TreasuryNoteCannotEmpty",
 }
 
 const i18Messages = {
@@ -596,6 +598,16 @@ const i18Messages = {
     PrintLable: {
         Chinese: "打印标签",
         English: "PrintLable",
+        Res: ""
+    },
+    BtnUpdate: {
+        Chinese: "修改",
+        English: "Update",
+        Res: ""
+    },
+    TreasuryNoteCannotEmpty: {
+        Chinese: "入库备注不能为空！",
+        English: "Treasury Note Cannot Empty!",
         Res: ""
     }
 }
