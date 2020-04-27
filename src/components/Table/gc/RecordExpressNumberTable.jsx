@@ -26,6 +26,7 @@ export default class RecordExpressNumberTable extends EntityListTable {
         if (props.resetFlag) {
             stateSeletcedRowKeys = [];
             stateSelectedRows = [];
+            this.input.setState({value:""})
         }
         
         this.setState({

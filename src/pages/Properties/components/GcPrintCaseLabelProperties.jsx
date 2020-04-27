@@ -17,6 +17,17 @@ import GetPrintWltBboxParameterRequest from "../../../api/gc/get-print-wltbbox-p
 export default class GcPrintCaseLabelProperties extends EntityViewProperties{
 
     static displayName = 'PrintCaseLabelProperties';
+
+    resetData = () => {
+        this.setState({
+          selectedRowKeys: [],
+          selectedRows: [],
+          tableData: [],
+          loading: false,
+          resetFlag: true,
+          formObject: []
+        });
+      }
     
     queryData = (whereClause) => {
         const self = this;
