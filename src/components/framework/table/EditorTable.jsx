@@ -301,6 +301,7 @@ class EditableTable extends React.Component {
   }
 }
 export default Form.create()(EditableTable);
+export {EditableTable};
 
 EditableTable.prototypes = {
     refTableName: PropTypes.string,

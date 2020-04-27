@@ -5,6 +5,7 @@ import { Application } from "@api/Application";
 import { DefaultRowKey } from "@const/ConstDefine";
 import Field from "@api/dto/ui/Field";
 import NoticeUtils from "@utils/NoticeUtils";
+import { EditableTable } from "@components/framework/table/EditorTable";
 
 /**
  * Table上一些公共方法的抽象
@@ -115,8 +116,8 @@ export default class TableUtils {
             scrollX += Application.table.checkBox.width;
         }
         let operationColumn;
-        if (parentObject) {
-            if (editFlag || currentTreeNode) {
+        if (component instanceof EditableTable) {
+            if (parentObject && (editFlag || currentTreeNode)) {
                 operationColumn = component.buildOperationColumn(scrollX);
             }
         } else {
