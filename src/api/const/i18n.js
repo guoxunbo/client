@@ -1,4 +1,8 @@
 const i18NCode = {
+    HomePage: "HomePage",
+    ChangePwd: "ChangePwd",
+    Setting: "Setting",
+    Exit: "Exit",
     NetworkError: "NetworkError",
     TimeOut: "TimeOut",
     Yes: "Yes",
@@ -83,6 +87,22 @@ const i18NCode = {
 }
 
 const i18Messages = {
+    HomePage : {
+        Chinese: "主页",
+        English: "HomePage"
+    },
+    ChangePwd : {
+        Chinese: "修改密码",
+        English: "ChangePwd"
+    },
+    Setting : {
+        Chinese: "设置",
+        English: "Setting"
+    },
+    Exit : {
+        Chinese: "退出",
+        English: "Exit"
+    },
     Yes : {
         Chinese: "是",
         English: "Y"

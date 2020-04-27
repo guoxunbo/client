@@ -26,7 +26,7 @@ export default class EntityViewProperties extends EntityScanProperties{
             this.form.resetFormFileds();
         } else {
             this.setState({
-                formObject: []
+                formObject: {}
             })  
             this.showDataNotFound();
         }

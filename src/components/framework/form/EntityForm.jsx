@@ -26,17 +26,19 @@ export default class EntityForm extends Component {
 
     componentDidMount = () => {
         const {table, tableRrn} = this.state;
+        // 如果没有传递table则根据tableRrn查询。如果都没传递则不查。
         if (!(table && table.fields && table.fields.length > 0)) {
-            let self = this;
-            let requestObject = {
-                tableRrn: tableRrn,
-                success: function(responseBody) {
-                    self.setState({table: responseBody.table})
+            if (tableRrn) {
+                let self = this;
+                let requestObject = {
+                    tableRrn: tableRrn,
+                    success: function(responseBody) {
+                        self.setState({table: responseBody.table})
+                    }
                 }
+                TableManagerRequest.sendGetByRrnRequest(requestObject);
             }
-            TableManagerRequest.sendGetByRrnRequest(requestObject);
         } 
-
     }
     
     buildBasicSectionField = () => {
@@ -51,7 +53,7 @@ export default class EntityForm extends Component {
             let field = new Field(f, this.props.form);
             if (field.basicFlag && field.displayFlag && field.name != DefaultRowKey) {
                 children.push(<Col span={12} key={field.objectRrn}>
-                    {field.buildFormItem(formItemLayout, this.state.editFlag, undefined, formObject[field.name])}
+                    {field.buildFormItem(formItemLayout, this.state.editFlag, undefined, formObject ? formObject[field.name] : undefined)}
                 </Col>);
             }
         }

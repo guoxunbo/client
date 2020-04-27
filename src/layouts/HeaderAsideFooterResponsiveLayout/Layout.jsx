@@ -15,6 +15,8 @@ import './scss/dark.scss';
 import { SessionContext } from '@api/Application';
 import NoticeUtils from '@utils/NoticeUtils';
 import IconUtils from '@api/utils/IconUtils';
+import UserLoginDialog from '@components/framework/dialog/UserLoginDialog';
+import EventUtils from '@utils/EventUtils';
 
 
 // 设置默认的皮肤配置，支持 dark 和 light 两套皮肤配置
@@ -35,7 +37,8 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
       collapse: false,
       openDrawer: false,
       isScreen: undefined,
-      asideMenuConfig: asideMenuConfig
+      asideMenuConfig: asideMenuConfig,
+      dialogVisible: false
     };
     this.openKeysCache = openKeys;
   }
@@ -43,6 +46,8 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
   
   componentDidMount() {
     this.enquireScreenRegister();
+    EventUtils.getEventEmitter().on(EventUtils.getEventNames().TokenError, () => this.setState({dialogVisible: true}));
+
   }
 
   /**
@@ -150,132 +155,143 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
     return openKeys;
   };
 
+  closeUserLoginDialog = () => {
+    this.setState({dialogVisible: false})
+  }
+
+  createUserLoginDialog = () => {
+    return <UserLoginDialog ref={this.formRef} object={{}} onOk= {this.closeUserLoginDialog} visible={this.state.dialogVisible} tableRrn={30773} table={{fields:[]}}/>
+  }
+
   render() {    
     const { location = {} } = this.props;
     const { pathname } = location;
     return (
       !this.state.asideMenuConfig ? "" : 
-      <Layout
-        style={{ minHeight: '100vh' }}
-        className={cx(
-          `ice-design-header-aside-footer-responsive-layout-${theme}`,
-          {
-            'ice-design-layout': true,
-          }
-        )}
-      >
-        <Header
-          theme={theme}
-          isMobile={this.state.isScreen !== 'isDesktop' ? true : undefined}
-        />
-        <Layout.Section>
-          {this.state.isScreen === 'isMobile' && (
-            <a className="menu-btn" onClick={this.toggleMenu}>
-              {IconUtils.buildIcon("category")}
-            </a>
+      <div>
+        <Layout
+          style={{ minHeight: '100vh' }}
+          className={cx(
+            `ice-design-header-aside-footer-responsive-layout-${theme}`,
+            {
+              'ice-design-layout': true,
+            }
           )}
-          {this.state.openDrawer && (
-            <div className="open-drawer-bg" onClick={this.toggleMenu} />
-          )}
-          <Layout.Aside
-            width="auto"
+        >
+          <Header
             theme={theme}
-            className={cx('ice-design-layout-aside', {
-              'open-drawer': this.state.openDrawer,
-            })}
-          >
-            {/* 侧边菜单项 begin */}
-            {this.state.isScreen !== 'isMobile' && (
-              <a className="collapse-btn" onClick={this.toggleCollapse}>
-                {IconUtils.buildIcon(this.state.collapse ? 'arrow-right' : 'arrow-left')}
+            isMobile={this.state.isScreen !== 'isDesktop' ? true : undefined}
+          />
+          <Layout.Section>
+            {this.state.isScreen === 'isMobile' && (
+              <a className="menu-btn" onClick={this.toggleMenu}>
+                {IconUtils.buildIcon("category")}
               </a>
             )}
-            {this.state.isScreen === 'isMobile' && <Logo />}
-            <Menu
-              style={{ width: this.state.collapse ? 60 : 200 }}
-              inlineCollapsed={this.state.collapse}
-              mode="inline"
-              selectedKeys={[pathname]}
-              openKeys={this.state.openKeys}
-              defaultSelectedKeys={[pathname]}
-              onOpenChange={this.onOpenChange}
-              onClick={this.onMenuClick}
+            {this.state.openDrawer && (
+              <div className="open-drawer-bg" onClick={this.toggleMenu} />
+            )}
+            <Layout.Aside
+              width="auto"
+              theme={theme}
+              className={cx('ice-design-layout-aside', {
+                'open-drawer': this.state.openDrawer,
+              })}
             >
-              {Array.isArray(this.state.asideMenuConfig) &&
-                this.state.asideMenuConfig.length > 0 &&
-                this.state.asideMenuConfig.map((nav, index) => {
-                  if (nav.children && nav.children.length > 0) {
-                    return (
-                      <SubMenu
-                        key={index}
-                        title={
-                          <span >
-                            {nav.icon ? IconUtils.buildIcon(nav.icon, 'filled') : null}
-                              <span className="ice-menu-collapse-hide" 
-                                  style={{marginLeft:"10px", fontSize:"14px"}}>
-                                {nav.name}
-                              </span>
-                          </span>
-                        }
-                      >
-                        {nav.children.map((item) => {
-                          const linkProps = {};
-                          if (item.newWindow) {
-                            linkProps.href = item.path;
-                            linkProps.target = '_blank';
-                          } else if (item.external) {
-                            linkProps.href = item.path;
-                          } else {
-                            let query = {
-                                pathname: item.path,
-                                query: item.tableRrn
-                            }
-                            linkProps.to = query;
+              {/* 侧边菜单项 begin */}
+              {this.state.isScreen !== 'isMobile' && (
+                <a className="collapse-btn" onClick={this.toggleCollapse}>
+                  {IconUtils.buildIcon(this.state.collapse ? 'arrow-right' : 'arrow-left')}
+                </a>
+              )}
+              {this.state.isScreen === 'isMobile' && <Logo />}
+              <Menu
+                style={{ width: this.state.collapse ? 60 : 200 }}
+                inlineCollapsed={this.state.collapse}
+                mode="inline"
+                selectedKeys={[pathname]}
+                openKeys={this.state.openKeys}
+                defaultSelectedKeys={[pathname]}
+                onOpenChange={this.onOpenChange}
+                onClick={this.onMenuClick}
+              >
+                {Array.isArray(this.state.asideMenuConfig) &&
+                  this.state.asideMenuConfig.length > 0 &&
+                  this.state.asideMenuConfig.map((nav, index) => {
+                    if (nav.children && nav.children.length > 0) {
+                      return (
+                        <SubMenu
+                          key={index}
+                          title={
+                            <span >
+                              {nav.icon ? IconUtils.buildIcon(nav.icon, 'filled') : null}
+                                <span className="ice-menu-collapse-hide" 
+                                    style={{marginLeft:"10px", fontSize:"14px"}}>
+                                  {nav.name}
+                                </span>
+                            </span>
                           }
-                          return (
-                            <MenuItem key={item.path}>
-                              <Link {...linkProps}>
-                              {item.icon ? IconUtils.buildIcon(item.icon) : null}
-                                <span style={{marginLeft:"3px"}}></span>
-                              {item.name}</Link>
-                            </MenuItem>
-                          );
-                        })}
-                      </SubMenu>
-                    );
-                  }
-                  const linkProps = {};
-                  if (nav.newWindow) {
-                    linkProps.href = nav.path;
-                    linkProps.target = '_blank';
-                  } else if (nav.external) {
-                    linkProps.href = nav.path;
-                  } else {
-                    linkProps.to = nav.path;
-                  }
+                        >
+                          {nav.children.map((item) => {
+                            const linkProps = {};
+                            if (item.newWindow) {
+                              linkProps.href = item.path;
+                              linkProps.target = '_blank';
+                            } else if (item.external) {
+                              linkProps.href = item.path;
+                            } else {
+                              let query = {
+                                  pathname: item.path,
+                                  query: item.tableRrn
+                              }
+                              linkProps.to = query;
+                            }
+                            return (
+                              <MenuItem key={item.path}>
+                                <Link {...linkProps}>
+                                {item.icon ? IconUtils.buildIcon(item.icon) : null}
+                                  <span style={{marginLeft:"3px"}}></span>
+                                {item.name}</Link>
+                              </MenuItem>
+                            );
+                          })}
+                        </SubMenu>
+                      );
+                    }
+                    const linkProps = {};
+                    if (nav.newWindow) {
+                      linkProps.href = nav.path;
+                      linkProps.target = '_blank';
+                    } else if (nav.external) {
+                      linkProps.href = nav.path;
+                    } else {
+                      linkProps.to = nav.path;
+                    }
 
-                  return (
-                    <MenuItem key={nav.path}>
-                      <Link {...linkProps}>
-                          <span >
-                            {nav.icon ? IconUtils.buildIcon(nav.icon, 'filled') : null}
-                              <span className="ice-menu-collapse-hide" 
-                                  style={{marginLeft:"10px", fontSize:"14px"}}>
-                                {nav.name}
-                              </span>
-                          </span>
-                      </Link>
-                    </MenuItem>
-                  );
-                })}
-            </Menu>
-            {/* 侧边菜单项 end */}
-          </Layout.Aside>
-          {/* 主体内容 */}
-          <Layout.Main>{this.props.children}</Layout.Main>
-        </Layout.Section>
-        <Footer />
-      </Layout>
+                    return (
+                      <MenuItem key={nav.path}>
+                        <Link {...linkProps}>
+                            <span >
+                              {nav.icon ? IconUtils.buildIcon(nav.icon, 'filled') : null}
+                                <span className="ice-menu-collapse-hide" 
+                                    style={{marginLeft:"10px", fontSize:"14px"}}>
+                                  {nav.name}
+                                </span>
+                            </span>
+                        </Link>
+                      </MenuItem>
+                    );
+                  })}
+              </Menu>
+              {/* 侧边菜单项 end */}
+            </Layout.Aside>
+            {/* 主体内容 */}
+            <Layout.Main>{this.props.children}</Layout.Main>
+          </Layout.Section>
+          <Footer />
+        </Layout>
+        {this.createUserLoginDialog()}
+      </div>
     );
   }
 }

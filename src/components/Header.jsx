@@ -12,6 +12,8 @@ import NoticeUtils from '@utils/NoticeUtils';
 import {SessionContext} from '@api/Application';
 import ChangePwdDialog from '@components/framework/dialog/ChangePwdDialog';
 import { Avatar, Icon } from 'antd';
+import I18NUtils from '@utils/I18NUtils';
+import { i18NCode } from '@const/i18n';
 
 @withRouter
 export default class Header extends PureComponent {
@@ -126,22 +128,22 @@ export default class Header extends PureComponent {
             <ul>
               <li className="user-profile-menu-item">
                 <Link to="/">
-                  <Icon type="user" size="small" />我的主页
+                  <Icon type="user" size="small" />{I18NUtils.getClientMessage(i18NCode.HomePage)}
                 </Link>
               </li>
               <li className="user-profile-menu-item">
                 <Link to="/" onClick={this.changePassword}>
-                  <Icon type="idcard" size="small" />修改密码
+                  <Icon type="idcard" size="small" />{I18NUtils.getClientMessage(i18NCode.ChangePwd)}
                 </Link>
               </li>
               <li className="user-profile-menu-item">
                 <Link to="/">
-                  <Icon type="setting" size="small" />设置
+                  <Icon type="setting" size="small" />{I18NUtils.getClientMessage(i18NCode.Setting)}
                 </Link>
               </li>
               <li className="user-profile-menu-item">
                 <Link to="/" onClick={this.logout}>
-                  <Icon type="compass" size="small" />退出
+                  <Icon type="compass" size="small" />{I18NUtils.getClientMessage(i18NCode.Exit)}
                 </Link>
               </li>
             </ul>

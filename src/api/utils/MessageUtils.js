@@ -247,6 +247,14 @@ export default class MessageUtils {
     }
 
     static async handleException(exception) {
+        if (exception.response) {
+            console.log(exception.response);
+            if (exception.response.status === 401) {
+                EventUtils.sendTokenError();
+                return;
+            } 
+        }
+
         let error = "";
         let errroCode = 0;
         let language = SessionContext.getLanguage();
@@ -269,24 +277,6 @@ export default class MessageUtils {
                 }
                 errroCode = responseBody.message.objectRrn;
             } 
-        } else if (exception.response) {
-            // 处理一些server内部错误，比如拦截器里抛出的异常，无法回复200的异常
-            let response = exception.response;
-            if (response.data) {
-                if (language == Language.Chinese) {
-                    error = response.data.resultChinese;
-                } else if (language == Language.English) {
-                    error = response.data.resultEnglish;
-                }
-                if (error == null || error == "") {
-                    error = response.data.resultCode;
-                }
-                errroCode = response.data.messageRrn;
-            }
-            // 当验证过期的时候，需要重新登录
-            if (exception.response.status === 401) {
-                window.location.href = "/";
-            }
         } else {
             let errorMessage = exception.message;
             // String的不是后台的错误 需要去加载Client端的i18N信息

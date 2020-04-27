@@ -71,8 +71,8 @@ export default class EntityDialog extends Component {
         }
     }
 
-    buildForm = () =>  {
-       return <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form} object={this.props.object} table={this.props.table}/>
+    buildForm = () => {
+        return <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form} tableRrn={this.props.tableRrn} object={this.props.object} table={this.props.table}/>
     }
 
     render() {
@@ -80,7 +80,6 @@ export default class EntityDialog extends Component {
         const title = this.props.title || I18NUtils.getClientMessage(i18NCode.Edit);
         const okText = this.props.okText || I18NUtils.getClientMessage(i18NCode.Ok);
         const cancelText = this.props.cancelText || I18NUtils.getClientMessage(i18NCode.Cancel);
-
         return (
             <div>
                 <Modal centered 
@@ -108,6 +107,7 @@ EntityDialog.propTypes={
     onCancel: PropTypes.func,
     onOk: PropTypes.func,
     table: PropTypes.object,
-    tableData: PropTypes.array
+    tableData: PropTypes.array,
+    tableRrn: PropTypes.number
 }
 

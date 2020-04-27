@@ -10,6 +10,7 @@ const EventNameList = {
     ComboxValueChanged : "ComboxValueChanged",
     ParentTableRowSelected: "ParentTableRowSelected",
     ButtonLoaded: "ButtonLoaded",
+    TokenError: "TokenError",
 }
 
 export default class EventUtils {
@@ -27,8 +28,11 @@ export default class EventUtils {
         EventModel.removeAllListeners(eventName);
     }
 
-
     static sendButtonLoaded() {
         this.getEventEmitter().emit(EventNameList.ButtonLoaded);
+    }
+
+    static sendTokenError() {
+        this.getEventEmitter().emit(EventNameList.TokenError);
     }
 }

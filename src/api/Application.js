@@ -17,7 +17,7 @@ const Application = {
             width: 110
         },
         checkBox: {
-            width: 10
+            width: 20
         },
         // 默认的分页配置
         pagination: {
@@ -129,6 +129,14 @@ class SessionContext {
             return undefined;
         }
         return sessionContext.language;
+    }
+
+    static getOrgRrn() {
+        let sessionContext = this.getSessionContext();
+        if (!sessionContext) {
+            return undefined;
+        }
+        return sessionContext.orgRrn;
     }
 
     static getAuthorities() {
