@@ -13,6 +13,36 @@ const TableName = {
     IncomingMaterialImport: "GCIncomingMaterialImport"
 }
 
+const ImportType = {
+    GCCOBFinishProduct: "COB（-4成品）",
+    GCWLAUnmeasured: "WLA未测（-2.5）",
+    GCFabSensor2Unmeasured: "FAB sensor(-2未测)",
+    GCLCDCPUnmeasured25: "LCD CP未测（-2.5未测）",
+    GCFabLCD1UnmeasuredPTC: "FAB LCD(-1未测PTC)",
+    GCFabLCD1UnmeasuredSilterra: "FAB LCD(-1未测Silterra)",
+    GCFabSensor1Unmeasured: "FAB sensor(-1未测)",
+    GCLCDCPMeasured26: "LCD CP已测（-2.6已测）",
+    GCLCDCOGFinishProductEcretive: "LCD（COG成品-ECRETIVE）",
+    GCWLTPackageReturn: "WLT封装回货（-3）",
+
+    GCRMACustomerReturnFinishProduct: "RMA_客户退货_成品",
+    GCRMAPureFinishProduct: "RMA纯_成品-4",
+    GCRMAGoodProductImport: "RMA良品_-3.5导入",
+    GCSensorCPMeasuredHuaLing: "sensor CP已测（-2.1华领）",
+    GCSensorCPMeasuredKLT: "sensor CP已测（KLT）",
+    GCSensorTplccSenBang: "sensor-tplcc（森邦-3.5）",
+    GCSensorPackageReturn: "sensor封装回货（-3未测）",
+    GCSensorPackageReturnCogo: "sensor封装回货（积高-3未测）",
+    GCSensorUnmeasured: "sensor未测(-2未测)",
+    GCFinishProductImport: "成品导入模板",
+    GCSamsungPackingList: "三星packing list(-2CP未测)",
+}
+
+const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive];
+const wltType = [ImportType.GCWLAUnmeasured];
+const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
+                ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26];
+
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
     static displayName = 'GCIncomingMaterialImportTable';
@@ -175,11 +205,11 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 materialLot.errorFlag = true;
             }
         });
-        if(importType == "COB（-4成品）"){
+        if(ComType.includes(importType)){
             materialLotList.forEach(materialLot =>{
                 materialLot.lotId = materialLot.materialLotId;
             });
-        } else if(importType == "WLA未测（-2.5）" || importType == "FAB sensor(-2未测)" || importType == "LCD CP未测（-2.5未测）"){
+        } else if(wltType.includes(importType) || CpType.includes(importType)){
             materialLotList.forEach(materialLot =>{
                 let fabLotId = materialLot.reserved30;
                 let waferId = materialLot.reserved31;
@@ -188,7 +218,17 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 } 
                 materialLot.unitId = fabLotId +"-"+ waferId;
             });
-        } 
+        } else if(ImportType.GCWLTPackageReturn == importType){
+            materialLotList.forEach(materialLot =>{
+                let fabLotId = materialLot.reserved30.split(".")[0];
+                let waferId = materialLot.reserved31;
+                if(waferId.length < 2){
+                    waferId = "0" + waferId;
+                } 
+                materialLot.unitId = fabLotId +"-"+ waferId;
+                materialLot.lotId = fabLotId;
+            });
+        }
         return materialLotList;
     }
 
