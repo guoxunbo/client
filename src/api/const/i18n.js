@@ -102,6 +102,7 @@ const i18NCode = {
     TotalQty: "TotalQty",
     PrintLable: "PrintLable",
     TreasuryNoteCannotEmpty: "TreasuryNoteCannotEmpty",
+    PleaseChooseLocation: "PleaseChooseLocation",
 }
 
 const i18Messages = {
@@ -608,6 +609,11 @@ const i18Messages = {
     TreasuryNoteCannotEmpty: {
         Chinese: "入库备注不能为空！",
         English: "Treasury Note Cannot Empty!",
+        Res: ""
+    },
+    PleaseChooseLocation: {
+        Chinese: "请选择保税属性!",
+        English: "Choose Location Please!",
         Res: ""
     }
 }

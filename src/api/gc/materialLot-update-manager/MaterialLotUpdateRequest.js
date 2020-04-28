@@ -17,4 +17,27 @@ export default class MaterialLotUpdateRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendUpdateLocationRequest = (object) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildUpdateLocationInfo(object.location, object.materialLotList);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendQueryRequest = (object) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildQuery(object.materialLotId);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success,
+            fail: object.fail
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

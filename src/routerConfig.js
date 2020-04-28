@@ -50,6 +50,7 @@ import WltPackCaseCheckProperties from './pages/Properties/components/WltPackCas
 import WltStockOutCheckProperties from './pages/Properties/components/WltStockOutCheckProperties';
 import GCProductSubcodeSetProperties from './pages/Properties/components/GCProductSubcodeSetProperties';
 import GCMLotsUpdateTreasuryNoteProperties from './pages/Properties/components/GCMLotsUpdateTreasuryNoteProperties';
+import GCMLotsUpdateLocationProperties from './pages/Properties/components/GCMLotsUpdateLocationProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -328,6 +329,11 @@ const routerConfig = [
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCMLotsUpdateTreasuryNoteProperties,
+  },
+  {
+    path: buildPath('Warehouse/GCMLotsUpdateLocation'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMLotsUpdateLocationProperties,
   },
   //PackManager
   {
