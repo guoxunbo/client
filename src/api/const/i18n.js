@@ -103,6 +103,7 @@ const i18NCode = {
     PrintLable: "PrintLable",
     TreasuryNoteCannotEmpty: "TreasuryNoteCannotEmpty",
     PleaseChooseLocation: "PleaseChooseLocation",
+    PleaseChooseHoldReason: "PleaseChooseHoldReason",
 }
 
 const i18Messages = {
@@ -614,6 +615,11 @@ const i18Messages = {
     PleaseChooseLocation: {
         Chinese: "请选择保税属性!",
         English: "Choose Location Please!",
+        Res: ""
+    },
+    PleaseChooseHoldReason: {
+        Chinese: "请选择扣留原因!",
+        English: "Choose HoldReason Please!",
         Res: ""
     }
 }

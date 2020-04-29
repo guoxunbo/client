@@ -51,6 +51,7 @@ import WltStockOutCheckProperties from './pages/Properties/components/WltStockOu
 import GCProductSubcodeSetProperties from './pages/Properties/components/GCProductSubcodeSetProperties';
 import GCMLotsUpdateTreasuryNoteProperties from './pages/Properties/components/GCMLotsUpdateTreasuryNoteProperties';
 import GCMLotsUpdateLocationProperties from './pages/Properties/components/GCMLotsUpdateLocationProperties';
+import GCMaterialLotHoldProperties from './pages/Properties/components/GCMaterialLotHoldProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -334,6 +335,11 @@ const routerConfig = [
     path: buildPath('Warehouse/GCMLotsUpdateLocation'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCMLotsUpdateLocationProperties,
+  },
+  {
+    path: buildPath('Warehouse/GCMaterialLotHold'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMaterialLotHoldProperties,
   },
   //PackManager
   {
