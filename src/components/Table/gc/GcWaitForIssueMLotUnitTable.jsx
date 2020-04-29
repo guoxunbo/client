@@ -12,7 +12,6 @@ export default class GcWaitForIssueMLotUnitTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
         return buttons;
     }
@@ -28,10 +27,6 @@ export default class GcWaitForIssueMLotUnitTable extends EntityScanViewTable {
             });
         }
         return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
-    }
-
-    createStatistic = () => {
-        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
     }
 
     createTotalNumber = () => {

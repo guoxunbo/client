@@ -41,5 +41,17 @@ export default class WaferManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendValidationWaitIssueWaferRequest = (object) => {
+        let {materialLots} = object;
+        let requestBody = WaferManagerRequestBody.buildValidationWaitIssueWafer(materialLots);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

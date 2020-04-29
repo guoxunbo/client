@@ -77,7 +77,7 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
               }
               WaferManagerRequest.sendValidationWaferIssueRequest(validationRequestObject);
             } else {
-              data = new MaterialLotUnit();
+              data = new MaterialLot();
               let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
               data[rowKey] = materialLotId;
               data.setMaterialLotId(materialLotId);

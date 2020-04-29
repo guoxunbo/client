@@ -33,7 +33,6 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
         buttons.push(this.createErrorNumberStatistic());
         buttons.push(this.createReceive());
@@ -68,10 +67,6 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
             });
         }
         return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
-    }
-
-    createStatistic = () => {
-        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
     }
 
     createTotalNumber = () => {
@@ -122,21 +117,6 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
         }
         WaferManagerRequest.sendWaferIssueRequest(requestObject);
     }
-
-    /**
-     * 删除同一箱号的所有晶圆
-     */
-    handleDelete = (record) => {
-        const self = this;
-        let tableData = this.state.data;
-        let materialLotUnits = [];
-        tableData.forEach(materialLotUnit => {
-            if(materialLotUnit.materialLotId == record.materialLotId){
-                materialLotUnits.push(materialLotUnit);
-            }
-        });
-        self.refreshDelete(materialLotUnits);
-    } 
 
      /**
      * 发料
