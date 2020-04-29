@@ -52,6 +52,7 @@ import GCProductSubcodeSetProperties from './pages/Properties/components/GCProdu
 import GCMLotsUpdateTreasuryNoteProperties from './pages/Properties/components/GCMLotsUpdateTreasuryNoteProperties';
 import GCMLotsUpdateLocationProperties from './pages/Properties/components/GCMLotsUpdateLocationProperties';
 import GCMaterialLotHoldProperties from './pages/Properties/components/GCMaterialLotHoldProperties';
+import GCMaterialLotReleaseProperties from './pages/Properties/components/GCMaterialLotReleaseProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -340,6 +341,11 @@ const routerConfig = [
     path: buildPath('Warehouse/GCMaterialLotHold'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCMaterialLotHoldProperties,
+  },
+  {
+    path: buildPath('Warehouse/GCMaterialLotRelease'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMaterialLotReleaseProperties,
   },
   //PackManager
   {

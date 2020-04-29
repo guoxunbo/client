@@ -104,6 +104,7 @@ const i18NCode = {
     TreasuryNoteCannotEmpty: "TreasuryNoteCannotEmpty",
     PleaseChooseLocation: "PleaseChooseLocation",
     PleaseChooseHoldReason: "PleaseChooseHoldReason",
+    PleaseChooseReleaseReason: "PleaseChooseReleaseReason",
 }
 
 const i18Messages = {
@@ -620,6 +621,11 @@ const i18Messages = {
     PleaseChooseHoldReason: {
         Chinese: "请选择扣留原因!",
         English: "Choose HoldReason Please!",
+        Res: ""
+    },
+    PleaseChooseReleaseReason: {
+        Chinese: "请选择释放原因!",
+        English: "Choose ReleaseReason Please!",
         Res: ""
     }
 }

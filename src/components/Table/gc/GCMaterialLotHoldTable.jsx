@@ -56,7 +56,7 @@ export default class GCMaterialLotHoldTable extends EntityScanViewTable {
         
         let requestObject = {
             materialLotList: data,
-            holdReason: holdReason,
+            reason: holdReason,
             remarks: remarks,
             success: function(responseBody) {
                 if (self.props.resetData) {
@@ -74,9 +74,6 @@ export default class GCMaterialLotHoldTable extends EntityScanViewTable {
                     </Button>
     }
 
-    buildOperationColumn = () => {
-        
-    }
 }
 
 const styles = {

@@ -60,9 +60,6 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
                     </Button>
     }
 
-    buildOperationColumn = () => {
-        
-    }
 }
 
 const styles = {

@@ -2,7 +2,8 @@ const ActionType = {
     UpdateTreasuryNote: "UpdateTreasuryNote",
     Query: "Query",
     UpdateLocation: "UpdateLocation",
-    HoldMaterialLot: "HoldMLot"
+    HoldMaterialLot: "HoldMLot",
+    ReleaseMaterialLot: "ReleaseMLot"
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -11,16 +12,16 @@ export default class MaterialLotUpdateRequestBody {
     materialLotList;
     materialLotId
     location;
-    holdReason;
+    reason;
     remarks;
 
-    constructor(actionType, treasuryeNote, materialLotList, materialLotId, location, holdReason, remarks){
+    constructor(actionType, treasuryeNote, materialLotList, materialLotId, location, reason, remarks){
         this.actionType = actionType;
         this.treasuryeNote = treasuryeNote;
         this.materialLotList = materialLotList;
         this.materialLotId = materialLotId;
         this.location = location;
-        this.holdReason = holdReason;
+        this.reason = reason;
         this.remarks = remarks;
     }
 
@@ -36,8 +37,11 @@ export default class MaterialLotUpdateRequestBody {
         return new MaterialLotUpdateRequestBody(ActionType.UpdateLocation, undefined, materialLotList, undefined, location);
     }
 
-    static buildHoldInfo(materialLotList, holdReason, remarks) {
-        return new MaterialLotUpdateRequestBody(ActionType.HoldMaterialLot, undefined, materialLotList, undefined, undefined, holdReason, remarks);
+    static buildHoldInfo(materialLotList, reason, remarks) {
+        return new MaterialLotUpdateRequestBody(ActionType.HoldMaterialLot, undefined, materialLotList, undefined, undefined, reason, remarks);
     }
     
+    static buildReleaseInfo(materialLotList, reason, remarks) {
+        return new MaterialLotUpdateRequestBody(ActionType.ReleaseMaterialLot, undefined, materialLotList, undefined, undefined, reason, remarks);
+    }
 }

@@ -6,11 +6,10 @@ import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
 import EntityScanViewTable from "../EntityScanViewTable";
 import MaterialLotUpdateRequest from '../../../api/gc/materialLot-update-manager/MaterialLotUpdateRequest';
-import IconUtils from '../../../api/utils/IconUtils';
 
-export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable {
+export default class GCMaterialLotReleaseTable extends EntityScanViewTable {
 
-    static displayName = 'GCMLotsUpdateTreasuryNoteTable';
+    static displayName = 'GCMaterialLotReleaseTable';
 
     constructor(props) {
         super(props);
@@ -19,34 +18,37 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createUpdateButton());
+        buttons.push(this.createReleaseButton());
         return buttons;
     }
-    
+
     createTagGroup = () => {
         let tags = [];
-        tags.push(this.createDeleteRemarkInput());
+        tags.push(this.createRemarkInput());
         return tags;
     }
 
-    createDeleteRemarkInput = () => {
+    createRemarkInput = () => {
         return <div style={styles.input}>
-            <Input ref={(input) => { this.input = input }} key="treasuryeNote" placeholder="入库备注" />
+            <Input ref={(input) => { this.input = input }} key="remarks" placeholder="备注" />
         </div>
     }
 
-    UpdateTreasuryNote =() => {
+    relaese =() => {
         const {data,table} = this.state;
         let self = this;
-        let treasuryeNote = this.input.state.value;
+        let remarks = this.input.state.value;
+        let queryFields = this.props.propsFrom.state.queryFields;
+        let reason = this.props.propsFrom.props.form.getFieldValue(queryFields[1].name);
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        if(treasuryeNote == "" || treasuryeNote == undefined){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.TreasuryNoteCannotEmpty));
+        if(reason == "" || reason == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.PleaseChooseReleaseReason));
             return;
         }
+
         self.setState({
             loading: true
         });
@@ -54,21 +56,21 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
         
         let requestObject = {
             materialLotList: data,
-            treasuryeNote: treasuryeNote,
+            reason: reason,
+            remarks: remarks,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
                 };
-                self.input.setState({value:""})
                 MessageUtils.showOperationSuccess();
             }
         }
-        MaterialLotUpdateRequest.sendUpdateRequest(requestObject);
+        MaterialLotUpdateRequest.sendReleaseMaterialLotRequest(requestObject);
     }
 
-    createUpdateButton = () => {
-        return <Button key="update" type="primary" style={styles.tableButton} loading={this.state.loading} onClick={this.UpdateTreasuryNote}>
-                        {IconUtils.buildIcon("edit")}{I18NUtils.getClientMessage(i18NCode.BtnUpdate)}
+    createReleaseButton = () => {
+        return <Button key="release" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.relaese}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnRelease)}
                     </Button>
     }
 
