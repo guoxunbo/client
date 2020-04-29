@@ -211,7 +211,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             });
         } else if(wltType.includes(importType) || CpType.includes(importType)){
             materialLotList.forEach(materialLot =>{
-                let fabLotId = materialLot.reserved30;
+                let fabLotId = materialLot.reserved30.split(".")[0];
                 let waferId = materialLot.reserved31;
                 if(waferId.length < 2){
                     waferId = "0" + waferId;
