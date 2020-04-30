@@ -64,4 +64,15 @@ export default class MaterialLotUpdateRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendGetLocationListRequest = (object) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildGetLocationData(object.referenceName);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

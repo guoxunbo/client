@@ -1,4 +1,4 @@
-import { Button, Tag, Input } from 'antd';
+import { Button, Select, Input } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
@@ -6,6 +6,8 @@ import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
 import EntityScanViewTable from "../EntityScanViewTable";
 import MaterialLotUpdateRequest from '../../../api/gc/materialLot-update-manager/MaterialLotUpdateRequest';
+
+const { Option} = Select;
 
 export default class GCMaterialLotReleaseTable extends EntityScanViewTable {
 
@@ -24,22 +26,65 @@ export default class GCMaterialLotReleaseTable extends EntityScanViewTable {
 
     createTagGroup = () => {
         let tags = [];
-        tags.push(this.createRemarkInput());
+        tags.push(this.createLocationSelecctAndInputTag());
         return tags;
     }
 
-    createRemarkInput = () => {
-        return <div style={styles.input}>
-            <Input ref={(input) => { this.input = input }} key="remarks" placeholder="备注" />
-        </div>
+    componentWillMount = () => {
+        let self = this;
+        let requestObject = {
+            referenceName: "GCReleaseReasonList",
+            success: function(responseBody) {
+              self.setState({
+                releaseReasonList: responseBody.referenceList
+              });
+            }
+          }
+        MaterialLotUpdateRequest.sendGetLocationListRequest(requestObject);
+    }
+
+    createLocationSelecctAndInputTag = () => {
+        const {releaseReasonList} = this.state;
+        if(releaseReasonList || releaseReasonList != undefined){
+            const options = releaseReasonList.map(d => <Option key={d.key}>{d.value}</Option>);
+            return <span style={{display: 'flex'}}>
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.ReleaseReason)}:</span>
+                <span style = {{marginLeft:"10px"}}>
+                    <Select
+                    showSearch
+                    allowClear
+                    value={this.state.value}
+                    style={{ width: 200}}
+                    onChange={this.handleChange}
+                    disabled={this.props.disabled}
+                    onBlur={this.props.onBlur}
+                    placeholder="释放原因">
+                    {options} 
+                 </Select>
+              </span>
+
+              <span style={{marginLeft:"30px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
+              <span style = {{marginLeft:"10px"}}>
+                <Input ref={(input) => { this.input = input }} style={{ width: 300}} key="remarks" placeholder="备注" />
+              </span>
+            </span>
+        }
+    }
+
+    handleChange = (currentValue) => {
+        if (this.state.value === currentValue) {
+            return;
+        }
+        this.setState({ 
+            value: currentValue
+        });
     }
 
     relaese =() => {
         const {data,table} = this.state;
         let self = this;
         let remarks = this.input.state.value;
-        let queryFields = this.props.propsFrom.state.queryFields;
-        let reason = this.props.propsFrom.props.form.getFieldValue(queryFields[1].name);
+        let reason = this.state.value;
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;

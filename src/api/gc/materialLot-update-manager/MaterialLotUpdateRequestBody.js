@@ -3,7 +3,8 @@ const ActionType = {
     Query: "Query",
     UpdateLocation: "UpdateLocation",
     HoldMaterialLot: "HoldMLot",
-    ReleaseMaterialLot: "ReleaseMLot"
+    ReleaseMaterialLot: "ReleaseMLot",
+    QueryReferenceList: "QueryReferenceList"
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -14,8 +15,9 @@ export default class MaterialLotUpdateRequestBody {
     location;
     reason;
     remarks;
+    referenceName
 
-    constructor(actionType, treasuryeNote, materialLotList, materialLotId, location, reason, remarks){
+    constructor(actionType, treasuryeNote, materialLotList, materialLotId, location, reason, remarks, referenceName){
         this.actionType = actionType;
         this.treasuryeNote = treasuryeNote;
         this.materialLotList = materialLotList;
@@ -23,6 +25,7 @@ export default class MaterialLotUpdateRequestBody {
         this.location = location;
         this.reason = reason;
         this.remarks = remarks;
+        this.referenceName = referenceName;
     }
 
     static buildUpdateInfo(treasuryeNote, materialLotList) {
@@ -43,5 +46,9 @@ export default class MaterialLotUpdateRequestBody {
     
     static buildReleaseInfo(materialLotList, reason, remarks) {
         return new MaterialLotUpdateRequestBody(ActionType.ReleaseMaterialLot, undefined, materialLotList, undefined, undefined, reason, remarks);
+    }
+
+    static buildGetLocationData(referenceName) {
+        return new MaterialLotUpdateRequestBody(ActionType.QueryReferenceList, undefined, undefined, undefined, undefined, undefined, undefined, referenceName);
     }
 }

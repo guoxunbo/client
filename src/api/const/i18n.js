@@ -105,6 +105,10 @@ const i18NCode = {
     PleaseChooseLocation: "PleaseChooseLocation",
     PleaseChooseHoldReason: "PleaseChooseHoldReason",
     PleaseChooseReleaseReason: "PleaseChooseReleaseReason",
+    Location: "Location",
+    remarks: "remarks",
+    HoldReason: "HoldReason",
+    ReleaseReason: "ReleaseReason"
 }
 
 const i18Messages = {
@@ -626,6 +630,26 @@ const i18Messages = {
     PleaseChooseReleaseReason: {
         Chinese: "请选择释放原因!",
         English: "Choose ReleaseReason Please!",
+        Res: ""
+    },
+    Location: {
+        Chinese: "保税属性",
+        English: "Location",
+        Res: ""
+    },
+    remarks: {
+        Chinese: "备注",
+        English: "remarks",
+        Res: ""
+    },
+    HoldReason: {
+        Chinese: "扣留原因",
+        English: "HoldReason",
+        Res: ""
+    },
+    ReleaseReason: {
+        Chinese: "释放原因",
+        English: "ReleaseReason",
         Res: ""
     }
 }
