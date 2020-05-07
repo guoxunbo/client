@@ -1,7 +1,7 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import GcReTestMLotTable from "../../../components/Table/gc/GcReTestMLotTable";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import MaterialLotUnit from "../../../api/dto/mms/MaterialLotUnit";
+import MaterialLot from "../../../api/dto/mms/MaterialLot";
 import GcWaitForReceiveMLotUnitProperties from "./GcWaitForReceiveMLotUnitProperties";
 import GcReceiveMLotUnitTable from "../../../components/Table/gc/GcReceiveMLotUnitTable";
 
@@ -45,7 +45,7 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
                 }
               });
             } else {
-              data = new MaterialLotUnit();
+              data = new MaterialLot();
               let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
               data[rowKey] = materialLotId;
               data.setMaterialLotId(materialLotId);

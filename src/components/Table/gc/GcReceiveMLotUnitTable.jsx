@@ -58,20 +58,20 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
     }
 
     createMaterialLotsNumber = () => {
-        let materialLotUnits = this.state.data;
-        let materialLotIdList = [];
-        if(materialLotUnits && materialLotUnits.length > 0){
-            materialLotUnits.forEach(data => {
-                if (materialLotIdList.indexOf(data.materialLotId) == -1) {
-                    materialLotIdList.push(data.materialLotId);
-                }
-            });
-        }
-        return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
+        let materialLotUnits = this.state.data;
+        let qty = 0;
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (data.reserved44 != undefined) {
+                    qty = qty + parseInt(data.reserved44);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">片数：{qty}</Tag>
     }
 
     createTotalNumber = () => {
