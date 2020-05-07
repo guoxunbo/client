@@ -36,8 +36,8 @@ export default class MaterialLotUpdateRequestBody {
         return new MaterialLotUpdateRequestBody(ActionType.Query, undefined, undefined, materialLotId);
     }
 
-    static buildUpdateLocationInfo(location, materialLotList) {
-        return new MaterialLotUpdateRequestBody(ActionType.UpdateLocation, undefined, materialLotList, undefined, location);
+    static buildUpdateLocationInfo(location, materialLotList, remarks) {
+        return new MaterialLotUpdateRequestBody(ActionType.UpdateLocation, undefined, materialLotList, undefined, location, undefined, remarks);
     }
 
     static buildHoldInfo(materialLotList, reason, remarks) {

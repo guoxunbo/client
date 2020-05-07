@@ -63,6 +63,11 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
                     {options} 
                  </Select>
               </span>
+
+              <span style={{marginLeft:"30px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
+              <span style = {{marginLeft:"10px"}}>
+                <Input ref={(input) => { this.input = input }} style={{ width: 300}} key="remarks" placeholder="备注" />
+              </span>
             </span>
         }
     }
@@ -80,8 +85,13 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
         const {data,table} = this.state;
         let self = this;
         let location = this.state.value;
+        let remarks = this.input.state.value;
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        if(remarks == "" || remarks == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.RemarksCannotEmpty));
             return;
         }
         if(location == "" || location == undefined){
@@ -96,6 +106,7 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
         let requestObject = {
             materialLotList: data,
             location: location,
+            remarks: remarks,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

@@ -108,7 +108,8 @@ const i18NCode = {
     Location: "Location",
     remarks: "remarks",
     HoldReason: "HoldReason",
-    ReleaseReason: "ReleaseReason"
+    ReleaseReason: "ReleaseReason",
+    RemarksCannotEmpty: "RemarksCannotEmpty",
 }
 
 const i18Messages = {
@@ -651,7 +652,12 @@ const i18Messages = {
         Chinese: "释放原因",
         English: "ReleaseReason",
         Res: ""
-    }
+    },
+    RemarksCannotEmpty: {
+        Chinese: "请填写备注信息！",
+        English: "Remarks Cannot Empty!",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};
