@@ -24,6 +24,7 @@ const ImportType = {
     GCLCDCPMeasured26: "LCD CP已测（-2.6已测）",
     GCLCDCOGFinishProductEcretive: "LCD（COG成品-ECRETIVE）",
     GCWLTPackageReturn: "WLT封装回货（-3）",
+    GCLcdCogDetial: "LCD(COG成品-明细)",
 
     GCRMACustomerReturnFinishProduct: "RMA_客户退货_成品",
     GCRMAPureFinishProduct: "RMA纯_成品-4",
@@ -38,7 +39,7 @@ const ImportType = {
     GCSamsungPackingList: "三星packing list(-2CP未测)",
 }
 
-const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive];
+const ComType = [ImportType.GCCOBFinishProduct];
 const wltType = [ImportType.GCWLAUnmeasured];
 const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
                 ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26];
@@ -82,7 +83,11 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         let materialLotIdList = [];
         if(materialLotUnits && materialLotUnits.length > 0){
             materialLotUnits.forEach(data => {
-                if(data.materialLotId){
+                if(data.parentMaterialLotId){
+                    if (materialLotIdList.indexOf(data.parentMaterialLotId) == -1) {
+                        materialLotIdList.push(data.parentMaterialLotId);
+                    }
+                }else if(data.materialLotId){
                     if (materialLotIdList.indexOf(data.materialLotId) == -1) {
                         materialLotIdList.push(data.materialLotId);
                     }

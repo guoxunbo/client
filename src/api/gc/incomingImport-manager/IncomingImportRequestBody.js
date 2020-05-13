@@ -21,11 +21,11 @@ export default class IncomingImportRequestBody {
     }
 
     static buildImportInfo(importType, warehouseId, materialLotList) {
-        if(importType != "三星packing list(-2CP未测)"){
+        if(importType == "三星packing list(-2CP未测)" || importType == "LCD（COG成品-ECRETIVE）" || importType == "LCD(COG成品-明细)"){
+            return new IncomingImportRequestBody(importType, warehouseId, materialLotList);
+        } else {
             let materialLotUnitList = materialLotList;
             return new IncomingImportRequestBody(importType, warehouseId, undefined, materialLotUnitList);
-        } else {
-            return new IncomingImportRequestBody(importType, warehouseId, materialLotList);
         }
     }
 
