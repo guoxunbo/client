@@ -53,6 +53,7 @@ import GCMLotsUpdateTreasuryNoteProperties from './pages/Properties/components/G
 import GCMLotsUpdateLocationProperties from './pages/Properties/components/GCMLotsUpdateLocationProperties';
 import GCMaterialLotHoldProperties from './pages/Properties/components/GCMaterialLotHoldProperties';
 import GCMaterialLotReleaseProperties from './pages/Properties/components/GCMaterialLotReleaseProperties';
+import GcPrintQRCodeLabelProperties from './pages/Properties/components/GcPrintQRCodeLabelProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -231,6 +232,12 @@ const routerConfig = [
     path: buildPath('GC/GCProductSubcodeSetManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCProductSubcodeSetProperties,
+  },
+  //二维码标签打印
+  {
+    path: buildPath('GC/GCPrintQRCodeLabelManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPrintQRCodeLabelProperties,
   },
   //MES成品接收
   {

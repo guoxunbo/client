@@ -110,6 +110,9 @@ const i18NCode = {
     HoldReason: "HoldReason",
     ReleaseReason: "ReleaseReason",
     RemarksCannotEmpty: "RemarksCannotEmpty",
+    PrintVboxQRCodeLabelFlag: "PrintVboxQRCodeLabelFlag",
+    PrintQRCodeLable: "PrintQRCodeLable",
+    PrintCOBLable: "PrintCOBLable",
 }
 
 const i18Messages = {
@@ -658,6 +661,21 @@ const i18Messages = {
         English: "Remarks Cannot Empty!",
         Res: ""
     },
+    PrintVboxQRCodeLabelFlag: {
+        Chinese: "是否打印箱中真空包二维码",
+        English: "Print Vbox QRCode Label Flag",
+        Res: ""
+    },
+    PrintQRCodeLable: {
+        Chinese: "二维码打印",
+        English: "PrintQRCodeLable",
+        Res: ""
+    },
+    PrintCOBLable: {
+        Chinese: "COB标签打印",
+        English: "COB Label Print",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};
