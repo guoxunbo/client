@@ -20,14 +20,15 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createDeleteButton());
         buttons.push(this.createPrintButton());
+        buttons.push(this.createDeleteButton());
         return buttons;
     }
     
     createTagGroup = () => {
         let tags = [];
         tags.push(this.createDeleteRemarkInput());
+        tags.push(this.createCogDetialNumber());
         tags.push(this.createStatistic());
         tags.push(this.createTotalNumber());
         return tags;
@@ -85,6 +86,19 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
             GetPrintWltVboxParameterRequest.sendQueryRequest(requestObject);
         }
 
+    }
+
+    createCogDetialNumber = () => {
+        let materialLotUnits = this.state.data;
+        let materialLotUnitList = [];
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (materialLotUnitList.indexOf(data.materialLotId) == -1) {
+                    materialLotUnitList.push(data.materialLotId);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">箱数：{materialLotUnitList.length}</Tag>
     }
 
     createTotalNumber = () => {
