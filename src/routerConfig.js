@@ -54,6 +54,7 @@ import GCMLotsUpdateLocationProperties from './pages/Properties/components/GCMLo
 import GCMaterialLotHoldProperties from './pages/Properties/components/GCMaterialLotHoldProperties';
 import GCMaterialLotReleaseProperties from './pages/Properties/components/GCMaterialLotReleaseProperties';
 import GcPrintQRCodeLabelProperties from './pages/Properties/components/GcPrintQRCodeLabelProperties';
+import GCCOGDetialDeleteProperties from './pages/Properties/components/GCCOGDetialDeleteProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -238,6 +239,12 @@ const routerConfig = [
     path: buildPath('GC/GCPrintQRCodeLabelManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintQRCodeLabelProperties,
+  },
+  //COG明细删除
+  {
+    path: buildPath('GC/GCCOGDetialDeleteManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCOGDetialDeleteProperties,
   },
   //MES成品接收
   {

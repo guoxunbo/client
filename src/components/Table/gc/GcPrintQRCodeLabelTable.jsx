@@ -66,7 +66,7 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
                     let url = PrintServiceUrl.BoxQRCode;
                     responseBody.parameterMapList.forEach((parameter) => {
                         let printCount = parameter.printCount;
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
+                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, parseInt(printCount));
                     });
                 }
             }
