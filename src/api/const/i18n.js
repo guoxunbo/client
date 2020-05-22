@@ -113,6 +113,7 @@ const i18NCode = {
     PrintVboxQRCodeLabelFlag: "PrintVboxQRCodeLabelFlag",
     PrintQRCodeLable: "PrintQRCodeLable",
     PrintCOBLable: "PrintCOBLable",
+    FourCodeCheckFlag: "FourCodeCheckFlag",
 }
 
 const i18Messages = {
@@ -674,6 +675,11 @@ const i18Messages = {
     PrintCOBLable: {
         Chinese: "COB标签打印",
         English: "COB Label Print",
+        Res: ""
+    },
+    FourCodeCheckFlag: {
+        Chinese: "检测四位码",
+        English: "FourCode Check",
         Res: ""
     }
 }

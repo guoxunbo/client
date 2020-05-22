@@ -71,9 +71,16 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
         IncomingDeleteRequest.sendDeleteRequest(requestObject);
     }
 
-    printLable = () => {
+    printLable = () => { 
         const {data} = this.state;
+        let self = this;
+       
         if (data && data.length > 0) {
+            self.setState({
+                loading: true
+            });
+            EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+
             let requestObject = {
                 materialLotUnitList : data,    
                 success: function(responseBody) {
@@ -81,6 +88,7 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
                     responseBody.parameterMapList.forEach((parameter) => {
                         PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
                     });
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintWltVboxParameterRequest.sendQueryRequest(requestObject);

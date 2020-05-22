@@ -1,31 +1,36 @@
-import Table from "../../dto/ui/Table"
+const MlotType = ["GCSamsungPackingList", "GCLCDCOGFinishProductEcretive", "GCLcdCogDetial", 
+                 "GCRMAGoodProductImport", "GCRMACustomerReturnFinishProduct", "GCRMAPureFinishProduct"];
 
 export default class IncomingImportRequestBody {
 
     fileName;
     importType;
-    warehouseId;
     materialLotList;
     materialLotUnitList;
+    checkFourCodeFlag;
 
-    constructor(importType, warehouseId, materialLotList, materialLotUnitList, fileName){
+    constructor(importType, materialLotList, materialLotUnitList, fileName, checkFourCodeFlag){
         this.importType = importType;
-        this.warehouseId = warehouseId;
         this.materialLotList = materialLotList;
         this.materialLotUnitList = materialLotUnitList;
         this.fileName = fileName;
+        this.checkFourCodeFlag = checkFourCodeFlag;
     }
 
     static buildSelectFile(importType, fileName) {
-        return new IncomingImportRequestBody(importType, undefined, undefined, undefined, fileName);
+        return new IncomingImportRequestBody(importType, undefined, undefined, fileName);
     }
 
-    static buildImportInfo(importType, warehouseId, materialLotList) {
-        if(importType == "三星packing list(-2CP未测)" || importType == "LCD（COG成品-ECRETIVE）" || importType == "LCD(COG成品-明细)"){
-            return new IncomingImportRequestBody(importType, warehouseId, materialLotList);
+    static buildImportInfo(importType, materialLotList, checkFourCodeFlag) {
+        if(MlotType.includes(importType)){
+            return new IncomingImportRequestBody(importType, materialLotList);
         } else {
             let materialLotUnitList = materialLotList;
-            return new IncomingImportRequestBody(importType, warehouseId, undefined, materialLotUnitList);
+            materialLotUnitList.forEach(materialLotUnit =>{
+                materialLotUnit.reserved4 = materialLotUnit.reserved6;
+                materialLotUnit.reserved6 = "";
+            });
+            return new IncomingImportRequestBody(importType, undefined, materialLotUnitList, undefined, checkFourCodeFlag);
         }
     }
 

@@ -18,7 +18,7 @@ export default class IncomingImportRequest {
     }
 
     static sendImportRequest = (object) => {
-        let requestBody = IncomingImportRequestBody.buildImportInfo(object.importType, object.warehouseId, object.dataList);
+        let requestBody = IncomingImportRequestBody.buildImportInfo(object.importType, object.dataList, object.checkFourCodeFlag);
         let requestHeader = new IncomingImportRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCIncomingMaterialSave);
         let requestObject = {

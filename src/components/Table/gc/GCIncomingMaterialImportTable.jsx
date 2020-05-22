@@ -1,5 +1,5 @@
 import EntityListTable from "../EntityListTable";
-import { Button, Tag } from 'antd';
+import { Button, Icon, Switch, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Upload } from 'antd';
@@ -14,39 +14,49 @@ const TableName = {
 }
 
 const ImportType = {
-    GCCOBFinishProduct: "COB（-4成品）",
-    GCWLAUnmeasured: "WLA未测（-2.5）",
-    GCFabSensor2Unmeasured: "FAB sensor(-2未测)",
-    GCLCDCPUnmeasured25: "LCD CP未测（-2.5未测）",
-    GCFabLCD1UnmeasuredPTC: "FAB LCD(-1未测PTC)",
-    GCFabLCD1UnmeasuredSilterra: "FAB LCD(-1未测Silterra)",
-    GCFabSensor1Unmeasured: "FAB sensor(-1未测)",
-    GCLCDCPMeasured26: "LCD CP已测（-2.6已测）",
-    GCLCDCOGFinishProductEcretive: "LCD（COG成品-ECRETIVE）",
-    GCWLTPackageReturn: "WLT封装回货（-3）",
-    GCLcdCogDetial: "LCD(COG成品-明细)",
+    GCCOBFinishProduct: "GCCOBFinishProduct",//COB（-4成品）
+    GCWLAUnmeasured: "GCWLAUnmeasured",//WLA未测（-2.5）
+    GCFabSensor2Unmeasured: "GCFabSensor2Unmeasured",//FAB sensor(-2未测)
+    GCLCDCPUnmeasured25: "GCLCDCPUnmeasured25",//LCD CP未测（-2.5未测）
+    GCFabLCD1UnmeasuredPTC: "GCFabLCD1UnmeasuredPTC",//FAB LCD(-1未测PTC)
+    GCFabLCD1UnmeasuredSilterra: "GCFabLCD1UnmeasuredSilterra",//FAB LCD(-1未测Silterra)
+    GCFabSensor1Unmeasured: "GCFabSensor1Unmeasured",//FAB sensor(-1未测)
+    GCLCDCPMeasured26: "GCLCDCPMeasured26",//LCD CP已测（-2.6已测）
+    GCLCDCOGFinishProductEcretive: "GCLCDCOGFinishProductEcretive",//LCD（COG成品-ECRETIVE）
+    GCWLTPackageReturn: "GCWLTPackageReturn",//WLT封装回货（-3）
+    GCLcdCogDetial: "GCLcdCogDetial",//LCD(COG成品-明细)
+    GCSensorPackageReturn: "GCSensorPackageReturn",//sensor封装回货（-3未测）
+    GCRMAGoodProductImport: "GCRMAGoodProductImport",//RMA良品_-3.5导入
+    GCRMACustomerReturnFinishProduct: "GCRMACustomerReturnFinishProduct",//RMA_客户退货_成品
+    GCRMAPureFinishProduct: "GCRMAPureFinishProduct",//RMA纯_成品-4
+    GCSamsungPackingList: "GCSamsungPackingList",//三星packing list(-2CP未测)
 
-    GCRMACustomerReturnFinishProduct: "RMA_客户退货_成品",
-    GCRMAPureFinishProduct: "RMA纯_成品-4",
-    GCRMAGoodProductImport: "RMA良品_-3.5导入",
-    GCSensorCPMeasuredHuaLing: "sensor CP已测（-2.1华领）",
-    GCSensorCPMeasuredKLT: "sensor CP已测（KLT）",
-    GCSensorTplccSenBang: "sensor-tplcc（森邦-3.5）",
-    GCSensorPackageReturn: "sensor封装回货（-3未测）",
-    GCSensorPackageReturnCogo: "sensor封装回货（积高-3未测）",
-    GCSensorUnmeasured: "sensor未测(-2未测)",
-    GCFinishProductImport: "成品导入模板",
-    GCSamsungPackingList: "三星packing list(-2CP未测)",
+    GCSensorCPMeasuredHuaLing: "GCSensorCPMeasuredHuaLing",//sensor CP已测（-2.1华领）
+    GCSensorCPMeasuredKLT: "GCSensorCPMeasuredKLT",//sensor CP已测（KLT）
+    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
+    GCSensorPackageReturnCogo: "GCSensorPackageReturnCogo",//sensor封装回货（积高-3未测）
+    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
+    GCFinishProductImport: "GCFinishProductImport",//成品导入模板
 }
 
 const ComType = [ImportType.GCCOBFinishProduct];
 const wltType = [ImportType.GCWLAUnmeasured];
 const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
-                ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26];
+                ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26,
+                ImportType.GCSensorPackageReturn];
+const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
+
+const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
+                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive];
 
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
     static displayName = 'GCIncomingMaterialImportTable';
+
+    constructor(props) {
+        super(props);
+        this.state = {...this.state,...{checked:true},...{value: "check"}};
+    }
 
     getRowClassName = (record, index) => {
         if (record.errorFlag) {
@@ -71,11 +81,40 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
 
     createTagGroup = () => {
         let tagList = [];
+        tagList.push(this.createCheckFourCodeFlag());
         tagList.push(this.createMaterialLotsNumber());
         tagList.push(this.createStatistic());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorTag());
         return tagList;
+    }
+
+    createCheckFourCodeFlag = () => {
+        return <span style={{display: 'flex'}}>
+            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.FourCodeCheckFlag)}:</span>
+            <span style = {{marginLeft:"10px"}}>
+                <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
+                        checkedChildren={<Icon type="check" />} 
+                        unCheckedChildren={<Icon type="close" />} 
+                        onChange={this.handleChange} 
+                        disabled={this.disabled}
+                        checked={this.state.checked}/>
+            </span>
+        </span>
+    }
+
+    handleChange = (checkedChildren) => {
+        if(checkedChildren){
+            this.setState({ 
+                value: "check",
+                checked: true
+            });
+        } else {
+            this.setState({ 
+                value: "",
+                checked: false
+            });
+        }
     }
 
     createMaterialLotsNumber = () => {
@@ -107,6 +146,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
 
     handleUpload = (option) => {
+        debugger;
         const self = this;
         let tableData = this.state.data;
         let fileName = option.file.name;
@@ -116,6 +156,9 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         if((importType == undefined || importType == "")) {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.ChooseImportTypePlease));
             return;
+        }
+        if(importType == "COB（-4成品）"){
+            importType = "GCCOBFinishProduct";
         }
         if(tableData.length > 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImported));
@@ -133,7 +176,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             success: function(responseBody) {
                 let materialLotList = responseBody.dataList;
                 let bondedProperty = responseBody.bondedProperty;
-                materialLotList = self.getMaterialLotListByImportType(importType, bondedProperty, materialLotList);
+                materialLotList = self.getMaterialLotListByImportType(importType, bondedProperty, fileName, materialLotList);
                 self.setState({
                     data: materialLotList,
                     loading: false
@@ -145,6 +188,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
 
     importData =() => {
         const {data,table} = this.state;
+        let checkFourCodeFlag = this.state.value;
         let self = this;
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
@@ -162,18 +206,34 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseWarehouseIdPlease));
             return;
         }
+
+        if(importType == "COB（-4成品）"){
+            importType = "GCCOBFinishProduct";
+        }
         if(warehouseId == "ZJ_STOCK"){
             warehouseId = 8143;
         }
+        if(warehouseId == 8142){
+            data.forEach(materialLot =>{
+                materialLot.reserved13 = warehouseId;
+                materialLot.reserved14 = "HJ AZ5000";
+            });
+        } else if(warehouseId == 8143){
+            data.forEach(materialLot =>{
+                materialLot.reserved13 = warehouseId;
+                materialLot.reserved14 = "ZHJ AZ6000";
+            });
+        }
+
         self.setState({
             loading: true
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         
         let requestObject = {
-            warehouseId: warehouseId,
             dataList: data,
             importType: importType,
+            checkFourCodeFlag: checkFourCodeFlag,
             success: function(responseBody) {
                 let importCode = responseBody.importCode;
                 self.setState({
@@ -199,10 +259,9 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         }
     }
     
-    getMaterialLotListByImportType = (importType, bondedProperty, materialLotList) => {
+    getMaterialLotListByImportType = (importType, bondedProperty, fileName, materialLotList) => {
         materialLotList.forEach(materialLot =>{
-            materialLot.reserved47 = importType;
-            materialLot.reserved6 = bondedProperty;
+            materialLot.reserved47 = fileName;
             if(materialLot.currentQty && isNaN(materialLot.currentQty)){
                 materialLot.errorFlag = true;
             }
@@ -210,9 +269,19 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 materialLot.errorFlag = true;
             }
         });
+        if(!resetLocationType.includes(importType)){
+            materialLotList.forEach(materialLot =>{
+                materialLot.reserved6 = bondedProperty;
+            });
+        }
         if(ComType.includes(importType)){
             materialLotList.forEach(materialLot =>{
                 materialLot.lotId = materialLot.materialLotId;
+            });
+        } else if(RMAType.includes(importType)){
+            materialLotList.forEach(materialLot =>{
+                materialLot.lotId = materialLot.reserved30;
+                materialLot.materialLotId = materialLot.reserved31;
             });
         } else if(wltType.includes(importType) || CpType.includes(importType)){
             materialLotList.forEach(materialLot =>{
