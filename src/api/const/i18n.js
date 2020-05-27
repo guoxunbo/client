@@ -92,7 +92,7 @@ const i18NCode = {
     BtnPreview: "Preview",
     AbnormalInfoOnThePage: "AbnormalInfoOnThePage",
     BtnImportTemplate: "ImportTemplate",
-    DataNotImported: "DataNotImported",
+    DataNotImportedPleaseCleanAllBeforeSelectNewFile: "DataNotImportedPleaseCleanAllBeforeSelectNewFile",
     ReservedListCannotEmpty: "ReservedListCannotEmpty",
     ChooseImportTypePlease: "ChooseImportTypePlease",
     ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
@@ -562,9 +562,9 @@ const i18Messages = {
         English: "preview file",
         Res: ""
     },
-    DataNotImported: {
-        Chinese: "数据未导入",
-        English: "Data not imported",
+    DataNotImportedPleaseCleanAllBeforeSelectNewFile: {
+        Chinese: "数据未导入，请先清空后再选新文件!",
+        English: "Data not imported, please clean it before select a new file!",
         Res: ""
     },
     ReservedListCannotEmpty: {

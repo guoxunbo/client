@@ -12,6 +12,7 @@ export default class GcWaitForIssueMLotUnitTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createMaterialLotsNumber());
+        buttons.push(this.createWaferCount());
         buttons.push(this.createTotalNumber());
         return buttons;
     }
@@ -27,6 +28,19 @@ export default class GcWaitForIssueMLotUnitTable extends EntityScanViewTable {
             });
         }
         return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+    }
+
+    createWaferCount = () => {
+        let materialLots = this.state.data;
+        let qty = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.reserved44 != undefined) {
+                    qty = qty + parseInt(data.reserved44);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">片数：{qty}</Tag>
     }
 
     createTotalNumber = () => {

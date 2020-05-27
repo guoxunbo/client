@@ -47,7 +47,8 @@ const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured2
 const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
 
 const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
-                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive];
+                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
+                           ImportType.GCLCDCPUnmeasured25];
 
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
@@ -161,7 +162,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             importType = "GCCOBFinishProduct";
         }
         if(tableData.length > 0){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImported));
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImportedPleaseCleanAllBeforeSelectNewFile));
             return;
         }
         self.setState({

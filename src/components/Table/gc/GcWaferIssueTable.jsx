@@ -32,11 +32,17 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createTotalNumber());
-        buttons.push(this.createErrorNumberStatistic());
         buttons.push(this.createReceive());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tagList = [];
+        tagList.push(this.createMaterialLotsNumber());
+        tagList.push(this.createWaferCount());
+        tagList.push(this.createTotalNumber());
+        tagList.push(this.createErrorNumberStatistic());
+        return tagList;
     }
     
     getErrorCount = () => {
@@ -67,6 +73,19 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
             });
         }
         return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+    }
+
+    createWaferCount = () => {
+        let materialLots = this.state.data;
+        let qty = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.reserved44 != undefined) {
+                    qty = qty + parseInt(data.reserved44);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">片数：{qty}</Tag>
     }
 
     createTotalNumber = () => {
