@@ -49,8 +49,8 @@ export default class WltPackMaterialLotTable extends EntityScanViewTable {
         let count = 0;
         if(materialLotUnits && materialLotUnits.length > 0){
             materialLotUnits.forEach(data => {
-                if (data.reserved44 != undefined) {
-                    count = count + Number(data.reserved44);
+                if (data.currentSubQty != undefined) {
+                    count = count + Number(data.currentSubQty);
                 }
             });
         }

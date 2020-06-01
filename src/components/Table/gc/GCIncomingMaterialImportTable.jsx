@@ -147,7 +147,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
 
     handleUpload = (option) => {
-        debugger;
         const self = this;
         let tableData = this.state.data;
         let fileName = option.file.name;
@@ -266,7 +265,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             if(materialLot.currentQty && isNaN(materialLot.currentQty)){
                 materialLot.errorFlag = true;
             }
-            if(materialLot.reserved44 && isNaN(materialLot.reserved44)){
+            if(materialLot.currentSubQty && isNaN(materialLot.currentSubQty)){
                 materialLot.errorFlag = true;
             }
         });

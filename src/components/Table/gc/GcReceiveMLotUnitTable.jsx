@@ -66,8 +66,8 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
         let qty = 0;
         if(materialLotUnits && materialLotUnits.length > 0){
             materialLotUnits.forEach(data => {
-                if (data.reserved44 != undefined) {
-                    qty = qty + parseInt(data.reserved44);
+                if (data.currentSubQty != undefined) {
+                    qty = qty + parseInt(data.currentSubQty);
                 }
             });
         }

@@ -35,8 +35,8 @@ export default class GcWaitForIssueMLotUnitTable extends EntityScanViewTable {
         let qty = 0;
         if(materialLots && materialLots.length > 0){
             materialLots.forEach(data => {
-                if (data.reserved44 != undefined) {
-                    qty = qty + parseInt(data.reserved44);
+                if (data.currentSubQty != undefined) {
+                    qty = qty + parseInt(data.currentSubQty);
                 }
             });
         }
