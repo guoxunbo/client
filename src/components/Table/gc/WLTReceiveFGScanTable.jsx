@@ -4,10 +4,23 @@ import { i18NCode } from '../../../api/const/i18n';
 import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
+import { Notification } from '../../notice/Notice';
 
 export default class WLTReceiveFGScanTable extends EntityScanViewTable {
 
     static displayName = 'WLTReceiveFGScanTable';
+
+    getRowClassName = (record, index) => {
+        if (record.errorFlag) {
+            return 'error-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
 
     createButtonGroup = () => {
         let buttons = [];
@@ -21,11 +34,34 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
         tags.push(this.createMaterialLotsNumber());
         tags.push(this.createStatistic());
         tags.push(this.createTotalNumber());
+        tags.push(this.createErrorNumberStatistic());
         return tags;
     }
 
+    createErrorNumberStatistic = () => {
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{this.getErrorCount()}</Tag>
+    }
+
+    getErrorCount = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if(data.errorFlag){
+                    count = count +1;
+                }
+            });
+        }
+        return count;
+    }
+
+
     receive = () => {
         const {data} = this.state;
+        if (this.getErrorCount() > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
         if (data && data.length > 0) {
             let self = this;
             let requestObject = {

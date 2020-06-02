@@ -7,8 +7,6 @@ import I18NUtils from "../../../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../../../api/const/i18n";
 import WaferManagerRequest from "../../../../../api/gc/wafer-manager-manager/WaferManagerRequest";
 import GcWaitForIssueMLotUnitProperties from "./GcWaitForIssueMLotUnitProperties";
-import MaterialLotUnit from "../../../../../api/dto/mms/MaterialLotUnit";
-
 
 export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProperties{
 
@@ -78,9 +76,9 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
               WaferManagerRequest.sendValidationWaferIssueRequest(validationRequestObject);
             } else {
               data = new MaterialLot();
-              let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
-              data[rowKey] = materialLotId;
-              data.setMaterialLotId(materialLotId);
+              let lotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+              data[rowKey] = lotId;
+              data.setLotId(lotId);
               data.errorFlag = true;
               if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                 tableData.unshift(data);
