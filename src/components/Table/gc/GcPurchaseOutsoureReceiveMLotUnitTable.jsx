@@ -12,9 +12,9 @@ import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferMana
 /**
  * 晶圆接收
  */
-export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
+export default class GcPurchaseOutsoureReceiveMLotUnitTable extends EntityScanViewTable {
 
-    static displayName = 'GcReceiveMLotUnitTable';
+    static displayName = 'GcPurchaseOutsoureReceiveMLotUnitTable';
 
     getRowClassName = (record, index) => {
         // 如果是扫描到不存在的批次，则进行高亮显示
@@ -58,7 +58,7 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
     createStatistic = () => {
@@ -71,7 +71,7 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">片数：{qty}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
     }
 
     createTotalNumber = () => {
@@ -84,21 +84,17 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
-    receive = () => {
+    //采购委外接收
+    purchaseOutsourereceive = () => {
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
-        let orderTable = this.props.orderTable;
-        let orders = orderTable.state.data;
-        if (orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-            return;
-        }
+
         let materialLots = this.state.data;
         if (materialLots.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
@@ -110,25 +106,23 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
         let requestObject = {
-            documentLines : orders,
             materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {
-                    self.props.onSearch();
                     self.props.resetData();
                 }
                 MessageUtils.showOperationSuccess();
             }
         }
-        WaferManagerRequest.sendReceiveWaferRequest(requestObject);
+        WaferManagerRequest.sendPurchaseOutsoureReceiveWaferRequest(requestObject);
     }
 
      /**
-     * 发料
+     * 采购委外晶圆接收
      */
     createReceive = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.receive}>
-                        接收
+        return <Button key="receive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="plus" onClick={this.purchaseOutsourereceive}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnReceive)}
                     </Button>
     }
 

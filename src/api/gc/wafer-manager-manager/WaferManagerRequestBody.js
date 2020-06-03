@@ -4,7 +4,8 @@ const ActionType = {
     Receive: "Receive",
     Issue: "Issue",
     ValidationIssue: "ValidationIssue",
-    ValidationWaitIssue: "ValidationWaitIssue"
+    ValidationWaitIssue: "ValidationWaitIssue",
+    PurchaseOutsoureReceive: "PurchaseOutsoureReceive",
 }
 export default class WaferManagerRequestBody {
 
@@ -59,6 +60,16 @@ export default class WaferManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WaferManagerRequestBody(ActionType.ValidationWaitIssue, undefined, materialLotActions);
+    }
+
+    static buildPurchaseOutsoureReceiveWafer(materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new WaferManagerRequestBody(ActionType.PurchaseOutsoureReceive, undefined, materialLotActions);
     }
 }
 

@@ -55,6 +55,7 @@ import GCMaterialLotHoldProperties from './pages/Properties/components/GCMateria
 import GCMaterialLotReleaseProperties from './pages/Properties/components/GCMaterialLotReleaseProperties';
 import GcPrintQRCodeLabelProperties from './pages/Properties/components/GcPrintQRCodeLabelProperties';
 import GCCOGDetialDeleteProperties from './pages/Properties/components/GCCOGDetialDeleteProperties';
+import GcPurchaseOutsoureReceiveProperties from './pages/Properties/components/GcPurchaseOutsoureReceiveProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -188,6 +189,12 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferReceiveOrderProperties,
+  },
+  //委外采购接收
+  {
+    path: buildPath('Wafer/GCPurchaseOutsoureReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPurchaseOutsoureReceiveProperties,
   },
   {
     path: buildPath('Wafer/GCWaferIssue'),

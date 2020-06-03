@@ -29,6 +29,7 @@ export default class GcPrintVBoxLabelTable extends EntityScanViewTable {
                     responseBody.parameters.forEach((parameter) => {
                         PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
                     });
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintVboxParameterRequest.sendQueryRequest(requestObject);

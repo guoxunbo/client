@@ -44,6 +44,7 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
                 success: function(responseBody) {
                     let url = PrintServiceUrl.BoxQRCode;
                     PrintUtils.printWithBtIbForWeb(url, responseBody.parameterMap, PrintBboxCount);
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintBoxQRCodeParameterRequest.sendGetBoxLabelPrintParamaterRequest(requestObject);
@@ -68,6 +69,7 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
                         let printCount = parameter.printCount;
                         PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, parseInt(printCount));
                     });
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintBoxQRCodeParameterRequest.sendGetBoxQRCodeLabelPrintParamaterRequest(requestObject);
