@@ -40,7 +40,7 @@ export default class GCMaterialLotHoldTable extends EntityScanViewTable {
               });
             }
           }
-        MaterialLotUpdateRequest.sendGetLocationListRequest(requestObject);
+        MaterialLotUpdateRequest.sendGetReferenceListRequest(requestObject);
     }
 
     createLocationSelecctAndInputTag = () => {

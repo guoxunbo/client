@@ -114,6 +114,8 @@ const i18NCode = {
     PrintQRCodeLable: "PrintQRCodeLable",
     PrintCOBLable: "PrintCOBLable",
     FourCodeCheckFlag: "FourCodeCheckFlag",
+    PrintLableType: "PrintLableType",
+    SelectPrintType: "SelectPrintType",
 }
 
 const i18Messages = {
@@ -681,6 +683,16 @@ const i18Messages = {
         Chinese: "检测四位码",
         English: "FourCode Check",
         Res: ""
+    },
+    PrintLableType: {
+        Chinese: "标签类型",
+        English: "Lable Type",
+        Res: ""  
+    },
+    SelectPrintType: {
+        Chinese: "请选择导入型号",
+        English: "Select PrintType",
+        Res: ""  
     }
 }
 

@@ -47,8 +47,7 @@ const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured2
 const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
 
 const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
-                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
-                           ImportType.GCLCDCPUnmeasured25];
+                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive];
 
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
@@ -260,6 +259,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
     
     getMaterialLotListByImportType = (importType, bondedProperty, fileName, materialLotList) => {
+        debugger;
         materialLotList.forEach(materialLot =>{
             materialLot.reserved47 = fileName;
             if(materialLot.currentQty && isNaN(materialLot.currentQty)){

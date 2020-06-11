@@ -41,7 +41,7 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
               });
             }
           }
-        MaterialLotUpdateRequest.sendGetLocationListRequest(requestLocationListObject);
+        MaterialLotUpdateRequest.sendGetReferenceListRequest(requestLocationListObject);
     }
 
     createLocationSelecct = () => {

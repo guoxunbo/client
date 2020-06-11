@@ -95,6 +95,8 @@ const UrlConstant = {
     GCIncomingMaterialDelete: ModuleUrlConstant.GC + "IncomingMaterialDelete",
     GCProductSubcodeManagerUrl: ModuleUrlConstant.GC + "productSubcodeSet",
     GCUpdateMaterialLotManagerUrl: ModuleUrlConstant.GC + "updateMaterialLot",
+    GCGetMLotCodePrintParameterUrl: ModuleUrlConstant.GC + "getMLotCodePrintParameter",
+
 };
 
 const SystemRefListName = {

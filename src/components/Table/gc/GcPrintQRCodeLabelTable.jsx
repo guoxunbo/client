@@ -8,6 +8,8 @@ import PrintUtils from '../../../api/utils/PrintUtils';
 import { PrintServiceUrl , PrintBboxCount} from '../../../api/gc/GcConstDefine';
 import { Notification } from '../../notice/Notice';
 import GetPrintBoxQRCodeParameterRequest from '../../../api/gc/get-print-boxRQCode-parameter/GetPrintBoxQRCodeParameterRequest';
+import EventUtils from "../../../api/utils/EventUtils";
+import MessageUtils from "../../../api/utils/MessageUtils";
 
 
 export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
@@ -39,6 +41,10 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         } else {
+            self.setState({
+                loading: true
+            });
+            EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));    
             let requestObject = {
                 materialLot : data[0],   
                 success: function(responseBody) {
@@ -59,11 +65,14 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         } else {
+            self.setState({
+                loading: true
+            });
+            EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));    
             let requestObject = {
                 materialLot : data[0],   
                 printVboxLabelFlag: printVboxLabelFlag,
                 success: function(responseBody) {
-                    debugger;
                     let url = PrintServiceUrl.BoxQRCode;
                     responseBody.parameterMapList.forEach((parameter) => {
                         let printCount = parameter.printCount;
@@ -77,12 +86,12 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
     }
 
     createPrintLabelButton = () => {
-        return <Button key="print" type="primary" style={styles.tableButton}  onClick={() => this.handlePrintCOBLable()}>
+        return <Button key="print" type="primary" style={styles.tableButton} loading={this.state.loading}  onClick={() => this.handlePrintCOBLable()}>
              {IconUtils.buildIcon("icon-barcode")}{I18NUtils.getClientMessage(i18NCode.PrintCOBLable)}</Button>;
     }
 
     createPrintQRCodeButton = () => {
-        return <Button key="printQRCode" type="primary" style={styles.tableButton}  onClick={() => this.handlePrintQRCodeLable()}>
+        return <Button key="printQRCode" type="primary" style={styles.tableButton} loading={this.state.loading}  onClick={() => this.handlePrintQRCodeLable()}>
              {IconUtils.buildIcon("icon-barcode")}{I18NUtils.getClientMessage(i18NCode.PrintQRCodeLable)}</Button>;
     }
 

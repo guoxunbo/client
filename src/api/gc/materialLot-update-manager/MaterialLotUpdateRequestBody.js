@@ -48,7 +48,8 @@ export default class MaterialLotUpdateRequestBody {
         return new MaterialLotUpdateRequestBody(ActionType.ReleaseMaterialLot, undefined, materialLotList, undefined, undefined, reason, remarks);
     }
 
-    static buildGetLocationData(referenceName) {
+    static buildGetReferenceList(referenceName) {
         return new MaterialLotUpdateRequestBody(ActionType.QueryReferenceList, undefined, undefined, undefined, undefined, undefined, undefined, referenceName);
     }
+
 }
