@@ -2,6 +2,7 @@ import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import GcStockOutMLotTable from "../../../components/Table/gc/GcStockOutMLotTable";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import StockOutManagerRequest from "../../../api/gc/stock-out/StockOutManagerRequest";
+import MaterialLot from "../../../api/dto/mms/MaterialLot";
 
 export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
 
@@ -30,18 +31,32 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
           whereClause: whereClause,
           success: function(responseBody) {
             let queryDatas = responseBody.dataList;
+            let data = undefined;
             if (queryDatas && queryDatas.length > 0) {
               let materialLot = queryDatas[0];
+              let trueData = [];
+              tableData.forEach(data => {
+                if(!data.errorFlag){
+                  trueData.push(data);
+                }
+            });
               //验证箱中的所有真空包是否全部备货并且验证箱信息是否符合出条件
-              self.validationMaterialLot(materialLot, tableData);
-              self.setState({ 
-                  tableData: tableData,
-                  loading: false
-              });
-              self.form.resetFormFileds();
+              self.validationMaterialLot(materialLot, trueData);
             } else {
-              self.showDataNotFound();
+              data = new MaterialLot();
+              let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+              data[rowKey] = materialLotId;
+              data.setMaterialLotId(materialLotId);
+              data.errorFlag = true;
+              if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                tableData.unshift(data);
+              }
             }
+            self.setState({ 
+              tableData: tableData,
+              loading: false
+            });
+            self.form.resetFormFileds();  
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);
@@ -54,18 +69,36 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
         queryMaterialLot : materialLot,
         materialLots: materialLots,
         success: function(responseBody) {
-          if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-            tableData.unshift(materialLot);
+            if(responseBody.falg){
+              let errorData = [];
+              let trueData = [];
+              tableData.forEach(data => {
+                if(data.errorFlag){
+                  errorData.push(data);
+                } else {
+                  trueData.push(data);
+                }
+            });
+            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+              trueData.unshift(materialLot);
+            }
+            tableData = [];
+            errorData.forEach(data => {
+              tableData.push(data);
+            });
+            trueData.forEach(data => {
+              tableData.push(data);
+            });
+          } else {
+            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+              materialLot.errorFlag = true;
+              tableData.unshift(materialLot);
+            }
           }
+          
           self.setState({ 
             tableData: tableData,
             loading: false
-          });
-          self.form.resetFormFileds();
-        },
-        fail: function() {
-          self.setState({ 
-              loading: false
           });
           self.form.resetFormFileds();
         }

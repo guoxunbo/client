@@ -7,7 +7,6 @@ import { i18NCode } from '../../../api/const/i18n';
 import StockOutManagerRequest from '../../../api/gc/stock-out/StockOutManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EventUtils from '../../../api/utils/EventUtils';
-
 /**
  * 重测发料的物料批次表格
  */
@@ -15,16 +14,39 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
 
     static displayName = 'GcStockOutMLotTable';
 
+    getRowClassName = (record, index) => {
+        // 如果是扫描到不存在的批次，则进行高亮显示
+        if (record.errorFlag) {
+            return 'error-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
+
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStatistic());
-        buttons.push(this.createTotalNumber());
         buttons.push(this.createStockOut());
         return buttons;
     }
 
+    createTagGroup = () => {
+        let tagList = [];
+        tagList.push(this.createStatistic());
+        tagList.push(this.createTotalNumber());
+        tagList.push(this.createErrorNumberStatistic());
+        return tagList;
+    }
+
     stockOut = () => {
         let self = this;
+        if (this.getErrorCount() > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
         let documentLine = this.props.orderTable.getSingleSelectedRow();
         if (!documentLine) {
             self.setState({ 
@@ -37,6 +59,8 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+
+
 
         self.setState({
             loading: true
@@ -58,6 +82,19 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
         StockOutManagerRequest.sendStockOutRequest(requestObj);
     }
 
+    getErrorCount = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if(data.errorFlag){
+                    count = count +1;
+                }
+            });
+        }
+        return count;
+    }
+
     createTotalNumber = () => {
         let materialLots = this.state.data;
         let count = 0;
@@ -71,6 +108,10 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
 
     createStatistic = () => {
         return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
+    }
+
+    createErrorNumberStatistic = () => {
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{this.getErrorCount()}</Tag>
     }
 
     createStockOut = () => {
