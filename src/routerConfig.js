@@ -56,7 +56,7 @@ import GCMaterialLotReleaseProperties from './pages/Properties/components/GCMate
 import GcPrintQRCodeLabelProperties from './pages/Properties/components/GcPrintQRCodeLabelProperties';
 import GCCOGDetialDeleteProperties from './pages/Properties/components/GCCOGDetialDeleteProperties';
 import GcPurchaseOutsoureReceiveProperties from './pages/Properties/components/GcPurchaseOutsoureReceiveProperties';
-import GCMaterialLotCodePrintProperties from './pages/Properties/components/GCMaterialLotCodePrintProperties';
+import GcCogEcretiveMaterialDeleteProperties from './pages/Properties/components/GcCogEcretiveMaterialDeleteProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -212,11 +212,10 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferStockInProperties,
   },
-  //物料编码打印
   {
-    path: buildPath('Wafer/GCMaterialLotCodePrintManager'),
+    path: buildPath('Wafer/GCCogEcretiveMaterialDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GCMaterialLotCodePrintProperties,
+    component: GcCogEcretiveMaterialDeleteProperties,
   },
   //WLT相关
   {
@@ -442,7 +441,7 @@ const routerConfig = [
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
     component: NotFound,
-  },
+  }
 ];
 
 export default routerConfig;

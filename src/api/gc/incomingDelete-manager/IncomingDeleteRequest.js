@@ -27,4 +27,15 @@ export default class IncomingDeleteRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendDeleteCOGEcretiveRequest = (object) => {
+        let requestBody = IncomingDeleteRequestBody.buildDeleteCOGEcretive(object.dataList, object.deleteNote);
+        let requestHeader = new IncomingDeleteRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCIncomingMaterialDelete);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
