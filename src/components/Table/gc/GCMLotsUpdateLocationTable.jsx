@@ -61,13 +61,13 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
                     onBlur={this.props.onBlur}
                     placeholder="保税属性">
                     {options} 
-                 </Select>
-              </span>
+                    </Select>
+                </span>
 
-              <span style={{marginLeft:"30px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
-              <span style = {{marginLeft:"10px"}}>
+                <span style={{marginLeft:"30px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
+                <span style = {{marginLeft:"10px"}}>
                 <Input ref={(input) => { this.input = input }} style={{ width: 300}} key="remarks" placeholder="备注" />
-              </span>
+                </span>
             </span>
         }
     }

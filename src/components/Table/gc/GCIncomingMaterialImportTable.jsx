@@ -289,7 +289,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 let waferId = materialLot.reserved31;
                 if(waferId.length < 2){
                     waferId = "0" + waferId;
-                } 
+                }
                 materialLot.unitId = fabLotId +"-"+ waferId;
             });
         } else if(ImportType.GCWLTPackageReturn == importType){
@@ -298,7 +298,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 let waferId = materialLot.reserved31;
                 if(waferId.length < 2){
                     waferId = "0" + waferId;
-                } 
+                }
                 materialLot.unitId = fabLotId +"-"+ waferId;
                 materialLot.lotId = fabLotId;
             });

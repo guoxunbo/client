@@ -82,7 +82,7 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
             EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
 
             let requestObject = {
-                materialLotUnitList : data,    
+                materialLotUnitList : data,
                 success: function(responseBody) {
                     let url = PrintServiceUrl.WltBox;
                     responseBody.parameterMapList.forEach((parameter) => {
@@ -132,8 +132,8 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
 
     createPrintButton = () => {
         return <Button key="print" type="primary" style={styles.tableButton} loading={this.state.loading} icon="print" onClick={this.printLable}>
-                        {I18NUtils.getClientMessage(i18NCode.PrintLable)}
-                    </Button>
+                    {I18NUtils.getClientMessage(i18NCode.PrintLable)}
+                </Button>
     }
 
     buildOperationColumn = () => {

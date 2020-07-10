@@ -17,6 +17,17 @@ export default class ReservedManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendGetMaterialLotAndUserByRrnRequest = (object) => {
+        let requestBody = ReservedManagerRequestBody.buildGetMaterialLotAndUser(object.tableRrn);
+        let requestHeader = new ReservedManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendReserved= (object) => {
         let requestBody = ReservedManagerRequestBody.buildReserved(object.docLineRrn, object.materialLots, object.stockNote);
         let requestHeader = new ReservedManagerRequestHeader();

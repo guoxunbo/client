@@ -2,6 +2,7 @@ import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 
 const ActionType = {
     GetMLot : "GetMLot",
+    GetMLotAndUser : "GetMLotAndUser",
     Reserved : "Reserved",
     UnReserved: "UnReserved",
     GetPackedMLots: "GetPackedMLots"
@@ -13,7 +14,7 @@ export default class ReservedManagerRequestBody {
     tableRrn;
     materialLotActions;
     stockNote;
-    
+    table;
 
     constructor(actionType, docLineRrn, tableRrn, materialLotActions, stockNote){
         this.actionType = actionType;
@@ -21,10 +22,15 @@ export default class ReservedManagerRequestBody {
         this.tableRrn = tableRrn;
         this.materialLotActions = materialLotActions;
         this.stockNote = stockNote;
+        this.table;
     }
     
     static buildGetMaterialLot(docLineRrn, tableRrn) {
         return new ReservedManagerRequestBody(ActionType.GetMLot, docLineRrn, tableRrn);
+    }
+    
+    static buildGetMaterialLotAndUser(tableRrn) {
+        return new ReservedManagerRequestBody(ActionType.GetMLotAndUser, undefined, tableRrn);
     }
 
     static buildReserved(docLineRrn, materialLots, stockNote) {
