@@ -15,7 +15,7 @@ export default class GCMaterialLotHoldProperties  extends EntityScanProperties {
 
     buildTable = () => {
         return <GCMaterialLotHoldTable    
-                                      pagination={false} 
+                                      pagination={true} 
                                       rowKey={this.state.rowKey} 
                                       table={this.state.table} 
                                       data={this.state.tableData} 

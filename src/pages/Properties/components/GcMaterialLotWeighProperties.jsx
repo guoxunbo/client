@@ -20,6 +20,7 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
         this.setState({loading: true});
         let data = "";
         let boxsWeight = "";
+        let scanningWeightFlag = false;
         let queryFields = this.form.state.queryFields;
         data = this.form.props.form.getFieldValue(queryFields[0].name);
         boxsWeight = this.form.props.form.getFieldValue(queryFields[1].name);
@@ -70,6 +71,7 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
             } else if(currentHandleMLots.length >= 2){
                 Notification.showInfo(I18NUtils.getClientMessage(i18NCode.CaseWeightNotScanned));
             } else {
+                data = parseInt(data,10)/10000;
                 currentHandleMLots.forEach((materialLot) => {
                     tableData.map((data, index) => {
                         if (data[rowKey] == materialLot[rowKey]) {
@@ -77,7 +79,7 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                         }
                     });
                     if(!materialLot.weight){
-                        materialLot["weight"] = data;
+                        materialLot["weight"] = data.toFixed(3);
                         tableData.splice(dataIndex, 1, materialLot);
                     }
                 });
@@ -98,15 +100,16 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                 } else if(currentHandleMLots.length != tableData.length){
                     Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AllBoxWeightMustBeEmpty));
                 } else {
+                    boxsWeight = parseInt(boxsWeight,10)/10000;
                     tableData.forEach((materialLot) => {
                         tableData.map((data, index) => {
                             if (data[rowKey] == materialLot[rowKey]) {
                                 dataIndex = index;
-                                materialLot["weight"] = boxsWeight;
+                                materialLot["weight"] = boxsWeight.toFixed(3);
                                 materialLot["boxsWeightFlag"] = 1;
                                 tableData.splice(dataIndex, 1, materialLot);
                             }
-                        });      
+                        });
                     });
                 }
             }
