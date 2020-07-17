@@ -2,6 +2,7 @@ export default class MaterialLot {
     objectRrn;
     materialName;
     materialLotId;
+    workOrderId;
     lotId;
 
     setObjectRrn(objectRrn) {
@@ -14,6 +15,10 @@ export default class MaterialLot {
 
     setMaterialLotId(materialLotId) {
         this.materialLotId = materialLotId;
+    }
+
+    setWorkOrderId(workOrderId) {
+        this.workOrderId = workOrderId;
     }
 
     setLotId(lotId) {

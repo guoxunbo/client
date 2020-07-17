@@ -15,13 +15,15 @@ export default class ReservedManagerRequestBody {
     materialLotActions;
     stockNote;
     table;
+    whereClause;
 
-    constructor(actionType, docLineRrn, tableRrn, materialLotActions, stockNote){
+    constructor(actionType, docLineRrn, tableRrn, materialLotActions, stockNote,whereClause){
         this.actionType = actionType;
         this.docLineRrn = docLineRrn;
         this.tableRrn = tableRrn;
         this.materialLotActions = materialLotActions;
         this.stockNote = stockNote;
+        this.whereClause = whereClause;
         this.table;
     }
     
@@ -29,8 +31,8 @@ export default class ReservedManagerRequestBody {
         return new ReservedManagerRequestBody(ActionType.GetMLot, docLineRrn, tableRrn);
     }
     
-    static buildGetMaterialLotAndUser(tableRrn) {
-        return new ReservedManagerRequestBody(ActionType.GetMLotAndUser, undefined, tableRrn);
+    static buildGetMaterialLotAndUser(tableRrn,whereClause) {
+        return new ReservedManagerRequestBody(ActionType.GetMLotAndUser, undefined, tableRrn, undefined, undefined, whereClause);
     }
 
     static buildReserved(docLineRrn, materialLots, stockNote) {

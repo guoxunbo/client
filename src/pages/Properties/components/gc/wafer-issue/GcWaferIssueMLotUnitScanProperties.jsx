@@ -58,6 +58,7 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
                 documentLines: orders,
                 materialLots: materialLots,
                 success: function(responseBody) {
+                  data.workOrderId = responseBody.workOrderId;
                   let errorData = [];
                   let trueData = [];
                   tableData.forEach(data => {
@@ -84,12 +85,12 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
                   trueData.forEach(data => {
                     tableData.push(data);
                   });
-                  self.setState({ 
+                  self.setState({
                     tableData: tableData,
                     loading: false
                   });
                   self.form.resetFormFileds();
-                }         
+                }
               }
               WaferManagerRequest.sendValidationWaferIssueRequest(validationRequestObject);
             } else {
@@ -107,7 +108,6 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
               });
               self.form.resetFormFileds();
             }
-
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);
