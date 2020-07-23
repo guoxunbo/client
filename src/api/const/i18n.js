@@ -14,6 +14,7 @@ const i18NCode = {
     Password: "Password",
     NewPassword: "NewPassword",
     ConfirmPassword: "ConfirmPassword",
+    ConfirmDelete: "ConfirmDelete",
     BasicInfo: "BasicInfo",
     SelectOneRow: "SelectOneRow",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
@@ -177,6 +178,11 @@ const i18Messages = {
     ConfirmPassword:{
         Chinese: "确认密码",
         English: "ConfirmPassword",
+        Res: ""
+    },
+    ConfirmDelete:{
+        Chinese: "确认删除吗?",
+        English: "Confirm Delete?",
         Res: ""
     },
     TwoPwdIsNotInconsistent:{

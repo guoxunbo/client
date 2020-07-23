@@ -259,7 +259,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
     
     getMaterialLotListByImportType = (importType, bondedProperty, fileName, materialLotList) => {
-        debugger;
         materialLotList.forEach(materialLot =>{
             materialLot.reserved47 = fileName;
             if(materialLot.currentQty && isNaN(materialLot.currentQty)){
