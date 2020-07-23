@@ -1,6 +1,6 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button, Popconfirm, Tag, Input,Modal } from 'antd';
+import { Button, Input,Modal } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
