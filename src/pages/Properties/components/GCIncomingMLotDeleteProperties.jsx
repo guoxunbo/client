@@ -20,8 +20,8 @@ export default class GCIncomingMLotDeleteProperties  extends EntityProperties {
 
 
     buildTable = () => {
-        return <GCIncomingMLotDeleteTable     
-                                      pagination={false} 
+        return <GCIncomingMLotDeleteTable
+                                      pagination={true} 
                                       rowKey={this.state.rowKey} 
                                       ref={(showTable) => { this.showTable = showTable }} 
                                       table={this.state.table} 

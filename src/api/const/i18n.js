@@ -98,6 +98,7 @@ const i18NCode = {
     ChooseImportTypePlease: "ChooseImportTypePlease",
     ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
     DeleteNoteCannotEmpty: "DeleteNoteCannotEmpty",
+    CanNotDeleteIssueData: "CanNotDeleteIssueData",
     BoxQty: "BoxQty",
     PieceQty: "PieceQty",
     TotalQty: "TotalQty",
@@ -598,6 +599,11 @@ const i18Messages = {
     DeleteNoteCannotEmpty: {
         Chinese: "删除备注不能为空！",
         English: "Delete Note cannot empty",
+        Res: ""
+    },
+    CanNotDeleteIssueData: {
+        Chinese: "不能删除已接受的晶圆！",
+        English: "Can not delete issue wafer!",
         Res: ""
     },
     BoxQty: {
