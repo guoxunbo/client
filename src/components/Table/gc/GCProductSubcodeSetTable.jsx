@@ -1,6 +1,11 @@
 import EntityListTable from "../EntityListTable";
 import ProductSubcodeForm from "../../Form/ProductSubcodeForm";
 import { Form } from "antd";
+import { Button } from 'antd';
+import I18NUtils from '../../../api/utils/I18NUtils';
+import { i18NCode } from '../../../api/const/i18n';
+import IconUtils from '../../../api/utils/IconUtils';
+import AsyncManagerRequest from "../../../api/gc/async-manager/AsyncManagerRequest";
 
 export default class GCProductSubcodeSetTable extends EntityListTable {
 
@@ -12,14 +17,21 @@ export default class GCProductSubcodeSetTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createAddButton());
-        buttons.push(this.createImportButton());
+        buttons.push(this.createSyncProductSubCodeButton());
         return buttons;
     }
 
-    createForm = () => {
-        const WrappedAdvancedEntityForm = Form.create()(ProductSubcodeForm);
-        return  <WrappedAdvancedEntityForm ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
-                                            table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
+    createSyncProductSubCodeButton = () => {
+        return <Button key="sync" type="primary" onClick={() => this.syncProductSubcode()}>
+             {IconUtils.buildIcon("icon-barcode")}{I18NUtils.getClientMessage(i18NCode.BtnSyncProductSubcode)}</Button>;
     }
+
+    syncProductSubcode  =() => {
+        let asyncType = "AsyncProductSubcode";
+        let object = {
+            actionType : asyncType
+        }
+        AsyncManagerRequest.sendAsyncRequest(object);
+    }
+
 }
