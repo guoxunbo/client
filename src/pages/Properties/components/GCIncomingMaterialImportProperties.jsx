@@ -21,7 +21,7 @@ export default class GCIncomingMaterialImportProperties  extends EntityScanPrope
 
 
     buildTable = () => {
-        return <GCIncomingMaterialImportTable     
+        return <GCIncomingMaterialImportTable 
                                       pagination={false} 
                                       propsFrom = {this.form}
                                       rowKey={this.state.rowKey} 

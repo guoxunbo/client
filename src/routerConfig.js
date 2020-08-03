@@ -56,6 +56,7 @@ import GCMaterialLotReleaseProperties from './pages/Properties/components/GCMate
 import GcPrintQRCodeLabelProperties from './pages/Properties/components/GcPrintQRCodeLabelProperties';
 import GCCOGDetialDeleteProperties from './pages/Properties/components/GCCOGDetialDeleteProperties';
 import GcPurchaseOutsoureReceiveProperties from './pages/Properties/components/GcPurchaseOutsoureReceiveProperties';
+import GCMaterialLotCodePrintProperties from './pages/Properties/components/GCMaterialLotCodePrintProperties';
 import GcCogEcretiveMaterialDeleteProperties from './pages/Properties/components/GcCogEcretiveMaterialDeleteProperties';
 
 /**
@@ -211,6 +212,11 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferInStorage'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferStockInProperties,
+  },
+  {
+    path: buildPath('Wafer/GCMaterialLotCodePrintManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMaterialLotCodePrintProperties,
   },
   {
     path: buildPath('Wafer/GCCogEcretiveMaterialDelete'),

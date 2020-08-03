@@ -14,6 +14,7 @@ const i18NCode = {
     Password: "Password",
     NewPassword: "NewPassword",
     ConfirmPassword: "ConfirmPassword",
+    ConfirmDelete: "ConfirmDelete",
     BasicInfo: "BasicInfo",
     SelectOneRow: "SelectOneRow",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
@@ -103,6 +104,7 @@ const i18NCode = {
     ChooseImportTypePlease: "ChooseImportTypePlease",
     ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
     DeleteNoteCannotEmpty: "DeleteNoteCannotEmpty",
+    CanNotDeleteIssueData: "CanNotDeleteIssueData",
     BoxQty: "BoxQty",
     PieceQty: "PieceQty",
     TotalQty: "TotalQty",
@@ -122,6 +124,7 @@ const i18NCode = {
     FourCodeCheckFlag: "FourCodeCheckFlag",
     PrintLableType: "PrintLableType",
     SelectPrintType: "SelectPrintType",
+    BtnSyncProductSubcode: "SyncProductSubCode",
 }
 
 const i18Messages = {
@@ -183,6 +186,11 @@ const i18Messages = {
     ConfirmPassword:{
         Chinese: "确认密码",
         English: "ConfirmPassword",
+        Res: ""
+    },
+    ConfirmDelete:{
+        Chinese: "确认删除吗?",
+        English: "Confirm Delete?",
         Res: ""
     },
     TwoPwdIsNotInconsistent:{
@@ -615,6 +623,11 @@ const i18Messages = {
         English: "Delete Note cannot empty",
         Res: ""
     },
+    CanNotDeleteIssueData: {
+        Chinese: "不能删除已接受的晶圆！",
+        English: "Can not delete issue wafer!",
+        Res: ""
+    },
     BoxQty: {
         Chinese: "箱数",
         English: "BoxQty",
@@ -713,6 +726,11 @@ const i18Messages = {
     SelectPrintType: {
         Chinese: "请选择导入型号",
         English: "Select PrintType",
+        Res: ""  
+    },
+    SyncProductSubCode: {
+        Chinese: "产品二级代码同步",
+        English: "Sync Product SubCode",
         Res: ""  
     }
 }
