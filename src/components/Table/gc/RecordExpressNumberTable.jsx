@@ -85,17 +85,8 @@ export default class RecordExpressNumberTable extends EntityListTable {
             serviceMode: serviceMode,
             payMode: payMode,
             success: function(responseBody) {
-                responseBody.materialLots.forEach((materialLot) => {
-                    let dataIndex = -1;
-                    datas.map((data, index) => {
-                        if (data.objectRrn == materialLot.objectRrn) {
-                            dataIndex = index;
-                        }
-                    });
-                    datas.splice(dataIndex, 1, materialLot);
-                });
                 self.setState({
-                    data: datas,
+                    data: [],
                     formVisible: false,
                     selectedRows: [],
                     selectedRowKeys: []
@@ -113,21 +104,13 @@ export default class RecordExpressNumberTable extends EntityListTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        let expressNumber = this.expressNumber.state.value;
         let object = {
             datas : datas,
             expressNumber: expressNumber,
             success: function(responseBody) {
-                responseBody.materialLots.forEach((materialLot) => {
-                    let dataIndex = -1;
-                    datas.map((data, index) => {
-                        if (data.objectRrn == materialLot.objectRrn) {
-                            dataIndex = index;
-                        }
-                    });
-                    datas.splice(dataIndex, 1, materialLot);
-                });
                 self.setState({
-                    data: datas,
+                    data: [],
                     formVisible: false,
                     selectedRows: [],
                     selectedRowKeys: []
@@ -135,7 +118,29 @@ export default class RecordExpressNumberTable extends EntityListTable {
                 MessageUtils.showOperationSuccess();
             }
         };
-        RecordExpressNumberRequest.buildCancelRecordExpress(object);
+        RecordExpressNumberRequest.sendManualRecordExpress(object);
+    }
+
+    cancelExpress = () => {
+        let datas = this.state.data;
+        let self = this;
+        if (datas.length === 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        let object = {
+            datas : datas,
+            success: function(responseBody) {
+                self.setState({
+                    data: [],
+                    formVisible: false,
+                    selectedRows: [],
+                    selectedRowKeys: []
+                }) 
+                MessageUtils.showOperationSuccess();
+            }
+        };
+        RecordExpressNumberRequest.sendCancelRecordExpress(object);
     }
 
     createRecordExpressButton = () => {
@@ -145,13 +150,13 @@ export default class RecordExpressNumberTable extends EntityListTable {
     }
 
     createManualRecordExpressButton = () => {
-        return <Button key="manaulRecordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordAutoExpress}>
+        return <Button key="manaulRecordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordManualExpress}>
                         {I18NUtils.getClientMessage(i18NCode.BtnManualRecordExpress)}
                     </Button>
     }
 
     createCancelExpressButton = () => {
-        return <Button key="cancelRecordExpress" type="primary" style={styles.tableButton} icon="delete" onClick={this.recordAutoExpress}>
+        return <Button key="cancelRecordExpress" type="primary" style={styles.tableButton} icon="delete" onClick={this.cancelExpress}>
                         {I18NUtils.getClientMessage(i18NCode.BtnCancelExpress)}
                     </Button>
     }
