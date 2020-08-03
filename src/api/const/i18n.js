@@ -118,6 +118,7 @@ const i18NCode = {
     FourCodeCheckFlag: "FourCodeCheckFlag",
     PrintLableType: "PrintLableType",
     SelectPrintType: "SelectPrintType",
+    BtnSyncProductSubcode: "SyncProductSubCode",
 }
 
 const i18Messages = {
@@ -704,6 +705,11 @@ const i18Messages = {
     SelectPrintType: {
         Chinese: "请选择导入型号",
         English: "Select PrintType",
+        Res: ""  
+    },
+    SyncProductSubCode: {
+        Chinese: "产品二级代码同步",
+        English: "Sync Product SubCode",
         Res: ""  
     }
 }
