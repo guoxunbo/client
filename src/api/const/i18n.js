@@ -60,7 +60,13 @@ const i18NCode = {
     BtnSearch: "Search",
     BtnReset: "Reset",
     BtnBind: "Bind",
+
+    ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
+    BtnManualRecordExpress: "ManualRecordExpress",
+    BtnCancelExpress: "CancelExpress",
+    BtnManualRecordExpress: "ManualRecordExpress",
+
     BtnUnBind: "UnBind",
     BtnDelete: "Delete",
     BtnUpdate: "Update",
@@ -299,9 +305,24 @@ const i18Messages = {
         English: "UnConsume",
         Res: ""
     },
+    ExpressNumber: {
+        Chinese: "快递单号",
+        English: "ExpressNumber",
+        Res: ""
+    },
     RecordExpress: {
-        Chinese: "记录快递单号",
-        English: "RecordExpress",
+        Chinese: "下单",
+        English: "RecExp",
+        Res: ""
+    },
+    ManualRecordExpress: {
+        Chinese: "手工下单",
+        English: "MRecExp",
+        Res: ""
+    },
+    CancelExpress: {
+        Chinese: "取消下单",
+        English: "Cancel",
         Res: ""
     },
     Scrap: {

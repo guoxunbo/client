@@ -1,11 +1,13 @@
 import EntityListTable from '../EntityListTable';
-import { Button, Input } from 'antd';
+import { Button, Input, Row, Col } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Application } from '../../../api/Application';
 import { Notification } from '../../notice/Notice';
 import RecordExpressNumberRequest from '../../../api/gc/record-express-number/RecordExpressNumberRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
+import RefListField from '../../Field/RefListField';
+import { SystemRefListName } from '../../../api/const/ConstDefine';
 
 export default class RecordExpressNumberTable extends EntityListTable {
 
@@ -26,7 +28,7 @@ export default class RecordExpressNumberTable extends EntityListTable {
         if (props.resetFlag) {
             stateSeletcedRowKeys = [];
             stateSelectedRows = [];
-            this.input.setState({value:""})
+            this.expressNumber.setState({value:""})
         }
         
         this.setState({
@@ -42,43 +44,55 @@ export default class RecordExpressNumberTable extends EntityListTable {
     }
 
     componentDidMount=() => {
-        this.input.focus();
+        this.expressNumber.focus();
     }
     
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createExpressInput());
         buttons.push(this.createRecordExpressButton());
+        buttons.push(this.createManualRecordExpressButton());
+        buttons.push(this.createCancelExpressButton());
+
         return buttons;
     }
 
     createExpressInput = () => {
-        return <div style={styles.input}>
-            <Input ref={(input) => { this.input = input }} key="expressNumber" placeholder="快递单号" onPressEnter={this.onExpressInput} />
-        </div>
+        return  <Row gutter={16}>
+            <Col span={5}>
+                <RefListField ref={(serviceMode) => { this.serviceMode = serviceMode }} value={"20"} referenceName={SystemRefListName.ExpressServiceMode} />
+            </Col>
+            <Col span={5}>
+                <RefListField ref={(payMode) => { this.payMode = payMode }}  value={"10"} referenceName={SystemRefListName.ExpressPayMode} />
+            </Col>
+            <Col span={6}>
+                <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
+            </Col>
+        </Row>
     }
 
-    recordExpress = () => {
+    recordAutoExpress = () => {
         let datas = this.state.data;
-        let recordedDatas = datas.filter((data) => data.reserved2 != undefined);
         let self = this;
-
-        if (recordedDatas.length === 0){
+        if (datas.length === 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-
+        let serviceMode = this.serviceMode.state.value;
+        let payMode = this.payMode.state.value;
         let object = {
-            datas : recordedDatas,
+            datas : datas,
+            serviceMode: serviceMode,
+            payMode: payMode,
             success: function(responseBody) {
-                responseBody.deliveryOrderList.forEach((deliveryOrder) => {
+                responseBody.materialLots.forEach((materialLot) => {
                     let dataIndex = -1;
                     datas.map((data, index) => {
-                        if (data.objectRrn == deliveryOrder.objectRrn) {
+                        if (data.objectRrn == materialLot.objectRrn) {
                             dataIndex = index;
                         }
                     });
-                    datas.splice(dataIndex, 1, deliveryOrder);
+                    datas.splice(dataIndex, 1, materialLot);
                 });
                 self.setState({
                     data: datas,
@@ -89,36 +103,56 @@ export default class RecordExpressNumberTable extends EntityListTable {
                 MessageUtils.showOperationSuccess();
             }
         };
-        RecordExpressNumberRequest.sendRecordExpress(object);
+        RecordExpressNumberRequest.sendAutoRecordExpress(object);
     }
 
-    onExpressInput = () => {
-        let expressNumber = this.input.state.value;
-        if (!expressNumber) {
-            return;
-        }
-        let recordCount = this.state.recordCount;
-
+    recordManualExpress = () => {
         let datas = this.state.data;
-        if(datas.length == 0){
-            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.NoDeliveryOrder));
-            this.input.setState({value:""})
+        let self = this;
+        if (datas.length === 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        datas[recordCount].reserved2 = expressNumber;
-        datas.splice(recordCount, 1, datas[recordCount]);
-
-        recordCount = recordCount + 1;
-        this.input.setState({value:""})
-        this.setState({
-            data: datas,
-            recordCount: recordCount
-        });
+        let object = {
+            datas : datas,
+            expressNumber: expressNumber,
+            success: function(responseBody) {
+                responseBody.materialLots.forEach((materialLot) => {
+                    let dataIndex = -1;
+                    datas.map((data, index) => {
+                        if (data.objectRrn == materialLot.objectRrn) {
+                            dataIndex = index;
+                        }
+                    });
+                    datas.splice(dataIndex, 1, materialLot);
+                });
+                self.setState({
+                    data: datas,
+                    formVisible: false,
+                    selectedRows: [],
+                    selectedRowKeys: []
+                }) 
+                MessageUtils.showOperationSuccess();
+            }
+        };
+        RecordExpressNumberRequest.buildCancelRecordExpress(object);
     }
 
     createRecordExpressButton = () => {
-        return <Button key="recordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordExpress}>
+        return <Button key="recordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordAutoExpress}>
                         {I18NUtils.getClientMessage(i18NCode.BtnRecordExpress)}
+                    </Button>
+    }
+
+    createManualRecordExpressButton = () => {
+        return <Button key="manaulRecordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordAutoExpress}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnManualRecordExpress)}
+                    </Button>
+    }
+
+    createCancelExpressButton = () => {
+        return <Button key="cancelRecordExpress" type="primary" style={styles.tableButton} icon="delete" onClick={this.recordAutoExpress}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnCancelExpress)}
                     </Button>
     }
 
@@ -126,10 +160,8 @@ export default class RecordExpressNumberTable extends EntityListTable {
         
     }
 }
+
 const styles = {
-    input: {
-        width: 300
-    },
     tableButton: {
         marginLeft:'20px'
     }

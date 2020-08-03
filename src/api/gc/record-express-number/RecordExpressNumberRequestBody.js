@@ -1,15 +1,41 @@
 
+const ActionType = {
+    AutoOrder: "AutoOrder",
+    ManualOrder: "ManualOrder",
+    CancelOrder: "CancelOrder"
+}
+
 export default class RecordExpressNumberRequestBody {
 
-    deliveryOrderList;
+    actionType;
+    serviceMode;
+    payMode;
+    expressNumber;
+    materialLots;
 
-    constructor(deliveryOrderList){
-        this.deliveryOrderList = deliveryOrderList;
+    constructor(actionType){
+        this.actionType = actionType;
     }
 
-    static buildRecordExpressNumber(deliveryOrderList) {
-        return new RecordExpressNumberRequestBody(deliveryOrderList);
+    static buildAutoRecordExpress(materialLots, serviceMode, payMode) {
+        let body = new RecordExpressNumberRequestBody(ActionType.AutoOrder);
+        body.materialLots = materialLots;
+        body.serviceMode = serviceMode;
+        body.payMode = payMode;
+        return body;
     }
 
-}
+    static buildManualRecordExpress(expressNumber, materialLots) {
+        let body = new RecordExpressNumberRequestBody(ActionType.ManualOrder);
+        body.expressNumber = expressNumber;
+        body.materialLots = materialLots;
+        return body;
+    }
+
+    static buildCancelRecordExpress(materialLots) {
+        let body = new RecordExpressNumberRequestBody(ActionType.CancelOrder);
+        body.materialLots = materialLots;
+        return body;
+    }
+}   
 
