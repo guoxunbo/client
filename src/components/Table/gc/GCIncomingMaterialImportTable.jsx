@@ -15,6 +15,7 @@ const TableName = {
 
 const ImportType = {
     GCCOBFinishProduct: "GCCOBFinishProduct",//COB（-4成品）
+    GCSOCFinishProduct: "GCSOCFinishProduct",//SOC（-4成品）
     GCWLAUnmeasured: "GCWLAUnmeasured",//WLA未测（-2.5）
     GCFabSensor2Unmeasured: "GCFabSensor2Unmeasured",//FAB sensor(-2未测)
     GCLCDCPUnmeasured25: "GCLCDCPUnmeasured25",//LCD CP未测（-2.5未测）
@@ -39,7 +40,7 @@ const ImportType = {
     GCFinishProductImport: "GCFinishProductImport",//成品导入模板
 }
 
-const ComType = [ImportType.GCCOBFinishProduct];
+const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCSOCFinishProduct];
 const wltType = [ImportType.GCWLAUnmeasured];
 const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
                 ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26,
@@ -47,7 +48,8 @@ const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured2
 const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
 
 const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
-                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive];
+                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
+                           ImportType.GCSOCFinishProduct];
 
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
