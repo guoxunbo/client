@@ -34,4 +34,9 @@ export default class GCProductSubcodeSetTable extends EntityListTable {
         AsyncManagerRequest.sendAsyncRequest(object);
     }
 
+    //数据全部同步，不需要修改
+    buildOperationColumn = () => {
+        
+    }
+
 }
