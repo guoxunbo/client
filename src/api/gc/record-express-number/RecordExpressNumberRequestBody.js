@@ -1,5 +1,6 @@
 
 const ActionType = {
+    OldRecordOrder: "OldRecordOrder",
     AutoOrder: "AutoOrder",
     ManualOrder: "ManualOrder",
     CancelOrder: "CancelOrder"
@@ -15,6 +16,12 @@ export default class RecordExpressNumberRequestBody {
 
     constructor(actionType){
         this.actionType = actionType;
+    }
+
+    static buildOldRecordExpress(deliveryOrderList) {
+        let body = new RecordExpressNumberRequestBody(ActionType.OldRecordOrder);
+        body.deliveryOrderList = deliveryOrderList;
+        return body;
     }
 
     static buildAutoRecordExpress(materialLots, serviceMode, payMode) {

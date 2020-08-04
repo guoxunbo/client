@@ -6,6 +6,17 @@ import Request from '../../Request';
 
 export default class RecordExpressNumberRequest {
 
+    static sendOldRecordExpress = (object) => {
+        let requestBody = RecordExpressNumberRequestBody.buildOldRecordExpress(object.datas);
+        let requestHeader = new RecordExpressNumberRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendAutoRecordExpress = (object) => {
         let requestBody = RecordExpressNumberRequestBody.buildAutoRecordExpress(object.datas, object.serviceMode, object.payMode);
         let requestHeader = new RecordExpressNumberRequestHeader();
