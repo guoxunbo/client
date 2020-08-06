@@ -59,6 +59,7 @@ import GcPurchaseOutsoureReceiveProperties from './pages/Properties/components/G
 import GCMaterialLotCodePrintProperties from './pages/Properties/components/GCMaterialLotCodePrintProperties';
 import GcCogEcretiveMaterialDeleteProperties from './pages/Properties/components/GcCogEcretiveMaterialDeleteProperties';
 import GcOldRecordExpressNumberProperties from './pages/Properties/components/GcOldRecordExpressNumberProperties';
+import GcCOMWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcCOMWaferIssueOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -203,6 +204,12 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferIssue'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferIssueOrderProperties,
+  },
+  //COM型号晶圆发料
+  {
+    path: buildPath('Wafer/GCCOMWaferIssue'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMWaferIssueOrderProperties,
   },
   {
     path: buildPath('Wafer/GCWaferCheck'),

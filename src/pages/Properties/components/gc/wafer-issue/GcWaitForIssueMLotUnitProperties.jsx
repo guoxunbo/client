@@ -11,10 +11,6 @@ export default class GcWaitForIssueMLotUnitProperties extends EntityProperties{
         this.queryData();
     }
 
-    componentWillReceiveProps = () => {
-      this.queryData();
-    }
-
     //暂时取消卡控必须绑定工单的晶圆才可以发料
     // queryData = (whereClause) => {
     //     const self = this;
