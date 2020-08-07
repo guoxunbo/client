@@ -60,6 +60,7 @@ import GCMaterialLotCodePrintProperties from './pages/Properties/components/GCMa
 import GcCogEcretiveMaterialDeleteProperties from './pages/Properties/components/GcCogEcretiveMaterialDeleteProperties';
 import GcOldRecordExpressNumberProperties from './pages/Properties/components/GcOldRecordExpressNumberProperties';
 import GcCOMWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcCOMWaferIssueOrderProperties';
+import GCProductModelConversionProperties from './pages/Properties/components/GCProductModelConversionProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -260,6 +261,12 @@ const routerConfig = [
     path: buildPath('GC/GCProductSubcodeSetManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCProductSubcodeSetProperties,
+  },
+  //GC产品型号转换
+  {
+    path: buildPath('GC/GCProductModelConversionManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCProductModelConversionProperties,
   },
   //二维码标签打印
   {
