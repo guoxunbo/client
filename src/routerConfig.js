@@ -31,6 +31,7 @@ import GcPrintCaseLabelProperties from './pages/Properties/components/GcPrintCas
 import GcCheckProperties from './pages/Properties/components/GcCheckProperties';
 import GcMaterialLotStockInProperties from './pages/Properties/components/GcMaterialLotStockInProperties';
 import GcPrintVBoxLabelProperties from './pages/Properties/components/GcPrintVBoxLabelProperties';
+import GCPrintWltCpLotProperties from './pages/Properties/components/GCPrintWltCpLotProperties';
 import GcRecordExpressNumberProperties from './pages/Properties/components/GcRecordExpressNumberProperties';
 import GcOrderReservedProperties from './pages/Properties/components/GcOrderReservedProperties';
 import GCUnReservedMaterialLotProperties from './pages/Properties/components/GCUnReservedMaterialLotProperties';
@@ -438,6 +439,12 @@ const routerConfig = [
     path: buildPath('Pack/PrintVBoxLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintVBoxLabelProperties,
+  },
+  //WLT/CP标签打印
+  {
+    path: buildPath('WLT/GCPrintWltCpLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCPrintWltCpLotProperties,
   },
   //RTM
   {
