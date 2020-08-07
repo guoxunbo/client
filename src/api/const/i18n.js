@@ -67,6 +67,7 @@ const i18NCode = {
     BtnManualRecordExpress: "ManualRecordExpress",
     BtnCancelExpress: "CancelExpress",
     BtnManualRecordExpress: "ManualRecordExpress",
+    BtnPrintObliqueLabel: "PrintObliqueLabel",
 
     BtnUnBind: "UnBind",
     BtnDelete: "Delete",
@@ -125,6 +126,9 @@ const i18NCode = {
     PrintLableType: "PrintLableType",
     SelectPrintType: "SelectPrintType",
     BtnSyncProductSubcode: "SyncProductSubCode",
+    BtnSyncProductModel: "SyncProductModel",
+    ServiceType: "ServiceType",
+    PayType: "PayType",
 }
 
 const i18Messages = {
@@ -731,6 +735,26 @@ const i18Messages = {
     SyncProductSubCode: {
         Chinese: "产品二级代码同步",
         English: "Sync Product SubCode",
+        Res: ""  
+    },
+    PrintObliqueLabel: {
+        Chinese: "打印斜标签",
+        English: "Print Oblique Label",
+        Res: ""  
+    },
+    ServiceType: {
+        Chinese: "服务方式",
+        English: "Service Type",
+        Res: ""  
+    },
+    PayType: {
+        Chinese: "付款方式",
+        English: "Pay Type",
+        Res: ""  
+    },
+    SyncProductModel: {
+        Chinese: "同步产品型号转换",
+        English: "Pay Type",
         Res: ""  
     }
 }
