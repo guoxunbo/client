@@ -8,6 +8,9 @@ import RecordExpressNumberRequest from '../../../api/gc/record-express-number/Re
 import MessageUtils from '../../../api/utils/MessageUtils';
 import RefListField from '../../Field/RefListField';
 import { SystemRefListName } from '../../../api/const/ConstDefine';
+import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
+import EventUtils from '../../../api/utils/EventUtils';
+
 
 export default class RecordExpressNumberTable extends EntityListTable {
 
@@ -53,19 +56,35 @@ export default class RecordExpressNumberTable extends EntityListTable {
         buttons.push(this.createRecordExpressButton());
         buttons.push(this.createManualRecordExpressButton());
         buttons.push(this.createCancelExpressButton());
+        // buttons.push(this.createPrintObliqueLabelButton());
 
         return buttons;
     }
 
     createExpressInput = () => {
         return  <Row gutter={16}>
-            <Col span={5}>
+            <Col span={2} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.ServiceType)}:
+                </span>
+            </Col>
+            <Col span={3}>
                 <RefListField ref={(serviceMode) => { this.serviceMode = serviceMode }} value={"20"} referenceName={SystemRefListName.ExpressServiceMode} />
             </Col>
-            <Col span={5}>
+            <Col span={2} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.PayType)}:
+                </span>
+            </Col>
+            <Col span={3}>
                 <RefListField ref={(payMode) => { this.payMode = payMode }}  value={"10"} referenceName={SystemRefListName.ExpressPayMode} />
             </Col>
-            <Col span={6}>
+            <Col span={2} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:
+                </span>
+            </Col>
+            <Col span={4}>
                 <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
             </Col>
         </Row>
@@ -80,6 +99,11 @@ export default class RecordExpressNumberTable extends EntityListTable {
         }
         let serviceMode = this.serviceMode.state.value;
         let payMode = this.payMode.state.value;
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+        
         let object = {
             datas : datas,
             serviceMode: serviceMode,
@@ -104,6 +128,11 @@ export default class RecordExpressNumberTable extends EntityListTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+        
         let expressNumber = this.expressNumber.state.value;
         let object = {
             datas : datas,
@@ -128,6 +157,11 @@ export default class RecordExpressNumberTable extends EntityListTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+        
         let object = {
             datas : datas,
             success: function(responseBody) {
@@ -143,20 +177,53 @@ export default class RecordExpressNumberTable extends EntityListTable {
         RecordExpressNumberRequest.sendCancelRecordExpress(object);
     }
 
+    printObliqueLabel = () => {
+        let datas = this.state.data;
+        let self = this;
+        if (datas.length === 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+        
+        if (datas && datas.length > 0) {
+            let requestObject = {
+                datas : datas,    
+                success: function(responseBody) {
+                    let url = PrintServiceUrl.ObliqueBox;
+                    responseBody.parameterMapList.forEach((parameter) => {
+                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
+                    });
+                    MessageUtils.showOperationSuccess();
+                }
+            }
+            RecordExpressNumberRequest.sendQueryPrintParameterRequest(requestObject);
+        }
+    }
+
     createRecordExpressButton = () => {
-        return <Button key="recordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordAutoExpress}>
+        return <Button key="recordExpress" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.recordAutoExpress}>
                         {I18NUtils.getClientMessage(i18NCode.BtnRecordExpress)}
                     </Button>
     }
 
+    createPrintObliqueLabelButton = () => {
+        return <Button key="print" type="primary"  style={styles.tableButton} loading={this.state.loading} icon="barcode" onClick={() => this.printObliqueLabel()}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnPrintObliqueLabel)}
+                    </Button>;
+    }
+
     createManualRecordExpressButton = () => {
-        return <Button key="manaulRecordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordManualExpress}>
+        return <Button key="manaulRecordExpress" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.recordManualExpress}>
                         {I18NUtils.getClientMessage(i18NCode.BtnManualRecordExpress)}
                     </Button>
     }
 
     createCancelExpressButton = () => {
-        return <Button key="cancelRecordExpress" type="primary" style={styles.tableButton} icon="delete" onClick={this.cancelExpress}>
+        return <Button key="cancelRecordExpress" type="primary" style={styles.tableButton} loading={this.state.loading} icon="delete" onClick={this.cancelExpress}>
                         {I18NUtils.getClientMessage(i18NCode.BtnCancelExpress)}
                     </Button>
     }
