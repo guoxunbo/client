@@ -10,6 +10,7 @@ import RefListField from '../../Field/RefListField';
 import { SystemRefListName } from '../../../api/const/ConstDefine';
 import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
+import PrintUtils from '../../../api/utils/PrintUtils';
 
 
 export default class RecordExpressNumberTable extends EntityListTable {
@@ -56,7 +57,7 @@ export default class RecordExpressNumberTable extends EntityListTable {
         buttons.push(this.createRecordExpressButton());
         buttons.push(this.createManualRecordExpressButton());
         buttons.push(this.createCancelExpressButton());
-        // buttons.push(this.createPrintObliqueLabelButton());
+        buttons.push(this.createPrintObliqueLabelButton());
 
         return buttons;
     }
@@ -180,8 +181,13 @@ export default class RecordExpressNumberTable extends EntityListTable {
     printObliqueLabel = () => {
         let datas = this.state.data;
         let self = this;
+        let expressNumber = this.expressNumber.state.value;
         if (datas.length === 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        if(expressNumber == "" || expressNumber == null || expressNumber == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
             return;
         }
         self.setState({
@@ -192,6 +198,7 @@ export default class RecordExpressNumberTable extends EntityListTable {
         if (datas && datas.length > 0) {
             let requestObject = {
                 datas : datas,    
+                expressNumber: expressNumber,
                 success: function(responseBody) {
                     let url = PrintServiceUrl.ObliqueBox;
                     responseBody.parameterMapList.forEach((parameter) => {

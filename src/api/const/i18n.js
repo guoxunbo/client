@@ -129,6 +129,7 @@ const i18NCode = {
     BtnSyncProductModel: "SyncProductModel",
     ServiceType: "ServiceType",
     PayType: "PayType",
+    ExpressNumberCannotEmpty: "ExpressNumberCannotEmpty",
 }
 
 const i18Messages = {
@@ -755,6 +756,11 @@ const i18Messages = {
     SyncProductModel: {
         Chinese: "同步产品型号转换",
         English: "Pay Type",
+        Res: ""  
+    },
+    ExpressNumberCannotEmpty: {
+        Chinese: "快递单号不能为空！",
+        English: "ExpressNumber Cannot Empty!",
         Res: ""  
     }
 }

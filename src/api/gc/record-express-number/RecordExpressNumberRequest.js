@@ -3,6 +3,7 @@ import RecordExpressNumberRequestBody from './RecordExpressNumberRequestBody';
 import {UrlConstant} from '../../const/ConstDefine';
 import MessageUtils from '../../utils/MessageUtils';
 import Request from '../../Request';
+import { object } from 'prop-types';
 
 export default class RecordExpressNumberRequest {
 
@@ -41,6 +42,17 @@ export default class RecordExpressNumberRequest {
     
     static sendCancelRecordExpress = (object) => {
         let requestBody = RecordExpressNumberRequestBody.buildCancelRecordExpress(object.datas);
+        let requestHeader = new RecordExpressNumberRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+    
+    static sendQueryPrintParameterRequest = (object) => {
+        let requestBody = RecordExpressNumberRequestBody.buildPrintObliqueLabel(object.datas, object.expressNumber);
         let requestHeader = new RecordExpressNumberRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
         let requestObject = {
