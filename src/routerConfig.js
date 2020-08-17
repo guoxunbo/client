@@ -62,6 +62,7 @@ import GcCogEcretiveMaterialDeleteProperties from './pages/Properties/components
 import GcOldRecordExpressNumberProperties from './pages/Properties/components/GcOldRecordExpressNumberProperties';
 import GcCOMWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcCOMWaferIssueOrderProperties';
 import GCProductModelConversionProperties from './pages/Properties/components/GCProductModelConversionProperties';
+import ProductProperties from './pages/Properties/components/ProductProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -169,6 +170,11 @@ const routerConfig = [
     path: buildPath('MMS/RawMaterialManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialProperties,
+  },
+  {
+    path: buildPath('MMS/ProductManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ProductProperties,
   },
   {
     path: buildPath('MMS/MaterialLotManager'),
