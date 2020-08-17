@@ -26,30 +26,6 @@ export default class GCPrintWltCpLotProperties extends EntityScanProperties{
         });
     }
 
-    queryData = () => {
-      const self = this;
-      let {rowKey,tableData} = this.state;
-      let queryFields = this.form.state.queryFields;
-      let lotId = this.form.props.form.getFieldValue(queryFields[0].name);
-      let requestObject = {
-        lotId: lotId,
-        success: function(responseBody) {
-          debugger;
-          let queryDatas = responseBody.mlotUnitList;
-          if (queryDatas && queryDatas.length > 0) {
-            self.setState({
-              tableData: queryDatas,
-              loading: false
-            });
-            self.form.resetFormFileds();
-          } else {
-            self.showDataNotFound();
-          }
-        }
-      }
-      GetPrintWltCpRequest.sendQueryRequest(requestObject);
-    }
-
     buildTable = () => {
         return <GcPrintWltCpLotTable pagination={false} rowKey={this.state.rowKey} 
                                         selectedRowKeys={this.state.selectedRowKeys} 

@@ -1,13 +1,20 @@
+const ActionType = {
+    QueryPrintParameter: "QueryPrintParameter"
+}
+
 export default class GetPrintWltCpRequestBody {
 
-    lotId;
+    actionType;
+    materialLot;
 
-    constructor(lotId){
-        this.lotId = lotId;
+    constructor(actionType, materialLot){
+        this.actionType = actionType;
+        this.materialLot = materialLot;
     }
 
-    static buildQuery(lotId) {
-        return new GetPrintWltCpRequestBody(lotId);
+    static buildQueryPrintParameter(materialLot) {
+        debugger;
+        return new GetPrintWltCpRequestBody(ActionType.QueryPrintParameter, materialLot);
     }
 
 }
