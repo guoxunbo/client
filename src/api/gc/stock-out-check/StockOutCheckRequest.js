@@ -9,8 +9,8 @@ import TableManagerRequestHeader from '../../table-manager/TableManagerRequestHe
 export default class StockOutCheckRequest {
 
     static sendJudgeMaterialLotRequest = (object) => {
-        const {materialLots, checkList} = object;
-        let requestBody = StockOutCheckRequestBody.buildJudge(materialLots, checkList);
+        const {materialLots, checkList, expressNumber} = object;
+        let requestBody = StockOutCheckRequestBody.buildJudge(materialLots, checkList, expressNumber);
         let requestHeader = new StockOutCheckRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutCheckUrl);
         let requestObject = {

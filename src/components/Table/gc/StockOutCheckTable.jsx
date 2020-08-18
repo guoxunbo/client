@@ -1,5 +1,5 @@
 
-import { Button, Form } from 'antd';
+import { Button, Input, Form } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
@@ -22,14 +22,22 @@ export default class StockOutCheckTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createExpressNumberInput());
         buttons.push(this.createJudgeOkButton());
         buttons.push(this.createJudgeNgButton());
         return buttons;
     }
 
+    
+    createExpressNumberInput = () => {
+        return <div style={styles.input}>
+            <Input ref={(input) => { this.input = input }} key="expressNumber" placeholder="快递单号" />
+        </div>
+    }
+
     createForm = () => {
         const WrappedAdvancedStockCheckOutForm = Form.create()(StockCheckOutForm);
-        return  <WrappedAdvancedStockCheckOutForm checkItemList={this.props.checkItemList} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
+        return  <WrappedAdvancedStockCheckOutForm checkItemList={this.props.checkItemList} expressNumber={this.state.expressNumber} ref={this.formRef} object={this.state.data} visible={this.state.formVisible} 
                                             table={this.state.formTable} onOk={this.judgeSuccess} onCancel={this.handleCancel} />
     }
 
@@ -37,14 +45,28 @@ export default class StockOutCheckTable extends EntityScanViewTable {
         this.setState({formVisible : false});
         if (this.props.resetData) {
             this.props.resetData();
+            this.setState({
+                expressNumber: "",
+            });
         }
         MessageUtils.showOperationSuccess();
     }
 
     judgeOk = () => {
+        let datas = this.state.data;
         let self = this;
+        let expressNumber = this.input.state.value;
+        if (datas.length === 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        if(expressNumber == "" || expressNumber == null || expressNumber == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
+            return;
+        }
         let object = {
             materialLots : this.state.data,
+            expressNumber: expressNumber,
             success: function(responseBody) {
                 self.judgeSuccess();
             }
@@ -55,6 +77,7 @@ export default class StockOutCheckTable extends EntityScanViewTable {
     judgeNg = () => {
         const {data} = this.state;
         let self = this;
+        let expressNumber = this.input.state.value;
         if (!data || data.length == 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
@@ -64,7 +87,8 @@ export default class StockOutCheckTable extends EntityScanViewTable {
             success: function(responseBody) {
                 self.setState({
                     formTable: responseBody.table,
-                    formVisible : true
+                    formVisible : true,
+                    expressNumber: expressNumber
                 });
             }
         }
@@ -85,6 +109,9 @@ export default class StockOutCheckTable extends EntityScanViewTable {
 }
 
 const styles = {
+    input: {
+        width: 300
+    },
     tableButton: {
         marginLeft:'20px'
     }

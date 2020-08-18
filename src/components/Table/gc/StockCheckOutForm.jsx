@@ -9,6 +9,7 @@ export default class StockCheckOutForm extends CheckItemForm {
         let object = {
             materialLots : this.props.object,
             checkList: this.editorColumnTable.state.dataSource,
+            expressNumber: this.props.expressNumber,
             success: function(responseBody) {
                 if (self.props.onOk) {
                     self.props.onOk();

@@ -129,12 +129,16 @@ export default class RecordExpressNumberTable extends EntityListTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        let expressNumber = this.expressNumber.state.value;
+        if (datas.length === 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
+            return;
+        }
         self.setState({
             loading: true
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
         
-        let expressNumber = this.expressNumber.state.value;
         let object = {
             datas : datas,
             expressNumber: expressNumber,

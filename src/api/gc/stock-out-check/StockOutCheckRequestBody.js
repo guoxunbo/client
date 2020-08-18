@@ -9,11 +9,13 @@ export default class StockOutCheckRequestBody {
 
     actionType;
     checkList;
+    expressNumber;
 
-    constructor(actionType, materialLots, checkList){
+    constructor(actionType, materialLots, checkList, expressNumber){
         this.actionType = actionType;
         this.materialLots = materialLots;
         this.checkList = checkList;
+        this.expressNumber = expressNumber;
     }
 
     static buildGetCheckData() {
@@ -29,8 +31,8 @@ export default class StockOutCheckRequestBody {
      * @param {*} materialLots 
      * @param {*} checkList 
      */
-    static buildJudge(materialLots, checkList) {
-        return new StockOutCheckRequestBody(ActionType.Judge, materialLots, checkList);
+    static buildJudge(materialLots, checkList, expressNumber) {
+        return new StockOutCheckRequestBody(ActionType.Judge, materialLots, checkList, expressNumber);
     }
 
 }   
