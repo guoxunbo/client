@@ -78,6 +78,7 @@ const UrlConstant = {
     GCReTestUrl: ModuleUrlConstant.GC + "reTest",
     GCWaferManagerUrl: ModuleUrlConstant.GC + "waferManage",
     GCStockOutUrl: ModuleUrlConstant.GC + "stockOut",
+    GCWltStockOutUrl: ModuleUrlConstant.GC + "wltStockOut",
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPrintBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
     GCGetPrintVboxParameterUrl: ModuleUrlConstant.GC + "getPrintVboxParameter",

@@ -63,6 +63,7 @@ import GcOldRecordExpressNumberProperties from './pages/Properties/components/Gc
 import GcCOMWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcCOMWaferIssueOrderProperties';
 import GCProductModelConversionProperties from './pages/Properties/components/GCProductModelConversionProperties';
 import ProductProperties from './pages/Properties/components/ProductProperties';
+import GCWltStockOutOrderProperties from './pages/Properties/components/GCWltStockOutOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -262,6 +263,12 @@ const routerConfig = [
     path: buildPath('WLT/WLTStockOutCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltStockOutCheckProperties,
+  },
+  //WLT/CP出货
+  {
+    path: buildPath('WLT/WltStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWltStockOutOrderProperties,
   },
   //GC产品型号二级代码设定
   {
