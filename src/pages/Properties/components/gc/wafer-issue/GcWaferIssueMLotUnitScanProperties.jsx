@@ -7,6 +7,7 @@ import I18NUtils from "../../../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../../../api/const/i18n";
 import WaferManagerRequest from "../../../../../api/gc/wafer-manager-manager/WaferManagerRequest";
 import GcWaitForIssueMLotUnitProperties from "./GcWaitForIssueMLotUnitProperties";
+import { Application } from "../../../../../api/Application";
 
 export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProperties{
 
@@ -25,6 +26,58 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
     }
 
     /**
+     * 发送单据验证请求
+     */
+    sendWaferIssueValiationDocRequest(queryDatas, orders) {
+      let self = this;
+      let {rowKey,tableData} = this.state;
+      let data = queryDatas[0];
+      let materialLots = [];
+      let materialLot = new MaterialLot();
+      materialLot.setMaterialLotId(data["materialLotId"]);
+      materialLots.push(materialLot);
+      
+      let validationRequestObject = {
+        documentLines: orders,
+        materialLots: materialLots,
+        success: function(responseBody) {
+          let errorData = [];
+          let trueData = [];
+          data.workOrderId = responseBody.workOrderId;
+          tableData.forEach(data => {
+            if(data.errorFlag){
+              errorData.push(data);
+            } else {
+              trueData.push(data);
+            }
+          });
+          tableData = [];
+          queryDatas.forEach(data => {
+            if (waitForIssueMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+              data.errorFlag = true;
+            }
+            if(data.errorFlag){
+              errorData.unshift(data);
+            } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+              trueData.unshift(data);
+            }
+          });
+          errorData.forEach(data => {
+            tableData.push(data);
+          });
+          trueData.forEach(data => {
+            tableData.push(data);
+          });
+          self.setState({
+            tableData: tableData,
+            loading: false
+          });
+          self.form.resetFormFileds();
+        }
+      }
+      WaferManagerRequest.sendValidationWaferIssueRequest(validationRequestObject);
+    }
+    /**
      * 扫描的箱号如果不存在要异常显示。
      * 扫描到的晶圆如果不存在在下面的待发料晶圆，也要异常显示
      */
@@ -32,67 +85,50 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
         const self = this;
         let {rowKey,tableData} = this.state;
         let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
-
         let orders = this.props.orderTable.state.data;
-        if (orders.length == 0) {
-          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-          self.setState({ 
-            tableData: tableData,
-            loading: false
-          });
-          return;
+        if (Application.waferIssueOrderWithDoc) {
+          if (orders.length == 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            self.setState({ 
+              tableData: tableData,
+              loading: false
+            });
+            return;
+          }
         }
         let requestObject = {
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
           success: function(responseBody) {
             let queryDatas = responseBody.dataList;
-            let data = undefined;
             if (queryDatas && queryDatas.length > 0) {
-              data = queryDatas[0];
-              let materialLots = [];
-              let materialLot = new MaterialLot();
-              materialLot.setMaterialLotId(data["materialLotId"]);
-              materialLots.push(materialLot);
-              let validationRequestObject = {
-                documentLines: orders,
-                materialLots: materialLots,
-                success: function(responseBody) {
-                  data.workOrderId = responseBody.workOrderId;
-                  let errorData = [];
-                  let trueData = [];
-                  tableData.forEach(data => {
-                    if(data.errorFlag){
-                      errorData.push(data);
-                    } else {
-                      trueData.push(data);
-                    }
-                  });
-                  tableData = [];
-                  queryDatas.forEach(data => {
-                    if (waitForIssueMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                      data.errorFlag = true;
-                    }
-                    if(data.errorFlag){
-                      errorData.unshift(data);
-                    } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                      trueData.unshift(data);
-                    }
-                  });
-                  errorData.forEach(data => {
-                    tableData.push(data);
-                  });
-                  trueData.forEach(data => {
-                    tableData.push(data);
-                  });
-                  self.setState({
-                    tableData: tableData,
-                    loading: false
-                  });
-                  self.form.resetFormFileds();
-                }
+              if (Application.waferIssueOrderWithDoc) {
+                self.sendWaferIssueValiationDocRequest(queryDatas, orders)
+              } else {
+                let errorData = [];
+                let trueData = [];
+                queryDatas.forEach(data => {
+                  if (waitForIssueMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                    data.errorFlag = true;
+                  }
+                  if(data.errorFlag){
+                    errorData.unshift(data);
+                  } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                    trueData.unshift(data);
+                  }
+                });
+                errorData.forEach(data => {
+                  tableData.push(data);
+                });
+                trueData.forEach(data => {
+                  tableData.push(data);
+                });
+                self.setState({
+                  tableData: tableData,
+                  loading: false
+                });
+                self.form.resetFormFileds();
               }
-              WaferManagerRequest.sendValidationWaferIssueRequest(validationRequestObject);
             } else {
               data = new MaterialLot();
               let lotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
