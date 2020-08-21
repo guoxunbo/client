@@ -8,6 +8,7 @@ import MessageUtils from '../../../api/utils/MessageUtils';
 import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
 import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferManagerRequest';
+import { Application } from '../../../api/Application';
 
 /**
  * 晶圆发料
@@ -32,7 +33,7 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createReceive());
+        buttons.push(this.createWaferIssue());
         return buttons;
     }
 
@@ -108,11 +109,15 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
             return;
         }
         let orderTable = this.props.orderTable;
-        let orders = orderTable.state.data;
-        if (orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-            return;
+        let orders = [];
+        if (Application.waferIssueOrderWithDoc) {
+            orders = orderTable.state.data;
+            if (orders.length === 0) {
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+                return;
+            }
         }
+        
         let materialLots = this.state.data;
         if (materialLots.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
@@ -140,7 +145,7 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
      /**
      * 发料
      */
-    createReceive = () => {
+    createWaferIssue = () => {
         return <Button key="issue" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.issue}>
                         发料
                     </Button>
