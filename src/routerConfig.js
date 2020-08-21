@@ -380,6 +380,11 @@ const routerConfig = [
     component: GcCheckProperties,
   },
   {
+    path: buildPath('WMS/GCOutSourcePoManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  {
     path: buildPath('WMS/MaterialLotWeigh'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcMaterialLotWeighProperties,
