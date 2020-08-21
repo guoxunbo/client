@@ -64,6 +64,7 @@ import GcCOMWaferIssueOrderProperties from './pages/Properties/components/gc/waf
 import GCProductModelConversionProperties from './pages/Properties/components/GCProductModelConversionProperties';
 import ProductProperties from './pages/Properties/components/ProductProperties';
 import GCWltStockOutOrderProperties from './pages/Properties/components/GCWltStockOutOrderProperties';
+import SpareMaterialProperties from './pages/Properties/components/SpareMaterialProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -171,6 +172,11 @@ const routerConfig = [
     path: buildPath('MMS/RawMaterialManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialProperties,
+  },
+  {
+    path: buildPath('MMS/SpareMaterialManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: SpareMaterialProperties,
   },
   {
     path: buildPath('MMS/ProductManager'),
