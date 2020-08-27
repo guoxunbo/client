@@ -66,6 +66,7 @@ import ProductProperties from './pages/Properties/components/ProductProperties';
 import GCWltStockOutOrderProperties from './pages/Properties/components/GCWltStockOutOrderProperties';
 import SpareMaterialProperties from './pages/Properties/components/SpareMaterialProperties';
 import GCWaferStockOutTaggingProperties from './pages/Properties/components/GCWaferStockOutTaggingProperties';
+import GCWaferUnStockOutTaggingProperties from './pages/Properties/components/GCWaferUnStockOutTaggingProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -282,6 +283,12 @@ const routerConfig = [
     path: buildPath('Wafer/WaferStockOutTagManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWaferStockOutTaggingProperties,
+  },
+  //取消晶圆出货标注
+  {
+    path: buildPath('Wafer/WaferUnStockOutTagManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWaferUnStockOutTaggingProperties,
   },
   //GC产品型号二级代码设定
   {

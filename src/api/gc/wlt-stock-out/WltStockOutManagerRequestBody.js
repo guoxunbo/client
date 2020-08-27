@@ -4,7 +4,8 @@ const actionType = {
     WltStockOut: "WltStockOut",
     validationWltMlot: "validationWltMlot",
     queryTagMlotUnit: "queryTagMlotUnit",
-    StockOutTag: "StockOutTag"
+    StockOutTag: "StockOutTag",
+    UnStockOutTag: "UnStockOutTag"
 }
 
 export default class WltStockOutManagerRequestBody {
@@ -68,6 +69,16 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WltStockOutManagerRequestBody(actionType.StockOutTag, undefined, materialLotActions, undefined, stockTagNote, customerName, stockOutType, poId);
+    }
+
+    static buildUnstockOutTagging(materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new WltStockOutManagerRequestBody(actionType.UnStockOutTag, undefined, materialLotActions);
     }
 
 }

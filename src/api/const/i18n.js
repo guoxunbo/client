@@ -62,6 +62,7 @@ const i18NCode = {
     BtnReset: "Reset",
     BtnBind: "Bind",
     BtnTagging: "Tagging",
+    BtnUnTagging: "UnTagging",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -797,6 +798,11 @@ const i18Messages = {
     PoIdCannotEmpty: {
         Chinese: "请选择PO！",
         English: "PoId Cannot Empty",
+        Res: ""  
+    },
+    UnTagging: {
+        Chinese: "取消标注",
+        English: "UnTagging",
         Res: ""  
     }
 }

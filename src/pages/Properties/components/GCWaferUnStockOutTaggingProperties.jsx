@@ -1,12 +1,11 @@
-import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import WaferStockOutTaggingTable from "../../../components/Table/WaferStockOutTaggingTable";
+import WaferUnStockOutTaggingTable from "../../../components/Table/WaferUnStockOutTaggingTable";
+import EntityProperties from "./entityProperties/EntityProperties";
 
-export default class GCWaferStockOutTaggingProperties extends EntityScanProperties{
+export default class GCWaferUnStockOutTaggingProperties extends EntityProperties{
 
-    static displayName = 'GCWaferStockOutTaggingProperties';
-      
-
+    static displayName = 'GCWaferUnStockOutTaggingProperties';
+    
     queryData = (whereClause) => {
       const self = this;
       let requestObject = {
@@ -23,7 +22,7 @@ export default class GCWaferStockOutTaggingProperties extends EntityScanProperti
     }
 
     buildTable = () => {
-        return <WaferStockOutTaggingTable pagination={false} 
+        return <WaferUnStockOutTaggingTable pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
