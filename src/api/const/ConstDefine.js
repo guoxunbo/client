@@ -104,11 +104,14 @@ const UrlConstant = {
 const SystemRefListName = {
     Language: "Language",
     ExpressPayMode: "ExpressPayMode",
-    ExpressServiceMode: "ExpressServiceMode"
+    ExpressServiceMode: "ExpressServiceMode",
+    StockOutType: "StockOutType",
 };
 
 const RefTableName = {
-    NBOrg: "NBOrg"
+    NBOrg: "NBOrg",
+    CustomerNameList: "CustomerNameList",
+    POIdList: "POIdList",
 };
 
 /**

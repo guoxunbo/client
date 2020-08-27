@@ -31,6 +31,7 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
     sendWaferIssueValiationDocRequest(queryDatas, orders) {
       let self = this;
       let {rowKey,tableData} = this.state;
+      let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
       let data = queryDatas[0];
       let materialLots = [];
       let materialLot = new MaterialLot();

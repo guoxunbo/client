@@ -61,6 +61,7 @@ const i18NCode = {
     BtnSearch: "Search",
     BtnReset: "Reset",
     BtnBind: "Bind",
+    BtnTagging: "Tagging",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -130,6 +131,11 @@ const i18NCode = {
     ServiceType: "ServiceType",
     PayType: "PayType",
     ExpressNumberCannotEmpty: "ExpressNumberCannotEmpty",
+    CustomerName: "CustomerName",
+    StockOutType: "StockOutType",
+    CustomerNameCannotEmpty: "CustomerNameCannotEmpty",
+    StockOutTypeCannotEmpty: "StockOutTypeCannotEmpty",
+    PoIdCannotEmpty: "PoIdCannotEmpty",
 }
 
 const i18Messages = {
@@ -761,6 +767,36 @@ const i18Messages = {
     ExpressNumberCannotEmpty: {
         Chinese: "快递单号不能为空！",
         English: "ExpressNumber Cannot Empty!",
+        Res: ""  
+    },
+    Tagging: {
+        Chinese: "标注",
+        English: "Tagging",
+        Res: ""  
+    },
+    CustomerName: {
+        Chinese: "客户简称",
+        English: "CustomerName",
+        Res: ""  
+    },
+    StockOutType: {
+        Chinese: "出货形态",
+        English: "StockOutType",
+        Res: ""  
+    },
+    CustomerNameCannotEmpty: {
+        Chinese: "请选择客户简称!",
+        English: "CustomerName Cannot Empty",
+        Res: ""  
+    },
+    StockOutTypeCannotEmpty: {
+        Chinese: "请选择出货形态!",
+        English: "StockOutType Cannot Empty",
+        Res: ""  
+    },
+    PoIdCannotEmpty: {
+        Chinese: "请选择PO！",
+        English: "PoId Cannot Empty",
         Res: ""  
     }
 }
