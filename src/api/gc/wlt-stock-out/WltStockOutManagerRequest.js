@@ -3,7 +3,6 @@ import WltStockOutManagerRequestBody from './WltStockOutManagerRequestBody';
 import {UrlConstant} from '../../const/ConstDefine';
 import MessageUtils from '../../utils/MessageUtils';
 import Request from '../../Request';
-import { object } from 'prop-types';
 
 export default class WltStockOutManagerRequest {
 
