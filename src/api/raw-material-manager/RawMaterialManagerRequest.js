@@ -23,4 +23,18 @@ export default class RawMaterialManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendMergePartsRequest = (object) => {
+        if (object.parts.newFlag) {
+            object.parts[DefaultRowKey] = undefined;
+        }
+        let requestBody = RawMaterialManagerRequestBody.buildMergePartsMaterial(object.parts);
+        let requestHeader = new RawMaterialManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.RawMaterialManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

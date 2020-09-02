@@ -1,16 +1,15 @@
 import React from 'react';
 
 import './ListTable.scss';
-import MaterialForm from '../Form/MaterialForm';
 import EntityListTable from './EntityListTable';
 import { Form, Button, Table } from 'antd';
 import I18NUtils from '../../api/utils/I18NUtils';
 import { i18NCode } from '../../api/const/i18n';
 import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
 import TableObject from '../../api/dto/ui/Table';
-import ReceiveMaterialForm from '../Form/ReceiveMaterialForm';
 import MessageUtils from '../../api/utils/MessageUtils';
-import AsyncManagerRequest from '../../api/gc/async-manager/AsyncManagerRequest';
+import MaterialPartsForm from '../Form/MaterialPartsForm';
+import ReceivePartsForm from '../Form/ReceivePartsForm';
 
 const TableName = {
     ReceiveMLot: "MMReceiveMLot"
@@ -30,11 +29,11 @@ export default class SpareMaterialTable extends EntityListTable {
 
     createForm = () => {
         let childrens = [];
-        const WrappedAdvancedMaterialForm = Form.create()(MaterialForm);
-        childrens.push(<WrappedAdvancedMaterialForm key={MaterialForm.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+        const WrappedAdvancedMaterialForm = Form.create()(MaterialPartsForm);
+        childrens.push(<WrappedAdvancedMaterialForm key={MaterialPartsForm.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);
-        const WrappedAdvancedReceiveMaterialForm = Form.create()(ReceiveMaterialForm);
-        childrens.push(<WrappedAdvancedReceiveMaterialForm key={ReceiveMaterialForm.displayName} ref={this.formRef} object={this.state.receiveMaterialObject} visible={this.state.receiveMaterialFormVisible} 
+        const WrappedAdvancedReceiveMaterialForm = Form.create()(ReceivePartsForm);
+        childrens.push(<WrappedAdvancedReceiveMaterialForm key={ReceivePartsForm.displayName} ref={this.formRef} object={this.state.receiveMaterialObject} visible={this.state.receiveMaterialFormVisible} 
                                                             table={this.state.receiveMaterialTable} onOk={this.handleReceiveMaterialOk} onCancel={this.handleCancelReceiveMaterialLot} />);                                   
         return childrens;
 

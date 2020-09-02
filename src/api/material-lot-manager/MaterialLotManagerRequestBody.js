@@ -5,6 +5,7 @@ import PropertyUtils from "../utils/PropertyUtils";
 const ActionType = {
     Receive2Warehouse: "Receive2Warehouse",
     Consume: "Consume",
+    ReceiveParts2Warehouse: "ReceiveParts2Warehouse",
 }
 
 export default class MaterialLotManagerRequestBody {
@@ -32,6 +33,19 @@ export default class MaterialLotManagerRequestBody {
         // materialLotAction.setTargetWarehouseRrn(warehouseRrn);
         // materialLotAction.setTransQty(qty);
         return new MaterialLotManagerRequestBody(ActionType.Receive2Warehouse, materialLot, materialLotAction);
+    }
+
+    /**
+     * 接收备件并入库
+     * @param formObject 接收表单对象，页面显示的栏位如果需要保存到后台，都要在materialAction中体现
+     */
+    static buildReceiveParts(formObject) {
+        let materialLot = new MaterialLot();
+        materialLot.setMaterialName(formObject.materialName);
+        
+        let materialLotAction = new MaterialLotAction();
+        PropertyUtils.copyProperties(formObject, materialLotAction);
+        return new MaterialLotManagerRequestBody(ActionType.ReceiveParts2Warehouse, materialLot, materialLotAction);
     }
 
     /**
