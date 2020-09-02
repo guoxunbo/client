@@ -4,9 +4,9 @@ import { Button, Tag } from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
-import StockOutManagerRequest from '../../../api/gc/stock-out/StockOutManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EventUtils from '../../../api/utils/EventUtils';
+import WltStockOutManagerRequest from '../../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 
 /**
  * WLT/CP出货的物料批次表格
@@ -76,7 +76,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
                 MessageUtils.showOperationSuccess();
             }
         }
-        StockOutManagerRequest.sendStockOutRequest(requestObj);
+        WltStockOutManagerRequest.sendWltStockOutRequest(requestObj);
     }
 
     getErrorCount = () => {
