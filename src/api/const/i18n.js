@@ -107,7 +107,7 @@ const i18NCode = {
     ChooseImportTypePlease: "ChooseImportTypePlease",
     ChooseWarehouseIdPlease: "ChooseWarehouseIdPlease",
     DeleteNoteCannotEmpty: "DeleteNoteCannotEmpty",
-    CanNotDeleteIssueData: "CanNotDeleteIssueData",
+    CanNotDeleteInData: "CanNotDeleteInData",
     BoxQty: "BoxQty",
     PieceQty: "PieceQty",
     TotalQty: "TotalQty",
