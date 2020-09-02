@@ -25,9 +25,6 @@ export default class GcCogEcretiveMaterialDeleteTable extends EntityScanViewTabl
     createTagGroup = () => {
         let tags = [];
         tags.push(this.createDeleteRemarkInput());
-        //tags.push(this.createCogDetialNumber());
-        //tags.push(this.createStatistic());
-        //tags.push(this.createTotalNumber());
         return tags;
     }
 

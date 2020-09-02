@@ -53,8 +53,8 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
             return;
         }
         for(var i=0;i<data.length;i++){
-            if(data[i].state == 'Issue'){
-                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CanNotDeleteIssueData));
+            if(data[i].state == 'In'){
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CanNotDeleteInData));
                 return;
             }
         }

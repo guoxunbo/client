@@ -635,9 +635,9 @@ const i18Messages = {
         English: "Delete Note cannot empty",
         Res: ""
     },
-    CanNotDeleteIssueData: {
-        Chinese: "不能删除已接受的晶圆！",
-        English: "Can not delete issue wafer!",
+    CanNotDeleteInData: {
+        Chinese: "不能删除已接收的晶圆！",
+        English: "Can not delete wafer received!",
         Res: ""
     },
     BoxQty: {
