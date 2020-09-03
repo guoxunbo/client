@@ -59,6 +59,7 @@ const UrlConstant = {
 
     //MMS
     RawMaterialManagerUrl: ModuleUrlConstant.MMS + "rawMaterialManage",
+    PartsMaterialManagerUrl: ModuleUrlConstant.MMS + "partsMaterialManage",
     MaterialLotManagerUrl: ModuleUrlConstant.MMS + "materialLotManage",
     MaterialLotInvManagerUrl: ModuleUrlConstant.MMS + "materialLotInvManage",
     ValidationPackMaterialLotsUrl: ModuleUrlConstant.MMS + "validationPackMaterialLots",

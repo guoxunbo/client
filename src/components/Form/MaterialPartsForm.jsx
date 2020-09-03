@@ -1,5 +1,5 @@
 import EntityForm from './EntityForm';
-import RawMaterialManagerRequest from '../../api/raw-material-manager/RawMaterialManagerRequest';
+import PartsMaterialManagerRequest from '../../api/gc/parts-material-manager/PartsMaterialManagerRequest';
 
 export default class MaterialPartsForm extends EntityForm {
     static displayName = 'MaterialPartsForm';
@@ -14,7 +14,7 @@ export default class MaterialPartsForm extends EntityForm {
                 }
             }
         };
-        RawMaterialManagerRequest.sendMergePartsRequest(object);
+        PartsMaterialManagerRequest.sendMergePartsRequest(object);
     }
 }
 
