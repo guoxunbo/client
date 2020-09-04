@@ -60,10 +60,10 @@ export default class StockOutCheckTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        if(expressNumber == "" || expressNumber == null || expressNumber == undefined){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
-            return;
-        }
+        // if(expressNumber == "" || expressNumber == null || expressNumber == undefined){
+        //     Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
+        //     return;
+        // }
         let object = {
             materialLots : this.state.data,
             expressNumber: expressNumber,

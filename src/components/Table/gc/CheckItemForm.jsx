@@ -43,12 +43,13 @@ export default class CheckItemForm extends EntityForm {
             title: '没有选择NG项。是否确定?',
             content: "没有选择NG项，将会判定成为OK",
             onOk() {
-                if(expressNumber == null || expressNumber == "" || expressNumber == undefined){
-                    Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
-                    return;
-                } else{
-                    self.judge();
-                }
+                self.judge();
+                // if(expressNumber == null || expressNumber == "" || expressNumber == undefined){
+                //     Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
+                //     return;
+                // } else{
+                //     self.judge();
+                // }
             },
             onCancel() {},
           });
