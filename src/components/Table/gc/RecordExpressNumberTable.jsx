@@ -130,7 +130,7 @@ export default class RecordExpressNumberTable extends EntityListTable {
             return;
         }
         let expressNumber = this.expressNumber.state.value;
-        if (datas.length === 0){
+        if (expressNumber == "" || expressNumber == null || expressNumber == undefined){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
             return;
         }
