@@ -28,7 +28,6 @@ export default class IncomingImportRequestBody {
             let materialLotUnitList = materialLotList;
             materialLotUnitList.forEach(materialLotUnit =>{
                 materialLotUnit.reserved4 = materialLotUnit.reserved6;
-                materialLotUnit.reserved6 = "";
             });
             return new IncomingImportRequestBody(importType, undefined, materialLotUnitList, undefined, checkFourCodeFlag);
         }
