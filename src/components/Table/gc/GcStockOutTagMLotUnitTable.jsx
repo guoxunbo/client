@@ -7,6 +7,7 @@ import RefListField from '../../Field/RefListField';
 import { i18NCode } from '../../../api/const/i18n';
 import { SystemRefListName, RefTableName } from '../../../api/const/ConstDefine';
 import RefTableField from '../../Field/RefTableField';
+import "../../Form/QueryForm.scss";
 
 
 /**
@@ -96,23 +97,23 @@ export default class GcStockOutTagMLotUnitTable extends EntityListTable {
     }
 
     createExpressInput = () => {
-        return  <Row gutter={18}>
+        return  <Row gutter={24} className="ant-advanced-search-form">
             <Col span={3} >
-                <span style={{marginLeft:"10px", fontSize:"18px"}}>{I18NUtils.getClientMessage(i18NCode.CustomerName)}:</span>
+                <span>{I18NUtils.getClientMessage(i18NCode.CustomerName)}:</span>
             </Col>
-            <Col span={3}>
+            <Col span={5}>
                 <RefTableField ref={(customerName) => { this.customerName = customerName }} field = {{refTableName : RefTableName.CustomerNameList}} />
             </Col>
             <Col span={3} >
-                <span style={{marginLeft:"10px", fontSize:"18px"}}>{I18NUtils.getClientMessage(i18NCode.StockOutType)}:</span>
+                <span>{I18NUtils.getClientMessage(i18NCode.StockOutType)}:</span>
             </Col>
-            <Col span={3}>
+            <Col span={5}>
                 <RefListField ref={(stockOutType) => { this.stockOutType = stockOutType }} referenceName={SystemRefListName.StockOutType} />
             </Col>
-            <Col span={3} >
-                <span style={{marginLeft:"10px", fontSize:"18px"}}>PO:</span>
+            <Col span={2} >
+                <span>PO:</span>
             </Col>
-            <Col span={3}>
+            <Col span={6}>
                 <RefTableField ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.POIdList}} />
             </Col>
         </Row>
