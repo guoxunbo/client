@@ -1,4 +1,4 @@
-import {Input, Row, Col, Tag } from 'antd';
+import {Input, Row, Col, Tag, Form } from 'antd';
 import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
 import WltStockOutManagerRequest from '../../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 import EntityListTable from '../EntityListTable';
@@ -8,6 +8,7 @@ import { i18NCode } from '../../../api/const/i18n';
 import { SystemRefListName, RefTableName } from '../../../api/const/ConstDefine';
 import RefTableField from '../../Field/RefTableField';
 import "../../Form/QueryForm.scss";
+import FormItem from 'antd/lib/form/FormItem';
 
 
 /**
@@ -97,26 +98,30 @@ export default class GcStockOutTagMLotUnitTable extends EntityListTable {
     }
 
     createExpressInput = () => {
-        return  <Row gutter={24} className="ant-advanced-search-form">
-            <Col span={3} >
-                <span>{I18NUtils.getClientMessage(i18NCode.CustomerName)}:</span>
-            </Col>
-            <Col span={5}>
-                <RefTableField ref={(customerName) => { this.customerName = customerName }} field = {{refTableName : RefTableName.CustomerNameList}} />
-            </Col>
-            <Col span={3} >
-                <span>{I18NUtils.getClientMessage(i18NCode.StockOutType)}:</span>
-            </Col>
-            <Col span={5}>
-                <RefListField ref={(stockOutType) => { this.stockOutType = stockOutType }} referenceName={SystemRefListName.StockOutType} />
-            </Col>
-            <Col span={2} >
-                <span>PO:</span>
-            </Col>
-            <Col span={6}>
-                <RefTableField ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.POIdList}} />
-            </Col>
-        </Row>
+        return  <FormItem>
+                    <Row gutter={24}>
+                        <Col span={4} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.CustomerName)}:</span>
+                        </Col>
+                        <Col span={8}>
+                            <RefTableField ref={(customerName) => { this.customerName = customerName }} field = {{refTableName : RefTableName.CustomerNameList}} />
+                        </Col>
+                        <Col span={4} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.StockOutType)}:</span>
+                        </Col>
+                        <Col span={8}>
+                            <RefListField ref={(stockOutType) => { this.stockOutType = stockOutType }} referenceName={SystemRefListName.StockOutType} />
+                        </Col>
+                    </Row>
+                    <Row gutter={12}>
+                        <Col span={4} >
+                            <span>PO：</span>
+                        </Col>
+                        <Col span={8}>
+                            <RefTableField ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.POIdList}} />
+                        </Col>
+                    </Row>
+                </FormItem>
     }
 
     createTotalNumber = () => {
