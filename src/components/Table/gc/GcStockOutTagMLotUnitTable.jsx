@@ -104,7 +104,8 @@ export default class GcStockOutTagMLotUnitTable extends EntityListTable {
                             <span>{I18NUtils.getClientMessage(i18NCode.CustomerName)}:</span>
                         </Col>
                         <Col span={8}>
-                            <RefTableField ref={(customerName) => { this.customerName = customerName }} field = {{refTableName : RefTableName.CustomerNameList}} />
+                            <Input ref={(input) => { this.input = input }} key="customerName" disabled={true}  value={this.props.vender} placeholder="客户简称" />
+                            {/* <RefTableField ref={(customerName) => { this.customerName = customerName }} field = {{refTableName : RefTableName.CustomerNameList}} /> */}
                         </Col>
                         <Col span={4} >
                             <span>{I18NUtils.getClientMessage(i18NCode.StockOutType)}:</span>

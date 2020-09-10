@@ -5,6 +5,7 @@ import { i18NCode } from '../../api/const/i18n';
 import { Tag } from 'antd';
 import EntityListCheckTable from './EntityListCheckTable';
 import StockOutTagMLotForm from './gc/StockOutTagMLotForm';
+import WltStockOutManagerRequest from '../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 
 export default class WaferStockOutTaggingTable extends EntityListCheckTable {
 
@@ -55,23 +56,42 @@ export default class WaferStockOutTaggingTable extends EntityListCheckTable {
     }
 
     createForm = () => {
-        return  <StockOutTagMLotForm visible={this.state.formVisible} stockTagNote={this.state.stockTagNote} materialLots={this.state.materialLots} onOk={this.handleCancel} onCancel={this.handleCancel} resetData={this.props.resetData}/>
+        return  <StockOutTagMLotForm visible={this.state.formVisible} 
+                                     stockTagNote={this.state.stockTagNote} 
+                                     materialLots={this.state.materialLots}
+                                     vender={this.state.vender} 
+                                     onOk={this.handleCancel} 
+                                     onCancel={this.handleCancel}
+                                     onSearch={this.props.onSearch} 
+                                     resetData={this.props.resetData}/>
     }
 
     stockOutTag = () => {
-        debugger;
         const {data} = this.state;
         let materialLots = this.getSelectedRows();
         if (materialLots.length === 0 ) {
             return;
         }
-        let stockTagNote = this.input.state.value;
-        this.setState({
-            formVisible : true,
-            materialLots: materialLots,
-            stockTagNote: stockTagNote
-        }); 
+        this.validationMaterialLot(materialLots);
     }
+
+    validationMaterialLot = (materialLots) => {
+        const self = this;
+        let stockTagNote = this.input.state.value;
+        let vender = materialLots[0].reserved22;
+        let requestObject = {
+          materialLots: materialLots,
+          success: function(responseBody) {
+            self.setState({
+                formVisible : true,
+                materialLots: materialLots,
+                stockTagNote: stockTagNote,
+                vender: vender
+            }); 
+          }
+        }
+        WltStockOutManagerRequest.sendValidateMlotVenderRequest(requestObject);
+      }  
 
     createPackageButton = () => {
         return <Button key="stockOutTag" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.stockOutTag}>

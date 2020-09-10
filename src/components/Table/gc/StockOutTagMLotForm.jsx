@@ -22,7 +22,7 @@ export default class StockOutTagMLotForm extends EntityForm {
 
     handleOk= () => {
         let self = this;
-        let customerName = this.materialLotUnitTable.customerName.state.value;
+        let customerName = this.materialLotUnitTable.input.state.value;
         let stockOutType = this.materialLotUnitTable.stockOutType.state.value;
         let poId = this.materialLotUnitTable.poId.state.value;
         if(customerName == "" || customerName == null ||  customerName == undefined){
@@ -33,10 +33,10 @@ export default class StockOutTagMLotForm extends EntityForm {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.StockOutTypeCannotEmpty));
             return;
         }
-        if(poId == "" || poId == null ||  poId == undefined){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.PoIdCannotEmpty));
-            return;
-        }
+        // if(poId == "" || poId == null ||  poId == undefined){
+        //     Notification.showNotice(I18NUtils.getClientMessage(i18NCode.PoIdCannotEmpty));
+        //     return;
+        // }
         let materialLots = this.props.materialLots;
         let stockTagNote = this.props.stockTagNote;
         let requestObj = {
@@ -49,7 +49,14 @@ export default class StockOutTagMLotForm extends EntityForm {
                 debugger;
                 MessageUtils.showOperationSuccess();
                 self.props.onOk();
+                self.props.onSearch();
                 self.props.resetData();
+                self.materialLotUnitTable.stockOutType.setState({
+                    value: ""
+                });
+                self.materialLotUnitTable.poId.setState({
+                    value: ""
+                });
             }
         }
         WltStockOutManagerRequest.sendStockOutTagRequest(requestObj);
@@ -58,6 +65,7 @@ export default class StockOutTagMLotForm extends EntityForm {
     buildForm = () => {
         return (<GcStockOutTagMLotUnitTable ref={(materialLotUnitTable) => { this.materialLotUnitTable = materialLotUnitTable }} rowKey={DefaultRowKey} 
                                         materialLots={this.props.materialLots}
+                                        vender={this.props.vender}
                                         visible={this.props.visible} />);
     }
 }

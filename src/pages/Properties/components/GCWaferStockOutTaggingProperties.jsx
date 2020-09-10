@@ -29,7 +29,8 @@ export default class GCWaferStockOutTaggingProperties extends EntityScanProperti
                                     selectedRows={this.state.selectedRows} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
-                                    loading={this.state.loading} 
+                                    loading={this.state.loading}
+                                    onSearch={this.queryData.bind(this)} 
                                     resetData={this.resetData.bind(this)}/>
     }
 
