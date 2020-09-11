@@ -213,6 +213,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         }
         if(warehouseId == "ZJ_STOCK"){
             warehouseId = 8143;
+        } else if(warehouseId == "HK_STOCK"){
+            warehouseId = 8150;
         }
         if(warehouseId == 8142){
             data.forEach(materialLot =>{

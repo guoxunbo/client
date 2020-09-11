@@ -107,6 +107,7 @@ const SystemRefListName = {
     ExpressPayMode: "ExpressPayMode",
     ExpressServiceMode: "ExpressServiceMode",
     StockOutType: "StockOutType",
+    HKPrintType: "HKPrintType"
 };
 
 const RefTableName = {

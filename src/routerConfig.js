@@ -68,6 +68,7 @@ import SpareMaterialProperties from './pages/Properties/components/SpareMaterial
 import GCWaferStockOutTaggingProperties from './pages/Properties/components/GCWaferStockOutTaggingProperties';
 import GCWaferUnStockOutTaggingProperties from './pages/Properties/components/GCWaferUnStockOutTaggingProperties';
 import GCMaterialLotListHoldProperties from './pages/Properties/components/GCMaterialLotListHoldProperties';
+import GCHKWarehouseMLotCodePrintProperties from './pages/Properties/components/GCHKWarehouseMLotCodePrintProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -362,6 +363,37 @@ const routerConfig = [
     path: buildPath('Doc/OldRecordExpressNumber'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOldRecordExpressNumberProperties,
+  },
+  //Hong Kong Warehouse香港仓
+  {
+    path: buildPath('HKWarehouse/GCWaferCheckManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCheckProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/GCMLotCodePrintManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCHKWarehouseMLotCodePrintProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/GCIncomingMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component:  GCIncomingMaterialImportProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/GCMaterialLotHold'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMaterialLotHoldProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/GCMaterialLotRelease'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMaterialLotReleaseProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/GCMaterialLotListHold'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMaterialLotListHoldProperties,
   },
   //WMS
   {
