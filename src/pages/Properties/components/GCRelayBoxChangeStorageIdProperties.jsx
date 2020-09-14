@@ -23,7 +23,7 @@ export default class GCRelayBoxChangeStorageIdProperties extends EntityScanPrope
 
          // MB开头的则是中装箱号，请求后台查询出所有该中转箱下的真空包
         let dataIndex = -1;
-        if (data.startsWith("MB") || data.startsWith("TB")) {
+        if ((data.startsWith("MB") || data.startsWith("TB")) && data.split(".").length == 1) {
             let requestObject = {
                 relayBoxId: data,
                 success: function(responseBody) {
@@ -48,7 +48,7 @@ export default class GCRelayBoxChangeStorageIdProperties extends EntityScanPrope
                 }
             }
             RelayBoxStockInManagerRequest.sendQueryRelayBoxRequest(requestObject);
-        } else if (data.startsWith("ZHJ") || data.startsWith("HJ") ) {
+        } else if ((data.startsWith("ZHJ") || data.startsWith("HJ")) && data.split(".").length == 1 ) {
             // ZHJ/HJ 开头的则是库位号 扫描到ZHJ/HJ开头的，则更新当前操作的物料批次的库位号
             tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {
