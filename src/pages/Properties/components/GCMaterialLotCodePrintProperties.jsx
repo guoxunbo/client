@@ -1,5 +1,6 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import GCMaterialLotCodePrintTable from "../../../components/Table/gc/GCMaterialLotCodePrintTable";
+import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 
 
 export default class GCMaterialLotCodePrintProperties extends EntityScanProperties{
@@ -18,6 +19,22 @@ export default class GCMaterialLotCodePrintProperties extends EntityScanProperti
         resetFlag: true
       });
   }
+
+    queryData = (whereClause) => {
+      const self = this;
+      let requestObject = {
+        tableRrn: this.state.tableRrn,
+        whereClause: whereClause,
+        success: function(responseBody) {
+          self.setState({
+            tableData: responseBody.dataList,
+            loading: false
+          });
+          self.form.resetFormFileds();  
+        }
+      }
+      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    }
 
     buildTable = () => {
         return <GCMaterialLotCodePrintTable pagination={false} 

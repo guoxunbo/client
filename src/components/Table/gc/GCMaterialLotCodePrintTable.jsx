@@ -99,7 +99,7 @@ export default class GCMaterialLotCodePrintTable extends EntityListTable {
 
             let requestObject = {
                 printType: printType,
-                materialLotList : data,    
+                materialLot : data[0],
                 success: function(responseBody) {
                     responseBody.parameterMapList.forEach((parameter) => {
                         let printCount = parameter.printCount;
