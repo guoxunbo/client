@@ -1,8 +1,10 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
-import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import MaterialLot from "../../../api/dto/mms/MaterialLot";
 import GcWltStockOutMLotScanTable from "../../../components/Table/gc/GcWltStockOutMLotScanTable";
 import WltStockOutManagerRequest from "../../../api/gc/wlt-stock-out/WltStockOutManagerRequest";
+import { Notification } from "../../../components/notice/Notice";
+import I18NUtils from "../../../api/utils/I18NUtils";
+import { i18NCode } from "../../../api/const/i18n";
 
 export default class GcWltStockOutMLotScanProperties extends EntityScanProperties{
 
@@ -22,15 +24,28 @@ export default class GcWltStockOutMLotScanProperties extends EntityScanPropertie
 
     queryData = (whereClause) => {
         const self = this;
+        let queryFields = this.form.state.queryFields;
+        let queryLotId = "";
+        if (queryFields.length === 1) {
+          queryLotId = this.form.props.form.getFieldValue(queryFields[0].name)
+        }
         let {rowKey,tableData} = this.state;
         let requestObject = {
           tableRrn: this.state.tableRrn,
-          whereClause: whereClause,
+          queryLotId: queryLotId,
           success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
             let data = undefined;
-            if (queryDatas && queryDatas.length > 0) {
-              let materialLot = queryDatas[0];
+            let materialLot = responseBody.materialLot;
+            let materialLotId = materialLot.materialLotId;
+            if (materialLotId == "" || materialLotId == null || materialLotId == undefined){
+              data = new MaterialLot();
+              data[rowKey] = queryLotId;
+              data.setMaterialLotId(queryLotId);
+              data.errorFlag = true;
+              if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                tableData.unshift(data);
+              }
+            } else {
               let trueData = [];
               tableData.forEach(data => {
                 if(!data.errorFlag){
@@ -39,15 +54,6 @@ export default class GcWltStockOutMLotScanProperties extends EntityScanPropertie
             });
               //验证箱中的产品、等级等信息是否一致
               self.validationWltMLot(materialLot, trueData);
-            } else {
-              data = new MaterialLot();
-              let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
-              data[rowKey] = materialLotId;
-              data.setMaterialLotId(materialLotId);
-              data.errorFlag = true;
-              if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                tableData.unshift(data);
-              }
             }
             self.setState({ 
               tableData: tableData,
@@ -56,7 +62,7 @@ export default class GcWltStockOutMLotScanProperties extends EntityScanPropertie
             self.form.resetFormFileds();  
           }
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        WltStockOutManagerRequest.sendGetMaterialLotByRrnRequest(requestObject);
     }
 
     validationWltMLot = (materialLot, materialLots) => {

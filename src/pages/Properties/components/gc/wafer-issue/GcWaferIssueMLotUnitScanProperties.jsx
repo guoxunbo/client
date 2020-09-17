@@ -131,7 +131,7 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
                 self.form.resetFormFileds();
               }
             } else {
-              data = new MaterialLot();
+              let data = new MaterialLot();
               let lotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
               data[rowKey] = lotId;
               data.setLotId(lotId);

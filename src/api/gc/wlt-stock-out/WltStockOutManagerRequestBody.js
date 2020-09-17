@@ -6,7 +6,8 @@ const actionType = {
     queryTagMlotUnit: "queryTagMlotUnit",
     StockOutTag: "StockOutTag",
     UnStockOutTag: "UnStockOutTag",
-    ValidateVender: "ValidateVender"
+    ValidateVender: "ValidateVender",
+    GetMLot: "GetMLot",
 }
 
 export default class WltStockOutManagerRequestBody {
@@ -19,6 +20,9 @@ export default class WltStockOutManagerRequestBody {
     customerName;
     stockOutType;
     poId;
+    tableRrn;
+    queryLotId;
+
 
     constructor(actionType, documentLine, materialLotActions, queryMaterialLot, stockTagNote, customerName,stockOutType, poId){
         this.actionType = actionType;
@@ -90,6 +94,17 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WltStockOutManagerRequestBody(actionType.ValidateVender, undefined, materialLotActions);
+    }
+
+    setTableInfo(tableRrn, queryLotId) {
+        this.tableRrn = tableRrn;
+        this.queryLotId = queryLotId;
+    }
+
+    static buildGetMaterialLot(tableRrn, queryLotId) {
+        let requestBody =  new WltStockOutManagerRequestBody(actionType.GetMLot);
+        requestBody.setTableInfo(tableRrn, queryLotId);
+        return requestBody;
     }
 
 }

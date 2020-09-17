@@ -77,5 +77,16 @@ export default class WltStockOutManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendGetMaterialLotByRrnRequest = (object) => {
+        let requestBody = WltStockOutManagerRequestBody.buildGetMaterialLot(object.tableRrn, object.queryLotId);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 
