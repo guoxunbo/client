@@ -99,6 +99,9 @@ export default class WaferStockOutTaggingTable extends EntityListCheckTable {
                     </Button>
     }
 
+   buildOperationColumn = () => {
+   }
+
 }
 
 const styles = {

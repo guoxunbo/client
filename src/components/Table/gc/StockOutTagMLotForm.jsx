@@ -23,8 +23,12 @@ export default class StockOutTagMLotForm extends EntityForm {
     handleOk= () => {
         let self = this;
         let customerName = this.materialLotUnitTable.input.state.value;
+        let poName = this.materialLotUnitTable.PoName.state.value;
         let stockOutType = this.materialLotUnitTable.stockOutType.state.value;
         let poId = this.materialLotUnitTable.poId.state.value;
+        if(!(poName == "" || poName == null || poName == undefined)){
+            poId = poName;
+        }
         if(customerName == "" || customerName == null ||  customerName == undefined){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CustomerNameCannotEmpty));
             return;
@@ -33,6 +37,7 @@ export default class StockOutTagMLotForm extends EntityForm {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.StockOutTypeCannotEmpty));
             return;
         }
+
         // if(poId == "" || poId == null ||  poId == undefined){
         //     Notification.showNotice(I18NUtils.getClientMessage(i18NCode.PoIdCannotEmpty));
         //     return;

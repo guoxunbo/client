@@ -114,12 +114,18 @@ export default class GcStockOutTagMLotUnitTable extends EntityListTable {
                             <RefListField ref={(stockOutType) => { this.stockOutType = stockOutType }} referenceName={SystemRefListName.StockOutType} />
                         </Col>
                     </Row>
-                    <Row gutter={12}>
+                    <Row gutter={24}>
                         <Col span={4} >
                             <span>PO：</span>
                         </Col>
                         <Col span={8}>
                             <RefTableField ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.POIdList}} />
+                        </Col>
+                        <Col span={4} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.PoName)}:</span>
+                        </Col>
+                        <Col span={8}>
+                            <Input ref={(PoName) => { this.PoName = PoName }} key="PoName"  placeholder="Po名称" />
                         </Col>
                     </Row>
                 </FormItem>

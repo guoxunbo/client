@@ -137,6 +137,7 @@ const i18NCode = {
     CustomerNameCannotEmpty: "CustomerNameCannotEmpty",
     StockOutTypeCannotEmpty: "StockOutTypeCannotEmpty",
     PoIdCannotEmpty: "PoIdCannotEmpty",
+    PoName: "PoName",
 }
 
 const i18Messages = {
@@ -804,6 +805,11 @@ const i18Messages = {
         Chinese: "取消标注",
         English: "UnTagging",
         Res: ""  
+    },
+    PoName: {
+        Chinese: "PO名称",
+        English: "PoName",
+        Res: "" 
     }
 }
 
