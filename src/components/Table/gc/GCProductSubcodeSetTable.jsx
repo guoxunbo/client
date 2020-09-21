@@ -17,7 +17,10 @@ export default class GCProductSubcodeSetTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createSyncProductSubCodeButton());
+        buttons.push(this.createAddButton());
+        buttons.push(this.createImportButton());
+        buttons.push(this.createExportDataAndTemplateButton());
+        // buttons.push(this.createSyncProductSubCodeButton());
         return buttons;
     }
 
