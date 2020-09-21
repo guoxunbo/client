@@ -226,6 +226,10 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 materialLot.reserved13 = warehouseId;
                 materialLot.reserved14 = "ZHJ AZ6000";
             });
+        } else if(warehouseId == 8150){
+            data.forEach(materialLot =>{
+                materialLot.reserved13 = warehouseId;
+            });
         }
 
         self.setState({

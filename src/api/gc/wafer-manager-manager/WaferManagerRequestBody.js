@@ -4,7 +4,7 @@ const ActionType = {
     Receive: "Receive",
     Issue: "Issue",
     ValidationIssue: "ValidationIssue",
-    ValidationWaitIssue: "ValidationWaitIssue",
+    GetWaitIssueMLot: "GetWaitIssueMLot",
     PurchaseOutsoureReceive: "PurchaseOutsoureReceive",
 }
 export default class WaferManagerRequestBody {
@@ -12,11 +12,16 @@ export default class WaferManagerRequestBody {
     actionType;
     documentLines;
     materialLotActions;
+    tableRrn;
+    whereClause;
 
-    constructor(actionType, documentLines, materialLotActions){
+
+    constructor(actionType, documentLines, materialLotActions, tableRrn, whereClause){
         this.actionType = actionType;
         this.documentLines = documentLines;
         this.materialLotActions = materialLotActions;
+        this.tableRrn = tableRrn;
+        this.whereClause = whereClause;
     }
     
     static buildReceive(documentLines, materialLots) {
@@ -70,6 +75,10 @@ export default class WaferManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WaferManagerRequestBody(ActionType.PurchaseOutsoureReceive, undefined, materialLotActions);
+    }
+
+    static buildGetMaterialLot(tableRrn,whereClause) {
+        return new WaferManagerRequestBody(ActionType.GetWaitIssueMLot, undefined, undefined, tableRrn, whereClause);
     }
 }
 
