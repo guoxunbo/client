@@ -22,4 +22,15 @@ export default class ProductSubcodeManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendImportRequest = (object, file) => {
+        let requestBody = ProductSubcodeManagerRequestBody.buildImportProductSubcode(object.tableRrn);
+        let requestHeader = new ProductSubcodeManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCProductSubcodeImportManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendImportData(requestObject, file);
+    }
 }
