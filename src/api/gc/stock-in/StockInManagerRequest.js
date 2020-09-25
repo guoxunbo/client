@@ -31,7 +31,7 @@ export default class StockInManagerRequest {
     }
 
     static sendQueryWaferRequest = (object) => {
-        let requestBody = StockInManagerRequestBody.buildQueryWafer(object.lotId);
+        let requestBody = StockInManagerRequestBody.buildQueryWafer(object.lotId, object.tableRrn);
         let requestHeader = new StockInManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCStockInUrl);
         let requestObject = {

@@ -20,6 +20,7 @@ export default class GcWaferStockInProperties extends EntityScanProperties{
 
     handleSearch = () => {
         let self = this;
+        const {table} = this.state;
         let {rowKey,tableData} = this.state;
         this.setState({loading: true});
         let data = "";
@@ -50,6 +51,7 @@ export default class GcWaferStockInProperties extends EntityScanProperties{
             // 晶圆信息，需要请求后台做查询
             let requestObject = {
                 lotId: data,
+                tableRrn: table.objectRrn,
                 success: function(responseBody) {
                     let materialLot = responseBody.materialLot;
                     if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {

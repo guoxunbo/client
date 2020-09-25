@@ -12,11 +12,13 @@ export default class StockInManagerRequestBody {
     materialLotId;
     stockInModels;
     lotId;
+    tableRrn;
 
-    constructor(actionType, materialLotId, lotId){
+    constructor(actionType, materialLotId, lotId, tableRrn){
         this.actionType = actionType;
         this.materialLotId = materialLotId;
         this.lotId = lotId;
+        this.tableRrn = tableRrn;
     }
     
     setStockInModels(stockInModels) {
@@ -27,8 +29,8 @@ export default class StockInManagerRequestBody {
         return new StockInManagerRequestBody(ActionType.Query, materialLotId);
     }
 
-    static buildQueryWafer(lotId) {
-        return new StockInManagerRequestBody(ActionType.QueryWafer, undefined, lotId);
+    static buildQueryWafer(lotId, tableRrn) {
+        return new StockInManagerRequestBody(ActionType.QueryWafer, undefined, lotId, tableRrn);
     }
 
     static buildStockIn(materialLots) {
