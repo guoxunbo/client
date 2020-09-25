@@ -132,6 +132,10 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                     if (materialLotIdList.indexOf(data.materialLotId) == -1) {
                         materialLotIdList.push(data.materialLotId);
                     }
+                } else if (data.durable){
+                    if (materialLotIdList.indexOf(data.durable) == -1) {
+                        materialLotIdList.push(data.durable);
+                    }
                 } else{
                     if (materialLotIdList.indexOf(data.reserved30) == -1) {
                         materialLotIdList.push(data.reserved30);
