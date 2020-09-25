@@ -7,6 +7,7 @@ import I18NUtils from "../../../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../../../api/const/i18n";
 import WaferManagerRequest from "../../../../../api/gc/wafer-manager-manager/WaferManagerRequest";
 import GcCOMWaitForIssueMLotUnitProperties from "./GcCOMWaitForIssueMLotUnitProperties";
+import { Application } from "../../../../../api/Application";
 
 export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanProperties{
 
@@ -34,13 +35,15 @@ export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanPro
         let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
 
         let orders = this.props.orderTable.state.data;
-        if (orders.length == 0) {
-          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-          self.setState({ 
-            tableData: tableData,
-            loading: false
-          });
-          return;
+        if (Application.waferIssueOrderWithDoc) {
+          if (orders.length == 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+            self.setState({ 
+              tableData: tableData,
+              loading: false
+            });
+            return;
+          }
         }
         let requestObject = {
           tableRrn: this.state.tableRrn,
