@@ -69,6 +69,7 @@ import GCWaferStockOutTaggingProperties from './pages/Properties/components/GCWa
 import GCWaferUnStockOutTaggingProperties from './pages/Properties/components/GCWaferUnStockOutTaggingProperties';
 import GCMaterialLotListHoldProperties from './pages/Properties/components/GCMaterialLotListHoldProperties';
 import GCHKWarehouseMLotCodePrintProperties from './pages/Properties/components/GCHKWarehouseMLotCodePrintProperties';
+import HKPackMaterialLotProperties from './pages/Properties/components/HKPackMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -394,6 +395,11 @@ const routerConfig = [
     path: buildPath('HKWarehouse/GCMaterialLotListHold'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCMaterialLotListHoldProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKPackMaterialLotProperties,
   },
   //WMS
   {
