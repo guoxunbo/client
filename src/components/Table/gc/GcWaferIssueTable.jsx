@@ -109,9 +109,8 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
             return;
         }
         let orderTable = this.props.orderTable;
-        let orders = [];
+        let orders = orderTable.state.data;
         if (Application.waferIssueOrderWithDoc) {
-            orders = orderTable.state.data;
             if (orders.length === 0) {
                 Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
                 return;

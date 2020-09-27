@@ -53,7 +53,7 @@ const Application = {
         height: 100,
         margin: 0,
     },
-    waferIssueOrderWithDoc: false
+    waferIssueOrderWithDoc: true
 };
 
 const SC_STORAGE_NAME = "SessionContext";
