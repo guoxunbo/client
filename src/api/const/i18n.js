@@ -138,6 +138,7 @@ const i18NCode = {
     StockOutTypeCannotEmpty: "StockOutTypeCannotEmpty",
     PoIdCannotEmpty: "PoIdCannotEmpty",
     PoName: "PoName",
+    PrintWltLabelFlag: "PrintWltLabelFlag",
 }
 
 const i18Messages = {
@@ -809,6 +810,11 @@ const i18Messages = {
     PoName: {
         Chinese: "PO名称",
         English: "PoName",
+        Res: "" 
+    },
+    PrintWltLabelFlag: {
+        Chinese: "打印标签",
+        English: "PrintLabel",
         Res: "" 
     }
 }

@@ -1,10 +1,12 @@
-import { Button, Tag } from 'antd';
+import { Button, Icon, Switch, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
+import PrintUtils from '../../../api/utils/PrintUtils';
+import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 
 export default class WLTReceiveFGScanTable extends EntityScanViewTable {
 
@@ -31,11 +33,40 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
 
     createTagGroup = () => {
         let tags = [];
+        tags.push(this.createPrintLabelFlag());
         tags.push(this.createMaterialLotsNumber());
         tags.push(this.createStatistic());
         tags.push(this.createTotalNumber());
         tags.push(this.createErrorNumberStatistic());
         return tags;
+    }
+
+    createPrintLabelFlag = () => {
+        return <span style={{display: 'flex'}}>
+            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.PrintWltLabelFlag)}:</span>
+            <span style = {{marginLeft:"10px"}}>
+                <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
+                        checkedChildren={<Icon type="printLabel" />} 
+                        unCheckedChildren={<Icon type="close" />} 
+                        onChange={this.handleChange} 
+                        disabled={this.disabled}
+                        checked={this.state.checked}/>
+            </span>
+        </span>
+    }
+
+    handleChange = (checkedChildren) => {
+        if(checkedChildren){
+            this.setState({ 
+                value: "printLabel",
+                checked: true
+            });
+        } else {
+            this.setState({ 
+                value: "",
+                checked: false
+            });
+        }
     }
 
     createErrorNumberStatistic = () => {
@@ -62,15 +93,21 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
+        let printLabelFlag = this.state.value;
         if (data && data.length > 0) {
             let self = this;
             let requestObject = {
                 mesPackedLots: data,
+                printLabel: printLabelFlag,
                 success: function(responseBody) {
                     if (self.props.resetData) {
                         self.props.onSearch();
                         self.props.resetData();
                     }
+                    responseBody.parameterMapList.forEach((parameter) => {
+                        let url = PrintServiceUrl.WltLotId;
+                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
+                    });
                     MessageUtils.showOperationSuccess();
                 }
             }

@@ -18,7 +18,7 @@ export default class FinishGoodInvManagerRequest {
     }
 
     static sendWLTReceiveRequest = (object) => {
-        let requestBody = FinishGoodManagerRequestBody.buildWLTReceive(object.mesPackedLots);
+        let requestBody = FinishGoodManagerRequestBody.buildWLTReceive(object.mesPackedLots, object.printLabel);
         let requestHeader = new FinishGoodManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.FinishGoodManageUrl);
         let requestObject = {
