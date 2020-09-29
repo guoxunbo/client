@@ -3,7 +3,8 @@ const ActionType = {
     UnbindRelayBox: "UnbindRelayBox",
     JudgePackedLot: "JudgePackedLot",
     GetPackCaseCheckList: "GetPackCaseCheckList",
-    GetWltPackCaseCheckList: "GetWltPackCaseCheckList"
+    GetWltPackCaseCheckList: "GetWltPackCaseCheckList",
+    QueryMLot: "QueryMLot",
 }
 
 
@@ -13,14 +14,21 @@ export default class MaterialLotManagerRequestBody {
     relayBoxId;
     actionType;
     checkList;
+    tableRrn;
+    queryLotId;
 
-    constructor(actionType, materialLots, relayBoxId){
+    constructor(actionType, materialLots, relayBoxId, queryLotId){
         this.actionType = actionType;
         this.materialLots = materialLots;
         this.relayBoxId = relayBoxId;
+        this.queryLotId = queryLotId;
     }
     setCheckList(checkList) {
         this.checkList = checkList;
+    }
+
+    setTabRrn(tableRrn) {
+        this.tableRrn = tableRrn;
     }
 
     static buildGetJudgePackCaseItemList() {
@@ -45,6 +53,12 @@ export default class MaterialLotManagerRequestBody {
 
     static buildUnbindRelayBox(materialLots) {
         return new MaterialLotManagerRequestBody(ActionType.UnbindRelayBox, materialLots);
+    }
+
+    static buildQueryMLot(tableRrn, queryLotId) {
+        let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.QueryMLot, undefined, undefined, queryLotId);
+        materialLotManagerRequestBody.setTabRrn(tableRrn);
+        return materialLotManagerRequestBody;    
     }
 
 }   

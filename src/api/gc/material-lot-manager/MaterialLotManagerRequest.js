@@ -62,4 +62,15 @@ export default class MaterialLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendQueryMLotRequest = (object) => {
+        let requestBody = MaterialLotManagerRequestBody.buildQueryMLot(object.tableRrn, object.queryLotId);
+        let requestHeader = new MaterialLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

@@ -7,6 +7,7 @@ import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
 import PrintUtils from '../../../api/utils/PrintUtils';
 import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
+import EventUtils from '../../../api/utils/EventUtils';
 
 export default class WLTReceiveFGScanTable extends EntityScanViewTable {
 
@@ -88,12 +89,19 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
 
 
     receive = () => {
+        const self = this;
         const {data} = this.state;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
         let printLabelFlag = this.state.value;
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+
         if (data && data.length > 0) {
             let self = this;
             let requestObject = {
@@ -146,7 +154,7 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
     }
     
     createDeleteAllButton = () => {
-        return <Button key="deleteAll" type="primary" style={styles.tableButton} icon="delete" onClick={this.deleteAllMaterialLot}>
+        return <Button key="deleteAll" type="primary" style={styles.tableButton} icon="delete" loading={this.state.loading} onClick={this.deleteAllMaterialLot}>
                         {I18NUtils.getClientMessage(i18NCode.BtnDeleteAll)}
                     </Button>
     }
@@ -162,7 +170,7 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
     }
 
     createReceiveButton = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} icon="import" onClick={this.receive}>
+        return <Button key="receive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="import" onClick={this.receive}>
                         {I18NUtils.getClientMessage(i18NCode.BtnReceive)}
                     </Button>
     }
