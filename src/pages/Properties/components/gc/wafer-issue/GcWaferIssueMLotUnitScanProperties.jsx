@@ -87,15 +87,13 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
         let {rowKey,tableData} = this.state;
         let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
         let orders = this.props.orderTable.state.data;
-        if (Application.waferIssueOrderWithDoc) {
-          if (orders.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-            self.setState({ 
-              tableData: tableData,
-              loading: false
-            });
-            return;
-          }
+        if (orders.length == 0) {
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+          self.setState({ 
+            tableData: tableData,
+            loading: false
+          });
+          return;
         }
         let requestObject = {
           tableRrn: this.state.tableRrn,
@@ -103,33 +101,7 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
           success: function(responseBody) {
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
-              if (Application.waferIssueOrderWithDoc) {
-                self.sendWaferIssueValiationDocRequest(queryDatas, orders)
-              } else {
-                let errorData = [];
-                let trueData = [];
-                queryDatas.forEach(data => {
-                  if (waitForIssueMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                    data.errorFlag = true;
-                  }
-                  if(data.errorFlag){
-                    errorData.unshift(data);
-                  } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                    trueData.unshift(data);
-                  }
-                });
-                errorData.forEach(data => {
-                  tableData.push(data);
-                });
-                trueData.forEach(data => {
-                  tableData.push(data);
-                });
-                self.setState({
-                  tableData: tableData,
-                  loading: false
-                });
-                self.form.resetFormFileds();
-              }
+              self.sendWaferIssueValiationDocRequest(queryDatas, orders);
             } else {
               let data = new MaterialLot();
               let lotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);

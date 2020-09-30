@@ -8,14 +8,15 @@ import MessageUtils from '../../../api/utils/MessageUtils';
 import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
 import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferManagerRequest';
-import { Application } from '../../../api/Application';
+
+const IssueWithDoc = "IssueWithDoc";
 
 /**
- * 晶圆发料
+ * COM晶圆发料
  */
-export default class GcWaferIssueTable extends EntityScanViewTable {
+export default class GcCOMWaferIssueTable extends EntityScanViewTable {
 
-    static displayName = 'GcWaferIssueTable';
+    static displayName = 'GcCOMWaferIssueTable';
 
     getRowClassName = (record, index) => {
         // 如果是扫描到不存在的批次，则进行高亮显示
@@ -110,10 +111,10 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
         }
         let orderTable = this.props.orderTable;
         let orders = orderTable.state.data;
-        if (orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-            return;
-        }
+        // if (orders.length === 0) {
+        //     Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+        //     return;
+        // }
         
         let materialLots = this.state.data;
         if (materialLots.length === 0) {
@@ -128,6 +129,7 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
         let requestObject = {
             documentLines : orders,
             materialLots : materialLots,
+            issueWithDoc : IssueWithDoc,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

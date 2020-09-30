@@ -14,14 +14,16 @@ export default class WaferManagerRequestBody {
     materialLotActions;
     tableRrn;
     whereClause;
+    issueWithDoc;
 
 
-    constructor(actionType, documentLines, materialLotActions, tableRrn, whereClause){
+    constructor(actionType, documentLines, materialLotActions, tableRrn, whereClause, issueWithDoc){
         this.actionType = actionType;
         this.documentLines = documentLines;
         this.materialLotActions = materialLotActions;
         this.tableRrn = tableRrn;
         this.whereClause = whereClause;
+        this.issueWithDoc = issueWithDoc;
     }
     
     static buildReceive(documentLines, materialLots) {
@@ -46,7 +48,7 @@ export default class WaferManagerRequestBody {
         return new WaferManagerRequestBody(ActionType.ValidationIssue, documentLines, materialLotActions);
     }
 
-    static buildIssue(documentLines, materialLots) {
+    static buildIssue(documentLines, materialLots, issueWithDoc) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
@@ -54,7 +56,7 @@ export default class WaferManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
 
-        return new WaferManagerRequestBody(ActionType.Issue, documentLines, materialLotActions);
+        return new WaferManagerRequestBody(ActionType.Issue, documentLines, materialLotActions, undefined, undefined, issueWithDoc);
     }
 
     static buildValidationWaitIssueWafer(materialLots) {

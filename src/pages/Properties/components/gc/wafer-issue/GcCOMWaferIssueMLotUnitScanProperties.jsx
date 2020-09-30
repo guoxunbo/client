@@ -1,13 +1,12 @@
 import EntityScanProperties from "../../entityProperties/EntityScanProperties";
 import TableManagerRequest from "../../../../../api/table-manager/TableManagerRequest";
 import MaterialLot from "../../../../../api/dto/mms/MaterialLot";
-import GcWaferIssueTable from "../../../../../components/Table/gc/GcWaferIssueTable";
 import { Notification } from "../../../../../components/notice/Notice";
 import I18NUtils from "../../../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../../../api/const/i18n";
 import WaferManagerRequest from "../../../../../api/gc/wafer-manager-manager/WaferManagerRequest";
 import GcCOMWaitForIssueMLotUnitProperties from "./GcCOMWaitForIssueMLotUnitProperties";
-import { Application } from "../../../../../api/Application";
+import GcCOMWaferIssueTable from "../../../../../components/Table/gc/GcCOMWaferIssueTable";
 
 export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanProperties{
 
@@ -35,16 +34,14 @@ export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanPro
         let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
 
         let orders = this.props.orderTable.state.data;
-        if (Application.waferIssueOrderWithDoc) {
-          if (orders.length == 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-            self.setState({ 
-              tableData: tableData,
-              loading: false
-            });
-            return;
-          }
-        }
+        // if (orders.length == 0) {
+        //   Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+        //   self.setState({ 
+        //     tableData: tableData,
+        //     loading: false
+        //   });
+        //   return;
+        // }
         let requestObject = {
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
@@ -125,7 +122,7 @@ export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanPro
   }
 
     buildTable = () => {
-        return <GcWaferIssueTable orderTable={this.props.orderTable} pagination={false} 
+        return <GcCOMWaferIssueTable orderTable={this.props.orderTable} pagination={false} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading} 

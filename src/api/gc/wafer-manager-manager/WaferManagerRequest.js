@@ -31,8 +31,8 @@ export default class WaferManagerRequest {
     }
 
     static sendWaferIssueRequest = (object) => {
-        let {documentLines, materialLots} = object;
-        let requestBody = WaferManagerRequestBody.buildIssue(documentLines, materialLots);
+        let {documentLines, materialLots, issueWithDoc} = object;
+        let requestBody = WaferManagerRequestBody.buildIssue(documentLines, materialLots, issueWithDoc);
         let requestHeader = new WaferManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {
