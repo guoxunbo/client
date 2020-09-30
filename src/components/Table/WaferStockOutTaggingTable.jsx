@@ -6,6 +6,7 @@ import { Tag } from 'antd';
 import EntityListCheckTable from './EntityListCheckTable';
 import StockOutTagMLotForm from './gc/StockOutTagMLotForm';
 import WltStockOutManagerRequest from '../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
+import MessageUtils from '../../api/utils/MessageUtils';
 
 export default class WaferStockOutTaggingTable extends EntityListCheckTable {
 
@@ -60,10 +61,29 @@ export default class WaferStockOutTaggingTable extends EntityListCheckTable {
                                      stockTagNote={this.state.stockTagNote} 
                                      materialLots={this.state.materialLots}
                                      vender={this.state.vender} 
-                                     onOk={this.handleCancel} 
-                                     onCancel={this.handleCancel}
-                                     onSearch={this.props.onSearch} 
-                                     resetData={this.props.resetData}/>
+                                     onOk={this.handleTagSuccess} 
+                                     onCancel={this.handleCancel}/>
+    }
+    
+    handleTagSuccess = () => {
+        debugger;
+        this.materialLots = [],
+        this.setState({
+            selectedRows: [],
+            selectedRowKeys: [],
+            formVisible : false,
+        });
+        if (this.props.resetData) {
+            this.props.resetData();
+            this.props.onSearch();
+        }
+        MessageUtils.showOperationSuccess();
+    }
+
+    handleCancel = (e) => {
+        this.setState({
+            formVisible: false,
+        })
     }
 
     stockOutTag = () => {

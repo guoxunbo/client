@@ -25,15 +25,18 @@ export default class GcStockOutTagMLotUnitTable extends EntityListTable {
         const {visible, materialLots} = props;
         let self = this;
         if (visible) {
-            let requestObject = {
-                materialLots : materialLots,
-                success: function(responseBody) {
-                    self.setState({
-                        data: responseBody.materialLotUnitList
-                    })
-                }
-            }
-            WltStockOutManagerRequest.sendGetStockOutTagMLotUnits(requestObject);
+            self.setState({
+                data: materialLots
+            })
+            // let requestObject = {
+            //     materialLots : materialLots,
+            //     success: function(responseBody) {
+            //         self.setState({
+            //             data: responseBody.materialLotList
+            //         })
+            //     }
+            // }
+            // WltStockOutManagerRequest.sendGetStockOutTagMLotUnits(requestObject);
         } else {
             self.setState({
                 data: [],
@@ -47,15 +50,18 @@ export default class GcStockOutTagMLotUnitTable extends EntityListTable {
         const {visible, materialLots} = this.props;
         let self = this;
         if (visible) {
-            let requestObject = {
-                materialLots : materialLots,
-                success: function(responseBody) {
-                    self.setState({
-                        data: responseBody.materialLotUnitList
-                    })
-                }
-            }
-            WltStockOutManagerRequest.sendGetStockOutTagMLotUnits(requestObject);
+            self.setState({
+                data: materialLots
+            })
+            // let requestObject = {
+            //     materialLots : materialLots,
+            //     success: function(responseBody) {
+            //         self.setState({
+            //             data: responseBody.materialLotList
+            //         })
+            //     }
+            // }
+            // WltStockOutManagerRequest.sendGetStockOutTagMLotUnits(requestObject);
         } else {
 
         }

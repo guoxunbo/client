@@ -2,7 +2,6 @@ import  React from 'react';
 
 import { DefaultRowKey } from '../../../api/const/ConstDefine';
 import EntityForm from '../../Form/EntityForm';
-import MessageUtils from '../../../api/utils/MessageUtils';
 import GcStockOutTagMLotUnitTable from './GcStockOutTagMLotUnitTable';
 import WltStockOutManagerRequest from '../../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 import { Notification } from '../../notice/Notice';
@@ -37,11 +36,6 @@ export default class StockOutTagMLotForm extends EntityForm {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.StockOutTypeCannotEmpty));
             return;
         }
-
-        // if(poId == "" || poId == null ||  poId == undefined){
-        //     Notification.showNotice(I18NUtils.getClientMessage(i18NCode.PoIdCannotEmpty));
-        //     return;
-        // }
         let materialLots = this.props.materialLots;
         let stockTagNote = this.props.stockTagNote;
         let requestObj = {
@@ -51,11 +45,7 @@ export default class StockOutTagMLotForm extends EntityForm {
             stockOutType : stockOutType,
             poId : poId,
             success: function(responseBody) {
-                debugger;
-                MessageUtils.showOperationSuccess();
                 self.props.onOk();
-                self.props.onSearch();
-                self.props.resetData();
                 self.materialLotUnitTable.stockOutType.setState({
                     value: ""
                 });
