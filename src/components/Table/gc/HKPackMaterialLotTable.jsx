@@ -90,7 +90,7 @@ export default class HKPackMaterialLotTable extends EntityScanViewTable {
         }
         let requestObject = {
             materialLots: data,
-            packageType: "WltPackCase",
+            packageType: "HKPackCase",
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
