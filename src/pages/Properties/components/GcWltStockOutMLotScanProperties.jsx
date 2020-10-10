@@ -24,12 +24,21 @@ export default class GcWltStockOutMLotScanProperties extends EntityScanPropertie
 
     queryData = (whereClause) => {
         const self = this;
+        let {rowKey,tableData} = this.state;
+        let orders = this.props.orderTable.state.data;
+        if (orders.length == 0) {
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+          self.setState({ 
+            tableData: tableData,
+            loading: false
+          });
+          return;
+        }
         let queryFields = this.form.state.queryFields;
         let queryLotId = "";
         if (queryFields.length === 1) {
           queryLotId = this.form.props.form.getFieldValue(queryFields[0].name)
         }
-        let {rowKey,tableData} = this.state;
         let requestObject = {
           tableRrn: this.state.tableRrn,
           queryLotId: queryLotId,

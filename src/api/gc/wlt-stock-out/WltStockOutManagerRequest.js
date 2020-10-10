@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class WltStockOutManagerRequest {
 
     static sendWltStockOutRequest = (object) => {
-        let {documentLine, materialLots} = object;
-        let requestBody = WltStockOutManagerRequestBody.buildWltStockOut(documentLine, materialLots);
+        let {documentLines, materialLots} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildWltStockOut(documentLines, materialLots);
         let requestHeader = new WltStockOutManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
         let requestObject = {

@@ -13,7 +13,7 @@ const actionType = {
 export default class WltStockOutManagerRequestBody {
 
     actionType;
-    documentLine;
+    documentLines;
     materialLotActions;
     queryMaterialLot;
     stockTagNote;
@@ -24,9 +24,9 @@ export default class WltStockOutManagerRequestBody {
     queryLotId;
 
 
-    constructor(actionType, documentLine, materialLotActions, queryMaterialLot, stockTagNote, customerName,stockOutType, poId){
+    constructor(actionType, documentLines, materialLotActions, queryMaterialLot, stockTagNote, customerName,stockOutType, poId){
         this.actionType = actionType;
-        this.documentLine = documentLine;
+        this.documentLines = documentLines;
         this.materialLotActions = materialLotActions;
         this.queryMaterialLot = queryMaterialLot;
         this.stockTagNote = stockTagNote;
@@ -35,7 +35,7 @@ export default class WltStockOutManagerRequestBody {
         this.poId = poId;
     }
     
-    static buildWltStockOut(documentLine, materialLots) {
+    static buildWltStockOut(documentLines, materialLots) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
@@ -43,7 +43,7 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
 
-        return new WltStockOutManagerRequestBody(actionType.WltStockOut, documentLine, materialLotActions, undefined);
+        return new WltStockOutManagerRequestBody(actionType.WltStockOut, documentLines, materialLotActions, undefined);
     }
 
     static buildValidateMLot(queryMaterialLot, materialLots) {
