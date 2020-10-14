@@ -139,6 +139,7 @@ const i18NCode = {
     PoIdCannotEmpty: "PoIdCannotEmpty",
     PoName: "PoName",
     PrintWltLabelFlag: "PrintWltLabelFlag",
+    WorkorderIdAndGradeCanEmpty: "WorkorderIdAndGradeCanEmpty",
 }
 
 const i18Messages = {
@@ -815,6 +816,11 @@ const i18Messages = {
     PrintWltLabelFlag: {
         Chinese: "打印标签",
         English: "PrintLabel",
+        Res: "" 
+    },
+    WorkorderIdAndGradeCanEmpty: {
+        Chinese: "工单和等级不能都为空！",
+        English: "WorkorderId And Grade Can Empty!",
         Res: "" 
     }
 }

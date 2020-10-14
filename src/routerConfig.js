@@ -70,6 +70,7 @@ import GCWaferUnStockOutTaggingProperties from './pages/Properties/components/GC
 import GCMaterialLotListHoldProperties from './pages/Properties/components/GCMaterialLotListHoldProperties';
 import GCHKWarehouseMLotCodePrintProperties from './pages/Properties/components/GCHKWarehouseMLotCodePrintProperties';
 import HKPackMaterialLotProperties from './pages/Properties/components/HKPackMaterialLotProperties';
+import GCVBoxHoldSetProperties from './pages/Properties/components/GCVBoxHoldSetProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -304,6 +305,12 @@ const routerConfig = [
     path: buildPath('GC/GCProductModelConversionManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCProductModelConversionProperties,
+  },
+  //真空包预Hold设置
+  {
+    path: buildPath('GC/GCVBoxHoldSetManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCVBoxHoldSetProperties,
   },
   //二维码标签打印
   {
