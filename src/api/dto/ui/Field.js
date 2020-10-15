@@ -316,14 +316,18 @@ export default class Field {
             // 不是queryForm的话，fromTo是无效的。会自动变成calender和datetime组件
             if (DataFromTo.includes(this.displayType) && query) {
                 let date = new Date();
-                let fromTime = moment(date, formatCode);
-                
-                date.setDate(date.getDate() + DefaultFromToDuration);
+                let fromTime;
                 let endTime = moment(date, formatCode);
+                if (initialValue) {
+                    fromTime = moment(initialValue, formatCode);
+                } else {
+                    date.setDate(date.getDate() - DefaultFromToDuration);
+                    fromTime = moment(date, formatCode);
+                }
                 initialValue= [fromTime, endTime];
             } else {
                 if (initialValue) {
-                    initialValue = moment(initialValue, formatCode)
+                    initialValue = moment(initialValue, formatCode);
                 } else {
                     initialValue = moment(new Date(), formatCode);
                 }
