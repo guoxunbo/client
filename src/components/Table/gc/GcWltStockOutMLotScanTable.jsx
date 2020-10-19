@@ -36,6 +36,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
     createTagGroup = () => {
         let tagList = [];
         tagList.push(this.createStatistic());
+        tagList.push(this.createWaferNumber());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
@@ -102,6 +103,19 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
             });
         }
         return <Tag color="#2db7f5">颗数：{count}</Tag>
+    }
+
+    createWaferNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if(data.currentSubQty){
+                    count = count + data.currentSubQty;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}: {count}</Tag>
     }
 
     createStatistic = () => {
