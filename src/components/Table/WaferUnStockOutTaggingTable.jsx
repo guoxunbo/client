@@ -1,5 +1,5 @@
 
-import { Button } from 'antd';
+import { Button, Tag } from 'antd';
 import I18NUtils from '../../api/utils/I18NUtils';
 import { i18NCode } from '../../api/const/i18n';
 import EntityListCheckTable from './EntityListCheckTable';
@@ -11,6 +11,14 @@ export default class WaferUnStockOutTaggingTable extends EntityListCheckTable {
         let buttons = [];
         buttons.push(this.createCancelStockOutTag());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tags = [];
+        tags.push(this.createStatistic());
+        tags.push(this.createWaferNumber());
+        tags.push(this.createTotalNumber());
+        return tags;
     }
 
     UnstockOutTag = () => {
@@ -28,6 +36,34 @@ export default class WaferUnStockOutTaggingTable extends EntityListCheckTable {
         }
 
         WltStockOutManagerRequest.sendUnstockOutTagRequest(requestObject);
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+    }
+
+    createWaferNumber = () => {
+        let materialLots = this.state.data;
+        let qty = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.currentSubQty != undefined) {
+                    qty = qty + parseInt(data.currentSubQty);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
+    }
+
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                count = count + data.currentQty;
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
     
 
