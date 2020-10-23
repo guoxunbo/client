@@ -175,6 +175,34 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
                     </Button>
     }
 
+    refreshDelete = (records) => {
+        debugger;
+        let datas = this.state.data;
+        let recordList = [];
+        if (!(records instanceof Array)) {
+            let cstId = records.cstId;
+            datas.forEach((item) => {
+                if(item.cstId == cstId){
+                    recordList.push(item);
+                }
+            });
+        } else {
+            recordList = records;
+        }
+        recordList.forEach((record) => {
+            let dataIndex = datas.indexOf(record);
+            if (dataIndex > -1 ) {
+                datas.splice(dataIndex, 1);
+            }
+        });
+        this.setState({
+            data: datas,
+            selectedRows: [],
+            selectedRowKeys: []
+        })
+        MessageUtils.showOperationSuccess();
+    }
+
 }
 
 const styles = {
