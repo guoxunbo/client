@@ -98,9 +98,27 @@ export default class GcStockOutTagMLotUnitTable extends EntityListTable {
 
     createTagGroup = () => {
         let tags = [];
-        tags.push(this.createStatistic());
+        tags.push(this.createBoxQty());
+        tags.push(this.createWaferNumber());
         tags.push(this.createTotalNumber());
         return tags;
+    }
+
+    createBoxQty = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+    }
+
+    createWaferNumber = () => {
+        let materialLots = this.state.data;
+        let qty = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.currentSubQty != undefined) {
+                    qty = qty + parseInt(data.currentSubQty);
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
     }
 
     createExpressInput = () => {
