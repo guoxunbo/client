@@ -70,6 +70,7 @@ import GCWaferUnStockOutTaggingProperties from './pages/Properties/components/GC
 import GCMaterialLotListHoldProperties from './pages/Properties/components/GCMaterialLotListHoldProperties';
 import GCHKWarehouseMLotCodePrintProperties from './pages/Properties/components/GCHKWarehouseMLotCodePrintProperties';
 import HKPackMaterialLotProperties from './pages/Properties/components/HKPackMaterialLotProperties';
+import GcFTMaterialLotReceiveProperties from './pages/Properties/components/GcFTMaterialLotReceiveProperties';
 import GCVBoxHoldSetProperties from './pages/Properties/components/GCVBoxHoldSetProperties';
 
 /**
@@ -264,6 +265,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltPackMaterialLotProperties,
   },
+  //FT相关
+  {
+    path: buildPath('FT/GCFTMateriLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFTMaterialLotReceiveProperties,
+  },
   //装箱检
   {
     path: buildPath('WLT/WLTPackCaseCheck'),
@@ -323,6 +330,11 @@ const routerConfig = [
     path: buildPath('GC/GCCOGDetialDeleteManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCOGDetialDeleteProperties,
+  },
+  {
+    path: buildPath('GC/GCMLotDocRuleManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   //MES成品接收
   {
