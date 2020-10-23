@@ -72,6 +72,7 @@ import GCHKWarehouseMLotCodePrintProperties from './pages/Properties/components/
 import HKPackMaterialLotProperties from './pages/Properties/components/HKPackMaterialLotProperties';
 import GcFTMaterialLotReceiveProperties from './pages/Properties/components/GcFTMaterialLotReceiveProperties';
 import GCVBoxHoldSetProperties from './pages/Properties/components/GCVBoxHoldSetProperties';
+import GcFTMLotStockInProperties from './pages/Properties/components/GcFTMLotStockInProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -270,6 +271,11 @@ const routerConfig = [
     path: buildPath('FT/GCFTMateriLotReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcFTMaterialLotReceiveProperties,
+  },
+  {
+    path: buildPath('FT/GCFTMateriLotStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFTMLotStockInProperties,
   },
   //装箱检
   {

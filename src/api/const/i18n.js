@@ -140,6 +140,7 @@ const i18NCode = {
     PoName: "PoName",
     PrintWltLabelFlag: "PrintWltLabelFlag",
     WorkorderIdAndGradeCanEmpty: "WorkorderIdAndGradeCanEmpty",
+    TransferBoxOrStorageCannotEmpty: "TransferBoxOrStorageCannotEmpty",
 }
 
 const i18Messages = {
@@ -820,7 +821,12 @@ const i18Messages = {
     },
     WorkorderIdAndGradeCanEmpty: {
         Chinese: "工单和等级不能都为空！",
-        English: "WorkorderId And Grade Can Empty!",
+        English: "WorkorderId And Grade Cannot Empty!",
+        Res: "" 
+    },
+    TransferBoxOrStorageCannotEmpty: {
+        Chinese: "中转箱号或者库位号不能为空!",
+        English: "TransferBox Or Storage Cannot Empty!",
         Res: "" 
     }
 }
