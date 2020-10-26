@@ -25,8 +25,8 @@ export default class StockInManagerRequestBody {
         this.stockInModels = stockInModels;
     }
 
-    static buildQuery(materialLotId) {
-        return new StockInManagerRequestBody(ActionType.Query, materialLotId);
+    static buildQuery(materialLotId, tableRrn) {
+        return new StockInManagerRequestBody(ActionType.Query, materialLotId, undefined, tableRrn);
     }
 
     static buildQueryWafer(lotId, tableRrn) {

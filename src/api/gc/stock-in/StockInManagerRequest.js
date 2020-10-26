@@ -7,7 +7,7 @@ import Request from '../../Request';
 export default class StockInManagerRequest {
 
     static sendQueryRequest = (object) => {
-        let requestBody = StockInManagerRequestBody.buildQuery(object.materialLotId);
+        let requestBody = StockInManagerRequestBody.buildQuery(object.materialLotId, object.tableRrn);
         let requestHeader = new StockInManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCStockInUrl);
         let requestObject = {
