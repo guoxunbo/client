@@ -141,6 +141,7 @@ const i18NCode = {
     PrintWltLabelFlag: "PrintWltLabelFlag",
     WorkorderIdAndGradeCanEmpty: "WorkorderIdAndGradeCanEmpty",
     TransferBoxOrStorageCannotEmpty: "TransferBoxOrStorageCannotEmpty",
+    MatchErpDocLine: "MatchErpDocLine",
 }
 
 const i18Messages = {
@@ -827,6 +828,11 @@ const i18Messages = {
     TransferBoxOrStorageCannotEmpty: {
         Chinese: "中转箱号或者库位号不能为空!",
         English: "TransferBox Or Storage Cannot Empty!",
+        Res: "" 
+    },
+    MatchErpDocLine: {
+        Chinese: "匹配ERP单据",
+        English: "Match ERP Doc",
         Res: "" 
     }
 }

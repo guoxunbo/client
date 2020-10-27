@@ -9,7 +9,7 @@ import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
 import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferManagerRequest';
 
-const IssueWithDoc = "IssueWithDoc";
+const UnPlanLot = "UnPlanLot";
 
 /**
  * COM晶圆发料
@@ -129,7 +129,7 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
         let requestObject = {
             documentLines : orders,
             materialLots : materialLots,
-            issueWithDoc : IssueWithDoc,
+            unPlanLot: UnPlanLot,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

@@ -6,7 +6,6 @@ import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
-import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferManagerRequest';
 import FtMLotManagerRequest from '../../../api/gc/ft-materialLot-manager/FtMLotManagerRequest';
 
 export default class GcFTWaferIssueTable extends EntityScanViewTable {
@@ -99,6 +98,7 @@ export default class GcFTWaferIssueTable extends EntityScanViewTable {
         let requestObject = {
             documentLines : orders,
             materialLotUnitList : materialLotUnits,
+            issueWithDoc: "issueWithDoc",
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

@@ -52,7 +52,7 @@ export default class FtMLotManagerRequest {
     }
 
     static sendUnitIssueRequest = (object) => {
-        let requestBody = FtMLotManagerRequestBody.buildUnitIssue(object.documentLines, object.materialLotUnitList);
+        let requestBody = FtMLotManagerRequestBody.buildUnitIssue(object.documentLines, object.materialLotUnitList, object.issueWithDoc);
         let requestHeader = new FtMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCftMaterialLotManagerUrl);
         let requestObject = {

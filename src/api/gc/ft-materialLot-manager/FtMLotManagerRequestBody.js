@@ -19,6 +19,7 @@ export default class FtMLotManagerRequestBody {
     stockInModels;
     documentLines;
     materialLotActions;
+    issueWithDoc;
 
     constructor(actionType, materialLotUnitList, unitId, tableRrn, materialLotId){
         this.actionType = actionType;
@@ -38,6 +39,10 @@ export default class FtMLotManagerRequestBody {
 
     setDocumentLines(documentLines){
         this.documentLines = documentLines;
+    }
+
+    setIssueWithDoc(issueWithDoc){
+        this.issueWithDoc = issueWithDoc;
     }
     
     static buildReceive(materialLotUnitList) {
@@ -64,7 +69,7 @@ export default class FtMLotManagerRequestBody {
         return new FtMLotManagerRequestBody(ActionType.QueryWaitIssueUnit, undefined, undefined, tableRrn);
     }
 
-    static buildUnitIssue(documentLines, materialLotUnitList) {
+    static buildUnitIssue(documentLines, materialLotUnitList, issueWithDoc) {
         let materialLotActions = [];
         materialLotUnitList.forEach(materialLotUnit => {
             let materialLotAction = new MaterialLotAction();
@@ -74,6 +79,7 @@ export default class FtMLotManagerRequestBody {
         let requestBody = new FtMLotManagerRequestBody(ActionType.FtIssue);
         requestBody.setMaterialLotActions(materialLotActions);
         requestBody.setDocumentLines(documentLines);
+        requestBody.setIssueWithDoc(issueWithDoc);
         return requestBody;
     }
 }
