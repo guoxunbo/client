@@ -1,9 +1,12 @@
+import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 import StockInModel from "../stock-in/StockInModel";
 
 const ActionType = {
     Receive: "Receive",
     Query: "Query",
     StockIn: "StockIn",
+    QueryWaitIssueUnit: "QueryWaitIssueUnit",
+    FtIssue: "FtIssue",
 }
 
 export default class FtMLotManagerRequestBody {
@@ -14,6 +17,8 @@ export default class FtMLotManagerRequestBody {
     tableRrn;
     materialLotId;
     stockInModels;
+    documentLines;
+    materialLotActions;
 
     constructor(actionType, materialLotUnitList, unitId, tableRrn, materialLotId){
         this.actionType = actionType;
@@ -25,6 +30,14 @@ export default class FtMLotManagerRequestBody {
 
     setStockInModels(stockInModels) {
         this.stockInModels = stockInModels;
+    }
+    
+    setMaterialLotActions(materialLotActions) {
+        this.materialLotActions = materialLotActions;
+    }
+
+    setDocumentLines(documentLines){
+        this.documentLines = documentLines;
     }
     
     static buildReceive(materialLotUnitList) {
@@ -44,6 +57,23 @@ export default class FtMLotManagerRequestBody {
 
         let requestBody = new FtMLotManagerRequestBody(ActionType.StockIn, materialLotUnitList);
         requestBody.setStockInModels(stockInModels);
+        return requestBody;
+    }
+
+    static buildQueryWaitIssueUnit(tableRrn) {
+        return new FtMLotManagerRequestBody(ActionType.QueryWaitIssueUnit, undefined, undefined, tableRrn);
+    }
+
+    static buildUnitIssue(documentLines, materialLotUnitList) {
+        let materialLotActions = [];
+        materialLotUnitList.forEach(materialLotUnit => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLotUnit.unitId);
+            materialLotActions.push(materialLotAction);
+        });
+        let requestBody = new FtMLotManagerRequestBody(ActionType.FtIssue);
+        requestBody.setMaterialLotActions(materialLotActions);
+        requestBody.setDocumentLines(documentLines);
         return requestBody;
     }
 }

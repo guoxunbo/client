@@ -73,6 +73,7 @@ import HKPackMaterialLotProperties from './pages/Properties/components/HKPackMat
 import GcFTMaterialLotReceiveProperties from './pages/Properties/components/GcFTMaterialLotReceiveProperties';
 import GCVBoxHoldSetProperties from './pages/Properties/components/GCVBoxHoldSetProperties';
 import GcFTMLotStockInProperties from './pages/Properties/components/GcFTMLotStockInProperties';
+import GcFTWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcFTWaferIssueOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -276,6 +277,11 @@ const routerConfig = [
     path: buildPath('FT/GCFTMateriLotStockIn'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcFTMLotStockInProperties,
+  },
+  {
+    path: buildPath('FT/GCFTWaferIssue'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFTWaferIssueOrderProperties,
   },
   //装箱检
   {
