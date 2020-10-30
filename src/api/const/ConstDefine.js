@@ -116,6 +116,8 @@ const RefTableName = {
     NBOrg: "NBOrg",
     CustomerNameList: "CustomerNameList",
     POIdList: "POIdList",
+    CPPoListByMaterialNameAndVender: "CPPoListByMaterialNameAndVender",
+    GCWaferMaterialByName: "GCWaferMaterialByName",
 };
 
 /**

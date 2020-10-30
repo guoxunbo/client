@@ -142,6 +142,7 @@ const i18NCode = {
     WorkorderIdAndGradeCanEmpty: "WorkorderIdAndGradeCanEmpty",
     TransferBoxOrStorageCannotEmpty: "TransferBoxOrStorageCannotEmpty",
     MatchErpDocLine: "MatchErpDocLine",
+    ProductId: "ProductId",
 }
 
 const i18Messages = {
@@ -833,6 +834,11 @@ const i18Messages = {
     MatchErpDocLine: {
         Chinese: "匹配ERP单据",
         English: "Match ERP Doc",
+        Res: "" 
+    },
+    ProductId: {
+        Chinese: "产品号",
+        English: "ProductId",
         Res: "" 
     }
 }

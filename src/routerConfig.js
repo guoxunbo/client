@@ -74,6 +74,7 @@ import GcFTMaterialLotReceiveProperties from './pages/Properties/components/GcFT
 import GCVBoxHoldSetProperties from './pages/Properties/components/GCVBoxHoldSetProperties';
 import GcFTMLotStockInProperties from './pages/Properties/components/GcFTMLotStockInProperties';
 import GcFTWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcFTWaferIssueOrderProperties';
+import GCCPStockOutTaggingProperties from './pages/Properties/components/GCCPStockOutTaggingProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -306,6 +307,11 @@ const routerConfig = [
     path: buildPath('Wafer/WaferStockOutTagManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWaferStockOutTaggingProperties,
+  },
+  {
+    path: buildPath('CP/CPStockOutTagManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCPStockOutTaggingProperties,
   },
   //取消晶圆出货标注
   {

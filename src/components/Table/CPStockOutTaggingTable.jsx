@@ -1,14 +1,14 @@
-
 import { Button, Input } from 'antd';
 import I18NUtils from '../../api/utils/I18NUtils';
 import { i18NCode } from '../../api/const/i18n';
 import { Tag } from 'antd';
 import EntityListCheckTable from './EntityListCheckTable';
-import StockOutTagMLotForm from './gc/StockOutTagMLotForm';
-import WltStockOutManagerRequest from '../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 import MessageUtils from '../../api/utils/MessageUtils';
+import CPStockOutTagMLotForm from './gc/CPStockOutTagMLotForm';
+import WltStockOutManagerRequest from '../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 
-export default class WaferStockOutTaggingTable extends EntityListCheckTable {
+
+export default class CPStockOutTaggingTable extends EntityListCheckTable {
 
     static displayName = 'PackMaterialLotTable';
 
@@ -57,17 +57,16 @@ export default class WaferStockOutTaggingTable extends EntityListCheckTable {
     }
 
     createForm = () => {
-        return  <StockOutTagMLotForm visible={this.state.formVisible} 
+        return  <CPStockOutTagMLotForm visible={this.state.formVisible} 
                                      stockTagNote={this.state.stockTagNote} 
                                      materialLots={this.state.materialLots}
+                                     materialName={this.state.materialName}
                                      width={1440}
-                                     vender={this.state.vender} 
                                      onOk={this.handleTagSuccess} 
                                      onCancel={this.handleCancel}/>
     }
     
     handleTagSuccess = () => {
-        debugger;
         this.materialLots = [],
         this.setState({
             selectedRows: [],
@@ -93,26 +92,26 @@ export default class WaferStockOutTaggingTable extends EntityListCheckTable {
         if (materialLots.length === 0 ) {
             return;
         }
-        this.validationMaterialLot(materialLots);
+        this.validationMLotMaterialName(materialLots);
     }
 
-    validationMaterialLot = (materialLots) => {
+    validationMLotMaterialName = (materialLots) => {
         const self = this;
         let stockTagNote = this.input.state.value;
-        let vender = materialLots[0].reserved22;
         let requestObject = {
           materialLots: materialLots,
           success: function(responseBody) {
+              let materialName = materialLots[0].materialName;
             self.setState({
                 formVisible : true,
                 materialLots: materialLots,
                 stockTagNote: stockTagNote,
-                vender: vender
+                materialName: materialName,
             }); 
           }
         }
-        WltStockOutManagerRequest.sendValidateMlotVenderRequest(requestObject);
-      }  
+        WltStockOutManagerRequest.sendValidateMlotMaterialNameRequest(requestObject);
+    }  
 
     createPackageButton = () => {
         return <Button key="stockOutTag" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.stockOutTag}>
