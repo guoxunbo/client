@@ -104,7 +104,7 @@ export default class GcCPStockOutTagMLotTable extends EntityListTable {
                             <span>{I18NUtils.getClientMessage(i18NCode.CustomerName)}:</span>
                         </Col>
                         <Col span={8}>
-                            <RefTableField ref={(customerName) => { this.name = customerName }} field = {{refTableName : RefTableName.CustomerNameList, name: "customerName"}}/>
+                            <RefTableField ref={(customerName) => { this.customerName = customerName }} field = {{refTableName : RefTableName.CustomerNameList, name: "customerName"}}/>
                         </Col>
                         <Col span={4} >
                             <span>{I18NUtils.getClientMessage(i18NCode.StockOutType)}:</span>

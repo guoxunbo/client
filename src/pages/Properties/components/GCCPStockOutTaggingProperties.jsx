@@ -23,7 +23,7 @@ export default class GCCPStockOutTaggingProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-        return <CPStockOutTaggingTable pagination={true} 
+        return <CPStockOutTaggingTable pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 

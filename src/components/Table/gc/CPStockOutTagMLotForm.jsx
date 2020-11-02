@@ -46,16 +46,16 @@ export default class CPStockOutTagMLotForm extends EntityForm {
             poId : poId,
             success: function(responseBody) {
                 self.props.onOk();
-                self.materialLotUnitTable.stockOutType.setState({
+                self.materialLotTable.stockOutType.setState({
                     value: ""
                 });
-                self.materialLotUnitTable.poId.setState({
+                self.materialLotTable.poId.setState({
                     value: ""
                 });
-                self.materialLotUnitTable.customerName.setState({
+                self.materialLotTable.customerName.setState({
                     value: ""
                 });
-                self.materialLotUnitTable.PoName.setState({
+                self.materialLotTable.PoName.setState({
                     value: ""
                 });
             }
