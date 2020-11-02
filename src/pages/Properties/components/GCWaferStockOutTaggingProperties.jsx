@@ -23,7 +23,7 @@ export default class GCWaferStockOutTaggingProperties extends EntityScanProperti
     }
 
     buildTable = () => {
-        return <WaferStockOutTaggingTable pagination={true} 
+        return <WaferStockOutTaggingTable pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
