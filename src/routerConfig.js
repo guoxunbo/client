@@ -360,6 +360,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCProductNumberRelationProperties,
   },
+  {
+    path: buildPath('GC/GCProductWeightRelationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),
