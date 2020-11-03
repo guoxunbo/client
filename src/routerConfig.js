@@ -75,6 +75,7 @@ import GCVBoxHoldSetProperties from './pages/Properties/components/GCVBoxHoldSet
 import GcFTMLotStockInProperties from './pages/Properties/components/GcFTMLotStockInProperties';
 import GcFTWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcFTWaferIssueOrderProperties';
 import GCCPStockOutTaggingProperties from './pages/Properties/components/GCCPStockOutTaggingProperties';
+import GCProductNumberRelationProperties from './pages/Properties/components/GCProductNumberRelationProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -357,7 +358,7 @@ const routerConfig = [
   {
     path: buildPath('GC/GCProductNumberRelationManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: GCProductNumberRelationProperties,
   },
   //MES成品接收
   {

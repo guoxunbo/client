@@ -102,6 +102,7 @@ const UrlConstant = {
     GCProductSubcodeImportManagerUrl: ModuleUrlConstant.GC + "productSubcodeImport",
     GCftMaterialLotManagerUrl: ModuleUrlConstant.GC + "ftMaterialLotManager",
     GCVboxHoldSetManagerUrl: ModuleUrlConstant.GC + "vboxHoldSet",
+    GCProductRelationUrl: ModuleUrlConstant.GC + "productRelation",
 };
 
 const SystemRefListName = {
