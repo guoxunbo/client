@@ -143,6 +143,7 @@ const i18NCode = {
     TransferBoxOrStorageCannotEmpty: "TransferBoxOrStorageCannotEmpty",
     MatchErpDocLine: "MatchErpDocLine",
     ProductId: "ProductId",
+    WeightOutOfNormalRangeConfirmPlease: "WeightOutOfNormalRangeConfirmPlease",
 }
 
 const i18Messages = {
@@ -839,6 +840,11 @@ const i18Messages = {
     ProductId: {
         Chinese: "产品号",
         English: "ProductId",
+        Res: "" 
+    },
+    WeightOutOfNormalRangeConfirmPlease: {
+        Chinese: "重量超出正常范围，请确认！",
+        English: "Weight out of normal range, Confirm Please!",
         Res: "" 
     }
 }

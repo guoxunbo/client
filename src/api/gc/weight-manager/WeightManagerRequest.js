@@ -8,7 +8,7 @@ import MessageUtils from "../../utils/MessageUtils";
 export default class WeightManagerRequest {
 
     static sendQueryRequest = (object) => {
-        let requestBody = WeightManagerRequestBody.buildQuery(object.materialLotId);
+        let requestBody = WeightManagerRequestBody.buildQuery(object.materialLotId, object.tableRrn);
         let requestHeader = new WeightManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWightUrl);
         let requestObject = {

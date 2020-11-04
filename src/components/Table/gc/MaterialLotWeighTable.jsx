@@ -1,11 +1,11 @@
-
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Notification } from '../../notice/Notice';
 import WeightManagerRequest from '../../../api/gc/weight-manager/WeightManagerRequest';
+import EventUtils from '../../../api/utils/EventUtils';
 
 
 /**
@@ -58,16 +58,38 @@ export default class MaterialLotWeighTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.BoxWeightCannotEmpty));
             return;
         }
-        let requestObject = {
-            materialLots: data,
-            success: function(responseBody) {
-                if (self.props.resetData) {
-                    self.props.resetData();
-                }
-                MessageUtils.showOperationSuccess();
+        let flag = false;
+        data.forEach(materialLot => {
+            let floatValue = materialLot.floatValue;
+            let disWeight = Math.abs(materialLot.weight - materialLot.theoryWeight);
+            if(disWeight > floatValue){
+                flag = true;
+                return;
             }
-        }
-        WeightManagerRequest.sendWeightRequest(requestObject);
+        });
+        Modal.confirm({
+            title: 'Confirm',
+            content: I18NUtils.getClientMessage(i18NCode.WeightOutOfNormalRangeConfirmPlease),
+            okText: '确认',
+            cancelText: '取消',
+            onOk:() => {
+                self.setState({
+                    loading: true
+                });
+                EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+                
+                let requestObject = {
+                    materialLots: data,
+                    success: function(responseBody) {
+                        if (self.props.resetData) {
+                            self.props.resetData();
+                        }
+                        MessageUtils.showOperationSuccess();
+                    }
+                }
+                WeightManagerRequest.sendWeightRequest(requestObject);
+            }
+        });
     }
 
     getNotScanWeightMaterialLots(data){
@@ -81,7 +103,7 @@ export default class MaterialLotWeighTable extends EntityScanViewTable {
     }
 
     createWeighButton = () => {
-        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.weight}>
+        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.weight}>
                         {I18NUtils.getClientMessage(i18NCode.BtnWeigh)}
                     </Button>
     }
