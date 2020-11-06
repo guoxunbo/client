@@ -3,6 +3,7 @@ import ReservedManagerRequestBody from './ReservedManagerRequestBody';
 import {UrlConstant} from '../../const/ConstDefine';
 import MessageUtils from '../../utils/MessageUtils';
 import Request from '../../Request';
+import { object } from 'prop-types';
 
 export default class ReservedManagerRequest {
 
@@ -52,6 +53,28 @@ export default class ReservedManagerRequest {
 
     static sendUnReserved= (object) => {
         let requestBody = ReservedManagerRequestBody.buildUnReserved(object.materialLots);
+        let requestHeader = new ReservedManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendGetReservedMLotByPackageRule = (object) => {
+        let requestBody = ReservedManagerRequestBody.buildGetReservedMLotByPackageRule(object.docLineRrn, object.materialLots, object.packageRule);
+        let requestHeader = new ReservedManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendPackedRuleListByDocRrn = (object) => {
+        let requestBody = ReservedManagerRequestBody.buildGetPackedRuleByDocRrn(object.docLineRrn);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {

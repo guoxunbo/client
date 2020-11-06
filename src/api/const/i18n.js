@@ -144,6 +144,11 @@ const i18NCode = {
     MatchErpDocLine: "MatchErpDocLine",
     ProductId: "ProductId",
     WeightOutOfNormalRangeConfirmPlease: "WeightOutOfNormalRangeConfirmPlease",
+    PackageQty: "PackageQty",
+    MissZeroQty: "MissZeroQty",
+    PackedRule: "PackedRule",
+    AutoMaticPacking: "AutoMaticPacking",
+    PleaseChoosePackedRule: "PleaseChoosePackedRule",
 }
 
 const i18Messages = {
@@ -845,6 +850,31 @@ const i18Messages = {
     WeightOutOfNormalRangeConfirmPlease: {
         Chinese: "重量超出正常范围，请确认！",
         English: "Weight out of normal range, Confirm Please!",
+        Res: "" 
+    },
+    PackageQty: {
+        Chinese: "包数",
+        English: "Package Qty",
+        Res: "" 
+    },
+    MissZeroQty: {
+        Chinese: "所缺零数",
+        English: "Miss Zero",
+        Res: "" 
+    },
+    PackedRule: {
+        Chinese: "包装规格",
+        English: "Packed Rule",
+        Res: "" 
+    },
+    AutoMaticPacking: {
+        Chinese: "自动挑货",
+        English: "AutoMatic Packing",
+        Res: "" 
+    },
+    PleaseChoosePackedRule: {
+        Chinese: "请选择包装规格!",
+        English: "Choose packedRule Please!",
         Res: "" 
     }
 }

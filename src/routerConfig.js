@@ -76,6 +76,7 @@ import GcFTMLotStockInProperties from './pages/Properties/components/GcFTMLotSto
 import GcFTWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcFTWaferIssueOrderProperties';
 import GCCPStockOutTaggingProperties from './pages/Properties/components/GCCPStockOutTaggingProperties';
 import GCProductNumberRelationProperties from './pages/Properties/components/GCProductNumberRelationProperties';
+import GcCOMReservedOrderProperties from './pages/Properties/components/GcCOMReservedOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -386,6 +387,11 @@ const routerConfig = [
     path: buildPath('Doc/DeliveryOrderReservedManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOrderReservedProperties,
+  },
+  {
+    path: buildPath('Doc/COMReservedManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMReservedOrderProperties,
   },
   {
     path: buildPath('Doc/ReservedCaseManager'),
