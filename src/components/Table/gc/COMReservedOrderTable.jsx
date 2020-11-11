@@ -33,20 +33,13 @@ export default class COMReservedOrderTable extends EntityListTable {
             tableRrn: this.props.reservedLotTable.state.table.objectRrn,
             success: function(responseBody) {
                 let materialLotList = responseBody.materialLotList;
-                self.props.reservedLotTable.setState({
-                    docLineRrn: record.objectRrn, 
-                    tableData: materialLotList,
-                });
-                if(materialLotList.length > 0){
-                    self.getPackedRuleList(record.objectRrn);
-                }
+                self.getPackedRuleList(record.objectRrn, materialLotList);
             }
         }
         ReservedManagerRequest.sendGetMaterialLot(object);
     }
 
-    getPackedRuleList = (objectRrn) => {
-        debugger;
+    getPackedRuleList = (objectRrn, materialLotList) => {
         let self = this;
         let obj = {
             docLineRrn: objectRrn,
@@ -65,9 +58,12 @@ export default class COMReservedOrderTable extends EntityListTable {
                     };
                     packedRuleList.push(refData);
                 }); 
-                self.setState({
+                self.props.reservedLotTable.setState({
+                    docLineRrn: objectRrn, 
+                    tableData: materialLotList,
+                    resetFlag: true,
                     packedRuleList: packedRuleList,
-                    selectedValue: defaultQty
+                    defaultQty: defaultQty
                 });
             }
         }

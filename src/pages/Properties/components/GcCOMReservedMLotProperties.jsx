@@ -22,9 +22,11 @@ export default class GcCOMReservedMLotProperties extends EntityScanProperties{
                             pagination={false}
                             rowKey={this.state.rowKey} 
                             orderTable={this.props.orderTable} 
-
                             table={this.state.table} 
-                            data={this.state.tableData} 
+                            data={this.state.tableData}
+                            packedRuleList={this.state.packedRuleList}
+                            defaultQty={this.state.defaultQty}
+                            docLineRrn={this.state.docLineRrn}
                             loading={this.state.loading} 
                             resetData={this.resetData.bind(this)}
                             resetFlag={this.state.resetFlag}

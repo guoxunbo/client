@@ -5,6 +5,9 @@ import { Notification } from '../../notice/Notice';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityListCheckTable from '../EntityListCheckTable';
 import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedManagerRequest';
+import EventUtils from '../../../api/utils/EventUtils';
+
+const { Option} = Select;
 
 /**
  * 备货表格
@@ -12,6 +15,35 @@ import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedMan
 export default class GcCOMReservedMLotTable extends EntityListCheckTable {
 
     static displayName = 'GcCOMReservedMLotTable';
+
+    constructor(props) {
+        super(props);
+        this.state = {...this.state, ...{formTable: {fields: []}}};
+    }
+
+    componentWillReceiveProps = (props) => {
+        let {selectedRowKeys, selectedRows} = this.state;
+        let columnData = this.buildColumn(props.table);;
+        let stateSeletcedRowKeys = selectedRowKeys.merge(props.selectedRowKeys);
+        let stateSelectedRows = selectedRows.merge(props.selectedRows, this.props.rowKey);
+        if (props.resetFlag) {
+            stateSeletcedRowKeys = [];
+            stateSelectedRows = [];
+            this.setState({
+                value: "",
+            });
+        }
+        
+        this.setState({
+            data: props.data,
+            table: props.table,
+            columns: columnData.columns,
+            scrollX: columnData.scrollX,
+            selectedRowKeys: stateSeletcedRowKeys || [],
+            selectedRows: stateSelectedRows || [],
+            pagination: props.pagination != undefined ? props.pagination : Application.table.pagination
+        })
+    }
 
     createButtonGroup = () => {
         let buttons = [];
@@ -30,16 +62,12 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
     }
 
     createLocationSelecctAndInputTag = () => {
-        debugger;
-        let self = this;
-        let reservedOrderTable =  this.props.orderTable;
-        let packedRuleList =[];
-        let selectedValue = "";
-        let options;
-        if(reservedOrderTable){
-            packedRuleList = reservedOrderTable.state.packedRuleList;
-            selectedValue = reservedOrderTable.state.selectedValue;
+        let packedRuleList = this.props.packedRuleList;
+        let defaultQty = this.props.defaultQty;
+        if(this.state.value == "" || this.state.value == undefined){
+            this.state.value = defaultQty;
         }
+        let options;
         if(packedRuleList || packedRuleList != undefined){
             options = packedRuleList.map(d => <Option key={d.key}>{d.value}</Option>);
         }
@@ -54,7 +82,7 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
             <Select
                 showSearch
                 allowClear
-                value={selectedValue}
+                value={this.state.value}
                 style={{ width: 200}}
                 onChange={this.handleChange}
                 disabled={this.props.disabled}
@@ -67,11 +95,11 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
     }
 
     handleChange = (currentValue) => {
-        if (this.props.orderTable.state.selectedValue === currentValue) {
+        if (this.state.value === currentValue) {
             return;
         }
-        this.props.orderTable.setState({ 
-            selectedValue: currentValue
+        this.setState({
+            value: currentValue
         });
     }
 
@@ -90,6 +118,11 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
             return;
         }
 
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+
         let requestObj = {
             docLineRrn : documentLine.objectRrn,
             materialLots : materialLots,
@@ -98,16 +131,20 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
                 if (self.props.resetData) {
                     self.props.onSearch();
                     self.props.resetData();
+                    self.setState({
+                        value: ""
+                    });
+                    self.input.setState({
+                        value: ""
+                    });
                 }
                 MessageUtils.showOperationSuccess();
             }
         }
-
         ReservedManagerRequest.sendReserved(requestObj);
     }
 
     autoMaticPack = () => {
-        debugger;
         let self = this;
         const {data} = this.state;
         let packageRule = this.state.value;
@@ -127,19 +164,43 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
             return;
         }
 
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+
         let requestObj = {
             docLineRrn : documentLine.objectRrn,
             materialLots : data,
             packageRule: packageRule,
             success: function(responseBody) {
-
+                let materialLotList = responseBody.materialLotList;
+                materialLotList.forEach(materialLot => {
+                    self.setSelectMLot(materialLot);
+                });
             }
         }
         ReservedManagerRequest.sendGetReservedMLotByPackageRule(requestObj);
     }
 
+    setSelectMLot = (record) => {
+        let rowKey = this.props.rowKey || DefaultRowKey;
+        const selectedRowKeys = [...this.state.selectedRowKeys];
+        const selectedRows = [...this.state.selectedRows];
+
+        let checkIndex = selectedRowKeys.indexOf(record[rowKey]);
+        if (checkIndex < 0) {
+            selectedRowKeys.push(record[rowKey]);
+            selectedRows.push(record);
+        }
+        this.setState({ 
+            selectedRowKeys: selectedRowKeys,
+            selectedRows: selectedRows
+        });
+    }
+
     createTotalNumber = () => {
-        let materialLots = this.state.selectedRows;
+        let materialLots = this.state.data;
         let count = 0;
         if(materialLots && materialLots.length > 0){
             materialLots.forEach(data => {
@@ -150,19 +211,36 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PackageQty)}：{this.state.selectedRows.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PackageQty)}：{this.state.data.length}</Tag>
     }
 
     createMissZeroQty = () => {
-        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.MissZeroQty)}：{this.state.selectedRows.length}</Tag>
+        const {selectedRows} = this.state;
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                count = count + data.currentQty;
+            });
+        }
+        let materialLotList = selectedRows;
+        let selectQty = 0;
+        if(materialLotList && materialLotList.length > 0){
+            materialLotList.forEach(data => {
+                selectQty = selectQty + data.currentQty;
+            });
+        }
+        let missZeroQty = count - selectQty;
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.MissZeroQty)}：{missZeroQty}</Tag>
     }
+
     createReserved = () => {
-        return <Button key="reserved" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.reserved}>
+        return <Button key="reserved" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.reserved}>
                         备货
                     </Button>
     }
     createAutoMaticPacking = () => {
-        return <Button key="autoMaticPack" type="primary" style={styles.tableButton} icon="file-excel" onClick={this.autoMaticPack}>
+        return <Button key="autoMaticPack" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.autoMaticPack}>
                     {I18NUtils.getClientMessage(i18NCode.AutoMaticPacking)}
                     </Button>
     }
