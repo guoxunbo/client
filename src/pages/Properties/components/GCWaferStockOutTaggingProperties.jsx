@@ -15,7 +15,8 @@ export default class GCWaferStockOutTaggingProperties extends EntityScanProperti
         success: function(responseBody) {
           self.setState({
             tableData: responseBody.dataList,
-            loading: false
+            loading: false,
+            resetFlag: true
           });
         }
       }
@@ -24,12 +25,13 @@ export default class GCWaferStockOutTaggingProperties extends EntityScanProperti
 
     buildTable = () => {
         return <WaferStockOutTaggingTable pagination={false} 
-                                    rowKey={this.state.rowKey} 
+                                    rowKey={this.state.rowKey}
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading}
+                                    resetFlag={this.state.resetFlag}
                                     onSearch={this.queryData.bind(this)} 
                                     resetData={this.resetData.bind(this)}/>
     }
