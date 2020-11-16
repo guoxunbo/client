@@ -61,35 +61,51 @@ export default class MaterialLotWeighTable extends EntityScanViewTable {
         let flag = false;
         data.forEach(materialLot => {
             let floatValue = materialLot.floatValue;
-            let disWeight = Math.abs(materialLot.weight - materialLot.theoryWeight);
-            if(disWeight > floatValue){
-                flag = true;
-                return;
-            }
-        });
-        Modal.confirm({
-            title: 'Confirm',
-            content: I18NUtils.getClientMessage(i18NCode.WeightOutOfNormalRangeConfirmPlease),
-            okText: '确认',
-            cancelText: '取消',
-            onOk:() => {
-                self.setState({
-                    loading: true
-                });
-                EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
-                
-                let requestObject = {
-                    materialLots: data,
-                    success: function(responseBody) {
-                        if (self.props.resetData) {
-                            self.props.resetData();
-                        }
-                        MessageUtils.showOperationSuccess();
-                    }
+            if(materialLot.theoryWeight){
+                let disWeight = Math.abs(materialLot.weight - materialLot.theoryWeight);
+                if(disWeight > floatValue){
+                    flag = true;
+                    return;
                 }
-                WeightManagerRequest.sendWeightRequest(requestObject);
             }
         });
+        if(flag){
+            Modal.confirm({
+                title: 'Confirm',
+                content: I18NUtils.getClientMessage(i18NCode.WeightOutOfNormalRangeConfirmPlease),
+                okText: '确认',
+                cancelText: '取消',
+                onOk:() => {
+                    self.setState({
+                        loading: true
+                    });
+                    EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+                    
+                    let requestObject = {
+                        materialLots: data,
+                        success: function(responseBody) {
+                            if (self.props.resetData) {
+                                self.props.resetData();
+                            }
+                            MessageUtils.showOperationSuccess();
+                        }
+                    }
+                    WeightManagerRequest.sendWeightRequest(requestObject);
+                }
+            });
+        } else {
+            let requestObject = {
+                materialLots: data,
+                success: function(responseBody) {
+                    if (self.props.resetData) {
+                        self.props.resetData();
+                    }
+                    MessageUtils.showOperationSuccess();
+                }
+            }
+            WeightManagerRequest.sendWeightRequest(requestObject);
+        }
+
     }
 
     getNotScanWeightMaterialLots(data){
