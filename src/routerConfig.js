@@ -77,6 +77,7 @@ import GcFTWaferIssueOrderProperties from './pages/Properties/components/gc/wafe
 import GCCPStockOutTaggingProperties from './pages/Properties/components/GCCPStockOutTaggingProperties';
 import GCProductNumberRelationProperties from './pages/Properties/components/GCProductNumberRelationProperties';
 import GcCOMReservedOrderProperties from './pages/Properties/components/GcCOMReservedOrderProperties';
+import HKWarehouseReceiveProperties from './pages/Properties/components/HKWarehouseReceiveProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -454,6 +455,11 @@ const routerConfig = [
     path: buildPath('HKWarehouse/HKPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: HKPackMaterialLotProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/GCMaterialLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKWarehouseReceiveProperties,
   },
   //WMS
   {
