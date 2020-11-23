@@ -78,6 +78,7 @@ import GCCPStockOutTaggingProperties from './pages/Properties/components/GCCPSto
 import GCProductNumberRelationProperties from './pages/Properties/components/GCProductNumberRelationProperties';
 import GcCOMReservedOrderProperties from './pages/Properties/components/GcCOMReservedOrderProperties';
 import HKWarehouseReceiveProperties from './pages/Properties/components/HKWarehouseReceiveProperties';
+import HKStockOutOrderProperties from './pages/Properties/components/HKStockOutOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -460,6 +461,11 @@ const routerConfig = [
     path: buildPath('HKWarehouse/GCMaterialLotReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: HKWarehouseReceiveProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKMLotStockOutMager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKStockOutOrderProperties,
   },
   //WMS
   {
