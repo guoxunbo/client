@@ -1,4 +1,3 @@
-import EntityListTable from '../EntityListTable';
 import { Button, Input, Row, Col } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
@@ -11,9 +10,10 @@ import { SystemRefListName } from '../../../api/const/ConstDefine';
 import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
 import PrintUtils from '../../../api/utils/PrintUtils';
+import EntityListCheckTable from '../EntityListCheckTable';
 
 
-export default class RecordExpressNumberTable extends EntityListTable {
+export default class RecordExpressNumberTable extends EntityListCheckTable {
 
     static displayName = 'RecordExpressNumberTable';
 
@@ -92,10 +92,9 @@ export default class RecordExpressNumberTable extends EntityListTable {
     }
 
     recordAutoExpress = () => {
-        let datas = this.state.data;
         let self = this;
+        let datas = this.getSelectedRows();
         if (datas.length === 0){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
         let serviceMode = this.serviceMode.state.value;
@@ -116,6 +115,10 @@ export default class RecordExpressNumberTable extends EntityListTable {
                     selectedRows: [],
                     selectedRowKeys: []
                 }) 
+                let url = PrintServiceUrl.ObliqueBox;
+                responseBody.parameterMapList.forEach((parameter) => {
+                    PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
+                });
                 MessageUtils.showOperationSuccess();
             }
         };
@@ -123,13 +126,12 @@ export default class RecordExpressNumberTable extends EntityListTable {
     }
 
     recordManualExpress = () => {
-        let datas = this.state.data;
         let self = this;
+        let datas = this.getSelectedRows();
         if (datas.length === 0){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        let expressNumber = this.expressNumber.state.value;
+        let expressNumber = self.expressNumber.state.value;
         if (expressNumber == "" || expressNumber == null || expressNumber == undefined){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
             return;
@@ -149,6 +151,9 @@ export default class RecordExpressNumberTable extends EntityListTable {
                     selectedRows: [],
                     selectedRowKeys: []
                 }) 
+                self.expressNumber.setState({
+                    value : "",
+                });
                 MessageUtils.showOperationSuccess();
             }
         };
@@ -156,10 +161,9 @@ export default class RecordExpressNumberTable extends EntityListTable {
     }
 
     cancelExpress = () => {
-        let datas = this.state.data;
         let self = this;
+        let datas = this.getSelectedRows();
         if (datas.length === 0){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
         self.setState({
