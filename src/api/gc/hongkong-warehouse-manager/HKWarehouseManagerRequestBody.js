@@ -4,6 +4,7 @@ const actionType = {
     HKStockOut: "HKStockOut",
     ValidateHKMlot: "ValidateHKMlot",
     GetHKWarehouseMLot: "GetHKWarehouseMLot",
+    HKByOrderStockOut: "HKByOrderStockOut"
 }
 
 export default class HKWarehouseManagerRequestBody {
@@ -32,7 +33,7 @@ export default class HKWarehouseManagerRequestBody {
         this.queryLotId = queryLotId;
     }
     
-    static buildWltStockOut(documentLines, materialLots) {
+    static buildHKWarehouseStockOut(documentLines, materialLots) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
@@ -41,6 +42,17 @@ export default class HKWarehouseManagerRequestBody {
         });
 
         return new HKWarehouseManagerRequestBody(actionType.HKStockOut, documentLines, materialLotActions);
+    }
+
+    static buildHKByOrderStockOut(documentLines, materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+
+        return new HKWarehouseManagerRequestBody(actionType.HKByOrderStockOut, documentLines, materialLotActions);
     }
 
     static buildValidateMLot(queryMaterialLot, materialLots) {

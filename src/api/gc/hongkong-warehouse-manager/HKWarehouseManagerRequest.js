@@ -8,7 +8,7 @@ export default class HKWarehouseManagerRequest {
 
     static sendHKStockOutRequest = (object) => {
         let {documentLines, materialLots} = object;
-        let requestBody = HKWarehouseManagerRequestBody.buildWltStockOut(documentLines, materialLots);
+        let requestBody = HKWarehouseManagerRequestBody.buildHKWarehouseStockOut(documentLines, materialLots);
         let requestHeader = new HKWarehouseManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCHKWarehouseManagerUrl);
         let requestObject = {
@@ -32,6 +32,18 @@ export default class HKWarehouseManagerRequest {
 
     static sendGetMaterialLotByRrnRequest = (object) => {
         let requestBody = HKWarehouseManagerRequestBody.buildGetMaterialLot(object.tableRrn, object.queryLotId);
+        let requestHeader = new HKWarehouseManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCHKWarehouseManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendHKByOrderStockOutRequest = (object) => {
+        let {documentLines, materialLots} = object;
+        let requestBody = HKWarehouseManagerRequestBody.buildHKByOrderStockOut(documentLines, materialLots);
         let requestHeader = new HKWarehouseManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCHKWarehouseManagerUrl);
         let requestObject = {
