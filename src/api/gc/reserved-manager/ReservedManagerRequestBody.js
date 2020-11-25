@@ -5,7 +5,9 @@ const ActionType = {
     GetMLotAndUser : "GetMLotAndUser",
     Reserved : "Reserved",
     UnReserved: "UnReserved",
-    GetPackedMLots: "GetPackedMLots"
+    GetPackedMLots: "GetPackedMLots",
+    GetAutoPackMLot: "GetAutoPackMLot",
+    GetPackedRuleList: "GetPackedRuleList",
 }
 export default class ReservedManagerRequestBody {
 
@@ -16,6 +18,7 @@ export default class ReservedManagerRequestBody {
     stockNote;
     table;
     whereClause;
+    packageRule;
 
     constructor(actionType, docLineRrn, tableRrn, materialLotActions, stockNote,whereClause){
         this.actionType = actionType;
@@ -25,6 +28,10 @@ export default class ReservedManagerRequestBody {
         this.stockNote = stockNote;
         this.whereClause = whereClause;
         this.table;
+    }
+
+    setPackageRule(packageRule) {
+        this.packageRule = packageRule;
     }
     
     static buildGetMaterialLot(docLineRrn, tableRrn) {
@@ -63,6 +70,22 @@ export default class ReservedManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new ReservedManagerRequestBody(ActionType.UnReserved, undefined, undefined, materialLotActions);
+    }
+
+    static buildGetReservedMLotByPackageRule(docLineRrn, materialLots, packageRule){
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let requestBody = new ReservedManagerRequestBody(ActionType.GetAutoPackMLot, docLineRrn, undefined, materialLotActions);
+        requestBody.setPackageRule(packageRule);
+        return requestBody;
+    }
+
+    static buildGetPackedRuleByDocRrn(docLineRrn) {
+        return new ReservedManagerRequestBody(ActionType.GetPackedRuleList, docLineRrn);
     }
 
 }

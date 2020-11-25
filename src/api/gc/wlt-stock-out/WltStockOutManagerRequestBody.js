@@ -8,6 +8,7 @@ const actionType = {
     UnStockOutTag: "UnStockOutTag",
     ValidateVender: "ValidateVender",
     GetMLot: "GetMLot",
+    ValidateMaterialName: "ValidateMaterialName",
 }
 
 export default class WltStockOutManagerRequestBody {
@@ -105,6 +106,16 @@ export default class WltStockOutManagerRequestBody {
         let requestBody =  new WltStockOutManagerRequestBody(actionType.GetMLot);
         requestBody.setTableInfo(tableRrn, queryLotId);
         return requestBody;
+    }
+
+    static buildValidationMaterialName(materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new WltStockOutManagerRequestBody(actionType.ValidateMaterialName, undefined, materialLotActions);
     }
 
 }

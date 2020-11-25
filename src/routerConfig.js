@@ -74,6 +74,12 @@ import GcFTMaterialLotReceiveProperties from './pages/Properties/components/GcFT
 import GCVBoxHoldSetProperties from './pages/Properties/components/GCVBoxHoldSetProperties';
 import GcFTMLotStockInProperties from './pages/Properties/components/GcFTMLotStockInProperties';
 import GcFTWaferIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GcFTWaferIssueOrderProperties';
+import GCCPStockOutTaggingProperties from './pages/Properties/components/GCCPStockOutTaggingProperties';
+import GCProductNumberRelationProperties from './pages/Properties/components/GCProductNumberRelationProperties';
+import GcCOMReservedOrderProperties from './pages/Properties/components/GcCOMReservedOrderProperties';
+import HKWarehouseReceiveProperties from './pages/Properties/components/HKWarehouseReceiveProperties';
+import HKStockOutOrderProperties from './pages/Properties/components/HKStockOutOrderProperties';
+import HKByOrderStockOutProperties from './pages/Properties/components/HKByOrderStockOutProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -307,6 +313,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWaferStockOutTaggingProperties,
   },
+  {
+    path: buildPath('CP/CPStockOutTagManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCPStockOutTaggingProperties,
+  },
   //取消晶圆出货标注
   {
     path: buildPath('Wafer/WaferUnStockOutTagManager'),
@@ -348,6 +359,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  {
+    path: buildPath('GC/GCProductNumberRelationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCProductNumberRelationProperties,
+  },
+  {
+    path: buildPath('GC/GCProductWeightRelationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),
@@ -369,6 +390,11 @@ const routerConfig = [
     path: buildPath('Doc/DeliveryOrderReservedManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOrderReservedProperties,
+  },
+  {
+    path: buildPath('Doc/COMReservedManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMReservedOrderProperties,
   },
   {
     path: buildPath('Doc/ReservedCaseManager'),
@@ -431,6 +457,21 @@ const routerConfig = [
     path: buildPath('HKWarehouse/HKPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: HKPackMaterialLotProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/GCMaterialLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKWarehouseReceiveProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKMLotStockOutMager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKStockOutOrderProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKMLotByOrderStockOutMager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKByOrderStockOutProperties,
   },
   //WMS
   {

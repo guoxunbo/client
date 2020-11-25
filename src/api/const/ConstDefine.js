@@ -103,6 +103,8 @@ const UrlConstant = {
     GCProductSubcodeImportManagerUrl: ModuleUrlConstant.GC + "productSubcodeImport",
     GCftMaterialLotManagerUrl: ModuleUrlConstant.GC + "ftMaterialLotManager",
     GCVboxHoldSetManagerUrl: ModuleUrlConstant.GC + "vboxHoldSet",
+    GCProductRelationUrl: ModuleUrlConstant.GC + "productRelation",
+    GCHKWarehouseManagerUrl: ModuleUrlConstant.GC + "HKWarehouseManager",
 };
 
 const SystemRefListName = {
@@ -117,6 +119,8 @@ const RefTableName = {
     NBOrg: "NBOrg",
     CustomerNameList: "CustomerNameList",
     POIdList: "POIdList",
+    CPPoListByMaterialNameAndVender: "CPPoListByMaterialNameAndVender",
+    GCWaferMaterialByName: "GCWaferMaterialByName",
 };
 
 /**

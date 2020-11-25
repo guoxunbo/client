@@ -1,10 +1,10 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import WaferStockOutTaggingTable from "../../../components/Table/WaferStockOutTaggingTable";
+import CPStockOutTaggingTable from "../../../components/Table/CPStockOutTaggingTable";
 
-export default class GCWaferStockOutTaggingProperties extends EntityScanProperties{
+export default class GCCPStockOutTaggingProperties extends EntityScanProperties{
 
-    static displayName = 'GCWaferStockOutTaggingProperties';
+    static displayName = 'GCCPStockOutTaggingProperties';
       
 
     queryData = (whereClause) => {
@@ -15,8 +15,7 @@ export default class GCWaferStockOutTaggingProperties extends EntityScanProperti
         success: function(responseBody) {
           self.setState({
             tableData: responseBody.dataList,
-            loading: false,
-            resetFlag: true
+            loading: false
           });
         }
       }
@@ -24,14 +23,13 @@ export default class GCWaferStockOutTaggingProperties extends EntityScanProperti
     }
 
     buildTable = () => {
-        return <WaferStockOutTaggingTable pagination={false} 
-                                    rowKey={this.state.rowKey}
+        return <CPStockOutTaggingTable pagination={false} 
+                                    rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading}
-                                    resetFlag={this.state.resetFlag}
                                     onSearch={this.queryData.bind(this)} 
                                     resetData={this.resetData.bind(this)}/>
     }

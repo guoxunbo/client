@@ -77,5 +77,16 @@ export default class WaferManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendHKReceiveMLotRequest = (object) => {
+        let requestBody = WaferManagerRequestBody.buildHKReceiveMaterialLot(object.materialLots);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

@@ -6,6 +6,7 @@ const ActionType = {
     ValidationIssue: "ValidationIssue",
     GetWaitIssueMLot: "GetWaitIssueMLot",
     PurchaseOutsoureReceive: "PurchaseOutsoureReceive",
+    HKMLotReceive: "HKMLotReceive",
 }
 export default class WaferManagerRequestBody {
 
@@ -83,6 +84,17 @@ export default class WaferManagerRequestBody {
 
     static buildGetMaterialLot(tableRrn,whereClause) {
         return new WaferManagerRequestBody(ActionType.GetWaitIssueMLot, undefined, undefined, tableRrn, whereClause);
+    }
+    
+    static buildHKReceiveMaterialLot(materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new WaferManagerRequestBody(ActionType.HKMLotReceive, undefined, materialLotActions);
+    
     }
 }
 

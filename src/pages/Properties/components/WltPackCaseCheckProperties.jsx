@@ -37,51 +37,51 @@ export default class WltPackCaseCheckProperties extends EntityDoubleScanProperti
         MaterialLotManagerRequest.sendGetWltJudgePackCaseItemListRequest(requestCheckDataObject);
     }
 
-    queryData = (whereClause) => {
-      const self = this;
-      let reloadTableData = false;
-      let firstQueryField = self.form.state.queryFields[0];
-      if (whereClause.indexOf(firstQueryField.name) != -1) {
-          reloadTableData = true;
-          let queryFields = this.form.state.queryFields;
-          let queryLotId = this.form.props.form.getFieldValue(queryFields[0].name)
-          let requestObject = {
-            tableRrn: this.state.tableRrn,
-            queryLotId: queryLotId,
-            success: function(responseBody) {
-              let queryDatas = responseBody.materialLotList;
-                if (queryDatas && queryDatas.length > 0) {
-                    self.setState({ 
-                      tableData: queryDatas,
-                      loading: false,
-                      scanErrorFlag: false,
-                      resetFlag:true,
-                    });
-                    self.nextQueryNodeFocus();
-                    self.form.resetFormFileds();
-                } else {
-                  self.showDataNotFound(reloadTableData);
-                  self.resetData();
-                }
-            }
-          }
-          MaterialLotManagerRequest.sendQueryMLotRequest(requestObject);
-      } else {
-        let requestObject = {
-          tableRrn: this.state.tableRrn,
-          whereClause: whereClause,
-          success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
-              if (queryDatas && queryDatas.length > 0) {
-                self.afterSecondQuery(queryDatas);
-              } else {
-                self.showDataNotFound(reloadTableData);
-              }
-            }
-          }
-          TableManagerRequest.sendGetDataByRrnRequest(requestObject);
-        }
-      }
+    // queryData = (whereClause) => {
+    //   const self = this;
+    //   let reloadTableData = false;
+    //   let firstQueryField = self.form.state.queryFields[0];
+    //   if (whereClause.indexOf(firstQueryField.name) != -1) {
+    //       reloadTableData = true;
+    //       let queryFields = this.form.state.queryFields;
+    //       let queryLotId = this.form.props.form.getFieldValue(queryFields[0].name)
+    //       let requestObject = {
+    //         tableRrn: this.state.tableRrn,
+    //         queryLotId: queryLotId,
+    //         success: function(responseBody) {
+    //           let queryDatas = responseBody.materialLotList;
+    //             if (queryDatas && queryDatas.length > 0) {
+    //                 self.setState({ 
+    //                   tableData: queryDatas,
+    //                   loading: false,
+    //                   scanErrorFlag: false,
+    //                   resetFlag:true,
+    //                 });
+    //                 self.nextQueryNodeFocus();
+    //                 self.form.resetFormFileds();
+    //             } else {
+    //               self.showDataNotFound(reloadTableData);
+    //               self.resetData();
+    //             }
+    //         }
+    //       }
+    //       MaterialLotManagerRequest.sendQueryMLotRequest(requestObject);
+    //   } else {
+    //     let requestObject = {
+    //       tableRrn: this.state.tableRrn,
+    //       whereClause: whereClause,
+    //       success: function(responseBody) {
+    //         let queryDatas = responseBody.dataList;
+    //           if (queryDatas && queryDatas.length > 0) {
+    //             self.afterSecondQuery(queryDatas);
+    //           } else {
+    //             self.showDataNotFound(reloadTableData);
+    //           }
+    //         }
+    //       }
+    //       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    //     }
+    //   }
 
     buildTable = () => {
         return <WltPackCaseCheckTable checkItemList={this.state.judgeWltPackCaseItemList} pagination={false} 

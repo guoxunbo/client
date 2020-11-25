@@ -11,18 +11,20 @@ export default class WeightManagerRequestBody {
     actionType;
     materialLotId;
     weightModels;
+    tableRrn;
 
-    constructor(actionType,materialLotId){
+    constructor(actionType,materialLotId, tableRrn){
         this.actionType = actionType;
         this.materialLotId = materialLotId;
+        this.tableRrn = tableRrn;
     }
 
     setWeightModels (weightModels) {
         this.weightModels = weightModels;
     }
 
-    static buildQuery(materialLotId) {
-        return new WeightManagerRequestBody(ActionType.Query, materialLotId);
+    static buildQuery(materialLotId, tableRrn) {
+        return new WeightManagerRequestBody(ActionType.Query, materialLotId, tableRrn);
     }
 
     static buildWeight(materialLots) {
