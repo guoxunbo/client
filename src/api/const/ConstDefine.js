@@ -1,9 +1,10 @@
 
 const ServerAddress = {
-    NewbiestUrl : "http://127.0.0.1:8080"
-    // NewbiestUrl : "http://172.16.15.188:8080"
-    // NewbiestUrl : "http://10.181.160.18:8080"
-    // NewbiestUrl : "http://10.181.160.31:10010"
+    NewbiestUrl : "http://127.0.0.1:8080",
+    // NewbiestUrl : "http://172.16.15.188:8080",
+    // NewbiestUrl : "http://10.181.160.18:8080",
+    // NewbiestUrl : "http://10.181.160.31:10010",
+    Envirment: "Test"
 }
 
 /**
@@ -174,4 +175,4 @@ const SqlType = {
 }
 
 
-export {UrlConstant, DataBaseType, DateFormatType, SystemRefListName, RefTableName, ErrorCode, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType};
+export {ServerAddress, UrlConstant, DataBaseType, DateFormatType, SystemRefListName, RefTableName, ErrorCode, EntityModel, ResultIdentify, Language, DefaultRowKey, DefaultOrderKey, Type, SqlType};

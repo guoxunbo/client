@@ -1,5 +1,5 @@
 const Application = {
-    name: 'FA-WMS',
+    name: 'WMS',
     version: "1.0.4",
     copyright: {
         name: "© 2018-至今By Newbiest",
