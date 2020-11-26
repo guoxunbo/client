@@ -4,18 +4,27 @@ const ActionType = {
     GetCheckList: "GetCheckList",
     GetWltCheckList: "GetWltCheckList",
     Judge: "Judge",
+    GetCheckMLot: "GetCheckMLot",
 }
 export default class StockOutCheckRequestBody {
 
     actionType;
     checkList;
-    expressNumber;
+    tableRrn;
+    queryMLotId;
 
-    constructor(actionType, materialLots, checkList, expressNumber){
+    constructor(actionType, materialLots, checkList){
         this.actionType = actionType;
         this.materialLots = materialLots;
         this.checkList = checkList;
-        this.expressNumber = expressNumber;
+    }
+
+    setTableRrn(tableRrn){
+        this.tableRrn=tableRrn;
+    }
+
+    setQueryMLotId(queryMLotId){
+        this.queryMLotId=queryMLotId;
     }
 
     static buildGetCheckData() {
@@ -31,8 +40,15 @@ export default class StockOutCheckRequestBody {
      * @param {*} materialLots 
      * @param {*} checkList 
      */
-    static buildJudge(materialLots, checkList, expressNumber) {
-        return new StockOutCheckRequestBody(ActionType.Judge, materialLots, checkList, expressNumber);
+    static buildJudge(materialLots, checkList) {
+        return new StockOutCheckRequestBody(ActionType.Judge, materialLots, checkList);
+    }
+
+    static buildGetWaitCheckMLot(tableRrn, queryMLotId) {
+        let requestBody = new StockOutCheckRequestBody(ActionType.GetCheckMLot);
+        requestBody.setTableRrn(tableRrn);
+        requestBody.setQueryMLotId(queryMLotId);
+        return requestBody;
     }
 
 }   
