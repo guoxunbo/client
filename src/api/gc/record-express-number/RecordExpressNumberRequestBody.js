@@ -4,7 +4,8 @@ const ActionType = {
     AutoOrder: "AutoOrder",
     ManualOrder: "ManualOrder",
     CancelOrder: "CancelOrder",
-    QueryPrintParameter: "QueryPrintParameter"
+    QueryPrintParameter: "QueryPrintParameter",
+    ObliqueLabelPrint:"ObliqueLabelPrint"
 }
 
 export default class RecordExpressNumberRequestBody {
@@ -50,6 +51,12 @@ export default class RecordExpressNumberRequestBody {
         let body = new RecordExpressNumberRequestBody(ActionType.QueryPrintParameter);
         body.materialLots = materialLots;
         body.expressNumber = expressNumber;
+        return body;
+    }
+    
+    static buildObliqueLabelPrint(materialLots) {
+        let body = new RecordExpressNumberRequestBody(ActionType.ObliqueLabelPrint);
+        body.materialLots = materialLots;
         return body;
     }
 }   
