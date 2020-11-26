@@ -62,4 +62,15 @@ export default class RecordExpressNumberRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendObliqueLabelPrintRequest = (object) => {
+        let requestBody = RecordExpressNumberRequestBody.buildObliqueLabelPrint(object.datas);
+        let requestHeader = new RecordExpressNumberRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

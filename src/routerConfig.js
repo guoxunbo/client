@@ -80,7 +80,7 @@ import GcCOMReservedOrderProperties from './pages/Properties/components/GcCOMRes
 import HKWarehouseReceiveProperties from './pages/Properties/components/HKWarehouseReceiveProperties';
 import HKStockOutOrderProperties from './pages/Properties/components/HKStockOutOrderProperties';
 import HKByOrderStockOutProperties from './pages/Properties/components/HKByOrderStockOutProperties';
-
+import GCExpressNumberLabelPrintProperties from './pages/Properties/components/GCExpressNumberLabelPrintProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -368,6 +368,12 @@ const routerConfig = [
     path: buildPath('GC/GCProductWeightRelationManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  //斜标签补打
+  {
+    path: buildPath('GC/GCExpressNumberLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCExpressNumberLabelPrintProperties  ,
   },
   //MES成品接收
   {
