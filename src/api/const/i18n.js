@@ -70,6 +70,7 @@ const i18NCode = {
     BtnCancelExpress: "CancelExpress",
     BtnManualRecordExpress: "ManualRecordExpress",
     BtnPrintObliqueLabel: "PrintObliqueLabel",
+    BtnCancelWayBillOrder: "CancelWayBillOrder",
 
     BtnUnBind: "UnBind",
     BtnDelete: "Delete",
@@ -893,6 +894,11 @@ const i18Messages = {
     MLotUnCheckExpressNumber: {
         Chinese: "物料批次没有检验快递单号！",
         English: "MLot UnCheck ExpressNumber!",
+        Res: ""   
+    },
+    CancelWayBillOrder: {
+        Chinese: "取消快递单",
+        English: "Cancel WayBillOrder",
         Res: ""   
     }
 }

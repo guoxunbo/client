@@ -81,6 +81,7 @@ import HKWarehouseReceiveProperties from './pages/Properties/components/HKWareho
 import HKStockOutOrderProperties from './pages/Properties/components/HKStockOutOrderProperties';
 import HKByOrderStockOutProperties from './pages/Properties/components/HKByOrderStockOutProperties';
 import GCExpressNumberLabelPrintProperties from './pages/Properties/components/GCExpressNumberLabelPrintProperties';
+import GCBatchCancelExpressNumberProperties from './pages/Properties/components/GCBatchCancelExpressNumberProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -354,6 +355,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCOGDetialDeleteProperties,
   },
+  //NbQuery管理
+  {
+    path: buildPath('GC/NbQueryManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   {
     path: buildPath('GC/GCMLotDocRuleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -422,6 +429,12 @@ const routerConfig = [
     path: buildPath('Doc/RecordExpressNumber'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRecordExpressNumberProperties,
+  },
+  //批量取消快递单号
+  {
+    path: buildPath('Doc/BatchCancelExpressNumber'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCBatchCancelExpressNumberProperties,
   },
   {
     path: buildPath('Doc/OldRecordExpressNumber'),
