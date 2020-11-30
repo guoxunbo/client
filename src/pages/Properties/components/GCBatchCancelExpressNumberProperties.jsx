@@ -11,7 +11,7 @@ export default class GCBatchCancelExpressNumberProperties extends EntityScanProp
 
     handleSearch = () => {
       const self = this;
-      let {rowKey,tableData} = this.state;
+      let {tableData} = this.state;
       let queryFields = this.form.state.queryFields;
       let wayBillNumber = this.form.props.form.getFieldValue(queryFields[0].name);
       if(wayBillNumber == undefined || wayBillNumber == "" || wayBillNumber == null){
@@ -28,7 +28,7 @@ export default class GCBatchCancelExpressNumberProperties extends EntityScanProp
         success: function(responseBody) {
           let orderInfo = responseBody.orderInfo;
           if (orderInfo) {
-            if (tableData.filter(d => d[rowKey] === orderInfo[rowKey]).length === 0) {
+            if (tableData.filter(d => d.waybillNumber === orderInfo.waybillNumber).length === 0) {
               tableData.unshift(orderInfo);
             }
             self.setState({ 

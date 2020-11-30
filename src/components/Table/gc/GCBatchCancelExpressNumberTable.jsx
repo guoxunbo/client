@@ -38,6 +38,9 @@ export default class GCBatchCancelExpressNumberTable extends EntityScanViewTable
         let object = {
             orderList : orderList,
             success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.resetData();
+                }
                 self.setState({
                     data: [],
                     selectedRows: [],
