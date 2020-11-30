@@ -88,10 +88,20 @@ export default class StockOutCheckProperties extends EntityScanProperties{
             success: function(responseBody) {
               let materialLot = responseBody.materialLot;
               if (materialLot) {
-                if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                  tableData.unshift(materialLot);
-                  currentHandleMLot = materialLot;
-                }
+                if(checkExpressFlag == "check"){
+                  if(materialLot.expressNumber == "" || materialLot.expressNumber == null || materialLot.expressNumber == undefined){
+                    if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                      materialLot.errorFlag = true;
+                      tableData.unshift(materialLot);
+                    }
+                  } else {
+                    if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                      tableData.unshift(materialLot);
+                      currentHandleMLot = materialLot;
+                    }
+                  }
+                } 
+
                 self.setState({ 
                   tableData: tableData,
                   loading: false,
