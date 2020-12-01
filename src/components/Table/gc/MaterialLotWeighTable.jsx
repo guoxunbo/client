@@ -1,5 +1,5 @@
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button, Modal } from 'antd';
+import { Button, Modal, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
@@ -21,6 +21,15 @@ export default class MaterialLotWeighTable extends EntityScanViewTable {
         return buttons;
     }
 
+    createTagGroup = () => {
+        let tags = [];
+        tags.push(this.createStatistic());
+        return tags;
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+    }
     // componentWillReceiveProps = (props) => {
     //     // TODO 此处存在刷新多次问题
     //     let {selectedRowKeys, selectedRows} = this.state;
