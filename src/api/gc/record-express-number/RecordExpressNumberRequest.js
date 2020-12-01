@@ -73,4 +73,26 @@ export default class RecordExpressNumberRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendGetWayBillNumberRequest = (object) => {
+        let requestBody = RecordExpressNumberRequestBody.buildQueryWayBillNumber(object.wayBillNumber);
+        let requestHeader = new RecordExpressNumberRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendBatchCancelExpressNumber = (object) => {
+        let requestBody = RecordExpressNumberRequestBody.buildBatchCancelExpress(object.orderList);
+        let requestHeader = new RecordExpressNumberRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

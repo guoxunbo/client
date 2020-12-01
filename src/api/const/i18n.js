@@ -70,6 +70,7 @@ const i18NCode = {
     BtnCancelExpress: "CancelExpress",
     BtnManualRecordExpress: "ManualRecordExpress",
     BtnPrintObliqueLabel: "PrintObliqueLabel",
+    BtnCancelWayBillOrder: "CancelWayBillOrder",
 
     BtnUnBind: "UnBind",
     BtnDelete: "Delete",
@@ -149,6 +150,9 @@ const i18NCode = {
     PackedRule: "PackedRule",
     AutoMaticPacking: "AutoMaticPacking",
     PleaseChoosePackedRule: "PleaseChoosePackedRule",
+    CheckExpress: "CheckExpress",
+    ExpressNumberAndMLotMismatch: "ExpressNumberAndMLotMismatch",
+    MLotUnCheckExpressNumber: "MLotUnCheckExpressNumber",
 }
 
 const i18Messages = {
@@ -876,6 +880,26 @@ const i18Messages = {
         Chinese: "请选择包装规格!",
         English: "Choose packedRule Please!",
         Res: "" 
+    },
+    CheckExpress: {
+        Chinese: "检查快递单",
+        English: "CheckExpress",
+        Res: "" 
+    },
+    ExpressNumberAndMLotMismatch: {
+        Chinese: "快递单号和物料批次不匹配！",
+        English: "ExpressNumber And MLot Mismatch！",
+        Res: "" 
+    },
+    MLotUnCheckExpressNumber: {
+        Chinese: "物料批次没有检验快递单号！",
+        English: "MLot UnCheck ExpressNumber!",
+        Res: ""   
+    },
+    CancelWayBillOrder: {
+        Chinese: "取消快递单",
+        English: "Cancel WayBillOrder",
+        Res: ""   
     }
 }
 

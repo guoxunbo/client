@@ -5,7 +5,9 @@ const ActionType = {
     ManualOrder: "ManualOrder",
     CancelOrder: "CancelOrder",
     QueryPrintParameter: "QueryPrintParameter",
-    ObliqueLabelPrint:"ObliqueLabelPrint"
+    ObliqueLabelPrint: "ObliqueLabelPrint",
+    BatchCancelOrder: "BatchCancelOrder",
+    QueryOrderInfo: "QueryOrderInfo",
 }
 
 export default class RecordExpressNumberRequestBody {
@@ -15,6 +17,7 @@ export default class RecordExpressNumberRequestBody {
     payMode;
     expressNumber;
     materialLots;
+    wayBillNumber;
 
     constructor(actionType){
         this.actionType = actionType;
@@ -57,6 +60,18 @@ export default class RecordExpressNumberRequestBody {
     static buildObliqueLabelPrint(materialLots) {
         let body = new RecordExpressNumberRequestBody(ActionType.ObliqueLabelPrint);
         body.materialLots = materialLots;
+        return body;
+    }
+    
+    static buildQueryWayBillNumber(wayBillNumber){
+        let body = new RecordExpressNumberRequestBody(ActionType.QueryOrderInfo);
+        body.wayBillNumber = wayBillNumber;
+        return body;
+    }
+
+    static buildBatchCancelExpress(orderList){
+        let body = new RecordExpressNumberRequestBody(ActionType.BatchCancelOrder);
+        body.orderList = orderList;
         return body;
     }
 }   
