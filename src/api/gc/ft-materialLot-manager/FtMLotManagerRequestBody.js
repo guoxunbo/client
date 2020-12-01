@@ -7,6 +7,8 @@ const ActionType = {
     StockIn: "StockIn",
     QueryWaitIssueUnit: "QueryWaitIssueUnit",
     FtIssue: "FtIssue",
+    ValidateMLot: "ValidateMLot",
+    FTStockOut: "FTStockOut",
 }
 
 export default class FtMLotManagerRequestBody {
@@ -20,6 +22,7 @@ export default class FtMLotManagerRequestBody {
     documentLines;
     materialLotActions;
     issueWithDoc;
+    queryMaterialLot;
 
     constructor(actionType, materialLotUnitList, unitId, tableRrn, materialLotId){
         this.actionType = actionType;
@@ -43,6 +46,10 @@ export default class FtMLotManagerRequestBody {
 
     setIssueWithDoc(issueWithDoc){
         this.issueWithDoc = issueWithDoc;
+    }
+    
+    setQueryMaterialLot(queryMaterialLot){
+        this.queryMaterialLot = queryMaterialLot;
     }
     
     static buildReceive(materialLotUnitList) {
@@ -81,6 +88,32 @@ export default class FtMLotManagerRequestBody {
         requestBody.setDocumentLines(documentLines);
         requestBody.setIssueWithDoc(issueWithDoc);
         return requestBody;
+    }
+
+    static buildValidateMLot(queryMaterialLot, materialLots) {
+        let body = new FtMLotManagerRequestBody(ActionType.ValidateMLot);
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        body.setMaterialLotActions(materialLotActions);
+        body.setQueryMaterialLot(queryMaterialLot);
+        return body;
+    }
+
+    static buildFTStockOut(documentLines, materialLots) {
+        let body = new FtMLotManagerRequestBody(ActionType.FTStockOut);
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        body.setMaterialLotActions(materialLotActions);
+        body.setDocumentLines(documentLines);
+        return body;
     }
 }
 
