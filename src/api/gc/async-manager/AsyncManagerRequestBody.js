@@ -7,7 +7,8 @@ const ActionType = {
     AsyncMesProduct: "AsyncProduct",
     AsyncMesWaferType: "AsyncWaferType",
     AsyncSobOrder: "AsyncSobOrder",
-    AsyncSoaOrder: "AsyncSoaOrder"
+    AsyncSoaOrder: "AsyncSoaOrder",
+    AsyncCogReceiveOrder : "AsyncCogReceiveOrder",
 }
 
 export default class AsyncManagerRequestBody {

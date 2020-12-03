@@ -83,6 +83,7 @@ import HKByOrderStockOutProperties from './pages/Properties/components/HKByOrder
 import GCExpressNumberLabelPrintProperties from './pages/Properties/components/GCExpressNumberLabelPrintProperties';
 import GCBatchCancelExpressNumberProperties from './pages/Properties/components/GCBatchCancelExpressNumberProperties';
 import GCFTStockOutOrderProperties from './pages/Properties/components/GCFTStockOutOrderProperties';
+import GcCogReceiveOrderProperties from './pages/Properties/components/GcCogReceiveOrderProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -360,6 +361,12 @@ const routerConfig = [
     path: buildPath('GC/GCCOGDetialDeleteManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCOGDetialDeleteProperties,
+  },
+  //COG来料接收
+  {
+    path: buildPath('GC/COGReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCogReceiveOrderProperties,
   },
   //NbQuery管理
   {
