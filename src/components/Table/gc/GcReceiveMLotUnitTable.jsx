@@ -58,7 +58,7 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
     createStatistic = () => {
@@ -71,7 +71,7 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">片数：{qty}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
     }
 
     createTotalNumber = () => {
@@ -84,25 +84,27 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     receive = () => {
         let self = this;
-        if (this.getErrorCount() > 0) {
-            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
-            return;
-        }
         let orderTable = this.props.orderTable;
         let orders = orderTable.state.data;
-        if (orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+        if (this.getErrorCount() > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
         let materialLots = this.state.data;
         if (materialLots.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
+        }
+        if(this.validateMLotGrade(materialLots)){
+            if (orders.length === 0) {
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+                return;
+            }
         }
 
         self.setState({
@@ -123,12 +125,19 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
         WaferManagerRequest.sendReceiveWaferRequest(requestObject);
     }
 
-     /**
-     * 发料
-     */
+    validateMLotGrade = (materialLots) =>{
+        let flag = false;
+        materialLots.forEach(data => {
+            if(data.grade != 'F'){
+                flag = true;
+            }
+        });
+        return flag;
+    }
+
     createReceive = () => {
         return <Button key="receive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.receive}>
-                        接收
+                        {I18NUtils.getClientMessage(i18NCode.BtnReceive)}
                     </Button>
     }
 
