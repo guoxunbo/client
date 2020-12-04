@@ -374,6 +374,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  //菜单管理
+  {
+    path: buildPath('GC/GcMenuManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   {
     path: buildPath('GC/GCMLotDocRuleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
