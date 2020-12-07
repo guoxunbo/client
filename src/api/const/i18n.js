@@ -153,6 +153,11 @@ const i18NCode = {
     CheckExpress: "CheckExpress",
     ExpressNumberAndMLotMismatch: "ExpressNumberAndMLotMismatch",
     MLotUnCheckExpressNumber: "MLotUnCheckExpressNumber",
+    CheckQRCode: "CheckQRCode",
+    QRCodeInput: "QRCodeInput",
+    NoVBoxInfo: "NoVBoxInfo",
+    NOScanAllVBox: "NOScanAllVBox",
+    QRCodeNotFullyScan: "QRCodeNotFullyScan",
 }
 
 const i18Messages = {
@@ -900,6 +905,31 @@ const i18Messages = {
         Chinese: "取消快递单",
         English: "Cancel WayBillOrder",
         Res: ""   
+    },
+    CheckQRCode: {
+        Chinese: "检验二维码",
+        English: "Check QRCode",
+        Res: ""   
+    },
+    QRCodeInput: {
+        Chinese: "二维码",
+        English: "QRCode",
+        Res: ""    
+    },
+    NoVBoxInfo: {
+        Chinese: "没有真空包",
+        English: "NoVBoxInfo",
+        Res: ""    
+    },
+    NOScanAllVBox: {
+        Chinese: "真空包没有全部扫描!",
+        English: "NOScanAllVBox",
+        Res: ""    
+    },
+    QRCodeNotFullyScan: {
+        Chinese: "二维码没有全部扫描!",
+        English: "QRCode Not Fully Scan",
+        Res: ""    
     }
 }
 
