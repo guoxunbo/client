@@ -84,6 +84,7 @@ import GCExpressNumberLabelPrintProperties from './pages/Properties/components/G
 import GCBatchCancelExpressNumberProperties from './pages/Properties/components/GCBatchCancelExpressNumberProperties';
 import GCFTStockOutOrderProperties from './pages/Properties/components/GCFTStockOutOrderProperties';
 import GcCogReceiveOrderProperties from './pages/Properties/components/GcCogReceiveOrderProperties';
+import GCMLotCodePackCheckProperties from './pages/Properties/components/GCMLotCodePackCheckProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -623,6 +624,11 @@ const routerConfig = [
     path: buildPath('Pack/PackCaseCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackCaseCheckProperties,
+  },
+  {
+    path: buildPath('Pack/GCMLotCodePackCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMLotCodePackCheckProperties,
   },
   {
     path: buildPath('Pack/StockOutCheck'),
