@@ -11,9 +11,9 @@ import Icon from '@icedesign/icon';
 
 const PackCaseCheckTableName="GCPackCaseCheck";
 
-export default class PackCaseCheckTable extends EntityScanViewTable {
+export default class GCMLotCodePackCheckTable extends EntityScanViewTable {
 
-    static displayName = 'PackCaseCheckTable';
+    static displayName = 'GCMLotCodePackCheckTable';
 
     constructor(props) {
         super(props);
@@ -21,9 +21,9 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
     }
 
     getRowClassName = (record, index) => {
-        if (record.scaned && record.checkQRFlag) {
+        if (record.scaned && record.checkMLotCodeFlag) {
             return 'check-row';
-        } else if(record.scaned && record.checkQRFlag == undefined){
+        } else if(record.scaned && record.checkMLotCodeFlag == undefined){
             return 'scaned-row';
         } else {
             if(index % 2 ===0) {
@@ -46,23 +46,23 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
 
     createTagGroup = () => {
         let tagList = [];
-        tagList.push(this.createQRCodeCheckTag());
+        tagList.push(this.createMLotCodeCheckTag());
         return tagList;
     }
 
-    createQRCodeCheckTag = () => {
+    createMLotCodeCheckTag = () => {
         return  <Row gutter={12}>
             <Col span={2} >
                 <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.QRCodeInput)}:
+                    {I18NUtils.getClientMessage(i18NCode.MLotCode)}:
                 </span>
             </Col>
             <Col span={5}>
-                <Input ref={(QRcode) => { this.QRcode = QRcode }} key="BoxQRCode" placeholder="箱二维码" onPressEnter={this.onQRCodeInput}/>
+                <Input ref={(mLotCode) => { this.mLotCode = mLotCode }} key="mLotCode" placeholder="物料编码" onPressEnter={this.onMLotCodeInput}/>
             </Col>
             <Col span={4} >
                 <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.CheckQRCode)}:
+                    {I18NUtils.getClientMessage(i18NCode.CheckMLotCode)}:
                 </span>
             </Col>
             <Col span={1}>
@@ -76,29 +76,29 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         </Row>
     }
 
-    onQRCodeInput = () => {
+    onMLotCodeInput = () => {
         let self = this;
         const {data, selectedRows} = this.state;
-        let QRcode = this.QRcode.state.value;
-        if (!QRcode) {	
+        let mLotCode = this.mLotCode.state.value;
+        if (!mLotCode) {	
             return;	
         }
         if(data.length == 0){
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.NoVBoxInfo));
-            this.QRcode.setState({value:""})
+            this.mLotCode.setState({value:""})
             return;
         }
         if (selectedRows.length != data.length) {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.NOScanAllVBox));
-            this.QRcode.setState({value:""})
+            this.mLotCode.setState({value:""})
             return;
         }
         data.forEach(materialLot => {
-            if(materialLot.boxQrcodeInfo == QRcode){
-                materialLot.checkQRFlag = true;
+            if(materialLot.materialCode == mLotCode){
+                materialLot.checkMLotCodeFlag = true;
             }
         });
-        this.QRcode.setState({value:""})
+        this.mLotCode.setState({value:""})
         self.setState({
             data: data
         });
@@ -149,8 +149,8 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
             return;
         }
         if(checkQRCodeFlag == "check"){
-            if(this.validateQRCode(data)){
-                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.QRCodeNotFullyScan));
+            if(this.validateMLotCode(data)){
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.MLotCodeNotFullyScan));
                 return;
             }
         }
@@ -163,10 +163,10 @@ export default class PackCaseCheckTable extends EntityScanViewTable {
         MaterialLotManagerRequest.sendJudgePackedMaterialLotRequest(object);
     }
 
-    validateQRCode(materialLots){
+    validateMLotCode(materialLots){
         let flag = false;
         materialLots.forEach(data => {
-            if(data.checkQRFlag == undefined){
+            if(data.checkMLotCodeFlag == undefined){
                 flag = true;
             }
         });

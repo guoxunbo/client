@@ -10,14 +10,13 @@ import EventUtils from '../../../api/utils/EventUtils';
 import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferManagerRequest';
 
 /**
- * 晶圆接收
+ * COG晶圆接收
  */
-export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
+export default class GcCogReceiveMLotScanTable extends EntityScanViewTable {
 
-    static displayName = 'GcReceiveMLotUnitTable';
+    static displayName = 'GcCogReceiveMLotScanTable';
 
     getRowClassName = (record, index) => {
-        // 如果是扫描到不存在的批次，则进行高亮显示
         if (record.errorFlag) {
             return 'error-row';
         } else {
@@ -33,7 +32,6 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
         buttons.push(this.createErrorNumberStatistic());
         buttons.push(this.createReceive());
@@ -61,19 +59,6 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
-    createStatistic = () => {
-        let materialLotUnits = this.state.data;
-        let qty = 0;
-        if(materialLotUnits && materialLotUnits.length > 0){
-            materialLotUnits.forEach(data => {
-                if (data.currentSubQty != undefined) {
-                    qty = qty + parseInt(data.currentSubQty);
-                }
-            });
-        }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
-    }
-
     createTotalNumber = () => {
         let materialLotUnits = this.state.data;
         let count = 0;
@@ -89,22 +74,20 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
 
     receive = () => {
         let self = this;
-        let orderTable = this.props.orderTable;
-        let orders = orderTable.state.data;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
+        let orderTable = this.props.orderTable;
+        let orders = orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
         let materialLots = this.state.data;
         if (materialLots.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
-        }
-        if(this.validateMLotGrade(materialLots)){
-            if (orders.length === 0) {
-                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-                return;
-            }
         }
 
         self.setState({
@@ -122,17 +105,7 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
                 MessageUtils.showOperationSuccess();
             }
         }
-        WaferManagerRequest.sendReceiveWaferRequest(requestObject);
-    }
-
-    validateMLotGrade = (materialLots) =>{
-        let flag = false;
-        materialLots.forEach(data => {
-            if(data.grade != 'F'){
-                flag = true;
-            }
-        });
-        return flag;
+        WaferManagerRequest.sendCogReceiveMLotRequest(requestObject);
     }
 
     createReceive = () => {

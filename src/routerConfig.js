@@ -82,6 +82,9 @@ import HKStockOutOrderProperties from './pages/Properties/components/HKStockOutO
 import HKByOrderStockOutProperties from './pages/Properties/components/HKByOrderStockOutProperties';
 import GCExpressNumberLabelPrintProperties from './pages/Properties/components/GCExpressNumberLabelPrintProperties';
 import GCBatchCancelExpressNumberProperties from './pages/Properties/components/GCBatchCancelExpressNumberProperties';
+import GCFTStockOutOrderProperties from './pages/Properties/components/GCFTStockOutOrderProperties';
+import GcCogReceiveOrderProperties from './pages/Properties/components/GcCogReceiveOrderProperties';
+import GCMLotCodePackCheckProperties from './pages/Properties/components/GCMLotCodePackCheckProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -290,6 +293,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcFTWaferIssueOrderProperties,
   },
+  {
+    path: buildPath('FT/GCFTStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCFTStockOutOrderProperties,
+  },
   //装箱检
   {
     path: buildPath('WLT/WLTPackCaseCheck'),
@@ -355,9 +363,21 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCOGDetialDeleteProperties,
   },
+  //COG来料接收
+  {
+    path: buildPath('GC/COGReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCogReceiveOrderProperties,
+  },
   //NbQuery管理
   {
     path: buildPath('GC/NbQueryManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  //菜单管理
+  {
+    path: buildPath('GC/GcMenuManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
@@ -604,6 +624,11 @@ const routerConfig = [
     path: buildPath('Pack/PackCaseCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackCaseCheckProperties,
+  },
+  {
+    path: buildPath('Pack/GCMLotCodePackCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCMLotCodePackCheckProperties,
   },
   {
     path: buildPath('Pack/StockOutCheck'),

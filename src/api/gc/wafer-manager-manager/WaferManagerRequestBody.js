@@ -7,6 +7,7 @@ const ActionType = {
     GetWaitIssueMLot: "GetWaitIssueMLot",
     PurchaseOutsoureReceive: "PurchaseOutsoureReceive",
     HKMLotReceive: "HKMLotReceive",
+    CogReceive: "CogReceive"
 }
 export default class WaferManagerRequestBody {
 
@@ -95,6 +96,16 @@ export default class WaferManagerRequestBody {
         });
         return new WaferManagerRequestBody(ActionType.HKMLotReceive, undefined, materialLotActions);
     
+    }
+
+    static buildCogMLotReceive(documentLines, materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new WaferManagerRequestBody(ActionType.CogReceive, documentLines, materialLotActions);
     }
 }
 

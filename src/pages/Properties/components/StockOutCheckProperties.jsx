@@ -100,7 +100,12 @@ export default class StockOutCheckProperties extends EntityScanProperties{
                       currentHandleMLot = materialLot;
                     }
                   }
-                } 
+                } else {
+                  if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                    tableData.unshift(materialLot);
+                    currentHandleMLot = materialLot;
+                  }
+                }
 
                 self.setState({ 
                   tableData: tableData,
