@@ -85,6 +85,7 @@ import GCBatchCancelExpressNumberProperties from './pages/Properties/components/
 import GCFTStockOutOrderProperties from './pages/Properties/components/GCFTStockOutOrderProperties';
 import GcCogReceiveOrderProperties from './pages/Properties/components/GcCogReceiveOrderProperties';
 import GCMLotCodePackCheckProperties from './pages/Properties/components/GCMLotCodePackCheckProperties';
+import GCRawMaterialImportProperties from './pages/Properties/components/GCRawMaterialImportProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -401,6 +402,12 @@ const routerConfig = [
     path: buildPath('GC/GCExpressNumberLabelPrint'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCExpressNumberLabelPrintProperties  ,
+  },
+ //原材料导入
+  {
+    path: buildPath('GC/GCRawMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialImportProperties  ,
   },
   //MES成品接收
   {
