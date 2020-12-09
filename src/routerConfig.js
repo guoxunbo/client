@@ -86,6 +86,7 @@ import GCFTStockOutOrderProperties from './pages/Properties/components/GCFTStock
 import GcCogReceiveOrderProperties from './pages/Properties/components/GcCogReceiveOrderProperties';
 import GCMLotCodePackCheckProperties from './pages/Properties/components/GCMLotCodePackCheckProperties';
 import GCRawMaterialImportProperties from './pages/Properties/components/GCRawMaterialImportProperties';
+import COBFinishGoodProperties from './pages/Properties/components/COBFinishGoodProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -265,6 +266,12 @@ const routerConfig = [
     path: buildPath('Wafer/GCCogEcretiveMaterialDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCogEcretiveMaterialDeleteProperties,
+  },
+  //COB管理
+  {
+    path: buildPath('COB/COBFinishGoodManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: COBFinishGoodProperties,
   },
   //WLT相关
   {
