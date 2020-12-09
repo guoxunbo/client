@@ -161,6 +161,7 @@ const i18NCode = {
     MLotCode: "MLotCode",
     CheckMLotCode: "CheckMLotCode",
     MLotCodeNotFullyScan: "MLotCodeNotFullyScan",
+    PrintCount: "PrintCount",
 }
 
 const i18Messages = {
@@ -947,6 +948,11 @@ const i18Messages = {
     MLotCodeNotFullyScan: {
         Chinese: "物料编码没有全部扫描！",
         English: "MLotCode Not Fully Scan",
+        Res: ""
+    },
+    PrintCount: {
+        Chinese: "打印份数",
+        English: "Print Count",
         Res: ""
     }
 }

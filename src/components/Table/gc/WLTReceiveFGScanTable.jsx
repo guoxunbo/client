@@ -1,4 +1,4 @@
-import { Button, Icon, Switch, Tag } from 'antd';
+import { Button, Col, Icon, Input, Row, Switch, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest';
@@ -43,17 +43,29 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
     }
 
     createPrintLabelFlag = () => {
-        return <span style={{display: 'flex'}}>
-            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.PrintWltLabelFlag)}:</span>
-            <span style = {{marginLeft:"10px"}}>
+        return  <Row gutter={12}>
+            <Col span={2} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.PrintWltLabelFlag)}:
+                </span>
+            </Col>
+            <Col span={1}>
                 <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
-                        checkedChildren={<Icon type="printLabel" />} 
-                        unCheckedChildren={<Icon type="close" />} 
-                        onChange={this.handleChange} 
-                        disabled={this.disabled}
-                        checked={this.state.checked}/>
-            </span>
-        </span>
+                            checkedChildren={<Icon type="printLabel" />} 
+                            unCheckedChildren={<Icon type="close" />} 
+                            onChange={this.handleChange} 
+                            disabled={this.disabled}
+                            checked={this.state.checked}/>
+            </Col>
+            <Col span={3} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.PrintCount)}:
+                </span>
+            </Col>
+            <Col span={3}>
+                <Input ref={(printCount) => { this.printCount = printCount }} value={2} key="printCount" placeholder="打印份数"/>
+            </Col>
+        </Row>
     }
 
     handleChange = (checkedChildren) => {
@@ -96,6 +108,7 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
             return;
         }
         let printLabelFlag = this.state.value;
+        let printCount = this.printCount.state.value;
 
         self.setState({
             loading: true
@@ -114,7 +127,7 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
                     }
                     responseBody.parameterMapList.forEach((parameter) => {
                         let url = PrintServiceUrl.WltLotId;
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
+                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, printCount);
                     });
                     MessageUtils.showOperationSuccess();
                 }
