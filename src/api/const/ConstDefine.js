@@ -108,6 +108,7 @@ const UrlConstant = {
     GCRawMaterialImportUrl: ModuleUrlConstant.GC + "RawMaterialImport",
     GCRawMaterialImportSaveDateUrl: ModuleUrlConstant.GC + "RawMaterialSave",
     GCUnConfirmWaferTrackSetUrl: ModuleUrlConstant.GC + "unConfirmWaferTrackSet",
+    GCRmaMaterialLotManagerUrl: ModuleUrlConstant.GC + "RmaMaterialLotManager",
 };
 
 const SystemRefListName = {

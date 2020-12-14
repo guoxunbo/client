@@ -88,6 +88,7 @@ import GCMLotCodePackCheckProperties from './pages/Properties/components/GCMLotC
 import GCRawMaterialImportProperties from './pages/Properties/components/GCRawMaterialImportProperties';
 import COBFinishGoodProperties from './pages/Properties/components/COBFinishGoodProperties';
 import GCUnConfirmWaferTrackSetProperties from './pages/Properties/components/GCUnConfirmWaferTrackSetProperties';
+import GcRMAMaterialLotReceiveProperties from './pages/Properties/components/GcRMAMaterialLotReceiveProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -291,6 +292,12 @@ const routerConfig = [
     path: buildPath('FT/GCFTMateriLotReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcFTMaterialLotReceiveProperties,
+  },
+  //RMA晶圆接收
+  {
+    path: buildPath('RMA/GCRMAMateriLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRMAMaterialLotReceiveProperties,
   },
   {
     path: buildPath('FT/GCFTMateriLotStockIn'),
