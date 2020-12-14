@@ -107,6 +107,7 @@ const UrlConstant = {
     GCHKWarehouseManagerUrl: ModuleUrlConstant.GC + "HKWarehouseManager",
     GCRawMaterialImportUrl: ModuleUrlConstant.GC + "RawMaterialImport",
     GCRawMaterialImportSaveDateUrl: ModuleUrlConstant.GC + "RawMaterialSave",
+    GCUnConfirmWaferTrackSetUrl: ModuleUrlConstant.GC + "unConfirmWaferTrackSet",
 };
 
 const SystemRefListName = {
@@ -114,7 +115,8 @@ const SystemRefListName = {
     ExpressPayMode: "ExpressPayMode",
     ExpressServiceMode: "ExpressServiceMode",
     StockOutType: "StockOutType",
-    HKPrintType: "HKPrintType"
+    HKPrintType: "HKPrintType",
+    RiskGrade: "RiskGrade",
 };
 
 const RefTableName = {

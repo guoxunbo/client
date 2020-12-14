@@ -162,6 +162,14 @@ const i18NCode = {
     CheckMLotCode: "CheckMLotCode",
     MLotCodeNotFullyScan: "MLotCodeNotFullyScan",
     PrintCount: "PrintCount",
+    SerialNumber: "SerialNumber",
+    LotId: "LotId",
+    SelectWaferInfo: "SelectWaferInfo",
+    TestSite: "TestSite",
+    ModelId: "ModelId",
+    ExceptionClassify: "ExceptionClassify",
+    RiskGrade: "RiskGrade",
+    AllSelectWaferId: "AllSelectWaferId",
 }
 
 const i18Messages = {
@@ -953,6 +961,46 @@ const i18Messages = {
     PrintCount: {
         Chinese: "打印份数",
         English: "Print Count",
+        Res: ""
+    },
+    SerialNumber: {
+        Chinese: "序号",
+        English: "Serial Number",
+        Res: ""
+    },
+    LotId: {
+        Chinese: "LOT ID",
+        English: "LOT ID",
+        Res: ""
+    },
+    SelectWaferInfo: {
+        Chinese: "选择Wafer号",
+        English: "Select WaferID",
+        Res: ""
+    },
+    TestSite: {
+        Chinese: "测试站点",
+        English: "Test Site",
+        Res: ""
+    },
+    ModelId: {
+        Chinese: "型号",
+        English: "Model ID",
+        Res: ""
+    },
+    ExceptionClassify: {
+        Chinese: "异常分类",
+        English: "Exception Classify",
+        Res: ""
+    },
+    RiskGrade: {
+        Chinese: "风险等级",
+        English: "Risk Grade",
+        Res: ""
+    },
+    AllSelectWaferId: {
+        Chinese: "全选Wafer Id",
+        English: "AllSelect WaferId",
         Res: ""
     }
 }
