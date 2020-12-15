@@ -129,7 +129,6 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
         let requestObject = {
             documentLines : orders,
             materialLots : materialLots,
-            unPlanLot: UnPlanLot,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

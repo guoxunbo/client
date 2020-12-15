@@ -2,6 +2,7 @@
 const ActionType = {
     COMReceive: "COMReceive",
     WLTReceive: "WLTReceive",
+    COBReceive: "COBReceive",
 }
 
 export default class FinishGoodManagerRequestBody {
@@ -34,6 +35,14 @@ export default class FinishGoodManagerRequestBody {
      */
     static buildWLTReceive(mesPackedLots, printLabel) {
         return new FinishGoodManagerRequestBody(mesPackedLots, undefined, ActionType.WLTReceive, printLabel);
+    }
+
+    /**
+     * COB完成品接收
+     * @param mesPackedLots 待接收的完成品
+     */
+    static buildCOBReceive(mesPackedLots) {
+        return new FinishGoodManagerRequestBody(mesPackedLots, undefined, ActionType.COBReceive);
     }
 
 }

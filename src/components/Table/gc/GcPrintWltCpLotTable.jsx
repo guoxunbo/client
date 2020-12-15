@@ -1,10 +1,9 @@
 
-import { Button } from 'antd';
+import { Button, Col, Input, Row } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import IconUtils from '../../../api/utils/IconUtils';
-import GetPrintVboxParameterRequest from '../../../api/gc/get-print-vbox-parameter/GetPrintVboxParameterRequest';
 import PrintUtils from '../../../api/utils/PrintUtils';
 import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import GetPrintWltCpRequest from '../../../api/gc/get-print-wltcp-parameter/GetPrintWltCpRequest';
@@ -17,9 +16,28 @@ export default class GcPrintWltCpLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStatistic());
         buttons.push(this.createPrintButton());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tags = [];
+        tags.push(this.createPrintCountInput());
+        tags.push(this.createStatistic());
+        return tags;
+    }
+
+    createPrintCountInput = () => {
+        return  <Row gutter={6}>
+            <Col span={3} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.PrintCount)}:
+                </span>
+            </Col>
+            <Col span={3}>
+                <Input ref={(printCount) => { this.printCount = printCount }} value={2} key="printCount" placeholder="打印份数"/>
+            </Col>
+        </Row>
     }
 
     handlePrint = () => {
@@ -29,6 +47,7 @@ export default class GcPrintWltCpLotTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        let printCount = this.printCount.state.value;
 
         self.setState({
             loading: true
@@ -40,7 +59,7 @@ export default class GcPrintWltCpLotTable extends EntityScanViewTable {
                 materialLot : data[0],
                 success: function(responseBody) {
                     let url = PrintServiceUrl.WltLotId;
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, responseBody.parameterMap, 1);
+                    PrintUtils.MultiPrintWithBtIbForWeb(url, responseBody.parameterMap, printCount);
                     MessageUtils.showOperationSuccess();
                 }
             }

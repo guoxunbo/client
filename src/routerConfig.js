@@ -86,6 +86,9 @@ import GCFTStockOutOrderProperties from './pages/Properties/components/GCFTStock
 import GcCogReceiveOrderProperties from './pages/Properties/components/GcCogReceiveOrderProperties';
 import GCMLotCodePackCheckProperties from './pages/Properties/components/GCMLotCodePackCheckProperties';
 import GCRawMaterialImportProperties from './pages/Properties/components/GCRawMaterialImportProperties';
+import COBFinishGoodProperties from './pages/Properties/components/COBFinishGoodProperties';
+import GCUnConfirmWaferTrackSetProperties from './pages/Properties/components/GCUnConfirmWaferTrackSetProperties';
+import GcRMAMaterialLotReceiveProperties from './pages/Properties/components/GcRMAMaterialLotReceiveProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -266,6 +269,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCogEcretiveMaterialDeleteProperties,
   },
+  //COB管理
+  {
+    path: buildPath('COB/COBFinishGoodManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: COBFinishGoodProperties,
+  },
   //WLT相关
   {
     path: buildPath('WLT/WLTFinishGoodManager'),
@@ -283,6 +292,12 @@ const routerConfig = [
     path: buildPath('FT/GCFTMateriLotReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcFTMaterialLotReceiveProperties,
+  },
+  //RMA晶圆接收
+  {
+    path: buildPath('RMA/GCRMAMateriLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRMAMaterialLotReceiveProperties,
   },
   {
     path: buildPath('FT/GCFTMateriLotStockIn'),
@@ -351,6 +366,12 @@ const routerConfig = [
     path: buildPath('GC/GCVBoxHoldSetManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCVBoxHoldSetProperties,
+  },
+  //未确认晶圆追踪配置
+  {
+    path: buildPath('GC/GCUnConfirmWaferTrackSet'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnConfirmWaferTrackSetProperties,
   },
   //二维码标签打印
   {
