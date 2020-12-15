@@ -6,6 +6,7 @@ const PrintServiceUrl = {
     BoxQRCode : "http://127.0.0.1:10014/Integration/wms-print-BoxQRCode/Execute",
     ObliqueBox :  "http://127.0.0.1:10016/Integration/wms-print-ObliqueBox/Execute",
     WltLotId :  "http://127.0.0.1:10017/Integration/wms-print-WltOrCpBox/Execute",
+    COBBox : "http://127.0.0.1:10018/Integration/wms-print-COBBox/Execute",
     RmaMLotId :  "http://127.0.0.1:10019/Integration/wms-print-RmaBox/Execute",
 }
 const PrintBboxCount = 2;

@@ -89,6 +89,7 @@ import GCRawMaterialImportProperties from './pages/Properties/components/GCRawMa
 import COBFinishGoodProperties from './pages/Properties/components/COBFinishGoodProperties';
 import GCUnConfirmWaferTrackSetProperties from './pages/Properties/components/GCUnConfirmWaferTrackSetProperties';
 import GcRMAMaterialLotReceiveProperties from './pages/Properties/components/GcRMAMaterialLotReceiveProperties';
+import COBPackMaterialLotProperties from './pages/Properties/components/COBPackMaterialLotProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -286,6 +287,12 @@ const routerConfig = [
     path: buildPath('WLT/WLTPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltPackMaterialLotProperties,
+  },
+   //COB装箱
+   {
+    path: buildPath('COB/COBPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: COBPackMaterialLotProperties,
   },
   //FT相关
   {

@@ -109,6 +109,7 @@ const UrlConstant = {
     GCRawMaterialImportSaveDateUrl: ModuleUrlConstant.GC + "RawMaterialSave",
     GCUnConfirmWaferTrackSetUrl: ModuleUrlConstant.GC + "unConfirmWaferTrackSet",
     GCRmaMaterialLotManagerUrl: ModuleUrlConstant.GC + "RmaMaterialLotManager",
+    GCGetPrintCOBboxParameterUrl: ModuleUrlConstant.GC + "getPrintCOBboxParameter",
 };
 
 const SystemRefListName = {

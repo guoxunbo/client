@@ -1,8 +1,7 @@
-import { Form } from 'antd';
 import MessageUtils from '../../api/utils/MessageUtils';
 import EntityListTable from './EntityListTable';
 import GCUnConfirmWaferTrackSetForm from './gc/GCUnConfirmWaferTrackSetForm';
-import GCWaferSetForm from './gc/GCWaferSetForm';
+
 
 export default class GcUnConfirmWaferTrackSetTable extends EntityListTable {
 
