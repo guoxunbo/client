@@ -1,8 +1,8 @@
-import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import GcUnConfirmWaferTrackSetTable from "../../../components/Table/GcUnConfirmWaferTrackSetTable";
+import EntityProperties from "./entityProperties/EntityProperties";
 
-export default class GCUnConfirmWaferTrackSetProperties extends EntityScanProperties{
+export default class GCUnConfirmWaferTrackSetProperties extends EntityProperties{
 
     static displayName = 'GCUnConfirmWaferTrackSetProperties';
       
