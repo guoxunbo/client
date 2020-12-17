@@ -18,5 +18,18 @@ export default class RmaMLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendPrintLableRequest = (object) => {
+        let {materialLots} = object;
+        let requestBody = RmaMLotManagerRequestBody.buildGetPrintParam(materialLots);
+        let requestHeader = new RmaMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRmaMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+
 }
 

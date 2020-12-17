@@ -90,6 +90,7 @@ import COBFinishGoodProperties from './pages/Properties/components/COBFinishGood
 import GCUnConfirmWaferTrackSetProperties from './pages/Properties/components/GCUnConfirmWaferTrackSetProperties';
 import GcRMAMaterialLotReceiveProperties from './pages/Properties/components/GcRMAMaterialLotReceiveProperties';
 import COBPackMaterialLotProperties from './pages/Properties/components/COBPackMaterialLotProperties';
+import GcRMAMLotLabelPrintProperties from './pages/Properties/components/GcRMAMLotLabelPrintProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -305,6 +306,12 @@ const routerConfig = [
     path: buildPath('RMA/GCRMAMateriLotReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRMAMaterialLotReceiveProperties,
+  },
+  //RMA标签补打
+  {
+    path: buildPath('RMA/GCRMALabelPrintManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRMAMLotLabelPrintProperties,
   },
   {
     path: buildPath('FT/GCFTMateriLotStockIn'),
