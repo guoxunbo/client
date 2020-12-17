@@ -63,7 +63,7 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
                 </span>
             </Col>
             <Col span={3}>
-                <Input ref={(printCount) => { this.printCount = printCount }} value={2} key="printCount" placeholder="打印份数"/>
+                <Input ref={(printCount) => { this.printCount = printCount }} defaultValue={2} key="printCount" placeholder="打印份数"/>
             </Col>
         </Row>
     }
