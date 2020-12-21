@@ -146,6 +146,7 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
 
     autoMaticPack = () => {
         let self = this;
+        let rowKey = this.props.rowKey || DefaultRowKey;
         const {data} = this.state;
         let packageRule = this.state.value;
         let documentLine = this.props.orderTable.getSingleSelectedRow();
@@ -177,6 +178,15 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
                 let materialLotList = responseBody.materialLotList;
                 materialLotList.forEach(materialLot => {
                     self.setSelectMLot(materialLot);
+                    data.forEach(mLot => {
+                        if(mLot[rowKey] === materialLot[rowKey]){
+                            let dataIndex = data.indexOf(mLot);
+                            if (dataIndex > -1 ) {
+                                data.splice(dataIndex, 1);
+                            }
+                            data.unshift(materialLot);
+                        }
+                    });
                 });
             }
         }
