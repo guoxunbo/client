@@ -48,6 +48,9 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                 success: function(responseBody) {
                     let materialLot = responseBody.materialLot;
                     if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                        let size = tableData.length;
+                        let scanSeq = size + 1;
+                        materialLot["scanSeq"] = scanSeq;
                         tableData.unshift(materialLot);
                     }
                     self.setState({ 
