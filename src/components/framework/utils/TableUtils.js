@@ -96,7 +96,7 @@ export default class TableUtils {
     static buildColumn = (component, table) => {
         const fields = table.fields;
         const {checkd} = component.state;
-        const {parentObject, editFlag, currentTreeNode} = component.props;
+        const {editFlag, currentTreeNode} = component.props;
         let columns = [];
         let scrollX = 0;
         for (let field of fields) {
@@ -117,7 +117,7 @@ export default class TableUtils {
         }
         let operationColumn;
         if (component instanceof EditableTable) {
-            if (parentObject && (editFlag || currentTreeNode)) {
+            if (editFlag || currentTreeNode) {
                 operationColumn = component.buildOperationColumn(scrollX);
             }
         } else {

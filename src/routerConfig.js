@@ -178,6 +178,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  {
+    path: buildPath('MMS/IQCManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),
