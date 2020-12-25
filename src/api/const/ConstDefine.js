@@ -11,7 +11,7 @@ const EnvMode = {
  */
 const getServerAddress = () => {
     // 默认是local开发地址
-    let serverAddress = "http://127.0.0.1:8080";
+    let serverAddress = "http://192.168.28.160:8080";
     if (ENV_MODE === EnvMode.Prod) {
         serverAddress = "http://127.0.0.1:8090";
     } else if (ENV_MODE === EnvMode.Dev) {
@@ -35,6 +35,7 @@ const ModuleUrlConstant = {
     RTM: getServerAddress() + "/rtm/",
     GC: getServerAddress() + "/gc/",
     RMS: getServerAddress() + "/rms/",
+    VC: getServerAddress() + "/vc/",
 }
 
 const DataBaseType = {
@@ -103,6 +104,10 @@ const UrlConstant = {
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPringBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
     GCValidationSoOrReTestUrl: ModuleUrlConstant.GC + "validationSoOrReTest",
+
+    //VC
+    VCIncomingMaterialImportUrl: ModuleUrlConstant.VC + "IncomingMaterialImport",
+    VCIncomingMaterialImportSaveDateUrl: ModuleUrlConstant.VC + "IncomingMaterialSave",
 
 
 };
