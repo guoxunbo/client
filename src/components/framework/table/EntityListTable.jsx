@@ -1,6 +1,6 @@
 import  React, { Component } from 'react';
 
-import { Table, Popconfirm, Button, Dropdown, Menu, Icon, Tabs } from 'antd';
+import { Table, Popconfirm, Button, Dropdown, Menu, Icon, Tabs, Divider } from 'antd';
 import './ListTable.scss';
 import {Application, SessionContext} from '@api/Application'
 import {DefaultRowKey, Language} from '@api/const/ConstDefine'
@@ -414,6 +414,7 @@ export default class EntityListTable extends Component {
                     expandedRowRender={nextTreeNode ? this.expandedRowRender.bind(this) : undefined}
                 />
             </div>
+            <Divider />
             {this.createTableTab()}
             {this.createForm()}
           </div>
