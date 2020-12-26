@@ -35,6 +35,7 @@ import MaterialStatusModelProperties from '@properties/mms/MaterialStatusModelPr
 import MaterialProperties from '@properties/mms/MaterialProperties';
 import MaterialLotStockInProperties from '@properties/mms/MaterialLotStockInProperties';
 import MaterialLotInventoryProperties from '@properties/mms/MaterialLotInventoryProperties';
+import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialImportProperties';
 
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
@@ -182,6 +183,11 @@ const routerConfig = [
     path: buildPath('MMS/IQCManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  {
+    path: buildPath('MMS/IncomingMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IncomingMaterialImportProperties,
   },
   //MES成品接收
   {

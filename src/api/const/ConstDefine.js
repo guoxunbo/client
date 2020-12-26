@@ -35,6 +35,7 @@ const ModuleUrlConstant = {
     RTM: getServerAddress() + "/rtm/",
     GC: getServerAddress() + "/gc/",
     RMS: getServerAddress() + "/rms/",
+    VC: getServerAddress() + "/vc/",
 }
 
 const DataBaseType = {
@@ -103,7 +104,10 @@ const UrlConstant = {
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
     GCGetPringBboxParameterUrl: ModuleUrlConstant.GC + "getPrintBboxParameter",
     GCValidationSoOrReTestUrl: ModuleUrlConstant.GC + "validationSoOrReTest",
-
+    
+    //VC
+    VCIncomingMaterialImportUrl: ModuleUrlConstant.VC + "IncomingMaterialImport",
+    VCIncomingMaterialImportSaveDateUrl: ModuleUrlConstant.VC + "IncomingMaterialSave",
 
 };
 
