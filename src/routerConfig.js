@@ -91,6 +91,7 @@ import GCUnConfirmWaferTrackSetProperties from './pages/Properties/components/GC
 import GcRMAMaterialLotReceiveProperties from './pages/Properties/components/GcRMAMaterialLotReceiveProperties';
 import COBPackMaterialLotProperties from './pages/Properties/components/COBPackMaterialLotProperties';
 import GcRMAMLotLabelPrintProperties from './pages/Properties/components/GcRMAMLotLabelPrintProperties';
+import GcRawMaterialReceiveProperties from './pages/Properties/components/GcRawMaterialReceiveProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -356,6 +357,12 @@ const routerConfig = [
     path: buildPath('CP/CPStockOutTagManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCPStockOutTaggingProperties,
+  },
+  //原材料
+  {
+    path: buildPath('RawMaterial/GCRawMaterialReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialReceiveProperties,
   },
   //取消晶圆出货标注
   {
