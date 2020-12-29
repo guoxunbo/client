@@ -226,12 +226,9 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
 
     createMissZeroQty = () => {
         const {selectedRows} = this.state;
-        let materialLots = this.state.data;
-        let count = 0;
-        if(materialLots && materialLots.length > 0){
-            materialLots.forEach(data => {
-                count = count + data.currentQty;
-            });
+        let unreservedQty = this.props.unReservedQty;
+        if(unreservedQty == undefined || unreservedQty == null || unreservedQty == ""){
+            unreservedQty = 0;
         }
         let materialLotList = selectedRows;
         let selectQty = 0;
@@ -240,7 +237,7 @@ export default class GcCOMReservedMLotTable extends EntityListCheckTable {
                 selectQty = selectQty + data.currentQty;
             });
         }
-        let missZeroQty = count - selectQty;
+        let missZeroQty = unreservedQty - selectQty;
         return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.MissZeroQty)}：{missZeroQty}</Tag>
     }
 

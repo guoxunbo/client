@@ -26,6 +26,7 @@ export default class GcCOMReservedMLotProperties extends EntityScanProperties{
                             data={this.state.tableData}
                             packedRuleList={this.state.packedRuleList}
                             defaultQty={this.state.defaultQty}
+                            unReservedQty={this.state.unReservedQty}
                             docLineRrn={this.state.docLineRrn}
                             loading={this.state.loading} 
                             resetData={this.resetData.bind(this)}
