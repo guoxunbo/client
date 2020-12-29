@@ -3,7 +3,6 @@ import EntityScanProperties from "@properties/framework/EntityScanProperties";
 import {WrappedAdvancedEntityForm} from '@components/framework/form/EntityForm';
 import I18NUtils from "@utils/I18NUtils";
 import { i18NCode } from "@const/i18n";
-import TableUtils from "@components/framework/utils/TableUtils";
 import Table from "@api/dto/ui/Table";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 
@@ -17,8 +16,7 @@ export default class EntityViewProperties extends EntityScanProperties{
     
     constructor(props) {
         super(props);
-        this.state = {...this.state, 
-                        ...{searchTxt: I18NUtils.getClientMessage(i18NCode.BtnSearch), 
+        this.state = {...this.state, ...{searchTxt: I18NUtils.getClientMessage(i18NCode.BtnSearch), 
                         formObject: undefined}};
     }
 
@@ -34,7 +32,7 @@ export default class EntityViewProperties extends EntityScanProperties{
                 }); 
             }
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        TableManagerRequest.sendGetByRrnRequest(requestObject);
     }
 
     afterQuery = (responseBody) => {
@@ -53,7 +51,6 @@ export default class EntityViewProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-        
     }
 
     getFields(fields) {
@@ -65,7 +62,6 @@ export default class EntityViewProperties extends EntityScanProperties{
     }
     
     buildOtherComponent = () => {
-        debugger;
         return (<div>
                     <div className="table-button-group">
                         {this.createButtonGroup()}

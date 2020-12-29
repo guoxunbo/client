@@ -41,7 +41,6 @@ export default class TableUtils {
      */
     static initTable = (component, whereClause, tableName) => {
         let self = this;
-        debugger;
         let {tableRrn, pagination, scanAddFlag} = component.props;
         let sendByNameFlag = false;
         let initFlag = true;

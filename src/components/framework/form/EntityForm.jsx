@@ -72,7 +72,6 @@ export default class EntityForm extends Component {
             wrapperCol: {span: 18},
         };
         if (Array.isArray(tabs)) {
-            debugger;
             tabs.forEach((tab) => {
                 let tabPanel = new Tab(tab);
                 if (TabType.Table === tab.tabType && showTableTabFlag) {
