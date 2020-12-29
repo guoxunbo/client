@@ -180,15 +180,22 @@ const routerConfig = [
     component: EntityProperties,
   },
   {
-    path: buildPath('MMS/IQCManager'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
-  },
-  {
     path: buildPath('MMS/IncomingMaterialImport'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: IncomingMaterialImportProperties,
   },
+  // 质量相关
+  {
+    path: buildPath('MQC/IQCManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  {
+    path: buildPath('MQC/MLotQC'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityViewProperties,
+  },
+
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),

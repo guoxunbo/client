@@ -61,12 +61,6 @@ export default class Tab {
         return title;
     }
 
-    buildTab = (form, formLayout, formObject) => {
-        if (TabType.Field == this.tabType) {
-            return this.buildFieldTab(form, formLayout, formObject);
-        } 
-    }
-
     buildFieldTab = (form, formLayout, formObject) => {
         let children = [];
         const fields = this.fields;
