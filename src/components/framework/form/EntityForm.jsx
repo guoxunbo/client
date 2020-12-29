@@ -3,6 +3,7 @@ import { Form, Input, Row, Col, Tabs } from 'antd';
 import * as PropTypes from 'prop-types';
 import Field from '@api/dto/ui/Field';
 import Tab from '@api/dto/ui/Tab';
+import {TabType} from '@api/dto/ui/Tab';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import { DefaultRowKey } from '@api/const/ConstDefine';
@@ -20,7 +21,8 @@ export default class EntityForm extends Component {
         this.state = {
             editFlag : editFlag,
             table: this.props.table,
-            tableRrn: this.props.tableRrn
+            tableRrn: this.props.tableRrn,
+            showTableTabFlag: this.props.showTableTabFlag
         };
     }  
 
@@ -61,16 +63,24 @@ export default class EntityForm extends Component {
     }
 
     buildTabs = () => {
-        const tabs = this.state.table.tabs;
+        const {showTableTabFlag, table} = this.state;
+        const tabs = table.tabs;
+
         const tabPanels = [];
         const formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 18},
         };
         if (Array.isArray(tabs)) {
+            debugger;
             tabs.forEach((tab) => {
                 let tabPanel = new Tab(tab);
-                tabPanels.push(tabPanel.buildTab(this.props.form, formItemLayout, this.props.object));
+                if (TabType.Table === tab.tabType && showTableTabFlag) {
+                    tabPanels.push(tabPanel.buildTableTab(this.props.object));
+                } else {
+                    tabPanels.push(tabPanel.buildFieldTab(this.props.form, formItemLayout, this.props.object));
+                }
+                
             }) 
         }
         return (<Tabs>
@@ -112,9 +122,11 @@ export default class EntityForm extends Component {
     }
 }
 
-EntityForm.propTypes={
+EntityForm.propTypes = {
     object: PropTypes.object,
     table: PropTypes.object,
+    tableRrn: PropTypes.string,
+    showTableTabFlag: PropTypes.bool,
 }
 const WrappedAdvancedEntityForm = Form.create()(EntityForm);
 export {WrappedAdvancedEntityForm};
