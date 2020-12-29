@@ -23,9 +23,9 @@ export default class RecordExpressNumberRequestBody {
         this.actionType = actionType;
     }
 
-    static buildOldRecordExpress(deliveryOrderList) {
+    static buildOldRecordExpress(documentLineList) {
         let body = new RecordExpressNumberRequestBody(ActionType.OldRecordOrder);
-        body.deliveryOrderList = deliveryOrderList;
+        body.documentLineList = documentLineList;
         return body;
     }
 
