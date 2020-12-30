@@ -10,6 +10,7 @@ import PrintUtils from "../../../api/utils/PrintUtils";
 import GetPrintBboxParameterRequest from "../../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest";
 import { PrintServiceUrl } from "../../../api/gc/GcConstDefine";
 import GetPrintWltBboxParameterRequest from "../../../api/gc/get-print-wltbbox-parameter/GetPrintWltBboxParameterRequest";
+import GetPrintCOBboxParameterRequest from "../../../api/gc/get-print-cobbox-parameter/GetPrintCOBboxParameterRequest";
 
 /**
  * 打印箱标签
@@ -77,6 +78,16 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
                 }
             }
             GetPrintWltBboxParameterRequest.sendQueryRequest(requestObject);
+        } else if(packageType == "COBPackCase"){
+            let materialLot = this.state.formObject;
+            let requestObject = {
+                materialLot : materialLot,       
+                success: function(responseBody) {
+                    let url = PrintServiceUrl.COBBox;
+                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                }
+            }
+            GetPrintCOBboxParameterRequest.sendQueryRequest(requestObject);
         } else {
             let requestObject = {
                 materialLotRrn : materialLotRrn,    
