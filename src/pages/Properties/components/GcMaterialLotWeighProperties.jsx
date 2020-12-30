@@ -21,7 +21,6 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
         this.setState({loading: true});
         let data = "";
         let boxsWeight = "";
-        let scanningWeightFlag = false;
         let queryFields = this.form.state.queryFields;
         data = this.form.props.form.getFieldValue(queryFields[0].name);
         boxsWeight = this.form.props.form.getFieldValue(queryFields[1].name);
@@ -51,6 +50,9 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                         let size = tableData.length;
                         let scanSeq = size + 1;
                         materialLot["scanSeq"] = scanSeq;
+                        if(materialLot.theoryWeight == null || materialLot.theoryWeight == undefined || materialLot.theoryWeight == ""){
+                            materialLot.errorFlag = true;
+                        }
                         tableData.unshift(materialLot);
                     }
                     self.setState({ 
@@ -85,6 +87,13 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                     });
                     if(!materialLot.weight){
                         materialLot["weight"] = data.toFixed(3);
+                        if(materialLot.theoryWeight){
+                            let floatValue = materialLot.floatValue;
+                            let disWeight = Math.abs(materialLot.weight - materialLot.theoryWeight);
+                            if(disWeight > floatValue){
+                                materialLot.errorFlag = true;
+                            }
+                        }
                         tableData.splice(dataIndex, 1, materialLot);
                     }
                 });
@@ -112,6 +121,13 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                                 dataIndex = index;
                                 materialLot["weight"] = boxsWeight.toFixed(3);
                                 materialLot["boxsWeightFlag"] = 1;
+                                if(materialLot.theoryWeight){
+                                    let floatValue = materialLot.floatValue;
+                                    let disWeight = Math.abs(materialLot.weight - materialLot.theoryWeight);
+                                    if(disWeight > floatValue){
+                                        materialLot.errorFlag = true;
+                                    }
+                                }
                                 tableData.splice(dataIndex, 1, materialLot);
                             }
                         });
