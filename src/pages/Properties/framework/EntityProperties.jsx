@@ -5,6 +5,7 @@ import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { BackTop, Divider } from 'antd';
 import WrappedAdvancedQueryForm from '@components/framework/form/QueryForm';
 import { DefaultRowKey } from '@api/const/ConstDefine';
+import Table from "@api/dto/ui/Table";
 
 /**
  * 系统最基层的页面表单。
@@ -28,6 +29,21 @@ export default class EntityProperties extends Component {
         selectedRows:[],
         rowKey: DefaultRowKey
       };
+    }
+
+    componentDidMount() {
+      let self = this;
+      let requestObject = {
+          tableRrn: this.state.tableRrn,
+          success: function(responseBody) {
+              let table = responseBody.table;
+              self.setState({
+                  table: table,
+                  formObject: Table.buildDefaultModel(table.fields, undefined)
+              });
+          }
+      }
+      TableManagerRequest.sendGetByRrnRequest(requestObject);
     }
 
     afterQuery = (responseBody, whereClause) => {
@@ -91,9 +107,14 @@ export default class EntityProperties extends Component {
       return (
         <div className="properties-page">
           <div className="router-body">
-            <WrappedAdvancedQueryForm showButton={showQueryFormButton} searchTxt={this.state.searchTxt} handleReset={this.resetData.bind(this)} 
+            <WrappedAdvancedQueryForm showButton={showQueryFormButton}  
+                                      searchTxt={this.state.searchTxt} 
+                                      handleReset={this.resetData.bind(this)} 
                                       wrappedComponentRef={(form) => this.form = form} 
-                                      tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
+                                      tableRrn={this.state.tableRrn} 
+                                      table={this.state.table}
+                                      onSearch={this.handleSearch.bind(this)}
+                                       />
             {showQueryFormButton ? <Divider/> : ""}                      
             {this.buildTable()}
             {this.buildOtherComponent()}
