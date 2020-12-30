@@ -36,6 +36,7 @@ import MaterialProperties from '@properties/mms/MaterialProperties';
 import MaterialLotStockInProperties from '@properties/mms/MaterialLotStockInProperties';
 import MaterialLotInventoryProperties from '@properties/mms/MaterialLotInventoryProperties';
 import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialImportProperties';
+import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialReceiveProperties';
 
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
@@ -184,9 +185,19 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: IncomingMaterialImportProperties,
   },
+  {
+    path: buildPath('MMS/IncomingMaterialDelete'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  {
+    path: buildPath('MMS/IncomingMaterialReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IncomingMaterialReceiveProperties,
+  },
   // 质量相关
   {
-    path: buildPath('MQC/IQCManager'),
+    path: buildPath('MQS/IqcManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
@@ -195,7 +206,6 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityViewProperties,
   },
-
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),
