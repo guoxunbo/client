@@ -92,7 +92,6 @@ const UrlConstant = {
     UnPackMaterialLotsUrl: ModuleUrlConstant.MMS + "unPackMaterialLots",
     MaterialLotStockInUrl: ModuleUrlConstant.MMS + "stockIn",
     AppendPackMaterialLotsUrl: ModuleUrlConstant.MMS + "appendPackMaterialLots",
-    IncomingMaterialImportReceiveUrl: ModuleUrlConstant.MMS + "receiveMLotByDoc",
 
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
@@ -109,7 +108,6 @@ const UrlConstant = {
     //VC
     VCIncomingMaterialImportUrl: ModuleUrlConstant.VC + "IncomingMaterialImport",
     VCIncomingMaterialImportSaveDateUrl: ModuleUrlConstant.VC + "IncomingMaterialSave",
-   
 
 };
 
