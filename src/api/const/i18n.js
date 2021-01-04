@@ -63,6 +63,7 @@ const i18NCode = {
     BtnBind: "Bind",
     BtnTagging: "Tagging",
     BtnUnTagging: "UnTagging",
+    BtnIssue: "Issue",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -1002,6 +1003,11 @@ const i18Messages = {
         Chinese: "全选Wafer Id",
         English: "AllSelect WaferId",
         Res: ""
+    },
+    Issue: {
+        Chinese: "发料",
+        English: "Issue",
+        Res: "" 
     }
 }
 

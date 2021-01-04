@@ -7,7 +7,8 @@ const ActionType = {
     GetWaitIssueMLot: "GetWaitIssueMLot",
     PurchaseOutsoureReceive: "PurchaseOutsoureReceive",
     HKMLotReceive: "HKMLotReceive",
-    CogReceive: "CogReceive"
+    CogReceive: "CogReceive",
+    OutOrderIssue: "OutOrderIssue",
 }
 export default class WaferManagerRequestBody {
 
@@ -61,6 +62,16 @@ export default class WaferManagerRequestBody {
         });
 
         return new WaferManagerRequestBody(ActionType.Issue, documentLines, materialLotActions, undefined, undefined, issueWithDoc, unPlanLot);
+    }
+
+    static buildOutOrderIssue(materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new WaferManagerRequestBody(ActionType.OutOrderIssue, undefined, materialLotActions);
     }
 
     static buildValidationWaitIssueWafer(materialLots) {

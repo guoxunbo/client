@@ -92,6 +92,7 @@ import GcRMAMaterialLotReceiveProperties from './pages/Properties/components/GcR
 import COBPackMaterialLotProperties from './pages/Properties/components/COBPackMaterialLotProperties';
 import GcRMAMLotLabelPrintProperties from './pages/Properties/components/GcRMAMLotLabelPrintProperties';
 import GcRawMaterialReceiveProperties from './pages/Properties/components/GcRawMaterialReceiveProperties';
+import GcWaferIssueOutOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOutOrderProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -245,6 +246,12 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferIssue'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferIssueOrderProperties,
+  },
+  //WLA、CP无订单晶圆发料
+  {
+    path: buildPath('Wafer/GCWaferIssueOutOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferIssueOutOrderProperties,
   },
   //COM型号晶圆发料
   {
