@@ -48,9 +48,10 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                     let materialLot = responseBody.materialLot;
                     if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
                         let size = tableData.length;
+                        let productType = materialLot.reserved7;
                         let scanSeq = size + 1;
                         materialLot["scanSeq"] = scanSeq;
-                        if(materialLot.theoryWeight == null || materialLot.theoryWeight == undefined || materialLot.theoryWeight == ""){
+                        if(productType == "COM" && (materialLot.theoryWeight == null || materialLot.theoryWeight == undefined || materialLot.theoryWeight == "")){
                             materialLot.errorFlag = true;
                         }
                         tableData.unshift(materialLot);
