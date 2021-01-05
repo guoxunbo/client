@@ -3,6 +3,10 @@ import TableManagerRequest from "../../../../../api/table-manager/TableManagerRe
 import MaterialLot from "../../../../../api/dto/mms/MaterialLot";
 import GcWaferIssueOutOrderTable from "../../../../../components/Table/gc/GcWaferIssueOutOrderTable";
 import GcWaitOutOrderIssueMLotUnitProperties from "./GcWaitOutOrderIssueMLotUnitProperties";
+import I18NUtils from "../../../../../api/utils/I18NUtils";
+import { Notification } from "../../../../../components/notice/Notice";
+import { i18NCode } from "../../../../../api/const/i18n";
+
 
 export default class GcWaferIssueOutOrderProperties extends EntityScanProperties{
 
@@ -25,8 +29,16 @@ export default class GcWaferIssueOutOrderProperties extends EntityScanProperties
      * 扫描到的晶圆如果不存在在下面的待发料晶圆，也要异常显示
      */
     queryData = (whereClause) => {
-        const self = this;
-        let {rowKey,tableData} = this.state;
+      debugger;
+      const self = this;
+      let {rowKey,tableData} = this.state;
+      if(whereClause == ''){
+        Notification.showInfo(I18NUtils.getClientMessage(i18NCode.SearchFieldCannotEmpty))
+        self.setState({ 
+          tableData: tableData,
+          loading: false
+        });
+      }else{
         let waitOutOrderIssueMLotUnit = this.waitOutOrderIssueMLotUnit.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,
@@ -83,6 +95,7 @@ export default class GcWaferIssueOutOrderProperties extends EntityScanProperties
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+      }
     }
 
     buildTable = () => {
@@ -94,7 +107,6 @@ export default class GcWaferIssueOutOrderProperties extends EntityScanProperties
                                     loading={this.state.loading} 
                                     resetData={this.resetData.bind(this)}
                                     resetFlag={this.state.resetFlag}
-                                    onSearch={this.props.onSearch}
                                     />
     }
 
