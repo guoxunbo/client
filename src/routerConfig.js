@@ -93,6 +93,7 @@ import COBPackMaterialLotProperties from './pages/Properties/components/COBPackM
 import GcRMAMLotLabelPrintProperties from './pages/Properties/components/GcRMAMLotLabelPrintProperties';
 import GcRawMaterialReceiveProperties from './pages/Properties/components/GcRawMaterialReceiveProperties';
 import GcWaferIssueOutOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOutOrderProperties';
+import GcFTOutOrderIssueUnitScanProperties from './pages/Properties/components/gc/wafer-issue/GcFTOutOrderIssueUnitScanProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -330,6 +331,11 @@ const routerConfig = [
     path: buildPath('FT/GCFTWaferIssue'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcFTWaferIssueOrderProperties,
+  },
+  {
+    path: buildPath('FT/GCFTOutOrderWaferIssue'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFTOutOrderIssueUnitScanProperties,
   },
   {
     path: buildPath('FT/GCFTStockOutManager'),
