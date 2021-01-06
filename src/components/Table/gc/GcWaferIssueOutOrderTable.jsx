@@ -65,16 +65,7 @@ export default class GcWaferIssueOutOrderTable extends EntityScanViewTable {
     }
 
     createMaterialLotsNumber = () => {
-        let materialLotUnits = this.state.data;
-        let materialLotIdList = [];
-        if(materialLotUnits && materialLotUnits.length > 0){
-            materialLotUnits.forEach(data => {
-                if (materialLotIdList.indexOf(data.materialLotId) == -1) {
-                    materialLotIdList.push(data.materialLotId);
-                }
-            });
-        }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotIdList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
     createWaferCount = () => {

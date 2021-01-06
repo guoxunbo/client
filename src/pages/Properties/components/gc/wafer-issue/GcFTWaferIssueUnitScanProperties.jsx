@@ -38,6 +38,15 @@ export default class GcFTWaferIssueUnitScanProperties extends EntityScanProperti
           });
           return;
         }
+        if(tableData.length == 10){
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.MaterialLotIssueQtyCannotMoreThanTen));
+          self.setState({ 
+            tableData: tableData,
+            loading: false
+          });
+          self.form.resetFormFileds();
+          return;
+        }
         let waitForIssueMLotUnitData = this.ftWaitForIssueUnitProperties.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,

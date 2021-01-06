@@ -29,7 +29,6 @@ export default class GcWaferIssueOutOrderProperties extends EntityScanProperties
      * 扫描到的晶圆如果不存在在下面的待发料晶圆，也要异常显示
      */
     queryData = (whereClause) => {
-      debugger;
       const self = this;
       let {rowKey,tableData} = this.state;
       if(whereClause == ''){
@@ -38,7 +37,15 @@ export default class GcWaferIssueOutOrderProperties extends EntityScanProperties
           tableData: tableData,
           loading: false
         });
-      }else{
+      } else if(tableData.length == 10){
+        Notification.showNotice(I18NUtils.getClientMessage(i18NCode.MaterialLotIssueQtyCannotMoreThanTen));
+        self.setState({ 
+          tableData: tableData,
+          loading: false
+        });
+        self.form.resetFormFileds();
+        return;
+      } else {
         let waitOutOrderIssueMLotUnit = this.waitOutOrderIssueMLotUnit.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,

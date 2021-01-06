@@ -171,6 +171,7 @@ const i18NCode = {
     ExceptionClassify: "ExceptionClassify",
     RiskGrade: "RiskGrade",
     AllSelectWaferId: "AllSelectWaferId",
+    MaterialLotIssueQtyCannotMoreThanTen: "MaterialLotIssueQtyCannotMoreThanTen",
 }
 
 const i18Messages = {
@@ -1007,6 +1008,11 @@ const i18Messages = {
     Issue: {
         Chinese: "发料",
         English: "Issue",
+        Res: "" 
+    },
+    MaterialLotIssueQtyCannotMoreThanTen: {
+        Chinese: "发料数量不能超过10箱！",
+        English: "Issue Qty Cannot More Than Ten",
         Res: "" 
     }
 }
