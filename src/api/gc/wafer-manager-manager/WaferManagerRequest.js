@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class WaferManagerRequest {
 
     static sendReceiveWaferRequest = (object) => {
-        let {documentLines, materialLots} = object;
-        let requestBody = WaferManagerRequestBody.buildReceive(documentLines, materialLots);
+        let {documentLines, materialLots, receiveWithDoc} = object;
+        let requestBody = WaferManagerRequestBody.buildReceive(documentLines, materialLots, receiveWithDoc);
         let requestHeader = new WaferManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {
