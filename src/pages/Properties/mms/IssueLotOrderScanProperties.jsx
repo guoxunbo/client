@@ -1,10 +1,10 @@
-import IncomingMaterialReceiveScanTable from "@components/mms/table/IncomingMaterialReceiveScanTable";
+import IssueLotOrderScanTable from "@components/mms/table/IssueLotOrderScanTable";
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
 import NoticeUtils from "@utils/NoticeUtils";
 
-export default class IncomingMaterialReceiveScanProperties extends EntityScanProperties{
+export default class IssueLotOrderScanProperties extends EntityScanProperties{
 
-    static displayName = 'IncomingMaterialReceiveScanProperties';
+    static displayName = 'IssueLotOrderScanProperties';
     
     constructor(props) {
         super(props);
@@ -23,18 +23,23 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
         let mLots= this.state.tableData;
         let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let flag = false;
+        let flag1 = true;
         if(mLots){
           mLots.forEach(mLot => {
               if(queryMatlotId === mLot.materialLotId){
                 flag = true ;
                 mLot.scaned = true;
               }
-              if("Create" != mLot.status){
+              if("Issue" == mLot.status){
                 mLot.scaned = false;
+                flag1 = false;
               }
           });
           if(!flag){
-            NoticeUtils.showInfo("该物料批次与该单据号不一致");
+            NoticeUtils.showInfo("该物料批次号不存在");
+          }
+          if(flag & !flag1){
+            NoticeUtils.showInfo("该批次已发料");
           }
         }
         self.form.resetFormFileds();
@@ -54,7 +59,7 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
     }
 
     buildTable = () => {
-        return <IncomingMaterialReceiveScanTable 
+        return <IssueLotOrderScanTable
                           {...this.getDefaultTableProps()} 
                           orderTable={this.props.orderTable} 
                           pagination={false} 

@@ -7,7 +7,7 @@ import Request from '@api/Request';
 export default class IncomingMaterialImportRequest {
    
     static sendSelectRequest = (object, file) => {
-        let requestBody = new IncomingMaterialImportRequestBody();;
+        let requestBody =  IncomingMaterialImportRequestBody.buildSelect(object);
         let requestHeader = new IncomingMaterialImportRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.VCIncomingMaterialImportUrl);
         let requestObject = {
@@ -20,12 +20,11 @@ export default class IncomingMaterialImportRequest {
     static sendImportRequest = (object) => {
         let requestBody = IncomingMaterialImportRequestBody.buildImportInfo(object.dataList);
         let requestHeader = new IncomingMaterialImportRequestHeader();
-        let request = new Request(requestHeader,requestBody,UrlConstant.VCIncomingMaterialImportSaveDateUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCIncomingMaterialImportSaveDateUrl);
         let requestObject = {
             request: request,
             success: object.success
         }
         MessageUtils.sendRequest(requestObject);
     }
-
 }

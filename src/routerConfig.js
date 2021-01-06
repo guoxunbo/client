@@ -37,6 +37,8 @@ import MaterialLotStockInProperties from '@properties/mms/MaterialLotStockInProp
 import MaterialLotInventoryProperties from '@properties/mms/MaterialLotInventoryProperties';
 import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialImportProperties';
 import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialReceiveProperties';
+import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
+import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
@@ -194,6 +196,16 @@ const routerConfig = [
     path: buildPath('MMS/IncomingMaterialReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: IncomingMaterialReceiveProperties,
+  },
+  {
+    path: buildPath('MMS/IssueLotOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IssueLotOrderProperties,
+  },
+  {
+    path: buildPath('MMS/IncomingMLotImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IncomingMLotImportProperties,
   },
   // 质量相关
   {

@@ -7,9 +7,9 @@ import Notification from '@api/utils/NoticeUtils';
 import IncomingMaterialImportRequest from '@api/Incoming-Material-Manager/IncomingMaterialImportRequest';
 import { i18NCode } from '@api/const/i18n';
 
-export default class IncomingMaterialImportTable extends EntityScanViewTable {
+export default class IncomingMLotImportTable extends EntityScanViewTable {
 
-    static displayName = 'IncomingMaterialImportTable';
+    static displayName = 'IncomingMLotImportTable';
     
     constructor(props) {
         super(props);
@@ -55,7 +55,7 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         let object = {
             fileName: fileName,
-            importTypeNbTable : "IncomingMaterialImport",
+            importTypeNbTable : "IncomingMLotImport",
             success: function(responseBody) {
                 let materialLotList = responseBody.dataList;
                 self.setState({
@@ -80,16 +80,11 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         let requestObject = {
             dataList: data,
             success: function(responseBody) {
-                let importCode = responseBody.importCode;
                 self.setState({
                     data: [],
                     loading: false
                 });
-                let message =  I18NUtils.getClientMessage(i18NCode.OperationSucceed);
-                if(importCode != null || importCode != undefined){
-                    message = message + `:${importCode}`;
-                }
-                Notification.showNotice(I18NUtils.getClientMessage(message));
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.OperationSucceed));
             }
         }
         IncomingMaterialImportRequest.sendImportRequest(requestObject);
