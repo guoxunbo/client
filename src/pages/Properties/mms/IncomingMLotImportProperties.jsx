@@ -1,4 +1,4 @@
-import IncomingMaLotImportTable from "@components/mms/table/IncomingMLotImportTable";
+import IncomingMLotImportTable from "@components/mms/table/IncomingMLotImportTable";
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
 
 export default class IncomingMLotImportProperties extends EntityScanProperties{
@@ -11,7 +11,7 @@ export default class IncomingMLotImportProperties extends EntityScanProperties{
     }
     
     buildTable = () => {
-      return (<IncomingMaLotImportTable
+      return (<IncomingMLotImportTable
                   {...this.getDefaultTableProps()} 
          
       />)

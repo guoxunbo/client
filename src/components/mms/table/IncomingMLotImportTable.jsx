@@ -7,9 +7,9 @@ import Notification from '@api/utils/NoticeUtils';
 import IncomingMaterialImportRequest from '@api/Incoming-Material-Manager/IncomingMaterialImportRequest';
 import { i18NCode } from '@api/const/i18n';
 
-export default class IncomingMaLotImportTable extends EntityScanViewTable {
+export default class IncomingMLotImportTable extends EntityScanViewTable {
 
-    static displayName = 'IncomingMaLotImportTable';
+    static displayName = 'IncomingMLotImportTable';
     
     constructor(props) {
         super(props);
