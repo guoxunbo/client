@@ -1,24 +1,24 @@
-import { Button, Tag} from 'antd';
-import I18NUtils from '@utils/I18NUtils';
-import { i18NCode } from '@const/i18n';
-import IncomingMaterialReceiveRequest from '@api/Incoming-Material-Manager/Incoming-Material-Receive-Manager/IncomingMaterialReceiveRequest';
+import IssueOrderRequest from '@api/issue-order-manager/issue-lot-order/IssueOrderRequest';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
+import { i18NCode } from '@const/i18n';
+import I18NUtils from '@utils/I18NUtils';
 import NoticeUtils from '@utils/NoticeUtils';
+import { Button, Tag } from 'antd';
 
-export default class IncomingMaterialReceiveScanTable extends EntityScanViewTable {
+export default class IssueLotOrderScanTable extends EntityScanViewTable {
 
-    static displayName = 'IncomingMaterialReceiveScanTable';
+    static displayName = 'IssueLotOrderScanTable';
 
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createScannedNumber());
         buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createReceiveButton());
+        buttons.push(this.createIssueLotButton());
         return buttons;
     }
 
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("已扫描箱数")}：{this.getScanned().length} </Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("已扫描数量")}：{this.getScanned().length} </Tag>
     }
 
     getScanned = () => {
@@ -36,30 +36,35 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("总箱数")}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("总数")}：{this.state.data.length}</Tag>
     }
   
 
-    createReceiveButton = () => {
-        return <Button key="receive" type="primary" className="table-button" icon="file-excel" onClick={this.receive}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnReceive)}
+    createIssueLotButton = () => {
+        return <Button key="receive" type="primary" className="table-button" icon="file-excel" onClick={this.IssueLot}>
+                        {I18NUtils.getClientMessage('发料')}
                     </Button>
     }
 
-    receive = () => {
+    IssueLot = () => {
+        
         let self = this;
         let materialLots = this.getScanned();
+        let tableDataSize = this.state.data.length;
         let docId = '';
         if (materialLots.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        if (materialLots.length != tableDataSize) {
+            NoticeUtils.showNotice(I18NUtils.getClientMessage("请扫描该订单下所有的物料批次号"));
+            return;
+        }
         if(materialLots){
             docId =materialLots[0].incomingDocId ;
          }
-      
         let requestObject = {
-            materialLotList: materialLots,
+            materialLots: materialLots,
             documentId: docId,
             success: function(responseBody) {
                 if (self.props.resetData) {
@@ -71,7 +76,7 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
                 NoticeUtils.showSuccess();
             }
         }
-        IncomingMaterialReceiveRequest.sendReceiveRequest(requestObject);
+        IssueOrderRequest.sendIssueLotRequest(requestObject);
     }
      /**
      * 接收数据不具备可删除等操作
@@ -86,5 +91,3 @@ const styles = {
         marginLeft:'20px'
     }
 };
-
-
