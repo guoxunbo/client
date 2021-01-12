@@ -94,6 +94,7 @@ const UrlConstant = {
     AppendPackMaterialLotsUrl: ModuleUrlConstant.MMS + "appendPackMaterialLots",
     IncomingMaterialImportReceiveUrl: ModuleUrlConstant.MMS + "receiveMLotByDoc",
     MMSIssueMLotByDocUrl: ModuleUrlConstant.MMS + "issueMLotByDoc",
+    IqcCheckManagerUrl: ModuleUrlConstant.MMS + "IqcCheck",
 
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
