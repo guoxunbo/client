@@ -15,7 +15,7 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         super(props);
         this.state = {...this.state};
     }
-
+    
     /**
      * 创建btn组。不同的table对button的组合要求不一样时。可以重载其方法做处理
      */
@@ -30,13 +30,13 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
     createImportButton = () => {
         return  <Upload key="import" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
                     customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage("选择文件")}</Button>
+                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnPreview)}</Button>
                 </Upload>;
     }
 
     createSaveButton = () => {
         return  <Button key="receive" type="primary" className="table-button" onClick={() => this.SaveButton()} icon="import-o">
-                         {I18NUtils.getClientMessage("导入")}
+                         {I18NUtils.getClientMessage(i18NCode.BtnImp)}
                 </Button>
     }
 
@@ -66,6 +66,7 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         }
         IncomingMaterialImportRequest.sendSelectRequest(object, option.file);
     }
+    
     SaveButton = () => {
         const {data,table} = this.state;
         let self = this;
@@ -79,6 +80,7 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         let requestObject = {
             dataList: data,
+            actionType: "MLotSave",
             success: function(responseBody) {
                 let importCode = responseBody.importCode;
                 self.setState({

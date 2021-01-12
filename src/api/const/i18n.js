@@ -83,6 +83,11 @@ const i18NCode = {
     TransferSource: "Source",
     TransferTarget: "Target",
     Operation: "Operation",
+    BtnPreview: "Preview",
+    BoxQty: "BoxQty",
+    ScannedQty: "ScannedQty",
+    TotalNumber: "TotalNumber",
+    BtnIssue: "Issue",
     
 }
 
@@ -478,7 +483,32 @@ const i18Messages = {
         Chinese: "获取Recipe",
         English: "GetRecipe",
         Res: ""
-    }
+    },
+    Preview: {
+        Chinese: "选择文件",
+        English: "preview file",
+        Res: ""
+    },
+    BoxQty: {
+        Chinese: "箱数",
+        English: "BoxQty",
+        Res: ""
+    },
+    ScannedQty: {
+        Chinese: "已扫描数量",
+        English: "ScannedQty",
+        Res: ""
+    },
+    TotalNumber: {
+        Chinese: "总数量",
+        English: "TotalNumber",
+        Res: ""
+    },
+    Issue:{
+        Chinese: "发料",
+        English: "Issue",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};

@@ -109,6 +109,7 @@ const UrlConstant = {
     //VC
     VCIncomingMaterialImportUrl: ModuleUrlConstant.VC + "IncomingMaterialImport",
     VCIncomingMaterialImportSaveDateUrl: ModuleUrlConstant.VC + "IncomingMaterialSave",
+    IncomingMaterialDeleteUrl: ModuleUrlConstant.VC + "IncomingMaterialDelete",
 
 };
 
