@@ -39,6 +39,8 @@ import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialIm
 import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialReceiveProperties';
 import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
+import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
+import IqcCheckProperties from '@properties/mms/IqcCheckProperties';
 
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
@@ -190,7 +192,7 @@ const routerConfig = [
   {
     path: buildPath('MMS/IncomingMaterialDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: IncomingMaterialDeleteProperties,
   },
   {
     path: buildPath('MMS/IncomingMaterialReceive'),
@@ -217,6 +219,11 @@ const routerConfig = [
     path: buildPath('MQC/MLotQC'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityViewProperties,
+  },
+  {
+    path: buildPath('MQC/IQCCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IqcCheckProperties,
   },
   //MES成品接收
   {
