@@ -18,7 +18,7 @@ export default class IncomingMaterialImportRequest {
     }
 
     static sendImportRequest = (object) => {
-        let requestBody = IncomingMaterialImportRequestBody.buildImportInfo(object.dataList, object.actionType);
+        let requestBody = IncomingMaterialImportRequestBody.buildImportInfo(object.dataList);
         let requestHeader = new IncomingMaterialImportRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.VCIncomingMaterialImportSaveDateUrl);
         let requestObject = {

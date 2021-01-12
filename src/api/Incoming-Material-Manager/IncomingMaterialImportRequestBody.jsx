@@ -2,21 +2,19 @@
 export default class IncomingMaterialImportRequestBody {
 
     materialLotList;
-    importTypeNbTable;
-    actionType;
+    importTypeNbTable
   
-    constructor(materialLotList, importTypeNbTable, actionType){
+    constructor(materialLotList, importTypeNbTable){
         this.materialLotList = materialLotList;
         this.importTypeNbTable = importTypeNbTable;
-        this.actionType = actionType;
+    }
+
+    static buildImportInfo(materialLotList) {
+        return new IncomingMaterialImportRequestBody(materialLotList);
     }
 
     static buildSelect(object) {
         return new IncomingMaterialImportRequestBody(undefined, object.importTypeNbTable);
     }
-
-    static buildImportInfo(materialLotList, actionType) {
-        return new IncomingMaterialImportRequestBody(materialLotList, undefined, actionType);
-    }
-
+  
 }

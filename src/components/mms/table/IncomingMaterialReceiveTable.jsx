@@ -32,7 +32,6 @@ export default class IncomingMaterialReceiveTable extends EntityListTable {
         let self = this;
         let selectedRows = [];
         selectedRows.push(record);
-        let showData = [];
         this.setState({
             selectedRows: selectedRows
         });
@@ -43,15 +42,7 @@ export default class IncomingMaterialReceiveTable extends EntityListTable {
         let object = {
             documentId: record.name,
             success: function(responseBody) {
-                let mLots = responseBody.materialLotList;
-                if(mLots){
-                    mLots.forEach(mLot=>{
-                        if(mLot.status == 'Create'){
-                            showData.push(mLot);
-                        }
-                    })
-                }
-                self.props.materialOrderScanProperties.setState({tableData: showData})
+                 self.props.materialOrderScanProperties.setState({tableData: responseBody.materialLotList})
             }
         }
         IncomingMaterialReceiveRequest.sendGetMaterialLot(object);

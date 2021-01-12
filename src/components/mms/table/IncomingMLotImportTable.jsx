@@ -30,13 +30,13 @@ export default class IncomingMLotImportTable extends EntityScanViewTable {
     createImportButton = () => {
         return  <Upload key="import" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
                     customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnPreview)}</Button>
+                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage("选择文件")}</Button>
                 </Upload>;
     }
 
     createSaveButton = () => {
         return  <Button key="receive" type="primary" className="table-button" onClick={() => this.SaveButton()} icon="import-o">
-                         {I18NUtils.getClientMessage(i18NCode.BtnImp)}
+                         {I18NUtils.getClientMessage("导入")}
                 </Button>
     }
 
@@ -66,7 +66,6 @@ export default class IncomingMLotImportTable extends EntityScanViewTable {
         }
         IncomingMaterialImportRequest.sendSelectRequest(object, option.file);
     }
-    
     SaveButton = () => {
         const {data,table} = this.state;
         let self = this;
@@ -80,7 +79,6 @@ export default class IncomingMLotImportTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         let requestObject = {
             dataList: data,
-            actionType: "MaterialSave",
             success: function(responseBody) {
                 self.setState({
                     data: [],
