@@ -94,6 +94,7 @@ import GcRMAMLotLabelPrintProperties from './pages/Properties/components/GcRMAML
 import GcRawMaterialReceiveProperties from './pages/Properties/components/GcRawMaterialReceiveProperties';
 import GcWaferIssueOutOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOutOrderProperties';
 import GcFTOutOrderIssueUnitScanProperties from './pages/Properties/components/gc/wafer-issue/GcFTOutOrderIssueUnitScanProperties';
+import GcRawMaterialIssueOrderProperties from './pages/Properties/components/GcRawMaterialIssueOrderProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -376,6 +377,11 @@ const routerConfig = [
     path: buildPath('RawMaterial/GCRawMaterialReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRawMaterialReceiveProperties,
+  },
+  {
+    path: buildPath('RawMaterial/GCRawMaterialIssue'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialIssueOrderProperties,
   },
   //取消晶圆出货标注
   {

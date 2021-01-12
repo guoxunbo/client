@@ -9,6 +9,7 @@ const ActionType = {
     AsyncSobOrder: "AsyncSobOrder",
     AsyncSoaOrder: "AsyncSoaOrder",
     AsyncCogReceiveOrder : "AsyncCogReceiveOrder",
+    AsyncMaterialIssueOrder : "AsyncMaterialIssueOrder",
 }
 
 export default class AsyncManagerRequestBody {

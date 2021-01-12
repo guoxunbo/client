@@ -39,5 +39,15 @@ export default class GCRawMaterialImportRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendRawMaterialIssueRequest = (object) => {
+        let requestBody = GCRawMaterialImportRequestBody.buildRawMaterialIssue(object.materialLots, object.documentLine);
+        let requestHeader = new GCRawMaterialImportRequestHeader();
+        let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 
 }
