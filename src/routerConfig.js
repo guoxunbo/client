@@ -40,7 +40,6 @@ import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialR
 import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
-import IqcCheckProperties from '@properties/mms/IqcCheckProperties';
 
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
@@ -54,6 +53,7 @@ import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 //rms
 import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
+
 
 
 /**
@@ -219,11 +219,6 @@ const routerConfig = [
     path: buildPath('MQC/MLotQC'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityViewProperties,
-  },
-  {
-    path: buildPath('MQC/IQCCheck'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: IqcCheckProperties,
   },
   //MES成品接收
   {
