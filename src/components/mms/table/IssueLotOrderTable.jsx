@@ -31,7 +31,6 @@ export default class IssueLotOrderTable extends EntityListTable {
     selectRow = (record) => {
         let self = this;
         let selectedRows = [];
-        let showData = []
         selectedRows.push(record);
         this.setState({
             selectedRows: selectedRows
@@ -39,15 +38,7 @@ export default class IssueLotOrderTable extends EntityListTable {
         let object = {
             documentId: record.name,
             success: function(responseBody) {
-                let mLots = responseBody.materialLotList;
-                if(mLots){
-                    mLots.forEach(mLot=>{
-                        if("Issue" != mLot.status){
-                            showData.push(mLot);
-                        }
-                    })
-                }
-                self.props.issueLotScanTable.setState({tableData: showData})
+                self.props.issueLotScanTable.setState({tableData: responseBody.materialLotList})
             }
         }
         IssueOrderRequest.sendGetIssueLotInfoRequest(object);

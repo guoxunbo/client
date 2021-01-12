@@ -18,7 +18,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
 
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedQty)}：{this.getScanned().length} </Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("已扫描数量")}：{this.getScanned().length} </Tag>
     }
 
     getScanned = () => {
@@ -36,13 +36,13 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("总数")}：{this.state.data.length}</Tag>
     }
   
 
     createIssueLotButton = () => {
         return <Button key="receive" type="primary" className="table-button" icon="file-excel" onClick={this.IssueLot}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnIssue)}
+                        {I18NUtils.getClientMessage('发料')}
                     </Button>
     }
 
@@ -61,14 +61,13 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
         }
         let requestObject = {
             materialLots: materialLots,
-            documentId: doc.name,
+            documentId:  doc.name,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.setState({
                         loading: false
                     });
                     self.props.resetData();
-                    self.props.onSearch();
                 }
                 NoticeUtils.showSuccess();
             }
