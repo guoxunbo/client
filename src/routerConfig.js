@@ -39,6 +39,7 @@ import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialIm
 import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialReceiveProperties';
 import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
+import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
 
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
@@ -52,6 +53,7 @@ import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 //rms
 import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
+
 
 
 /**
@@ -190,7 +192,7 @@ const routerConfig = [
   {
     path: buildPath('MMS/IncomingMaterialDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: IncomingMaterialDeleteProperties,
   },
   {
     path: buildPath('MMS/IncomingMaterialReceive'),

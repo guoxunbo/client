@@ -8,7 +8,7 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
     
     constructor(props) {
         super(props);
-        this.state= {...this.state, ...{showQueryFormButton: false}}
+        this.state= {...this.state, ...{showQueryFormButton: true}}
     }
 
     componentWillReceiveProps = (props) => {
@@ -22,10 +22,11 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
         const self = this;
         let mLots= this.state.tableData;
         let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+        let queryQty = self.form.props.form.getFieldValue(self.form.state.queryFields[1].name);
         let flag = false;
         if(mLots){
           mLots.forEach(mLot => {
-              if(queryMatlotId === mLot.materialLotId){
+            if(queryMatlotId === mLot.materialLotId && queryQty == mLot.currentQty){
                 flag = true ;
                 mLot.scaned = true;
               }
@@ -34,7 +35,7 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
               }
           });
           if(!flag){
-            NoticeUtils.showInfo("该物料批次与该单据号不一致");
+            NoticeUtils.showInfo("该物料批次与该单据号不一致或数量不一致");
           }
         }
         self.form.resetFormFileds();

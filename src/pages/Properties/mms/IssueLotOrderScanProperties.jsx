@@ -30,16 +30,9 @@ export default class IssueLotOrderScanProperties extends EntityScanProperties{
                 flag = true ;
                 mLot.scaned = true;
               }
-              if("Issue" == mLot.status){
-                mLot.scaned = false;
-                flag1 = false;
-              }
           });
           if(!flag){
-            NoticeUtils.showInfo("该物料批次号不存在");
-          }
-          if(flag & !flag1){
-            NoticeUtils.showInfo("该批次已发料");
+            NoticeUtils.showInfo("物料批次号不存在");
           }
         }
         self.form.resetFormFileds();
@@ -64,7 +57,7 @@ export default class IssueLotOrderScanProperties extends EntityScanProperties{
                           orderTable={this.props.orderTable} 
                           pagination={false} 
                           resetData={this.resetData.bind(this)}
-                          resetFlag={this.state.resetFlag}                         
+                          resetFlag={this.state.resetFlag}
                           />
     }
 }
