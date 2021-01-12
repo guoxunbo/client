@@ -39,40 +39,8 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
             });
             self.form.resetFormFileds();
             this.form.state.queryFields[0].node.focus();
-            //如果扫描的是第一个扫描框，并且扫描的是文本则请求后台查询数据
-        } else if (data != undefined &&  parseFloat(data).toString() == "NaN"){
-            let requestObject = {
-                materialLotId: data,
-                tableRrn: table.objectRrn,
-                success: function(responseBody) {
-                    let materialLot = responseBody.materialLot;
-                    if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                        let size = tableData.length;
-                        let productType = materialLot.reserved7;
-                        let scanSeq = size + 1;
-                        materialLot["scanSeq"] = scanSeq;
-                        if(productType == "COM" && (materialLot.theoryWeight == null || materialLot.theoryWeight == undefined || materialLot.theoryWeight == "")){
-                            materialLot.errorFlag = true;
-                        }
-                        tableData.unshift(materialLot);
-                    }
-                    self.setState({ 
-                        tableData: tableData,
-                        loading: false,
-                    });
-                    self.form.resetFormFileds();
-                },
-                fail: function() {
-                    self.setState({ 
-                        tableData: tableData,
-                        loading: false
-                    });
-                    self.form.resetFormFileds();
-                }
-            }
-            WeightManagerRequest.sendQueryRequest(requestObject);
             // 如果扫描的是第一个扫描框，并且扫描的是数字，则更新当前列表中没有添加重量的箱号
-        } else if (data != undefined &&  parseFloat(data).toString() != "NaN") {
+        } else if (data != undefined &&  data.startsWith("0000")  && parseFloat(data).toString() != "NaN") {
             currentHandleMLots = this.getNotScanWeightMaterialLots(tableData);
             if(currentHandleMLots.length == 0){
                 Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AddOneRowPlease));
@@ -140,6 +108,38 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                 loading: false,
             });
             self.form.resetFormFileds();
+        //如果扫描的是第一个扫描框，并且扫描的不是数字"0000"开头
+        } else if (data != undefined){
+            let requestObject = {
+                materialLotId: data,
+                tableRrn: table.objectRrn,
+                success: function(responseBody) {
+                    let materialLot = responseBody.materialLot;
+                    if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                        let size = tableData.length;
+                        let productType = materialLot.reserved7;
+                        let scanSeq = size + 1;
+                        materialLot["scanSeq"] = scanSeq;
+                        if(productType == "COM" && (materialLot.theoryWeight == null || materialLot.theoryWeight == undefined || materialLot.theoryWeight == "")){
+                            materialLot.errorFlag = true;
+                        }
+                        tableData.unshift(materialLot);
+                    }
+                    self.setState({ 
+                        tableData: tableData,
+                        loading: false,
+                    });
+                    self.form.resetFormFileds();
+                },
+                fail: function() {
+                    self.setState({ 
+                        tableData: tableData,
+                        loading: false
+                    });
+                    self.form.resetFormFileds();
+                }
+            }
+            WeightManagerRequest.sendQueryRequest(requestObject);
         }
     }
 
