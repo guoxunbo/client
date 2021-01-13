@@ -88,6 +88,14 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
             <Col span={4}>
                 <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
             </Col>
+            <Col span={2} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.ExpressCompany)}:
+                </span>
+            </Col>
+            <Col span={4}>
+                <RefListField ref={(expressCompany) => { this.expressCompany = expressCompany }} referenceName={SystemRefListName.ExpressCompany}/>
+            </Col>
         </Row>
     }
 
@@ -132,8 +140,13 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
             return;
         }
         let expressNumber = self.expressNumber.state.value;
+        let expressCompany = self.expressCompany.state.value;
         if (expressNumber == "" || expressNumber == null || expressNumber == undefined){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
+            return;
+        }
+        if (expressCompany == "" || expressCompany == null || expressCompany == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressCompanyCannotEmpty));
             return;
         }
         self.setState({
@@ -144,6 +157,7 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
         let object = {
             datas : datas,
             expressNumber: expressNumber,
+            expressCompany: expressCompany,
             success: function(responseBody) {
                 self.setState({
                     data: [],

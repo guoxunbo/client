@@ -69,7 +69,6 @@ const i18NCode = {
     BtnRecordExpress: "RecordExpress",
     BtnManualRecordExpress: "ManualRecordExpress",
     BtnCancelExpress: "CancelExpress",
-    BtnManualRecordExpress: "ManualRecordExpress",
     BtnPrintObliqueLabel: "PrintObliqueLabel",
     BtnCancelWayBillOrder: "CancelWayBillOrder",
 
@@ -172,6 +171,8 @@ const i18NCode = {
     RiskGrade: "RiskGrade",
     AllSelectWaferId: "AllSelectWaferId",
     MaterialLotIssueQtyCannotMoreThanTen: "MaterialLotIssueQtyCannotMoreThanTen",
+    ExpressCompany: "ExpressCompany",
+    ExpressCompanyCannotEmpty: "ExpressCompanyCannotEmpty",
 }
 
 const i18Messages = {
@@ -1013,6 +1014,16 @@ const i18Messages = {
     MaterialLotIssueQtyCannotMoreThanTen: {
         Chinese: "发料数量不能超过10箱！",
         English: "Issue Qty Cannot More Than Ten",
+        Res: "" 
+    },
+    ExpressCompany: {
+        Chinese: "快递公司",
+        English: "ExpressCompany",
+        Res: "" 
+    },
+    ExpressCompanyCannotEmpty: {
+        Chinese: "快递公司不能为空!",
+        English: "ExpressCompany Cannot Empty!",
         Res: "" 
     }
 }

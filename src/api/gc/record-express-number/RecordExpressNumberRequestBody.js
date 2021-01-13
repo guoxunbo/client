@@ -18,6 +18,7 @@ export default class RecordExpressNumberRequestBody {
     expressNumber;
     materialLots;
     wayBillNumber;
+    expressCompany;
 
     constructor(actionType){
         this.actionType = actionType;
@@ -37,10 +38,11 @@ export default class RecordExpressNumberRequestBody {
         return body;
     }
 
-    static buildManualRecordExpress(expressNumber, materialLots) {
+    static buildManualRecordExpress(expressNumber, materialLots, expressCompany) {
         let body = new RecordExpressNumberRequestBody(ActionType.ManualOrder);
         body.expressNumber = expressNumber;
         body.materialLots = materialLots;
+        body.expressCompany = expressCompany;
         return body;
     }
 

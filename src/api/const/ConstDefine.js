@@ -119,6 +119,7 @@ const SystemRefListName = {
     StockOutType: "StockOutType",
     HKPrintType: "HKPrintType",
     RiskGrade: "RiskGrade",
+    ExpressCompany: "ExpressCompany",
 };
 
 const RefTableName = {
