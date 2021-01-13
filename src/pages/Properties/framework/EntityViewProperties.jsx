@@ -17,22 +17,8 @@ export default class EntityViewProperties extends EntityScanProperties{
     constructor(props) {
         super(props);
         this.state = {...this.state, ...{searchTxt: I18NUtils.getClientMessage(i18NCode.BtnSearch), 
-                        formObject: undefined}};
-    }
-
-    componentDidMount = () => {
-        let component = this;
-        let requestObject = {
-            tableRrn: this.state.tableRrn,
-            success: function(responseBody) {
-                let table = responseBody.table;
-                component.setState({
-                    table: table,
-                    formObject: Table.buildDefaultModel(table.fields, undefined)
-                }); 
-            }
-        }
-        TableManagerRequest.sendGetByRrnRequest(requestObject);
+                        formObject: undefined,
+                        showQueryFormButton: false}};
     }
 
     afterQuery = (responseBody) => {
@@ -70,7 +56,7 @@ export default class EntityViewProperties extends EntityScanProperties{
                                                 object={this.state.formObject} 
                                                 tableRrn={this.state.tableRrn} 
                                                 table={this.state.table}
-                                                showTableTabFlag={true}/>
+                                                entityViewFlag={true}/>
                 </div>);
     }
 

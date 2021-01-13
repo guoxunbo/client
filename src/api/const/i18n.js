@@ -24,6 +24,7 @@ const i18NCode = {
     SelectOneRow: "SelectOneRow",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
+    RemarkIsNull: "RemarkIsNull",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -56,6 +57,7 @@ const i18NCode = {
     BtnPackage: "Package",
     BtnUnPackage: "UnPackage",
     BtnUnPackageAll: "UnPackageAll",
+    BtnRemark: "Remark",
 
     BtnGetRecipe: "GetRecipe",
 
@@ -103,6 +105,10 @@ const i18Messages = {
         Chinese: "退出",
         English: "Exit"
     },
+    Delete : {
+        Chinese: "删除",
+        English: "Delete"
+    },
     Yes : {
         Chinese: "是",
         English: "Y"
@@ -141,6 +147,11 @@ const i18Messages = {
     TwoPwdIsNotInconsistent:{
         Chinese: "2次密码输入不一致",
         English: "Two passwords that you enter is inconsistent!",
+        Res: ""
+    },
+    RemarkIsNull:{
+        Chinese: "备注为空",
+        English: "Remark is null!",
         Res: ""
     },
     Username:{
@@ -457,6 +468,11 @@ const i18Messages = {
     Judge: {
         Chinese: "判定",
         English: "Judge",
+        Res: ""
+    },
+    Remark: {
+        Chinese: "备注",
+        English: "Remark",
         Res: ""
     },
     CheckItemList: {

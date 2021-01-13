@@ -79,13 +79,13 @@ export default class Tab {
                 </TabPane>
     }  
 
-    buildTableTab = (parentObject) => {
+    buildTableTab = (parentObject, entityViewFlag) => {
         let whereClause = SqlType.NoResultCondition;
         if (this.whereClause && parentObject) {
             whereClause = this.whereClause.format(parentObject);
         }
         return <TabPane tab={this.title} key={this.name}>
-                    <EditorTable parentObject={parentObject} editFlag={this.editFlag} refTableName={this.refTableName} whereClause={whereClause} key={this.name} />
+                    <EditorTable parentObject={parentObject} editFlag={this.editFlag} entityViewFlag={entityViewFlag} refTableName={this.refTableName} whereClause={whereClause} key={this.name} />
                 </TabPane>;
     }   
 

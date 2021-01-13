@@ -24,7 +24,6 @@ export default class IssueOrderRequestBody{
         materialLots.forEach(mLot => {
             materialLotIdList.push(mLot.materialLotId);
         });
-        console.log(materialLotIdList);
         return new IssueOrderRequestBody(actionType.Issue, documentId, materialLotIdList);
     }
 

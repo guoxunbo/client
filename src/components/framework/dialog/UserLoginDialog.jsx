@@ -11,7 +11,6 @@ export default class UserLoginDialog extends EntityDialog {
     static displayName = 'UserLoginDialog';
 
     handleSave = (formObject) => {
-        console.log(formObject);
         let self = this;
         let object = {  
             user: formObject,
