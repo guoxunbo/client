@@ -17,7 +17,8 @@ export default class EntityViewProperties extends EntityScanProperties{
     constructor(props) {
         super(props);
         this.state = {...this.state, ...{searchTxt: I18NUtils.getClientMessage(i18NCode.BtnSearch), 
-                        formObject: undefined}};
+                        formObject: undefined,
+                        showQueryFormButton: false}};
     }
 
     componentDidMount = () => {
@@ -70,7 +71,7 @@ export default class EntityViewProperties extends EntityScanProperties{
                                                 object={this.state.formObject} 
                                                 tableRrn={this.state.tableRrn} 
                                                 table={this.state.table}
-                                                showTableTabFlag={true}/>
+                                                entityViewFlag={true}/>
                 </div>);
     }
 

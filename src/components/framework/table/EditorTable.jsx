@@ -83,7 +83,8 @@ class EditableTable extends React.Component {
       success: function(responseBody) {
         self.setState({
           data: responseBody.dataList,
-          parentReadOnly: parentObject && parentObject["readonly"]
+          parentReadOnly: parentObject && parentObject["readonly"],
+          entityViewFlag: props.entityViewFlag
         });
       }
     }
@@ -145,9 +146,10 @@ class EditableTable extends React.Component {
             ) : (
               <div>
                 <Button disabled={this.state.parentReadOnly} style={{marginRight:'1px'}} size="small" icon="edit" onClick={() => this.edit(record)} href="javascript:;"/>
-                  <Popconfirm disabled={this.state.parentReadOnly} title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
-                    <Button disabled={this.state.parentReadOnly} icon="delete" size="small" type="danger"/>
-                  </Popconfirm>
+                  {this.state.entityViewFlag ? "" :
+                    (<Popconfirm disabled={this.state.parentReadOnly} title={I18NUtils.getClientMessage(i18NCode.ConfirmDelete)} onConfirm={() => this.handleDelete(record)}>
+                      <Button disabled={this.state.parentReadOnly} icon="delete" size="small" type="danger"/>
+                    </Popconfirm>)}
               </div>    
             )}
           </div>
@@ -282,7 +284,7 @@ class EditableTable extends React.Component {
     });
     return (
       <div>
-          {(this.props.editFlag && this.props.parentObject) ? <div className="table-button-group"> {this.createButtonGroup()}</div> : ''}
+          {(this.props.editFlag && this.props.parentObject && !this.props.entityViewFlag) ? <div className="table-button-group"> {this.createButtonGroup()}</div> : ''}
             <EditableContext.Provider value={this.props.form}>
               <Table
                 rowKey={DefaultRowKey}

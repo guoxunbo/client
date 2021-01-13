@@ -22,7 +22,7 @@ export default class EntityForm extends Component {
             editFlag : editFlag,
             table: this.props.table,
             tableRrn: this.props.tableRrn,
-            showTableTabFlag: this.props.showTableTabFlag
+            entityViewFlag: this.props.entityViewFlag
         };
     }  
 
@@ -63,7 +63,7 @@ export default class EntityForm extends Component {
     }
 
     buildTabs = () => {
-        const {showTableTabFlag, table} = this.state;
+        const {entityViewFlag, table} = this.state;
         const tabs = table.tabs;
 
         const tabPanels = [];
@@ -73,9 +73,10 @@ export default class EntityForm extends Component {
         };
         if (Array.isArray(tabs)) {
             tabs.forEach((tab) => {
+                debugger;
                 let tabPanel = new Tab(tab);
-                if (TabType.Table === tab.tabType && showTableTabFlag) {
-                    tabPanels.push(tabPanel.buildTableTab(this.props.object));
+                if (TabType.Table === tab.tabType && entityViewFlag) {
+                    tabPanels.push(tabPanel.buildTableTab(this.props.object, entityViewFlag));
                 } else {
                     tabPanels.push(tabPanel.buildFieldTab(this.props.form, formItemLayout, this.props.object));
                 }
@@ -125,7 +126,7 @@ EntityForm.propTypes = {
     object: PropTypes.object,
     table: PropTypes.object,
     tableRrn: PropTypes.string,
-    showTableTabFlag: PropTypes.bool,
+    entityViewFlag: PropTypes.bool,
 }
 const WrappedAdvancedEntityForm = Form.create()(EntityForm);
 export {WrappedAdvancedEntityForm};
