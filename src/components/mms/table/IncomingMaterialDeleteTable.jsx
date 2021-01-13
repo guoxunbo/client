@@ -42,7 +42,7 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
             return;
         }
         if(deleteNote == "" || deleteNote == undefined){
-            NoticeUtils.showNotice(I18NUtils.getClientMessage('删除备注不能为空'));
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.RemarkIsNull));
             return;
         }
         Modal.confirm({
@@ -66,7 +66,6 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
                         NoticeUtils.showSuccess();
                     }
                 }
-                debugger;
                 IncomingMaterialDeleteRequest.sendDeleteRequest(requestObject);
             }
         });

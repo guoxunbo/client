@@ -21,21 +21,6 @@ export default class EntityViewProperties extends EntityScanProperties{
                         showQueryFormButton: false}};
     }
 
-    componentDidMount = () => {
-        let component = this;
-        let requestObject = {
-            tableRrn: this.state.tableRrn,
-            success: function(responseBody) {
-                let table = responseBody.table;
-                component.setState({
-                    table: table,
-                    formObject: Table.buildDefaultModel(table.fields, undefined)
-                }); 
-            }
-        }
-        TableManagerRequest.sendGetByRrnRequest(requestObject);
-    }
-
     afterQuery = (responseBody) => {
         let queryDatas = responseBody.dataList;
         if (queryDatas && queryDatas.length > 0) {

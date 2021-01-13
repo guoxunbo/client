@@ -73,10 +73,11 @@ export default class EntityForm extends Component {
         };
         if (Array.isArray(tabs)) {
             tabs.forEach((tab) => {
-                debugger;
                 let tabPanel = new Tab(tab);
-                if (TabType.Table === tab.tabType && entityViewFlag) {
-                    tabPanels.push(tabPanel.buildTableTab(this.props.object, entityViewFlag));
+                if (TabType.Table === tab.tabType ) {
+                    if (entityViewFlag) {
+                        tabPanels.push(tabPanel.buildTableTab(this.props.object, entityViewFlag));
+                    }
                 } else {
                     tabPanels.push(tabPanel.buildFieldTab(this.props.form, formItemLayout, this.props.object));
                 }

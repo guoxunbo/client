@@ -27,7 +27,8 @@ export default class EntityProperties extends Component {
         loading: false,
         selectedRowKeys:[],
         selectedRows:[],
-        rowKey: DefaultRowKey
+        rowKey: DefaultRowKey,
+        parameters: this.props.match.params
       };
     }
 
@@ -44,6 +45,11 @@ export default class EntityProperties extends Component {
           }
       }
       TableManagerRequest.sendGetByRrnRequest(requestObject);
+      this.loadDataInComponentDidMount();
+    }
+
+    loadDataInComponentDidMount = () => {
+
     }
 
     afterQuery = (responseBody, whereClause) => {
@@ -99,6 +105,15 @@ export default class EntityProperties extends Component {
 
     }
 
+    /**
+     * buildDialog
+     * 创建默认的dialog
+     * 默认是空。EntityViewProperties用来弹框使用
+     */
+    buildDialog = () => {
+
+    }
+
     render() {
       let showQueryFormButton = this.state.showQueryFormButton;
       if (showQueryFormButton === undefined) {
@@ -118,6 +133,7 @@ export default class EntityProperties extends Component {
             {showQueryFormButton ? <Divider/> : ""}                      
             {this.buildTable()}
             {this.buildOtherComponent()}
+            {this.buildDialog()}
           </div>
           <BackTop visibilityHeight={100}/>
         </div>

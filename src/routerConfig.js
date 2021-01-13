@@ -53,6 +53,7 @@ import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 //rms
 import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
+import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperties';
 
 
 
@@ -211,14 +212,14 @@ const routerConfig = [
   },
   // 质量相关
   {
-    path: buildPath('MQS/IqcManager'),
+    path: buildPath('MQC/IqcManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
   {
     path: buildPath('MQC/MLotQC'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityViewProperties,
+    component: MaterialLotQcProperties,
   },
   //MES成品接收
   {
