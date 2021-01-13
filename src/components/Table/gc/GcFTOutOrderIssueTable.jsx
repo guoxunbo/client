@@ -94,7 +94,6 @@ export default class GcFTOutOrderIssueTable extends EntityScanViewTable {
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
-                    self.props.onSearch();
                 }
                 MessageUtils.showOperationSuccess();
             }
