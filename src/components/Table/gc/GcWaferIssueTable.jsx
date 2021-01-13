@@ -19,7 +19,7 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
 
     constructor(props) {
         super(props);
-        this.state = {...this.state,...{checked:true},...{value: "issueWithDoc"}};
+        this.state = {...this.state};
     }
 
     getRowClassName = (record, index) => {
