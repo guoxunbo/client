@@ -42,7 +42,6 @@ export default class MaterialLotQcProperties extends EntityViewProperties{
             tableRrn: this.state.table.objectRrn,
             success: function(responseBody) {
                 self.refresh(responseBody.data);
-                NoticeUtils.showSuccess();
             }
         };
         EntityManagerRequest.sendMergeRequest(object);
@@ -50,9 +49,12 @@ export default class MaterialLotQcProperties extends EntityViewProperties{
 
     refresh = (data) => {
         this.setState({
-            formObject: data
+            formObject: data,
+            formVisible: false
         });
+        NoticeUtils.showSuccess();
     }
+
     createRemarkInput = () => {
         return <div style={styles.input}>
             <Input ref={(input) => { this.input = input }} key="remarkInput" placeholder={I18NUtils.getClientMessage(i18NCode.BtnRemark)} />
