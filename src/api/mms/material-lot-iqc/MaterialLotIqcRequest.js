@@ -7,7 +7,6 @@ import MessageUtils from "@utils/MessageUtils";
 export default class MaterialLotIqcRequest {
 
     static sendIqcRequest = (object) => {
-        debugger;
         let requestBody = MaterialLotIqcRequestBody.buildIqc(object.materialCheckSheet);
         let requestHeader = new MaterialLotIqcRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.MateiralLotIqcUrl);

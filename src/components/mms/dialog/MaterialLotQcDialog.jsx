@@ -13,7 +13,7 @@ export default class MaterialLotQcDialog extends EntityDialog {
             materialCheckSheet : self.props.object,
             success: function(responseBody) {
                 if (self.props.onOk) {
-                    self.props.onOk(responseBody.mLotCheckSheet);
+                    self.props.onOk(responseBody.materialLotCheckSheet);
                 }
             }
         }

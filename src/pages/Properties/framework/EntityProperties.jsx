@@ -28,7 +28,8 @@ export default class EntityProperties extends Component {
         selectedRowKeys:[],
         selectedRows:[],
         rowKey: DefaultRowKey,
-        parameters: this.props.match.params
+        // 不是从菜单上指定properties此处会没值。
+        parameters: this.props.match ? this.props.match.params : {}
       };
     }
 
