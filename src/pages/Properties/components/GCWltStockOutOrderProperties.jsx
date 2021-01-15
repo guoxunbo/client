@@ -41,7 +41,7 @@ export default class GCWltStockOutOrderProperties extends EntityProperties{
         return <WltStockOutOrderTable scrollY={200} 
                                       pagination={false} 
                                       ref={(orderTable) => { this.orderTable = orderTable }} 
-                                      asyncType={ActionType.AsyncSobOrder} 
+                                      asyncType={ActionType.AsyncWltShipOrder} 
                                       table={this.state.table} 
                                       data={this.state.tableData} 
                                       loading={this.state.loading} />

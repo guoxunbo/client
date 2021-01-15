@@ -173,6 +173,8 @@ const i18NCode = {
     MaterialLotIssueQtyCannotMoreThanTen: "MaterialLotIssueQtyCannotMoreThanTen",
     ExpressCompany: "ExpressCompany",
     ExpressCompanyCannotEmpty: "ExpressCompanyCannotEmpty",
+    BtnThreeSideShip: "ThreeSideShip",
+    ChooseThreeSideShipOrderPlease: "ChooseThreeSideShipOrderPlease",
 }
 
 const i18Messages = {
@@ -1024,6 +1026,16 @@ const i18Messages = {
     ExpressCompanyCannotEmpty: {
         Chinese: "快递公司不能为空!",
         English: "ExpressCompany Cannot Empty!",
+        Res: "" 
+    },
+    ThreeSideShip: {
+        Chinese: "三方销售",
+        English: "ThreeSide Ship",
+        Res: "" 
+    },
+    ChooseThreeSideShipOrderPlease: {
+        Chinese: "请选择三方销售单!",
+        English: "Choose ThreeSide ShipOrder Please!",
         Res: "" 
     }
 }
