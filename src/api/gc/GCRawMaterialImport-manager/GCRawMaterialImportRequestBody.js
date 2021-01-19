@@ -2,6 +2,7 @@ const ActionType = {
     Create: "Create",
     Receive: "Receive",
     RawIssue: "RawIssue",
+    Scrap: "Scrap",
 }
 
 export default class GCRawMaterialImportRequestBody {
@@ -32,5 +33,12 @@ export default class GCRawMaterialImportRequestBody {
 
     static buildRawMaterialIssue(materialLotList, documentLine) {
         return new GCRawMaterialImportRequestBody(ActionType.RawIssue, materialLotList, undefined, documentLine);
+    }
+
+    static buildScrapRawMaterial(materialLotList, reason, remarks) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.Scrap, materialLotList);
+        body.reason = reason;
+        body.remarks = remarks;
+        return body;
     }
 }

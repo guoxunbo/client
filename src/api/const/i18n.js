@@ -175,6 +175,7 @@ const i18NCode = {
     ExpressCompanyCannotEmpty: "ExpressCompanyCannotEmpty",
     BtnThreeSideShip: "ThreeSideShip",
     ChooseThreeSideShipOrderPlease: "ChooseThreeSideShipOrderPlease",
+    ScrapReason: "ScrapReason",
 }
 
 const i18Messages = {
@@ -1036,6 +1037,11 @@ const i18Messages = {
     ChooseThreeSideShipOrderPlease: {
         Chinese: "请选择三方销售单!",
         English: "Choose ThreeSide ShipOrder Please!",
+        Res: "" 
+    },
+    ScrapReason: {
+        Chinese: "报废原因",
+        English: "Scrap Reason",
         Res: "" 
     }
 }

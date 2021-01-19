@@ -96,6 +96,7 @@ import GcWaferIssueOutOrderProperties from './pages/Properties/components/gc/waf
 import GcFTOutOrderIssueUnitScanProperties from './pages/Properties/components/gc/wafer-issue/GcFTOutOrderIssueUnitScanProperties';
 import GcRawMaterialIssueOrderProperties from './pages/Properties/components/GcRawMaterialIssueOrderProperties';
 import GcRawMaterialStockInProperties from './pages/Properties/components/GcRawMaterialStockInProperties';
+import GCRawMaterialScrapProperties from './pages/Properties/components/GCRawMaterialScrapProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -388,6 +389,11 @@ const routerConfig = [
     path: buildPath('RawMaterial/GCRawMaterialStockIn'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRawMaterialStockInProperties,
+  },
+    {
+    path: buildPath('RawMaterial/GCRawMaterialScrap'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialScrapProperties,
   },
   //取消晶圆出货标注
   {

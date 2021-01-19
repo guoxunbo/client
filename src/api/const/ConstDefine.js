@@ -120,6 +120,7 @@ const SystemRefListName = {
     HKPrintType: "HKPrintType",
     RiskGrade: "RiskGrade",
     ExpressCompany: "ExpressCompany",
+    ScrapReason: "ScrapReason",
 };
 
 const RefTableName = {
