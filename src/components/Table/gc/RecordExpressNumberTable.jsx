@@ -82,19 +82,19 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
             </Col>
             <Col span={2} >
                 <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:
-                </span>
-            </Col>
-            <Col span={4}>
-                <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
-            </Col>
-            <Col span={2} >
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>
                     {I18NUtils.getClientMessage(i18NCode.ExpressCompany)}:
                 </span>
             </Col>
             <Col span={4}>
                 <RefListField ref={(expressCompany) => { this.expressCompany = expressCompany }} referenceName={SystemRefListName.ExpressCompany}/>
+            </Col>
+            <Col span={2} >
+                <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:
+                </span>
+            </Col>
+            <Col span={4}>
+                <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
             </Col>
         </Row>
     }
@@ -201,17 +201,12 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
     }
 
     printObliqueLabel = () => {
-        let datas = this.state.data;
         let self = this;
-        let expressNumber = this.expressNumber.state.value;
+        let datas = this.getSelectedRows();
         if (datas.length === 0){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        if(expressNumber == "" || expressNumber == null || expressNumber == undefined){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
-            return;
-        }
+
         self.setState({
             loading: true
         });
@@ -220,7 +215,6 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
         if (datas && datas.length > 0) {
             let requestObject = {
                 datas : datas,    
-                expressNumber: expressNumber,
                 success: function(responseBody) {
                     let url = PrintServiceUrl.ObliqueBox;
                     responseBody.parameterMapList.forEach((parameter) => {

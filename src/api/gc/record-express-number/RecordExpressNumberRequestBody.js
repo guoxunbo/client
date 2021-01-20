@@ -52,10 +52,9 @@ export default class RecordExpressNumberRequestBody {
         return body;
     }
 
-    static buildPrintObliqueLabel(materialLots, expressNumber) {
+    static buildPrintObliqueLabel(materialLots) {
         let body = new RecordExpressNumberRequestBody(ActionType.QueryPrintParameter);
         body.materialLots = materialLots;
-        body.expressNumber = expressNumber;
         return body;
     }
     

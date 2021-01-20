@@ -52,7 +52,7 @@ export default class RecordExpressNumberRequest {
     }
     
     static sendQueryPrintParameterRequest = (object) => {
-        let requestBody = RecordExpressNumberRequestBody.buildPrintObliqueLabel(object.datas, object.expressNumber);
+        let requestBody = RecordExpressNumberRequestBody.buildPrintObliqueLabel(object.datas);
         let requestHeader = new RecordExpressNumberRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
         let requestObject = {
