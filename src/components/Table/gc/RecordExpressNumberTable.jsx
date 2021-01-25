@@ -11,6 +11,7 @@ import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
 import PrintUtils from '../../../api/utils/PrintUtils';
 import EntityListCheckTable from '../EntityListCheckTable';
+import FormItem from 'antd/lib/form/FormItem';
 
 
 export default class RecordExpressNumberTable extends EntityListCheckTable {
@@ -63,40 +64,43 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
     }
 
     createExpressInput = () => {
-        return  <Row gutter={16}>
-            <Col span={2} >
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.ServiceType)}:
-                </span>
-            </Col>
-            <Col span={3}>
-                <RefListField ref={(serviceMode) => { this.serviceMode = serviceMode }} value={"20"} referenceName={SystemRefListName.ExpressServiceMode} />
-            </Col>
-            <Col span={2} >
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.PayType)}:
-                </span>
-            </Col>
-            <Col span={3}>
-                <RefListField ref={(payMode) => { this.payMode = payMode }}  value={"10"} referenceName={SystemRefListName.ExpressPayMode} />
-            </Col>
-            <Col span={2} >
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.ExpressCompany)}:
-                </span>
-            </Col>
-            <Col span={4}>
-                <RefListField ref={(expressCompany) => { this.expressCompany = expressCompany }} referenceName={SystemRefListName.ExpressCompany}/>
-            </Col>
-            <Col span={2} >
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:
-                </span>
-            </Col>
-            <Col span={4}>
-                <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
-            </Col>
-        </Row>
+        return <FormItem>
+                  <Row gutter={16}>
+                    <Col span={2} >
+                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                            {I18NUtils.getClientMessage(i18NCode.ServiceType)}:
+                        </span>
+                    </Col>
+                    <Col span={3}>
+                        <RefListField ref={(serviceMode) => { this.serviceMode = serviceMode }} value={"20"} referenceName={SystemRefListName.ExpressServiceMode} />
+                    </Col>
+                    <Col span={2} >
+                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                            {I18NUtils.getClientMessage(i18NCode.PayType)}:
+                        </span>
+                    </Col>
+                    <Col span={3}>
+                        <RefListField ref={(payMode) => { this.payMode = payMode }}  value={"10"} referenceName={SystemRefListName.ExpressPayMode} />
+                    </Col>
+                    <Col span={2} >
+                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                            {I18NUtils.getClientMessage(i18NCode.ExpressCompany)}:
+                        </span>
+                    </Col>
+                    <Col span={4}>
+                        <RefListField ref={(expressCompany) => { this.expressCompany = expressCompany }} referenceName={SystemRefListName.ExpressCompany}/>
+                    </Col>
+                    <Col span={2} >
+                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
+                            {I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:
+                        </span>
+                    </Col>
+                    <Col span={4}>
+                        <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
+                    </Col>
+                </Row>
+        </FormItem>
+        return  
     }
 
     recordAutoExpress = () => {
