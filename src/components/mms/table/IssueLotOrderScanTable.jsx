@@ -9,6 +9,20 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
 
     static displayName = 'IssueLotOrderScanTable';
 
+    getRowClassName = (record, index) => {
+        if (record.rowClass) {
+            return 'ban-row';
+        }else if(record.scaned) {
+            return 'scaned-row';
+        }else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    }
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createScannedNumber());
@@ -18,7 +32,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
 
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("已扫描数量")}：{this.getScanned().length} </Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedBoxQty)}：{this.getScanned().length} </Tag>
     }
 
     getScanned = () => {
@@ -36,27 +50,22 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("总数")}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
   
 
     createIssueLotButton = () => {
         return <Button key="receive" type="primary" className="table-button" icon="file-excel" onClick={this.IssueLot}>
-                        {I18NUtils.getClientMessage('发料')}
+                        {I18NUtils.getClientMessage(i18NCode.Issue)}
                     </Button>
     }
 
     IssueLot = () => {
         let self = this;
         let materialLots = this.getScanned();
-        let tableDataSize = this.state.data.length;
         let doc = this.props.orderTable.getSingleSelectedRow();
         if (materialLots.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
-            return;
-        }
-        if (materialLots.length != tableDataSize) {
-            NoticeUtils.showNotice(I18NUtils.getClientMessage("请扫描该订单下所有的物料批次号"));
             return;
         }
         let requestObject = {
@@ -68,6 +77,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
                         loading: false
                     });
                     self.props.resetData();
+                    self.props.onSearch();
                 }
                 NoticeUtils.showSuccess();
             }

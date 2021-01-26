@@ -86,6 +86,18 @@ const i18NCode = {
     TransferTarget: "Target",
     Operation: "Operation",
     
+    Confirm: "Confirm",
+    SelectFile: "SelectFile",
+    ScannedTotalQty: "ScannedTotalQty",
+    ScannedBoxQty: "ScannedBoxQty",
+    BoxQty: "BoxQty",
+    Issue: "Issue",
+    PleaseScanOneMLot: "PleaseScanOneMLot",
+    InformationInconsistency: "InformationInconsistency",
+    MLotNonentity: "MLotNonentity",
+    MaterialNonentity: "MaterialNonentity",
+    MLotAlreadyIssue: "MLotAlreadyIssue",
+    MLotAlreadyReceived: "MLotAlreadyReceived",
 }
 
 const i18Messages = {
@@ -493,6 +505,66 @@ const i18Messages = {
     GetRecipe: {
         Chinese: "获取Recipe",
         English: "GetRecipe",
+        Res: ""
+    },
+    Confirm:{
+        Chinese: "确认",
+        English: "confirm",
+        Res: ""
+    },
+    SelectFile:{
+        Chinese: "选择文件",
+        English: "SelectFile",
+        Res: ""
+    },
+    ScannedBoxQty:{
+        Chinese: "已扫描箱数量",
+        English: "ScannedBoxQty",
+        Res: ""
+    },
+    BoxQty:{
+        Chinese: "箱数",
+        English: "BoxQty",
+        Res: ""
+    },
+    Issue:{
+        Chinese: "发料",
+        English: "Issue",
+        Res: ""
+    },
+    ScannedTotalQty:{
+        Chinese: "已扫描总数",
+        English: "ScannedTotalQty",
+        Res: ""
+    },
+    PleaseScanOneMLot:{
+        Chinese: "请扫描一个物料批次",
+        English: "Please Scan One MLot",
+        Res: ""
+    },
+    InformationInconsistency:{
+        Chinese: "扫描到的信息不一致",
+        English: "scanned information is inconsistent",
+        Res: ""
+    },
+    MLotNonentity: {
+        Chinese: "物料批次不存在",
+        English: "MLot does not exist",
+        Res: ""
+    },
+    MaterialNonentity: {
+        Chinese: "物料型号不存在",
+        English: "Material does not exist",
+        Res: ""
+    },
+    MLotAlreadyIssue: {
+        Chinese: "物料已经发料",
+        English: "MLot Already Issue",
+        Res: ""
+    },
+    MLotAlreadyReceived: {
+        Chinese: "物料已经接收",
+        English: "MLot Already Received",
         Res: ""
     }
 }

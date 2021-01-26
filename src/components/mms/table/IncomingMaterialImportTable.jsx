@@ -30,13 +30,13 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
     createImportButton = () => {
         return  <Upload key="import" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
                     customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage("选择文件")}</Button>
+                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage(i18NCode.SelectFile)}</Button>
                 </Upload>;
     }
 
     createSaveButton = () => {
         return  <Button key="receive" type="primary" className="table-button" onClick={() => this.SaveButton()} icon="import-o">
-                         {I18NUtils.getClientMessage("导入")}
+                         {I18NUtils.getClientMessage(i18NCode.BtnImp)}
                 </Button>
     }
 

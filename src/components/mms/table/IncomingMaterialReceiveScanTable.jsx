@@ -4,6 +4,8 @@ import { i18NCode } from '@const/i18n';
 import IncomingMaterialReceiveRequest from '@api/Incoming-Material-Manager/Incoming-Material-Receive-Manager/IncomingMaterialReceiveRequest';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
+import EntityDialog from '@components/framework/dialog/EntityDialog';
+import IncomingReceiveDialog from '../dialog/IncomingReceiveDialog';
 
 export default class IncomingMaterialReceiveScanTable extends EntityScanViewTable {
 
@@ -17,8 +19,22 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
         return buttons;
     }
 
+    getRowClassName = (record, index) => {
+        if (record.rowClass) {
+            return 'ban-row';
+        }else if(record.scaned) {
+            return 'scaned-row';
+        }else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
+
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("已扫描箱数")}：{this.getScanned().length} </Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedBoxQty)}：{this.getScanned().length} </Tag>
     }
 
     getScanned = () => {
@@ -31,12 +47,11 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
                 }
             })
         }
-       
         return scanned ;
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("总箱数")}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
   
 
@@ -49,24 +64,21 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
     receive = () => {
         let self = this;
         let materialLots = this.getScanned();
-        let docId = '';
+        let doc = this.props.orderTable.getSingleSelectedRow();
         if (materialLots.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        if(materialLots){
-            docId =materialLots[0].incomingDocId ;
-         }
-      
         let requestObject = {
             materialLotList: materialLots,
-            documentId: docId,
+            documentId: doc.name,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.setState({
                         loading: false
                     });
                     self.props.resetData();
+                    self.props.onSearch();
                 }
                 NoticeUtils.showSuccess();
             }
@@ -76,10 +88,33 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
      /**
      * 接收数据不具备可删除等操作
      */
-    buildOperationColumn = () => {
-        
+    buildOperation = (record) => {
+        let operations = [];
+        operations.push(this.buildEditButton(record));
+        return operations;
     }
     
+    buildEditButton = (record) => {
+        let hasEditBtnAuthority = false;
+        if(!record.scaned){
+            hasEditBtnAuthority = true;
+        }
+        return <Button key="edit" style={{marginRight:'1px'}} icon="edit" size="small" 
+                        onClick={() => this.openDialog(record)} 
+                        disabled={hasEditBtnAuthority} href="javascript:;"/>
+    }
+
+    openDialog =(record)=>{
+        this.setState({
+            formVisible : true,
+            editorObject: record
+        })
+    }
+    
+    createForm = () => {
+        return  <IncomingReceiveDialog ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
+                                            table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
+    }
 }
 const styles = {
     tableButton: {

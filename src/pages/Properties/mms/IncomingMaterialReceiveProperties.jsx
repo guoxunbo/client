@@ -1,6 +1,7 @@
 import EntityProperties from "@properties/framework/EntityProperties";
 import IncomingMaterialReceiveScanProperties from "./IncomingMaterialReceiveScanProperties";
 import IncomingMaterialReceiveTable from "@components/mms/table/IncomingMaterialReceiveTable";
+import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 
 //来料单
 export default class IncomingMaterialReceiveProperties extends EntityProperties{
@@ -9,7 +10,7 @@ export default class IncomingMaterialReceiveProperties extends EntityProperties{
 
     constructor(props) {
         super(props);  
-        this.state= {...this.state, showQueryFormButton: true, parameterTabRrn: this.props.match.params.parameter1 }
+        this.state= {...this.state, showQueryFormButton: true }
     }
    
     /**
@@ -23,8 +24,23 @@ export default class IncomingMaterialReceiveProperties extends EntityProperties{
           loading: false,
           resetFlag: true
         });
+    } 
+
+    getTableData = () => {
+      const self = this;
+      let requestObject = {
+        tableRrn: this.state.tableRrn,
+        success: function(responseBody) {
+          self.setState({
+            tableData: responseBody.dataList,
+            table: responseBody.table,
+            loading: false
+          }); 
+        }
+      }
+      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
-    
+
     buildTable = () => {
       return <IncomingMaterialReceiveTable 
                                     {...this.getDefaultTableProps()}
@@ -38,11 +54,12 @@ export default class IncomingMaterialReceiveProperties extends EntityProperties{
 
     buildOtherComponent = () => {
       return <IncomingMaterialReceiveScanProperties
-                                            tableRrn = {this.state.parameterTabRrn}  
+                                            tableRrn = {this.state.parameters.parameter1}  
                                             orderTable = {this.orderTable} 
                                             resetFlag = {this.state.resetFlag} 
                                             ref={(materialOrderScanProperties) => { this.materialOrderScanProperties = materialOrderScanProperties }}
-                                            />
+                                            onSearch={this.getTableData.bind(this)}>
+                                      </IncomingMaterialReceiveScanProperties>
   }
 
 }

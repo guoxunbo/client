@@ -40,6 +40,8 @@ import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialR
 import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
+import IssueMaterialOrderProperties from '@properties/mms/IssueMaterialOrderProperties';
+import ReturnMLotOrderProperties from '@properties/mms/ReturnMLotOrderProperties';
 
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
@@ -55,6 +57,9 @@ import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
 import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperties';
 
+//vc
+import VcShipmentOrderProperties from '@properties/vc/VcShipmentOrderProperties'
+import VcMaterialLotInfoProperties from '@pages/Properties/vc/VcMaterialLotInfoProperties';
 
 
 /**
@@ -321,6 +326,12 @@ const routerConfig = [
     path: buildPath('Rms/EquipmentRecipe'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EquipmentRecipeProperties,
+  },
+  //vc
+  {
+    path: buildPath('VC/VCMLotDocRule'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   {
     path: '*',
