@@ -44,7 +44,7 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
 
     createTagGroup = () => {
         let tagList = [];
-        tagList.push(this.createIssueWithDocFlag());
+        // tagList.push(this.createIssueWithDocFlag());
         tagList.push(this.createMaterialLotsNumber());
         tagList.push(this.createWaferCount());
         tagList.push(this.createTotalNumber());

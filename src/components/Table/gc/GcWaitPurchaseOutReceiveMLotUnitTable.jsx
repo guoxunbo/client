@@ -17,6 +17,7 @@ export default class GcWaitPurchaseOutReceiveMLotUnitTable extends EntityScanVie
         buttons.push(this.createMaterialLotsNumber());
         buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
+        buttons.push(this.createExportDataAndTemplateButton());
         return buttons;
     }
     
