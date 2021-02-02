@@ -75,4 +75,15 @@ export default class MaterialLotUpdateRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendUpdateLotInfoRequest = (object) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildUpdateMLotInfo(object.materialLot);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    } 
+
 }

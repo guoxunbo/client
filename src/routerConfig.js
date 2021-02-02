@@ -97,6 +97,7 @@ import GcFTOutOrderIssueUnitScanProperties from './pages/Properties/components/g
 import GcRawMaterialIssueOrderProperties from './pages/Properties/components/GcRawMaterialIssueOrderProperties';
 import GcRawMaterialStockInProperties from './pages/Properties/components/GcRawMaterialStockInProperties';
 import GCRawMaterialScrapProperties from './pages/Properties/components/GCRawMaterialScrapProperties';
+import GCUpdateMLotInfoProperties from './pages/Properties/components/GCUpdateMLotInfoProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -668,6 +669,11 @@ const routerConfig = [
     path: buildPath('GC/GCMaterialLotListHold'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCMaterialLotListHoldProperties,
+  },
+  {
+    path: buildPath('Warehouse/GCUpdateMLotInfo'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUpdateMLotInfoProperties,
   },
   {
     path: buildPath('Warehouse/GCMaterialLotRelease'),
