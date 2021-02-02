@@ -17,7 +17,9 @@ export default class GCUpdateMLotInfoProperties extends EntityViewProperties{
     static displayName = 'PrintCaseLabelProperties';
 
     resetData = () => {
-      debugger;
+      let self = this;
+      self.entityForm.clearField();
+      self.entityForm.resetFields();
         this.setState({
           selectedRowKeys: [],
           selectedRows: [],
