@@ -109,6 +109,8 @@ export default class EntityDoubleScanProperties extends EntityScanProperties {
                   loading: false,
                   scanErrorFlag: false,
                   resetFlag:true,
+                  selectedRowKeys: [],
+                  selectedRows: [],
                 });
                 self.nextQueryNodeFocus();
                 self.form.resetFormFileds();
