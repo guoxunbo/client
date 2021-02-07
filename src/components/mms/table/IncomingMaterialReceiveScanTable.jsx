@@ -1,11 +1,9 @@
-import { Button, Tag} from 'antd';
+import { Button, Input, Tag} from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import IncomingMaterialReceiveRequest from '@api/Incoming-Material-Manager/Incoming-Material-Receive-Manager/IncomingMaterialReceiveRequest';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
-import EntityDialog from '@components/framework/dialog/EntityDialog';
-import IncomingReceiveDialog from '../dialog/IncomingReceiveDialog';
 
 export default class IncomingMaterialReceiveScanTable extends EntityScanViewTable {
 
@@ -34,7 +32,7 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
     };
 
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedBoxQty)}：{this.getScanned().length} </Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedQty)}：{this.getScanned().length} </Tag>
     }
 
     getScanned = () => {
@@ -51,7 +49,7 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.Qty)}：{this.state.data.length}</Tag>
     }
   
 
@@ -85,41 +83,19 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
         }
         IncomingMaterialReceiveRequest.sendReceiveRequest(requestObject);
     }
-     /**
-     * 接收数据不具备可删除等操作
-     */
-    buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildEditButton(record));
-        return operations;
-    }
-    
-    buildEditButton = (record) => {
-        let hasEditBtnAuthority = false;
-        if(!record.scaned){
-            hasEditBtnAuthority = true;
-        }
-        return <Button key="edit" style={{marginRight:'1px'}} icon="edit" size="small" 
-                        onClick={() => this.openDialog(record)} 
-                        disabled={hasEditBtnAuthority} href="javascript:;"/>
-    }
 
-    openDialog =(record)=>{
-        this.setState({
-            formVisible : true,
-            editorObject: record
-        })
-    }
-    
-    createForm = () => {
-        return  <IncomingReceiveDialog ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
-                                            table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
+    buildOperationColumn = () => {
+
     }
 }
 const styles = {
     tableButton: {
         marginLeft:'20px'
-    }
+    },  
+    input:{
+        width: 200,
+        marginLeft : '10px'
+    },
 };
 
 

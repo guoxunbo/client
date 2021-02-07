@@ -97,7 +97,8 @@ const UrlConstant = {
     MateiralLotIqcUrl: ModuleUrlConstant.MMS + "materialLotIQC",
     MMSIssueMLotByDocLineUrl: ModuleUrlConstant.MMS + "issueMLotByDocLine",
     MMSReturnMLotByDocUrl: ModuleUrlConstant.MMS + "returnMLotByDoc",
-    MMSShipmentOrderSavetUrl: ModuleUrlConstant.MMS + "shipmentOrderSave",
+    MMSDeliveryOrderSavetUrl: ModuleUrlConstant.MMS + "createDeliveryOrder",
+    MMSSplitMateraiLotUrl: ModuleUrlConstant.MMS + "splitMateraiLot",
     
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
@@ -117,9 +118,8 @@ const UrlConstant = {
     VCIncomingMaterialDeleteUrl: ModuleUrlConstant.VC + "IncomingMaterialDelete",
     VCIssueMLotByDocLineUrl: ModuleUrlConstant.VC + "issueMLotByDocLine",
     VCIssueMLotByDocUrl: ModuleUrlConstant.VC + "issueMLotByDoc",
-    VCReturnByDocUrl: ModuleUrlConstant.VC + "returnByDoc",
-    VcShipmentOrderImportUrl: ModuleUrlConstant.VC + "shipmentOrderImport",
-
+    VCReturnMLotByDocUrl: ModuleUrlConstant.VC + "returnMLotByDoc",
+    VcDeliveryOrderImportUrl: ModuleUrlConstant.VC + "deliveryOrderImport",
 
 };
 

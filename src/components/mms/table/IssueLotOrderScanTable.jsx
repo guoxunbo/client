@@ -32,7 +32,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
 
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedBoxQty)}：{this.getScanned().length} </Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedQty)}：{this.getScanned().length} </Tag>
     }
 
     getScanned = () => {
@@ -50,7 +50,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.Qty)}：{this.state.data.length}</Tag>
     }
   
 
