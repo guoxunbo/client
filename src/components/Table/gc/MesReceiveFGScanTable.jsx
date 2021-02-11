@@ -6,6 +6,7 @@ import { i18NCode } from '../../../api/const/i18n';
 import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
+import EventUtils from '../../../api/utils/EventUtils';
 
 export default class MesReceiveFGScanTable extends EntityScanViewTable {
 
@@ -39,10 +40,16 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
 
     receive = () => {
         const {data} = this.state;
+        let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+        
         if (data && data.length > 0) {
             let self = this;
             let requestObject = {
@@ -52,6 +59,9 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
                         self.props.onSearch();
                         self.props.resetData();
                     }
+                    self.setState({
+                        loading: false
+                    }); 
                     MessageUtils.showOperationSuccess();
                 }
             }
@@ -81,7 +91,7 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
     }
 
     createDeleteAllButton = () => {
-        return <Button key="deleteAll" type="primary" style={styles.tableButton} icon="delete" onClick={this.deleteAllMaterialLot}>
+        return <Button key="deleteAll" type="primary" style={styles.tableButton} loading={this.state.loading} icon="delete" onClick={this.deleteAllMaterialLot}>
                         {I18NUtils.getClientMessage(i18NCode.BtnDeleteAll)}
                     </Button>
     }
@@ -97,7 +107,7 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
     }
 
     createReceiveButton = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} icon="import" onClick={this.receive}>
+        return <Button key="receive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="import" onClick={this.receive}>
                         {I18NUtils.getClientMessage(i18NCode.BtnReceive)}
                     </Button>
     }
