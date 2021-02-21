@@ -1,12 +1,13 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button, Tag } from 'antd';
+import { Button, Switch, Tag } from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EventUtils from '../../../api/utils/EventUtils';
 import WltStockOutManagerRequest from '../../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
+import Icon from '@icedesign/icon';
 
 /**
  * WLT/CP出货的物料批次表格
@@ -14,6 +15,11 @@ import WltStockOutManagerRequest from '../../../api/gc/wlt-stock-out/WltStockOut
 export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
 
     static displayName = 'GcWltStockOutMLotScanTable';
+
+    constructor(props) {
+        super(props);
+        this.state = {...this.state,...{checked:true},...{value: "checkSubCodeFlag"}};
+    }
 
     getRowClassName = (record, index) => {
         if (record.errorFlag) {
@@ -36,11 +42,40 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
 
     createTagGroup = () => {
         let tagList = [];
+        tagList.push(this.createCheckSubcodeFlag());
         tagList.push(this.createStatistic());
         tagList.push(this.createWaferNumber());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
+    }
+
+    createCheckSubcodeFlag = () => {
+        return <span style={{display: 'flex'}}>
+            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.CheckSubCodeFlag)}:</span>
+            <span style = {{marginLeft:"10px"}}>
+                <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
+                        checkedChildren={<Icon type="CheckSubCodeFlag" />} 
+                        unCheckedChildren={<Icon type="close" />} 
+                        onChange={this.handleChange} 
+                        disabled={this.disabled}
+                        checked={this.state.checked}/>
+            </span>
+        </span>
+    }
+
+    handleChange = (checkedChildren) => {
+        if(checkedChildren){
+            this.setState({ 
+                value: "CheckSubCodeFlag",
+                checked: true
+            });
+        } else {
+            this.setState({ 
+                value: "",
+                checked: false
+            });
+        }
     }
 
     stockOut = () => {
@@ -49,6 +84,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
+        let checkSubCode = this.state.value;
 
         let orderTable = this.props.orderTable;
         let orders = orderTable.state.data;
@@ -71,6 +107,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
         let requestObj = {
             documentLines : orders,
             materialLots : materialLots,
+            checkSubCode: checkSubCode,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();
