@@ -176,6 +176,7 @@ const i18NCode = {
     BtnThreeSideShip: "ThreeSideShip",
     ChooseThreeSideShipOrderPlease: "ChooseThreeSideShipOrderPlease",
     ScrapReason: "ScrapReason",
+    CheckSubCodeFlag: "CheckSubCodeFlag",
 }
 
 const i18Messages = {
@@ -1042,6 +1043,11 @@ const i18Messages = {
     ScrapReason: {
         Chinese: "报废原因",
         English: "Scrap Reason",
+        Res: "" 
+    },
+    CheckSubCodeFlag: {
+        Chinese: "检验二级代码",
+        English: "Check SubCode",
         Res: "" 
     }
 }

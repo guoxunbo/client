@@ -38,15 +38,16 @@ export default class WltStockOutManagerRequestBody {
         this.poId = poId;
     }
     
-    static buildWltStockOut(documentLines, materialLots) {
+    static buildWltStockOut(documentLines, materialLots, checkSubCode) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
-
-        return new WltStockOutManagerRequestBody(actionType.WltStockOut, documentLines, materialLotActions, undefined);
+        let body = new WltStockOutManagerRequestBody(actionType.WltStockOut, documentLines, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        return body;
     }
 
     static buildThreeSideShip(documentLine, materialLots) {
