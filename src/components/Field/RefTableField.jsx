@@ -24,10 +24,15 @@ export default class RefTableField extends Combox {
             success: function(responseBody) {
                 self.refTable = responseBody.referenceTable;
                 let data = [];
+                let textFileds = self.refTable.textField.split(",");
                 responseBody.dataList.map(d => {
+                    let displayValue = [];
+                    textFileds.map(textField => {
+                        displayValue.push(d[textField.trim()]);
+                    });
                     let refData = {
                         key: d[self.refTable.keyField],
-                        value: d[self.refTable.textField]
+                        value: displayValue.join("/")
                     };
                     data.push(refData);
                 }); 
@@ -35,19 +40,8 @@ export default class RefTableField extends Combox {
                     data: data,
                 });
                 if (parameters) {
-                    //TODO 清除初始值
-                    // self._select.props["defaultValue"] = "";
-                    // self.props.form.resetFields("tabRrn");
-                    // self.handleChange("");
-                    // self.props.form.resetFields("tabRrn");
-                    // let fieldValue = {};
-                    // fieldValue['tabRrn'] = "";
-                    // self.props.form.setFieldsValue({
-                    //     'tabRrn': ''
-                    // });
+                    
                 }
-                // console.log(self.props);
-                // console.log(self.props.field.name);
             }
         }
         MessageUtils.sendRequest(requestObject);

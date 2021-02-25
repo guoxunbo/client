@@ -8,6 +8,7 @@ import { SystemRefListName, RefTableName } from '../../../api/const/ConstDefine'
 import RefTableField from '../../Field/RefTableField';
 import "../../Form/QueryForm.scss";
 import FormItem from 'antd/lib/form/FormItem';
+import SelectPoField from '../../Field/SelectPoField';
 
 
 /**
@@ -118,7 +119,7 @@ export default class GcCPStockOutTagMLotTable extends EntityListTable {
                             <span>PO：</span>
                         </Col>
                         <Col span={8}>
-                            <RefTableField ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.CPPoListByMaterialNameAndVender}}/>
+                            <SelectPoField materialLots={this.state.data} ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.CPPoListByMaterialNameAndVender}}/>
                         </Col>
                         <Col span={4} >
                             <span>{I18NUtils.getClientMessage(i18NCode.PoName)}:</span>
@@ -127,14 +128,6 @@ export default class GcCPStockOutTagMLotTable extends EntityListTable {
                             <Input ref={(PoName) => { this.PoName = PoName }} key="PoName"  placeholder="Po名称" />
                         </Col>
                     </Row>
-                    {/* <Row gutter={12}>
-                        <Col span={4} >
-                            <span>{I18NUtils.getClientMessage(i18NCode.ProductId)}:</span>
-                        </Col>
-                        <Col span={8}>
-                            <RefTableField ref={(materialName) => { this.materialName = materialName }} disabled={true}  value={this.props.materialName} field={{refTableName : RefTableName.GCWaferMaterialByName, name: "materialName"}}/>
-                        </Col>
-                    </Row> */}
                 </FormItem>
     }
 
