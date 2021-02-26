@@ -119,13 +119,7 @@ export default class GcCPStockOutTagMLotTable extends EntityListTable {
                             <span>PO：</span>
                         </Col>
                         <Col span={8}>
-                            <SelectPoField materialLots={this.state.data} ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.CPPoListByMaterialNameAndVender}}/>
-                        </Col>
-                        <Col span={4} >
-                            <span>{I18NUtils.getClientMessage(i18NCode.PoName)}:</span>
-                        </Col>
-                        <Col span={8}>
-                            <Input ref={(PoName) => { this.PoName = PoName }} key="PoName"  placeholder="Po名称" />
+                            <SelectPoField materialLots={this.state.data} ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.CPPoListByMaterialNameAndVender, name: "poId"}}/>
                         </Col>
                     </Row>
                 </FormItem>

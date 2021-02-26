@@ -6,6 +6,9 @@ export default class SelectPoField extends RefTableField {
     refTable;
 
     valueChanged = (sender, value) => {
+        if(sender === this){
+            return;
+        }
         let materialNames = []; 
         this.props.materialLots.map(materialLot => {
             materialNames.push(materialLot.materialName);

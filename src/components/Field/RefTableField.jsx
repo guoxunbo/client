@@ -48,6 +48,9 @@ export default class RefTableField extends Combox {
     }
 
     valueChanged = (sender, value) => {
+        if(sender == this){
+            return;
+        }
         let senderField = sender.props.field;
         if (sender instanceof RefTableField) {
             let refTable = this.refTable;
