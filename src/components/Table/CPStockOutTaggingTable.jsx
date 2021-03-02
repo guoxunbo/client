@@ -75,7 +75,7 @@ export default class CPStockOutTaggingTable extends EntityListCheckTable {
         });
         if (this.props.resetData) {
             this.props.resetData();
-            this.props.onSearch();
+            // this.props.onSearch();
         }
         MessageUtils.showOperationSuccess();
     }
