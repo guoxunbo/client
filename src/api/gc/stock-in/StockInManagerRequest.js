@@ -41,6 +41,16 @@ export default class StockInManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
-    
+
+    static sendImportRequest = (object, file) => {
+        let requestBody = new StockInManagerRequestBody();
+        let requestHeader = new StockInManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCTempCpDataImportUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendImportData(requestObject, file);
+    }
 }
 

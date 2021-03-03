@@ -9,6 +9,7 @@ import { Tag } from 'antd';
 import PackageMaterialLotRequest from '../../../api/package-material-lot/PackageMaterialLotRequest';
 import EntityScanViewTable from '../EntityScanViewTable';
 import GetPrintWltBboxParameterRequest from '../../../api/gc/get-print-wltbbox-parameter/GetPrintWltBboxParameterRequest';
+import EventUtils from '../../../api/utils/EventUtils';
 
 /**
  * WLT包装物料批次
@@ -88,6 +89,11 @@ export default class WltPackMaterialLotTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+          
         let requestObject = {
             materialLots: data,
             packageType: "WltPackCase",
@@ -106,7 +112,7 @@ export default class WltPackMaterialLotTable extends EntityScanViewTable {
     }
 
     createPackageButton = () => {
-        return <Button key="receive" type="primary" style={styles.tableButton} icon="inbox" onClick={this.package}>
+        return <Button key="receive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.package}>
                         {I18NUtils.getClientMessage(i18NCode.BtnPackage)}
                     </Button>
     }

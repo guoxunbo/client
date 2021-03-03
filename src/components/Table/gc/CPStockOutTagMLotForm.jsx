@@ -19,15 +19,10 @@ export default class CPStockOutTagMLotForm extends EntityForm {
     }
 
     handleOk= () => {
-        debugger;
         let self = this;
         let customerName = this.materialLotTable.customerName.state.value;
-        let poName = this.materialLotTable.PoName.state.value;
         let stockOutType = this.materialLotTable.stockOutType.state.value;
         let poId = this.materialLotTable.poId.state.value;
-        if(!(poName == "" || poName == null || poName == undefined)){
-            poId = poName;
-        }
         if(customerName == "" || customerName == null ||  customerName == undefined){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CustomerNameCannotEmpty));
             return;
@@ -53,9 +48,6 @@ export default class CPStockOutTagMLotForm extends EntityForm {
                     value: ""
                 });
                 self.materialLotTable.customerName.setState({
-                    value: ""
-                });
-                self.materialLotTable.PoName.setState({
                     value: ""
                 });
             }

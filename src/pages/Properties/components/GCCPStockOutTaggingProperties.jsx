@@ -6,6 +6,16 @@ export default class GCCPStockOutTaggingProperties extends EntityScanProperties{
 
     static displayName = 'GCCPStockOutTaggingProperties';
       
+    resetData = () => {
+      this.setState({
+        selectedRowKeys: [],
+        selectedRows: [],
+        tableData: [],
+        loading: false,
+        resetFlag: true
+      });
+      this.form.resetFormFileds();
+    }
 
     queryData = (whereClause) => {
       const self = this;

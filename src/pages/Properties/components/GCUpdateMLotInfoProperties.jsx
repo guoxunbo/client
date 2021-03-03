@@ -9,6 +9,7 @@ import { Notification } from "../../../components/notice/Notice";
 import MaterialLotUpdateRequest from "../../../api/gc/materialLot-update-manager/MaterialLotUpdateRequest";
 import PropertyUtils from "../../../api/utils/PropertyUtils";
 import MessageUtils from "../../../api/utils/MessageUtils";
+import EventUtils from "../../../api/utils/EventUtils";
 /**
  * 修改LOT信息
  */
@@ -31,7 +32,6 @@ export default class GCUpdateMLotInfoProperties extends EntityViewProperties{
       }
     
     queryData = (whereClause) => {
-      debugger;
         const self = this;
         let requestObject = {
           tableRrn: this.state.tableRrn,
@@ -40,12 +40,14 @@ export default class GCUpdateMLotInfoProperties extends EntityViewProperties{
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
                 self.setState({
-                    formObject: queryDatas[0]
+                    formObject: queryDatas[0],
+                    loading: false,
                 })  
                 self.form.resetFormFileds();
             } else {
                 self.setState({
-                    formObject: []
+                    formObject: [],
+                    loading: false,
                 })  
                 self.showDataNotFound();
             }
@@ -84,6 +86,11 @@ export default class GCUpdateMLotInfoProperties extends EntityViewProperties{
     updateLotInfo = (materialLot) => {
       debugger;
       let self = this;
+      self.setState({
+        loading: true
+      });
+      EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+      
       let requestObject = {
           materialLot: materialLot,
           success: function(responseBody) {
@@ -97,7 +104,7 @@ export default class GCUpdateMLotInfoProperties extends EntityViewProperties{
   }
 
     createUpdateButton = () => {
-        return <Button key="update" type="primary" onClick={() => this.handleUpdate()}>
+        return <Button key="update" type="primary" loading={this.state.loading} onClick={() => this.handleUpdate()}>
              {IconUtils.buildIcon("edit")}{I18NUtils.getClientMessage(i18NCode.BtnUpdate)}</Button>;
     }
     
