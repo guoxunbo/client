@@ -10,6 +10,7 @@ import '@api/Extend';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { Application } from '@api/Application';
+import 'antd-mobile/dist/antd-mobile.css';
 moment.locale('zh-cn');
 
 const ICE_CONTAINER = document.getElementById('ice-container');
