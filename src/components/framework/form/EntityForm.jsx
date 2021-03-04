@@ -51,13 +51,17 @@ export default class EntityForm extends Component {
             wrapperCol: {span: 18},
         };
         let children = [];
-        for (let f of fields) {
-            let field = new Field(f, this.props.form);
+        let basicFields = fields.filter((field) => {
             if (field.basicFlag && field.displayFlag && field.name != DefaultRowKey) {
-                children.push(<Col span={12} key={field.objectRrn}>
-                    {field.buildFormItem(formItemLayout, this.state.editFlag, undefined, formObject ? formObject[field.name] : undefined)}
-                </Col>);
+                return field;
             }
+        });   
+
+        for (let f of basicFields) {
+            let field = new Field(f, this.props.form, basicFields);
+            children.push(<Col span={12} key={field.objectRrn}>
+                {field.buildFormItem(formItemLayout, this.state.editFlag, undefined, formObject ? formObject[field.name] : undefined)}
+            </Col>);
         }
         return children;
     }
@@ -81,7 +85,6 @@ export default class EntityForm extends Component {
                 } else {
                     tabPanels.push(tabPanel.buildFieldTab(this.props.form, formItemLayout, this.props.object));
                 }
-                
             }) 
         }
         return (<Tabs>
@@ -102,13 +105,14 @@ export default class EntityForm extends Component {
 
     buildForm = () =>  {
         const {getFieldDecorator} = this.props.form;
+
         return (
             <Form>
-                {getFieldDecorator(DefaultRowKey,
-                {
+                {getFieldDecorator(DefaultRowKey, {
                     initialValue: this.props.object ? this.props.object[DefaultRowKey] : undefined
                 }
                 )(<Input type='hidden'/>)}
+
                 {this.buildBasicSection()}
                 {this.buildTabs()}
             </Form>)

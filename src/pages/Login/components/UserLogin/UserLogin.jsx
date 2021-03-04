@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './UserLogin.scss';
-import {Application, SessionContext} from '@api/Application';
+import {Application, getMobileMode, SessionContext} from '@api/Application';
 import Authority from '@api/dto/ui/Authority';
 import UserLoginForm from '@components/framework/form/UserLoginForm';
 import I18NUtils from '@utils/I18NUtils';
@@ -10,6 +10,8 @@ import { i18NCode } from '@const/i18n';
 
 // 寻找背景图片可以从 https://unsplash.com/ 寻找
 const backgroundImage = require('./images/background.jpg');
+
+
 
 @withRouter
 export default class UserLogin extends Component {
@@ -26,7 +28,12 @@ export default class UserLogin extends Component {
   handleLogined = (responseBody, org, language) => {
     let user = responseBody.user;
     SessionContext.saveSessionContext(user.username, user.description, org, language, Authority.buildMenu(user.authorities, language));
-    this.props.history.push('/Home');
+    if (getMobileMode()) {
+      this.props.history.push('/MobileHome');
+    } else {
+      this.props.history.push('/Home');
+    }
+    
   };
 
   render() {

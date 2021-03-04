@@ -8,10 +8,6 @@ import BlankLayout from '@layouts/BlankLayout';
 // framework
 import EntityProperties from '@properties/framework/EntityProperties';
 import EntityHistoryProperties from '@properties/framework/EntityHistoryProperties';
-import EntityScanProperties from '@properties/framework/EntityScanProperties';
-import EntityDoubleScanProperties from '@properties/framework/EntityDoubleScanProperties';
-import EntityScanCheckProperties from '@properties/framework/EntityScanCheckProperties';
-import EntityViewProperties from '@properties/framework/EntityViewProperties';
 import GeneratorRuleProperties from '@properties/idgenerator/GeneratorRuleProperties';
 import MessageProperties from '@properties/framework/MessageProperties';
 import ParameterProperties from '@properties/framework/ParameterProperties';
@@ -56,7 +52,8 @@ import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
 import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperties';
-
+import MobileHome from '@pages/Mobile/MobileHome';
+import MobileProperties from '@pages/Properties/framework/MobileProperties'
 //vc
 import VcShipmentOrderProperties from '@properties/vc/VcShipmentOrderProperties'
 import VcMaterialLotInfoProperties from '@pages/Properties/vc/VcMaterialLotInfoProperties';
@@ -76,6 +73,7 @@ const routerConfig = [
     layout: BlankLayout,
     component: Login,
   },
+  
   {
     path: 'Home',
     layout: HeaderAsideFooterResponsiveLayout,
@@ -333,11 +331,27 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+
+  //MobileMenu of WMS
+  {
+    path: 'MobileHome',
+    layout: BlankLayout,
+    component: MobileHome,
+  },
+
+  {
+    path: buildPath('MMS/Mobile/ReceiveMLot'),
+    layout: BlankLayout,
+    component: MobileProperties,
+  },
+  
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
     component: NotFound,
   },
+
+  
 ];
 
 export default routerConfig;

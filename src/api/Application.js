@@ -1,3 +1,19 @@
+
+const getMobileMode = () => {
+    let mobileMode = false;
+    let userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent) {
+      var isIpad = userAgent.match(/ipad/i) == "ipad";
+      var isMidp = userAgent.match(/midp/i) == "midp";
+      var isIphoneOs = userAgent.match(/iphone os/i) == "iphone os";
+      var isAndroid = userAgent.match(/android/i) == "android";
+      if (isIpad || isIphoneOs || isMidp || isAndroid) {
+          mobileMode = true;
+      }
+    }
+    return mobileMode;
+}
+
 const Application = {
     name: 'VCIM-' + ENV_MODE,
     version: "1.0.5",
@@ -12,6 +28,7 @@ const Application = {
         width: 350,
         height: 400
     },
+    
     table: {
         oprationColumn: {
             width: 110
@@ -156,4 +173,4 @@ class SessionContext {
     }
 }
 
-export {Application, SessionContext}
+export {Application, SessionContext, getMobileMode}
