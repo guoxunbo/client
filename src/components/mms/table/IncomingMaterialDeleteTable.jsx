@@ -23,7 +23,7 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
 
     createDeleteRemarkInput = () => {
         return <div style={styles.input}>
-            <Input ref={(input) => { this.input = input }} key="deleteNote" placeholder="删除备注" />
+            <Input ref={(input) => { this.input = input }} key="deleteNote" placeholder={I18NUtils.getClientMessage(i18NCode.BtnRemark)} />
         </div>
     }
    
@@ -48,8 +48,8 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
         Modal.confirm({
             title: 'Confirm',
             content: I18NUtils.getClientMessage(i18NCode.ConfirmDelete),
-            okText: '确认',
-            cancelText: '取消',
+            okText: I18NUtils.getClientMessage(i18NCode.confirm),
+            cancelText: I18NUtils.getClientMessage(i18NCode.Cancel),
             onOk:() => {
                 self.setState({
                     loading: true

@@ -20,7 +20,7 @@ export default class IssueOrderRequest {
     static sendIssueLotRequest = (object) => {
         let requestBody = IssueOrderRequestBody.buildIssueLot(object.documentId, object.materialLots);
         let requestHeader = new IssueOrderRequestHeader();
-        let request = new Request(requestHeader,requestBody, UrlConstant.MMSIssueMLotByDocUrl);
+        let request = new Request(requestHeader,requestBody, UrlConstant.VCIssueMLotByDocUrl);
         let requestObject = {
             request: request,
             success: object.success

@@ -1,3 +1,4 @@
+import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 import IssueLotOrderTable from "@components/mms/table/IssueLotOrderTable";
 import EntityProperties from "@properties/framework/EntityProperties";
 import IssueLotOrderScanProperties from "./IssueLotOrderScanProperties";
@@ -23,6 +24,21 @@ export default class IssueLotOrderProperties extends EntityProperties{
           resetFlag: true
         });
     }
+
+    getTableData = () => {
+      const self = this;
+      let requestObject = {
+        tableRrn: this.state.tableRrn,
+        success: function(responseBody) {
+          self.setState({
+            tableData: responseBody.dataList,
+            table: responseBody.table,
+            loading: false
+          }); 
+        }
+      }
+      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    }
     
     buildTable = () => {
       return <IssueLotOrderTable
@@ -41,6 +57,7 @@ export default class IssueLotOrderProperties extends EntityProperties{
                   orderTable = {this.orderTable} 
                   resetFlag = {this.state.resetFlag} 
                   ref={(issueLotScanTable) => { this.issueLotScanTable = issueLotScanTable }}
+                  onSearch={this.getTableData.bind(this)}
       />
   }
 

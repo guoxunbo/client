@@ -1,5 +1,7 @@
 import IncomingMaterialReceiveScanTable from "@components/mms/table/IncomingMaterialReceiveScanTable";
+import { i18NCode } from "@const/i18n";
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
+import I18NUtils from "@utils/I18NUtils";
 import NoticeUtils from "@utils/NoticeUtils";
 
 export default class IncomingMaterialReceiveScanProperties extends EntityScanProperties{
@@ -20,22 +22,34 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
 
     queryData = (whereClause) => {
         const self = this;
-        let mLots= this.state.tableData;
+        let mLots= this.state.tableData; 
         let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let queryQty = self.form.props.form.getFieldValue(self.form.state.queryFields[1].name);
+        if(queryQty == undefined || queryQty == ''){
+            this.form.state.queryFields[1].node.focus();
+            this.setState({
+              loading : false,
+            })
+            return ;
+        }
         let flag = false;
+        let materialLot ;
         if(mLots){
           mLots.forEach(mLot => {
             if(queryMatlotId === mLot.materialLotId && queryQty == mLot.currentQty){
                 flag = true ;
+                materialLot = mLot;
                 mLot.scaned = true;
-              }
-              if("Create" != mLot.status){
-                mLot.scaned = false;
               }
           });
           if(!flag){
-            NoticeUtils.showInfo("该物料批次与该单据号不一致或数量不一致");
+            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.InformationInconsistency));
+          }
+          if(materialLot){
+            if(materialLot.rowClass){
+              materialLot.scaned = false;
+              NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.MLotAlreadyReceived));
+            }
           }
         }
         self.form.resetFormFileds();
@@ -60,7 +74,8 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
                           orderTable={this.props.orderTable} 
                           pagination={false} 
                           resetData={this.resetData.bind(this)}
-                          resetFlag={this.state.resetFlag}                         
+                          resetFlag={this.state.resetFlag}   
+                          onSearch={this.props.onSearch}                      
                           />
     }
 }

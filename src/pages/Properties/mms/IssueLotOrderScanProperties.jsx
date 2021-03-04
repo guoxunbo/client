@@ -1,5 +1,7 @@
 import IssueLotOrderScanTable from "@components/mms/table/IssueLotOrderScanTable";
+import { i18Messages, i18NCode } from "@const/i18n";
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
+import I18NUtils from "@utils/I18NUtils";
 import NoticeUtils from "@utils/NoticeUtils";
 
 export default class IssueLotOrderScanProperties extends EntityScanProperties{
@@ -23,16 +25,23 @@ export default class IssueLotOrderScanProperties extends EntityScanProperties{
         let mLots= this.state.tableData;
         let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let flag = false;
-        let flag1 = true;
+        let materialLot = '';
         if(mLots){
           mLots.forEach(mLot => {
               if(queryMatlotId === mLot.materialLotId){
                 flag = true ;
                 mLot.scaned = true;
+                materialLot = mLot;
               }
           });
           if(!flag){
-            NoticeUtils.showInfo("物料批次号不存在");
+            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.MLotNonentity));
+          }
+          if(materialLot){
+            if(materialLot.rowClass){
+              materialLot.scaned = false;
+              NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.MLotAlreadyIssue));
+            }
           }
         }
         self.form.resetFormFileds();
@@ -58,6 +67,7 @@ export default class IssueLotOrderScanProperties extends EntityScanProperties{
                           pagination={false} 
                           resetData={this.resetData.bind(this)}
                           resetFlag={this.state.resetFlag}
+                          onSearch={this.props.onSearch}                      
                           />
     }
 }

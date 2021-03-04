@@ -9,7 +9,7 @@ export default class IncomingMaterialDeleteRequest {
     static sendDeleteRequest = (object) => {
         let requestBody =  IncomingMaterialDeleteBody.buliedDelete(object.deleteNote, object.materialLotList);
         let requestHeader = new IncomingMaterialDeleteRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.IncomingMaterialDeleteUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCIncomingMaterialDeleteUrl);
         let requestObject = {
             request: request,
             success: object.success

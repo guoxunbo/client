@@ -1,4 +1,4 @@
-import { Button, Tag} from 'antd';
+import { Button, Input, Tag} from 'antd';
 import I18NUtils from '@utils/I18NUtils';
 import { i18NCode } from '@const/i18n';
 import IncomingMaterialReceiveRequest from '@api/Incoming-Material-Manager/Incoming-Material-Receive-Manager/IncomingMaterialReceiveRequest';
@@ -17,8 +17,22 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
         return buttons;
     }
 
+    getRowClassName = (record, index) => {
+        if (record.rowClass) {
+            return 'ban-row';
+        }else if(record.scaned) {
+            return 'scaned-row';
+        }else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
+
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("已扫描箱数")}：{this.getScanned().length} </Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedQty)}：{this.getScanned().length} </Tag>
     }
 
     getScanned = () => {
@@ -31,12 +45,11 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
                 }
             })
         }
-       
         return scanned ;
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage("总箱数")}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.Qty)}：{this.state.data.length}</Tag>
     }
   
 
@@ -49,42 +62,40 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
     receive = () => {
         let self = this;
         let materialLots = this.getScanned();
-        let docId = '';
+        let doc = this.props.orderTable.getSingleSelectedRow();
         if (materialLots.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        if(materialLots){
-            docId =materialLots[0].incomingDocId ;
-         }
-      
         let requestObject = {
             materialLotList: materialLots,
-            documentId: docId,
+            documentId: doc.name,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.setState({
                         loading: false
                     });
                     self.props.resetData();
+                    self.props.onSearch();
                 }
                 NoticeUtils.showSuccess();
             }
         }
         IncomingMaterialReceiveRequest.sendReceiveRequest(requestObject);
     }
-     /**
-     * 接收数据不具备可删除等操作
-     */
+
     buildOperationColumn = () => {
-        
+
     }
-    
 }
 const styles = {
     tableButton: {
         marginLeft:'20px'
-    }
+    },  
+    input:{
+        width: 200,
+        marginLeft : '10px'
+    },
 };
 
 

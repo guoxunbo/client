@@ -37,7 +37,7 @@ export default class IncomingMaterialReceiveTable extends EntityListTable {
             selectedRows: selectedRows
         });
         if(record.unHandledQty == 0){
-            self.props.materialOrderScanProperties.setState({tableData : ''});
+            self.props.materialOrderScanProperties.setState({tableData : []});
             return ;
         }
         let object = {
@@ -45,11 +45,14 @@ export default class IncomingMaterialReceiveTable extends EntityListTable {
             success: function(responseBody) {
                 let mLots = responseBody.materialLotList;
                 if(mLots){
-                    mLots.forEach(mLot=>{
-                        if(mLot.status == 'Create'){
-                            showData.push(mLot);
+                    for(let i=0; i< mLots.length; i++){
+                        if(mLots[i].status == 'Create' && mLots[i].statusCategory == "Create"){
+                            showData.unshift(mLots[i]);
+                        }else{
+                            mLots[i].rowClass = true;
+                            showData.push(mLots[i]);
                         }
-                    })
+                    }
                 }
                 self.props.materialOrderScanProperties.setState({tableData: showData})
             }

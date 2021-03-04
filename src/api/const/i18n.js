@@ -86,6 +86,31 @@ const i18NCode = {
     TransferTarget: "Target",
     Operation: "Operation",
     
+    Confirm: "Confirm",
+    SelectFile: "SelectFile",
+    ScannedTotalQty: "ScannedTotalQty",
+    ScannedQty: "ScannedQty",
+    Qty: "Qty",
+    Issue: "Issue",
+    PleaseScanOneMLot: "PleaseScanOneMLot",
+    InformationInconsistency: "InformationInconsistency",
+    MLotNonentity: "MLotNonentity",
+    MaterialNonentity: "MaterialNonentity",
+    MLotAlreadyIssue: "MLotAlreadyIssue",
+    MLotAlreadyReceived: "MLotAlreadyReceived",
+    BtnReturnMLot: "BtnReturnMLot",
+    MissZeroQty: "MissZeroQty",
+    PackageQty: "PackageQty",
+    TotalQty: "TotalQty",
+    BtnReserved: "BtnReserved",
+    BtnUnReserved: "BtnUnReserved",
+    MissZeroQtyThanTotalQty:"MissZeroQtyThanTotalQty",
+    MLotAlreadyScand: "MLotAlreadyScand",
+    BtnSplit: "BtnSplit",
+    SplitQty: "SplitQty",
+    MaterialLotId: "MaterialLotId",
+    PleaseInputQty: "PleaseInputTrueQty",
+
 }
 
 const i18Messages = {
@@ -494,7 +519,128 @@ const i18Messages = {
         Chinese: "获取Recipe",
         English: "GetRecipe",
         Res: ""
+    },
+    Confirm:{
+        Chinese: "确认",
+        English: "confirm",
+        Res: ""
+    },
+    SelectFile:{
+        Chinese: "选择文件",
+        English: "SelectFile",
+        Res: ""
+    },
+    ScannedQty:{
+        Chinese: "已扫描数量",
+        English: "ScannedQty",
+        Res: ""
+    },
+    Qty:{
+        Chinese: "数量",
+        English: "Qty",
+        Res: ""
+    },
+    PackageQty:{
+        Chinese: "包数",
+        English: "PackageQty",
+        Res: "" 
+    },
+    TotalQty:{
+        Chinese: "颗数",
+        English: "TotalQty",
+        Res: "" 
+    },
+    Issue:{
+        Chinese: "发料",
+        English: "Issue",
+        Res: ""
+    },
+    ScannedTotalQty:{
+        Chinese: "已扫描总颗数",
+        English: "ScannedTotalQty",
+        Res: ""
+    },
+    PleaseScanOneMLot:{
+        Chinese: "请扫描一个物料批次",
+        English: "Please Scan One MLot",
+        Res: ""
+    },
+    InformationInconsistency:{
+        Chinese: "扫描到的信息不一致",
+        English: "scanned information is inconsistent",
+        Res: ""
+    },
+    MLotNonentity: {
+        Chinese: "物料批次不存在",
+        English: "MLot does not exist",
+        Res: ""
+    },
+    MaterialNonentity: {
+        Chinese: "物料型号不存在",
+        English: "Material does not exist",
+        Res: ""
+    },
+    MLotAlreadyIssue: {
+        Chinese: "物料已经发料",
+        English: "MLot Already Issue",
+        Res: ""
+    },
+    MLotAlreadyReceived: {
+        Chinese: "物料已经接收",
+        English: "MLot Already Received",
+        Res: ""
+    },
+    MLotAlreadyScand: {
+        Chinese: "物料已经扫描",
+        English: "MLot Already Scand",
+        Res: ""
+    },
+    BtnReturnMLot:{
+        Chinese: "退料",
+        English: "ReturnMLot",
+        Res: ""
+    },
+    MissZeroQty: {
+        Chinese: "所缺零数",
+        English: "Miss Zero",
+        Res: "" 
+    },
+    BtnReserved:{
+        Chinese: "备货",
+        English: "Reserved",
+        Res: "" 
+    },
+    BtnUnReserved:{
+        Chinese: "取消备货",
+        English: "UnReserved",
+        Res: "" 
+    },
+    MissZeroQtyThanTotalQty:{
+        Chinese: "所选颗数大于所缺零数",
+        English: "missZeroQty greater than totalQty",
+        Res: "" 
+    },
+    BtnSplit:{
+        Chinese: "分批",
+        English: "Split",
+        Res: "" 
+    },
+    SplitQty:{
+        Chinese: "分批数量",
+        English: "SplitQty",
+        Res: "" 
+    },
+    MaterialLotId:{
+        Chinese: "物料批次号",
+        English: "MaterialLotId",
+        Res: "" 
+    },
+    PleaseInputQty:{
+        Chinese: "请输入正确的数量",
+        English: "Please enter the correct amount",
+        Res: "" 
     }
+    
 }
 
 export {i18Messages, i18NCode};

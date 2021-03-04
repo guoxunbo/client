@@ -1,3 +1,4 @@
+import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
 
 const actionType = {
     Receive : "Receive",
@@ -11,9 +12,9 @@ export default class IncomingMaterialReceiveRequestBody {
     materialLotList;
   
     constructor(actionType, documentId, materialLotList){
+        this.actionType = actionType;
         this.documentId = documentId;
         this.materialLotList = materialLotList;
-        this.actionType = actionType;
     }
     
     static sendReceiveRequest(documentId, materialLotList) {
@@ -23,5 +24,5 @@ export default class IncomingMaterialReceiveRequestBody {
     static sendGetMaterialLot(documentId) {
         return new IncomingMaterialReceiveRequestBody(actionType.GetMaterialLot, documentId);
     }
-  
+
 }
