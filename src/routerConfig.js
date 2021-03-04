@@ -280,6 +280,18 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+   //MobileMenu of WMS
+   {
+    path: 'MobileHome',
+    layout: BlankLayout,
+    component: MobileHome,
+  },
+
+  {
+    path: buildPath('MMS/Mobile/ReceiveMLot'),
+    layout: BlankLayout,
+    component: MobileProperties,
+  },
   {
     path: buildPath('Pack/PackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
