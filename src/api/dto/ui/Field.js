@@ -249,7 +249,7 @@ export default class Field {
     buildControl(edit, query, initialValue, onBlur, onPressEnter) {
         this.buildDisabled(edit, query);
         if (this.displayType == DisplayType.text || this.displayType == DisplayType.file) {
-            return <Input ref={node => (this.node = node)} onBlur={onBlur} onPressEnter={e => onPressEnter(e, this)} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
+            return <Input ref={node => (this.node = node)} onBlur={onBlur} onPressEnter={e => onPressEnter ? onPressEnter(e, this) : undefined} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.int) {
             return <InputNumber onBlur={onBlur} min={this.minValue} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.double) {
