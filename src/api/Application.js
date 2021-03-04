@@ -1,7 +1,8 @@
+
 const getMobileMode = () => {
     let mobileMode = false;
     let userAgent = navigator.userAgent.toLowerCase();
-    if (sUserAgent) {
+    if (userAgent) {
       var isIpad = userAgent.match(/ipad/i) == "ipad";
       var isMidp = userAgent.match(/midp/i) == "midp";
       var isIphoneOs = userAgent.match(/iphone os/i) == "iphone os";

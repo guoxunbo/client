@@ -1,7 +1,10 @@
 import Field from "@api/dto/ui/Field";
 import EntityForm from "@components/framework/form/EntityForm";
 import { DefaultRowKey } from "@const/ConstDefine";
-import { Col, Form } from "antd";
+import { i18NCode } from "@const/i18n";
+import I18NUtils from "@utils/I18NUtils";
+import { Button, Col, Form, Row } from "antd";
+import './MobileForm.scss';
 
 export default class MobileForm extends EntityForm {
     static displayName = 'MobileForm';
@@ -58,7 +61,23 @@ export default class MobileForm extends EntityForm {
     }
 
     buildTabs = () => {
-        
+        let buttons = [];
+        buttons.push(
+            <Col span={10} className="table-button">
+                <Form.Item key="submitBtn" >
+                    <Button block type="primary" onClick={}>{I18NUtils.getClientMessage(i18NCode.Ok)}</Button>
+                </Form.Item>
+            </Col>
+        );
+        buttons.push(
+            <Col span={10} className="table-button">
+                <Form.Item key="returnBtn" >
+                    <Button block type="primary" >{I18NUtils.getClientMessage(i18NCode.BtnReset)}</Button>
+                </Form.Item>
+                
+            </Col>
+        );
+        return buttons;
     }
 
     buildBasicSectionField = () => {
@@ -83,6 +102,7 @@ export default class MobileForm extends EntityForm {
                             this.onFiledEnter)}
             </Col>);
         }
+
         return children;
     }
 
