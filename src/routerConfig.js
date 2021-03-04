@@ -55,8 +55,6 @@ import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperti
 import MobileHome from '@pages/Mobile/MobileHome';
 import MobileProperties from '@pages/Properties/framework/MobileProperties'
 //vc
-import VcShipmentOrderProperties from '@properties/vc/VcShipmentOrderProperties'
-import VcMaterialLotInfoProperties from '@pages/Properties/vc/VcMaterialLotInfoProperties';
 
 
 /**
