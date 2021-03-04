@@ -43,14 +43,10 @@ export default class MobileForm extends EntityForm {
     } 
     
     handleSubmit = () => {
-        this.afterSubmit();
+        this.resetFileds();
     }
 
-    /**
-     * 提交成功之后
-     * 清空值并且回到第一个的focus上
-     */
-    afterSubmit = () => {
+    resetFileds = () => {
         this.props.form.resetFields();
         const basicFields = this.state.table.fields.filter((field) => {
             if (field.basicFlag && field.displayFlag && field.name != DefaultRowKey) {
@@ -65,16 +61,15 @@ export default class MobileForm extends EntityForm {
         buttons.push(
             <Col span={10} className="table-button">
                 <Form.Item key="submitBtn" >
-                    <Button block type="primary" onClick={}>{I18NUtils.getClientMessage(i18NCode.Ok)}</Button>
+                    <Button block type="primary" >{I18NUtils.getClientMessage(i18NCode.Ok)}</Button>
                 </Form.Item>
             </Col>
         );
         buttons.push(
             <Col span={10} className="table-button">
                 <Form.Item key="returnBtn" >
-                    <Button block type="primary" >{I18NUtils.getClientMessage(i18NCode.BtnReset)}</Button>
+                    <Button block type="primary" onClick={this.resetFileds}>{I18NUtils.getClientMessage(i18NCode.BtnReset)}</Button>
                 </Form.Item>
-                
             </Col>
         );
         return buttons;
