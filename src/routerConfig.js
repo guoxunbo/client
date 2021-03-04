@@ -37,8 +37,6 @@ import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
 import IssueMaterialOrderProperties from '@properties/mms/IssueMaterialOrderProperties';
-import ReturnMLotOrderProperties from '@properties/mms/ReturnMLotOrderProperties';
-
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
