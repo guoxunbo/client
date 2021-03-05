@@ -37,8 +37,6 @@ import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
 import IssueMaterialOrderProperties from '@properties/mms/IssueMaterialOrderProperties';
-import ReturnMLotOrderProperties from '@properties/mms/ReturnMLotOrderProperties';
-
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -55,8 +53,6 @@ import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperti
 import MobileHome from '@pages/Mobile/MobileHome';
 import MobileProperties from '@pages/Properties/framework/MobileProperties'
 //vc
-import VcShipmentOrderProperties from '@properties/vc/VcShipmentOrderProperties'
-import VcMaterialLotInfoProperties from '@pages/Properties/vc/VcMaterialLotInfoProperties';
 
 
 /**
