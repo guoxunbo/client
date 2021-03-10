@@ -1,5 +1,5 @@
 
-import { Button, Form } from 'antd';
+import { Button, Form, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
@@ -25,6 +25,16 @@ export default class WltStockOutCheckTable extends EntityScanViewTable {
         buttons.push(this.createJudgeOkButton());
         buttons.push(this.createJudgeNgButton());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tagList = [];
+        tagList.push(this.createStatistic());
+        return tagList;
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
     createForm = () => {
