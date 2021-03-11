@@ -483,12 +483,6 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialImportProperties  ,
   },
-  //LOT预Hold设置
-  {
-    path: buildPath('GC/GCLotFutureHoldSetManager'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
-  },
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),
