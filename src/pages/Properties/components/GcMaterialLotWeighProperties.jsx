@@ -35,6 +35,7 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                 Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             }
             currentHandleMLots = this.getNotScanWeightMaterialLots(tableData);
+            let boxsWeightSeq = this.getBoxsScanWeightSeq(tableData);
             if(currentHandleMLots.length == 0){
                 Notification.showInfo(I18NUtils.getClientMessage(i18NCode.AddOneRowPlease));
             } else if(currentHandleMLots.length >= 2){
@@ -44,7 +45,7 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
                         if (data[rowKey] == materialLot[rowKey]) {
                             dataIndex = index;
                             materialLot["weight"] = boxsWeight.toFixed(3);
-                            materialLot["boxsWeight"] = boxsWeight.toFixed(3);
+                            materialLot.boxsScanSeq = boxsWeightSeq;
                             materialLot["boxsWeightFlag"] = 1;
                             if(materialLot.theoryWeight){
                                 let floatValue = materialLot.floatValue;
@@ -125,6 +126,17 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
             }
         });
         return materialLots;
+    }
+
+    getBoxsScanWeightSeq(tableData){
+        debugger;
+        let boxsWeightSeq = 0;
+        tableData.forEach((materialLot) => {
+            if(materialLot.boxsScanSeq && materialLot.boxsScanSeq > boxsWeightSeq){
+                boxsWeightSeq = materialLot.boxsScanSeq;
+            }
+        });
+        return boxsWeightSeq + 1;
     }
 
     buildTable = () => {
