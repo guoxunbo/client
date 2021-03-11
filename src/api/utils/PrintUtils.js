@@ -34,7 +34,7 @@ export default class PrintUtils {
                 let btPrintResponse = new BtPrintResponse(response);
                 if (ResponseStatus.RanToCompletion === btPrintResponse.Status){
                     if (ResponseWaitStatus.Completed === btPrintResponse.WaitStatus) {
-                        MessageUtils.showOperationSuccess();
+                        // MessageUtils.showOperationSuccess();
                     }
                 } else if (ResponseStatus.Faulted === btPrintResponse.Status) {
                     let message = btPrintResponse.Messages[0].Text;
