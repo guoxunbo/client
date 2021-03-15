@@ -65,7 +65,10 @@ export default class WaferUnStockOutTaggingTable extends EntityListCheckTable {
         }
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
-    
+
+    buildOperationColumn = () => {
+
+    }
 
     createCancelStockOutTag = () => {
         return <Button key="unStockOutTag" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.UnstockOutTag}>

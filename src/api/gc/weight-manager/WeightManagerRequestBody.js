@@ -28,9 +28,10 @@ export default class WeightManagerRequestBody {
     }
 
     static buildWeight(materialLots) {
+        debugger;
         let weightModels = [];
         materialLots.forEach(materialLot => {
-            let weightModel = new WeightModel(materialLot.materialLotId, materialLot.weight, materialLot.boxsWeightFlag, materialLot.scanSeq);
+            let weightModel = new WeightModel(materialLot.materialLotId, materialLot.weight, materialLot.boxsWeightFlag, materialLot.scanSeq, materialLot.boxsScanSeq);
             weightModels.push(weightModel);
         });
 
