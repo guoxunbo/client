@@ -20,6 +20,7 @@ const i18NCode = {
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
+    SelectAtLeastTwoRow: "SelectAtLeastTwoRow",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -177,6 +178,7 @@ const i18NCode = {
     ChooseThreeSideShipOrderPlease: "ChooseThreeSideShipOrderPlease",
     ScrapReason: "ScrapReason",
     CheckSubCodeFlag: "CheckSubCodeFlag",
+    BtnMergeDocLine: "MergeDocLine",
 }
 
 const i18Messages = {
@@ -1048,6 +1050,16 @@ const i18Messages = {
     CheckSubCodeFlag: {
         Chinese: "检验二级代码",
         English: "Check SubCode",
+        Res: "" 
+    },
+    MergeDocLine: {
+        Chinese: "合单",
+        English: "Merge DocLine",
+        Res: "" 
+    },
+    SelectAtLeastTwoRow: {
+        Chinese: "请至少选择两笔数据！",
+        English: "Select At Least Two Row!",
         Res: "" 
     }
 }
