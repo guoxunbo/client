@@ -60,6 +60,7 @@ import MobileProperties from '@pages/Properties/framework/MobileProperties'
 //vc
 import VcDeliveryOrderProperties from '@properties/vc/VcDeliveryOrderProperties';
 import VcApproveDocumentProperties from '@pages/Properties/vc/VcApproveDocumentProperties';
+import VcFinishGoodProperties from '@properties/vc/VcFinishGoodProperties'
 
 
 
@@ -380,6 +381,11 @@ const routerConfig = [
     path: buildPath('VC/ApproveDocument'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: VcApproveDocumentProperties,
+  },
+  {
+    path: buildPath('VC/VcFinishGoodReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcFinishGoodProperties,
   },
   {
     path: '*',
