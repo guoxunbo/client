@@ -120,6 +120,8 @@ const UrlConstant = {
     VCIssueMLotByDocLineUrl: ModuleUrlConstant.VC + "issueMLotByDocLine",
     VCIssueMLotByDocUrl: ModuleUrlConstant.VC + "issueMLotByDoc",
     VCReturnMLotByDocUrl: ModuleUrlConstant.VC + "returnMLotByDoc",
+    VCDeliveryOrderImportUrl: ModuleUrlConstant.VC + "deliveryOrderImport",
+    VCAppendPackMaterialLotsUrl: ModuleUrlConstant.VC + "appendPackMaterialLots",
 };
 
 const SystemRefListName = {

@@ -38,6 +38,7 @@ import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDe
 import IssueMaterialOrderProperties from '@properties/mms/IssueMaterialOrderProperties';
 import ReturnMLotOrderProperties from '@properties/mms/ReturnMLotOrderProperties';
 import SplitMaterialLotProperties from '@properties/mms/SplitMaterialLotProperties';
+
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -55,7 +56,11 @@ import MaterialLotIQcManagerProperties from '@pages/Properties/mms/MaterialLotIQ
 import MaterialLotOQcManagerProperties from '@pages/Properties/mms/MaterialLotOQcManagerProperties';
 import MobileHome from '@pages/Mobile/MobileHome';
 import MobileProperties from '@pages/Properties/framework/MobileProperties'
+
 //vc
+import VcDeliveryOrderProperties from '@properties/vc/VcDeliveryOrderProperties';
+import VcApproveDocumentProperties from '@pages/Properties/vc/VcApproveDocumentProperties';
+
 
 
 /**
@@ -317,7 +322,6 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintCaseLabelProperties,
   },
-
   //RMS
   {
     path: buildPath('Rms/EquipmentManager'),
@@ -347,7 +351,6 @@ const routerConfig = [
     layout: BlankLayout,
     component: MobileHome,
   },
-
   {
     path: buildPath('MMS/Mobile/ReceiveMLot'),
     layout: BlankLayout,
@@ -366,6 +369,18 @@ const routerConfig = [
   {
     path: buildPath('MMS/MaterialLotSplit'),
     layout: HeaderAsideFooterResponsiveLayout,
+    component: SplitMaterialLotProperties,
+  },
+  {
+    path: buildPath('VC/VcDeliveryOrderPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcDeliveryOrderProperties,
+  },
+  {
+    path: buildPath('VC/ApproveDocument'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcApproveDocumentProperties,
+  },
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
