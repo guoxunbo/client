@@ -24,7 +24,6 @@ import AddPackagaMaterialLotProperties from '@properties/mms/AddPackagaMaterialL
 import UnPackagaMaterialLotProperties from '@properties/mms/UnPackagaMaterialLotProperties';
 import QualityCheckProperties from '@properties/mms/QualityCheckProperties';
 import OQCCheckProperties from '@properties/mms/OQCCheckProperties';
-
 import PackageMaterialLotProperties from '@properties/mms/PackageMaterialLotProperties';
 import MaterialLotProperties from '@properties/mms/MaterialLotProperties';
 import MaterialStatusModelProperties from '@properties/mms/MaterialStatusModelProperties';
@@ -37,6 +36,8 @@ import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
 import IssueMaterialOrderProperties from '@properties/mms/IssueMaterialOrderProperties';
+import ReturnMLotOrderProperties from '@properties/mms/ReturnMLotOrderProperties';
+import SplitMaterialLotProperties from '@properties/mms/SplitMaterialLotProperties';
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -340,7 +341,16 @@ const routerConfig = [
     layout: BlankLayout,
     component: MobileProperties,
   },
-  
+ {
+    path: buildPath('MMS/IssueMaterialOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IssueMaterialOrderProperties,
+  },
+  {
+    path: buildPath('MMS/ReturnMLotOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ReturnMLotOrderProperties,
+  },
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,

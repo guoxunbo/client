@@ -1,13 +1,13 @@
-import IssueOrderRequest from '@api/issue-order-manager/issue-lot-order/IssueOrderRequest';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
+import ReturnLotOrderRequest from '@api/return-material-manager/ReturnLotOrderRequest';
 import { i18NCode } from '@const/i18n';
 import I18NUtils from '@utils/I18NUtils';
 import NoticeUtils from '@utils/NoticeUtils';
 import { Button, Tag } from 'antd';
 
-export default class IssueLotOrderScanTable extends EntityScanViewTable {
+export default class ReturnMLotOrderScanTable extends EntityScanViewTable {
 
-    static displayName = 'IssueLotOrderScanTable';
+    static displayName = 'ReturnMLotOrderScanTable';
 
     getRowClassName = (record, index) => {
         if (record.rowClass) {
@@ -27,7 +27,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
         let buttons = [];
         buttons.push(this.createScannedNumber());
         buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createIssueLotButton());
+        buttons.push(this.createReturnLotButton());
         return buttons;
     }
 
@@ -45,6 +45,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
                 }
             })
         }
+       
         return scanned ;
     }
 
@@ -53,33 +54,20 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
   
 
-    createIssueLotButton = () => {
-        return <Button key="receive" type="primary" className="table-button" icon="file-excel" onClick={this.IssueLot}>
-                        {I18NUtils.getClientMessage(i18NCode.Issue)}
+    createReturnLotButton = () => {
+        return <Button key="receive" type="primary" className="table-button" icon="file-excel" onClick={this.ReturnMLot}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnReturnMLot)}
                     </Button>
     }
 
-    IssueLot = () => {
+    ReturnMLot = () => {
         let self = this;
         let materialLots = this.getScanned();
-        let flag = false;
+        let doc = this.props.orderTable.getSingleSelectedRow();
         if (materialLots.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-
-        materialLots.forEach(materialLot => {
-            if(materialLot.status != "Wait"){
-                flag = true;
-                NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.PleaseStockOut) +":"+ materialLot.materialLotId);
-                return;
-            }
-        })
-        if(flag){
-            return ;
-        }
-        self.setState({loading: true});
-        let doc = this.props.orderTable.getSingleSelectedRow();
         let requestObject = {
             materialLots: materialLots,
             documentId:  doc.name,
@@ -89,12 +77,11 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
                         loading: false
                     });
                     self.props.resetData();
-                    self.props.onSearch();
                 }
                 NoticeUtils.showSuccess();
             }
         }
-        IssueOrderRequest.sendIssueLotRequest(requestObject);
+        ReturnLotOrderRequest.sendReturnLotRequest(requestObject);
     }
      /**
      * 接收数据不具备可删除等操作

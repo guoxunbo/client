@@ -59,10 +59,13 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
                     materialLotList: data,
                     deleteNote: deleteNote,
                     success: function(responseBody) {
-                        self.setState({
-                            data: [],
-                            loading: false
-                        }); 
+                        self.props.propertiesForm.resetFormFileds();
+                        self.input.setState({
+                            value : [],
+                        })
+                        if (self.props.resetData) {
+                            self.props.resetData();
+                        };
                         NoticeUtils.showSuccess();
                     }
                 }

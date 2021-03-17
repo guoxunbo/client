@@ -36,6 +36,7 @@ export default class IncomingMaterialReceiveProperties extends EntityProperties{
             table: responseBody.table,
             loading: false
           }); 
+          self.form.handleSearch();
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);

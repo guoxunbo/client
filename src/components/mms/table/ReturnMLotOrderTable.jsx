@@ -1,12 +1,9 @@
-import IssueOrderRequest from '@api/issue-order-manager/issue-lot-order/IssueOrderRequest';
+import ReturnLotOrderRequest from '@api/return-material-manager/ReturnLotOrderRequest';
 import EntityListTable from '@components/framework/table/EntityListTable';
 
-/**
- * 来料单显示
- */
-export default class IssueLotOrderTable extends EntityListTable {
+export default class ReturnMLotOrderTable extends EntityListTable {
 
-    static displayName = 'IssueLotOrderTable';
+    static displayName = 'ReturnMLotOrderTable';
 
     createButtonGroup = () => {
       
@@ -42,18 +39,18 @@ export default class IssueLotOrderTable extends EntityListTable {
                 let mLots = responseBody.materialLotList;
                 if(mLots){
                     for(let i=0; i< mLots.length; i++){
-                        if(mLots[i].status == 'Wait' || mLots[i].status == 'In'){
-                            showData.unshift(mLots[i]);
-                        }else{
+                        if(mLots[i].status != 'Return'){
                             mLots[i].rowClass = true;
                             showData.push(mLots[i]);
+                        }else{
+                            showData.unshift(mLots[i]);
                         }
                     }
                 }
-                self.props.issueLotScanTable.setState({tableData: showData})
+                self.props.orderScanTable.setState({tableData: showData})
             }
         }
-        IssueOrderRequest.sendGetIssueLotInfoRequest(object);
+        ReturnLotOrderRequest.sendGetReturnLotInfoRequest(object);
     }
 
     /**

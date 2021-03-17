@@ -4,11 +4,18 @@ import { i18NCode } from '@const/i18n';
 import IncomingMaterialReceiveRequest from '@api/Incoming-Material-Manager/Incoming-Material-Receive-Manager/IncomingMaterialReceiveRequest';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
 import NoticeUtils from '@utils/NoticeUtils';
+import IconUtils from '@utils/IconUtils';
+import BarCodeDialog,{ CodeType } from '@components/framework/dialog/BarCodeDialog';
 
 export default class IncomingMaterialReceiveScanTable extends EntityScanViewTable {
 
     static displayName = 'IncomingMaterialReceiveScanTable';
 
+    constructor(props) {
+        super(props);
+        this.state = {...this.state, ...{showCodeType: "", okText: "", codeValue: ""}};
+    }
+    
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createScannedNumber());
@@ -77,6 +84,7 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
                     });
                     self.props.resetData();
                     self.props.onSearch();
+                    
                 }
                 NoticeUtils.showSuccess();
             }
@@ -84,8 +92,48 @@ export default class IncomingMaterialReceiveScanTable extends EntityScanViewTabl
         IncomingMaterialReceiveRequest.sendReceiveRequest(requestObject);
     }
 
-    buildOperationColumn = () => {
+    // buildOperationColumn = () => {
+        
+    // }
 
+    buildOperation = (record) => {
+        let operations = [];
+        operations.push(this.buildBarCodeButton(record));
+        return operations;
+    }
+
+    buildBarCodeButton = (record) => {
+        return <Button key="barcode" style={{marginRight:'1px'}} onClick={() => this.handleShowBarCode(record)} size="small" href="javascript:;">
+                     {IconUtils.buildIcon("icon-barcode")}
+                </Button>;
+    }
+
+    handleShowBarCode = (record) => {
+        this.setState({
+            barCodeFormVisible: true,
+            codeValue: record.materialLotId,
+            okText: I18NUtils.getClientMessage(i18NCode.BtnPrint),
+            showCodeType: CodeType.BarCode,
+        })
+    }
+
+    createForm = () => {
+        let children = [];
+        children.push(<BarCodeDialog width={300} type={this.state.showCodeType} key={BarCodeDialog.displayName} ref={this.formRef} value={this.state.codeValue} visible={this.state.barCodeFormVisible} 
+                                                            okText={this.state.okText} onOk={this.handlePrintOk} onCancel={this.handleCancelPrint} />);                                   
+        return children;
+    }
+
+    handlePrintOk = () => {
+        this.setState({
+            barCodeFormVisible: false
+        })
+    }
+
+    handleCancelPrint = () => {
+        this.setState({
+            barCodeFormVisible: false
+        })
     }
 }
 const styles = {

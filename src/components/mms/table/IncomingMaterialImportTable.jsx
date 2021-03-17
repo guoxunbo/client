@@ -6,6 +6,7 @@ import EventUtils from '@api/utils/EventUtils';
 import Notification from '@api/utils/NoticeUtils';
 import IncomingMaterialImportRequest from '@api/Incoming-Material-Manager/IncomingMaterialImportRequest';
 import { i18NCode } from '@api/const/i18n';
+import NoticeUtils from '@api/utils/NoticeUtils';
 
 export default class IncomingMaterialImportTable extends EntityScanViewTable {
 
@@ -80,16 +81,11 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         let requestObject = {
             dataList: data,
             success: function(responseBody) {
-                let importCode = responseBody.importCode;
                 self.setState({
                     data: [],
                     loading: false
                 });
-                let message =  I18NUtils.getClientMessage(i18NCode.OperationSucceed);
-                if(importCode != null || importCode != undefined){
-                    message = message + `:${importCode}`;
-                }
-                Notification.showNotice(I18NUtils.getClientMessage(message));
+                NoticeUtils.showSuccess();
             }
         }
         IncomingMaterialImportRequest.sendImportRequest(requestObject);

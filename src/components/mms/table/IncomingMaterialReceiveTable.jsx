@@ -46,12 +46,19 @@ export default class IncomingMaterialReceiveTable extends EntityListTable {
                 let mLots = responseBody.materialLotList;
                 if(mLots){
                     for(let i=0; i< mLots.length; i++){
-                        if(mLots[i].status == 'Create' && mLots[i].statusCategory == "Create"){
-                            showData.unshift(mLots[i]);
-                        }else{
+                        // if(mLots[i].status == 'Receive' && mLots[i].statusCategory == "IQC"){
+                            
+                        // }else{
+                            
+                            
+                        // }
+                        if(mLots[i].status != 'Create'){
                             mLots[i].rowClass = true;
                             showData.push(mLots[i]);
+                        }else{
+                            showData.unshift(mLots[i]);
                         }
+                        
                     }
                 }
                 self.props.materialOrderScanProperties.setState({tableData: showData})

@@ -110,7 +110,17 @@ const i18NCode = {
     SplitQty: "SplitQty",
     MaterialLotId: "MaterialLotId",
     PleaseInputQty: "PleaseInputTrueQty",
-
+    PleaseStockOut: "PleaseStockOut",
+    pleaseInputReleaseReason: "pleaseInputReleaseReason",
+    BtnApprove: "Approve",
+    BtnShip: "Ship",
+    SelectReservedRule: "SelectOneReservedRule",
+    ReservedRule: "ReservedRule",
+    WaitReleaseMLotQty : "WaitReleaseMLotQty",
+    BtnSendmail : "BtnSendmail",
+    BtnWeigth: 'BtnWeigth',
+    GrossWeightNotNull: 'GrossWeightNotNull',
+    
 }
 
 const i18Messages = {
@@ -639,6 +649,51 @@ const i18Messages = {
         Chinese: "请输入正确的数量",
         English: "Please enter the correct amount",
         Res: "" 
+    },
+    PleaseStockOut:{
+        Chinese: "请出库",
+        English: "Please Stock Out",
+        Res: "" 
+    },
+    Approve:{
+        Chinese: "审核",
+        English: "Approve",
+        Res: "" 
+    },
+    Ship:{
+        Chinese: "发货",
+        English: "Ship",
+        Res: "" 
+    },
+    SelectOneReservedRule: {
+        Chinese: "请选择一个备货规则",
+        English: "Please select one Reserved Rule",
+        Res: ""
+    },
+    ReservedRule: {
+        Chinese: "备货规则",
+        English: "Reserved Rule",
+        Res: ""
+    },
+    WaitReleaseMLotQty:{
+        Chinese: "待释放数量",
+        English: "Wait Release MLot Qty",
+        Res: ""
+    },
+    BtnSendmail:{
+        Chinese: "发送邮件",
+        English: "Sendmail",
+        Res: ""
+    },
+    BtnWeigth:{
+        Chinese: "称重",
+        English: "Weigth",
+        Res: ""
+    },
+    GrossWeightNotNull:{
+        Chinese: "毛重不能为空",
+        English: "GrossWeight Not Null",
+        Res: ""
     }
     
 }

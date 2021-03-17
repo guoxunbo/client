@@ -48,6 +48,7 @@ export default class MaterialLotInvManagerRequestBody {
         materialLotAction.setFromStorageRrn(transferInvObject.storageRrn);
         materialLotAction.setTargetWarehouseRrn(transferInvObject.targetWarehouseRrn);
         materialLotAction.setTargetStorageRrn(transferInvObject.targetStorageRrn);
+        materialLotAction.setTargetStorageId(transferInvObject.targetStorageId);
         materialLotAction.setTransQty(transferInvObject.stockQty);
         return new MaterialLotInvManagerRequestBody(ActionType.Transfer, materialLot, materialLotAction);
     }

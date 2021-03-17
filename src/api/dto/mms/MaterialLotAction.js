@@ -30,6 +30,10 @@ export default class MaterialLotAction {
         this.targetStorageRrn = targetStorageRrn;
     }
 
+    setTargetStorageId(targetStorageId){
+        this.targetStorageId = targetStorageId;
+    }
+
     setFromWarehouseRrn(fromWarehouseRrn) {
         this.fromWarehouseRrn = fromWarehouseRrn;
     }

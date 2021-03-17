@@ -23,28 +23,25 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
     queryData = (whereClause) => {
         const self = this;
         let mLots= this.state.tableData; 
-        let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+        let queryMLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let queryQty = self.form.props.form.getFieldValue(self.form.state.queryFields[1].name);
         if(queryQty == undefined || queryQty == ''){
             this.form.state.queryFields[1].node.focus();
             this.setState({
               loading : false,
             })
-            return ;
+            return;
         }
         let flag = false;
         let materialLot ;
         if(mLots){
           mLots.forEach(mLot => {
-            if(queryMatlotId === mLot.materialLotId && queryQty == mLot.currentQty){
-                flag = true ;
+            if(queryMLotId === mLot.materialLotId){
+                mLot.currentQty = queryQty;
                 materialLot = mLot;
                 mLot.scaned = true;
               }
           });
-          if(!flag){
-            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.InformationInconsistency));
-          }
           if(materialLot){
             if(materialLot.rowClass){
               materialLot.scaned = false;

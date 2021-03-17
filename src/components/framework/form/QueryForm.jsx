@@ -165,7 +165,9 @@ class QueryForm extends React.Component {
     }
 
     handleSearch = e => {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
         var self = this;
         this.props.form.validateFields((err, values) => {
             if (err) {
