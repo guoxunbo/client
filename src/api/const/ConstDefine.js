@@ -97,8 +97,9 @@ const UrlConstant = {
     MateiralLotIqcUrl: ModuleUrlConstant.MMS + "materialLotIQC",
     MMSIssueMLotByDocLineUrl: ModuleUrlConstant.MMS + "issueMLotByDocLine",
     MMSReturnMLotByDocUrl: ModuleUrlConstant.MMS + "returnMLotByDoc",
+    MMSSplitMateraiLotUrl: ModuleUrlConstant.MMS + "splitMaterialLot",
+    MateiralLotOqcUrl: ModuleUrlConstant.MMS + "materialLotOQC",
     MMSDeliveryOrderSavetUrl: ModuleUrlConstant.MMS + "createDeliveryOrder",
-    MMSSplitMateraiLotUrl: ModuleUrlConstant.MMS + "splitMateraiLot",
     
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
@@ -119,12 +120,11 @@ const UrlConstant = {
     VCIssueMLotByDocLineUrl: ModuleUrlConstant.VC + "issueMLotByDocLine",
     VCIssueMLotByDocUrl: ModuleUrlConstant.VC + "issueMLotByDoc",
     VCReturnMLotByDocUrl: ModuleUrlConstant.VC + "returnMLotByDoc",
-    VcDeliveryOrderImportUrl: ModuleUrlConstant.VC + "deliveryOrderImport",
-
 };
 
 const SystemRefListName = {
-    Language: "Language"
+    Language: "Language",
+    ReservedRule: "ReservedRule"
 };
 
 const RefTableName = {

@@ -51,6 +51,8 @@ import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
 import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperties';
+import MaterialLotIQcManagerProperties from '@pages/Properties/mms/MaterialLotIQcManagerProperties';
+import MaterialLotOQcManagerProperties from '@pages/Properties/mms/MaterialLotOQcManagerProperties';
 import MobileHome from '@pages/Mobile/MobileHome';
 import MobileProperties from '@pages/Properties/framework/MobileProperties'
 //vc
@@ -219,7 +221,17 @@ const routerConfig = [
   {
     path: buildPath('MQC/MLotQC'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: MaterialLotQcProperties,
+    component: MaterialLotIQcManagerProperties,
+  },
+  {
+    path: buildPath('MQC/OqcManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  {
+    path: buildPath('MQC/MLotOQC'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotOQcManagerProperties,
   },
   //MES成品接收
   {
@@ -351,6 +363,9 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: ReturnMLotOrderProperties,
   },
+  {
+    path: buildPath('MMS/MaterialLotSplit'),
+    layout: HeaderAsideFooterResponsiveLayout,
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,

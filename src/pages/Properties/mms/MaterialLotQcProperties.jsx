@@ -50,9 +50,17 @@ export default class MaterialLotQcProperties extends EntityViewProperties{
     refresh = (data) => {
         this.setState({
             formObject: data,
-            formVisible: false
+            formVisible: false,
         });
+        //刷新上表数据
+        this.onSearch();
         NoticeUtils.showSuccess();
+    }
+
+    onSearch = () =>{
+        if(this.props.onSearch){
+            this.props.onSearch();
+        }
     }
 
     createRemarkInput = () => {
@@ -63,6 +71,9 @@ export default class MaterialLotQcProperties extends EntityViewProperties{
     
     loadDataInComponentDidMount = () => {
         let materialLotQcDialogTableName = this.state.parameters.parameter1;
+        if(this.props.materialLotQcDialogTableName){
+            materialLotQcDialogTableName = this.props.materialLotQcDialogTableName;
+        }
         let self = this;
         let requestObject = {
             name: materialLotQcDialogTableName,
@@ -105,8 +116,6 @@ export default class MaterialLotQcProperties extends EntityViewProperties{
     }
 
 }
-
-
 const styles = {
     input: {
         width: 300,
