@@ -179,6 +179,7 @@ const i18NCode = {
     ScrapReason: "ScrapReason",
     CheckSubCodeFlag: "CheckSubCodeFlag",
     BtnMergeDocLine: "MergeDocLine",
+    TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
 }
 
 const i18Messages = {
@@ -1060,6 +1061,11 @@ const i18Messages = {
     SelectAtLeastTwoRow: {
         Chinese: "请至少选择两笔数据！",
         English: "Select At Least Two Row!",
+        Res: "" 
+    },
+    TheLocationAndWarehouseIsNotSame: {
+        Chinese: "保税属性和仓库不一致，请确认是否导入！",
+        English: "Location And WarehousId are not same!",
         Res: "" 
     }
 }
