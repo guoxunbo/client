@@ -1,8 +1,8 @@
 
 const ServerAddress = {
-    NewbiestUrl : "http://127.0.0.1:8080",
+    // NewbiestUrl : "http://127.0.0.1:8080",
     // NewbiestUrl : "http://172.16.15.188:8080",
-    // NewbiestUrl : "http://10.181.160.18:8080",
+    NewbiestUrl : "http://10.181.160.18:8080",
     // NewbiestUrl : "http://10.181.160.31:10010",
     Envirment: "TEST"
 }
@@ -111,6 +111,7 @@ const UrlConstant = {
     GCRmaMaterialLotManagerUrl: ModuleUrlConstant.GC + "RmaMaterialLotManager",
     GCGetPrintCOBboxParameterUrl: ModuleUrlConstant.GC + "getPrintCOBboxParameter",
     GCTempCpDataImportUrl: ModuleUrlConstant.GC + "tempCpDataImport",
+    GCErpDocLineMergeManageUrl: ModuleUrlConstant.GC + "erpDocLineMerge",
 };
 
 const SystemRefListName = {

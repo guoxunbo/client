@@ -46,11 +46,22 @@ export default class WLTFinishGoodScanProperties extends EntityScanProperties{
               }
             });
             tableData = [];
+            let scanSeq = 0;
+            if(trueData.length > 0){
+              let cstIdList = [];
+              trueData.forEach(data => {
+                if (cstIdList.indexOf(data.cstId) == -1) {
+                    cstIdList.push(data.cstId);
+                    scanSeq = scanSeq + 1;
+                }
+            });
+            }
             queryDatas.forEach(data => {
               if (showData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                 data.errorFlag = true;
               }
               if (trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                data.scanSeq = scanSeq + 1;
                 trueData.unshift(data);
               }
             });

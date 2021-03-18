@@ -125,8 +125,8 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
                         self.props.onSearch();
                         self.props.resetData();
                     }
+                    let url = PrintServiceUrl.WltLotId;
                     responseBody.parameterMapList.forEach((parameter) => {
-                        let url = PrintServiceUrl.WltLotId;
                         PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, printCount);
                     });
                     MessageUtils.showOperationSuccess();
