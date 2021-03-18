@@ -215,11 +215,14 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         if(importType == "COB（-4成品）"){
             importType = "GCCOBFinishProduct";
         }
-        if(warehouseId == "ZJ_STOCK"){
+        if(warehouseId == "ZJ_STOCK" || warehouseId == "浙江仓库"){
             warehouseId = 8143;
-        } else if(warehouseId == "HK_STOCK"){
+        } else if(warehouseId == "SH_STOCK" || warehouseId == "上海仓库"){
+            warehouseId = 8142;
+        } else if(warehouseId == "HK_STOCK" || warehouseId == "香港仓库"){
             warehouseId = 8150;
         }
+        
         if(warehouseId == 8142){
             data.forEach(materialLot =>{
                 materialLot.reserved13 = warehouseId;

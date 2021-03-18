@@ -98,6 +98,7 @@ import GcRawMaterialIssueOrderProperties from './pages/Properties/components/GcR
 import GcRawMaterialStockInProperties from './pages/Properties/components/GcRawMaterialStockInProperties';
 import GCRawMaterialScrapProperties from './pages/Properties/components/GCRawMaterialScrapProperties';
 import GCUpdateMLotInfoProperties from './pages/Properties/components/GCUpdateMLotInfoProperties';
+import GcErpDocLineMergeProperties from './pages/Properties/components/GcErpDocLineMergeProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -401,6 +402,12 @@ const routerConfig = [
     path: buildPath('Wafer/WaferUnStockOutTagManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWaferUnStockOutTaggingProperties,
+  },
+  //ERP单据合并
+  {
+    path: buildPath('GC/GCErpDocLineMergeManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcErpDocLineMergeProperties,
   },
   //GC产品型号二级代码设定
   {
