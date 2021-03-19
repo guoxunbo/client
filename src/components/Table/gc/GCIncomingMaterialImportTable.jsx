@@ -1,5 +1,5 @@
 import EntityListTable from "../EntityListTable";
-import { Button, Icon, Switch, Tag } from 'antd';
+import { Button, Icon, Modal, Switch, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Upload } from 'antd';
@@ -192,9 +192,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
 
     importData =() => {
-        const {data,table} = this.state;
-        let checkFourCodeFlag = this.state.value;
-        let self = this;
+        debugger;
+        const {data} = this.state;
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
@@ -205,16 +204,13 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             return;
         }
         let queryFields = this.props.propsFrom.state.queryFields;
-        let importType = this.props.propsFrom.props.form.getFieldValue(queryFields[0].name);
         let warehouseId = this.props.propsFrom.props.form.getFieldValue(queryFields[1].name);
         if(warehouseId == "" || warehouseId == undefined){
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseWarehouseIdPlease));
             return;
         }
 
-        if(importType == "COB（-4成品）"){
-            importType = "GCCOBFinishProduct";
-        }
+
         if(warehouseId == "ZJ_STOCK" || warehouseId == "浙江仓库"){
             warehouseId = 8143;
         } else if(warehouseId == "SH_STOCK" || warehouseId == "上海仓库"){
@@ -222,7 +218,37 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         } else if(warehouseId == "HK_STOCK" || warehouseId == "香港仓库"){
             warehouseId = 8150;
         }
-        
+
+        let location = data[0].reserved6;
+        if((location == "ZSH" && warehouseId == "8142") || (location == "SH" && warehouseId == "8143")){
+            Modal.confirm({
+                title: '操作提示',
+                content: I18NUtils.getClientMessage(i18NCode.TheLocationAndWarehouseIsNotSame),
+                okText: '确认',
+                cancelText: '取消',
+                onOk:() => {
+                    this.doSave(warehouseId);
+                },
+                onCancel:() => {
+                    return;
+                }
+            });
+        } else {
+            this.doSave(warehouseId);
+        }
+    }
+
+    doSave =(warehouseId) =>{
+        let self = this;
+        const {data,table} = this.state;
+        let queryFields = this.props.propsFrom.state.queryFields;
+        let checkFourCodeFlag = this.state.value;
+        let importType = this.props.propsFrom.props.form.getFieldValue(queryFields[0].name);
+
+        if(importType == "COB（-4成品）"){
+            importType = "GCCOBFinishProduct";
+        }
+
         if(warehouseId == 8142){
             data.forEach(materialLot =>{
                 materialLot.reserved13 = warehouseId;
