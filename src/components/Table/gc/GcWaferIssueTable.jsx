@@ -9,6 +9,9 @@ import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
 import WaferManagerRequest from '../../../api/gc/wafer-manager-manager/WaferManagerRequest';
 import Icon from '@icedesign/icon';
+import { PrintServiceUrl} from '../../../api/gc/GcConstDefine';
+import PrintUtils from '../../../api/utils/PrintUtils';
+
 
 /**
  * 晶圆发料
@@ -170,6 +173,10 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
                     self.props.resetData();
                     self.props.onSearch();
                 }
+                let url = PrintServiceUrl.RwLotIdIssue;
+                responseBody.parameterMapList.forEach((parameter) => {
+                    PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 2);
+                });
                 MessageUtils.showOperationSuccess();
             }
         }
