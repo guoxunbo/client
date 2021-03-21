@@ -8,6 +8,8 @@ const PrintServiceUrl = {
     WltLotId :  "http://127.0.0.1:10017/Integration/wms-print-WltOrCpBox/Execute",
     COBBox : "http://127.0.0.1:10018/Integration/wms-print-COBBox/Execute",
     RmaMLotId :  "http://127.0.0.1:10019/Integration/wms-print-RmaBox/Execute",
+    RwLotIdIssue :  "http://127.0.0.1:10020/Integration/wms-print-RwIssueLot/Execute",
+
 }
 const PrintBboxCount = 2;
 export {PrintServiceUrl, PrintBboxCount}

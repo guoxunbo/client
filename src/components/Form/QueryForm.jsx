@@ -13,7 +13,7 @@ import { i18NCode } from '../../api/const/i18n';
 /**
  * 不展开的时候最大的查询数目
  */
-const unExpendMaxSize = 6;
+const unExpendMaxSize = 9;
 
 class QueryForm extends React.Component {
     static displayName = 'QueryForm';
