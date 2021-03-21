@@ -5,6 +5,8 @@ import uuid from 'react-native-uuid';
 import { Notification } from "../../../components/notice/Notice";
 import I18NUtils from "../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../api/const/i18n";
+import CheckInventoryManagerRequest from "../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest";
+import MaterialLot from "../../../api/dto/mms/MaterialLot";
 
 /**
  * GC 盘点
@@ -12,47 +14,46 @@ import { i18NCode } from "../../../api/const/i18n";
  */
 export default class GcCheckProperties extends EntityScanProperties{
 
-    static displayName = 'GcOrderProperties';
+    static displayName = 'GcCheckProperties';
     
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
+        let data = "";
+        let queryFields = this.form.state.queryFields;
+        if (queryFields.length === 1) {
+            data = this.form.props.form.getFieldValue(queryFields[0].name)
+        }
         let requestObject = {
+          queryLotId: data,
           tableRrn: this.state.tableRrn,
-          whereClause: whereClause,
           success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
-            if (queryDatas && queryDatas.length > 0) {
-              queryDatas.forEach(data => {
-                if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  tableData.unshift(data);
-                } else {
-                  self.showDataAlreadyExists();
-                }
-              });
-              self.setState({ 
-                tableData: tableData,
-                loading: false
-              });
-              self.form.resetFormFileds();
+            let materialLot = responseBody.materialLot;
+            if(materialLot && materialLot.materialLotId != null && materialLot.materialLotId != ""){
+              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                tableData.unshift(materialLot);
+              } else {
+                self.showDataAlreadyExists();
+              }
             } else {
-                let record = self.form.props.form.getFieldsValue();
-                record[self.state.rowKey] = uuid.v1();
-                record.errorFlag = true;
-                if (tableData.filter((d) => d.materialLotId === record.materialLotId).length === 0) {
-                    tableData.unshift(record);
-                } else {
-                  self.showDataAlreadyExists();
-                }
-                self.setState({ 
-                    tableData: tableData,
-                    loading: false
-                });
-                self.form.resetFormFileds();
+              let errorData = new MaterialLot();
+              errorData[rowKey] = data;
+              errorData.setMaterialLotId(data);
+              errorData.errorFlag = true;
+              if (tableData.filter(d => d[rowKey] === errorData[rowKey]).length === 0) {
+                tableData.unshift(errorData);
+              }else {
+                self.showDataAlreadyExists();
+              }
             }
+            self.setState({ 
+              tableData: tableData,
+              loading: false
+            });
+            self.form.resetFormFileds();
           }
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        CheckInventoryManagerRequest.queryCheckMaterialLot(requestObject);
     }
 
     showDataAlreadyExists = () => {
