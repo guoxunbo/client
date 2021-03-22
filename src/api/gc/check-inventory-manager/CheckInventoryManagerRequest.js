@@ -17,5 +17,15 @@ export default class CheckInventoryManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static queryCheckMaterialLot = (object) => {
+        let requestBody = CheckInventoryManagerRequestBody.queryCheckMaterialLot(object.queryLotId, object.tableRrn);
+        let requestHeader = new CheckInventoryManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCCheckInventoryUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 
