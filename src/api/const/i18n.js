@@ -180,6 +180,7 @@ const i18NCode = {
     CheckSubCodeFlag: "CheckSubCodeFlag",
     BtnMergeDocLine: "MergeDocLine",
     TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
+    OrderTime: "OrderTime",
 }
 
 const i18Messages = {
@@ -1066,6 +1067,11 @@ const i18Messages = {
     TheLocationAndWarehouseIsNotSame: {
         Chinese: "保税属性和仓库不一致，请确认是否导入！",
         English: "Location And WarehousId are not same!",
+        Res: "" 
+    },
+    OrderTime: {
+        Chinese: "下单时间",
+        English: "Order Time",
         Res: "" 
     }
 }
