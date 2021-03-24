@@ -30,11 +30,12 @@ export default class RecordExpressNumberRequestBody {
         return body;
     }
 
-    static buildAutoRecordExpress(materialLots, serviceMode, payMode) {
+    static buildAutoRecordExpress(materialLots, serviceMode, payMode, orderTime) {
         let body = new RecordExpressNumberRequestBody(ActionType.AutoOrder);
         body.materialLots = materialLots;
         body.serviceMode = serviceMode;
         body.payMode = payMode;
+        body.orderTime = orderTime;
         return body;
     }
 

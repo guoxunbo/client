@@ -112,6 +112,7 @@ const UrlConstant = {
     GCGetPrintCOBboxParameterUrl: ModuleUrlConstant.GC + "getPrintCOBboxParameter",
     GCTempCpDataImportUrl: ModuleUrlConstant.GC + "tempCpDataImport",
     GCErpDocLineMergeManageUrl: ModuleUrlConstant.GC + "erpDocLineMerge",
+    GCRwMaterialLotManageUrl: ModuleUrlConstant.GC + "rwMaterialLotManager",
 };
 
 const SystemRefListName = {

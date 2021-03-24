@@ -1,4 +1,4 @@
-import { Button, Input, Row, Col } from 'antd';
+import { Button, Input, Row, Col, DatePicker } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Application } from '../../../api/Application';
@@ -6,12 +6,14 @@ import { Notification } from '../../notice/Notice';
 import RecordExpressNumberRequest from '../../../api/gc/record-express-number/RecordExpressNumberRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import RefListField from '../../Field/RefListField';
-import { SystemRefListName } from '../../../api/const/ConstDefine';
+import { DateFormatType, SystemRefListName } from '../../../api/const/ConstDefine';
 import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
 import PrintUtils from '../../../api/utils/PrintUtils';
 import EntityListCheckTable from '../EntityListCheckTable';
 import FormItem from 'antd/lib/form/FormItem';
+import locale from 'antd/lib/date-picker/locale/zh_CN';
+import moment from 'moment';
 
 
 export default class RecordExpressNumberTable extends EntityListCheckTable {
@@ -67,50 +69,55 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
         return <FormItem>
                   <Row gutter={16}>
                     <Col span={2} >
-                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                            {I18NUtils.getClientMessage(i18NCode.ServiceType)}:
-                        </span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.ServiceType)}:</span>
                     </Col>
-                    <Col span={3}>
+                    <Col span={4}>
                         <RefListField ref={(serviceMode) => { this.serviceMode = serviceMode }} value={"20"} referenceName={SystemRefListName.ExpressServiceMode} />
                     </Col>
                     <Col span={2} >
-                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                            {I18NUtils.getClientMessage(i18NCode.PayType)}:
-                        </span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.PayType)}:</span>
                     </Col>
-                    <Col span={3}>
+                    <Col span={4}>
                         <RefListField ref={(payMode) => { this.payMode = payMode }}  value={"10"} referenceName={SystemRefListName.ExpressPayMode} />
                     </Col>
                     <Col span={2} >
-                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                            {I18NUtils.getClientMessage(i18NCode.ExpressCompany)}:
-                        </span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.ExpressCompany)}:</span>
                     </Col>
                     <Col span={4}>
                         <RefListField ref={(expressCompany) => { this.expressCompany = expressCompany }} referenceName={SystemRefListName.ExpressCompany}/>
                     </Col>
                     <Col span={2} >
-                        <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                            {I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:
-                        </span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:</span>
                     </Col>
                     <Col span={4}>
                         <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
                     </Col>
                 </Row>
+                <Row gutter={16}>
+                    <Col span={2} >
+                        <span>{I18NUtils.getClientMessage(i18NCode.OrderTime)}:</span>
+                    </Col>
+                    <Col span={4}>
+                        <DatePicker ref={(orderTime) => { this.orderTime = orderTime }} locale={locale} showTime format={DateFormatType.DateTime} />
+                    </Col>
+                </Row>
         </FormItem>
-        return  
     }
 
     recordAutoExpress = () => {
         let self = this;
+        let orderTime = this.orderTime.picker.state.value;
+        if(moment.isMoment(orderTime)){
+            orderTime = orderTime.format("YYYY-MM-DD HH:mm");
+        }
+
         let datas = this.getSelectedRows();
         if (datas.length === 0){
             return;
         }
         let serviceMode = this.serviceMode.state.value;
         let payMode = this.payMode.state.value;
+
         self.setState({
             loading: true
         });
@@ -120,6 +127,7 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
             datas : datas,
             serviceMode: serviceMode,
             payMode: payMode,
+            orderTime: orderTime,
             success: function(responseBody) {
                 self.setState({
                     data: [],
