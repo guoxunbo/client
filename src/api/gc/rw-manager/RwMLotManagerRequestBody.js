@@ -24,7 +24,7 @@ export default class RwMLotManagerRequestBody {
      * @param printLabel 仓库
      */
     static buildRwReceivePackedLot(mesPackedLots, printLabel) {
-        let body = new FinishGoodManagerRequestBody(ActionType.RWReceivePackedLot);
+        let body = new RwMLotManagerRequestBody(ActionType.RWReceivePackedLot);
         body.mesPackedLots = mesPackedLots;
         body.printLabel = printLabel;
         return body;
