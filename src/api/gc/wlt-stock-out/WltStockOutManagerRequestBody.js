@@ -25,9 +25,10 @@ export default class WltStockOutManagerRequestBody {
     tableRrn;
     queryLotId;
     documentLine;
+    address;
 
 
-    constructor(actionType, documentLines, materialLotActions, queryMaterialLot, stockTagNote, customerName,stockOutType, poId){
+    constructor(actionType, documentLines, materialLotActions, queryMaterialLot, stockTagNote, customerName,stockOutType, poId, address){
         this.actionType = actionType;
         this.documentLines = documentLines;
         this.materialLotActions = materialLotActions;
@@ -36,6 +37,7 @@ export default class WltStockOutManagerRequestBody {
         this.customerName = customerName;
         this.stockOutType = stockOutType;
         this.poId = poId;
+        this.address = address; 
     }
     
     static buildWltStockOut(documentLines, materialLots, checkSubCode) {
@@ -83,14 +85,15 @@ export default class WltStockOutManagerRequestBody {
         return new WltStockOutManagerRequestBody(actionType.queryTagMlotUnit, undefined, materialLotActions);
     }
 
-    static buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId) {
+    static buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId, address) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
-        return new WltStockOutManagerRequestBody(actionType.StockOutTag, undefined, materialLotActions, undefined, stockTagNote, customerName, stockOutType, poId);
+        let body = new WltStockOutManagerRequestBody(actionType.StockOutTag, undefined, materialLotActions, undefined, stockTagNote, customerName, stockOutType, poId, address);
+        return body;
     }
 
     static buildUnstockOutTagging(materialLots) {

@@ -422,6 +422,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCProductSubcodeSetProperties,
   },
+  {
+    path: buildPath('GC/GCVenderAndAddressManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   //GC产品型号转换
   {
     path: buildPath('GC/GCProductModelConversionManager'),

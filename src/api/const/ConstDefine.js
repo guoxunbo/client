@@ -132,6 +132,7 @@ const RefTableName = {
     POIdList: "POIdList",
     CPPoListByMaterialNameAndVender: "CPPoListByMaterialNameAndVender",
     GCWaferMaterialByName: "GCWaferMaterialByName",
+    AddressByMaterialName: "AddressByMaterialName",
 };
 
 /**
