@@ -1,6 +1,7 @@
 
 const ActionType = {
     GetPrintParameter: "getPrintParameter",
+    RWReceivePackedLot: "RWReceivePackedLot",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -17,6 +18,17 @@ export default class RwMLotManagerRequestBody {
         return new RwMLotManagerRequestBody(ActionType.GetPrintParameter, materialLotList);
     }
 
+    /**
+     * RW完成品接收
+     * @param mesPackedLots 待接收的完成品
+     * @param printLabel 仓库
+     */
+    static buildRwReceivePackedLot(mesPackedLots, printLabel) {
+        let body = new FinishGoodManagerRequestBody(ActionType.RWReceivePackedLot);
+        body.mesPackedLots = mesPackedLots;
+        body.printLabel = printLabel;
+        return body;
+    }
 }
 
 

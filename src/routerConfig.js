@@ -100,6 +100,7 @@ import GCRawMaterialScrapProperties from './pages/Properties/components/GCRawMat
 import GCUpdateMLotInfoProperties from './pages/Properties/components/GCUpdateMLotInfoProperties';
 import GcErpDocLineMergeProperties from './pages/Properties/components/GcErpDocLineMergeProperties';
 import GcRwMLotLabelPrintProperties from './pages/Properties/components/GcRwMLotLabelPrintProperties';
+import GCRwFinishGoodProperties from './pages/Properties/components/GCRwFinishGoodProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -415,6 +416,12 @@ const routerConfig = [
     path: buildPath('GC/GCRwMLotIssueLabelPrint'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRwMLotLabelPrintProperties,
+  },
+  //RW产线接收入库
+  {
+    path: buildPath('GC/GCRWFinishGoodManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwFinishGoodProperties,
   },
   //GC产品型号二级代码设定
   {

@@ -18,6 +18,17 @@ export default class RwMLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendRwFinishReceiveRequest = (object) => {
+        let requestBody = RwMLotManagerRequestBody.buildRwReceivePackedLot(object.mesPackedLots, object.printLabel);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 
 }
 
