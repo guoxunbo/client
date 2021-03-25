@@ -110,7 +110,7 @@ export default class GcCPStockOutTagMLotTable extends EntityListTable {
                         <Col span={4} >
                             <span>{I18NUtils.getClientMessage(i18NCode.StockOutType)}:</span>
                         </Col>
-                        <Col span={8}>
+                        <Col span={6}>
                             <RefListField ref={(stockOutType) => { this.stockOutType = stockOutType }} referenceName={SystemRefListName.StockOutType} />
                         </Col>
                     </Row>
@@ -120,6 +120,14 @@ export default class GcCPStockOutTagMLotTable extends EntityListTable {
                         </Col>
                         <Col span={8}>
                             <SelectPoField materialLots={this.state.data} ref={(poId) => { this.poId = poId }} field = {{refTableName : RefTableName.CPPoListByMaterialNameAndVender, name: "poId"}}/>
+                        </Col>
+                    </Row>
+                    <Row gutter={24}>
+                        <Col span={4} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.VenderAddress)}:</span>
+                        </Col>
+                        <Col span={18}>
+                            <RefTableField ref={(address) => { this.address = address }} field = {{refTableName : RefTableName.AddressByMaterialName, name: "address"}}/>
                         </Col>
                     </Row>
                 </FormItem>

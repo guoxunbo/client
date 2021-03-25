@@ -55,8 +55,8 @@ export default class WltStockOutManagerRequest {
     }
 
     static sendStockOutTagRequest = (object) => {
-        let {materialLots, stockTagNote, customerName, stockOutType, poId} = object;
-        let requestBody = WltStockOutManagerRequestBody.buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId);
+        let {materialLots, stockTagNote, customerName, stockOutType, poId, address} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId, address);
         let requestHeader = new WltStockOutManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
         let requestObject = {

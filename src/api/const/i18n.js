@@ -136,6 +136,7 @@ const i18NCode = {
     ExpressNumberCannotEmpty: "ExpressNumberCannotEmpty",
     CustomerName: "CustomerName",
     StockOutType: "StockOutType",
+    VenderAddress: "VenderAddress",
     CustomerNameCannotEmpty: "CustomerNameCannotEmpty",
     StockOutTypeCannotEmpty: "StockOutTypeCannotEmpty",
     PoIdCannotEmpty: "PoIdCannotEmpty",
@@ -1072,6 +1073,11 @@ const i18Messages = {
     OrderTime: {
         Chinese: "下单时间",
         English: "Order Time",
+        Res: "" 
+    },
+    VenderAddress:{
+        Chinese: "供应商地址",
+        English: "Vender Address",
         Res: "" 
     }
 }
