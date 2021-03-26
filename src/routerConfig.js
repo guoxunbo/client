@@ -104,6 +104,7 @@ import GCRwFinishGoodProperties from './pages/Properties/components/GCRwFinishGo
 import MobileHome from './pages/Mobile/MobileHome';
 import MobileProperties from './pages/Properties/components/mobile/MobileProperties';
 import GCRwPrintLotLabelProperties from './pages/Properties/components/GCRwPrintLotLabelProperties';
+import GCMobileReceiveFGProperties from './pages/Properties/components/gc/wafer-issue/GCMobileReceiveFGProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -804,9 +805,9 @@ const routerConfig = [
   },
 
   {
-    path: buildPath('MMS/Mobile/ReceiveMLot'),
+    path: buildPath('Mobile/MESFinishGoodManager'),
     layout: BlankLayout,
-    component: MobileProperties,
+    component: GCMobileReceiveFGProperties,
   },
 
   {
