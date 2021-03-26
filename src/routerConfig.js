@@ -101,6 +101,7 @@ import GCUpdateMLotInfoProperties from './pages/Properties/components/GCUpdateML
 import GcErpDocLineMergeProperties from './pages/Properties/components/GcErpDocLineMergeProperties';
 import GcRwMLotLabelPrintProperties from './pages/Properties/components/GcRwMLotLabelPrintProperties';
 import GCRwFinishGoodProperties from './pages/Properties/components/GCRwFinishGoodProperties';
+import GCRwPrintLotLabelProperties from './pages/Properties/components/GCRwPrintLotLabelProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -416,6 +417,12 @@ const routerConfig = [
     path: buildPath('GC/GCRwMLotIssueLabelPrint'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRwMLotLabelPrintProperties,
+  },
+  //RW接收Lot标签补打
+  {
+    path: buildPath('GC/GCRwMLotReceiveLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwPrintLotLabelProperties,
   },
   //RW产线接收入库
   {
