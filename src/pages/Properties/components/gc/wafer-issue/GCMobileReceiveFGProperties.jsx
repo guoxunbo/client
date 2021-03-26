@@ -3,6 +3,7 @@ import I18NUtils from "../../../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../../../api/const/i18n";
 import MobileProperties from "../../mobile/MobileProperties";
 import FinishGoodInvManagerRequest from "../../../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest";
+import MessageUtils from "../../../../../api/utils/MessageUtils";
 
 export default class GCMobileReceiveFGProperties extends MobileProperties{
 
@@ -23,11 +24,11 @@ export default class GCMobileReceiveFGProperties extends MobileProperties{
       }
       let materialLots = tableData;
       if (materialLots && materialLots.length > 0) {
-          let self = this;
           let requestObject = {
               mesPackedLots: materialLots,
               success: function(responseBody) {
-                  self.refreshDelete(materialLots);
+                  self.handleReset();
+                  MessageUtils.showOperationSuccess();
               }
           }
           FinishGoodInvManagerRequest.sendReceiveRequest(requestObject);
