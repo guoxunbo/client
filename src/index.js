@@ -9,6 +9,7 @@ import "antd/dist/antd.css";
 import './global.scss';
 import '../src/api/Extend';
 import moment from 'moment';
+import 'antd-mobile/dist/antd-mobile.css';
 import 'moment/locale/zh-cn';
 import { Application } from './api/Application';
 import { ServerAddress } from './api/const/ConstDefine';

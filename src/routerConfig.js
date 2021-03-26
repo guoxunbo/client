@@ -101,6 +101,8 @@ import GCUpdateMLotInfoProperties from './pages/Properties/components/GCUpdateML
 import GcErpDocLineMergeProperties from './pages/Properties/components/GcErpDocLineMergeProperties';
 import GcRwMLotLabelPrintProperties from './pages/Properties/components/GcRwMLotLabelPrintProperties';
 import GCRwFinishGoodProperties from './pages/Properties/components/GCRwFinishGoodProperties';
+import MobileHome from './pages/Mobile/MobileHome';
+import MobileProperties from './pages/Properties/components/mobile/MobileProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -786,6 +788,20 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+
+  //MobileMenu of WMS
+  {
+    path: 'MobileHome',
+    layout: BlankLayout,
+    component: MobileHome,
+  },
+
+  {
+    path: buildPath('MMS/Mobile/ReceiveMLot'),
+    layout: BlankLayout,
+    component: MobileProperties,
+  },
+
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
