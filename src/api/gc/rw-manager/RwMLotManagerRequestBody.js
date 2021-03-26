@@ -2,6 +2,7 @@
 const ActionType = {
     GetPrintParameter: "getPrintParameter",
     RWReceivePackedLot: "RWReceivePackedLot",
+    GetLotPrintLabel: "GetLotPrintLabel",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -29,6 +30,17 @@ export default class RwMLotManagerRequestBody {
         body.printLabel = printLabel;
         return body;
     }
+
+    /**
+     * RW产线接收Lot标签补打
+     * @param materialLot Lot信息
+     */
+    static buildGetRwLotPrintParam(materialLot) {
+        let body = new RwMLotManagerRequestBody(ActionType.GetLotPrintLabel);
+        body.materialLot = materialLot;
+        return body;
+    }
+
 }
 
 

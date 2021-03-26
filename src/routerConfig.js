@@ -103,6 +103,7 @@ import GcRwMLotLabelPrintProperties from './pages/Properties/components/GcRwMLot
 import GCRwFinishGoodProperties from './pages/Properties/components/GCRwFinishGoodProperties';
 import MobileHome from './pages/Mobile/MobileHome';
 import MobileProperties from './pages/Properties/components/mobile/MobileProperties';
+import GCRwPrintLotLabelProperties from './pages/Properties/components/GCRwPrintLotLabelProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -418,6 +419,12 @@ const routerConfig = [
     path: buildPath('GC/GCRwMLotIssueLabelPrint'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRwMLotLabelPrintProperties,
+  },
+  //RW接收Lot标签补打
+  {
+    path: buildPath('GC/GCRwMLotReceiveLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwPrintLotLabelProperties,
   },
   //RW产线接收入库
   {
