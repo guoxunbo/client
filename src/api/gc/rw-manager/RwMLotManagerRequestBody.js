@@ -3,16 +3,19 @@ const ActionType = {
     GetPrintParameter: "getPrintParameter",
     RWReceivePackedLot: "RWReceivePackedLot",
     GetLotPrintLabel: "GetLotPrintLabel",
+    AutoPick: "AutoPick",
 }
 
 export default class RwMLotManagerRequestBody {
 
     actionType;
     materialLotList;
+    pickQty;
 
-    constructor(actionType, materialLotList){
+    constructor(actionType, materialLotList, pickQty){
         this.actionType = actionType;
         this.materialLotList = materialLotList;
+        this.pickQty = pickQty;
     }
 
     static buildGetPrintParam(materialLotList) {
@@ -39,6 +42,15 @@ export default class RwMLotManagerRequestBody {
         let body = new RwMLotManagerRequestBody(ActionType.GetLotPrintLabel);
         body.materialLot = materialLot;
         return body;
+    }
+
+    /**
+     * 自动挑选
+     * @param materialLotList 
+     * @returns 
+     */
+    static buildAutoPickTagMLot(materialLotList, pickQty) {
+        return new RwMLotManagerRequestBody(ActionType.AutoPick, materialLotList, pickQty);
     }
 
 }

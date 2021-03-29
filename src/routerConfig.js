@@ -105,6 +105,7 @@ import MobileHome from './pages/Mobile/MobileHome';
 import MobileProperties from './pages/Properties/components/mobile/MobileProperties';
 import GCRwPrintLotLabelProperties from './pages/Properties/components/GCRwPrintLotLabelProperties';
 import GCMobileReceiveFGProperties from './pages/Properties/components/gc/wafer-issue/GCMobileReceiveFGProperties';
+import GCRwStockOutTagProperties from './pages/Properties/components/GCRwStockOutTagProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -432,6 +433,12 @@ const routerConfig = [
     path: buildPath('GC/GCRWFinishGoodManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwFinishGoodProperties,
+  },
+  //RW产线接收入库
+  {
+    path: buildPath('GC/GCRwStockOutTagManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwStockOutTagProperties,
   },
   //GC产品型号二级代码设定
   {
