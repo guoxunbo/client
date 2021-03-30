@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './UserLogin.scss';
-import {Application, SessionContext} from '../../../../api/Application';
+import {Application, getMobileMode, SessionContext} from '../../../../api/Application';
 import Authority from '../../../../api/dto/ui/Authority';
 import UserLoginForm from '../../../../components/Form/UserLoginForm';
 import I18NUtils from '../../../../api/utils/I18NUtils';
@@ -26,7 +26,11 @@ export default class UserLogin extends Component {
   handleLogined = (responseBody, org, language) => {
     let user = responseBody.user;
     SessionContext.saveSessionContext(user.username, user.description, org, language, Authority.buildMenu(user.authorities, language));
-    this.props.history.push('/Home');
+    if (getMobileMode()) {
+      this.props.history.push('/MobileHome');
+    } else {
+      this.props.history.push('/Home');
+    }
   };
 
   render() {

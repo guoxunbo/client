@@ -1,3 +1,4 @@
+import { getMobileMode } from "../Application";
 import User from "../dto/security/User"
 
 const ActionType = {
@@ -13,15 +14,17 @@ export default class UserManagerRequestBody {
 
     actionType;
     user;
+    mobileFlag;
 
-    constructor(actionType, user){
+    constructor(actionType, user,mobileFlag){
         this.actionType = actionType;
         this.user = user;
+        this.mobileFlag = mobileFlag;
     }
 
     static buildLoginRequestBody(username, password) {
         let user = User.buildLoginUser(username, password);
-        return new UserManagerRequestBody(ActionType.Login, user);
+        return new UserManagerRequestBody(ActionType.Login, user, getMobileMode());
     }
 
     static buildGetAuthorityBody(username) {
