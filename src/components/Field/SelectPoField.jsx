@@ -17,7 +17,6 @@ export default class SelectPoField extends RefTableField {
         if (sender instanceof RefTableField) {
             let refTable = this.refTable;
             if (refTable && refTable.whereClause) {
-                debugger;
                 let whereClause = refTable.whereClause;
                 // 如果包含了parameter则替换
                 if (whereClause.indexOf(":") != -1) {

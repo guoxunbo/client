@@ -7,9 +7,9 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import GcCPStockOutTagMLotTable from './GcCPStockOutTagMLotTable';
 
-export default class CPStockOutTagMLotForm extends EntityForm {
+export default class RWStockOutTagMLotForm extends EntityForm {
 
-    static displayName = 'CPStockOutTagMLotForm';
+    static displayName = 'RWStockOutTagMLotForm';
 
     constructor(props) {
         super(props);
@@ -70,6 +70,6 @@ export default class CPStockOutTagMLotForm extends EntityForm {
     }
 }
 
-CPStockOutTagMLotForm.propTypes={
+RWStockOutTagMLotForm.propTypes={
 }
 

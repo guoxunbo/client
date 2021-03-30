@@ -65,6 +65,7 @@ const i18NCode = {
     BtnTagging: "Tagging",
     BtnUnTagging: "UnTagging",
     BtnIssue: "Issue",
+    BtnAutoPick: "AutoPick",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -136,6 +137,7 @@ const i18NCode = {
     ExpressNumberCannotEmpty: "ExpressNumberCannotEmpty",
     CustomerName: "CustomerName",
     StockOutType: "StockOutType",
+    VenderAddress: "VenderAddress",
     CustomerNameCannotEmpty: "CustomerNameCannotEmpty",
     StockOutTypeCannotEmpty: "StockOutTypeCannotEmpty",
     PoIdCannotEmpty: "PoIdCannotEmpty",
@@ -181,6 +183,9 @@ const i18NCode = {
     BtnMergeDocLine: "MergeDocLine",
     TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
     OrderTime: "OrderTime",
+    SelectQty: "SelectQty",
+    NeedQty: "NeedQty",
+    EnterTheRequiredQtyPlease: "EnterTheRequiredQtyPlease",
 }
 
 const i18Messages = {
@@ -1073,6 +1078,31 @@ const i18Messages = {
         Chinese: "下单时间",
         English: "Order Time",
         Res: "" 
+    },
+    VenderAddress:{
+        Chinese: "供应商地址",
+        English: "Vender Address",
+        Res: "" 
+    },
+    AutoPick: {
+        Chinese: "自动挑选",
+        English: "Auto Pick",
+        Res: "" 
+    },
+    SelectQty: {
+        Chinese: "所选颗数",
+        English: "Select Qty",
+        Res: "" 
+    },
+    NeedQty: {
+        Chinese: "所需数量",
+        English: "Need Qty",
+        Res: ""    
+    },
+    EnterTheRequiredQtyPlease: {
+        Chinese: "请输入所需数量!",
+        English: "Enter the requiredQty Please",
+        Res: ""    
     }
 }
 

@@ -100,6 +100,12 @@ import GCRawMaterialScrapProperties from './pages/Properties/components/GCRawMat
 import GCUpdateMLotInfoProperties from './pages/Properties/components/GCUpdateMLotInfoProperties';
 import GcErpDocLineMergeProperties from './pages/Properties/components/GcErpDocLineMergeProperties';
 import GcRwMLotLabelPrintProperties from './pages/Properties/components/GcRwMLotLabelPrintProperties';
+import GCRwFinishGoodProperties from './pages/Properties/components/GCRwFinishGoodProperties';
+import MobileHome from './pages/Mobile/MobileHome';
+import MobileProperties from './pages/Properties/components/mobile/MobileProperties';
+import GCRwPrintLotLabelProperties from './pages/Properties/components/GCRwPrintLotLabelProperties';
+import GCMobileReceiveFGProperties from './pages/Properties/components/gc/wafer-issue/GCMobileReceiveFGProperties';
+import GCRwStockOutTagProperties from './pages/Properties/components/GCRwStockOutTagProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -416,11 +422,34 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRwMLotLabelPrintProperties,
   },
+  //RW接收Lot标签补打
+  {
+    path: buildPath('GC/GCRwMLotReceiveLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwPrintLotLabelProperties,
+  },
+  //RW产线接收入库
+  {
+    path: buildPath('GC/GCRWFinishGoodManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwFinishGoodProperties,
+  },
+  //RW产线接收入库
+  {
+    path: buildPath('GC/GCRwStockOutTagManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwStockOutTagProperties,
+  },
   //GC产品型号二级代码设定
   {
     path: buildPath('GC/GCProductSubcodeSetManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCProductSubcodeSetProperties,
+  },
+  {
+    path: buildPath('GC/GCVenderAndAddressManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   //GC产品型号转换
   {
@@ -774,6 +803,20 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+
+  //MobileMenu of WMS
+  {
+    path: 'MobileHome',
+    layout: BlankLayout,
+    component: MobileHome,
+  },
+
+  {
+    path: buildPath('Mobile/MESFinishGoodManager'),
+    layout: BlankLayout,
+    component: GCMobileReceiveFGProperties,
+  },
+
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
