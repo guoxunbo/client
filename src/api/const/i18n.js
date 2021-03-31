@@ -186,6 +186,9 @@ const i18NCode = {
     SelectQty: "SelectQty",
     NeedQty: "NeedQty",
     EnterTheRequiredQtyPlease: "EnterTheRequiredQtyPlease",
+    Abbreviation: "Abbreviation",
+    CustomerIdentificaion: "CustomerIdentificaion",
+    CustomerIdentificaionCannotEmpty: "CustomerIdentificaionCannotEmpty",
 }
 
 const i18Messages = {
@@ -1102,6 +1105,21 @@ const i18Messages = {
     EnterTheRequiredQtyPlease: {
         Chinese: "请输入所需数量!",
         English: "Enter the requiredQty Please",
+        Res: ""    
+    },
+    Abbreviation: {
+        Chinese: "简称",
+        English: "Abbreviation",
+        Res: ""    
+    },
+    CustomerIdentificaion: {
+        Chinese: "客户标识",
+        English: "Customer Identificaion",
+        Res: ""    
+    },
+    CustomerIdentificaionCannotEmpty: {
+        Chinese: "客户标识不能为空!",
+        English: "Customer Identificaion Cannot Empty!",
         Res: ""    
     }
 }

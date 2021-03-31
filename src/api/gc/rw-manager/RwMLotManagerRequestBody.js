@@ -4,6 +4,7 @@ const ActionType = {
     RWReceivePackedLot: "RWReceivePackedLot",
     GetLotPrintLabel: "GetLotPrintLabel",
     AutoPick: "AutoPick",
+    StockOutTag: "StockOutTag",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -53,6 +54,13 @@ export default class RwMLotManagerRequestBody {
         return new RwMLotManagerRequestBody(ActionType.AutoPick, materialLotList, pickQty);
     }
 
+    static buildRwMLotStockTagging(materialLotList, abbreviation, customerName, remarks) {
+        let body = new RwMLotManagerRequestBody(ActionType.StockOutTag, materialLotList);
+        body.abbreviation = abbreviation;
+        body.customerName = customerName;
+        body.remarks = remarks;
+        return body;
+    }
 }
 
 

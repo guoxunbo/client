@@ -189,7 +189,6 @@ export default class GCRwReceivePackedLotScanTable extends EntityScanViewTable {
     }
 
     refreshDelete = (records) => {
-        debugger;
         let datas = this.state.data;
         let recordList = [];
         if (!(records instanceof Array)) {

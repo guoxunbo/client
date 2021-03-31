@@ -5,7 +5,8 @@ import WltStockOutManagerRequest from '../../../api/gc/wlt-stock-out/WltStockOut
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
-import GcCPStockOutTagMLotTable from './GcCPStockOutTagMLotTable';
+import GcRwStockOutTagMLotShowTable from './GcRwStockOutTagMLotShowTable';
+import RwMLotManagerRequest from '../../../api/gc/rw-manager/RwMLotManagerRequest';
 
 export default class RWStockOutTagMLotForm extends EntityForm {
 
@@ -22,50 +23,29 @@ export default class RWStockOutTagMLotForm extends EntityForm {
         debugger;
         let self = this;
         let customerName = this.materialLotTable.customerName.state.value;
-        let stockOutType = this.materialLotTable.stockOutType.state.value;
-        let poId = this.materialLotTable.poId.state.value;
-        let address = this.materialLotTable.address.state.value;
+        let abbreviation = this.materialLotTable.abbreviation.state.value;
+        let remarks = this.materialLotTable.remarks.state.value;
+
         if(customerName == "" || customerName == null ||  customerName == undefined){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CustomerNameCannotEmpty));
-            return;
-        }
-        if(stockOutType == "" || stockOutType == null ||  stockOutType == undefined){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.StockOutTypeCannotEmpty));
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CustomerIdentificaionCannotEmpty));
             return;
         }
         let materialLots = this.props.materialLots;
-        let stockTagNote = this.props.stockTagNote;
         let requestObj = {
-            materialLots : materialLots,
-            stockTagNote : stockTagNote,
+            materialLotList : materialLots,
+            abbreviation : abbreviation,
             customerName : customerName,
-            stockOutType : stockOutType,
-            poId : poId,
-            address : address,
+            remarks : remarks,
             success: function(responseBody) {
                 self.props.onOk();
-                self.materialLotTable.stockOutType.setState({
-                    value: ""
-                });
-                self.materialLotTable.poId.setState({
-                    value: ""
-                });
-                self.materialLotTable.customerName.setState({
-                    value: ""
-                });
-                self.materialLotTable.address.setState({
-                    value: ""
-                });
             }
         }
-        WltStockOutManagerRequest.sendStockOutTagRequest(requestObj);
+        RwMLotManagerRequest.sendRwStockOutTagRequest(requestObj);
     }
 
     buildForm = () => {
-        return (<GcCPStockOutTagMLotTable ref={(materialLotTable) => { this.materialLotTable = materialLotTable }} rowKey={DefaultRowKey} 
+        return (<GcRwStockOutTagMLotShowTable ref={(materialLotTable) => { this.materialLotTable = materialLotTable }} rowKey={DefaultRowKey} 
                                         materialLots={this.props.materialLots}
-                                        stockTagNote={this.props.stockTagNote}
-                                        materialName={this.props.materialName}
                                         visible={this.props.visible} />);
     }
 }

@@ -41,9 +41,21 @@ export default class RwMLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
-    static sendAutoPickTagMLotRequest = () => {
+    static sendAutoPickTagMLotRequest = (object) => {
         let {materialLotList, pickQty} = object;
         let requestBody = RwMLotManagerRequestBody.buildAutoPickTagMLot(materialLotList, pickQty);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendRwStockOutTagRequest = (object) => {
+        let {materialLotList, abbreviation, customerName, remarks} = object;
+        let requestBody = RwMLotManagerRequestBody.buildRwMLotStockTagging(materialLotList, abbreviation, customerName, remarks);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {

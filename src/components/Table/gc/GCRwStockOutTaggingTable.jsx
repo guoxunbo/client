@@ -15,6 +15,32 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
 
     static displayName = 'GCRwStockOutTaggingTable';
 
+    constructor(props) {
+        super(props);
+        this.state = {...this.state, ...{formTable: {fields: []}}};
+    }
+
+    componentWillReceiveProps = (props) => {
+        let {selectedRowKeys, selectedRows} = this.state;
+        let columnData = this.buildColumn(props.table);;
+        let stateSeletcedRowKeys = selectedRowKeys.merge(props.selectedRowKeys);
+        let stateSelectedRows = selectedRows.merge(props.selectedRows, this.props.rowKey);
+        if (props.resetFlag) {
+            stateSeletcedRowKeys = [];
+            stateSelectedRows = [];
+        }
+        
+        this.setState({
+            data: props.data,
+            table: props.table,
+            columns: columnData.columns,
+            scrollX: columnData.scrollX,
+            selectedRowKeys: stateSeletcedRowKeys || [],
+            selectedRows: stateSelectedRows || [],
+            pagination: props.pagination != undefined ? props.pagination : Application.table.pagination
+        })
+    }
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createAutoPickButton());
@@ -87,9 +113,7 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
 
     createForm = () => {
         return  <RWStockOutTagMLotForm visible={this.state.formVisible} 
-                                     stockTagNote={this.state.stockTagNote} 
                                      materialLots={this.state.materialLots}
-                                     materialName={this.state.materialName}
                                      width={1440}
                                      onOk={this.handleTagSuccess} 
                                      onCancel={this.handleCancel}/>
@@ -115,35 +139,21 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
     }
 
     stockOutTag = () => {
+        let self = this;
         const {data} = this.state;
         let materialLots = this.getSelectedRows();
         if (materialLots.length === 0 ) {
             return;
         }
-        this.validationMLotMaterialName(materialLots);
+        self.setState({
+            formVisible : true,
+            materialLots: materialLots,
+        }); 
     }
-
-    validationMLotMaterialName = (materialLots) => {
-        const self = this;
-        let stockTagNote = this.input.state.value;
-        let requestObject = {
-          materialLots: materialLots,
-          success: function(responseBody) {
-              let materialName = materialLots[0].materialName;
-            self.setState({
-                formVisible : true,
-                materialLots: materialLots,
-                stockTagNote: stockTagNote,
-                materialName: materialName,
-            }); 
-          }
-        }
-        RwMLotManagerRequest.sendValidateMlotMaterialNameRequest(requestObject);
-    } 
     
     autoPick = () => {
-        debugger;
         let self = this;
+        let rowKey = this.props.rowKey || DefaultRowKey;
         const{data} = this.state;
         let pickQty = this.pickQty.inputNumberRef.currentValue;
         if(data.length == 0){
