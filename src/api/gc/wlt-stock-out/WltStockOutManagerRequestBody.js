@@ -10,6 +10,7 @@ const actionType = {
     GetMLot: "GetMLot",
     ValidateMaterialName: "ValidateMaterialName",
     ThreeSideShip: "ThreeSideShip",
+    SaleShip: "SaleShip",
 }
 
 export default class WltStockOutManagerRequestBody {
@@ -135,6 +136,18 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WltStockOutManagerRequestBody(actionType.ValidateMaterialName, undefined, materialLotActions);
+    }
+
+    static buildSaleStockOut(documentLines, materialLots, checkSubCode) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.SaleShip, documentLines, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        return body;
     }
 
 }

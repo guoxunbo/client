@@ -112,5 +112,17 @@ export default class WltStockOutManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendSaleStockOutRequest = (object) => {
+        let {documentLines, materialLots, checkSubCode} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildSaleStockOut(documentLines, materialLots, checkSubCode);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

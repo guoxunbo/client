@@ -66,6 +66,7 @@ const i18NCode = {
     BtnUnTagging: "UnTagging",
     BtnIssue: "Issue",
     BtnAutoPick: "AutoPick",
+    BtnSaleShip: "SaleShip",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -1121,6 +1122,11 @@ const i18Messages = {
         Chinese: "客户标识不能为空!",
         English: "Customer Identificaion Cannot Empty!",
         Res: ""    
+    },
+    SaleShip: {
+        Chinese: "销售出",
+        English: "SaleShip",
+        Res: ""     
     }
 }
 
