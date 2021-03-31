@@ -20,7 +20,6 @@ export default class RWStockOutTagMLotForm extends EntityForm {
     }
 
     handleOk= () => {
-        debugger;
         let self = this;
         let customerName = this.materialLotTable.customerName.state.value;
         let abbreviation = this.materialLotTable.abbreviation.state.value;

@@ -121,7 +121,6 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
 
     //三方销售
     threeSideShip = () => {
-        debugger;
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));

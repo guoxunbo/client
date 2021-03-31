@@ -62,4 +62,4 @@ export default class MaterialLotManagerRequestBody {
     }
 
 }   
-export {JudgeGrade}
+export {ActionType}
