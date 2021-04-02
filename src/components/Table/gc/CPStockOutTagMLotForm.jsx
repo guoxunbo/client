@@ -19,7 +19,6 @@ export default class CPStockOutTagMLotForm extends EntityForm {
     }
 
     handleOk= () => {
-        debugger;
         let self = this;
         let customerName = this.materialLotTable.customerName.state.value;
         let stockOutType = this.materialLotTable.stockOutType.state.value;

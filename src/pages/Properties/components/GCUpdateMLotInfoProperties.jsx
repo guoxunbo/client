@@ -64,7 +64,6 @@ export default class GCUpdateMLotInfoProperties extends EntityViewProperties{
     }
 
     handleUpdate = () => {
-      debugger;
         let self = this;
         let materialLotRrn = self.state.formObject[DefaultRowKey];
         if (!materialLotRrn) {
@@ -84,7 +83,6 @@ export default class GCUpdateMLotInfoProperties extends EntityViewProperties{
     }
     
     updateLotInfo = (materialLot) => {
-      debugger;
       let self = this;
       self.setState({
         loading: true

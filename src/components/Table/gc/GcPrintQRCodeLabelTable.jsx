@@ -110,7 +110,6 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
     }
 
     handleChange = (checkedChildren) => {
-        debugger;
         if(checkedChildren){
             this.setState({ 
                 value: "check",

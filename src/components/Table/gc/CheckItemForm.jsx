@@ -56,7 +56,6 @@ export default class CheckItemForm extends EntityForm {
     }
 
     judge = () => {
-        debugger;
         let self = this;
         let object = {
             materialLots : this.props.object,

@@ -189,7 +189,6 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
     }
 
     refreshDelete = (records) => {
-        debugger;
         let datas = this.state.data;
         let recordList = [];
         if (!(records instanceof Array)) {

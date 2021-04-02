@@ -69,7 +69,6 @@ export default class MaterialLotWeighTable extends EntityScanViewTable {
     // }
 
     weight = () => {
-        debugger;
         const {data} = this.state;
         let self = this;
         if (!data || data.length == 0) {
