@@ -1,103 +1,82 @@
-import Field from "@api/dto/ui/Field";
 import EntityForm from "@components/framework/form/EntityForm";
-import { DefaultRowKey } from "@const/ConstDefine";
-import { i18NCode } from "@const/i18n";
-import I18NUtils from "@utils/I18NUtils";
-import { Button, Col, Form, Row } from "antd";
+import { Col, Form } from "antd";
 import './MobileForm.scss';
 
 export default class MobileForm extends EntityForm {
     static displayName = 'MobileForm';
 
-    onFiledEnter = (e, field) => {
-        let self = this;
-        const basicFields = this.state.table.fields.filter((field) => {
-            if (field.basicFlag && field.displayFlag && field.name != DefaultRowKey) {
-                return field;
-            }
-        });  
-        if (basicFields && Array.isArray(basicFields)) {
-            let dataIndex = -1;
-            basicFields.map((basicField, index) => {
-                if (basicField[DefaultRowKey] === field[DefaultRowKey]) {
-                    dataIndex = index;
+    constructor(props) {
+        super(props);
+        this.state = {...this.state, ...{queryFields:[]}};
+    }
+
+    registerFieldEnterEvents = (queryFields) => {
+        let fieldEnterEvents = {};
+        if (queryFields && Array.isArray(queryFields)) {
+            for (let queryField of queryFields) {
+                let dataIndex = queryFields.indexOf(queryField);
+                if (dataIndex == queryFields.length - 1) {
+                    fieldEnterEvents[queryField.name] = this.onLastFieldEnter;
+                } else {
+                    fieldEnterEvents[queryField.name] = () => this.nextElementFocus(dataIndex, queryFields);
                 }
-            });
-            if (dataIndex == basicFields.length - 1) {
-                this.props.form.validateFields((err, values) => {
-                    self.onLastFiledEnter(field);
-                });
-            } else {
-                let nextDataIndex = dataIndex + 1;
-                let nextFields = basicFields[nextDataIndex];
-                document.getElementById(nextFields.name).focus();
+                this.customFieldEnterEvent(queryField, fieldEnterEvents);
             }
+        }
+        return fieldEnterEvents;
+    }
+
+    customFieldEnterEvent = (queryField, fieldEnterEvents) => {
+
+    }
+
+    nextElementFocus = (dataIndex, queryFields) => {
+        let nextDataIndex = dataIndex + 1;
+        let nextFields = queryFields[nextDataIndex];
+        document.getElementById(nextFields.name).focus();
+    }
+
+    onLastFieldEnter = () => {
+        this.props.form.validateFields((err, values) => {
+            if (err) {
+                return;
+            }
+            this.handleSearch();
+        });
+    } 
+    
+    handleSearch = () => {
+
+    }
+    
+    resetFormFileds() {
+        this.props.form.resetFields();
+        if (this.state.queryFields.length > 0) {
+            document.getElementById(this.state.queryFields[0].name).focus();
         }
     }
 
-    onLastFiledEnter = (field) => {
-        this.props.form.validateFields((err, values) => {
-            this.handleSubmit();
-        });
-
-    } 
-    
-    handleSubmit = () => {
-        this.resetFileds();
-    }
-
-    resetFileds = () => {
-        this.props.form.resetFields();
-        const basicFields = this.state.table.fields.filter((field) => {
-            if (field.basicFlag && field.displayFlag && field.name != DefaultRowKey) {
-                return field;
-            }
-        }); 
-        document.getElementById(basicFields[0].name).focus();
-    }
-
     buildTabs = () => {
-        let buttons = [];
-        buttons.push(
-            <Col span={10} className="table-button">
-                <Form.Item key="submitBtn" >
-                    <Button block type="primary" >{I18NUtils.getClientMessage(i18NCode.Ok)}</Button>
-                </Form.Item>
-            </Col>
-        );
-        buttons.push(
-            <Col span={10} className="table-button">
-                <Form.Item key="returnBtn" >
-                    <Button block type="primary" onClick={this.resetFileds}>{I18NUtils.getClientMessage(i18NCode.BtnReset)}</Button>
-                </Form.Item>
-            </Col>
-        );
-        return buttons;
+        
     }
 
     buildBasicSectionField = () => {
-        const fields = this.state.table.fields;
+        const fieldEnterEvents = this.state.fieldEnterEvents;
+        const queryFields = this.state.queryFields;
         const formObject = this.props.object;
         const formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 18},
         };
         let children = [];
-        let basicFields = fields.filter((field) => {
-            if (field.basicFlag && field.displayFlag && field.name != DefaultRowKey) {
-                return field;
-            }
-        });   
-        for (let f of basicFields) {
-            let field = new Field(f, this.props.form, basicFields);
+        for (let field of queryFields) {
             children.push(<Col span={12} key={field.objectRrn}>
                 {field.buildFormItem(formItemLayout, this.state.editFlag, 
-                            undefined, 
+                            true, 
                             formObject ? formObject[field.name] : undefined,
-                            this.onFiledEnter)}
+                            fieldEnterEvents[field.name])}
             </Col>);
         }
-
         return children;
     }
 

@@ -228,7 +228,6 @@ export default class TableUtils {
             selectedRows: [],
             selectedRowKeys: []
         }) 
-        NoticeUtils.showSuccess();
     }
 
     /**

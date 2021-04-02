@@ -22,9 +22,15 @@ export default class EntityForm extends Component {
             editFlag : editFlag,
             table: this.props.table,
             tableRrn: this.props.tableRrn,
-            entityViewFlag: this.props.entityViewFlag
+            entityViewFlag: this.props.entityViewFlag,
+            queryFields:[],
+            fieldEnterEvents: []
         };
     }  
+
+    registerFieldEnterEvents = (queryFields) => {
+
+    }
 
     componentDidMount = () => {
         const {table, tableRrn} = this.state;
@@ -32,10 +38,18 @@ export default class EntityForm extends Component {
         if (!(table && table.fields && table.fields.length > 0)) {
             if (tableRrn) {
                 let self = this;
+                let queryFields = [];
                 let requestObject = {
                     tableRrn: tableRrn,
                     success: function(responseBody) {
-                        self.setState({table: responseBody.table})
+                        for (let field of responseBody.table.fields) {
+                            let f = new Field(field, self.props.form);
+                            if (f.isQueryField()) {
+                                queryFields.push(f);
+                            }
+                        }
+                        let fieldEnterEvents = self.registerFieldEnterEvents(queryFields);
+                        self.setState({table: responseBody.table,queryFields: queryFields, fieldEnterEvents: fieldEnterEvents})
                     }
                 }
                 TableManagerRequest.sendGetByRrnRequest(requestObject);

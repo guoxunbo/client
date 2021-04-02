@@ -10,18 +10,6 @@ export default class EntityScanViewTable extends EntityListTable {
 
     static displayName = 'EntityScanViewTable';
 
-    getRowClassName = (record, index) => {
-        if (record.scaned) {
-            return 'scaned-row';
-        } else {
-            if(index % 2 ===0) {
-                return 'even-row'; 
-            } else {
-                return ''; 
-            }
-        }
-    };
-
     selectRow = () => {
 
     }

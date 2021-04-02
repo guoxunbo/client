@@ -51,7 +51,7 @@ import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
 import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperties';
 import MobileHome from '@pages/Mobile/MobileHome';
-import MobileProperties from '@pages/Properties/framework/MobileProperties'
+import ReceiveMLotByOrderProperties from '@pages/Properties/mms/mobile/ReceiveMLotByOrderProperties';
 //vc
 
 
@@ -338,7 +338,7 @@ const routerConfig = [
   {
     path: buildPath('MMS/Mobile/ReceiveMLot'),
     layout: BlankLayout,
-    component: MobileProperties,
+    component: ReceiveMLotByOrderProperties,
   },
   
   {

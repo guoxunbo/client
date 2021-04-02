@@ -32,21 +32,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
     }
 
     createScannedNumber = () => {
-        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedQty)}：{this.getScanned().length} </Tag>
-    }
-
-    getScanned = () => {
-        let datas = this.state.data ;
-        let scanned = [];
-        if(datas){
-            datas.forEach(data => {
-                if(data.scaned){
-                    scanned.push(data) ;
-                }
-            })
-        }
-       
-        return scanned ;
+        return <Tag color="#2db7f5" style={styles.tableButton} >{I18NUtils.getClientMessage(i18NCode.ScannedQty)}：{this.getScanedRows().length} </Tag>
     }
 
     createMaterialLotsNumber = () => {
@@ -62,7 +48,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
 
     IssueLot = () => {
         let self = this;
-        let materialLots = this.getScanned();
+        let materialLots = this.getScanedRows();
         let doc = this.props.orderTable.getSingleSelectedRow();
         if (materialLots.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));

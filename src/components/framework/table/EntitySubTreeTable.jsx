@@ -7,6 +7,7 @@ import { DefaultRowKey } from '@const/ConstDefine';
 import TreeManagerRequest from '@api/framework/tree-manager/TreeManagerRequest';
 import EntityDialog from '../dialog/EntityDialog';
 import TableUtils from '../utils/TableUtils';
+import NoticeUtils from '@utils/NoticeUtils';
 
 const EntitySubTreeTableId = "entity-sub-tree-table";
 
@@ -141,6 +142,7 @@ export default class EntitySubTreeTable extends Component {
     
     refresh = (responseData) => {
         TableUtils.refreshEdit(this, responseData);
+        NoticeUtils.showSuccess();
     }
 
     createForm = () => {

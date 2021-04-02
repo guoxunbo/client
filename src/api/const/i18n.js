@@ -25,6 +25,7 @@ const i18NCode = {
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
     RemarkIsNull: "RemarkIsNull",
+    TotalNumber: "TotalNumber",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -232,6 +233,11 @@ const i18Messages = {
     Cancel: {
         Chinese: "取消",
         English: "Cancel",
+        Res: ""
+    },
+    TotalNumber: {
+        Chinese: "总数",
+        English: "TotalNumber",
         Res: ""
     },
     SelectOneRow: {

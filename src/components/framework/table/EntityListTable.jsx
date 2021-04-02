@@ -61,9 +61,24 @@ export default class EntityListTable extends Component {
         });
     }
     
+    getScanedRows = () => {
+        let datas = this.state.data ;
+        let scanned = [];
+        if(datas){
+            datas.forEach(data => {
+                if(data.scaned){
+                    scanned.push(data) ;
+                }
+            })
+        }
+        return scanned ;
+    }
+
     getRowClassName = (record, index) => {
         const {selectedRows} = this.state;
-        if (selectedRows.indexOf(record) >= 0) {
+        if (record.scaned) {
+            return 'scaned-row';
+        } else if (selectedRows.indexOf(record) >= 0) {
             return 'selected-row';
         } else {
             if(index % 2 ===0) {
@@ -143,8 +158,13 @@ export default class EntityListTable extends Component {
         TableUtils.openDialog(this, undefined, true);
     }
 
+    refreshWithoutNotice = (responseData) => {
+        TableUtils.refreshEdit(this, responseData);
+    }
+
     refresh = (responseData) => {
         TableUtils.refreshEdit(this, responseData);
+        NoticeUtils.showSuccess();
     }
 
     handleCancel = (e) => {
@@ -292,6 +312,10 @@ export default class EntityListTable extends Component {
         return buttons;
     }
 
+    createTagGroup = () => {
+
+    }
+
     createForm = () => {
         return  <EntityDialog ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                             table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
@@ -391,6 +415,7 @@ export default class EntityListTable extends Component {
           <div >
             <div className="table-button-group">
                 {this.createButtonGroup()}
+                {this.createTagGroup()}
             </div>
             <div>
                 <Table  
