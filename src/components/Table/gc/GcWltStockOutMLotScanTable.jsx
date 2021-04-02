@@ -251,7 +251,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
 
     createStockOut = () => {
         return <Button key="stockOut" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.stockOut}>
-                        发货
+                        材料/其他出
                     </Button>
     }
 

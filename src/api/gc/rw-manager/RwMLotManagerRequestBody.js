@@ -5,6 +5,8 @@ const ActionType = {
     GetLotPrintLabel: "GetLotPrintLabel",
     AutoPick: "AutoPick",
     StockOutTag: "StockOutTag",
+    UnStockOutTag: "UnStockOutTag",
+    AddShipOrderId: "AddShipOrderId",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -54,11 +56,40 @@ export default class RwMLotManagerRequestBody {
         return new RwMLotManagerRequestBody(ActionType.AutoPick, materialLotList, pickQty);
     }
 
+    /**
+     * 标注
+     * @param materialLotList 
+     * @param abbreviation 
+     * @param customerName 
+     * @param remarks 
+     * @returns 
+     */
     static buildRwMLotStockTagging(materialLotList, abbreviation, customerName, remarks) {
         let body = new RwMLotManagerRequestBody(ActionType.StockOutTag, materialLotList);
         body.abbreviation = abbreviation;
         body.customerName = customerName;
         body.remarks = remarks;
+        return body;
+    }
+
+    /**
+     * 取消标注
+     * @param materialLotList 
+     * @returns 
+     */
+    static buildRwMLotUnStockTagging(materialLotList) {
+        return new RwMLotManagerRequestBody(ActionType.UnStockOutTag, materialLotList);
+    }
+
+    /**
+     * 添加出货单号
+     * @param {*} materialLotList 
+     * @param {*} shipOrderId 
+     * @returns 
+     */
+    static buildMLotAddShipOrderId(materialLotList, shipOrderId) {
+        let body = new RwMLotManagerRequestBody(ActionType.AddShipOrderId, materialLotList);
+        body.shipOrderId = shipOrderId;
         return body;
     }
 }
