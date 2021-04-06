@@ -8,7 +8,6 @@ export default class VBoxHoldSetForm extends EntityForm {
     static displayName = 'VBoxHoldSetForm';
 
     handleSave = () => {
-        debugger;
         var self = this;
         let workorderRelation = this.props.object;
         let workorderId = workorderRelation.workOrderId;

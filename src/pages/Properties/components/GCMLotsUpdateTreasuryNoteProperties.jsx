@@ -20,7 +20,6 @@ export default class GCMLotsUpdateTreasuryNoteProperties  extends EntityScanProp
     }
 
     queryData = (whereClause) => {
-        debugger;
         const self = this;
         let {rowKey,tableData} = this.state;
         let requestObject = {

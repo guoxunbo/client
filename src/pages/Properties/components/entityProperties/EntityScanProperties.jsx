@@ -45,7 +45,6 @@ export default class EntityScanProperties extends EntityProperties {
 
     showDataNotFound = () => {
       // 如果只有一个条件，则提示具体条件
-      debugger;
       let queryFields = this.form.state.queryFields;
       let data = this.form.props.form.getFieldValue(queryFields[0].name);
       this.setState({ 
@@ -70,7 +69,6 @@ export default class EntityScanProperties extends EntityProperties {
     }
 
     queryData = (whereClause) => {
-      debugger;
       const self = this;
       let {rowKey,tableData} = this.state;
       let requestObject = {

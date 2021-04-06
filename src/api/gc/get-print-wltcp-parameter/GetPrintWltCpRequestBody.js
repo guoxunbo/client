@@ -13,7 +13,6 @@ export default class GetPrintWltCpRequestBody {
     }
 
     static buildQueryPrintParameter(materialLot) {
-        debugger;
         return new GetPrintWltCpRequestBody(ActionType.QueryPrintParameter, materialLot);
     }
 

@@ -129,7 +129,6 @@ export default class GcMaterialLotWeighProperties extends EntityScanProperties {
     }
 
     getBoxsScanWeightSeq(tableData){
-        debugger;
         let boxsWeightSeq = 0;
         tableData.forEach((materialLot) => {
             if(materialLot.boxsScanSeq && materialLot.boxsScanSeq > boxsWeightSeq){

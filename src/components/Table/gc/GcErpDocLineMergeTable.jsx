@@ -24,7 +24,6 @@ export default class GcErpDocLineMergeTable extends EntityListCheckTable {
     }
 
     mergeDocLine = () => {
-        debugger;
         let self = this;
         let documentLines = self.state.selectedRows;
         if (!documentLines || documentLines.length < 2) {

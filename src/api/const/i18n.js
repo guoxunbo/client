@@ -47,6 +47,7 @@ const i18NCode = {
     BtnPackage: "Package",
     BtnUnPackage: "UnPackage",
     BtnUnPackageAll: "UnPackageAll",
+    BtnShipOut: "ShipOut",
 
     BtnAppendPackage: "AppendPackage",
     BtnStockIn: "StockIn",
@@ -66,6 +67,8 @@ const i18NCode = {
     BtnUnTagging: "UnTagging",
     BtnIssue: "Issue",
     BtnAutoPick: "AutoPick",
+    BtnSaleShip: "SaleShip",
+    BtnAddShipOrder: "AddShipOrder",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -186,6 +189,11 @@ const i18NCode = {
     SelectQty: "SelectQty",
     NeedQty: "NeedQty",
     EnterTheRequiredQtyPlease: "EnterTheRequiredQtyPlease",
+    Abbreviation: "Abbreviation",
+    CustomerIdentificaion: "CustomerIdentificaion",
+    CustomerIdentificaionCannotEmpty: "CustomerIdentificaionCannotEmpty",
+    ShipOrderId: "ShipOrderId",
+    EnterTheShipOrdderIdPlease: "EnterTheShipOrdderIdPlease",
 }
 
 const i18Messages = {
@@ -1103,6 +1111,46 @@ const i18Messages = {
         Chinese: "请输入所需数量!",
         English: "Enter the requiredQty Please",
         Res: ""    
+    },
+    Abbreviation: {
+        Chinese: "简称",
+        English: "Abbreviation",
+        Res: ""    
+    },
+    CustomerIdentificaion: {
+        Chinese: "客户标识",
+        English: "Customer Identificaion",
+        Res: ""    
+    },
+    CustomerIdentificaionCannotEmpty: {
+        Chinese: "客户标识不能为空!",
+        English: "Customer Identificaion Cannot Empty!",
+        Res: ""    
+    },
+    SaleShip: {
+        Chinese: "销售出",
+        English: "SaleShip",
+        Res: ""     
+    },
+    AddShipOrder: {
+        Chinese: "添加发货单",
+        English: "SaleShip",
+        Res: ""     
+    },
+    ShipOrderId: {
+        Chinese: "发货单号",
+        English: "ShipOrderId",
+        Res: ""     
+    },
+    EnterTheShipOrdderIdPlease: {
+        Chinese: "请输入发货单号！",
+        English: "Enter the shipOrdderId Please!",
+        Res: ""       
+    },
+    ShipOut: {
+        Chinese: "出货",
+        English: "Ship Out",
+        Res: ""       
     }
 }
 

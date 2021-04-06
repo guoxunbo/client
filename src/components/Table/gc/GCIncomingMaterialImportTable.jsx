@@ -192,7 +192,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
 
     importData =() => {
-        debugger;
         const {data} = this.state;
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));

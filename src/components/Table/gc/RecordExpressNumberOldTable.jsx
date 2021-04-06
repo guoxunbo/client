@@ -66,7 +66,7 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
     recordExpress = () => {
         let self = this;
         let datas = this.state.data;
-        let recordedDatas = datas.filter((data) => data.reserved2 != undefined);
+        let recordedDatas = datas.filter((data) => data.expressNumber != undefined);
         if (recordedDatas.length === 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
