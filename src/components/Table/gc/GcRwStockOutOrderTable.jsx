@@ -7,9 +7,9 @@ import EventUtils from '../../../api/utils/EventUtils';
 /**
  * RW单据表单
  */
-export default class WltStockOutOrderTable extends EntityListTable {
+export default class GcRwStockOutOrderTable extends EntityListTable {
 
-    static displayName = 'OrderTable';
+    static displayName = 'GcRwStockOutOrderTable';
 
     getRowClassName = (record, index) => {
         const {selectedRows} = this.state;
@@ -49,9 +49,6 @@ export default class WltStockOutOrderTable extends EntityListTable {
         
     }
 
-     /**
-     * 同步EPR
-     */
     createAsyncErpButton = () => {
         return <Button key="asyncErp" type="primary" loading={this.state.loading} style={styles.tableButton} icon="file-excel" onClick={this.asyncErp}>
                         {"ERP"}

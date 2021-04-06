@@ -47,6 +47,7 @@ const i18NCode = {
     BtnPackage: "Package",
     BtnUnPackage: "UnPackage",
     BtnUnPackageAll: "UnPackageAll",
+    BtnShipOut: "ShipOut",
 
     BtnAppendPackage: "AppendPackage",
     BtnStockIn: "StockIn",
@@ -1144,6 +1145,11 @@ const i18Messages = {
     EnterTheShipOrdderIdPlease: {
         Chinese: "请输入发货单号！",
         English: "Enter the shipOrdderId Please!",
+        Res: ""       
+    },
+    ShipOut: {
+        Chinese: "出货",
+        English: "Ship Out",
         Res: ""       
     }
 }
