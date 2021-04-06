@@ -409,6 +409,11 @@ export default class Field {
             if (this.namingRule) {
                 rule.pattern = this.namingRule;
             }
+            rule.transform = (value) => {
+                if(value) {
+                    return value.toString();
+                }
+            }
         }
 
         if (DisplaySelectType.includes(this.displayType)) {
