@@ -21,7 +21,6 @@ export default class ReceiveMLotByOrderForm extends MobileForm {
         let object = {
             documentId: docId,
             success: function(responseBody) {
-                console.log(self.props.dataTable);
                 self.props.dataTable.setState({
                     data: responseBody.materialLotList
                 });

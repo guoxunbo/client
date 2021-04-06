@@ -99,7 +99,8 @@ const UrlConstant = {
     MMSReturnMLotByDocUrl: ModuleUrlConstant.MMS + "returnMLotByDoc",
     MMSDeliveryOrderSavetUrl: ModuleUrlConstant.MMS + "createDeliveryOrder",
     MMSSplitMateraiLotUrl: ModuleUrlConstant.MMS + "splitMateraiLot",
-    
+    StandardSplitMLotUrl: ModuleUrlConstant.MMS + "splitStandardMaterialLot",
+
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
     GCMaterialLotManagerUrl: ModuleUrlConstant.GC + "materialLotManage",

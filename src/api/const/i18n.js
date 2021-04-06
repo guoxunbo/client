@@ -21,6 +21,7 @@ const i18NCode = {
     NewPassword: "NewPassword",
     ConfirmPassword: "ConfirmPassword",
     BasicInfo: "BasicInfo",
+    QueryInfo: "QueryInfo",
     SelectOneRow: "SelectOneRow",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
@@ -213,6 +214,11 @@ const i18Messages = {
     BasicInfo: {
         Chinese: "基础信息",
         English: "BasicInfo",
+        Res: ""
+    },
+    QueryInfo: {
+        Chinese: "查询信息",
+        English: "QueryInfo",
         Res: ""
     },
     Ok: {
