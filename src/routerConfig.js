@@ -53,6 +53,7 @@ import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperti
 import MobileHome from '@pages/Mobile/MobileHome';
 import ReceiveMLotByOrderProperties from '@pages/Properties/mms/mobile/ReceiveMLotByOrderProperties';
 import SplitMaterialLotProperties from '@pages/Properties/mms/mobile/SplitMaterialLotProperties';
+import PrintMaterialLotProperties from '@pages/Properties/mms/mobile/PrintMaterialLotProperties';
 //vc
 
 
@@ -351,7 +352,7 @@ const routerConfig = [
   {
     path: buildPath('MMS/Mobile/PrintMLot'),
     layout: BlankLayout,
-    component: ReceiveMLotByOrderProperties,
+    component: PrintMaterialLotProperties,
   },
   
   {

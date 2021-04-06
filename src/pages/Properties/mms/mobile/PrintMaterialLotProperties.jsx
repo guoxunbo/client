@@ -1,11 +1,11 @@
-import StandardSplitMLotRequest from "@api/mms/standard-split/StandardSplitMLotRequest";
+import MaterialLotManagerRequest from "@api/material-lot-manager/MaterialLotManagerRequest";
 import {WrappedSplitMLotForm} from "@components/mms/form/mobile/SplitMLotForm";
 import MobileProperties from "@properties/framework/MobileProperties";
 import NoticeUtils from "@utils/NoticeUtils";
 
-export default class SplitMaterialLotProperties extends MobileProperties{
+export default class PrintMaterialLotProperties extends MobileProperties{
 
-    static displayName = 'SplitMaterialLotProperties';
+    static displayName = 'PrintMaterialLotProperties';
     
     buildMobileForm = () => {
         return (<WrappedSplitMLotForm 
@@ -20,14 +20,13 @@ export default class SplitMaterialLotProperties extends MobileProperties{
         let self = this;
         let value = this.mobileForm.getFieldsValue();
         let requestObject = {
-            materialLotId: value.materialLotId,
-            standardQty: value.standardQty,
+            materialLot: value,
             success: function(responseBody) {
                 self.handleReset();
                 NoticeUtils.showSuccess();
             }
         }
-        StandardSplitMLotRequest.sendStandardSplitReuqest(requestObject);
+        MaterialLotManagerRequest.sendPrintMaterialLotRequest(requestObject);
     }
 
 }

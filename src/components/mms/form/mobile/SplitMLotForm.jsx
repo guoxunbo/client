@@ -16,32 +16,14 @@ export default class SplitMLotForm extends MobileForm {
     afterQuery = (responseBody) => {
         if (responseBody.dataList[0]) {
             this.props.form.setFieldsValue(responseBody.dataList[0]);
+        } else {
+            NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+            this.resetFormFileds();
         }
     }
 
-    // handleSearch = () => {
-    //     let formObject = this.props.form.getFieldsValue();
-    //     let tableData = this.props.dataTable.state.data;
-    //     let scandMaterialLot = undefined;
-    //     tableData.map((materialLot, index) => {
-    //         if (materialLot.materialLotId == formObject.materialLotId && materialLot.currentQty == formObject.qty) {
-    //             materialLot.scaned = true;
-    //             scandMaterialLot = materialLot;
-    //         }
-    //     });
-    //     if (!scandMaterialLot) {
-    //         NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
-    //     } else {
-    //         this.props.dataTable.refreshWithoutNotice(scandMaterialLot);
-    //     }
-    //     this.props.form.setFieldsValue({
-    //         materialLotId: "",
-    //         qty: ""
-    //     });
-    //     document.getElementById("materialLotId").focus();
-    // }
-
 }
+
 const WrappedSplitMLotForm = Form.create()(SplitMLotForm);
 export {WrappedSplitMLotForm};
 

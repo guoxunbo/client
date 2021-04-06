@@ -47,7 +47,6 @@ export default class MobileProperties extends EntityScanProperties{
           tableData: [],
           loading: false
         });
-        console.log(this);
         this.form.resetFormFileds();
       }
 
