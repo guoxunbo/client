@@ -42,8 +42,8 @@ export default class HKWarehouseManagerRequest {
     }
 
     static sendHKByOrderStockOutRequest = (object) => {
-        let {documentLines, materialLots} = object;
-        let requestBody = HKWarehouseManagerRequestBody.buildHKByOrderStockOut(documentLines, materialLots);
+        let {documentLine, materialLots} = object;
+        let requestBody = HKWarehouseManagerRequestBody.buildHKByOrderStockOut(documentLine, materialLots);
         let requestHeader = new HKWarehouseManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCHKWarehouseManagerUrl);
         let requestObject = {
