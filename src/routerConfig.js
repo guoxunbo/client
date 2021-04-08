@@ -108,6 +108,7 @@ import GCMobileReceiveFGProperties from './pages/Properties/components/gc/wafer-
 import GCRwStockOutTagProperties from './pages/Properties/components/GCRwStockOutTagProperties';
 import GCRwStockOutTaggingUpdateProperties from './pages/Properties/components/GCRwStockOutTaggingUpdateProperties';
 import GCRwStockOutOrderProperties from './pages/Properties/components/GCRwStockOutOrderProperties';
+import CSTPackMaterialLotProperties from './pages/Properties/components/CSTPackMaterialLotProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -799,6 +800,12 @@ const routerConfig = [
     path: buildPath('WLT/GCPrintWltCpLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCPrintWltCpLotProperties,
+  },
+  //RW标签打印
+  {
+    path: buildPath('GC/GCCSTPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CSTPackMaterialLotProperties,
   },
   //RTM
   {
