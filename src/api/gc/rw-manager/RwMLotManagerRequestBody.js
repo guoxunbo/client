@@ -7,6 +7,9 @@ const ActionType = {
     StockOutTag: "StockOutTag",
     UnStockOutTag: "UnStockOutTag",
     AddShipOrderId: "AddShipOrderId",
+    QueryMLot: "QueryMLot",
+    ValidateMLot: "ValidateMLot",
+    StockOut: "StockOut",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -92,6 +95,20 @@ export default class RwMLotManagerRequestBody {
         body.shipOrderId = shipOrderId;
         return body;
     }
+
+    static buildRwStockOutMLotByTableRrnAndLotId(tableRrn, queryLotId) {
+        let body = new RwMLotManagerRequestBody(ActionType.QueryMLot);
+        body.tableRrn = tableRrn;
+        body.queryLotId = queryLotId;
+        return body;
+    }
+
+    static buildRwStockOut(materialLotList, documentLineList) {
+        let body = new RwMLotManagerRequestBody(ActionType.StockOut, materialLotList);
+        body.documentLineList = documentLineList;
+        return body;
+    }
+    
 }
 
 

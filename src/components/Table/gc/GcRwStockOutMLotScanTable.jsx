@@ -1,4 +1,3 @@
-
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button, Tag } from 'antd';
 import { Notification } from '../../notice/Notice';
@@ -6,14 +5,19 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EventUtils from '../../../api/utils/EventUtils';
-import HKWarehouseManagerRequest from '../../../api/gc/hongkong-warehouse-manager/HKWarehouseManagerRequest';
+import RwMLotManagerRequest from '../../../api/gc/rw-manager/RwMLotManagerRequest';
 
 /**
- * 香港仓依订单出货的箱号扫描
+ * RW出货的物料批次表格
  */
-export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable {
+export default class GcRwStockOutMLotScanTable extends EntityScanViewTable {
 
-    static displayName = 'HKByOrderStockOutMLotScanTable';
+    static displayName = 'GcRwStockOutMLotScanTable';
+
+    constructor(props) {
+        super(props);
+        this.state = {...this.state};
+    }
 
     getRowClassName = (record, index) => {
         if (record.errorFlag) {
@@ -49,16 +53,15 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
             return;
         }
 
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
-        if (!documentLine) {
-            self.setState({ 
-                loading: false
-            });
+        let orderTable = this.props.orderTable;
+        let orders = orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
 
-        let materialLots = this.state.data;
-        if (materialLots.length === 0 ) {
+        let materialLotList = this.state.data;
+        if (materialLotList.length === 0 ) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
@@ -69,8 +72,8 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLine : documentLine,
-            materialLots : materialLots,
+            documentLineList : orders,
+            materialLotList : materialLotList,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();
@@ -79,7 +82,7 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
                 MessageUtils.showOperationSuccess();
             }
         }
-        HKWarehouseManagerRequest.sendHKByOrderStockOutRequest(requestObj);
+        RwMLotManagerRequest.sendRwStockOutRequest(requestObj);
     }
 
     getErrorCount = () => {
@@ -100,12 +103,10 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
         let count = 0;
         if(materialLots && materialLots.length > 0){
             materialLots.forEach(data => {
-                if(data.currentQty){
-                    count = count + data.currentQty;
-                }
+                count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}:{count}</Tag>
     }
 
     createWaferNumber = () => {
@@ -122,7 +123,7 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}:{this.state.data.length}</Tag>
     }
 
     createErrorNumberStatistic = () => {
@@ -131,7 +132,7 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
 
     createStockOut = () => {
         return <Button key="stockOut" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.stockOut}>
-                        发货
+                   {I18NUtils.getClientMessage(i18NCode.BtnShipOut)}     
                     </Button>
     }
 }

@@ -89,5 +89,29 @@ export default class RwMLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendGetMaterialLotByRrnRequest = (object) => {
+        let {tableRrn, queryLotId} = object;
+        let requestBody = RwMLotManagerRequestBody.buildRwStockOutMLotByTableRrnAndLotId(tableRrn, queryLotId);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendRwStockOutRequest = (object) => {
+        let {materialLotList, documentLineList} = object;
+        let requestBody = RwMLotManagerRequestBody.buildRwStockOut(materialLotList, documentLineList);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }
 
