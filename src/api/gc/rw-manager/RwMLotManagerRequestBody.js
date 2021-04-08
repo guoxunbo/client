@@ -10,6 +10,7 @@ const ActionType = {
     QueryMLot: "QueryMLot",
     ValidateMLot: "ValidateMLot",
     StockOut: "StockOut",
+    RWBoxPrint: "RWBoxPrint",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -106,6 +107,13 @@ export default class RwMLotManagerRequestBody {
     static buildRwStockOut(materialLotList, documentLineList) {
         let body = new RwMLotManagerRequestBody(ActionType.StockOut, materialLotList);
         body.documentLineList = documentLineList;
+        return body;
+    }
+
+
+    static buildRWBoxPrintParameter(materialLotRrn) {
+        let body = new RwMLotManagerRequestBody(ActionType.RWBoxPrint);
+        body.materialLotRrn = materialLotRrn;
         return body;
     }
     
