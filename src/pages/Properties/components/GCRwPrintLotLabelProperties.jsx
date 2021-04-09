@@ -27,10 +27,15 @@ export default class GCRwPrintLotLabelProperties extends EntityScanProperties{
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
           success: function(responseBody) {
-            self.setState({
-              tableData: responseBody.dataList,
-              loading: false
-            });
+            let materialLotList = responseBody.dataList;
+            if(materialLotList.length > 0){
+              self.setState({
+                tableData: responseBody.dataList,
+                loading: false
+              });
+            } else {
+              self.showDataNotFound();
+            }
             self.form.resetFormFileds();
           }
         }
