@@ -113,6 +113,7 @@ const UrlConstant = {
     GCTempCpDataImportUrl: ModuleUrlConstant.GC + "tempCpDataImport",
     GCErpDocLineMergeManageUrl: ModuleUrlConstant.GC + "erpDocLineMerge",
     GCRwMaterialLotManageUrl: ModuleUrlConstant.GC + "rwMaterialLotManager",
+    GCRwMaterialManageUrl: ModuleUrlConstant.GC + "rwMaterialManager",
 };
 
 const SystemRefListName = {
