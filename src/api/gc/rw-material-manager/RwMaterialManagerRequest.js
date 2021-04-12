@@ -30,5 +30,41 @@ export default class RwMaterialManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendBladeMaterialRequest = (object) => {
+        let {bladeMaterialCode} = object;
+        let requestBody = RwMaterialManagerRequestBody.buildQueryBladeTape(bladeMaterialCode);
+        let requestHeader = new RwMaterialManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendValidateAndGetMaterialLotIdRequest = (object) => {
+        debugger;
+        let {materialLotCode} = object;
+        let requestBody = RwMaterialManagerRequestBody.buildValidateAndGetMaterialLotId(materialLotCode);
+        let requestHeader = new RwMaterialManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendReceiveBladeMaterial = (object) => {
+        let {materialLotList} = object;
+        let requestBody = RwMaterialManagerRequestBody.buildReceiveBlade(materialLotList);
+        let requestHeader = new RwMaterialManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 
