@@ -108,6 +108,8 @@ import GCMobileReceiveFGProperties from './pages/Properties/components/gc/wafer-
 import GCRwStockOutTagProperties from './pages/Properties/components/GCRwStockOutTagProperties';
 import GCRwStockOutTaggingUpdateProperties from './pages/Properties/components/GCRwStockOutTaggingUpdateProperties';
 import GCRwStockOutOrderProperties from './pages/Properties/components/GCRwStockOutOrderProperties';
+import CSTPackMaterialLotProperties from './pages/Properties/components/CSTPackMaterialLotProperties';
+import GCRwTapeScanReceiveProperties from './pages/Properties/components/GCRwTapeScanReceiveProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -454,6 +456,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwStockOutOrderProperties,
   },
+  //Tape接收
+  {
+    path: buildPath('GC/GCRwTapeScanReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwTapeScanReceiveProperties,
+  },
   //GC产品型号二级代码设定
   {
     path: buildPath('GC/GCProductSubcodeSetManager'),
@@ -799,6 +807,12 @@ const routerConfig = [
     path: buildPath('WLT/GCPrintWltCpLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCPrintWltCpLotProperties,
+  },
+  //RW标签打印
+  {
+    path: buildPath('GC/GCCSTPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CSTPackMaterialLotProperties,
   },
   //RTM
   {

@@ -10,6 +10,7 @@ const PrintServiceUrl = {
     RmaMLotId :  "http://127.0.0.1:10019/Integration/wms-print-RmaBox/Execute",
     RwLotIdIssue :  "http://127.0.0.1:10020/Integration/wms-print-RwIssueLot/Execute",
     RwLotIdCst :  "http://127.0.0.1:10021/Integration/wms-print-RwCst/Execute",
+    CSTBox :  "http://127.0.0.1:10026/Integration/wms-print-RWBox/Execute",
 
 }
 const PrintBboxCount = 2;

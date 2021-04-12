@@ -11,6 +11,7 @@ import GetPrintBboxParameterRequest from "../../../api/gc/get-print-bbox-paramet
 import { PrintServiceUrl } from "../../../api/gc/GcConstDefine";
 import GetPrintWltBboxParameterRequest from "../../../api/gc/get-print-wltbbox-parameter/GetPrintWltBboxParameterRequest";
 import GetPrintCOBboxParameterRequest from "../../../api/gc/get-print-cobbox-parameter/GetPrintCOBboxParameterRequest";
+import RwMLotManagerRequest from "../../../api/gc/rw-manager/RwMLotManagerRequest";
 
 /**
  * 打印箱标签
@@ -35,7 +36,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
         let requestObject = {
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
-          success: function(responseBody) {
+          success: function(responseBody) { 
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
                 queryDatas[0].printNumber = 2;
@@ -81,14 +82,23 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
         } else if(packageType == "COBPackCase"){
             let materialLot = this.state.formObject;
             let requestObject = {
-                materialLot : materialLot,       
+                materialLot : materialLot,      
                 success: function(responseBody) {
                     let url = PrintServiceUrl.COBBox;
                     PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
                 }
             }
             GetPrintCOBboxParameterRequest.sendQueryRequest(requestObject);
-        } else {
+        } else if(packageType == "CSTPackCase"){
+            let requestObject = {
+                materialLotRrn : materialLotRrn,    
+                success: function(responseBody) {
+                    let url = PrintServiceUrl.CSTBox;
+                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                }
+            }
+            RwMLotManagerRequest.sendPackingRequest(requestObject);
+        }else {
             let requestObject = {
                 materialLotRrn : materialLotRrn,    
                 success: function(responseBody) {
