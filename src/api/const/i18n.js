@@ -69,6 +69,7 @@ const i18NCode = {
     BtnAutoPick: "AutoPick",
     BtnSaleShip: "SaleShip",
     BtnAddShipOrder: "AddShipOrder",
+    BtnSpareMaterial: "SpareMaterial",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -1151,6 +1152,11 @@ const i18Messages = {
         Chinese: "出货",
         English: "Ship Out",
         Res: ""       
+    },
+    SpareMaterial: {
+        Chinese: "备料",
+        English: "Spare Material",
+        Res: ""     
     }
 }
 

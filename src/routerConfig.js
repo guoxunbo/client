@@ -111,6 +111,7 @@ import GCRwStockOutOrderProperties from './pages/Properties/components/GCRwStock
 import CSTPackMaterialLotProperties from './pages/Properties/components/CSTPackMaterialLotProperties';
 import GCRwTapeScanReceiveProperties from './pages/Properties/components/GCRwTapeScanReceiveProperties';
 import GCRwBladeScanReceiveProperties from './pages/Properties/components/GCRwBladeScanReceiveProperties';
+import GCRwMaterialSpareProperties from './pages/Properties/components/GCRwMaterialSpareProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -468,6 +469,12 @@ const routerConfig = [
     path: buildPath('GC/RwBladeScanReceiveManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwBladeScanReceiveProperties,
+  },
+  //材料备料
+  {
+    path: buildPath('GC/GCRwMaterialSpareManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwMaterialSpareProperties,
   },
   //GC产品型号二级代码设定
   {
