@@ -6,6 +6,7 @@ const ActionType = {
     GetBladeMLotId: "GetBladeMLotId",
     BladeReceive: "BladeReceive",
     MaterialSpare: "MaterialSpare",
+    MaterialIssue: "MaterialIssue",
 }
 
 export default class RwMaterialManagerRequestBody {
@@ -48,6 +49,12 @@ export default class RwMaterialManagerRequestBody {
 
     static buildSpareMaterial(materialLotList) {
         let body = new RwMaterialManagerRequestBody(ActionType.MaterialSpare);
+        body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildIssueMaterial(materialLotList){
+        let body = new RwMaterialManagerRequestBody(ActionType.MaterialIssue);
         body.materialLotList = materialLotList;
         return body;
     }
