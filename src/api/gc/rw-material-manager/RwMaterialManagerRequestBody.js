@@ -2,6 +2,11 @@
 const ActionType = {
     TapeScan: "TapeScan",
     TapeReceive: "TapeReceive",
+    BladeScan: "BladeScan",
+    GetBladeMLotId: "GetBladeMLotId",
+    BladeReceive: "BladeReceive",
+    MaterialSpare: "MaterialSpare",
+    MaterialIssue: "MaterialIssue",
 }
 
 export default class RwMaterialManagerRequestBody {
@@ -20,6 +25,36 @@ export default class RwMaterialManagerRequestBody {
 
     static buildReceiveTape(materialLotList) {
         let body = new RwMaterialManagerRequestBody(ActionType.TapeReceive);
+        body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildQueryBladeTape(bladeMaterialCode) {
+        let body = new RwMaterialManagerRequestBody(ActionType.BladeScan);
+        body.bladeMaterialCode = bladeMaterialCode;
+        return body;
+    }
+
+    static buildValidateAndGetMaterialLotId(materialLotCode) {
+        let body = new RwMaterialManagerRequestBody(ActionType.GetBladeMLotId);
+        body.materialLotCode = materialLotCode;
+        return body;
+    }
+
+    static buildReceiveBlade(materialLotList){
+        let body = new RwMaterialManagerRequestBody(ActionType.BladeReceive);
+        body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildSpareMaterial(materialLotList) {
+        let body = new RwMaterialManagerRequestBody(ActionType.MaterialSpare);
+        body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildIssueMaterial(materialLotList){
+        let body = new RwMaterialManagerRequestBody(ActionType.MaterialIssue);
         body.materialLotList = materialLotList;
         return body;
     }
