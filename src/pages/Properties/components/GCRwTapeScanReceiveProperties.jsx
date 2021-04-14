@@ -74,6 +74,7 @@ export default class GCRwTapeScanReceiveProperties extends EntityScanProperties{
     buildTable = () => {
         return <GCRwTapeScanReceiveTable pagination={false} 
                                     rowKey={this.state.rowKey} 
+                                    propsFrom = {this.form}
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
                                     table={this.state.table} 
