@@ -97,7 +97,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
                     PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
                 }
             }
-            RwMLotManagerRequest.sendPackingRequest(requestObject);
+            RwMLotManagerRequest.sendRWPrintParameterRequest(requestObject);
         }else {
             let requestObject = {
                 materialLotRrn : materialLotRrn,    

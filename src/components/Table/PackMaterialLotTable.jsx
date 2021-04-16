@@ -48,7 +48,7 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
                     let url = PrintServiceUrl.Bbox;
                     PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
                 }
-                if(responseBody.customerParameter){
+                if(responseBody.customerParameter.length > 0){
                     let url = PrintServiceUrl.CusNameLabel;
                     PrintUtils.printWithBtIbForWeb(url, responseBody.customerParameter, 1);
                 }
