@@ -18,7 +18,7 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
     }
 
     buildOperationColumn = () => {
-        return
+        
     }
 
     createDeleteRemarkInput = () => {
