@@ -19,8 +19,8 @@ export default class RwMaterialManagerRequest {
     }
 
     static sendReceiveTapeMaterial = (object) => {
-        let {materialLotList} = object;
-        let requestBody = RwMaterialManagerRequestBody.buildReceiveTape(materialLotList);
+        let {materialLotList, tapeSize} = object;
+        let requestBody = RwMaterialManagerRequestBody.buildReceiveTape(materialLotList, tapeSize);
         let requestHeader = new RwMaterialManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialManageUrl);
         let requestObject = {

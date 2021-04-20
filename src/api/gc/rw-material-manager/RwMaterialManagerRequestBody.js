@@ -23,9 +23,10 @@ export default class RwMaterialManagerRequestBody {
         return body;
     }
 
-    static buildReceiveTape(materialLotList) {
+    static buildReceiveTape(materialLotList, tapeSize) {
         let body = new RwMaterialManagerRequestBody(ActionType.TapeReceive);
         body.materialLotList = materialLotList;
+        body.tapeSize = tapeSize;
         return body;
     }
 

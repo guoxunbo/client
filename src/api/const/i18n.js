@@ -195,6 +195,7 @@ const i18NCode = {
     CustomerIdentificaionCannotEmpty: "CustomerIdentificaionCannotEmpty",
     ShipOrderId: "ShipOrderId",
     EnterTheShipOrdderIdPlease: "EnterTheShipOrdderIdPlease",
+    ChooseTapeSizePlease: "ChooseTapeSizePlease",
 }
 
 const i18Messages = {
@@ -1157,6 +1158,11 @@ const i18Messages = {
         Chinese: "备料",
         English: "Spare Material",
         Res: ""     
+    },
+    ChooseTapeSizePlease: {
+        Chinese: "请选择Tape尺寸！",
+        English: "Choose TapeSize Please!",
+        Res: ""    
     }
 }
 

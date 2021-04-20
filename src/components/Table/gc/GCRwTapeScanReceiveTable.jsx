@@ -56,6 +56,12 @@ export default class GCRwTapeScanReceiveTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        let queryFields = this.props.propsFrom.state.queryFields;
+        let tapeSize = this.props.propsFrom.props.form.getFieldValue(queryFields[1].name);
+        if(tapeSize == "" || tapeSize == undefined || tapeSize == null){
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseTapeSizePlease));
+            return;
+        }
 
         self.setState({
             loading: true
@@ -64,6 +70,7 @@ export default class GCRwTapeScanReceiveTable extends EntityScanViewTable {
         
         let object = {
             materialLotList : materialLotList,
+            tapeSize: tapeSize,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
