@@ -11,6 +11,7 @@ const ActionType = {
     ValidateMLot: "ValidateMLot",
     StockOut: "StockOut",
     RWBoxPrint: "RWBoxPrint",
+    RWStockOutPrint: "RWStockOutPrint",
 }
 
 export default class RwMLotManagerRequestBody {
