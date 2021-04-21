@@ -30,6 +30,7 @@ export default class GCRwStockOutTagging2Properties extends EntityScanProperties
                 tableData: responseBody.dataList,
                 loading: false
               });
+              self.form.resetFormFileds();  
             } else {
               self.showDataNotFound();
             }
