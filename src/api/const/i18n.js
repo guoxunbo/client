@@ -196,6 +196,7 @@ const i18NCode = {
     ShipOrderId: "ShipOrderId",
     EnterTheShipOrdderIdPlease: "EnterTheShipOrdderIdPlease",
     ChooseTapeSizePlease: "ChooseTapeSizePlease",
+    RawMaterialMustBeTwoScanValidate: "RawMaterialMustBeTwoScanValidate",
 }
 
 const i18Messages = {
@@ -1162,6 +1163,11 @@ const i18Messages = {
     ChooseTapeSizePlease: {
         Chinese: "请选择Tape尺寸！",
         English: "Choose TapeSize Please!",
+        Res: ""    
+    },
+    RawMaterialMustBeTwoScanValidate: {
+        Chinese: "原材料必须扫描两次做验证",
+        English: "RawMaterial must be two scan validate",
         Res: ""    
     }
 }
