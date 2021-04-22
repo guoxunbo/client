@@ -114,6 +114,7 @@ import GCRwBladeScanReceiveProperties from './pages/Properties/components/GCRwBl
 import GCRwMaterialSpareProperties from './pages/Properties/components/GCRwMaterialSpareProperties';
 import GcRwMaterialIssueScanProperties from './pages/Properties/components/GcRwMaterialIssueScanProperties';
 import GCRwStockOutTagging2Properties from './pages/Properties/components/GCRwStockOutTagging2Properties';
+import GCRawMaterialDeleteProperties from './pages/Properties/components/GCRawMaterialDeleteProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -841,6 +842,12 @@ const routerConfig = [
     path: buildPath('GC/GCRWStockOutTagging'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwStockOutTagging2Properties,
+  },
+  //原材料删除
+  {
+    path: buildPath('WMS/GCRawMaterialDeleteManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialDeleteProperties,
   },
   //RTM
   {

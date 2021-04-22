@@ -62,4 +62,16 @@ export default class GCRawMaterialImportRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendDeleteRawMaterialRequest = (object) => {
+        let {materialLotList, deleteNote} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildDeleteRawMaterial(materialLotList, deleteNote);
+        let requestHeader = new GCRawMaterialImportRequestHeader();
+        let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }
