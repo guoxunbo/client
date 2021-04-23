@@ -40,7 +40,7 @@ export default class GcFTMLotStockInProperties extends EntityScanProperties{
                 loading: false,
             });
             self.form.resetFormFileds();
-        } else if (data.startsWith("ZHJ") || data.startsWith("HJ") ) {
+        } else if (data.startsWith("ZHJ ") || data.startsWith("HJ ") ) {
             // ZHJ/HJ 开头的则是库位号 扫描到ZHJ/HJ开头的，则更新当前操作的物料批次的库位号
             tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {

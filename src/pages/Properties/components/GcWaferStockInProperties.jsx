@@ -29,7 +29,7 @@ export default class GcWaferStockInProperties extends EntityScanProperties{
             data = this.form.props.form.getFieldValue(queryFields[0].name)
         }  
         let dataIndex = -1;
-        if (data.startsWith("ZHJ") || data.startsWith("HJ") ) {
+        if (data.startsWith("ZHJ ") || data.startsWith("HJ ") ) {
             // ZHJ/HJ 开头的则是库位号 扫描到ZHJ/HJ开头的，则更新当前操作的物料批次的库位号
             tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {
