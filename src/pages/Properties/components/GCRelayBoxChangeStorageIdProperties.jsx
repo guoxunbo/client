@@ -48,7 +48,7 @@ export default class GCRelayBoxChangeStorageIdProperties extends EntityScanPrope
                 }
             }
             RelayBoxStockInManagerRequest.sendQueryRelayBoxRequest(requestObject);
-        } else if ((data.startsWith("ZHJ") || data.startsWith("HJ")) && data.split(".").length == 1 ) {
+        } else if ((data.startsWith("ZHJ ") || data.startsWith("HJ ")) && data.split(".").length == 1 ) {
             // ZHJ/HJ 开头的则是库位号 扫描到ZHJ/HJ开头的，则更新当前操作的物料批次的库位号
             tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {
