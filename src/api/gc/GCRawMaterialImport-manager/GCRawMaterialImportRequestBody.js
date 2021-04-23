@@ -3,6 +3,7 @@ const ActionType = {
     Receive: "Receive",
     RawIssue: "RawIssue",
     Scrap: "Scrap",
+    Delete: "Delete",
 }
 
 export default class GCRawMaterialImportRequestBody {
@@ -39,6 +40,12 @@ export default class GCRawMaterialImportRequestBody {
         let body =  new GCRawMaterialImportRequestBody(ActionType.Scrap, materialLotList);
         body.reason = reason;
         body.remarks = remarks;
+        return body;
+    }
+
+    static buildDeleteRawMaterial(materialLotList, deleteNote) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.Delete, materialLotList);
+        body.deleteNote = deleteNote;
         return body;
     }
 }

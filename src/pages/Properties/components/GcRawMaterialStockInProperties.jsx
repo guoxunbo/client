@@ -63,10 +63,22 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
                 materialLotId: data,
                 tableRrn: table.objectRrn,
                 success: function(responseBody) {
-                    let materialLot = responseBody.materialLot;
-                    if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                        tableData.unshift(materialLot);
-                    }
+                    let materialLotList = responseBody.materialLotList;
+                    materialLotList.forEach((materialLot) =>{
+                        if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                            tableData.unshift(materialLot);
+                        } else if(!data.startsWith("RB")){
+                            tableData.map((mLot, index) => {
+                                if (mLot[rowKey] == materialLot[rowKey]) {
+                                    dataIndex = index;
+                                    materialLot["storageId"] = mLot.storageId;
+                                    materialLot["relaxBoxId"] = mLot.relaxBoxId;
+                                }
+                            });
+                            materialLot.scanFlag = true;
+                            tableData.splice(dataIndex, 1, materialLot);
+                        }
+                    });
                     self.setState({ 
                         tableData: tableData,
                         loading: false,
@@ -81,7 +93,7 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
                     self.form.resetFormFileds();
                 }
             }
-            StockInManagerRequest.sendQueryRequest(requestObject);
+            StockInManagerRequest.sendQueryRawMaterialRequest(requestObject);
         }
     }
 

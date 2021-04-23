@@ -11,6 +11,18 @@ export default class RawMaterialStockInStorageTable extends EntityScanViewTable 
 
     static displayName = 'RawMaterialStockInStorageTable';
 
+    getRowClassName = (record, index) => {
+        if (record.scanFlag) {
+            return 'new-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());
@@ -30,6 +42,12 @@ export default class RawMaterialStockInStorageTable extends EntityScanViewTable 
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.StorageCannotEmpty));
             return;
         }
+        
+        let result = this.twoScanIRAvalidation(data);
+        if(result != ""){
+            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.RawMaterialMustBeTwoScanValidate)+ ":" + result);
+            return;
+        }
        
         let requestObject = {
             materialLots: data,
@@ -41,6 +59,17 @@ export default class RawMaterialStockInStorageTable extends EntityScanViewTable 
             }
         }
         StockInManagerRequest.sendStockInRequest(requestObject);
+    }
+
+    twoScanIRAvalidation = (data) =>{
+        let result = "";
+        data.forEach((materialLot) => {
+            if(materialLot.materialType == "IRA" && materialLot.reserved8 != undefined && materialLot.scanFlag == undefined){
+                result = materialLot.materialLotId;
+                return result;
+            }
+        });
+        return result;
     }
     
     validationStorageId = (data) =>{
