@@ -115,6 +115,7 @@ import GCRwMaterialSpareProperties from './pages/Properties/components/GCRwMater
 import GcRwMaterialIssueScanProperties from './pages/Properties/components/GcRwMaterialIssueScanProperties';
 import GCRwStockOutTagging2Properties from './pages/Properties/components/GCRwStockOutTagging2Properties';
 import GCRawMaterialDeleteProperties from './pages/Properties/components/GCRawMaterialDeleteProperties';
+import GCRawMaterialSpareOrderProperties from './pages/Properties/components/GCRawMaterialSpareOrderProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -478,6 +479,12 @@ const routerConfig = [
     path: buildPath('GC/GCRwMaterialSpareManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwMaterialSpareProperties,
+  },
+  //原材料备料
+  {
+    path: buildPath('GC/GCRawMaterialSpareManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialSpareOrderProperties,
   },
   //Rw材料发料
   {

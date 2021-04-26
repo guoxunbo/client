@@ -73,5 +73,40 @@ export default class GCRawMaterialImportRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+    
+    static sendGetWaitSpareRawMaterialLot = (object) => {
+        let {docLineRrn, tableRrn} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildGetWaitSpareRawMaterialLot(docLineRrn, tableRrn);
+        let requestHeader = new GCRawMaterialImportRequestHeader();
+        let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 
+    static sendGetSpareRawMLotByDocLine = (object) => {
+        let {materialLotList, docLineRrn} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildGetSpareRawMaterialLot(materialLotList, docLineRrn);
+        let requestHeader = new GCRawMaterialImportRequestHeader();
+        let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendSpareRawMLotByDocLine = (object) => {
+        let {materialLotList, docLineRrn} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildSpareRawMaterialLot(materialLotList, docLineRrn);
+        let requestHeader = new GCRawMaterialImportRequestHeader();
+        let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

@@ -4,6 +4,9 @@ const ActionType = {
     RawIssue: "RawIssue",
     Scrap: "Scrap",
     Delete: "Delete",
+    QuerySpareMLot: "QuerySpareMLot",
+    GetSpareRawMLot: "GetSpareRawMLot",
+    SpareRawMLot: "SpareRawMLot",
 }
 
 export default class GCRawMaterialImportRequestBody {
@@ -46,6 +49,25 @@ export default class GCRawMaterialImportRequestBody {
     static buildDeleteRawMaterial(materialLotList, deleteNote) {
         let body =  new GCRawMaterialImportRequestBody(ActionType.Delete, materialLotList);
         body.deleteNote = deleteNote;
+        return body;
+    }
+
+    static buildGetWaitSpareRawMaterialLot(docLineRrn, tableRrn) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.QuerySpareMLot);
+        body.docLineRrn = docLineRrn;
+        body.tableRrn = tableRrn;
+        return body;
+    }
+
+    static buildGetSpareRawMaterialLot(materialLotList, docLineRrn) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.GetSpareRawMLot, materialLotList);
+        body.docLineRrn = docLineRrn;
+        return body;
+    }
+
+    static buildSpareRawMaterialLot(materialLotList, docLineRrn) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.SpareRawMLot, materialLotList);
+        body.docLineRrn = docLineRrn;
         return body;
     }
 }
