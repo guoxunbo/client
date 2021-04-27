@@ -88,5 +88,16 @@ export default class RwMaterialManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendGetRWMaterialByRrnAndMaterialCodeRequest = (object) =>  {
+        let requestBody = RwMaterialManagerRequestBody.buildGetRwMaterialLotByRrnAndMaterialCode(object.materialLotCode, object.tableRrn);
+        let requestHeader = new RwMaterialManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

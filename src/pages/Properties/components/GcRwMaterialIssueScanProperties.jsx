@@ -1,5 +1,5 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
-import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
+import RwMaterialManagerRequest from "../../../api/gc/rw-material-manager/RwMaterialManagerRequest";
 import MaterialLot from "../../../api/dto/mms/MaterialLot";
 import GcRwMaterialIssueScanTable from "../../../components/Table/gc/GcRwMaterialIssueScanTable";
 import GcRwWaitIssueMaterialProperties from "./GcRwWaitIssueMaterialProperties";
@@ -13,24 +13,26 @@ export default class GcRwMaterialIssueScanProperties extends EntityScanPropertie
         this.state = {...this.state, ...{showQueryFormButton: false}};
     }
     
-    componentWillReceiveProps = (props) => {
-      const {resetFlag} = props;
-      if (resetFlag) {
-        this.form.handleReset();
-      }
-    }
+    // componentWillReceiveProps = (props) => {
+    //   debugger;
+    //   const {resetFlag} = props;
+    //   if (resetFlag) {
+    //     this.form.handleReset();
+    //   }
+    // }
 
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
+        let materialLotCode = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let waitIssueMaterialList = this.waitIssueMaterial.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,
-          whereClause: whereClause,
+          materialLotCode: materialLotCode,
           success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
+            let materialLot = responseBody.materialLot;
             let data = undefined;
-            if (queryDatas && queryDatas.length > 0) {
+            if (materialLot && materialLot.objectRrn != null && materialLot.objectRrn != undefined) {
               let errorData = [];
               let trueData = [];
               tableData.forEach(data => {
@@ -41,16 +43,14 @@ export default class GcRwMaterialIssueScanProperties extends EntityScanPropertie
                 }
               });
               tableData = [];
-              queryDatas.forEach(data => {
-                if (waitIssueMaterialList.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  data.errorFlag = true;
-                }
-                if(data.errorFlag){
-                  errorData.unshift(data);
-                } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  trueData.unshift(data);
-                }
-              });
+              if (waitIssueMaterialList.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                materialLot.errorFlag = true;
+              }
+              if(materialLot.errorFlag){
+                errorData.unshift(materialLot);
+              } else if(trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
+              }
               errorData.forEach(data => {
                 tableData.push(data);
               });
@@ -59,9 +59,8 @@ export default class GcRwMaterialIssueScanProperties extends EntityScanPropertie
               });
             } else {
               data = new MaterialLot();
-              let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
-              data[rowKey] = materialLotId;
-              data.setMaterialLotId(materialLotId);
+              data[rowKey] = materialLotCode;
+              data.setMaterialLotId(materialLotCode);
               data.errorFlag = true;
               if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                 tableData.unshift(data);
@@ -75,7 +74,7 @@ export default class GcRwMaterialIssueScanProperties extends EntityScanPropertie
             self.form.resetFormFileds();
           }
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        RwMaterialManagerRequest.sendGetRWMaterialByRrnAndMaterialCodeRequest(requestObject);
     }
 
     resetOrderData = (orderTable) => {
