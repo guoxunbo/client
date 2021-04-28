@@ -7,6 +7,7 @@ const ActionType = {
     QuerySpareMLot: "QuerySpareMLot",
     GetSpareRawMLot: "GetSpareRawMLot",
     SpareRawMLot: "SpareRawMLot",
+    QueryIssueRawMaterialLot: "QueryIssueRawMaterialLot",
 }
 
 export default class GCRawMaterialImportRequestBody {
@@ -35,8 +36,10 @@ export default class GCRawMaterialImportRequestBody {
         return new GCRawMaterialImportRequestBody(ActionType.Receive, materialLotList);
     }
 
-    static buildRawMaterialIssue(materialLotList, documentLine) {
-        return new GCRawMaterialImportRequestBody(ActionType.RawIssue, materialLotList, undefined, documentLine);
+    static buildRawMaterialIssue(materialLotList, documentLineList) {
+        let body = new GCRawMaterialImportRequestBody(ActionType.RawIssue, materialLotList);
+        body.documentLineList = documentLineList;
+        return body;
     }
 
     static buildScrapRawMaterial(materialLotList, reason, remarks) {
@@ -68,6 +71,13 @@ export default class GCRawMaterialImportRequestBody {
     static buildSpareRawMaterialLot(materialLotList, docLineRrn) {
         let body =  new GCRawMaterialImportRequestBody(ActionType.SpareRawMLot, materialLotList);
         body.docLineRrn = docLineRrn;
+        return body;
+    }
+
+    static buildGetDataByLotIdAndTableRrn(queryLotId, tableRrn) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.QueryIssueRawMaterialLot);
+        body.queryLotId = queryLotId;
+        body.tableRrn = tableRrn;
         return body;
     }
 }

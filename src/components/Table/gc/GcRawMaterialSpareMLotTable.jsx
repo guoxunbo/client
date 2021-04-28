@@ -51,7 +51,7 @@ export default class GcRawMaterialSpareMLotTable extends EntityListCheckTable {
 
         let requestObj = {
             docLineRrn : documentLine.objectRrn,
-            materialLotList : materialLots,
+            materialLotList : materialLotList,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();

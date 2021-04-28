@@ -3,6 +3,10 @@ import TableManagerRequest from "../../../api/table-manager/TableManagerRequest"
 import MaterialLot from "../../../api/dto/mms/MaterialLot";
 import GcRawMaterialIssueMLotScanTable from "../../../components/Table/gc/GcRawMaterialIssueMLotScanTable";
 import GcRawMaterialWaitIssueMLotProperties from "./GcRawMaterialWaitIssueMLotProperties";
+import GCRawMaterialImportRequest from "../../../api/gc/GCRawMaterialImport-manager/GCRawMaterialImportRequest";
+import { Notification } from "../../../components/notice/Notice";
+import I18NUtils from "../../../api/utils/I18NUtils";
+import { i18NCode } from "../../../api/const/i18n";
 
 export default class GcRawMaterialIssueMLotScanProperties extends EntityScanProperties{
 
@@ -23,12 +27,22 @@ export default class GcRawMaterialIssueMLotScanProperties extends EntityScanProp
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
+        let queryFields = this.form.state.queryFields;
+        let queryLotId = this.form.props.form.getFieldValue(queryFields[0].name);
+        if(queryLotId == "" || queryLotId == null || queryLotId == undefined){
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SearchFieldCannotEmpty));
+          self.setState({ 
+            tableData: tableData,
+            loading: false,
+          });
+          return;
+        }
         let waitIssueMLotList = this.waitIssueMLotProperties.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,
-          whereClause: whereClause,
+          queryLotId: queryLotId,
           success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
+            let queryDatas = responseBody.materialLotList;
             let data = undefined;
             if (queryDatas && queryDatas.length > 0) {
               let errorData = [];
@@ -75,7 +89,7 @@ export default class GcRawMaterialIssueMLotScanProperties extends EntityScanProp
             self.form.resetFormFileds();
           }
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        GCRawMaterialImportRequest.sendGetDataByLotIdAndTableRrnRequest(requestObject);
     }
 
     resetOrderData = (orderTable) => {
