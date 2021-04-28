@@ -198,6 +198,7 @@ const i18NCode = {
     EnterTheShipOrdderIdPlease: "EnterTheShipOrdderIdPlease",
     ChooseTapeSizePlease: "ChooseTapeSizePlease",
     RawMaterialMustBeTwoScanValidate: "RawMaterialMustBeTwoScanValidate",
+    TapeMaterialCodeIsExisted: "TapeMaterialCodeIsExisted",
 }
 
 const i18Messages = {
@@ -1174,6 +1175,11 @@ const i18Messages = {
     SpareMaterialConfirm: {
         Chinese: "确认备料",
         English: "Spare material confirm",
+        Res: ""     
+    },
+    TapeMaterialCodeIsExisted: {
+        Chinese: "Tape原材料批次已经存在！",
+        English: "Tape material code is existed!",
         Res: ""     
     }
 }
