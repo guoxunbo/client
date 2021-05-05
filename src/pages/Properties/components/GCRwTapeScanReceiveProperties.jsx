@@ -3,6 +3,7 @@ import { i18NCode } from "../../../api/const/i18n";
 import I18NUtils from "../../../api/utils/I18NUtils";
 import RwMaterialManagerRequest from "../../../api/gc/rw-material-manager/RwMaterialManagerRequest";
 import GCRwTapeScanReceiveTable from "../../../components/Table/gc/GCRwTapeScanReceiveTable";
+import { Notification } from "../../../components/notice/Notice";
 
 
 export default class GCRwTapeScanReceiveProperties extends EntityScanProperties{
@@ -27,16 +28,17 @@ export default class GCRwTapeScanReceiveProperties extends EntityScanProperties{
       let requestObject = {
         tapeMaterialCode: tapeMaterialCode,
         success: function(responseBody) {
-          debugger;
           let materialLotList = responseBody.materialLotList;
           if (materialLotList) {
             if(tableData && tableData.length > 0){
-              if(self.validateTapaAndMaterialLotId(tapeMaterialCode)){
+              if(self.validateTapaAndMaterialLotId(tapeMaterialCode) && self.validateMaterialLotId(materialLotList)){
                 materialLotList.forEach(data => {
                   if (tableData.filter(d => d.materialLotId === data.materialLotId).length === 0) {
                     tableData.unshift(data);
                   }
                 });
+              } else{
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.TapeMaterialCodeIsExisted));
               }
             } else {
               materialLotList.forEach(data => {
@@ -68,6 +70,17 @@ export default class GCRwTapeScanReceiveProperties extends EntityScanProperties{
       if(tapeCodeList.includes(tapeCode)){
         falg = false;
       }
+      return falg;
+    }
+
+    validateMaterialLotId(materialLotList){
+      let falg = true;
+      let {tableData} = this.state;
+      materialLotList.forEach(data => {
+        if (tableData.filter(d => d.materialLotId === data.materialLotId).length !== 0) {
+          falg = false;
+        }
+      });
       return falg;
     }
 

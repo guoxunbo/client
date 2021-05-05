@@ -70,6 +70,7 @@ const i18NCode = {
     BtnSaleShip: "SaleShip",
     BtnAddShipOrder: "AddShipOrder",
     BtnSpareMaterial: "SpareMaterial",
+    BtnSpareMaterialConfirm: "SpareMaterialConfirm",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -197,6 +198,7 @@ const i18NCode = {
     EnterTheShipOrdderIdPlease: "EnterTheShipOrdderIdPlease",
     ChooseTapeSizePlease: "ChooseTapeSizePlease",
     RawMaterialMustBeTwoScanValidate: "RawMaterialMustBeTwoScanValidate",
+    TapeMaterialCodeIsExisted: "TapeMaterialCodeIsExisted",
 }
 
 const i18Messages = {
@@ -1169,6 +1171,16 @@ const i18Messages = {
         Chinese: "原材料必须扫描两次做验证",
         English: "RawMaterial must be two scan validate",
         Res: ""    
+    },
+    SpareMaterialConfirm: {
+        Chinese: "确认备料",
+        English: "Spare material confirm",
+        Res: ""     
+    },
+    TapeMaterialCodeIsExisted: {
+        Chinese: "Tape原材料批次已经存在！",
+        English: "Tape material code is existed!",
+        Res: ""     
     }
 }
 

@@ -80,20 +80,21 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
 
     rawMaterialIssue = () => {
         let self = this;
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
+        let orderTable = this.props.orderTable;
+        let orders = orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+            return;
+        }
+
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
+
         let materialLots = this.state.data;
         if (materialLots.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
-            return;
-        }
-        if (!documentLine) {
-            self.setState({ 
-                loading: false
-            });
             return;
         }
 
@@ -103,7 +104,7 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObject = {
-            documentLine : documentLine,
+            documentLineList : orders,
             materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {
