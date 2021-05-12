@@ -1,4 +1,4 @@
-import { Button, Input, Row, Col, DatePicker } from 'antd';
+import { Button, Input, Row, Col, DatePicker ,Tag} from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Application } from '../../../api/Application';
@@ -57,6 +57,7 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createExpressInput());
+        buttons.push(this.createStatistic());
         buttons.push(this.createRecordExpressButton());
         buttons.push(this.createManualRecordExpressButton());
         buttons.push(this.createCancelExpressButton());
@@ -102,6 +103,10 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
                     </Col>
                 </Row>
         </FormItem>
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
     recordAutoExpress = () => {
