@@ -11,6 +11,7 @@ import { i18NCode } from '../../const/i18n';
 
 import moment from 'moment';
 import EntityManagerRequest from '../../entity-manager/EntityManagerRequest';
+import EventUtils from '../../utils/EventUtils';
 
 const { RangePicker} = DatePicker;
 const FormItem = Form.Item;
@@ -235,6 +236,11 @@ export default class Field {
     buildStyle = (query) => {
         
     }
+
+    dateChange = (date, dateStr) => {
+        EventUtils.getEventEmitter().emit(EventUtils.getEventNames.ComboxValueChanged, this, dateStr);
+    }
+
     /**
      * 根据不同的DisplayType创建不同的组件
      *  因为refList refTable是对select重新封装。故此处需要自己初始化值
@@ -253,7 +259,7 @@ export default class Field {
         } else if (this.displayType == DisplayType.password) {
             return <Input onBlur={onBlur} placeholder = {this.placeHolder} type="password" disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.calendar) {
-            return <DatePicker onBlur={onBlur} locale={locale} disabled={this.disabled}/>
+            return <DatePicker onBlur={onBlur} locale={locale} disabled={this.disabled} onChange={this.dateChange}/>
         } else if (this.displayType == DisplayType.calendarFromTo) {
             return query ? <RangePicker locale={locale} disabled={this.disabled}/> : <DatePicker locale={locale} disabled={this.disabled}/> ;
         } else if (this.displayType == DisplayType.datetime) {
