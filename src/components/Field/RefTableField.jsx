@@ -79,10 +79,10 @@ export default class RefTableField extends Combox {
                 let parameters = {};
                 parameters[senderField.name] = value;
                 this.queryData(parameters);
-            } else {
-                this.setState({
-                    data: [],
-                });
+            // } else {
+            //     this.setState({
+            //         data: [],
+            //     });
             }
         }
     }
