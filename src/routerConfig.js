@@ -556,6 +556,18 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  //工作站管理
+  {
+    path: buildPath('MMS/MMSWorkOrderStationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  //标签模板管理
+  {
+    path: buildPath('MMS/MMSLabelTemplateManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   {
     path: buildPath('GC/GCProductNumberRelationManager'),
     layout: HeaderAsideFooterResponsiveLayout,
