@@ -29,7 +29,21 @@ export default class GCRawMaterialImportTable extends EntityListTable {
     createTagGroup = () => {
         let tagList = [];
         tagList.push(this.createMaterialLotsNumber());
+        tagList.push(this.createTotalNumber());
         return tagList;
+    }
+
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.currentQty != undefined) {
+                    count = count + data.currentQty;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
 

@@ -44,10 +44,6 @@ export default class GCExpressNumberLabelPrintTable extends EntityListTable {
                 datas : datas,    
                 expressNumber: expressNumber,
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.ObliqueBox;
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }
