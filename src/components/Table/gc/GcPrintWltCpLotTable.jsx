@@ -57,9 +57,8 @@ export default class GcPrintWltCpLotTable extends EntityScanViewTable {
         if (data && data.length > 0) {
             let requestObject = {
                 materialLot : data[0],
+                printCount: printCount,
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.WltLotId;
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, responseBody.parameterMap, printCount);
                     MessageUtils.showOperationSuccess();
                 }
             }

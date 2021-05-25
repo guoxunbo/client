@@ -33,8 +33,10 @@ export default class FinishGoodManagerRequestBody {
      * @param mesPackedLots 待接收的完成品
      * @param warehouseRrn 仓库
      */
-    static buildWLTReceive(mesPackedLots, printLabel) {
-        return new FinishGoodManagerRequestBody(mesPackedLots, undefined, ActionType.WLTReceive, printLabel);
+    static buildWLTReceive(mesPackedLots, printLabel, printCount) {
+        let body = new FinishGoodManagerRequestBody(mesPackedLots, undefined, ActionType.WLTReceive, printLabel);
+        body.printCount = printCount;
+        return body;
     }
 
     /**

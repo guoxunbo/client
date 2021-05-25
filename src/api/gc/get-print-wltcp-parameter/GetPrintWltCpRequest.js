@@ -7,7 +7,7 @@ import Request from '../../Request';
 export default class GetPrintWltCpRequest {
 
     static sendQueryPrintParmeterRequest = (object) => {
-        let requestBody = GetPrintWltCpRequestBody.buildQueryPrintParameter(object.materialLot);
+        let requestBody = GetPrintWltCpRequestBody.buildQueryPrintParameter(object.materialLot, object.printCount);
         let requestHeader = new GetPrintWltCpRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCPrintWltCpLotUrl);
         let requestObject = {
