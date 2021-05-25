@@ -67,7 +67,7 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
                     materialLotList.forEach((materialLot) =>{
                         if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
                             tableData.unshift(materialLot);
-                        } else if(!data.startsWith("RB")){
+                        } else if(!data.startsWith("GCB")){
                             tableData.map((mLot, index) => {
                                 if (mLot[rowKey] == materialLot[rowKey]) {
                                     dataIndex = index;
