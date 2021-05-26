@@ -1,6 +1,8 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import StockInManagerRequest from "../../../api/gc/stock-in/StockInManagerRequest";
 import RawMaterialStockInStorageTable from "../../../components/Table/gc/RawMaterialStockInStorageTable";
+import GcRawMaterialWaitStockInProperties from "./GcRawMaterialWaitStockInProperties";
+import MaterialLot from "../../../api/dto/mms/MaterialLot";
 
 export default class GcRawMaterialStockInProperties extends EntityScanProperties{
 
@@ -15,6 +17,7 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
         let self = this;
         const{table} = this.state;
         let {rowKey,tableData} = this.state;
+        let waitStockInRawMaterialList = this.waitStockInRawMaterial.state.tableData;
         this.setState({loading: true});
         let data = "";
         let queryFields = this.form.state.queryFields;
@@ -64,35 +67,60 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
                 tableRrn: table.objectRrn,
                 success: function(responseBody) {
                     let materialLotList = responseBody.materialLotList;
-                    materialLotList.forEach((materialLot) =>{
-                        if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                            tableData.unshift(materialLot);
-                        } else if(!data.startsWith("GCB")){
-                            tableData.map((mLot, index) => {
-                                if (mLot[rowKey] == materialLot[rowKey]) {
-                                    dataIndex = index;
-                                    materialLot["storageId"] = mLot.storageId;
-                                    materialLot["relaxBoxId"] = mLot.relaxBoxId;
-                                }
-                            });
-                            materialLot.scanFlag = true;
-                            tableData.splice(dataIndex, 1, materialLot);
+                    if (materialLotList && materialLotList.length > 0) {
+                        let errorData = [];
+                        let trueData = [];
+                        tableData.forEach(mLot => {
+                        if(mLot.errorFlag){
+                            errorData.push(mLot);
+                        } else {
+                            trueData.push(mLot);
                         }
-                    });
-                    self.setState({ 
-                        tableData: tableData,
-                        loading: false,
-                    });
-                    self.form.resetFormFileds();
-                },
-                fail: function() {
-                    self.setState({ 
-                        tableData: tableData,
-                        loading: false
-                    });
-                    self.form.resetFormFileds();
+                        });
+                        tableData = [];
+                        materialLotList.forEach(materialLot => {
+                            if (waitStockInRawMaterialList.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                                materialLot.errorFlag = true;
+                            }
+                            if(materialLot.errorFlag){
+                                errorData.unshift(materialLot);
+                            } else if(trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                                trueData.unshift(materialLot);
+                            } else if(!data.startsWith("GCB")){
+                                trueData.map((mLot, index) => {
+                                    if (mLot[rowKey] == materialLot[rowKey]) {
+                                        dataIndex = index;
+                                        materialLot["storageId"] = mLot.storageId;
+                                        materialLot["relaxBoxId"] = mLot.relaxBoxId;
+                                    }
+                                });
+                                materialLot.scanFlag = true;
+                                trueData.splice(dataIndex, 1, materialLot);
+                            } 
+                        });
+                        errorData.forEach(mLot => {
+                            tableData.push(mLot);
+                        });
+                        trueData.forEach(mLot => {
+                            tableData.push(mLot);
+                        });
+                  } else {
+                    let mLot = new MaterialLot();
+                    mLot[rowKey] = data;
+                    mLot.setMaterialLotId(data);
+                    mLot.errorFlag = true;
+                    if (tableData.filter(d => d[rowKey] === mLot[rowKey]).length === 0) {
+                      tableData.unshift(mLot);
+                    }
+                  }
+                 
+                  self.setState({ 
+                    tableData: tableData,
+                    loading: false
+                  });
+                  self.form.resetFormFileds();
                 }
-            }
+              }
             StockInManagerRequest.sendQueryRawMaterialRequest(requestObject);
         }
     }
@@ -109,4 +137,9 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
                                     resetData={this.resetData.bind(this)}/>
     }
 
+    buildOtherComponent = () => {
+        return <GcRawMaterialWaitStockInProperties 
+                        ref={(waitStockInRawMaterial) => { this.waitStockInRawMaterial = waitStockInRawMaterial }} 
+                        tableRrn={2603848} />
+    }
 }
