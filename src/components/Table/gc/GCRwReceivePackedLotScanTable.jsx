@@ -120,15 +120,12 @@ export default class GCRwReceivePackedLotScanTable extends EntityScanViewTable {
             let requestObject = {
                 mesPackedLots: data,
                 printLabel: printLabelFlag,
+                printCount: printCount,
                 success: function(responseBody) {
                     if (self.props.resetData) {
                         self.props.onSearch();
                         self.props.resetData();
                     }
-                    let url = PrintServiceUrl.RwLotIdCst;
-                    responseBody.parameterList.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, printCount);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }

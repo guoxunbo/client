@@ -19,7 +19,7 @@ export default class RwMLotManagerRequest {
     }
 
     static sendRwFinishReceiveRequest = (object) => {
-        let requestBody = RwMLotManagerRequestBody.buildRwReceivePackedLot(object.mesPackedLots, object.printLabel);
+        let requestBody = RwMLotManagerRequestBody.buildRwReceivePackedLot(object.mesPackedLots, object.printLabel, object.printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {
@@ -30,8 +30,8 @@ export default class RwMLotManagerRequest {
     }
 
     static sendPrintRwReceiveLotLableRequest = (object) => {
-        let {materialLot} = object;
-        let requestBody = RwMLotManagerRequestBody.buildGetRwLotPrintParam(materialLot);
+        let {materialLot, printCount} = object;
+        let requestBody = RwMLotManagerRequestBody.buildGetRwLotPrintParam(materialLot, printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {
