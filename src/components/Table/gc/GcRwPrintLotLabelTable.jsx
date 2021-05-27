@@ -92,8 +92,6 @@ export default class GcRwPrintLotLabelTable extends EntityScanViewTable {
                 materialLot : data[0],
                 printCount: printCount,
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.RwLotIdCst;
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, responseBody.parameterMap, printCount);
                     MessageUtils.showOperationSuccess();
                 }
             }

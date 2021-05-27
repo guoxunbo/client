@@ -60,8 +60,6 @@ export default class COBPackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLot : materialLot,    
             success: function(responseBody) {
-                let url = PrintServiceUrl.COBBox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
                 MessageUtils.showOperationSuccess();
             }
         }
