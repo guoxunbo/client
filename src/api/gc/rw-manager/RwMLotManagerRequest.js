@@ -114,7 +114,7 @@ export default class RwMLotManagerRequest {
     }
 
     static sendRWPrintParameterRequest = (object) => {
-        let requestBody = RwMLotManagerRequestBody.buildRWBoxPrintParameter(object.materialLotRrn);
+        let requestBody = RwMLotManagerRequestBody.buildRWBoxPrintParameter(object.materialLotRrn, object.printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {

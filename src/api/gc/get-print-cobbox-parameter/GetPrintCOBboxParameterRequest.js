@@ -7,7 +7,7 @@ import GetPrintCOBboxParameterRequestHeader from './GetPrintCOBboxParameterReque
 export default class GetPrintCOBboxParameterRequest {
 
     static sendQueryRequest = (object) => {
-        let requestBody = GetPrintCOBboxParameterRequestBody.buildQuery(object.materialLot);
+        let requestBody = GetPrintCOBboxParameterRequestBody.buildQuery(object.materialLot, object.printCount);
         let requestHeader = new GetPrintCOBboxParameterRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCGetPrintCOBboxParameterUrl);
         let requestObject = {

@@ -75,8 +75,6 @@ export default class CSTPackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
             success: function(responseBody) {
-                let url = PrintServiceUrl.CSTBox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameterMap, PrintBboxCount);
             }
         }
        RwMLotManagerRequest.sendRWPrintParameterRequest(requestObject);

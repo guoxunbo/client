@@ -66,6 +66,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
     handlePrint = () => {
         let self = this;
         let materialLotRrn = this.state.formObject[DefaultRowKey];
+        let printCount = self.entityForm.getFieldValue("printNumber");
         if (!materialLotRrn) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
@@ -74,6 +75,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
         if(packageType == "WltPackCase"){
             let requestObject = {
                 materialLotRrn : materialLotRrn,    
+                printCount: printCount,
                 success: function(responseBody) {
                     MessageUtils.showOperationSuccess();
                 }
@@ -82,7 +84,8 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
         } else if(packageType == "COBPackCase"){
             let materialLot = this.state.formObject;
             let requestObject = {
-                materialLot : materialLot,      
+                materialLot : materialLot,   
+                printCount: printCount,   
                 success: function(responseBody) {
                     MessageUtils.showOperationSuccess();
                 }
@@ -90,16 +93,17 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
             GetPrintCOBboxParameterRequest.sendQueryRequest(requestObject);
         } else if(packageType == "CSTPackCase"){
             let requestObject = {
-                materialLotRrn : materialLotRrn,    
+                materialLotRrn : materialLotRrn,   
+                printCount: printCount, 
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.CSTBox;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                    MessageUtils.showOperationSuccess();
                 }
             }
             RwMLotManagerRequest.sendRWPrintParameterRequest(requestObject);
         }else {
             let requestObject = {
-                materialLotRrn : materialLotRrn,    
+                materialLotRrn : materialLotRrn, 
+                printCount: printCount,   
                 success: function(responseBody) {
                     MessageUtils.showOperationSuccess();
                 }

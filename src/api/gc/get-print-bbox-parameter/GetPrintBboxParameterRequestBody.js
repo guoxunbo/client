@@ -1,13 +1,15 @@
 export default class GetPrintBboxParameterRequestBody {
 
     materialLotRrn;
+    printCount;
 
-    constructor(materialLotRrn){
+    constructor(materialLotRrn, printCount){
         this.materialLotRrn = materialLotRrn;
+        this.printCount = printCount;
     }
 
-    static buildQuery(materialLotRrn) {
-        return new GetPrintBboxParameterRequestBody(materialLotRrn);
+    static buildQuery(materialLotRrn, printCount) {
+        return new GetPrintBboxParameterRequestBody(materialLotRrn, printCount);
     }
 
 }
