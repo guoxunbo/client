@@ -50,8 +50,7 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
             success: function(responseBody) {
-                let url = PrintServiceUrl.Bbox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
+
             }
         }
         GetPrintBboxParameterRequest.sendQueryRequest(requestObject);

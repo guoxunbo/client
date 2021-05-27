@@ -101,8 +101,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
             let requestObject = {
                 materialLotRrn : materialLotRrn,    
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.Bbox;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
