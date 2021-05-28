@@ -26,10 +26,6 @@ export default class GcPrintVBoxLabelTable extends EntityScanViewTable {
             let requestObject = {
                 mesPackedLots : data,    
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.Vbox;
-                    responseBody.parameters.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }
