@@ -140,10 +140,6 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
                     selectedRows: [],
                     selectedRowKeys: []
                 }) 
-                // let url = PrintServiceUrl.ObliqueBox;
-                // responseBody.parameterMapList.forEach((parameter) => {
-                //     PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                // });
                 MessageUtils.showOperationSuccess();
             }
         };
@@ -233,10 +229,6 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
             let requestObject = {
                 datas : datas,    
                 success: function(responseBody) {
-                    // let url = PrintServiceUrl.ObliqueBox;
-                    // responseBody.parameterMapList.forEach((parameter) => {
-                    //     PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                    // });
                     MessageUtils.showOperationSuccess();
                 }
             }
