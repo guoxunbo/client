@@ -78,8 +78,7 @@ export default class GCRwStockOutTagging2Table extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        let printCount = 2;
-
+        
         self.setState({
             loading: true
         });
@@ -89,9 +88,6 @@ export default class GCRwStockOutTagging2Table extends EntityScanViewTable {
             let requestObject = {
                 materialLotRrn : data[0].objectRrn,
                 success: function(responseBody) {
-                    debugger;
-                    let url = PrintServiceUrl.RWStockOut;
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, responseBody.parameterMap, printCount);
                     MessageUtils.showOperationSuccess();
                 }
             }
