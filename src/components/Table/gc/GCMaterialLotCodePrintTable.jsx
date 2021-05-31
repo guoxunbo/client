@@ -2,7 +2,6 @@ import EntityListTable from "../EntityListTable";
 import { Button, Tag, Select } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
 import PrintUtils from '../../../api/utils/PrintUtils';

@@ -4,8 +4,6 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import IconUtils from '../../../api/utils/IconUtils';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl , PrintBboxCount} from '../../../api/gc/GcConstDefine';
 import { Notification } from '../../notice/Notice';
 import GetPrintBoxQRCodeParameterRequest from '../../../api/gc/get-print-boxRQCode-parameter/GetPrintBoxQRCodeParameterRequest';
 import EventUtils from "../../../api/utils/EventUtils";

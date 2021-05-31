@@ -5,8 +5,6 @@ import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/Fin
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
 
 export default class WLTReceiveFGScanTable extends EntityScanViewTable {

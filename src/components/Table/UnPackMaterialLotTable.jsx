@@ -6,8 +6,6 @@ import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import MessageUtils from '../../api/utils/MessageUtils';
 import UnPackageMaterialLotRequest from '../../api/unpackage-material-lot/UnPackageMaterialLotRequest';
-import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
-import PrintUtils from '../../api/utils/PrintUtils';
 import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
 import EventUtils from '../../api/utils/EventUtils';
 

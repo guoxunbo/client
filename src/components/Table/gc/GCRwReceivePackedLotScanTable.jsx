@@ -1,12 +1,9 @@
 import { Button, Col, Icon, Input, Row, Switch, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
-import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
 import FormItem from 'antd/lib/form/FormItem';
 import RwMLotManagerRequest from '../../../api/gc/rw-manager/RwMLotManagerRequest';
