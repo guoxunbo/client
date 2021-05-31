@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class RwMLotManagerRequest {
 
     static sendPrintLableRequest = (object) => {
-        let {materialLotList} = object;
-        let requestBody = RwMLotManagerRequestBody.buildGetPrintParam(materialLotList);
+        let {materialLotList, printCount} = object;
+        let requestBody = RwMLotManagerRequestBody.buildGetPrintParam(materialLotList, printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {

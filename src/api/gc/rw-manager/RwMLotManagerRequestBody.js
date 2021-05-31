@@ -26,8 +26,10 @@ export default class RwMLotManagerRequestBody {
         this.pickQty = pickQty;
     }
 
-    static buildGetPrintParam(materialLotList) {
-        return new RwMLotManagerRequestBody(ActionType.GetPrintParameter, materialLotList);
+    static buildGetPrintParam(materialLotList, printCount) {
+        let body = new RwMLotManagerRequestBody(ActionType.GetPrintParameter, materialLotList);
+        body.printCount = printCount;
+        return body;
     }
 
     /**
