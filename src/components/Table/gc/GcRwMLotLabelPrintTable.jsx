@@ -6,9 +6,6 @@ import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
-import RmaMLotManagerRequest from '../../../api/gc/rma-mlot-manager/RmaMLotManagerRequest';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
-import PrintUtils from '../../../api/utils/PrintUtils';
 import RwMLotManagerRequest from '../../../api/gc/rw-manager/RwMLotManagerRequest';
 
 /**
@@ -79,14 +76,11 @@ export default class GcRwMLotLabelPrintTable extends EntityScanViewTable {
 
         let requestObject = {
             materialLotList : materialLotList,
+            printCount : printCount,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                let url = PrintServiceUrl.RwLotIdIssue;
-                responseBody.parameterList.forEach((parameter) => {
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, printCount);
-                });
                 MessageUtils.showOperationSuccess();
             }
         }

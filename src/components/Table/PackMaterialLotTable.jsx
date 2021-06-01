@@ -6,9 +6,7 @@ import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import PackageMaterialLotRequest from '../../api/package-material-lot/PackageMaterialLotRequest';
 import MessageUtils from '../../api/utils/MessageUtils';
-import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
 import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
-import PrintUtils from '../../api/utils/PrintUtils';
 import { Tag } from 'antd';
 
 /**
@@ -44,14 +42,6 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
             success: function(responseBody) {
-                if(responseBody.parameters){
-                    let url = PrintServiceUrl.Bbox;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
-                }
-                if(responseBody.customerParameter.length > 0){
-                    let url = PrintServiceUrl.CusNameLabel;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.customerParameter, 1);
-                }
             }
         }
         GetPrintBboxParameterRequest.sendQueryRequest(requestObject);

@@ -26,8 +26,10 @@ export default class RwMLotManagerRequestBody {
         this.pickQty = pickQty;
     }
 
-    static buildGetPrintParam(materialLotList) {
-        return new RwMLotManagerRequestBody(ActionType.GetPrintParameter, materialLotList);
+    static buildGetPrintParam(materialLotList, printCount) {
+        let body = new RwMLotManagerRequestBody(ActionType.GetPrintParameter, materialLotList);
+        body.printCount = printCount;
+        return body;
     }
 
     /**
@@ -35,10 +37,11 @@ export default class RwMLotManagerRequestBody {
      * @param mesPackedLots 待接收的完成品
      * @param printLabel 仓库
      */
-    static buildRwReceivePackedLot(mesPackedLots, printLabel) {
+    static buildRwReceivePackedLot(mesPackedLots, printLabel, printCount) {
         let body = new RwMLotManagerRequestBody(ActionType.RWReceivePackedLot);
         body.mesPackedLots = mesPackedLots;
         body.printLabel = printLabel;
+        body.printCount = printCount;
         return body;
     }
 
@@ -46,9 +49,10 @@ export default class RwMLotManagerRequestBody {
      * RW产线接收Lot标签补打
      * @param materialLot Lot信息
      */
-    static buildGetRwLotPrintParam(materialLot) {
+    static buildGetRwLotPrintParam(materialLot, printCount) {
         let body = new RwMLotManagerRequestBody(ActionType.GetLotPrintLabel);
         body.materialLot = materialLot;
+        body.printCount = printCount;
         return body;
     }
 
@@ -112,9 +116,10 @@ export default class RwMLotManagerRequestBody {
     }
 
 
-    static buildRWBoxPrintParameter(materialLotRrn) {
+    static buildRWBoxPrintParameter(materialLotRrn, printCount) {
         let body = new RwMLotManagerRequestBody(ActionType.RWBoxPrint);
         body.materialLotRrn = materialLotRrn;
+        body.printCount = printCount;
         return body;
     }
 

@@ -3,8 +3,6 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
 import MessageUtils from '../../../api/utils/MessageUtils';
-import { PrintServiceUrl, PrintBboxCount } from '../../../api/gc/GcConstDefine';
-import PrintUtils from '../../../api/utils/PrintUtils';
 import { Tag } from 'antd';
 import PackageMaterialLotRequest from '../../../api/package-material-lot/PackageMaterialLotRequest';
 import EntityScanViewTable from '../EntityScanViewTable';
@@ -75,8 +73,6 @@ export default class WltPackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
             success: function(responseBody) {
-                let url = PrintServiceUrl.WltBbox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
             }
         }
         GetPrintWltBboxParameterRequest.sendQueryRequest(requestObject);

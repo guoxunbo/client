@@ -4,8 +4,6 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import IconUtils from '../../../api/utils/IconUtils';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import GetPrintWltCpRequest from '../../../api/gc/get-print-wltcp-parameter/GetPrintWltCpRequest';
 import EventUtils from '../../../api/utils/EventUtils';
 import MessageUtils from '../../../api/utils/MessageUtils';
@@ -57,9 +55,8 @@ export default class GcPrintWltCpLotTable extends EntityScanViewTable {
         if (data && data.length > 0) {
             let requestObject = {
                 materialLot : data[0],
+                printCount: printCount,
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.WltLotId;
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, responseBody.parameterMap, printCount);
                     MessageUtils.showOperationSuccess();
                 }
             }

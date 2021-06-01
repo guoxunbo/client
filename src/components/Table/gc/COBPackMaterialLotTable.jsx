@@ -3,8 +3,6 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
 import MessageUtils from '../../../api/utils/MessageUtils';
-import { PrintServiceUrl, PrintBboxCount } from '../../../api/gc/GcConstDefine';
-import PrintUtils from '../../../api/utils/PrintUtils';
 import { Tag } from 'antd';
 import PackageMaterialLotRequest from '../../../api/package-material-lot/PackageMaterialLotRequest';
 import EntityScanViewTable from '../EntityScanViewTable';
@@ -60,8 +58,6 @@ export default class COBPackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLot : materialLot,    
             success: function(responseBody) {
-                let url = PrintServiceUrl.COBBox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
                 MessageUtils.showOperationSuccess();
             }
         }

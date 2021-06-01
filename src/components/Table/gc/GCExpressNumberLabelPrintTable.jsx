@@ -4,9 +4,7 @@ import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
 import RecordExpressNumberRequest from '../../../api/gc/record-express-number/RecordExpressNumberRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
-import PrintUtils from '../../../api/utils/PrintUtils';
 import EntityListTable from '../EntityListTable';
 
 

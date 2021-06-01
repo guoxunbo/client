@@ -6,12 +6,11 @@ import { Button } from "antd";
 import IconUtils from "../../../api/utils/IconUtils";
 import { DefaultRowKey } from "../../../api/const/ConstDefine";
 import { Notification } from "../../../components/notice/Notice";
-import PrintUtils from "../../../api/utils/PrintUtils";
 import GetPrintBboxParameterRequest from "../../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest";
-import { PrintServiceUrl } from "../../../api/gc/GcConstDefine";
 import GetPrintWltBboxParameterRequest from "../../../api/gc/get-print-wltbbox-parameter/GetPrintWltBboxParameterRequest";
 import GetPrintCOBboxParameterRequest from "../../../api/gc/get-print-cobbox-parameter/GetPrintCOBboxParameterRequest";
 import RwMLotManagerRequest from "../../../api/gc/rw-manager/RwMLotManagerRequest";
+import MessageUtils from "../../../api/utils/MessageUtils";
 
 /**
  * 打印箱标签
@@ -65,6 +64,7 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
     handlePrint = () => {
         let self = this;
         let materialLotRrn = this.state.formObject[DefaultRowKey];
+        let printCount = self.entityForm.getFieldValue("printNumber");
         if (!materialLotRrn) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
@@ -73,37 +73,37 @@ export default class GcPrintCaseLabelProperties extends EntityViewProperties{
         if(packageType == "WltPackCase"){
             let requestObject = {
                 materialLotRrn : materialLotRrn,    
+                printCount: printCount,
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.WltBbox;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintWltBboxParameterRequest.sendQueryRequest(requestObject);
         } else if(packageType == "COBPackCase"){
             let materialLot = this.state.formObject;
             let requestObject = {
-                materialLot : materialLot,      
+                materialLot : materialLot,   
+                printCount: printCount,   
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.COBBox;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintCOBboxParameterRequest.sendQueryRequest(requestObject);
         } else if(packageType == "CSTPackCase"){
             let requestObject = {
-                materialLotRrn : materialLotRrn,    
+                materialLotRrn : materialLotRrn,   
+                printCount: printCount, 
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.CSTBox;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                    MessageUtils.showOperationSuccess();
                 }
             }
             RwMLotManagerRequest.sendRWPrintParameterRequest(requestObject);
         }else {
             let requestObject = {
-                materialLotRrn : materialLotRrn,    
+                materialLotRrn : materialLotRrn, 
+                printCount: printCount,   
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.Bbox;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, self.entityForm.getFieldValue("printNumber"));
+                    MessageUtils.showOperationSuccess();
                 }
             }
             GetPrintBboxParameterRequest.sendQueryRequest(requestObject);

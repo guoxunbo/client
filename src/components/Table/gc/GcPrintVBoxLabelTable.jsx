@@ -5,8 +5,6 @@ import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import IconUtils from '../../../api/utils/IconUtils';
 import GetPrintVboxParameterRequest from '../../../api/gc/get-print-vbox-parameter/GetPrintVboxParameterRequest';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import MessageUtils from '../../../api/utils/MessageUtils';
 
 export default class GcPrintVBoxLabelTable extends EntityScanViewTable {
@@ -26,10 +24,6 @@ export default class GcPrintVBoxLabelTable extends EntityScanViewTable {
             let requestObject = {
                 mesPackedLots : data,    
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.Vbox;
-                    responseBody.parameters.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }

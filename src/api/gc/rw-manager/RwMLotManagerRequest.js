@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class RwMLotManagerRequest {
 
     static sendPrintLableRequest = (object) => {
-        let {materialLotList} = object;
-        let requestBody = RwMLotManagerRequestBody.buildGetPrintParam(materialLotList);
+        let {materialLotList, printCount} = object;
+        let requestBody = RwMLotManagerRequestBody.buildGetPrintParam(materialLotList, printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {
@@ -19,7 +19,7 @@ export default class RwMLotManagerRequest {
     }
 
     static sendRwFinishReceiveRequest = (object) => {
-        let requestBody = RwMLotManagerRequestBody.buildRwReceivePackedLot(object.mesPackedLots, object.printLabel);
+        let requestBody = RwMLotManagerRequestBody.buildRwReceivePackedLot(object.mesPackedLots, object.printLabel, object.printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {
@@ -30,8 +30,8 @@ export default class RwMLotManagerRequest {
     }
 
     static sendPrintRwReceiveLotLableRequest = (object) => {
-        let {materialLot} = object;
-        let requestBody = RwMLotManagerRequestBody.buildGetRwLotPrintParam(materialLot);
+        let {materialLot, printCount} = object;
+        let requestBody = RwMLotManagerRequestBody.buildGetRwLotPrintParam(materialLot, printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {
@@ -114,7 +114,7 @@ export default class RwMLotManagerRequest {
     }
 
     static sendRWPrintParameterRequest = (object) => {
-        let requestBody = RwMLotManagerRequestBody.buildRWBoxPrintParameter(object.materialLotRrn);
+        let requestBody = RwMLotManagerRequestBody.buildRWBoxPrintParameter(object.materialLotRrn, object.printCount);
         let requestHeader = new RwMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
         let requestObject = {
