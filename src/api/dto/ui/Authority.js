@@ -11,6 +11,7 @@ export default class Authority {
     objectRrn;
     parentRrn;
     url;
+    newWindow;
 
     parameter1;
     parameter2;
@@ -31,14 +32,20 @@ export default class Authority {
         }
         //处理子菜单
         let subAuthorities = authority.subAuthorities;
-        if (subAuthorities) {
+        if (subAuthorities && subAuthorities.length > 0) {
             let subMenus = [];
             subAuthorities.map((authority, index) => {
                 let subMenu = new Authority(authority, language);
                 subMenus[index] = subMenu;
             });
             this.children = subMenus;
+        } else {
+            if (authority.authorityCategory == "FineReport") {
+                this.path = "http://" + authority.url;
+                this.newWindow = true;
+            }
         }
+    
     }
 
     /**
@@ -46,6 +53,7 @@ export default class Authority {
      * 
      */
     buildPath = () => {
+
         let path = this.url + "/" + this.tableRrn + "/" + this.parentRrn;
         if (this.parameter1) {
             path += "/" + this.parameter1;

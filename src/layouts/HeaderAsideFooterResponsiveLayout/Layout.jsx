@@ -163,6 +163,31 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
     return <UserLoginDialog ref={this.formRef} object={{}} onOk= {this.closeUserLoginDialog} visible={this.state.dialogVisible} tableRrn={30773} table={{fields:[]}}/>
   }
 
+  createMenu = (item, parentFlag) => {
+    const linkProps = {};
+    let component = undefined;
+    if (item.newWindow) {
+      component = <a href={item.path} target = '_blank'>  {item.name}</a>
+      
+    } else {
+      let query = {
+          pathname: item.path,
+          query: item.tableRrn
+      }
+      linkProps.to = query;
+      component =  <Link {...linkProps}>
+      {item.icon ? IconUtils.buildIcon(item.icon) : null}
+        {!parentFlag ? <span style={{marginLeft:"3px"}}></span> : <span className="ice-menu-collapse-hide" style={{marginLeft:"10px", fontSize:"14px"}}></span>}
+      {item.name}
+      </Link>
+    }
+    return (
+      <MenuItem key={item.path}>
+        {component}
+      </MenuItem>
+    );
+  }
+
   render() {    
     const { location = {} } = this.props;
     const { pathname } = location;
@@ -214,7 +239,7 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
                 defaultSelectedKeys={[pathname]}
                 onOpenChange={this.onOpenChange}
                 onClick={this.onMenuClick}
-              >
+              > 
                 {Array.isArray(this.state.asideMenuConfig) &&
                   this.state.asideMenuConfig.length > 0 &&
                   this.state.asideMenuConfig.map((nav, index) => {
@@ -233,54 +258,12 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
                           }
                         >
                           {nav.children.map((item) => {
-                            const linkProps = {};
-                            if (item.newWindow) {
-                              linkProps.href = item.path;
-                              linkProps.target = '_blank';
-                            } else if (item.external) {
-                              linkProps.href = item.path;
-                            } else {
-                              let query = {
-                                  pathname: item.path,
-                                  query: item.tableRrn
-                              }
-                              linkProps.to = query;
-                            }
-                            return (
-                              <MenuItem key={item.path}>
-                                <Link {...linkProps}>
-                                {item.icon ? IconUtils.buildIcon(item.icon) : null}
-                                  <span style={{marginLeft:"3px"}}></span>
-                                {item.name}</Link>
-                              </MenuItem>
-                            );
+                            return this.createMenu(item, false);
                           })}
                         </SubMenu>
                       );
                     }
-                    const linkProps = {};
-                    if (nav.newWindow) {
-                      linkProps.href = nav.path;
-                      linkProps.target = '_blank';
-                    } else if (nav.external) {
-                      linkProps.href = nav.path;
-                    } else {
-                      linkProps.to = nav.path;
-                    }
-
-                    return (
-                      <MenuItem key={nav.path}>
-                        <Link {...linkProps}>
-                            <span >
-                              {nav.icon ? IconUtils.buildIcon(nav.icon, 'filled') : null}
-                                <span className="ice-menu-collapse-hide" 
-                                    style={{marginLeft:"10px", fontSize:"14px"}}>
-                                  {nav.name}
-                                </span>
-                            </span>
-                        </Link>
-                      </MenuItem>
-                    );
+                    return this.createMenu(nav, true);
                   })}
               </Menu>
               {/* 侧边菜单项 end */}
