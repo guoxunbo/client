@@ -71,6 +71,7 @@ const i18NCode = {
     BtnAddShipOrder: "AddShipOrder",
     BtnSpareMaterial: "SpareMaterial",
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
+    BtnScrapShip: "ScrapShip",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -1180,6 +1181,11 @@ const i18Messages = {
     TapeMaterialCodeIsExisted: {
         Chinese: "Tape原材料批次已经存在！",
         English: "Tape material code is existed!",
+        Res: ""     
+    },
+    ScrapShip: {
+        Chinese: "报废出库",
+        English: "Scrap Ship",
         Res: ""     
     }
 }
