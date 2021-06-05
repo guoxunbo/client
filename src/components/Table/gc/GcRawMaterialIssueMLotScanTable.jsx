@@ -15,7 +15,7 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
 
     constructor(props) {
         super(props);
-        this.state = {...this.state};
+        this.state = {...this.state,...{checked:true},...{value: "issueWithDoc"}};
     }
 
     getRowClassName = (record, index) => {
@@ -38,12 +38,41 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
 
     createTagGroup = () => {
         let tagList = [];
+        tagList.push(this.createIssueWithDocFlag());
         tagList.push(this.createMaterialLotsNumber());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
     }
+
+    createIssueWithDocFlag = () => {
+        return <span style={{display: 'flex'}}>
+            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.MatchErpDocLine)}:</span>
+            <span style = {{marginLeft:"10px"}}>
+                <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
+                        checkedChildren={<Icon type="issueWithDoc" />} 
+                        unCheckedChildren={<Icon type="close" />} 
+                        onChange={this.handleChange} 
+                        disabled={this.disabled}
+                        checked={this.state.checked}/>
+            </span>
+        </span>
+    }
     
+    handleChange = (checkedChildren) => {
+        if(checkedChildren){
+            this.setState({ 
+                value: "issueWithDoc",
+                checked: true
+            });
+        } else {
+            this.setState({ 
+                value: "",
+                checked: false
+            });
+        }
+    }
+
     getErrorCount = () => {
         let materialLots = this.state.data;
         let count = 0;
@@ -80,9 +109,10 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
 
     rawMaterialIssue = () => {
         let self = this;
+        let issueWithDoc = this.state.value;
         let orderTable = this.props.orderTable;
         let orders = orderTable.state.data;
-        if (orders.length === 0) {
+        if (issueWithDoc == "issueWithDoc" && orders.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
@@ -106,6 +136,7 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
         let requestObject = {
             documentLineList : orders,
             materialLots : materialLots,
+            issueWithDoc: issueWithDoc,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();

@@ -37,9 +37,10 @@ export default class GCRawMaterialImportRequestBody {
         return new GCRawMaterialImportRequestBody(ActionType.Receive, materialLotList);
     }
 
-    static buildRawMaterialIssue(materialLotList, documentLineList) {
+    static buildRawMaterialIssue(materialLotList, documentLineList,issueWithDoc) {
         let body = new GCRawMaterialImportRequestBody(ActionType.RawIssue, materialLotList);
         body.documentLineList = documentLineList;
+        body.issueWithDoc = issueWithDoc;
         return body;
     }
 
