@@ -1,27 +1,21 @@
 const ActionType = {
-    Creata: "Create",
-    Update: "Update"
+    Merge: "merge",
 }
 
 export default class RawMaterialManagerRequestBody {
 
     actionType;
-    material;
+    dataList;
 
-    constructor(actionType, material){
+    constructor(actionType, dataList){
         this.actionType = actionType;
-        this.material = material;
+        this.dataList = dataList;
     }
 
     static buildMergeRawMaterial(rawMaterial) {
-        let actionType;
-        if (rawMaterial.objectRrn) {
-            actionType = ActionType.Update;
-        } else {
-            actionType = ActionType.Creata;
-        }
-        return new RawMaterialManagerRequestBody(actionType, rawMaterial);
+        let dataList = []
+        dataList.push(rawMaterial);
+        return new RawMaterialManagerRequestBody(ActionType.Merge, dataList);
     }
-
 }
 
