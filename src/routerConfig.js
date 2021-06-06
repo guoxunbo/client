@@ -42,6 +42,7 @@ import IssueByMLotOrderProperties from '@pages/Properties/mms/IssueByMLotOrderPr
 import CreateIssueOrderByMaterialProperties from '@pages/Properties/mms/CreateIssueOrderByMaterialProperties';
 import RecommendIssueMLotProperties from '@pages/Properties/mms/RecommendIssueMLotProperties';
 import CreateIssueOrderByMLotProperties from '@pages/Properties/mms/CreateIssueOrderByMLotProperties';
+import SplitMLotProperties from '@properties/mms/SplitMLotProperties';
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -390,6 +391,16 @@ const routerConfig = [
     path: buildPath('MMS/Mobile/PrintMLot'),
     layout: BlankLayout,
     component: PrintMaterialLotProperties,
+  },
+  {
+    path: buildPath('MMS/MaterialLotSplit'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: SplitMLotProperties,
+  },
+  {
+    path: buildPath('MMS/RecommendIssueLabMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: RecommendIssueMLotProperties,
   },
   {
     path: buildPath('MMS/IssueMaterialOrder'),
