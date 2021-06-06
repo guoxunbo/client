@@ -45,6 +45,10 @@ import CreateIssueOrderByMLotProperties from '@pages/Properties/mms/CreateIssueO
 import SplitMLotProperties from '@properties/mms/SplitMLotProperties';
 import MaterialLotHoldProperties from '@properties/mms/MaterialLotHoldProperties';
 import MaterialLotReleaseProperties from '@properties/mms/MaterialLotReleaseProperties';
+import ProductProperties from '@properties/mms/ProductProperties';
+import CsvImportProperties from '@pages/Properties/mms/CsvImportProperties';
+import ImportRawMaterialProperties from '@pages/Properties/mms/ImportRawMaterialPropertiest';
+import LabMaterialProperties from '@pages/Properties/mms/LabMaterialProperties';
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -471,6 +475,31 @@ const routerConfig = [
     path: buildPath('MMS/MaterialLotHold'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotHoldProperties,
+  },
+  {
+    path: buildPath('MMS/ProductManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ProductProperties,
+  },
+  {
+    path: buildPath('MMS/LabMaterialManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: LabMaterialProperties,
+  },
+  {
+    path: buildPath('MMS/RawMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ImportRawMaterialProperties,
+  },
+  {
+    path: buildPath('MMS/ProductImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CsvImportProperties,
+  },
+  {
+    path: buildPath('MMS/MaterialModelConversion'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   {
     path: '*',

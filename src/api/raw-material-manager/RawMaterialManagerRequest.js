@@ -7,16 +7,12 @@ import Request from '@api/Request';
 export default class RawMaterialManagerRequest {
 
     /**
-     * 发送merge信息请求
+     * Merge
      */
-    static sendMergeRequest = (object) => {
-        // 如果数据是新增的，清空objectRrn栏位
-        if (object.rawMaterial.newFlag) {
-            object.rawMaterial[DefaultRowKey] = undefined;
-        }
+     static sendMergeRequest = (object) => {
         let requestBody = RawMaterialManagerRequestBody.buildMergeRawMaterial(object.rawMaterial);
         let requestHeader = new RawMaterialManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.RawMaterialManagerUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCRawMaterialManagerUrl);
         let requestObject = {
             request: request,
             success: object.success
