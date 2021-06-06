@@ -34,10 +34,14 @@ import MaterialLotInventoryProperties from '@properties/mms/MaterialLotInventory
 import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialImportProperties';
 import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialReceiveProperties';
 import IncomingMLotReceiveProperties from '@pages/Properties/mms/IncomingMLotReceiveProperties';
-import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
-import IssueMaterialOrderProperties from '@properties/mms/IssueMaterialOrderProperties';
+import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
+import IssueByMaterialOrderProperties from '@pages/Properties/mms/IssueByMaterialOrderProperties';
+import IssueByMLotOrderProperties from '@pages/Properties/mms/IssueByMLotOrderProperties';
+import CreateIssueOrderByMaterialProperties from '@pages/Properties/mms/CreateIssueOrderByMaterialProperties';
+import RecommendIssueMLotProperties from '@pages/Properties/mms/RecommendIssueMLotProperties';
+import CreateIssueOrderByMLotProperties from '@pages/Properties/mms/CreateIssueOrderByMLotProperties';
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -370,6 +374,52 @@ const routerConfig = [
     layout: BlankLayout,
     component: PrintMaterialLotProperties,
   },
+  {
+    path: buildPath('MMS/IssueMaterialOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IssueLotOrderProperties,
+  },
+  {
+    path: buildPath('MMS/CreateIssueOrderByMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CreateIssueOrderByMLotProperties,
+  },
+  {
+    path: buildPath('MMS/IssueByMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IssueByMLotOrderProperties,
+  },
+  {
+    path: buildPath('MMS/CreateIssueOrderByMaterial'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CreateIssueOrderByMaterialProperties,
+  },
+  {
+    path: buildPath('MMS/RecommendIssueMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: RecommendIssueMLotProperties,
+  },
+  {
+    path: buildPath('MMS/IssueByMaterial'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IssueByMaterialOrderProperties,
+  },
+  {
+    path: buildPath('MMS/CreateLabMLotOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CreateIssueOrderByMLotProperties,
+  },
+  {
+    path: buildPath('MMS/IssueLabMLotOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IssueByMLotOrderProperties,
+  },
+
+
+  //release
+  {
+    path: buildPath('MMS/MaterialLotRelease'),
+    layout: HeaderAsideFooterResponsiveLayout,
   
   {
     path: '*',
