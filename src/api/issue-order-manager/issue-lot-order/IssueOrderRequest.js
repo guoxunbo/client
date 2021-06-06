@@ -6,7 +6,7 @@ import Request from '@api/Request';
 
 export default class IssueOrderRequest {
 
-     static sendGetIssueLotInfoRequest = (object) => {
+    static sendGetIssueLotInfoRequest = (object) => {
         let requestBody =  IssueOrderRequestBody.buildGetIssueLotInfo(object.documentId);
         let requestHeader = new IssueOrderRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.MMSIssueMLotByDocUrl);
@@ -23,8 +23,9 @@ export default class IssueOrderRequest {
         let request = new Request(requestHeader,requestBody, UrlConstant.VCIssueMLotByDocUrl);
         let requestObject = {
             request: request,
-            success: object.success,
+            success: object.success
         }
         MessageUtils.sendRequest(requestObject);
     }
+    
 }
