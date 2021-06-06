@@ -52,6 +52,9 @@ export default class MaterialLotQcProperties extends EntityViewProperties{
             formObject: data,
             formVisible: false
         });
+        if(this.props.onSearch){
+            this.props.onSearch()
+        }
         NoticeUtils.showSuccess();
     }
 
@@ -63,6 +66,9 @@ export default class MaterialLotQcProperties extends EntityViewProperties{
     
     loadDataInComponentDidMount = () => {
         let materialLotQcDialogTableName = this.state.parameters.parameter1;
+        if(this.props.materialLotQcDialogTableName){
+            materialLotQcDialogTableName = this.props.materialLotQcDialogTableName;
+        }
         let self = this;
         let requestObject = {
             name: materialLotQcDialogTableName,
