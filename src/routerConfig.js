@@ -49,6 +49,7 @@ import ProductProperties from '@properties/mms/ProductProperties';
 import CsvImportProperties from '@pages/Properties/mms/CsvImportProperties';
 import ImportRawMaterialProperties from '@pages/Properties/mms/ImportRawMaterialPropertiest';
 import LabMaterialProperties from '@pages/Properties/mms/LabMaterialProperties';
+import IncomingLabMLotImportProperties from '@pages/Properties/mms/IncomingLabMLotImportProperties';
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -224,6 +225,11 @@ const routerConfig = [
     path: buildPath('MMS/IssueLotOrder'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: IssueLotOrderProperties,
+  },
+  {
+    path: buildPath('MMS/IncomingLabMLotImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IncomingLabMLotImportProperties,
   },
   {
     path: buildPath('MMS/IncomingMLotImport'),
