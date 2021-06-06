@@ -33,6 +33,7 @@ import MaterialLotStockInProperties from '@properties/mms/MaterialLotStockInProp
 import MaterialLotInventoryProperties from '@properties/mms/MaterialLotInventoryProperties';
 import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialImportProperties';
 import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialReceiveProperties';
+import IncomingMLotReceiveProperties from '@pages/Properties/mms/IncomingMLotReceiveProperties';
 import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
@@ -200,6 +201,11 @@ const routerConfig = [
     path: buildPath('MMS/IncomingMaterialReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: IncomingMaterialReceiveProperties,
+  },
+  {
+    path: buildPath('MMS/IncomingMLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IncomingMLotReceiveProperties,
   },
   {
     path: buildPath('MMS/IssueLotOrder'),
