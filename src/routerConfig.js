@@ -43,6 +43,8 @@ import CreateIssueOrderByMaterialProperties from '@pages/Properties/mms/CreateIs
 import RecommendIssueMLotProperties from '@pages/Properties/mms/RecommendIssueMLotProperties';
 import CreateIssueOrderByMLotProperties from '@pages/Properties/mms/CreateIssueOrderByMLotProperties';
 import SplitMLotProperties from '@properties/mms/SplitMLotProperties';
+import MaterialLotHoldProperties from '@properties/mms/MaterialLotHoldProperties';
+import MaterialLotReleaseProperties from '@properties/mms/MaterialLotReleaseProperties';
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -448,7 +450,28 @@ const routerConfig = [
   {
     path: buildPath('MMS/MaterialLotRelease'),
     layout: HeaderAsideFooterResponsiveLayout,
-  
+    component: MaterialLotReleaseProperties,
+  },
+  {
+    path: buildPath('VC/MLotReleasePE'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotReleaseProperties,
+  },
+  {
+    path: buildPath('VC/MLotReleaseS'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotReleaseProperties,
+  },
+  {
+    path: buildPath('VC/MLotReleaseQc'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotReleaseProperties,
+  },
+  {
+    path: buildPath('MMS/MaterialLotHold'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotHoldProperties,
+  },
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
