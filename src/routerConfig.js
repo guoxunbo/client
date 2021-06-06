@@ -55,6 +55,8 @@ import GcReTestOrderProperties from '@properties/gc/GcReTestOrderProperties';
 import EquipmentRecipeProperties from '@properties/rms/EquipmentRecipeProperties';
 import EquipmentProperties from '@properties/rms/EquipmentProperties';
 import MaterialLotQcProperties from '@pages/Properties/mms/MaterialLotQcProperties';
+import MaterialLotIqcManagerProperties from '@pages/Properties/mms/MaterialLotIqcManagerProperties';
+import MaterialLotOqcManagerProperties from '@pages/Properties/mms/MaterialLotOqcManagerProperties';
 import MobileHome from '@pages/Mobile/MobileHome';
 import ReceiveMLotByOrderProperties from '@pages/Properties/mms/mobile/ReceiveMLotByOrderProperties';
 import SplitMaterialLotProperties from '@pages/Properties/mms/mobile/SplitMaterialLotProperties';
@@ -240,7 +242,22 @@ const routerConfig = [
   {
     path: buildPath('MQC/MLotQC'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: MaterialLotQcProperties,
+    component: MaterialLotIqcManagerProperties,
+  },
+  {
+    path: buildPath('MQC/OqcManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  {
+    path: buildPath('MQC/MLotOQC'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: MaterialLotOqcManagerProperties,
+  },
+  {
+    path: buildPath('MQC/QueryMLotQC'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityHistoryProperties,
   },
   //MES成品接收
   {
