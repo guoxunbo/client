@@ -26,4 +26,5 @@ export default class IssueOrderRequestBody{
         });
         return new IssueOrderRequestBody(actionType.Issue, documentId, materialLotIdList);
     }
+
 }

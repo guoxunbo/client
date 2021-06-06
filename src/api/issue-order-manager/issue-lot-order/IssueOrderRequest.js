@@ -5,6 +5,7 @@ import MessageUtils from '@utils/MessageUtils';
 import Request from '@api/Request';
 
 export default class IssueOrderRequest {
+
     static sendGetIssueLotInfoRequest = (object) => {
         let requestBody =  IssueOrderRequestBody.buildGetIssueLotInfo(object.documentId);
         let requestHeader = new IssueOrderRequestHeader();
@@ -26,4 +27,5 @@ export default class IssueOrderRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
 }
