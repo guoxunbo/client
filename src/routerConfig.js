@@ -218,9 +218,14 @@ const routerConfig = [
     component: IncomingMLotImportProperties,
   },
   {
-    path: buildPath('MMS/IncomingMLotReceive'),
+    path: buildPath('MMS/NBQueryManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: IncomingMLotReceiveProperties,
+    component: EntityProperties,
+  },
+  {
+    path: buildPath('MMS/NBAuthorityManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   // 质量相关
   {
