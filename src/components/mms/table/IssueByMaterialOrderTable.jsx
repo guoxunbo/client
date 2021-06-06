@@ -1,9 +1,11 @@
-import IssueMaterialOrderRequest from '@api/issue-order-manager/issue-material-order/IssueMaterialOrderRequest';
 import EntityListTable from '@components/framework/table/EntityListTable';
 
-export default class IssueMaterialOrderTable extends EntityListTable {
+/**
+ * 指定物料发料
+ */
+export default class IssueByMaterialOrderTable extends EntityListTable {
 
-    static displayName = 'IssueMaterialOrderTable';
+    static displayName = 'IssueByMaterialOrderTable';
 
     createButtonGroup = () => {
       
@@ -31,8 +33,7 @@ export default class IssueMaterialOrderTable extends EntityListTable {
         selectedRows.push(record);
         self.setState({
             selectedRows: selectedRows
-        });
-        self.props.issueMaterialScanTable.setState({tableData: []})
+        })
     }
 
     /**

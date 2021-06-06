@@ -4,6 +4,9 @@ import EntityScanProperties from "@properties/framework/EntityScanProperties";
 import I18NUtils from "@utils/I18NUtils";
 import NoticeUtils from "@utils/NoticeUtils";
 
+/**
+ * 发往mes的发料(主材 辅材 成品)通用
+ */
 export default class IssueLotOrderScanProperties extends EntityScanProperties{
 
     static displayName = 'IssueLotOrderScanProperties';
@@ -25,29 +28,23 @@ export default class IssueLotOrderScanProperties extends EntityScanProperties{
         let mLots= this.state.tableData;
         let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let flag = false;
-        let materialLot = '';
-        if(mLots){
-          mLots.forEach(mLot => {
-              if(queryMatlotId === mLot.materialLotId){
+        let showData = [];
+        mLots.forEach(mLot => {
+            if(queryMLotId === mLot.materialLotId){
                 flag = true ;
                 mLot.scaned = true;
-                materialLot = mLot;
+                showData.unshift(mLot);
+            }else{
+                showData.push(mLot);
               }
-          });
-          if(!flag){
-            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.MLotNonentity));
-          }
-          if(materialLot){
-            if(materialLot.rowClass){
-              materialLot.scaned = false;
-              NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.MLotAlreadyIssue));
-            }
-          }
+        });
+        if(!flag){
+            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound));
         }
         self.form.resetFormFileds();
         this.form.state.queryFields[0].node.focus();
         self.setState({
-          tableData: mLots,
+          tableData: showData,
           loading: false,
         });    
     }
