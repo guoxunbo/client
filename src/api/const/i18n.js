@@ -111,20 +111,12 @@ const i18NCode = {
     BtnSplit: "BtnSplit",
     SplitQty: "SplitQty",
     MaterialLotId: "MaterialLotId",
-    PleaseInputQty: "PleaseInputTrueQty",
-    PleaseStockOut: "PleaseStockOut",
-    pleaseInputReleaseReason: "pleaseInputReleaseReason",
     BtnApprove: "Approve",
     BtnShip: "Ship",
-    SelectReservedRule: "SelectOneReservedRule",
-    ReservedRule: "ReservedRule",
-    WaitReleaseMLotQty : "WaitReleaseMLotQty",
-    BtnSendmail : "BtnSendmail",
     BtnWeigth: 'BtnWeigth',
     GrossWeightNotNull: 'GrossWeightNotNull',
     BtnCreate: 'BtnCreate',
     BtnBathchJudge: 'BtnBathchJudge',
-    IncomingQtyAndReceiveQtyInconformity:'IncomingQtyAndReceiveQtyInconformity',
     PleaseScanAll: 'PleaseScanAll',
     PleaseInputQueryCondition:"PleaseInputQueryCondition",
     BtnAutoSeleced:"BtnAutoSeleced",
@@ -662,16 +654,6 @@ const i18Messages = {
         English: "MaterialLotId",
         Res: "" 
     },
-    PleaseInputQty:{
-        Chinese: "请输入正确的数量",
-        English: "Please enter the correct amount",
-        Res: "" 
-    },
-    PleaseStockOut:{
-        Chinese: "请出库",
-        English: "Please Stock Out",
-        Res: "" 
-    },
     Approve:{
         Chinese: "审核",
         English: "Approve",
@@ -681,26 +663,6 @@ const i18Messages = {
         Chinese: "发货",
         English: "Ship",
         Res: "" 
-    },
-    SelectOneReservedRule: {
-        Chinese: "请选择一个备货规则",
-        English: "Please select one Reserved Rule",
-        Res: ""
-    },
-    ReservedRule: {
-        Chinese: "备货规则",
-        English: "Reserved Rule",
-        Res: ""
-    },
-    WaitReleaseMLotQty:{
-        Chinese: "待释放数量",
-        English: "Wait Release MLot Qty",
-        Res: ""
-    },
-    BtnSendmail:{
-        Chinese: "发送邮件",
-        English: "Sendmail",
-        Res: ""
     },
     BtnWeigth:{
         Chinese: "称重",
@@ -720,11 +682,6 @@ const i18Messages = {
     BtnBathchJudge:{
         Chinese: "批量判定",
         English: "BathchJudge",
-        Res: ""
-    },
-    IncomingQtyAndReceiveQtyInconformity:{
-        Chinese: "接收数量与来料数量不一致",
-        English: "IncomingQty And ReceiveQty Inconformity",
         Res: ""
     },
     PleaseScanAll:{
