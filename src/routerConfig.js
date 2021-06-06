@@ -211,6 +211,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: IncomingMLotImportProperties,
   },
+  {
+    path: buildPath('MMS/IncomingMLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IncomingMLotReceiveProperties,
+  },
   // 质量相关
   {
     path: buildPath('MQC/IqcManager'),

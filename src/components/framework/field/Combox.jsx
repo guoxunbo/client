@@ -68,6 +68,9 @@ export default class Combox extends Component {
         if (this.props.onChange) {
             this.props.onChange(changedValue);
         }
+        if (this.props.afterChange) {
+            this.props.afterChange();
+        }
         this.notifyValueChanged(changedValue);
     }
 

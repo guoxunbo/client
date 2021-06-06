@@ -4,6 +4,9 @@ import EntityScanProperties from "@properties/framework/EntityScanProperties";
 import I18NUtils from "@utils/I18NUtils";
 import NoticeUtils from "@utils/NoticeUtils";
 
+/**
+ *来料接收 
+ */
 export default class IncomingMaterialReceiveScanProperties extends EntityScanProperties{
 
     static displayName = 'IncomingMaterialReceiveScanProperties';
@@ -23,7 +26,7 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
     queryData = (whereClause) => {
         const self = this;
         let mLots= this.state.tableData; 
-        let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+        let queryMLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let queryQty = self.form.props.form.getFieldValue(self.form.state.queryFields[1].name);
         if(queryQty == undefined || queryQty == ''){
             this.form.state.queryFields[1].node.focus();
@@ -32,31 +35,23 @@ export default class IncomingMaterialReceiveScanProperties extends EntityScanPro
             })
             return ;
         }
-        let flag = false;
-        let materialLot ;
-        if(mLots){
-          mLots.forEach(mLot => {
-            if(queryMatlotId === mLot.materialLotId && queryQty == mLot.currentQty){
-                flag = true ;
-                materialLot = mLot;
-                mLot.scaned = true;
-              }
-          });
-          if(!flag){
-            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.InformationInconsistency));
-          }
-          if(materialLot){
-            if(materialLot.rowClass){
-              materialLot.scaned = false;
-              NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.MLotAlreadyReceived));
-            }
-          }
+        let showData = [];
+        if(mLots.length>0){
+            mLots.forEach(mLot => {
+                if(queryMLotId === mLot.materialLotId){
+                    mLot.scaned = true;    
+                    mLot.currentQty = queryQty;
+                    showData.unshift(mLot);
+                }else{
+                    showData.push(mLot);
+                }
+            })
         }
         self.form.resetFormFileds();
-        this.form.state.queryFields[0].node.focus();
+        self.form.state.queryFields[0].node.focus();
         self.setState({
-          tableData: mLots,
-          loading: false,
+            tableData: showData,
+            loading: false,
         });    
     }
 

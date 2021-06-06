@@ -50,7 +50,7 @@ const Application = {
         },
     },
     notice: {
-        duration: 10,
+        duration: 5,
     },
     jsBarCode: {
         // 是否在条形码下方显示文字

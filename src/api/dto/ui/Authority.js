@@ -41,7 +41,11 @@ export default class Authority {
             this.children = subMenus;
         } else {
             if (authority.authorityCategory == "FineReport") {
-                this.path = "http://" + authority.url;
+                if(authority.url.startsWith("http://")){
+                    this.path = authority.url;
+                }else{
+                    this.path = "http://" + authority.url;
+                }
                 this.newWindow = true;
             }
         }
