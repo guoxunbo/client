@@ -1,4 +1,3 @@
-
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Button, Icon, Switch } from 'antd';
 import { Notification } from '../../notice/Notice';
@@ -9,13 +8,13 @@ import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
 import GCRawMaterialImportRequest from '../../../api/gc/GCRawMaterialImport-manager/GCRawMaterialImportRequest';
 
-export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable {
+export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTable {
 
-    static displayName = 'GcRawMaterialIssueMLotScanTable';
+    static displayName = 'ScrapRawMaterialShipMLotScanTable';
 
     constructor(props) {
         super(props);
-        this.state = {...this.state,...{checked:true},...{value: "issueWithDoc"}};
+        this.state = {...this.state};
     }
 
     getRowClassName = (record, index) => {
@@ -38,41 +37,12 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
 
     createTagGroup = () => {
         let tagList = [];
-        tagList.push(this.createIssueWithDocFlag());
         tagList.push(this.createMaterialLotsNumber());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
     }
-
-    createIssueWithDocFlag = () => {
-        return <span style={{display: 'flex'}}>
-            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.MatchErpDocLine)}:</span>
-            <span style = {{marginLeft:"10px"}}>
-                <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
-                        checkedChildren={<Icon type="issueWithDoc" />} 
-                        unCheckedChildren={<Icon type="close" />} 
-                        onChange={this.handleChange} 
-                        disabled={this.disabled}
-                        checked={this.state.checked}/>
-            </span>
-        </span>
-    }
     
-    handleChange = (checkedChildren) => {
-        if(checkedChildren){
-            this.setState({ 
-                value: "issueWithDoc",
-                checked: true
-            });
-        } else {
-            this.setState({ 
-                value: "",
-                checked: false
-            });
-        }
-    }
-
     getErrorCount = () => {
         let materialLots = this.state.data;
         let count = 0;
@@ -107,23 +77,23 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
-    rawMaterialIssue = () => {
+    scrapRawMaterialShip = () => {
         let self = this;
-        let issueWithDoc = this.state.value;
-        let orderTable = this.props.orderTable;
-        let orders = orderTable.state.data;
-        if (issueWithDoc == "issueWithDoc" && orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-            return;
-        }
-
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
 
-        let materialLots = this.state.data;
-        if (materialLots.length === 0) {
+        let documentLine = this.props.orderTable.getSingleSelectedRow();
+        if (!documentLine) {
+            self.setState({ 
+                loading: false
+            });
+            return;
+        }
+
+        let materialLotList = this.state.data;
+        if (materialLotList.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
@@ -134,9 +104,8 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObject = {
-            documentLineList : orders,
-            materialLots : materialLots,
-            issueWithDoc: issueWithDoc,
+            documentLine : documentLine,
+            materialLotList : materialLotList,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();
@@ -145,12 +114,12 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
                 MessageUtils.showOperationSuccess();
             }
         }
-        GCRawMaterialImportRequest.sendRawMaterialIssueRequest(requestObject);
+        GCRawMaterialImportRequest.sendScrapRawMaterialShipRequest(requestObject);
     }
 
     createIssue = () => {
-        return <Button key="Issue" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.rawMaterialIssue}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnIssue)}
+        return <Button key="scrapShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.scrapRawMaterialShip}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnScrapShip)}
                     </Button>
     }
 

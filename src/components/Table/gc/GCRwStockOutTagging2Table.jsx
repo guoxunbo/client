@@ -3,10 +3,7 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
 import MessageUtils from '../../../api/utils/MessageUtils';
-import { PrintServiceUrl, PrintBboxCount } from '../../../api/gc/GcConstDefine';
-import PrintUtils from '../../../api/utils/PrintUtils';
 import { Tag } from 'antd';
-import PackageMaterialLotRequest from '../../../api/package-material-lot/PackageMaterialLotRequest';
 import EntityScanViewTable from '../EntityScanViewTable';
 import EventUtils from '../../../api/utils/EventUtils';
 import RwMLotManagerRequest from '../../../api/gc/rw-manager/RwMLotManagerRequest';
@@ -78,8 +75,7 @@ export default class GCRwStockOutTagging2Table extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        let printCount = 2;
-
+        
         self.setState({
             loading: true
         });
@@ -89,9 +85,6 @@ export default class GCRwStockOutTagging2Table extends EntityScanViewTable {
             let requestObject = {
                 materialLotRrn : data[0].objectRrn,
                 success: function(responseBody) {
-                    debugger;
-                    let url = PrintServiceUrl.RWStockOut;
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, responseBody.parameterMap, printCount);
                     MessageUtils.showOperationSuccess();
                 }
             }

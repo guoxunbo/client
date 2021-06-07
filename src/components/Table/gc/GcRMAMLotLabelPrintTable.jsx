@@ -7,8 +7,6 @@ import MessageUtils from '../../../api/utils/MessageUtils';
 import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
 import RmaMLotManagerRequest from '../../../api/gc/rma-mlot-manager/RmaMLotManagerRequest';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
-import PrintUtils from '../../../api/utils/PrintUtils';
 
 /**
  * RMA标签补打
@@ -81,10 +79,6 @@ export default class GcRMAMLotLabelPrintTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                let url = PrintServiceUrl.RmaMLotId;
-                responseBody.parameterMapList.forEach((parameter) => {
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, printCount);
-                });
                 MessageUtils.showOperationSuccess();
             }
         }

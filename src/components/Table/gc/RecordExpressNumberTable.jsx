@@ -7,9 +7,7 @@ import RecordExpressNumberRequest from '../../../api/gc/record-express-number/Re
 import MessageUtils from '../../../api/utils/MessageUtils';
 import RefListField from '../../Field/RefListField';
 import { DateFormatType, SystemRefListName } from '../../../api/const/ConstDefine';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
-import PrintUtils from '../../../api/utils/PrintUtils';
 import EntityListCheckTable from '../EntityListCheckTable';
 import FormItem from 'antd/lib/form/FormItem';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
@@ -140,10 +138,6 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
                     selectedRows: [],
                     selectedRowKeys: []
                 }) 
-                let url = PrintServiceUrl.ObliqueBox;
-                responseBody.parameterMapList.forEach((parameter) => {
-                    PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                });
                 MessageUtils.showOperationSuccess();
             }
         };
@@ -233,10 +227,6 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
             let requestObject = {
                 datas : datas,    
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.ObliqueBox;
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }

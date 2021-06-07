@@ -5,8 +5,6 @@ import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/Fin
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
 
 export default class WLTReceiveFGScanTable extends EntityScanViewTable {
@@ -120,15 +118,12 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
             let requestObject = {
                 mesPackedLots: data,
                 printLabel: printLabelFlag,
+                printCount: printCount,
                 success: function(responseBody) {
                     if (self.props.resetData) {
                         self.props.onSearch();
                         self.props.resetData();
                     }
-                    let url = PrintServiceUrl.WltLotId;
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, printCount);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }

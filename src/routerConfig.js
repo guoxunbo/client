@@ -116,6 +116,7 @@ import GcRwMaterialIssueScanProperties from './pages/Properties/components/GcRwM
 import GCRwStockOutTagging2Properties from './pages/Properties/components/GCRwStockOutTagging2Properties';
 import GCRawMaterialDeleteProperties from './pages/Properties/components/GCRawMaterialDeleteProperties';
 import GCRawMaterialSpareOrderProperties from './pages/Properties/components/GCRawMaterialSpareOrderProperties';
+import GcScrapRawMaterialShipOrderProperties from './pages/Properties/components/GcScrapRawMaterialShipOrderProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -414,6 +415,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialScrapProperties,
   },
+  //原材料报废出库
+  {
+    path: buildPath('RawMaterial/GCScrapRawMaterialShip'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcScrapRawMaterialShipOrderProperties,
+  },
   //取消晶圆出货标注
   {
     path: buildPath('Wafer/WaferUnStockOutTagManager'),
@@ -553,6 +560,18 @@ const routerConfig = [
   },
   {
     path: buildPath('GC/GCMLotDocRuleManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  //工作站管理
+  {
+    path: buildPath('MMS/MMSWorkOrderStationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  //标签模板管理
+  {
+    path: buildPath('MMS/MMSLabelTemplateManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },

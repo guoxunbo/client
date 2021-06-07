@@ -3,10 +3,8 @@ import { Button, Tag, Input,Modal } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
-import PrintUtils from '../../../api/utils/PrintUtils';
 import IncomingDeleteRequest from "../../../api/gc/incomingDelete-manager/IncomingDeleteRequest";
 import GetPrintWltVboxParameterRequest from "../../../api/gc/get-print-wltbox-parameter/GetPrintWltBoxParameterRequest";
 
@@ -98,10 +96,6 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
             let requestObject = {
                 materialLotUnitList : data,
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.WltBox;
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }
