@@ -24,8 +24,8 @@ export default class PackageValidationRequestBody {
         return new PackageValidationRequestBody(ActionType.ValidationPack, waitToPackMaterialLots, packageType);
     }
 
-    static buildValidationAppendBody(waitToPackMaterialLots, packagedMaterialLotId) {
-        let requestBody =  new PackageValidationRequestBody(ActionType.ValidationAppend, waitToPackMaterialLots);
+    static buildValidationAppendBody(waitToPackMaterialLots, packagedMaterialLotId, packageType) {
+        let requestBody =  new PackageValidationRequestBody(ActionType.ValidationAppend, waitToPackMaterialLots, packageType);
         requestBody.setPackagedMaterialLotId(packagedMaterialLotId);
         return requestBody;
     }

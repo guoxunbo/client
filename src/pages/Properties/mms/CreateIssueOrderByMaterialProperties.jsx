@@ -1,7 +1,6 @@
 import CreateIssueOrderByMaterialTable from "@components/mms/table/CreateIssueOrderByMaterialTable";
 import CreateIssueOrderByMaterialInfoProperties from "@properties/mms/CreateIssueOrderByMaterialInfoProperties";
 import EntityProperties from "@properties/framework/EntityProperties";
-import LabMLotManagerRequest from "@api/mms/lab-mlot-manager/LabMLotManagerRequest";
 import IssueOrderByMaterialRequest from "@api/issue-order-manager/issue-order-by-material/IssueOrderByMaterialRequest";
 
 export default class CreateIssueOrderByMaterialProperties extends EntityProperties{

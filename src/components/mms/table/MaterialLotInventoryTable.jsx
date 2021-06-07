@@ -37,7 +37,7 @@ export default class MaterialLotInventoryTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStockOutButton());
+        // buttons.push(this.createStockOutButton());
         buttons.push(this.createTransferInvButton());
         buttons.push(this.createPickButton());
         buttons.push(this.createExportDataButton());
@@ -112,7 +112,7 @@ export default class MaterialLotInventoryTable extends EntityListTable {
 
     createPickButton = () => {
         return <Button key="pick" type="primary" className="table-button" onClick={this.handlePick}>
-                        {IconUtils.buildIcon("icon-lingliao")}{I18NUtils.getClientMessage(i18NCode.BtnPick)}
+                        {IconUtils.buildIcon("icon-lingliao")}{I18NUtils.getClientMessage("下架")}
                     </Button>
     }
     

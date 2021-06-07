@@ -1,4 +1,3 @@
-import LabMLotManagerRequest from '@api/mms/lab-mlot-manager/LabMLotManagerRequest';
 import EntityListTable from '@components/framework/table/EntityListTable';
 import { i18NCode } from '@const/i18n';
 import I18NUtils from '@utils/I18NUtils';

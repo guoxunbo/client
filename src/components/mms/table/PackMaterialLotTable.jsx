@@ -1,5 +1,5 @@
 
-import { Button } from 'antd';
+import { Button, Tag } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import EntityScanViewTable from '@components/framework/table/EntityScanViewTable';
@@ -19,10 +19,21 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createMLotTotalQtyTag());
         buttons.push(this.createPackageButton());
         return buttons;
     }
-
+    
+    createMLotTotalQtyTag =()=>{
+        let datas = [];
+        let mlotTotalQty = 0;
+        datas = this.state.data ;
+        datas.forEach(data => {
+            mlotTotalQty += data.currentQty
+        });
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.Qty)}：{mlotTotalQty}</Tag>
+    }
+    
     handlePrint = (materialLot) => {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
@@ -52,7 +63,7 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
                 let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
                 NoticeUtils.showSuccess(message);
 
-                self.handlePrint(responseBody.materialLot);
+                //self.handlePrint(responseBody.materialLot);
             }
         }
         PackageMaterialLotRequest.sendPackMaterialLotsRequest(requestObject)

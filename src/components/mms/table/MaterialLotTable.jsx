@@ -10,6 +10,8 @@ import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import TableObject from '@api/dto/ui/Table';
 import { ActionType } from '@api/material-lot-manager/MaterialLotManagerRequestBody';
+import NoticeUtils from '@utils/NoticeUtils';
+import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
 
 const TableName = {
     MLotConsumeAction: "MMLotComsume"
@@ -38,9 +40,30 @@ export default class MaterialLotTable extends EntityListTable {
      */
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createPrintButton());
         buttons.push(this.createConsumeButton());
         buttons.push(this.createExportDataButton());
         return buttons;
+    }
+
+    createPrintButton = () => {
+        return <Button key="print" type="primary" className="table-button" onClick={this.handlePrint}>
+                        {IconUtils.buildIcon("icon-barcode")}  {I18NUtils.getClientMessage(i18NCode.BtnPrint)}
+                    </Button>
+    }
+
+    handlePrint=()=>{     
+        const selectedObject = this.getSingleSelectedRow();
+        if (!selectedObject) {
+            return;
+        }
+        let requestObject = {
+            materialLot: selectedObject,
+            success: function(responseBody) {
+                NoticeUtils.showSuccess();
+            }
+        }
+        MaterialLotManagerRequest.sendPrintMaterialLotRequest(requestObject);
     }
 
     createConsumeButton = () => {
@@ -85,15 +108,19 @@ export default class MaterialLotTable extends EntityListTable {
         })
     }
     
+    buildOperationColumn = () => {
+        
+    }
+
     /**
      * 物料批次不可更新和删除
      */
-    buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildBarCodeButton(record));
-        operations.push(this.buildQrCodeButton(record));
-        return operations;
-    }
+    // buildOperation = (record) => {
+    //     let operations = [];
+    //     operations.push(this.buildBarCodeButton(record));
+    //     operations.push(this.buildQrCodeButton(record));
+    //     return operations;
+    // }
 
     handlePrintOk = () => {
         this.setState({

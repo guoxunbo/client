@@ -10,7 +10,7 @@ export default class UnPackageMaterialLotRequest {
         const {packedLotDetails, actionCode, actionReason, actionComment} = object;
         let requestBody = UnPackageMaterialLotRequestBody.buildUnPackMaterialLot(packedLotDetails, actionCode, actionReason, actionComment)
         let requestHeader = new UnPackageMaterialLotRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.UnPackMaterialLotsUrl);
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCUnPackMaterialLotsUrl);
         let requestObject = {
             request: request,
             success: object.success

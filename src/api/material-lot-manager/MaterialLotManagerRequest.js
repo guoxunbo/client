@@ -40,4 +40,18 @@ export default class MaterialLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    /**
+     * 备品备件 接收入库
+     */
+     static sendReceiveSpareMaterialLotRequest = (object) => {
+        let requestBody = MaterialLotManagerRequestBody.buildReceiveSpareMaterialLot(object.formObject);
+        let requestHeader = new MaterialLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.MaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }
