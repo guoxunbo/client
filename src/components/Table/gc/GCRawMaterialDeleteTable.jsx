@@ -21,6 +21,7 @@ export default class GCRawMaterialDeleteTable extends EntityListTable {
         let tags = [];
         tags.push(this.createDeleteRemarkInput());
         tags.push(this.createBoxNumber());
+        tags.push(this.createTotalNumber());
         return tags;
     }
 
@@ -76,7 +77,20 @@ export default class GCRawMaterialDeleteTable extends EntityListTable {
     }
 
     createBoxNumber = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
+    }
+
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.currentQty != undefined) {
+                    count = count + data.currentQty;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count}</Tag>
     }
 
     createDeleteButton = () => {

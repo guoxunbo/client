@@ -91,7 +91,7 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
     }
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
     createTotalNumber = () => {
@@ -104,7 +104,7 @@ export default class GcRawMaterialIssueMLotScanTable extends EntityScanViewTable
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count}</Tag>
     }
 
     rawMaterialIssue = () => {
