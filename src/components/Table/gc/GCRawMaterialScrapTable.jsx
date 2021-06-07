@@ -8,6 +8,7 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import RefListField from '../../Field/RefListField';
 import { SystemRefListName } from '../../../api/const/ConstDefine';
 import GCRawMaterialImportRequest from '../../../api/gc/GCRawMaterialImport-manager/GCRawMaterialImportRequest';
+import FormItem from 'antd/lib/form/FormItem';
 
 export default class GCRawMaterialScrapTable extends EntityScanViewTable {
 
@@ -31,24 +32,26 @@ export default class GCRawMaterialScrapTable extends EntityScanViewTable {
     }
 
     createRawMaterialScrapInput = () => {
-        return  <Row gutter={12}>
-            <Col span={2} >
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.ScrapReason)}:
-                </span>
-            </Col>
-            <Col span={4}>
-                <RefListField ref={(scrapReason) => { this.scrapReason = scrapReason }} referenceName={SystemRefListName.ScrapReason} />
-            </Col>
-            <Col span={2} >
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>
-                    {I18NUtils.getClientMessage(i18NCode.remarks)}:
-                </span>
-            </Col>
-            <Col span={4}>
-                <Input ref={(remark) => { this.remark = remark }} key="remark" placeholder="报废备注"/>
-            </Col>
-        </Row>
+        return <FormItem>
+                    <Row gutter={12}>
+                        <Col span={2} >
+                            <span>
+                                {I18NUtils.getClientMessage(i18NCode.ScrapReason)}:
+                            </span>
+                        </Col>
+                        <Col span={4}>
+                            <RefListField ref={(scrapReason) => { this.scrapReason = scrapReason }} referenceName={SystemRefListName.ScrapReason} />
+                        </Col>
+                        <Col span={2} >
+                            <span>
+                                {I18NUtils.getClientMessage(i18NCode.remarks)}:
+                            </span>
+                        </Col>
+                        <Col span={4}>
+                            <Input ref={(remark) => { this.remark = remark }} key="remark" placeholder="报废备注"/>
+                        </Col>
+                    </Row>
+                </FormItem>
     }
 
     scrap =() => {
@@ -95,7 +98,6 @@ export default class GCRawMaterialScrapTable extends EntityScanViewTable {
                         {I18NUtils.getClientMessage(i18NCode.BtnScrap)}
                     </Button>
     }
-
 }
 
 const styles = {
