@@ -1,4 +1,5 @@
 import IncomingMaterialReceiveRequest from "@api/Incoming-Material-Manager/Incoming-Material-Receive-Manager/IncomingMaterialReceiveRequest";
+import MobileTable from "@components/framework/table/MobileTable";
 import {WrappedReceiveMLotByOrderForm} from "@components/mms/form/mobile/ReceiveMLotByOrderForm";
 import { i18NCode } from "@const/i18n";
 import MobileProperties from "@properties/framework/MobileProperties";

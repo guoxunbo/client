@@ -35,6 +35,7 @@ import IncomingMaterialImportProperties from '@properties/mms/IncomingMaterialIm
 import IncomingMaterialReceiveProperties from '@properties/mms/IncomingMaterialReceiveProperties';
 import IncomingMLotReceiveProperties from '@pages/Properties/mms/IncomingMLotReceiveProperties';
 import IncomingMLotImportProperties from '@properties/mms/IncomingMLotImportProperties';
+import IncomingLabMLotImportProperties from '@pages/Properties/mms/IncomingLabMLotImportProperties';
 import IncomingMaterialDeleteProperties from '@properties/mms/IncomingMaterialDeleteProperties';
 import IssueLotOrderProperties from '@properties/mms/IssueLotOrderProperties';
 import IssueByMaterialOrderProperties from '@pages/Properties/mms/IssueByMaterialOrderProperties';
@@ -49,6 +50,15 @@ import ProductProperties from '@properties/mms/ProductProperties';
 import CsvImportProperties from '@pages/Properties/mms/CsvImportProperties';
 import ImportRawMaterialProperties from '@pages/Properties/mms/ImportRawMaterialPropertiest';
 import LabMaterialProperties from '@pages/Properties/mms/LabMaterialProperties';
+import CreateReturnMLotOrderProperties from '@pages/Properties/mms/CreateReturnMLotOrderProperties';
+import ReturnMLotOrderProperties from '@pages/Properties/mms/ReturnMLotOrderProperties'; 
+import CreateReturnLotOrderProperties from '@pages/Properties/mms/CreateReturnLotOrderProperties';
+import ReturnLotOrderProperties from '@pages/Properties/mms/ReturnLotOrderProperties';
+import SpareMaterialProperties from '@pages/Properties/mms/SpareMaterialProperties';
+import PickSpareMLotProperties from '@pages/Properties/mms/PickSpareMLotProperties';
+import UseSpareMLotProperties from '@pages/Properties/mms/UseSpareMLotProperties';
+import DocQueryManagerProperties from '@pages/Properties/mms/DocQueryManagerProperties';
+
 //gc
 import GcCheckProperties from '@properties/gc/GcCheckProperties';
 import GcMaterialLotStockInProperties from '@properties/gc/GcMaterialLotStockInProperties';
@@ -68,7 +78,37 @@ import MobileHome from '@pages/Mobile/MobileHome';
 import ReceiveMLotByOrderProperties from '@pages/Properties/mms/mobile/ReceiveMLotByOrderProperties';
 import SplitMaterialLotProperties from '@pages/Properties/mms/mobile/SplitMaterialLotProperties';
 import PrintMaterialLotProperties from '@pages/Properties/mms/mobile/PrintMaterialLotProperties';
+import PackageMLotProperties from '@pages/Properties/mms/mobile/PackageMLotProperties';
+import StockInMLotProperties from '@pages/Properties/mms/mobile/StockInMLotProperties';
+import StockOutMLotProperties from '@pages/Properties/mms/mobile/StockOutMLotProperties';
+import SplitAndPrintMLotProperties from '@pages/Properties/mms/mobile/SplitAndPrintMLotProperties';
+import IssueMLotByOrderProperties from '@pages/Properties/mms/mobile/IssueMLotByOrderProperties';
+import MLotTransferInvProperties from '@pages/Properties/mms/mobile/MLotTransferInvProperties';
+import ReceiveFinishGoodByOrderProperties from '@pages/Properties/mms/mobile/ReceiveFinishGoodByOrderProperties';
+import StockOutMLotByOrderProperties from '@pages/Properties/mms/mobile/StockOutMLotByOrderProperties';
+import ReceiveMaterialLotOrderProperties from '@pages/Properties/mms/mobile/ReceiveMaterialLotOrderProperties';
+import StockInFinishGoodProperties from '@pages/Properties/mms/mobile/StockInFinishGoodProperties';
+import ShipOutMLotProperties from '@pages/Properties/mms/mobile/ShipOutMLotProperties';
+import WeightMaterialLotProperties from '@pages/Properties/mms/mobile/WeightMaterialLotProperties';
+import PackCaseCheckMaterialLotProperties from '@pages/Properties/mms/mobile/PackCaseCheckMaterialLotProperties';
+
 //vc
+import VcDeliveryOrderProperties from '@properties/vc/VcDeliveryOrderProperties';
+import VcApproveDocumentProperties from '@pages/Properties/vc/VcApproveDocumentProperties';
+import VcFinishGoodReceiveProperties from '@properties/vc/VcFinishGoodReceiveProperties'
+import VcReservedMLotProperties from '@properties/vc/VcReservedMLotProperties'
+import VcUnReservedMLotProperties from '@properties/vc/VcUnReservedMLotProperties'
+import VcStockOutProperties from '@properties/vc/VcStockOutProperties'
+import VcMaterialLotInventoryProperties from '@pages/Properties/vc/VcMaterialLotInventoryProperties';
+import VcExcelPrintProperties from '@pages/Properties/vc/VcExcelPrintProperties';
+import VcPrintCaseLabelProperties from '@pages/Properties/vc/VcPrintCaseLabelProperties';
+import VcPackCheckProperties from '@pages/Properties/vc/VcPackCheckProperties';
+import VcBoxWeightProperties from '@pages/Properties/vc/VcBoxWeightProperties';
+import VcPrintIssueOrderProperties from '@pages/Properties/vc/VcPrintIssueOrderProperties';
+import VcStockOutMLotByOrderProperties from '@pages/Properties/vc/VcStockOutMLotByOrderProperties';
+import VcStorageProperties from '@pages/Properties/vc/VcStorageProperties';
+
+import MaterialLot from '@api/dto/mms/MaterialLot';
 
 
 /**
@@ -159,6 +199,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GeneratorRuleProperties,
   },
+  {
+    path: buildPath('LMS/LabelTemplateManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  {
+    path: buildPath('LMS/WorkStationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   //MMS
   {
     path: buildPath('MMS/StatusModelManager'),
@@ -231,6 +281,11 @@ const routerConfig = [
     component: IncomingMLotImportProperties,
   },
   {
+    path: buildPath('MMS/IncomingLabMLotImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IncomingLabMLotImportProperties,
+  },
+  {
     path: buildPath('MMS/NBQueryManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
@@ -246,7 +301,7 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
-  {
+ {
     path: buildPath('MQC/MLotQC'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: MaterialLotIqcManagerProperties,
@@ -297,7 +352,7 @@ const routerConfig = [
   {
     path: buildPath('WMS/StorageManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: VcStorageProperties,
   },
   {
     path: buildPath('WMS/MaterialLotStockIn'),
@@ -338,7 +393,7 @@ const routerConfig = [
   {
     path: buildPath('Pack/PackCaseCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: PackCaseCheckProperties,
+    component: VcPackCheckProperties,
   },
   {
     path: buildPath('Pack/StockOutCheck'),
@@ -348,7 +403,7 @@ const routerConfig = [
   {
     path: buildPath('Pack/PrintCaseLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GcPrintCaseLabelProperties,
+    component: VcPrintCaseLabelProperties,
   },
 
   //RMS
@@ -367,7 +422,6 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EquipmentRecipeProperties,
   },
-  //vc
   {
     path: buildPath('VC/VCMLotDocRule'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -399,15 +453,81 @@ const routerConfig = [
     component: PrintMaterialLotProperties,
   },
   {
+    path: buildPath('MMS/Mobile/Package'),
+    layout: BlankLayout,
+    component: PackageMLotProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/StockIn'),
+    layout: BlankLayout,
+    component: StockInMLotProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/StockOut'),
+    layout: BlankLayout,
+    component: StockOutMLotProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/SplitAndPrintMLot'),
+    layout: BlankLayout,
+    component: SplitAndPrintMLotProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/ReceiveMaterialLot'),
+    layout: BlankLayout,
+    component: ReceiveMaterialLotOrderProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/IssueMLotByOrder'),
+    layout: BlankLayout,
+    component: IssueMLotByOrderProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/MLotTransferInv'),
+    layout: BlankLayout,
+    component: MLotTransferInvProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/ReceiveFinishGoodByOrder'),
+    layout: BlankLayout,
+    component: ReceiveFinishGoodByOrderProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/StockOutByOrder'),
+    layout: BlankLayout,
+    component: StockOutMLotByOrderProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/StockInFinishGood'),
+    layout: BlankLayout,
+    component: StockInFinishGoodProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/ShipOut'),
+    layout: BlankLayout,
+    component: ShipOutMLotProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/WeightMLot'),
+    layout: BlankLayout,
+    component: WeightMaterialLotProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/PackCaseCheck'),
+    layout: BlankLayout,
+    component: PackCaseCheckMaterialLotProperties,
+  },
+  {
+    path: buildPath('MMS/ReturnMLotOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ReturnMLotOrderProperties ,
+  },
+  {
     path: buildPath('MMS/MaterialLotSplit'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: SplitMLotProperties,
   },
-  {
-    path: buildPath('MMS/RecommendIssueLabMLot'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: RecommendIssueMLotProperties,
-  },
+//发料
   {
     path: buildPath('MMS/IssueMaterialOrder'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -448,8 +568,6 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: IssueByMLotOrderProperties,
   },
-
-
   //release
   {
     path: buildPath('MMS/MaterialLotRelease'),
@@ -501,13 +619,128 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  // {
+  //   path: buildPath('MMS/LabMaterialManager'),
+  //   layout: HeaderAsideFooterResponsiveLayout,
+  //   component: EntityProperties,
+  // },
+  //成品发料
+  {
+    path: buildPath('MMS/IssueFinishGoodOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: IssueLotOrderProperties,
+  },
+
+  {
+    path: buildPath('VC/VcDeliveryOrderPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcDeliveryOrderProperties,
+  },
+  {
+    path: buildPath('VC/ApproveDocument'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcApproveDocumentProperties,
+  },
+  {
+    path: buildPath('VC/VcFinishGoodReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcFinishGoodReceiveProperties,
+  },
+  {
+    path: buildPath('VC/VcReservedMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcReservedMLotProperties,
+  },
+  {
+    path: buildPath('VC/VcUnReservedMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcUnReservedMLotProperties,
+  },
+  {
+    path: buildPath('VC/VcBoxWeigh'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcBoxWeightProperties,
+  },
+  //出货
+  {
+    path: buildPath('VC/VcStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcStockOutProperties,
+  },
+  {
+    path: buildPath('VC/VcInventoryManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcMaterialLotInventoryProperties,
+  },
+  {
+    path: buildPath('/VC/VcStockOutByOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcStockOutMLotByOrderProperties,
+  },
+  //LabelPrint
+  {
+    path: buildPath('VC/VcPrintExcelLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcExcelPrintProperties,
+  },
+  {
+    path: buildPath('VC/VcPrintIssueOrderLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcPrintIssueOrderProperties,
+  },
+  {
+    path: buildPath('VC/ReturnSupplier'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ReturnMLotOrderProperties,
+  },
+  {
+    path: buildPath('VC/CreateReturnOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CreateReturnMLotOrderProperties,
+  },
+  {
+    path: buildPath('VC/ImportReturnLotOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CreateReturnLotOrderProperties,
+  },
+  {
+    path: buildPath('VC/VCReturnGoods'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ReturnLotOrderProperties,
+  },
+
+  //spare part
+  {
+    path: buildPath('MMS/ReceiveSpareMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: SpareMaterialProperties,
+  },
+  {
+    path: buildPath('MMS/PickSpareMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: PickSpareMLotProperties,
+  },
+  {
+    path: buildPath('MMS/ConsumeSpareMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: UseSpareMLotProperties,
+  },
+  {
+    path: buildPath('MMS/SpareMLotHisManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityHistoryProperties,
+  },
+
+  {
+    path: buildPath('MMS/DocQueryManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: DocQueryManagerProperties,
+  },
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
     component: NotFound,
   },
-
-  
 ];
 
 export default routerConfig;
