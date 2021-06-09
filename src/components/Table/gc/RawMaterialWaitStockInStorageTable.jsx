@@ -15,7 +15,7 @@ export default class RawMaterialWaitStockInStorageTable extends EntityScanViewTa
     }
     
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
     createTotalNumber = () => {
@@ -28,7 +28,7 @@ export default class RawMaterialWaitStockInStorageTable extends EntityScanViewTa
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count}</Tag>
     }
 
     buildOperationColumn = () => {
