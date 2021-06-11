@@ -97,6 +97,6 @@ export default class GcRMAMaterialLotReceiveProperties extends EntityScanPropert
     }
 
     buildOtherComponent = () => {
-      return <GcRMAWaitReceiveMaterialLotProperties ref={(RMAWaitReceive) => { this.RMAWaitReceive = RMAWaitReceive }} tableRrn={468118} />
+      return <GcRMAWaitReceiveMaterialLotProperties ref={(RMAWaitReceive) => { this.RMAWaitReceive = RMAWaitReceive }} tableRrn={this.state.parameters.parameter1} />
   }
 }

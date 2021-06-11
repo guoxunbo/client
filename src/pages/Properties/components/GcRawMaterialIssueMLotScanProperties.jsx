@@ -113,6 +113,6 @@ export default class GcRawMaterialIssueMLotScanProperties extends EntityScanProp
 
     buildOtherComponent = () => {
       return <GcRawMaterialWaitIssueMLotProperties ref={(waitIssueMLotProperties) => { this.waitIssueMLotProperties = waitIssueMLotProperties }} 
-                                                 tableRrn={469576} />
+                                                 tableRrn={this.props.waitIssueTableRrn} />
   }
 }

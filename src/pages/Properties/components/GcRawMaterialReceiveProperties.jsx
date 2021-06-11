@@ -97,6 +97,6 @@ export default class GcRawMaterialReceiveProperties extends EntityScanProperties
     }
 
     buildOtherComponent = () => {
-      return <GcWaitReceiveRawMaterialProperties ref={(waitReceiveRawMaterial) => { this.waitReceiveRawMaterial = waitReceiveRawMaterial }} tableRrn={468980} />
+      return <GcWaitReceiveRawMaterialProperties ref={(waitReceiveRawMaterial) => { this.waitReceiveRawMaterial = waitReceiveRawMaterial }} tableRrn={this.state.parameters.parameter1} />
   }
 }

@@ -100,6 +100,6 @@ export default class GcFTMaterialLotReceiveProperties extends EntityScanProperti
     }
 
     buildOtherComponent = () => {
-      return <GcFTWaitReceiveMaterialLotProperties ref={(ftWaitReceiveMaterialProperties) => { this.ftWaitReceiveMaterialProperties = ftWaitReceiveMaterialProperties }} tableRrn={106274} />
+      return <GcFTWaitReceiveMaterialLotProperties ref={(ftWaitReceiveMaterialProperties) => { this.ftWaitReceiveMaterialProperties = ftWaitReceiveMaterialProperties }} tableRrn={this.state.parameters.parameter1} />
   }
 }

@@ -111,6 +111,6 @@ export default class GcFTOutOrderIssueUnitScanProperties extends EntityScanPrope
     }
 
     buildOtherComponent = () => {
-      return <GcFTOutOrderWaitIssueProperties ref={(ftWaitForIssueUnitProperties) => { this.ftWaitForIssueUnitProperties = ftWaitForIssueUnitProperties }} tableRrn={469412} />
+      return <GcFTOutOrderWaitIssueProperties ref={(ftWaitForIssueUnitProperties) => { this.ftWaitForIssueUnitProperties = ftWaitForIssueUnitProperties }} tableRrn={this.state.parameters.parameter1} />
     }
 }

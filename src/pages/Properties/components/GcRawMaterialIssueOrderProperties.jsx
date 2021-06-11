@@ -48,10 +48,10 @@ export default class GcRawMaterialIssueOrderProperties extends EntityProperties{
 
     buildOtherComponent = () => {
         return <GcRawMaterialIssueMLotScanProperties orderTable={this.orderTable} 
-                                              tableRrn={469565} 
+                                              tableRrn={this.state.parameters.parameter1} 
+                                              waitIssueTableRrn={this.state.parameters.parameter2}
                                               resetFlag={this.state.resetFlag} 
-                                              onSearch={this.getTableData.bind(this)}>
-                                              </GcRawMaterialIssueMLotScanProperties>
+                                              onSearch={this.getTableData.bind(this)}/>
     }
 
 }
