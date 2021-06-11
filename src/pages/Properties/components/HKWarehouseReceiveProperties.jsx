@@ -89,6 +89,6 @@ export default class HKWarehouseReceiveProperties extends EntityScanProperties{
     }
 
     buildOtherComponent = () => {
-      return <HKWaitReceiveMLotProperties ref={(waitReceiveProperties) => { this.waitReceiveProperties = waitReceiveProperties }} tableRrn={465261} />
+      return <HKWaitReceiveMLotProperties ref={(waitReceiveProperties) => { this.waitReceiveProperties = waitReceiveProperties }} tableRrn={this.state.parameters.parameter1} />
   }
 }

@@ -118,6 +118,6 @@ export default class GcWaferIssueOutOrderProperties extends EntityScanProperties
     }
 
     buildOtherComponent = () => {
-      return <GcWaitOutOrderIssueMLotUnitProperties ref={(waitOutOrderIssueMLotUnit) => { this.waitOutOrderIssueMLotUnit = waitOutOrderIssueMLotUnit }} tableRrn={469275} />
+      return <GcWaitOutOrderIssueMLotUnitProperties ref={(waitOutOrderIssueMLotUnit) => { this.waitOutOrderIssueMLotUnit = waitOutOrderIssueMLotUnit }} tableRrn={this.state.parameters.parameter1} />
     }
 }

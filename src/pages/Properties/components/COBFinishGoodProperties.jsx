@@ -35,7 +35,7 @@ export default class COBFinishGoodProperties extends EntityProperties{
 
     buildOtherComponent = () => {
       return <COBFinishGoodScanProperties showTable={this.showTable} 
-                                            tableRrn={467985}
+                                            tableRrn={this.state.parameters.parameter1}
                                             resetFlag={this.state.resetFlag} 
                                             onSearch={this.handleSearch.bind(this)} />
   }

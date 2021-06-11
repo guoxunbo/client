@@ -1,9 +1,9 @@
-import EntityScanViewTable from '../EntityScanViewTable';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Tag } from 'antd';
+import EntityListTable from '../EntityListTable';
 
-export default class RawMaterialWaitStockInStorageTable extends EntityScanViewTable {
+export default class RawMaterialWaitStockInStorageTable extends EntityListTable {
 
     static displayName = 'RawMaterialWaitStockInStorageTable';
 

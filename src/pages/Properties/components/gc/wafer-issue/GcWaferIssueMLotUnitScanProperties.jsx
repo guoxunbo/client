@@ -187,6 +187,6 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
     }
 
     buildOtherComponent = () => {
-      return <GcWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={70656} />
+      return <GcWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={this.props.waitIssueTableRrn} />
     }
 }

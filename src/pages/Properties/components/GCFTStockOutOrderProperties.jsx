@@ -50,7 +50,7 @@ export default class GCFTStockOutOrderProperties extends EntityProperties{
     buildOtherComponent = () => {
         return <GcFTStockOutMLotScanProperties 
                                               orderTable={this.orderTable} 
-                                              tableRrn={466121} 
+                                              tableRrn={this.state.parameters.parameter1} 
                                               resetFlag={this.state.resetFlag} 
                                               onSearch={this.getTableData.bind(this)}>
                                               </GcFTStockOutMLotScanProperties>
