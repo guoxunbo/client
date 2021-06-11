@@ -1,7 +1,7 @@
-import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import RawMaterialWaitStockInStorageTable from "../../../components/Table/gc/RawMaterialWaitStockInStorageTable";
+import EntityProperties from "..";
 
-export default class GcRawMaterialWaitStockInProperties extends EntityScanProperties{
+export default class GcRawMaterialWaitStockInProperties extends EntityProperties{
 
     static displayName = 'GcRawMaterialWaitStockInProperties';
 
