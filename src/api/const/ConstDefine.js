@@ -114,6 +114,7 @@ const UrlConstant = {
     GCErpDocLineMergeManageUrl: ModuleUrlConstant.GC + "erpDocLineMerge",
     GCRwMaterialLotManageUrl: ModuleUrlConstant.GC + "rwMaterialLotManager",
     GCRwMaterialManageUrl: ModuleUrlConstant.GC + "rwMaterialManager",
+    GCRawMlotPrintManageUrl: ModuleUrlConstant.GC + "rawMlotPrintManager",
 };
 
 const SystemRefListName = {
