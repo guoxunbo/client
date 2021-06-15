@@ -200,6 +200,7 @@ const i18NCode = {
     ChooseTapeSizePlease: "ChooseTapeSizePlease",
     RawMaterialMustBeTwoScanValidate: "RawMaterialMustBeTwoScanValidate",
     TapeMaterialCodeIsExisted: "TapeMaterialCodeIsExisted",
+    IRABoxPrintLable: "IRABoxPrintLable",
 }
 
 const i18Messages = {
@@ -1186,6 +1187,11 @@ const i18Messages = {
     ScrapShip: {
         Chinese: "报废出库",
         English: "Scrap Ship",
+        Res: ""     
+    },
+    IRABoxPrintLable: {
+        Chinese: "IRA箱号打印",
+        English: "IRABox Print",
         Res: ""     
     }
 }

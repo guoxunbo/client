@@ -35,7 +35,7 @@ export default class WLTFinishGoodProperties extends EntityProperties{
 
     buildOtherComponent = () => {
       return <WLTFinishGoodScanProperties showTable={this.showTable} 
-                                            tableRrn={71075}
+                                            tableRrn={this.state.parameters.parameter1}
                                             resetFlag={this.state.resetFlag} 
                                             onSearch={this.handleSearch.bind(this)} />
   }

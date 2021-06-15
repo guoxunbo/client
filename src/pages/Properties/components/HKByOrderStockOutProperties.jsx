@@ -51,7 +51,7 @@ export default class HKByOrderStockOutProperties extends EntityProperties{
     buildOtherComponent = () => {
         return <HKByOrderStockOutMLotScanProperties 
                                               orderTable={this.orderTable} 
-                                              tableRrn={465464} 
+                                              tableRrn={this.state.parameters.parameter1} 
                                               resetFlag={this.state.resetFlag} 
                                               onSearch={this.getTableData.bind(this)}>
                                               </HKByOrderStockOutMLotScanProperties>

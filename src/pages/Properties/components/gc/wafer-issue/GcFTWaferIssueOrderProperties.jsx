@@ -39,7 +39,12 @@ export default class GcFTWaferIssueOrderProperties extends EntityProperties{
     }
 
     buildOtherComponent = () => {
-        return <GcFTWaferIssueUnitScanProperties orderTable={this.orderTable} tableRrn={350972} resetFlag={this.state.resetFlag} onSearch={this.getTableData.bind(this)}/>
+        return <GcFTWaferIssueUnitScanProperties 
+                        orderTable={this.orderTable}
+                        tableRrn={this.state.parameters.parameter1} 
+                        waitIssueTableRrn={this.state.parameters.parameter2}
+                        resetFlag={this.state.resetFlag} 
+                        onSearch={this.getTableData.bind(this)}/>
     }
     
 }

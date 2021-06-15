@@ -117,6 +117,8 @@ import GCRwStockOutTagging2Properties from './pages/Properties/components/GCRwSt
 import GCRawMaterialDeleteProperties from './pages/Properties/components/GCRawMaterialDeleteProperties';
 import GCRawMaterialSpareOrderProperties from './pages/Properties/components/GCRawMaterialSpareOrderProperties';
 import GcScrapRawMaterialShipOrderProperties from './pages/Properties/components/GcScrapRawMaterialShipOrderProperties';
+import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawMaterialRePrintProperties';
+
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -420,6 +422,12 @@ const routerConfig = [
     path: buildPath('RawMaterial/GCScrapRawMaterialShip'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcScrapRawMaterialShipOrderProperties,
+  },
+  //原材料补打标签
+  {
+    path: buildPath('RawMaterial/GCRawMaterialRePrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialRePrintProperties,
   },
   //取消晶圆出货标注
   {

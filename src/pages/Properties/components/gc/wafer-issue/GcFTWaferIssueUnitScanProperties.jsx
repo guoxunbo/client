@@ -125,6 +125,6 @@ export default class GcFTWaferIssueUnitScanProperties extends EntityScanProperti
     }
 
     buildOtherComponent = () => {
-      return <GcFTWaitForIssueUnitProperties ref={(ftWaitForIssueUnitProperties) => { this.ftWaitForIssueUnitProperties = ftWaitForIssueUnitProperties }} tableRrn={350983} />
+      return <GcFTWaitForIssueUnitProperties ref={(ftWaitForIssueUnitProperties) => { this.ftWaitForIssueUnitProperties = ftWaitForIssueUnitProperties }} tableRrn={this.props.waitIssueTableRrn} />
     }
 }

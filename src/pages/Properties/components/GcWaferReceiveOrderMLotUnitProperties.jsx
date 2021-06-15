@@ -103,6 +103,6 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
     }
 
     buildOtherComponent = () => {
-      return <GcWaitForReceiveMLotUnitProperties ref={(waitForReceiveMLotUnitProperties) => { this.waitForReceiveMLotUnitProperties = waitForReceiveMLotUnitProperties }} tableRrn={99141} />
+      return <GcWaitForReceiveMLotUnitProperties ref={(waitForReceiveMLotUnitProperties) => { this.waitForReceiveMLotUnitProperties = waitForReceiveMLotUnitProperties }} tableRrn={this.props.waitReceiveTableRrn} />
   }
 }
