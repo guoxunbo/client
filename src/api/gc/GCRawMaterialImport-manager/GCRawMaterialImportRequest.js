@@ -5,6 +5,17 @@ import MessageUtils from '../../utils/MessageUtils';
 import { UrlConstant } from "../../const/ConstDefine";
 
 export default class GCRawMaterialImportRequest {
+
+    static sendGCUnRawMaterialSpare= (object) => {
+        let requestBody = GCRawMaterialImportRequestBody.buildGCUnRawMaterialSpare(object.materialLots);
+        let requestHeader = new GCRawMaterialImportRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRawMaterialImportSaveDateUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
     
     static sendSelectRequest = (object, file) => {
         let requestBody = GCRawMaterialImportRequestBody.buildSelectFile();
@@ -133,4 +144,6 @@ export default class GCRawMaterialImportRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    
 }

@@ -8,6 +8,7 @@ const i18NCode = {
     Edit: "Edit",
     Ok: "Ok",
     Cancel: "Cancel",
+    CancelSpare: "CancelSpare",
     OperationSucceed: "OperationSucceed",
     TwoPwdIsNotInconsistent: "TwoPwdIsNotInconsistent",
     Username: "Username",
@@ -302,6 +303,11 @@ const i18Messages = {
     Cancel: {
         Chinese: "取消",
         English: "Cancel",
+        Res: ""
+    },
+    CancelSpare: {
+        Chinese: "取消备料",
+        English: "CancelSpare",
         Res: ""
     },
     SelectOneRow: {
