@@ -169,6 +169,10 @@ export default class GcRawMaterialSpareMLotTable extends EntityListCheckTable {
                    {I18NUtils.getClientMessage(i18NCode.BtnSpareMaterialConfirm)}
                     </Button>
     }
+
+    buildOperationColumn = () => {
+        
+    }
 }
 
 const styles = {

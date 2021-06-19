@@ -118,7 +118,7 @@ import GCRawMaterialDeleteProperties from './pages/Properties/components/GCRawMa
 import GCRawMaterialSpareOrderProperties from './pages/Properties/components/GCRawMaterialSpareOrderProperties';
 import GcScrapRawMaterialShipOrderProperties from './pages/Properties/components/GcScrapRawMaterialShipOrderProperties';
 import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawMaterialRePrintProperties';
-
+import GCUnRawMaterialSpareProperties from './pages/Properties/components/GCUnRawMaterialSpareProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -500,6 +500,12 @@ const routerConfig = [
     path: buildPath('GC/GCRawMaterialSpareManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialSpareOrderProperties,
+  },
+  //取消原材料备料
+  {
+    path: buildPath('GC/GCUnRawMaterialSpare'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnRawMaterialSpareProperties,
   },
   //Rw材料发料
   {

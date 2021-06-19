@@ -168,7 +168,6 @@ export default class StockOutCheckTable extends EntityScanViewTable {
                 self.setState({
                     formTable: responseBody.table,
                     formVisible : true,
-                    expressNumber: expressNumber
                 });
             }
         }
