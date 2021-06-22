@@ -64,5 +64,17 @@ export default class StockInManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendQueryByTableRrnAndLotIdRequest = (object) => {
+        let requestBody = StockInManagerRequestBody.buildQueryByLotIdAndTableRrn(object.materialLotId, object.tableRrn);
+        let requestHeader = new StockInManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCStockInUrl);
+        let requestObject = {
+            request: request,
+            success: object.success,
+            fail: object.fail
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 
