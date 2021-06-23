@@ -5,6 +5,7 @@ const ActionType = {
     StockIn: "StockIn",
     QueryWafer: "QueryWafer",
     QueryMaterial: "QueryMaterial",
+    QueryMaterialInfo: "QueryMaterialInfo",
 }
 
 export default class StockInManagerRequestBody {
@@ -48,6 +49,13 @@ export default class StockInManagerRequestBody {
 
     static buildQueryRawMaterial(materialLotId, tableRrn) {
         let body = new StockInManagerRequestBody(ActionType.QueryMaterial);
+        body.materialLotId = materialLotId;
+        body.tableRrn = tableRrn;
+        return body;
+    }
+
+    static buildQueryByLotIdAndTableRrn(materialLotId, tableRrn) {
+        let body = new StockInManagerRequestBody(ActionType.QueryMaterialInfo);
         body.materialLotId = materialLotId;
         body.tableRrn = tableRrn;
         return body;

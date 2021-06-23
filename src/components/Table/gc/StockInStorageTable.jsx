@@ -35,6 +35,11 @@ export default class StockInStorageTable extends EntityScanViewTable {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.StorageCannotEmpty));
             return;
         }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
        
         let requestObject = {
             materialLots: data,
@@ -87,7 +92,7 @@ export default class StockInStorageTable extends EntityScanViewTable {
     }
 
     createStockInButton = () => {
-        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.stockIn}>
+        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.stockIn}>
                         {I18NUtils.getClientMessage(i18NCode.BtnStockIn)}
                     </Button>
     }

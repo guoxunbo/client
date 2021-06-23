@@ -119,6 +119,7 @@ import GCRawMaterialSpareOrderProperties from './pages/Properties/components/GCR
 import GcScrapRawMaterialShipOrderProperties from './pages/Properties/components/GcScrapRawMaterialShipOrderProperties';
 import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawMaterialRePrintProperties';
 import GCUnRawMaterialSpareProperties from './pages/Properties/components/GCUnRawMaterialSpareProperties';
+import GCMobileMLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotStockInProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -918,6 +919,11 @@ const routerConfig = [
     path: buildPath('Mobile/MESFinishGoodManager'),
     layout: BlankLayout,
     component: GCMobileReceiveFGProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotStockIn'),
+    layout: BlankLayout,
+    component: GCMobileMLotStockInProperties,
   },
 
   {
