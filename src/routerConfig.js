@@ -121,6 +121,7 @@ import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawM
 import GCUnRawMaterialSpareProperties from './pages/Properties/components/GCUnRawMaterialSpareProperties';
 import GCMobileMLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotStockInProperties';
 import GCRawMaterialInventoryProperties from './pages/Properties/components/GCRawMaterialInventoryProperties';
+import GCMobileMLotCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotCheckProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -931,6 +932,11 @@ const routerConfig = [
     path: buildPath('Mobile/MaterialLotStockIn'),
     layout: BlankLayout,
     component: GCMobileMLotStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotCheck'),
+    layout: BlankLayout,
+    component: GCMobileMLotCheckProperties,
   },
 
   {
