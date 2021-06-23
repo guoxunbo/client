@@ -120,6 +120,7 @@ import GcScrapRawMaterialShipOrderProperties from './pages/Properties/components
 import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawMaterialRePrintProperties';
 import GCUnRawMaterialSpareProperties from './pages/Properties/components/GCUnRawMaterialSpareProperties';
 import GCMobileMLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotStockInProperties';
+import GCRawMaterialInventoryProperties from './pages/Properties/components/GCRawMaterialInventoryProperties';
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -612,6 +613,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialImportProperties  ,
   },
+    //原材料盘点
+    {
+      path: buildPath('GC/GCRawMaterialInventoryManager'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component: GCRawMaterialInventoryProperties,
+    },
   //LOT预Hold设置
   {
     path: buildPath('GC/GCLotFutureHoldSetManager'),
