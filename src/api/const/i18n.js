@@ -202,6 +202,7 @@ const i18NCode = {
     RawMaterialMustBeTwoScanValidate: "RawMaterialMustBeTwoScanValidate",
     TapeMaterialCodeIsExisted: "TapeMaterialCodeIsExisted",
     IRABoxPrintLable: "IRABoxPrintLable",
+    RawMaterialInventory: "RawMaterialInventory",
 }
 
 const i18Messages = {
@@ -1199,6 +1200,11 @@ const i18Messages = {
         Chinese: "IRA箱号打印",
         English: "IRABox Print",
         Res: ""     
+    },
+    RawMaterialInventory: {
+        Chinese: "原材料盘点",
+        English: "Raw Material Inventory",
+        Res: ""
     }
 }
 
