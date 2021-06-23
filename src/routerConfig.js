@@ -938,6 +938,11 @@ const routerConfig = [
     layout: BlankLayout,
     component: GCMobileMLotCheckProperties,
   },
+  {
+    path: buildPath('Mobile/MaterialLotQuery'),
+    layout: BlankLayout,
+    component: MobileProperties,
+  },
 
   {
     path: '*',
