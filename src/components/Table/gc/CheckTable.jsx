@@ -43,6 +43,10 @@ export default class CheckTable extends EntityScanViewTable {
         }
         let existMaterialLots = this.state.data.filter((d) => d.errorFlag === undefined || d.errorFlag === false);
         let errorMaterialLots = this.state.data.filter((d) => d.errorFlag && d.errorFlag === true);
+        if (this.getErrorCount() > 0){
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
         let requestObject = {
             existMaterialLots: existMaterialLots,
             errorMaterialLots: errorMaterialLots,
@@ -91,7 +95,7 @@ export default class CheckTable extends EntityScanViewTable {
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{count}</Tag>
     }
 
-    createErrorNumberStatistic = () => {
+    getErrorCount = () => {
         let materialLots = this.state.data;
         let count = 0;
         if(materialLots && materialLots.length > 0){
@@ -101,7 +105,11 @@ export default class CheckTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{count}</Tag>
+        return count;
+    }
+
+    createErrorNumberStatistic = () => {
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{this.getErrorCount()}</Tag>
     }
 
     createCheckButton = () => {

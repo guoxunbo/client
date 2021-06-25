@@ -30,14 +30,31 @@ export default class GcCheckProperties extends EntityScanProperties{
           success: function(responseBody) {
             let materialLot = responseBody.materialLot;
             if(materialLot && materialLot.materialLotId != null && materialLot.materialLotId != ""){
-              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                tableData.unshift(materialLot);
+              let errorData = [];
+              let trueData = [];
+              tableData.forEach(data =>{
+                if(data.errorFlag){
+                  errorData.push(data);
+                } else {
+                  trueData.push(data);
+                }
+              });
+              if (trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
               } else {
                 self.showDataAlreadyExists();
               }
+              tableData = [];
+              errorData.forEach(data => {
+                tableData.push(data);
+              });
+              trueData.forEach(data => {
+                tableData.push(data);
+              });
             } else {
               let errorData = new MaterialLot();
               errorData[rowKey] = data;
+              errorData.setLotId(data);
               errorData.setMaterialLotId(data);
               errorData.errorFlag = true;
               if (tableData.filter(d => d[rowKey] === errorData[rowKey]).length === 0) {
