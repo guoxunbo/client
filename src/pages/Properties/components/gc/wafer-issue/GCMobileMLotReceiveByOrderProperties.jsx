@@ -5,6 +5,8 @@ import MobileProperties from "../../mobile/MobileProperties";
 import MessageUtils from "../../../../../api/utils/MessageUtils";
 import MobileMLotReceiveTable from "../../../../../components/Table/gc/MobileMLotReceiveTable";
 import WaferManagerRequest from "../../../../../api/gc/wafer-manager-manager/WaferManagerRequest";
+import TableManagerRequest from "../../../../../api/table-manager/TableManagerRequest";
+import MaterialLot from "../../../../../api/dto/mms/MaterialLot";
 
 export default class GCMobileMLotReceiveByOrderProperties extends MobileProperties{
 
@@ -15,6 +17,58 @@ export default class GCMobileMLotReceiveByOrderProperties extends MobileProperti
         this.state = {...this.state, rowKey: "objectRrn"};
     }
     
+    queryData = (whereClause) => {
+        const self = this;
+        let {rowKey,tableData} = this.state;
+        let requestObject = {
+          tableRrn: this.state.tableRrn,
+          whereClause: whereClause,
+          success: function(responseBody) {
+            let queryDatas = responseBody.dataList;
+            let data = undefined;
+            if (queryDatas && queryDatas.length > 0) {
+              let errorData = [];
+              let trueData = [];
+              tableData.forEach(data => {
+                if(data.errorFlag){
+                  errorData.push(data);
+                } else {
+                  trueData.push(data);
+                }
+              });
+              tableData = [];
+              queryDatas.forEach(data => {
+                if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                  trueData.unshift(data);
+                } 
+              });
+              errorData.forEach(data => {
+                tableData.push(data);
+              });
+              trueData.forEach(data => {
+                tableData.push(data);
+              });
+            } else {
+              data = new MaterialLot();
+              let lotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+              data[rowKey] = lotId;
+              data.setLotId(lotId);
+              data.errorFlag = true;
+              if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                tableData.unshift(data);
+              }
+            }
+           
+            self.setState({ 
+              tableData: tableData,
+              loading: false
+            });
+            self.form.resetFormFileds();
+          }
+        }
+        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    }
+
     handleSubmit = () => {
         const {tableData} = this.state;
         let self = this; 
@@ -22,6 +76,12 @@ export default class GCMobileMLotReceiveByOrderProperties extends MobileProperti
             Notification.showError(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
+        
+        if (this.dataTable.getErrorCount() > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
+
         let orders = this.props.orders;
         if (orders.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
