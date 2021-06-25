@@ -53,7 +53,7 @@ export default class MobileMLotCheckTable extends EntityScanViewTable {
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{count}</Tag>
     }
 
-    createErrorNumberStatistic = () => {
+    getErrorCount = () => {
         let materialLots = this.state.data;
         let count = 0;
         if(materialLots && materialLots.length > 0){
@@ -63,7 +63,11 @@ export default class MobileMLotCheckTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{count}</Tag>
+        return count;
+    }
+
+    createErrorNumberStatistic = () => {
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{this.getErrorCount()}</Tag>
     }
 
 }
