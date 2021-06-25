@@ -27,24 +27,24 @@ export default class GCRawMaterialDeleteTable extends EntityListTable {
 
     createDeleteRemarkInput = () => {
         return <div style={styles.input}>
-            <Input ref={(deleteNote) => { this.deleteNote = deleteNote }} key="deleteNote" placeholder="删除备注" />
+            <Input ref={(remarks) => { this.remarks = remarks }} key="remarks" placeholder="删除备注" />
         </div>
     }
 
     deleteData =() => {
         const {data,table} = this.state;
         let self = this;
-        let deleteNote = this.deleteNote.state.value;
+        let remarks = this.remarks.state.value;
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
-        if(deleteNote == "" || deleteNote == undefined){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DeleteNoteCannotEmpty));
+        if(remarks == "" || remarks == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.remarksCannotEmpty));
             return;
         }
         for(var i=0;i<data.length;i++){
-            if(data[i].state == 'In'){
+            if(data[i].status == 'In'){
                 Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CanNotDeleteInData));
                 return;
             }
@@ -62,7 +62,7 @@ export default class GCRawMaterialDeleteTable extends EntityListTable {
                 
                 let requestObject = {
                     materialLotList: data,
-                    deleteNote: deleteNote,
+                    remarks: remarks,
                     success: function(responseBody) {
                         self.setState({
                             data: [],
