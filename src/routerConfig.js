@@ -121,6 +121,11 @@ import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawM
 import GCUnRawMaterialSpareProperties from './pages/Properties/components/GCUnRawMaterialSpareProperties';
 import GCMobileMLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotStockInProperties';
 import GCRawMaterialInventoryProperties from './pages/Properties/components/GCRawMaterialInventoryProperties';
+import GCMobileMLotCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotCheckProperties';
+import GCMobileMLotReceiveOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotReceiveOrderProperties';
+import GCMobileMLotIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueOrderProperties';
+import GCMobileMLotShipOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotShipOrderProperties';
+
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -931,6 +936,31 @@ const routerConfig = [
     path: buildPath('Mobile/MaterialLotStockIn'),
     layout: BlankLayout,
     component: GCMobileMLotStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotCheck'),
+    layout: BlankLayout,
+    component: GCMobileMLotCheckProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotQuery'),
+    layout: BlankLayout,
+    component: MobileProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotReceive'),
+    layout: BlankLayout,
+    component: GCMobileMLotReceiveOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotIssue'),
+    layout: BlankLayout,
+    component: GCMobileMLotIssueOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotShip'),
+    layout: BlankLayout,
+    component: GCMobileMLotShipOrderProperties,
   },
 
   {
