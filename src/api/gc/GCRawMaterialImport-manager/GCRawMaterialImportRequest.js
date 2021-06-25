@@ -74,8 +74,8 @@ export default class GCRawMaterialImportRequest {
     }
 
     static sendDeleteRawMaterialRequest = (object) => {
-        let {materialLotList, deleteNote} = object;
-        let requestBody = GCRawMaterialImportRequestBody.buildDeleteRawMaterial(materialLotList, deleteNote);
+        let {materialLotList, remarks} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildDeleteRawMaterial(materialLotList, remarks);
         let requestHeader = new GCRawMaterialImportRequestHeader();
         let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
         let requestObject = {
