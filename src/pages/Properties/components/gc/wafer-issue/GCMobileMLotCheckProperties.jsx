@@ -30,11 +30,27 @@ export default class GCMobileMLotCheckProperties extends MobileProperties{
           success: function(responseBody) {
             let materialLot = responseBody.materialLot;
             if(materialLot && materialLot.materialLotId != null && materialLot.materialLotId != ""){
-              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                tableData.unshift(materialLot);
+              let errorData = [];
+              let trueData = [];
+              tableData.forEach(data =>{
+                if(data.errorFlag){
+                  errorData.push(data);
+                } else {
+                  trueData.push(data);
+                }
+              });
+              if (trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
               } else {
                 self.showDataAlreadyExists();
               }
+              tableData = [];
+              errorData.forEach(data => {
+                tableData.push(data);
+              });
+              trueData.forEach(data => {
+                tableData.push(data);
+              });
             } else {
               let errorData = new MaterialLot();
               errorData[rowKey] = data;
@@ -57,16 +73,16 @@ export default class GCMobileMLotCheckProperties extends MobileProperties{
     }
 
     showDataAlreadyExists = () => {
-        const self = this;
-        let queryFields = this.form.state.queryFields;
-        let data = this.form.props.form.getFieldValue(queryFields[0].name);
-        this.setState({ 
-            loading: false
-        });
-        this.allFieldBlur();
-        self.form.resetFormFileds();
-        this.form.state.queryFields[0].node.focus();
-        Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataAlreadyExists) + (data || ""));
+      debugger;
+      const self = this;
+      let queryFields = this.form.state.queryFields;
+      let data = this.form.props.form.getFieldValue(queryFields[0].name);
+      this.setState({ 
+          loading: false
+      });
+      this.allFieldBlur();
+      self.form.resetFormFileds();
+      Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataAlreadyExists) + (data || ""));
     }
     
     handleSubmit = () => {
@@ -75,6 +91,11 @@ export default class GCMobileMLotCheckProperties extends MobileProperties{
         if (!tableData || tableData.length == 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
+        }
+
+        if(this.dataTable.getErrorCount() > 0){
+          Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+          return;
         }
         let existMaterialLots = this.state.tableData.filter((d) => d.errorFlag === undefined || d.errorFlag === false);
         let errorMaterialLots = this.state.tableData.filter((d) => d.errorFlag && d.errorFlag === true);
