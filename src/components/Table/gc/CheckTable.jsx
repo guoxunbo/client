@@ -118,6 +118,10 @@ export default class CheckTable extends EntityScanViewTable {
                 </Button>;
     }
 
+    buildOperationColumn = () => {
+        
+    }
+
 }
 
 const styles = {
