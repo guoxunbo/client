@@ -419,7 +419,13 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRawMaterialStockInProperties,
   },
-    {
+  //原材料入库位调整
+  {
+    path: buildPath('/RawMaterial/GCRawMaterialStockInChange'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialStockInProperties,
+  },
+  {
     path: buildPath('RawMaterial/GCRawMaterialScrap'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialScrapProperties,
