@@ -115,6 +115,10 @@ export default class GCRawMaterialInventoryTable extends EntityScanViewTable {
                 </Button>;
     }
 
+    buildOperationColumn = () => {
+        
+    }
+
 }
 
 const styles = {
