@@ -56,9 +56,9 @@ export default class GCRawMaterialImportRequestBody {
         return body;
     }
 
-    static buildDeleteRawMaterial(materialLotList, deleteNote) {
+    static buildDeleteRawMaterial(materialLotList, remarks) {
         let body =  new GCRawMaterialImportRequestBody(ActionType.Delete, materialLotList);
-        body.deleteNote = deleteNote;
+        body.remarks = remarks;
         return body;
     }
 

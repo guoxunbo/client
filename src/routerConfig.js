@@ -119,6 +119,13 @@ import GCRawMaterialSpareOrderProperties from './pages/Properties/components/GCR
 import GcScrapRawMaterialShipOrderProperties from './pages/Properties/components/GcScrapRawMaterialShipOrderProperties';
 import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawMaterialRePrintProperties';
 import GCUnRawMaterialSpareProperties from './pages/Properties/components/GCUnRawMaterialSpareProperties';
+import GCMobileMLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotStockInProperties';
+import GCRawMaterialInventoryProperties from './pages/Properties/components/GCRawMaterialInventoryProperties';
+import GCMobileMLotCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotCheckProperties';
+import GCMobileMLotReceiveOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotReceiveOrderProperties';
+import GCMobileMLotIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueOrderProperties';
+import GCMobileMLotShipOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotShipOrderProperties';
+
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -412,7 +419,13 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRawMaterialStockInProperties,
   },
-    {
+  //原材料入库位调整
+  {
+    path: buildPath('/RawMaterial/GCRawMaterialStockInChange'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialStockInProperties,
+  },
+  {
     path: buildPath('RawMaterial/GCRawMaterialScrap'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialScrapProperties,
@@ -611,6 +624,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialImportProperties  ,
   },
+    //原材料盘点
+    {
+      path: buildPath('GC/GCRawMaterialInventoryManager'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component: GCRawMaterialInventoryProperties,
+    },
   //LOT预Hold设置
   {
     path: buildPath('GC/GCLotFutureHoldSetManager'),
@@ -918,6 +937,36 @@ const routerConfig = [
     path: buildPath('Mobile/MESFinishGoodManager'),
     layout: BlankLayout,
     component: GCMobileReceiveFGProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotStockIn'),
+    layout: BlankLayout,
+    component: GCMobileMLotStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotCheck'),
+    layout: BlankLayout,
+    component: GCMobileMLotCheckProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotQuery'),
+    layout: BlankLayout,
+    component: MobileProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotReceive'),
+    layout: BlankLayout,
+    component: GCMobileMLotReceiveOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotIssue'),
+    layout: BlankLayout,
+    component: GCMobileMLotIssueOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotShip'),
+    layout: BlankLayout,
+    component: GCMobileMLotShipOrderProperties,
   },
 
   {

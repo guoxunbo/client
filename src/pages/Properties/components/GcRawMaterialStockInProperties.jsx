@@ -140,6 +140,6 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
     buildOtherComponent = () => {
         return <GcRawMaterialWaitStockInProperties 
                         ref={(waitStockInRawMaterial) => { this.waitStockInRawMaterial = waitStockInRawMaterial }} 
-                        tableRrn={2603848} />
+                        tableRrn={this.state.parameters.parameter1} />
     }
 }

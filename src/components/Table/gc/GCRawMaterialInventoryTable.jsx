@@ -3,17 +3,19 @@ import { Button } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import IconUtils from '../../../api/utils/IconUtils';
-import CheckInventoryManagerRequest from '../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Notification } from '../../notice/Notice';
 import { Tag } from 'antd';
+import CheckInventoryManagerRequest from '../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest';
 
-/**
- * 格科盘点表
- */
-export default class CheckTable extends EntityScanViewTable {
+export default class GCRawMaterialInventoryTable extends EntityScanViewTable {
 
-    static displayName = 'CheckTable';
+    static displayName = 'GCRawMaterialInventoryTable';
+
+    constructor(props) {
+        super(props);
+        this.state = {...this.state, ...{formTable: {fields: []}}};
+    }
 
     getRowClassName = (record, index) => {
         // 如果是扫描到不存在的批次，则进行高亮显示
@@ -26,13 +28,7 @@ export default class CheckTable extends EntityScanViewTable {
                 return ''; 
             }
         }
-        
     };
-
-    constructor(props) {
-        super(props);
-        this.state = {...this.state, ...{formTable: {fields: []}}};
-    }
 
     handleCheck = () => {
         const {data} = this.state;
@@ -51,6 +47,7 @@ export default class CheckTable extends EntityScanViewTable {
             existMaterialLots: existMaterialLots,
             errorMaterialLots: errorMaterialLots,
             success: function() {
+                debugger;
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
@@ -114,7 +111,7 @@ export default class CheckTable extends EntityScanViewTable {
 
     createCheckButton = () => {
         return <Button key="check" type="primary" style={styles.tableButton} onClick={() => this.handleCheck()}>
-                 {IconUtils.buildIcon("icon-pandian")} {"盘点"}
+                 {IconUtils.buildIcon("icon-pandian")} {I18NUtils.getClientMessage(i18NCode.RawMaterialInventory)}
                 </Button>;
     }
 

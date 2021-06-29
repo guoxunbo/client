@@ -68,7 +68,7 @@ export default class RefTableField extends Combox {
             senderField = sender.props.field;
         }
         let refTable = this.refTable;
-        if (refTable && refTable.whereClause) {
+        if (senderField && refTable && refTable.whereClause) {
             let whereClause = refTable.whereClause;
             // 如果包含了parameter则替换
             if (whereClause.indexOf(":") != -1) {
