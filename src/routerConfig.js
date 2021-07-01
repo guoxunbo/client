@@ -125,6 +125,7 @@ import GCMobileMLotCheckProperties from './pages/Properties/components/gc/wafer-
 import GCMobileMLotReceiveOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotReceiveOrderProperties';
 import GCMobileMLotIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueOrderProperties';
 import GCMobileMLotShipOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotShipOrderProperties';
+import GCRwMaterialCancelSpareProperties from './pages/Properties/components/GCRwMaterialCancelSpareProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -502,11 +503,17 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwBladeScanReceiveProperties,
   },
-  //材料备料
+  //RW材料备料
   {
     path: buildPath('GC/GCRwMaterialSpareManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwMaterialSpareProperties,
+  },
+  //RW材料备料取消
+  {
+    path: buildPath('GC/GCRwMaterialCancelSpareManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwMaterialCancelSpareProperties,
   },
   //原材料备料
   {

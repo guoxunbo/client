@@ -11,6 +11,7 @@ export default class RawMaterialWaitStockInStorageTable extends EntityListTable 
         let buttons = [];
         buttons.push(this.createMaterialLotsNumber());
         buttons.push(this.createTotalNumber());
+        buttons.push(this.createExportDataButton());
         return buttons;
     }
     
