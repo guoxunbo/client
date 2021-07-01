@@ -6,6 +6,7 @@ import { DefaultRowKey } from "@api/const/ConstDefine";
 import MLotBatchJudgeIqcDialog from "../dialog/MLotBatchJudgeIqcDialog";
 import NoticeUtils from "@utils/NoticeUtils";
 import { Application } from "@api/Application";
+import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 
 /**
  * 带有选择框的table
@@ -115,11 +116,26 @@ export default class MaterialLotIqcManagerTable extends EntityListCheckTable{
         if(formObject.length == 0){
             return;
         }
-        this.setState({
-            formVisible: true ,
-            actionTable: self.props.actionTable,
-            formObject: formObject,
-        });
+        let actionTable = self.props.actionTable;
+        if(actionTable){
+            let object = {
+                tableRrn: actionTable.objectRrn,
+                success: function(responseBody){
+                    self.setState({
+                        formVisible: true ,
+                        actionTable: responseBody.table,
+                        formObject: formObject,
+                    });
+                }
+            }
+            TableManagerRequest.sendGetByRrnRequest(object);
+        }
+
+        // this.setState({
+        //     formVisible: true ,
+        //     actionTable: self.props.actionTable,
+        //     formObject: formObject,
+        // });
     }
 
     refresh = (data) => {

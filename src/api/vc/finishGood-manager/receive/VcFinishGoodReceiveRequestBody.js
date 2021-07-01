@@ -23,9 +23,9 @@ export default class VcFinishGoodReceiveRequestBody {
 
     static buildReceiveFinishGood(documentId, materialLotList) {
         let materialLotIdList = [];
-        for(let mLot of materialLotList){
+        materialLotList.forEach(mLot => {
             materialLotIdList.push(mLot.materialLotId);
-        }
+        });
         return new VcFinishGoodReceiveRequestBody(actionType.FinishGoodReceive, documentId, materialLotIdList);
     }
 }

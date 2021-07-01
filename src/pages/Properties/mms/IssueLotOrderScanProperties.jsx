@@ -30,7 +30,7 @@ export default class IssueLotOrderScanProperties extends EntityScanProperties{
         let flag = false;
         let showData = [];
         mLots.forEach(mLot => {
-            if(queryMLotId === mLot.materialLotId){
+            if(queryMatlotId === mLot.materialLotId){
                 flag = true ;
                 mLot.scaned = true;
                 showData.unshift(mLot);

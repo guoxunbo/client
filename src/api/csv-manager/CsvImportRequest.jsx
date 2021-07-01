@@ -56,8 +56,8 @@ export default class CsvImportRequest {
      * 保存实验室物料批次
      * @param {} object 
      */
-    static sendSaveLabMLotRequest = (object) => {
-        let requestBody = CsvImportRequestBody.buildSaveLabMLot(object.dataList);
+    static sendSaveMLotsRequest = (object) => {
+        let requestBody = CsvImportRequestBody.buildSaveMLots(object.dataList);
         let requestHeader = new CsvImportRequestBodyHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.VCIncomingMaterialImportSaveDateUrl);
         let requestObject = {

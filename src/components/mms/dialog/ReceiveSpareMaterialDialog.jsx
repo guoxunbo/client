@@ -1,8 +1,8 @@
 import EntityDialog from '@components/framework/dialog/EntityDialog';
-import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
+import VcMaterialLotInventoryRequest from '@api/vc/material-lot-inventory-manager/VcMaterialLotInventoryRequest';
 
 /**
- * 接收备品备件
+ * 接收/退料 备品备件
  */
 export default class ReceiveSpareMaterialDialog extends EntityDialog {
     static displayName = 'ReceiveSpareMaterialDialog';
@@ -17,7 +17,13 @@ export default class ReceiveSpareMaterialDialog extends EntityDialog {
                 }
             }
         };
-        MaterialLotManagerRequest.sendReceiveSpareMaterialLotRequest(object);
+
+        let receiveFlag = this.props.receiveFlag;
+        if(receiveFlag){
+            VcMaterialLotInventoryRequest.sendCreateSpareMaterialLotRequest(object);
+        }else{
+            VcMaterialLotInventoryRequest.sendReturnSpareMaterialLotRequest(object);
+        }
     }
 }
 

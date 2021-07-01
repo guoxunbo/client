@@ -18,53 +18,50 @@ export default class MaterialLotIqcManagerProperties extends EntityProperties{
         this.state= {...this.state}
     }
 
+    resetData = () => {
+      this.getTableData();
+    } 
+
     afterQuery = (body, whereClause) => {
-      let self = this ;
-      let materialLots = body.dataList
-      let {tableData} = self.state;
-      let showData = [];
-      let flag = true;
-      let requestObject = {
-          materialLots: materialLots,
-          success:function(responseBody){
-              let dataList = responseBody.dataList;
-              if(whereClause == ''){
+       let self = this ;
+       let {tableData} = self.state;
+       let showData = [];
+       let flag = true;
+          let dataList = body.dataList;
+          if(whereClause == ''){
                 self.setState({loading: false, tableData:dataList, pagination:false}); 
                 return;
-              }
-              if(dataList.length == 0){
-                NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
-                self.setState({loading: false, pagination:false}); 
-                return;
-              } else if (dataList.length == 1){                 
-                let materialLot = dataList[0];
-                if(tableData.length != 0){
+          }
+          if(dataList.length == 0){
+              NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+              self.setState({loading: false, pagination:false}); 
+              return;
+          } else if (dataList.length == 1){                 
+              let materialLot = dataList[0];
+              if(tableData.length != 0){
                   tableData.map((mLot, index)=>{
-                    if(mLot[DefaultRowKey] == materialLot[DefaultRowKey]){  
-                        flag = false;
-                        showData.unshift(mLot);
-                    }else{
-                        showData.push(mLot);
-                    }
+                      if(mLot[DefaultRowKey] == materialLot[DefaultRowKey]){  
+                          flag = false;
+                          showData.unshift(mLot);
+                      } else{
+                          showData.push(mLot);
+                      }
                   });
-                }
-                if(flag){
+              }
+              if(flag){
                   flag = true;
                   showData.unshift(materialLot);
-                }
-                self.orderTable.selectRow(materialLot, true);
-              }              
-              self.setState({
-                  tableData: showData,
-                  whereClause: whereClause,
-                  loading: false,
-                  pagination:false
-              }); 
-              self.form.resetFormFileds();
-          }
-      }
-      MaterialLotIqcRequest.sendValidationAndGetWaitIQCMLotRequest(requestObject);
-  }
+              }
+              self.orderTable.selectRow(materialLot, true);
+          }              
+          self.setState({
+              tableData: showData,
+              whereClause: whereClause,
+              loading: false,
+              pagination:false
+          }); 
+          self.form.resetFormFileds();
+    }
 
     getTableData = () => {
         this.orderTable.setState({ selectedRowKeys: [],selectedRows: []});
@@ -107,8 +104,7 @@ export default class MaterialLotIqcManagerProperties extends EntityProperties{
                     pagination={false}
                     actionTable = {this.state.actionTable}
                     ref ={(orderTable)=>{this.orderTable = orderTable}} 
-                    materialLotQc = {this.materialLotQc}                    
-                />
+                    materialLotQc = {this.materialLotQc}/>
     }
 
     buildOtherComponent = () => {
@@ -116,7 +112,6 @@ export default class MaterialLotIqcManagerProperties extends EntityProperties{
                     tableRrn = {this.state.parameters.parameter2}
                     materialLotQcDialogTableName = {this.state.parameters.parameter1}
                     ref={(materialLotQc) => { this.materialLotQc = materialLotQc }} 
-                    onSearch={this.getTableData.bind(this)} 
-                />
+                    onSearch={this.getTableData.bind(this)}/>
     }
 }
