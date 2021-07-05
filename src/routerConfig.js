@@ -126,6 +126,7 @@ import GCMobileMLotReceiveOrderProperties from './pages/Properties/components/gc
 import GCMobileMLotIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueOrderProperties';
 import GCMobileMLotShipOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotShipOrderProperties';
 import GCRwMaterialCancelSpareProperties from './pages/Properties/components/GCRwMaterialCancelSpareProperties';
+import WltLotPackCaseCheckProperties from './pages/Properties/components/WLTLotPackCaseCheckProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -380,6 +381,12 @@ const routerConfig = [
     path: buildPath('WLT/WLTPackCaseCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltPackCaseCheckProperties,
+  },
+  //WLT Lot装箱检
+  {
+    path: buildPath('WLT/WLTLotPackCaseCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltLotPackCaseCheckProperties,
   },
   //WLT出货检
   {
