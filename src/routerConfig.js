@@ -55,7 +55,7 @@ import ReturnMLotOrderProperties from '@pages/Properties/mms/ReturnMLotOrderProp
 import CreateReturnLotOrderProperties from '@pages/Properties/mms/CreateReturnLotOrderProperties';
 import ReturnLotOrderProperties from '@pages/Properties/mms/ReturnLotOrderProperties';
 import SpareMaterialProperties from '@pages/Properties/mms/SpareMaterialProperties';
-import PickSpareMLotProperties from '@pages/Properties/mms/PickSpareMLotProperties';
+import StockOutSpareMLotProperties from '@pages/Properties/mms/StockOutSpareMLotProperties';
 import UseSpareMLotProperties from '@pages/Properties/mms/UseSpareMLotProperties';
 import DocQueryManagerProperties from '@pages/Properties/mms/DocQueryManagerProperties';
 
@@ -109,6 +109,9 @@ import VcStockOutMLotByOrderProperties from '@pages/Properties/vc/VcStockOutMLot
 import VcStorageProperties from '@pages/Properties/vc/VcStorageProperties';
 
 import MaterialLot from '@api/dto/mms/MaterialLot';
+import VcCheckProperties from '@pages/Properties/vc/VcCheckProperties';
+import ImportPartsMLotProperties from '@pages/Properties/mms/ImportPartsMLotProperties';
+import ReturnOrderProperties from '@pages/Properties/mms/ReturnOrderProperties';
 
 
 /**
@@ -367,7 +370,7 @@ const routerConfig = [
   {
     path: buildPath('WMS/CheckManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GcCheckProperties,
+    component: VcCheckProperties,
   },
   //PackManager
   {
@@ -520,7 +523,7 @@ const routerConfig = [
   {
     path: buildPath('MMS/ReturnMLotOrder'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: ReturnMLotOrderProperties ,
+    component: ReturnMLotOrderProperties,
   },
   {
     path: buildPath('MMS/MaterialLotSplit'),
@@ -691,7 +694,7 @@ const routerConfig = [
   {
     path: buildPath('VC/ReturnSupplier'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: ReturnMLotOrderProperties,
+    component: ReturnOrderProperties,
   },
   {
     path: buildPath('VC/CreateReturnOrder'),
@@ -711,24 +714,35 @@ const routerConfig = [
 
   //spare part
   {
-    path: buildPath('MMS/ReceiveSpareMLot'),
+    path: buildPath('MMS/ImportPartsMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ImportPartsMLotProperties,
+  },
+
+  {
+    path: buildPath('MMS/PartsMaterialManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: SpareMaterialProperties,
   },
   {
-    path: buildPath('MMS/PickSpareMLot'),
+    path: buildPath('MMS/PartsMLotInventoryManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: PickSpareMLotProperties,
+    component: MaterialLotInventoryProperties,
   },
   {
-    path: buildPath('MMS/ConsumeSpareMLot'),
+    path: buildPath('MMS/ScrapPartsMLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UseSpareMLotProperties,
   },
   {
-    path: buildPath('MMS/SpareMLotHisManager'),
+    path: buildPath('MMS/PartsMLotHisManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
+  },
+  {
+    path: buildPath('MMS/StockOutPartsMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: StockOutSpareMLotProperties,
   },
 
   {

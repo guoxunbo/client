@@ -1,8 +1,5 @@
-import AuthorityButton from "@components/framework/button/AuthorityButton";
 import VcDeliveryOrderTable from "@components/vc/table/VcDeliveryOrderTable";
-import { Upload } from "antd";
 import EntityProperties from "../framework/EntityProperties";
-import EntityScanProperties from "../framework/EntityScanProperties";
 
 
 /**

@@ -1,5 +1,6 @@
 import VcFinishGoodReceiveRequest from "@api/vc/finishGood-manager/receive/VcFinishGoodReceiveRequest";
 import IncomingMaterialReceiveScanTable from "@components/mms/table/IncomingMaterialReceiveScanTable";
+import NoticeUtils from "@utils/NoticeUtils";
 
 
 /**

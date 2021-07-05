@@ -50,7 +50,6 @@ class PrintIssueOrderForm extends EntityForm {
     buildPrintTable = () => {
         let materialLots = this.props.object;
         let document = this.props.document;
-        debugger;
         let trArr = this.forEachBuildTr(materialLots);
         return (<div id="printTable">
                     <table border="0" width="100%" cellspacing="0">

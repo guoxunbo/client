@@ -80,7 +80,7 @@ export default class ReturnMLotOrderScanTable extends EntityScanViewTable {
                 NoticeUtils.showSuccess();
             }
         }
-        ReturnLotOrderRequest.sendReturnMLotByOrderRequest(requestObject);
+        ReturnLotOrderRequest.sendReturnLotRequest(requestObject);
     }
      /**
      * 接收数据不具备可删除等操作

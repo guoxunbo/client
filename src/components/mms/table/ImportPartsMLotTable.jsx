@@ -6,9 +6,9 @@ import NoticeUtils from '@api/utils/NoticeUtils';
 import CsvImportRequest from '@api/csv-manager/CsvImportRequest';
 import CsvImportTable from './CsvImportTable';
 
-export default class IncomingLabMLotImportTable extends CsvImportTable {
+export default class ImportPartsMLotTable extends CsvImportTable {
 
-    static displayName = 'IncomingLabMLotImportTable';
+    static displayName = 'ImportPartsMLotTable';
 
     SaveButton = () => {
         const {data,table} = this.state;
