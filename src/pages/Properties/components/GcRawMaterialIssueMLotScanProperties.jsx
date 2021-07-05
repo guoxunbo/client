@@ -37,7 +37,7 @@ export default class GcRawMaterialIssueMLotScanProperties extends EntityScanProp
           });
           return;
         }
-        let waitIssueMLotList = this.waitIssueMLotProperties.state.tableData;
+        // let waitIssueMLotList = this.waitIssueMLotProperties.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,
           queryLotId: queryLotId,
@@ -56,14 +56,17 @@ export default class GcRawMaterialIssueMLotScanProperties extends EntityScanProp
               });
               tableData = [];
               queryDatas.forEach(data => {
-                if (waitIssueMLotList.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  data.errorFlag = true;
-                }
-                if(data.errorFlag){
-                  errorData.unshift(data);
-                } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                   trueData.unshift(data);
-                }
+                } 
+                // if (waitIssueMLotList.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                //   data.errorFlag = true;
+                // }
+                // if(data.errorFlag){
+                //   errorData.unshift(data);
+                // } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                //   trueData.unshift(data);
+                // } 
               });
               errorData.forEach(data => {
                 tableData.push(data);
