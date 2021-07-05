@@ -19,7 +19,8 @@ export default class CsvImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendImportData(requestObject,file);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -34,7 +35,8 @@ export default class CsvImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -49,7 +51,8 @@ export default class CsvImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -64,6 +67,7 @@ export default class CsvImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

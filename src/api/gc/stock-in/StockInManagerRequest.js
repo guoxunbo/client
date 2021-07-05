@@ -15,7 +15,8 @@ export default class StockInManagerRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendStockInRequest = (object) => {
@@ -27,7 +28,8 @@ export default class StockInManagerRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
     
 }

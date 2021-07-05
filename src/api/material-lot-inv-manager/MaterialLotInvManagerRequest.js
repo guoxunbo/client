@@ -14,9 +14,10 @@ export default class MaterialLotInvManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
-    
+
     static sendTransferStockRequest = (object) => {
         let requestBody = MaterialLotInvManagerRequestBody.buildTransferInv(object.transferInvObject);
         let requestHeader = new MaterialLotInvManagerRequestHeader();
@@ -25,7 +26,7 @@ export default class MaterialLotInvManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+
     }
 
     static sendPickRequest = (object) => {
@@ -36,7 +37,7 @@ export default class MaterialLotInvManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+
     }
 
     static sendCheckRequest = (object) => {
@@ -47,6 +48,7 @@ export default class MaterialLotInvManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

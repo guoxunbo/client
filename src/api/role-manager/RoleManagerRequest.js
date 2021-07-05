@@ -21,7 +21,8 @@ export default class RoleManagerRequest {
             success: object.success
         }
         
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendDispatchAuthorityRequest = (object) => {
@@ -32,7 +33,8 @@ export default class RoleManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendDispatchUserRequest = (object) => {
@@ -43,7 +45,8 @@ export default class RoleManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**

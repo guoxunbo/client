@@ -16,7 +16,8 @@ export default class PackageValidationRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
     
     static sendValidationAppendPackRequest = (object) => {
@@ -29,7 +30,8 @@ export default class PackageValidationRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

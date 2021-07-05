@@ -22,7 +22,8 @@ export default class UserManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendChangePassword = (object) => {
@@ -33,7 +34,8 @@ export default class UserManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendResetPassword = (object) => {
@@ -44,7 +46,8 @@ export default class UserManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
     
     static sendMergeUserRequest = (object) => {
@@ -55,7 +58,8 @@ export default class UserManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
     
     static sendImportRequest = (file) => {

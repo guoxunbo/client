@@ -20,7 +20,8 @@ export default class DocQueryManagerRequest {
             fail: object.fail
 
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -36,7 +37,8 @@ export default class DocQueryManagerRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -53,7 +55,8 @@ export default class DocQueryManagerRequest {
             fail: object.fail
 
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

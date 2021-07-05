@@ -15,7 +15,8 @@ export default class AppendPackageMaterialLotRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
     
 }

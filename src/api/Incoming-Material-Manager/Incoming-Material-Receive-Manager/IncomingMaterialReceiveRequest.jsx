@@ -17,7 +17,8 @@ export default class IncomingMaterialReceiveRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendGetMaterialLot = (object) => {
@@ -28,7 +29,8 @@ export default class IncomingMaterialReceiveRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     

@@ -1,3 +1,4 @@
+import * as React from "react";
 import {ResultIdentify, Language, UrlConstant} from '../const/ConstDefine';
 import NoticeUtils from '../utils/NoticeUtils';
 
@@ -12,7 +13,6 @@ import {i18NCode} from '../const/i18n';
 import MessageRequestBody from '../../api/message-manager/MessageRequestBody';
 import MessageRequestHeader from '../../api/message-manager/MessageRequestHeader';
 import Request from '../../api/Request';
-import React from "react";
 
 /**
  *  消息主要发送类

@@ -15,7 +15,8 @@ export default class SplitMLotRequest{
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject); 
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject); 
     }
 
 }

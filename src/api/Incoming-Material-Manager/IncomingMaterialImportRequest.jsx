@@ -5,7 +5,7 @@ import MessageUtils from '@utils/MessageUtils';
 import Request from '@api/Request';
 
 export default class IncomingMaterialImportRequest {
-   
+
     static sendSelectRequest = (object, file) => {
         let requestBody =  IncomingMaterialImportRequestBody.buildSelect(object);
         let requestHeader = new IncomingMaterialImportRequestHeader();
@@ -14,7 +14,8 @@ export default class IncomingMaterialImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendImportData(requestObject,file);
+        const {sendImportData} = MessageUtils();
+        sendImportData(requestObject,file);
     }
 
     static sendImportRequest = (object) => {
@@ -25,6 +26,7 @@ export default class IncomingMaterialImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }
