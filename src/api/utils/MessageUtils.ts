@@ -1,18 +1,17 @@
 import * as React from "react";
 import {ResultIdentify, Language, UrlConstant} from '../const/ConstDefine';
+import {Fetch} from '../../config/axis'
 import NoticeUtils from '../utils/NoticeUtils';
-
 import {Response} from '../../api/Response';
 import {ResponseHeader} from '../../api/ResponseHeader';
-
-import axios from 'axios';
+import axios from "axios";
 import {SessionContext, Application} from '../../api/Application';
 import I18NUtils from '../utils/I18NUtils';
 import EventUtils from '../utils/EventUtils';
 import {i18NCode} from '../const/i18n';
 import MessageRequestBody from '../../api/message-manager/MessageRequestBody';
 import MessageRequestHeader from '../../api/message-manager/MessageRequestHeader';
-import Request from '../../api/Request';
+import Request from "../Request";
 
 /**
  *  消息主要发送类
@@ -26,7 +25,7 @@ export default function MessageUtils(): React.ReactNode {
      * @param requestObject
      * @example {requests: [request1, request2...], success:}
      */
-     const  sendTwoRequest=(requestObject:any):void=>{
+     const  sendTwoRequest= async (requestObject: any) => {
         let requests = requestObject.requests;
         if (Array.isArray(requests)) {
             let axioses: any = [];
@@ -38,28 +37,25 @@ export default function MessageUtils(): React.ReactNode {
                     },
                 }));
             });
-            axios.all(axioses)
-                .then(axios.spread(function (responseValue1: any, responseValue2: any) {
-                    // 处理2个reponse 都成功才回调Object.success
-                    let response1 = new Response(responseValue1.data.header, responseValue1.data.body);
-                    let response2 = new Response(responseValue2.data.header, responseValue2.data.body);
-                    if (ResultIdentify.Fail == response1.header.result) {
-                        handleException(response1.header);
-                        return;
-                    }
-                    if (ResultIdentify.Fail == response2.header.result) {
-                        handleException(response2.header);
-                        return;
-                    }
-                    if (requestObject.success) {
-                        requestObject.success(response1.body, response2.body);
-                    } else {
-                        NoticeUtils.showSuccess();
-                    }
-                }))
-                .catch(function (exception) {
-                    handleException(exception);
-                });
+            await Promise.all(axioses).then(([responseValue1, responseValue2]: any) => {
+                let response1 = new Response(responseValue1.data.header, responseValue1.data.body);
+                let response2 = new Response(responseValue2.data.header, responseValue2.data.body);
+                if (ResultIdentify.Fail == response1.header.result) {
+                    handleException(response1.header);
+                    return;
+                }
+                if (ResultIdentify.Fail == response2.header.result) {
+                    handleException(response2.header);
+                    return;
+                }
+                if (requestObject.success) {
+                    requestObject.success(response1.body, response2.body);
+                } else {
+                    NoticeUtils.showSuccess();
+                }
+            }).catch(function (exception) {
+                handleException(exception);
+            });
         }
     };
 
@@ -81,25 +77,23 @@ export default function MessageUtils(): React.ReactNode {
                 formData.append(propName, requestObject[propName]);
             }
         }
-        axios.post(request.url, formData, {
-            headers: {'Content-Type': 'multipart/form-data', authorization: SessionContext.getToken()},
-        })
-            .then(function (object) {
-                let response = new Response(object.data.header, object.data.body);
-                if (ResultIdentify.Fail == response.header.result) {
-                    handleException(response.header);
-                } else {
-                    if (requestObject.success) {
-                        requestObject.success(response.body);
-                    } else {
-                        NoticeUtils.showSuccess();
-                    }
-                }
-            })
-            .catch(function (exception) {
-                handleException(exception);
+        try {
+            const object:any = axios.post(request.url, formData, {
+                headers: {'Content-Type': 'multipart/form-data', authorization: SessionContext.getToken()},
             });
-
+            let response = new Response(object.data.header, object.data.body);
+            if (ResultIdentify.Fail == response.header.result) {
+                handleException(response.header);
+            } else {
+                if (requestObject.success) {
+                    requestObject.success(response.body);
+                } else {
+                    NoticeUtils.showSuccess();
+                }
+            }
+        }catch (exception){
+            handleException(exception);
+        }
     };
 
     /**
@@ -110,38 +104,37 @@ export default function MessageUtils(): React.ReactNode {
      */
     const sendExpRequest = (requestObject: any, fileName: any): void => {
         let request = requestObject.request;
-        axios.post(request.url, request, {
-            responseType: 'blob',
-            headers: {
-                authorization: SessionContext.getToken(),
-            },
-        })
-            .then(function (object) {
-                let type = object.headers['content-type'];
-                let blob = new Blob([object.data], {type: type});
-                let reader = new FileReader();
-                reader.onload = (e: any) => {
-                    if (e.target.result.indexOf('result') != -1) {
-                        let result = JSON.parse(e.target.result);
-                        let response = new Response(result.header, result.body);
-                        handleException(response.header);
-                    } else {
-                        let elink = document.createElement('a');
-                        elink.download = fileName;
-                        elink.style.display = 'none';
-                        elink.href = URL.createObjectURL(blob);
-                        document.body.appendChild(elink);
-                        elink.click();
-                        document.body.removeChild(elink);
-                        NoticeUtils.showSuccess();
-                    }
-                };
-                reader.readAsText(blob);
-                EventUtils.sendButtonLoaded();
-            })
-            .catch(function (exception) {
-                handleException(exception);
+        try {
+            const object:any = axios.post(request.url, request, {
+                responseType: 'blob',
+                headers: {
+                    authorization: SessionContext.getToken()
+                },
             });
+            let type = object.headers['content-type'];
+            let blob = new Blob([object.data], {type: type});
+            let reader = new FileReader();
+            reader.onload = (e: any) => {
+                if (e.target.result.indexOf('result') != -1) {
+                    let result = JSON.parse(e.target.result);
+                    let response = new Response(result.header, result.body);
+                    handleException(response.header);
+                } else {
+                    let elink = document.createElement('a');
+                    elink.download = fileName;
+                    elink.style.display = 'none';
+                    elink.href = URL.createObjectURL(blob);
+                    document.body.appendChild(elink);
+                    elink.click();
+                    document.body.removeChild(elink);
+                    NoticeUtils.showSuccess();
+                }
+            };
+            reader.readAsText(blob);
+            EventUtils.sendButtonLoaded();
+        }catch (exception){
+            handleException(exception);
+        }
     };
 
     /**
@@ -150,91 +143,80 @@ export default function MessageUtils(): React.ReactNode {
      * @return Promise对象。取出里面的值需要通过Promise.resolve取出
      */
     const sendSyncRequest = async (requestObject: any) => {
+        debugger
         let request = requestObject.request;
         let timeOut = request.timeOut || Application.timeOut;
-        return axios.post(request.url, request, {
-            timeout: timeOut,
-            headers: {
-                authorization: SessionContext.getToken(),
-            },
-        })
-            .then(function (object) {
-                let response = new Response(object.data.header, object.data.body);
-                if (ResultIdentify.Fail == response.header.result) {
-                    if (requestObject.fail) {
-                        requestObject.fail();
-                    }
-                    handleException(response.header);
-                } else {
-                    EventUtils.sendButtonLoaded();
-                    return response.body;
+        try {
+            const object:any =  await Fetch(request.url,'post', request);
+            let response = new Response(object.data.header, object.data.body);
+            if (ResultIdentify.Fail == response.header.result) {
+                if (requestObject.fail) {
+                    return requestObject.fail();
                 }
-            })
-            .catch(function (exception) {
-                handleException(exception);
-            });
+                handleException(response.header);
+            } else {
+                EventUtils.sendButtonLoaded();
+                return response.body;
+            }
+        }catch (exception){
+            handleException(exception);
+        }
     };
 
     /**
      * 发送异步请求
      */
-    const sendRequest = (requestObject: any): void => {
+    const sendRequest = async (requestObject: any) => {
         let request = requestObject.request;
         let timeOut = request.timeOut || Application.timeOut;
-        axios.post(request.url, request, {
-            timeout: timeOut,
-            headers: {
-                authorization: SessionContext.getToken(),
-            },
-        })
-            .then(function (object) {
-                let response = new Response(object.data.header, object.data.body);
-                if (ResultIdentify.Fail == response.header.result) {
-                    if (requestObject.fail) {
-                        requestObject.fail();
-                    }
-                    handleException(response.header);
-                } else {
-                    if (object.headers.authorization) {
-                        SessionContext.saveToken(object.headers.authorization);
-                    }
-                    if (requestObject.success) {
-                        requestObject.success(response.body);
-                    } else {
-                        NoticeUtils.showSuccess();
-                    }
-                    EventUtils.sendButtonLoaded();
+        try {
+            const object:any = await Fetch(request.url,'post',request);
+            let response = new Response(object.data.header, object.data.body);
+            if (ResultIdentify.Fail == response.header.result) {
+                if (requestObject.fail) {
+                    requestObject.fail();
                 }
-            })
-            .catch(function (exception) {
-                handleException(exception);
-            });
+                handleException(response.header);
+            } else {
+                if (object.headers.authorization) {
+                    SessionContext.saveToken(object.headers.authorization);
+                }
+                if (requestObject.success) {
+                    requestObject.success(response.body);
+                } else {
+                    NoticeUtils.showSuccess();
+                }
+                EventUtils.sendButtonLoaded();
+            }
+
+        }catch(exception){
+            handleException(exception);
+        }
     };
 
     /**
      * 发送Get请求
      *  一般用于打印机等
      */
-    const sendGetRequest = (requestObject: any): void => {
-        axios.get(requestObject.url, {
-            params: requestObject.params,
-        })
-            .then(function (object) {
-                if (requestObject.success) {
-                    requestObject.success(object.data);
-                } else {
-                    NoticeUtils.showSuccess();
-                }
-            })
-            .catch(function (exception) {
-                handleException(exception);
-            });
+    const sendGetRequest = async (requestObject: any) => {
+        debugger
+        try {
+            const object:any = await Fetch(requestObject.url,'get', requestObject.params);
+            if (requestObject.success) {
+                requestObject.success(object.data);
+            } else {
+                NoticeUtils.showSuccess();
+            }
+        }catch(exception){
+            handleException(exception);
+        }
     };
 
     /**
      * 异常返回提示
      */
-    function handleException(exception:any){
+     function  handleException(exception:any){
+        debugger
         if (exception.response) {
             console.log(exception.response);
             if (exception.response.status === 401) {
@@ -253,7 +235,7 @@ export default function MessageUtils(): React.ReactNode {
             let requestBody = MessageRequestBody.buildGetByKeyId(error, exception.parameters);
             let requestHeader = new MessageRequestHeader();
             let requestObject = {
-                request: new Request(requestHeader, requestBody, UrlConstant.MessageManagerUrl),
+                request: new Request(requestHeader, requestBody, '/ui/messageManage'),
             };
             let responseBody: any = async () => {
                 await sendSyncRequest(requestObject);
@@ -281,6 +263,8 @@ export default function MessageUtils(): React.ReactNode {
         NoticeUtils.showError(errroCode, error);
         EventUtils.sendButtonLoaded();
     };
+
+
 
     return {
         sendTwoRequest,
