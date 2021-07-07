@@ -42,9 +42,6 @@ export default class MaterialLotManagerRequest {
         const {sendRequest} = MessageUtils();
         sendRequest(requestObject);
     }
-<<<<<<< Updated upstream
-}
-=======
 
     /**
      * 备品备件 接收入库
@@ -60,6 +57,4 @@ export default class MaterialLotManagerRequest {
         const {sendRequest} = MessageUtils();
         sendRequest(requestObject);
     }
-
 }
->>>>>>> Stashed changes
