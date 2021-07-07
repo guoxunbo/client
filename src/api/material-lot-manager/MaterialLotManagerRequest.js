@@ -15,7 +15,8 @@ export default class MaterialLotManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPrintMaterialLotRequest = (object) => {
@@ -26,7 +27,8 @@ export default class MaterialLotManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendMaterialLotActionRequest = (object) => {
@@ -37,6 +39,27 @@ export default class MaterialLotManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
+<<<<<<< Updated upstream
 }
+=======
+
+    /**
+     * 备品备件 接收入库
+     */
+     static sendReceiveSpareMaterialLotRequest = (object) => {
+        let requestBody = MaterialLotManagerRequestBody.buildReceiveSpareMaterialLot(object.formObject);
+        let requestHeader = new MaterialLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.MaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
+    }
+
+}
+>>>>>>> Stashed changes

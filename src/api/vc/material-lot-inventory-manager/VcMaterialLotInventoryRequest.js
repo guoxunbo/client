@@ -14,7 +14,8 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendGetStockOutMLotByOrderRequest = (object) => {
@@ -25,7 +26,8 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendCheckInventoryRequest = (object)=>{

@@ -11,7 +11,7 @@ export default class IssueOrderRequest {
 
     /**
      * 已指定物料批次
-     * @param {*} object 
+     * @param {*} object
      */
      static sendGetWaitMLotByOrderRequest = (object) => {
         let requestBody =  IssueOrderRequestBody.buildGetWaitMLotByOrder(object.documentId);
@@ -21,12 +21,13 @@ export default class IssueOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 发料 已指定物料批次
-     * @param {*} object 
+     * @param {*} object
      */
     static sendIssueMLotByDocRequest = (object) => {
         let requestBody =  IssueOrderRequestBody.buildIssueMLotByDoc(object.documentId, object.materialLots);
@@ -37,13 +38,14 @@ export default class IssueOrderRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 已指定物料批次
      * 获得打印参数
-     * @param {*} object 
+     * @param {*} object
      */
     static sendGetPrintIssueOrderRequest = (object) => {
         let requestBody =  IssueOrderRequestBody.buildGetPrintIssueOrder(object.documentId);
@@ -53,13 +55,14 @@ export default class IssueOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 内部发起
-     * 创建发料单 指定物料批次以及数量 
-     * @param {*} object 
+     * 创建发料单 指定物料批次以及数量
+     * @param {*} object
      */
     static sendCreateIssueMLotOrderRequest= (object) => {
         let requestBody =  IssueOrderRequestBody.buildCreateIssueMLotOrder(object.materialLots);
@@ -69,13 +72,14 @@ export default class IssueOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 内部发起
      * 发料 指定物料批次以及数量
-     * @param {*} object 
+     * @param {*} object
      */
      static sendIssueMaterialLotByOrderRequest= (object) => {
         let requestBody =  IssueOrderRequestBody.buildIssueMaterialLotByOrder(object.documentId, object.materialLots);
@@ -85,6 +89,7 @@ export default class IssueOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

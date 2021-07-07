@@ -5,7 +5,7 @@ import ReturnLotOrderRequestBody from './ReturnLotOrderRequestBody';
 import ReturnLotOrderRequestHeader from './ReturnLotOrderRequestHeader';
 
 export default class ReturnLotOrderRequest {
-   
+
     static sendGetReturnLotInfoRequest = (object) => {
         let requestBody =  ReturnLotOrderRequestBody.buildGetReturnLotInfo(object.documentId);
         let requestHeader = new ReturnLotOrderRequestHeader();
@@ -14,12 +14,13 @@ export default class ReturnLotOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 退料 产线退到仓库
-     * @param {*} object 
+     * @param {*} object
      */
     static sendReturnLotRequest = (object) => {
         let requestBody = ReturnLotOrderRequestBody.buildReturnLot(object.documentId, object.materialLots);
@@ -29,12 +30,13 @@ export default class ReturnLotOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 创建退料单 仓库退到供应商
-     * @param {*} object 
+     * @param {*} object
      */
     static sendCreateReturnOrder = (object) => {
         let requestBody = ReturnLotOrderRequestBody.buildCreateReturnOrder(object.materialLots);
@@ -44,12 +46,13 @@ export default class ReturnLotOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 退料 仓库退到供应商
-     * @param {*} object 
+     * @param {*} object
      */
     static sendReturnMLotByOrderRequest = (object) => {
         let requestBody = ReturnLotOrderRequestBody.buildReturnMLotByOrder(object.documentId, object.materialLots);
@@ -59,13 +62,14 @@ export default class ReturnLotOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
      /**
      * 创建退货单
      * 客户退回
-     * @param {*} object 
+     * @param {*} object
      */
       static sendCreateReturnGoodsRequest = (object) => {
         let requestBody = ReturnLotOrderRequestBody.buildCreateReturnGoods(object.dataList);
@@ -75,13 +79,14 @@ export default class ReturnLotOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
-    
+
     /**
      * 退货
      * 客户退回
-     * @param {*} object 
+     * @param {*} object
      */
     static sendReturnGoodsRequest = (object) => {
         let requestBody = ReturnLotOrderRequestBody.buildReturnGoods(object.documentId, object.materialLots);
@@ -91,6 +96,7 @@ export default class ReturnLotOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }
