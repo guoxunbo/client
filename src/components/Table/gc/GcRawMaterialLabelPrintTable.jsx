@@ -40,11 +40,11 @@ export default class GcRawMaterialLabelPrintTable extends EntityScanViewTable {
         if(materialLotUnits && materialLotUnits.length > 0){
             materialLotUnits.forEach(data => {
                 if (data.currentQty != undefined) {
-                    count = count + data.currentQty;
+                    count = count + data.currentQty*10000;
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count/10000}</Tag>
     }
 
     createPrintLable = () => {

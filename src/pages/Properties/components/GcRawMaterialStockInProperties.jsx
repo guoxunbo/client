@@ -17,7 +17,7 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
         let self = this;
         const{table} = this.state;
         let {rowKey,tableData} = this.state;
-        let waitStockInRawMaterialList = this.waitStockInRawMaterial.state.tableData;
+        // let waitStockInRawMaterialList = this.waitStockInRawMaterial.state.tableData;
         this.setState({loading: true});
         let data = "";
         let queryFields = this.form.state.queryFields;
@@ -79,12 +79,13 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
                         });
                         tableData = [];
                         materialLotList.forEach(materialLot => {
-                            if (waitStockInRawMaterialList.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                                materialLot.errorFlag = true;
-                            }
-                            if(materialLot.errorFlag){
-                                errorData.unshift(materialLot);
-                            } else if(trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                            // if (waitStockInRawMaterialList.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                            //     materialLot.errorFlag = true;
+                            // }
+                            // if(materialLot.errorFlag){
+                            //     errorData.unshift(materialLot);
+                            // } else 
+                            if(trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
                                 trueData.unshift(materialLot);
                             } else if(!data.startsWith("GCB")){
                                 trueData.map((mLot, index) => {

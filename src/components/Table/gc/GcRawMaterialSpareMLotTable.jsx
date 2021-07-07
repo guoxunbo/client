@@ -151,11 +151,11 @@ export default class GcRawMaterialSpareMLotTable extends EntityListCheckTable {
         if(materialLots && materialLots.length > 0){
             materialLots.forEach(data => {
                 if (data.currentQty != undefined) {
-                    count = count + data.currentQty;
+                    count = count + data.currentQty*10000;
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count/10000}</Tag>
     }
 
     spareMaterialButton = () => {
