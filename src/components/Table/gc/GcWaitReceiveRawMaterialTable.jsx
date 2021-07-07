@@ -18,17 +18,18 @@ export default class GcWaitReceiveRawMaterialTable extends EntityScanViewTable {
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
+    //数量存在小数，最多为4位小数，先转化为正式，总和再转换为小数
     createTotalNumber = () => {
         let materialLotUnits = this.state.data;
         let count = 0;
         if(materialLotUnits && materialLotUnits.length > 0){
             materialLotUnits.forEach(data => {
                 if (data.currentQty != undefined) {
-                    count = count + data.currentQty;
+                    count = count + data.currentQty*10000;
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count/10000}</Tag>
     }
 
     buildOperationColumn = () => {
