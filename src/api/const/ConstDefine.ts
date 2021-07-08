@@ -1,4 +1,5 @@
-import {Application,SessionContext} from "@api/Application";
+import {Application, SessionContext} from "@api/Application";
+
 const EnvMode = {
     Local: "LOCAL",
     Test: "TEST",
@@ -67,7 +68,7 @@ const UrlConstant = {
     RefTableManagerUrl: "/ui/refTableManage",
     TableMangerUrl: "/ui/tableManage",
     ExporttUrl: "/ui/export",
-    ImportUrl:  "/ui/importData",
+    ImportUrl: "/ui/importData",
     MessageManagerUrl: "/ui/messageManage",
     TreeManagerUrl: "/ui/treeManage",
 
@@ -221,11 +222,13 @@ const SqlType = {
 const baseURl = getServerAddress();
 const timeout = Application.timeOut
 const headers = {
-  'Content-Type': "application/json;charset=utf-8",
-  authorization: SessionContext.getToken()
+    'Content-Type': "application/json;charset=utf-8",
+    authorization: SessionContext.getToken()
 }
 
 
-export {UrlConstant, DefaultStatusList, DataBaseType, DateFormatType,
-        SystemRefListName, RefTableName, EntityModel, ResultIdentify, Language, DefaultRowKey,
-        DefaultOrderKey, Type, SqlType,timeout,headers,baseURl};
+export {
+    UrlConstant, DefaultStatusList, DataBaseType, DateFormatType,
+    SystemRefListName, RefTableName, EntityModel, ResultIdentify, Language, DefaultRowKey,
+    DefaultOrderKey, Type, SqlType, timeout, headers, baseURl
+};
