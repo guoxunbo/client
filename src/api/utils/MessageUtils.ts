@@ -18,7 +18,7 @@ import {Fetch} from '@const/axis'
  *  消息主要发送类
  */
 
-export default function MessageUtils():React.ReactNode{
+export default function MessageUtils(): React.ReactNode {
 
     /**
      * 同时发送2个请求，并且都处理完毕一起返回
@@ -26,7 +26,7 @@ export default function MessageUtils():React.ReactNode{
      * @param requestObject
      * @example {requests: [request1, request2...], success:}
      */
-     const  sendTwoRequest= async (requestObject: any) => {
+    const sendTwoRequest = async (requestObject: any) => {
         let requests = requestObject.requests;
         if (Array.isArray(requests)) {
             let axioses: any = [];
@@ -75,7 +75,7 @@ export default function MessageUtils():React.ReactNode{
             }
         }
         try {
-            const object:any = Fetch(request.url,'ImportData', formData);
+            const object: any = Fetch(request.url, 'ImportData', formData);
             let response = new Response(object.data.header, object.data.body);
             if (ResultIdentify.Fail == response.header.result) {
                 handleException(response.header);
@@ -86,7 +86,7 @@ export default function MessageUtils():React.ReactNode{
                     NoticeUtils.showSuccess();
                 }
             }
-        }catch (exception){
+        } catch (exception) {
             handleException(exception);
         }
     };
@@ -100,7 +100,7 @@ export default function MessageUtils():React.ReactNode{
     const sendExpRequest = (requestObject: any, fileName: any): void => {
         let request = requestObject.request;
         try {
-            const object:any = Fetch(request.url,'ExpExcel', request);
+            const object: any = Fetch(request.url, 'ExpExcel', request);
             let type = object.headers['content-type'];
             let blob = new Blob([object.data], {type: type});
             let reader = new FileReader();
@@ -122,7 +122,7 @@ export default function MessageUtils():React.ReactNode{
             };
             reader.readAsText(blob);
             EventUtils.sendButtonLoaded();
-        }catch (exception){
+        } catch (exception) {
             handleException(exception);
         }
     };
@@ -135,7 +135,7 @@ export default function MessageUtils():React.ReactNode{
     const sendSyncRequest = async (requestObject: any) => {
         let request = requestObject.request;
         try {
-            const object:any =  await Fetch(request.url,'post', request);
+            const object: any = await Fetch(request.url, 'post', request);
             let response = new Response(object.data.header, object.data.body);
             if (ResultIdentify.Fail == response.header.result) {
                 if (requestObject.fail) {
@@ -146,7 +146,7 @@ export default function MessageUtils():React.ReactNode{
                 EventUtils.sendButtonLoaded();
                 return response.body;
             }
-        }catch (exception){
+        } catch (exception) {
             handleException(exception);
         }
     };
@@ -154,14 +154,13 @@ export default function MessageUtils():React.ReactNode{
     /**
      * 发送异步请求
      */
-    const sendRequest = async (requestObject: any) => {
+    const sendRequest = (requestObject: any) => {
         let request = requestObject.request;
-        try {
-            const object: any = await Fetch(request.url, 'post', request);
+        Fetch(request.url, 'post', request).then((object: any) => {
             let response = new Response(object.data.header, object.data.body);
             if (ResultIdentify.Fail == response.header.result) {
                 if (requestObject.fail) {
-                  requestObject.fail();
+                    requestObject.fail();
                 }
                 handleException(response.header);
             } else {
@@ -175,10 +174,11 @@ export default function MessageUtils():React.ReactNode{
                 }
                 EventUtils.sendButtonLoaded();
             }
-        } catch (exception) {
+        }).catch((exception: any) => {
             handleException(exception);
-        }
+        });
     };
+
 
     /**
      * 发送Get请求
@@ -186,21 +186,22 @@ export default function MessageUtils():React.ReactNode{
      */
     const sendGetRequest = async (requestObject: any) => {
         try {
-            const object:any = await Fetch(requestObject.url,'get', requestObject.params);
+            const object: any = await Fetch(requestObject.url, 'get', requestObject.params);
             if (requestObject.success) {
                 requestObject.success(object.data);
             } else {
                 NoticeUtils.showSuccess();
             }
-        }catch(exception){
+        } catch (exception) {
             handleException(exception);
         }
     };
 
+
     /**
      * 异常返回提示
      */
-     function  handleException(exception:any){
+    function handleException(exception: any) {
         if (exception.response) {
             console.log(exception.response);
             if (exception.response.status === 401) {
@@ -241,13 +242,12 @@ export default function MessageUtils():React.ReactNode{
                 error = I18NUtils.getClientMessage(i18NCode.TimeOut);
             } else {
                 console.error(exception);
-                error = exception.message;
+                error = errorMessage;
             }
         }
         NoticeUtils.showError(errroCode, error);
         EventUtils.sendButtonLoaded();
     };
-
 
 
     return {
