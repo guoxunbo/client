@@ -149,10 +149,8 @@ export default class GCMobileRawMaterialReceiveProperties extends MobileProperti
        
         let requestObject = {
             materialLots: tableData,
-            success: function(responseBody) {
-                if (self.props.resetData) {
-                    self.props.resetData();
-                }
+            success: function(responseBody) {            
+                self.resetData();              
                 MessageUtils.showOperationSuccess();
             }
         }
@@ -168,6 +166,17 @@ export default class GCMobileRawMaterialReceiveProperties extends MobileProperti
           }
       });
       return flag;
+    }
+
+    twoScanIRAvalidation = (data) =>{
+        let result = "";
+        data.forEach((materialLot) => {
+            if(materialLot.materialType == "IRA" && materialLot.reserved8 != undefined && materialLot.scanFlag == undefined){
+                result = materialLot.materialLotId;
+                return result;
+            }
+        });
+        return result;
     }
 
     buildTable = () => {
