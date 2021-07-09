@@ -129,6 +129,7 @@ import GCRwMaterialCancelSpareProperties from './pages/Properties/components/GCR
 import WltLotPackCaseCheckProperties from './pages/Properties/components/WLTLotPackCaseCheckProperties';
 import GCMobileFinishLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileFinishLotStockInProperties';
 import GCMobileRawMaterialCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialCheckProperties';
+import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialReceiveProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1005,7 +1006,11 @@ const routerConfig = [
     layout: BlankLayout,
     component: GCMobileFinishLotStockInProperties,
   },
-
+  {
+    path: buildPath('Mobile/RawMaterialReceive'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialReceiveProperties,
+  },
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,
