@@ -130,6 +130,7 @@ import WltLotPackCaseCheckProperties from './pages/Properties/components/WLTLotP
 import GCMobileFinishLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileFinishLotStockInProperties';
 import GCMobileRawMaterialCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialCheckProperties';
 import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialReceiveProperties';
+import GCRWAttributeChangeProperties from './pages/Properties/components/GCRWAttributeChangeProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -494,6 +495,12 @@ const routerConfig = [
     path: buildPath('GC/GCRwStockOutTagUpdateManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwStockOutTaggingUpdateProperties,
+  },
+  //RW属性转换
+  {
+    path: buildPath('GC/GCRWAttributeChange'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRWAttributeChangeProperties,
   },
   //RW出货
   {

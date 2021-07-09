@@ -6,6 +6,18 @@ import Request from '../../Request';
 
 export default class WltStockOutManagerRequest {
 
+    static sendGCRWAttributeChangeRequest = (object) => {
+        let {materialLots} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildGCRWAttributeChange(materialLots);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendWltStockOutRequest = (object) => {
         let {documentLines, materialLots, checkSubCode} = object;
         let requestBody = WltStockOutManagerRequestBody.buildWltStockOut(documentLines, materialLots, checkSubCode);
