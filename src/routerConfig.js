@@ -1009,7 +1009,7 @@ const routerConfig = [
     component: GCMobileMLotShipOrderProperties,
   },
   {
-    path: buildPath('Mobile/MaterialLotShip'),
+    path: buildPath('Mobile/WltCpFinishLotStockIn'),
     layout: BlankLayout,
     component: GCMobileFinishLotStockInProperties,
   },
