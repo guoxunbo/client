@@ -125,6 +125,12 @@ import GCMobileMLotCheckProperties from './pages/Properties/components/gc/wafer-
 import GCMobileMLotReceiveOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotReceiveOrderProperties';
 import GCMobileMLotIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueOrderProperties';
 import GCMobileMLotShipOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotShipOrderProperties';
+import GCRwMaterialCancelSpareProperties from './pages/Properties/components/GCRwMaterialCancelSpareProperties';
+import WltLotPackCaseCheckProperties from './pages/Properties/components/WLTLotPackCaseCheckProperties';
+import GCMobileFinishLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileFinishLotStockInProperties';
+import GCMobileRawMaterialCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialCheckProperties';
+import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialReceiveProperties';
+import GCRWAttributeChangeProperties from './pages/Properties/components/GCRWAttributeChangeProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -380,6 +386,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltPackCaseCheckProperties,
   },
+  //WLT Lot装箱检
+  {
+    path: buildPath('WLT/WLTLotPackCaseCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltLotPackCaseCheckProperties,
+  },
   //WLT出货检
   {
     path: buildPath('WLT/WLTStockOutCheck'),
@@ -484,6 +496,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwStockOutTaggingUpdateProperties,
   },
+  //RW属性转换
+  {
+    path: buildPath('GC/GCRWAttributeChange'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRWAttributeChangeProperties,
+  },
   //RW出货
   {
     path: buildPath('GC/GCRWMLotStockOutManager'),
@@ -502,11 +520,17 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwBladeScanReceiveProperties,
   },
-  //材料备料
+  //RW材料备料
   {
     path: buildPath('GC/GCRwMaterialSpareManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwMaterialSpareProperties,
+  },
+  //RW材料备料取消
+  {
+    path: buildPath('GC/GCRwMaterialCancelSpareManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwMaterialCancelSpareProperties,
   },
   //原材料备料
   {
@@ -633,6 +657,12 @@ const routerConfig = [
   //LOT预Hold设置
   {
     path: buildPath('GC/GCLotFutureHoldSetManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  //Wafer Hold设置
+  {
+    path: buildPath('GC/GCWaferHoldRelationManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
@@ -949,6 +979,16 @@ const routerConfig = [
     component: GCMobileMLotCheckProperties,
   },
   {
+    path: buildPath('Mobile/MobileWaferCheck'),
+    layout: BlankLayout,
+    component: GCMobileMLotCheckProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileRawMaterialCheck'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialCheckProperties,
+  },
+  {
     path: buildPath('Mobile/MaterialLotQuery'),
     layout: BlankLayout,
     component: MobileProperties,
@@ -968,7 +1008,16 @@ const routerConfig = [
     layout: BlankLayout,
     component: GCMobileMLotShipOrderProperties,
   },
-
+  {
+    path: buildPath('Mobile/WltCpFinishLotStockIn'),
+    layout: BlankLayout,
+    component: GCMobileFinishLotStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/RawMaterialReceive'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialReceiveProperties,
+  },
   {
     path: '*',
     layout: HeaderAsideFooterResponsiveLayout,

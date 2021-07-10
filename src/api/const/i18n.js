@@ -73,6 +73,7 @@ const i18NCode = {
     BtnSpareMaterial: "SpareMaterial",
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
     BtnScrapShip: "ScrapShip",
+    BtnCancelSpareMaterial:"CancelSpareMaterial",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -1170,6 +1171,11 @@ const i18Messages = {
         Chinese: "备料",
         English: "Spare Material",
         Res: ""     
+    },
+    CancelSpareMaterial:{
+        Chinese: "取消备料",
+        English: "Cancel Spare Material",
+        Res: "" 
     },
     ChooseTapeSizePlease: {
         Chinese: "请选择Tape尺寸！",

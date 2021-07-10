@@ -6,10 +6,11 @@ import MessageUtils from "../../../../../api/utils/MessageUtils";
 import CheckInventoryManagerRequest from "../../../../../api/gc/check-inventory-manager/CheckInventoryManagerRequest";
 import MobileMLotCheckTable from "../../../../../components/Table/gc/MobileMLotCheckTable";
 import MaterialLot from "../../../../../api/dto/mms/MaterialLot";
+import GCRawMaterialImportRequest from "../../../../../api/gc/GCRawMaterialImport-manager/GCRawMaterialImportRequest";
 
-export default class GCMobileMLotCheckProperties extends MobileProperties{
+export default class GCMobileRawMaterialCheckProperties extends MobileProperties{
 
-    static displayName = 'GCMobileMLotStockInProperties';
+    static displayName = 'GCMobileRawMaterialCheckProperties';
     
     constructor(props) {
         super(props);
@@ -19,10 +20,15 @@ export default class GCMobileMLotCheckProperties extends MobileProperties{
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
-        let data = "";
         let queryFields = this.form.state.queryFields;
-        if (queryFields.length === 1) {
-            data = this.form.props.form.getFieldValue(queryFields[0].name)
+        let queryLotId = this.form.props.form.getFieldValue(queryFields[0].name);
+        if(queryLotId == "" || queryLotId == null || queryLotId == undefined){
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SearchFieldCannotEmpty));
+          self.setState({ 
+            tableData: tableData,
+            loading: false,
+          });
+          return;
         }
         if(self.dataTable.getErrorCount() > 0 ){
           Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
@@ -34,26 +40,29 @@ export default class GCMobileMLotCheckProperties extends MobileProperties{
           return;
         }
         let requestObject = {
-          queryLotId: data,
           tableRrn: this.state.tableRrn,
+          queryLotId: queryLotId,
           success: function(responseBody) {
-            let materialLot = responseBody.materialLot;
-            if(materialLot && materialLot.materialLotId != null && materialLot.materialLotId != ""){
+            let queryDatas = responseBody.materialLotList;
+            let data = undefined;
+            if (queryDatas && queryDatas.length > 0) {
               let errorData = [];
               let trueData = [];
-              tableData.forEach(data =>{
+              tableData.forEach(data => {
                 if(data.errorFlag){
                   errorData.push(data);
                 } else {
                   trueData.push(data);
                 }
               });
-              if (trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                trueData.unshift(materialLot);
-              } else {
-                self.showDataAlreadyExists();
-              }
               tableData = [];
+              queryDatas.forEach(data => {
+                if (trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                  trueData.unshift(data);
+                } else {
+                  self.showDataAlreadyExists();
+                }
+              });
               errorData.forEach(data => {
                 tableData.push(data);
               });
@@ -61,16 +70,18 @@ export default class GCMobileMLotCheckProperties extends MobileProperties{
                 tableData.push(data);
               });
             } else {
-              let errorData = new MaterialLot();
-              errorData[rowKey] = data;
-              errorData.setMaterialLotId(data);
-              errorData.errorFlag = true;
-              if (tableData.filter(d => d[rowKey] === errorData[rowKey]).length === 0) {
-                tableData.unshift(errorData);
-              }else {
+              data = new MaterialLot();
+              let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+              data[rowKey] = materialLotId;
+              data.setMaterialLotId(materialLotId);
+              data.errorFlag = true;
+              if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
+                tableData.unshift(data);
+              } else {
                 self.showDataAlreadyExists();
               }
             }
+          
             self.setState({ 
               tableData: tableData,
               loading: false
@@ -78,7 +89,7 @@ export default class GCMobileMLotCheckProperties extends MobileProperties{
             self.form.resetFormFileds();
           }
         }
-        CheckInventoryManagerRequest.queryCheckMaterialLot(requestObject);
+        GCRawMaterialImportRequest.sendGetDataByLotIdAndTableRrnRequest(requestObject);
     }
 
     showDataAlreadyExists = () => {

@@ -69,6 +69,10 @@ export default class MobileMLotCheckTable extends EntityScanViewTable {
     createErrorNumberStatistic = () => {
         return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{this.getErrorCount()}</Tag>
     }
+    
+    buildOperationColumn = () => {
+      
+    }
 
 }
 

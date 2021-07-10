@@ -11,6 +11,7 @@ const actionType = {
     ValidateMaterialName: "ValidateMaterialName",
     ThreeSideShip: "ThreeSideShip",
     SaleShip: "SaleShip",
+    GCRWAttributeChange: "GCRWAttributeChange",
 }
 
 export default class WltStockOutManagerRequestBody {
@@ -41,6 +42,12 @@ export default class WltStockOutManagerRequestBody {
         this.address = address; 
     }
     
+    static buildGCRWAttributeChange(materialLots) {
+        let  body = new WltStockOutManagerRequestBody(actionType.GCRWAttributeChange);
+        body.materialLots = materialLots;
+        return body;
+    }
+
     static buildWltStockOut(documentLines, materialLots, checkSubCode) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {

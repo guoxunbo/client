@@ -8,6 +8,7 @@ const ActionType = {
     MaterialSpare: "MaterialSpare",
     MaterialIssue: "MaterialIssue",
     GetRwMLot: "GetRwMLot",
+    CancelMaterialSpare:"MaterialCancel",
 }
 
 export default class RwMaterialManagerRequestBody {
@@ -51,6 +52,13 @@ export default class RwMaterialManagerRequestBody {
 
     static buildSpareMaterial(materialLotList) {
         let body = new RwMaterialManagerRequestBody(ActionType.MaterialSpare);
+        body.materialLotList = materialLotList;
+        return body;
+    }
+
+    
+    static buildCancelSpareMaterial(materialLotList) {
+        let body = new RwMaterialManagerRequestBody(ActionType.CancelMaterialSpare);
         body.materialLotList = materialLotList;
         return body;
     }

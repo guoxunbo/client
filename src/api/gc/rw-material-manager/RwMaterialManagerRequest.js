@@ -78,6 +78,17 @@ export default class RwMaterialManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendCancelSpareMaterialRequest = (object) => {
+        let requestBody = RwMaterialManagerRequestBody.buildCancelSpareMaterial(object.materialLotList);
+        let requestHeader = new RwMaterialManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendIssueMaterialRequest = (object) => {
         let requestBody = RwMaterialManagerRequestBody.buildIssueMaterial(object.materialLotList);
         let requestHeader = new RwMaterialManagerRequestHeader();
