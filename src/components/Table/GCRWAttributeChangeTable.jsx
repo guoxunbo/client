@@ -5,6 +5,7 @@ import { Tag } from 'antd';
 import EntityListCheckTable from './EntityListCheckTable';
 import WltStockOutManagerRequest from '../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 import MessageUtils from '../../api/utils/MessageUtils';
+import EventUtils from '../../api/utils/EventUtils';
 
 
 export default class GCRWAttributeChangeTable extends EntityListCheckTable {
@@ -52,6 +53,14 @@ export default class GCRWAttributeChangeTable extends EntityListCheckTable {
         const {data} = this.state;
         let self = this;
         let materialLots = self.getSelectedRows();
+        if (materialLots && materialLots.length == 0) {
+            return;
+        }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+    
         let requestObject = {
             materialLots: materialLots,
             success: function(responseBody) {
