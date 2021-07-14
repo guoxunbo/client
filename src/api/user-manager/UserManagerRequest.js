@@ -1,8 +1,9 @@
 import UserManagerRequestBody from "./UserManagerRequestBody";
 import UserManagerRequestHeader from "./UserManagerRequestHeader";
-import Request from "@api/Request";
+import {Request} from "@api/Request";
 import { UrlConstant } from "@const/ConstDefine";
 import MessageUtils from "@utils/MessageUtils";
+import RequestHeader from '@api/RequestHeader';
 
 
 /**
@@ -10,17 +11,20 @@ import MessageUtils from "@utils/MessageUtils";
  */
 export default class UserManagerRequest {
 
+
     static sendLoginRequest = (object) => {
         let user = object.user;
         let requestBody = UserManagerRequestBody.buildLoginRequestBody(user.username, user.password);
-        let requestHeader = new UserManagerRequestHeader();
-        requestHeader.orgRrn = user.org;
-        requestHeader.language = user.language;
-
-        let request = new Request(requestHeader, requestBody, UrlConstant.UserLoginUrl);
+        let requestHeader = new RequestHeader();
+        requestHeader.setOrgRrn(user.org);
+        requestHeader.setLanguage(user.language);
+        requestHeader.setMessageName("UserManage");
+        // @ts-ignore
+        let request = new Request(requestBody, UrlConstant.UserLoginUrl);
         let requestObject = {
             request: request,
-            success: object.success
+            success: object.success,
+            requestHeader: requestHeader
         }
         const {sendRequest} = MessageUtils();
         sendRequest(requestObject);
@@ -28,11 +32,13 @@ export default class UserManagerRequest {
 
     static sendChangePassword = (object) => {
         let requestBody = UserManagerRequestBody.buildChangePwdBody(object.username, object.password, object.newPassword);
-        let requestHeader = new UserManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.UserManagerUrl);
+        let requestHeader = new RequestHeader();
+        requestHeader.setMessageName("UserManage");
+        let request = new Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
-            success: object.success
+            success: object.success,
+            requestHeader: requestHeader
         }
         const {sendRequest} = MessageUtils();
         sendRequest(requestObject);
@@ -40,11 +46,13 @@ export default class UserManagerRequest {
 
     static sendResetPassword = (object) => {
         let requestBody = UserManagerRequestBody.buildResetPwdBody(object.username);
-        let requestHeader = new UserManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.UserManagerUrl);
+        let requestHeader = new RequestHeader();
+        requestHeader.setMessageName("UserManage");
+        let request = new Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
-            success: object.success
+            success: object.success,
+            requestHeader: requestHeader
         }
         const {sendRequest} = MessageUtils();
         sendRequest(requestObject);
@@ -52,11 +60,13 @@ export default class UserManagerRequest {
 
     static sendMergeUserRequest = (object) => {
         let requestBody = UserManagerRequestBody.buildMergeUserBody(object.user);
-        let requestHeader = new UserManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.UserManagerUrl);
+        let requestHeader = new RequestHeader();
+        requestHeader.setMessageName("UserManage");
+        let request = new Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
-            success: object.success
+            success: object.success,
+            requestHeader: requestHeader
         }
         const {sendRequest} = MessageUtils();
         sendRequest(requestObject);

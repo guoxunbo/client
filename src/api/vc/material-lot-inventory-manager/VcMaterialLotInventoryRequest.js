@@ -2,7 +2,8 @@ import { UrlConstant } from "@const/ConstDefine";
 import MessageUtils from "@utils/MessageUtils";
 import VcMaterialLotInventoryRequestBody from "./VcMaterialLotInventoryRequestBody";
 import VcMaterialLotInventoryRequestHeader from "./VcMaterialLotInventoryRequestHeader";
-import Request from '@api/Request';
+import {Request} from '@api/Request';
+import RequestHeader from '@api/RequestHeader';
 
 export default class VcMaterialLotInventoryRequest {
 
@@ -38,12 +39,13 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 出库
-     * @param {*} object 
+     * @param {*} object
      */
     static sendStockOutSpareMLotRequest = (object) => {
         let requestBody = VcMaterialLotInventoryRequestBody.buildStockOutSpareMLot(object.formObject);
@@ -53,7 +55,8 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -67,7 +70,8 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -81,6 +85,7 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

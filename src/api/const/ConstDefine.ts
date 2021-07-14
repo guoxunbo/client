@@ -13,11 +13,13 @@ const EnvMode = {
 const getServerAddress = () => {
     // 默认是local开发地址
     let serverAddress = "http://127.0.0.1:8080";
-    if (ENV_MODE === EnvMode.Prod) {
+    // @ts-ignore
+    let envMode =  ENV_MODE;
+    if (envMode === EnvMode.Prod) {
         serverAddress = "http://10.39.0.51:10010";
-    } else if (ENV_MODE === EnvMode.Dev) {
+    } else if (envMode === EnvMode.Dev) {
         serverAddress = "http://10.39.0.49:10010";
-    } else if (ENV_MODE === EnvMode.Test) {
+    } else if (envMode === EnvMode.Test) {
         serverAddress = "http://10.39.0.49:10010";
     }
     return serverAddress;
@@ -225,7 +227,6 @@ const headers = {
     'Content-Type': "application/json;charset=utf-8",
     authorization: SessionContext.getToken()
 }
-
 
 export {
     UrlConstant, DefaultStatusList, DataBaseType, DateFormatType,

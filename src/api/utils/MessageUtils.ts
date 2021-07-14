@@ -1,18 +1,19 @@
 import React from "react";
+
 import {ResultIdentify, Language, UrlConstant} from '@const/ConstDefine';
 
 import NoticeUtils from '@utils/NoticeUtils';
-import {Response} from '@api/Response';
 
-import {ResponseHeader} from '@api/ResponseHeader';
 import {SessionContext} from '@api/Application';
 import I18NUtils from '@utils/I18NUtils';
 import EventUtils from '@utils/EventUtils';
 import {i18NCode} from '@const/i18n';
 import MessageRequestBody from '@api/message-manager/MessageRequestBody';
 import MessageRequestHeader from '@api/message-manager/MessageRequestHeader';
-import Request from "@api/Request";
-import {Fetch} from '@const/axis'
+import {Response} from '@api/Response';
+import {Request} from '@api/Request';
+import {Fetch} from '@const/axis';
+import RequestHeader from "@api/RequestHeader";
 
 /**
  *  消息主要发送类
@@ -35,8 +36,8 @@ export default function MessageUtils(): React.ReactNode {
                 axioses.push(Fetch(request.url, 'post', request));
             });
             await Promise.all(axioses).then(([responseValue1, responseValue2]: any) => {
-                let response1 = new Response(responseValue1.data.header, responseValue1.data.body);
-                let response2 = new Response(responseValue2.data.header, responseValue2.data.body);
+                let response1 = new (Response as any)(responseValue1.data.header, responseValue1.data.body);
+                let response2 = new (Response as any)(responseValue2.data.header, responseValue2.data.body);
                 if (ResultIdentify.Fail == response1.header.result) {
                     handleException(response1.header);
                     return;
@@ -75,13 +76,16 @@ export default function MessageUtils(): React.ReactNode {
             }
         }
         try {
-            const object: any = Fetch(request.url, 'ImportData', formData);
-            let response = new Response(object.data.header, object.data.body);
-            if (ResultIdentify.Fail == response.header.result) {
-                handleException(response.header);
+            let requestHeader = new RequestHeader();
+            if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
+                requestHeader = requestObject.requestHeader;
+            }
+            const object: any = Fetch(request.url, 'ImportData', formData, requestHeader);
+            if (ResultIdentify.Fail == object.data.header.result) {
+                handleException(object.data.header);
             } else {
                 if (requestObject.success) {
-                    requestObject.success(response.body);
+                    requestObject.success(object.data.body);
                 } else {
                     NoticeUtils.showSuccess();
                 }
@@ -100,15 +104,18 @@ export default function MessageUtils(): React.ReactNode {
     const sendExpRequest = (requestObject: any, fileName: any): void => {
         let request = requestObject.request;
         try {
-            const object: any = Fetch(request.url, 'ExpExcel', request);
+            let requestHeader = new RequestHeader();
+            if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
+                requestHeader = requestObject.requestHeader;
+            }
+            const object: any = Fetch(request.url, 'ExpExcel', request, requestHeader);
             let type = object.headers['content-type'];
             let blob = new Blob([object.data], {type: type});
             let reader = new FileReader();
             reader.onload = (e: any) => {
                 if (e.target.result.indexOf('result') != -1) {
                     let result = JSON.parse(e.target.result);
-                    let response = new Response(result.header, result.body);
-                    handleException(response.header);
+                    handleException(result.header);
                 } else {
                     let elink = document.createElement('a');
                     elink.download = fileName;
@@ -135,16 +142,19 @@ export default function MessageUtils(): React.ReactNode {
     const sendSyncRequest = async (requestObject: any) => {
         let request = requestObject.request;
         try {
-            const object: any = await Fetch(request.url, 'post', request);
-            let response = new Response(object.data.header, object.data.body);
-            if (ResultIdentify.Fail == response.header.result) {
+            let requestHeader = new RequestHeader();
+            if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
+                requestHeader = requestObject.requestHeader;
+            }
+            const object: any = await Fetch(request.url, 'post', request, requestHeader);
+            if (ResultIdentify.Fail == object.data.header.result) {
                 if (requestObject.fail) {
                     return requestObject.fail();
                 }
-                handleException(response.header);
+                handleException(object.data.header);
             } else {
                 EventUtils.sendButtonLoaded();
-                return response.body;
+                return object.data.body;
             }
         } catch (exception) {
             handleException(exception);
@@ -156,19 +166,22 @@ export default function MessageUtils(): React.ReactNode {
      */
     const sendRequest = (requestObject: any) => {
         let request = requestObject.request;
-        Fetch(request.url, 'post', request).then((object: any) => {
-            let response = new Response(object.data.header, object.data.body);
-            if (ResultIdentify.Fail == response.header.result) {
+        let requestHeader = new RequestHeader();
+        if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
+            requestHeader = requestObject.requestHeader;
+        }
+        Fetch(request.url, 'post', request, requestHeader).then((object: any) => {
+            if (ResultIdentify.Fail == object.data.header.result) {
                 if (requestObject.fail) {
                     requestObject.fail();
                 }
-                handleException(response.header);
+                handleException(object.data.header);
             } else {
                 if (object.headers.authorization) {
                     SessionContext.saveToken(object.headers.authorization);
                 }
                 if (requestObject.success) {
-                    requestObject.success(response.body);
+                    requestObject.success(object.data.body);
                 } else {
                     NoticeUtils.showSuccess();
                 }
@@ -186,9 +199,13 @@ export default function MessageUtils(): React.ReactNode {
      */
     const sendGetRequest = async (requestObject: any) => {
         try {
-            const object: any = await Fetch(requestObject.url, 'get', requestObject.params);
+            let requestHeader = new RequestHeader();
+            if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
+                requestHeader = requestObject.requestHeader;
+            }
+            const object: any = await Fetch(requestObject.url, 'get', requestObject.params, requestHeader);
             if (requestObject.success) {
-                requestObject.success(object.data);
+                requestObject.success(object.body);
             } else {
                 NoticeUtils.showSuccess();
             }
@@ -215,13 +232,11 @@ export default function MessageUtils(): React.ReactNode {
         if (!language) {
             language = Language.Chinese;
         }
-        if (exception instanceof ResponseHeader) {
+        if (typeof exception.resultCode!="undefined"&&exception.resultCode!=null) {
             error = exception.resultCode;
             let requestBody = MessageRequestBody.buildGetByKeyId(error, exception.parameters);
             let requestHeader = new MessageRequestHeader();
-            let requestObject = {
-                request: new Request(requestHeader, requestBody, UrlConstant.MessageManagerUrl),
-            };
+            let requestObject = new (Request as any)(requestHeader, requestBody, UrlConstant.MessageManagerUrl);
             let responseBody: any = async () => {
                 await sendSyncRequest(requestObject);
             };
@@ -248,7 +263,6 @@ export default function MessageUtils(): React.ReactNode {
         NoticeUtils.showError(errroCode, error);
         EventUtils.sendButtonLoaded();
     };
-
 
     return {
         sendTwoRequest,
