@@ -1,5 +1,3 @@
-import React from "react";
-
 import {ResultIdentify, Language, UrlConstant} from '@const/ConstDefine';
 
 import NoticeUtils from '@utils/NoticeUtils';
@@ -19,7 +17,7 @@ import RequestHeader from "@api/RequestHeader";
  *  消息主要发送类
  */
 
-export default function MessageUtils(): React.ReactNode {
+export default function MessageUtils() {
 
     /**
      * 同时发送2个请求，并且都处理完毕一起返回
@@ -36,8 +34,8 @@ export default function MessageUtils(): React.ReactNode {
                 axioses.push(Fetch(request.url, 'post', request));
             });
             await Promise.all(axioses).then(([responseValue1, responseValue2]: any) => {
-                let response1 = new (Response as any)(responseValue1.data.header, responseValue1.data.body);
-                let response2 = new (Response as any)(responseValue2.data.header, responseValue2.data.body);
+                let response1 = Response(responseValue1.data.header, responseValue1.data.body);
+                let response2 = Response(responseValue2.data.header, responseValue2.data.body);
                 if (ResultIdentify.Fail == response1.header.result) {
                     handleException(response1.header);
                     return;
@@ -76,7 +74,7 @@ export default function MessageUtils(): React.ReactNode {
             }
         }
         try {
-            let requestHeader = new RequestHeader();
+            let requestHeader = new RequestHeader("");
             if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
                 requestHeader = requestObject.requestHeader;
             }
@@ -104,7 +102,7 @@ export default function MessageUtils(): React.ReactNode {
     const sendExpRequest = (requestObject: any, fileName: any): void => {
         let request = requestObject.request;
         try {
-            let requestHeader = new RequestHeader();
+            let requestHeader = new RequestHeader("");
             if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
                 requestHeader = requestObject.requestHeader;
             }
@@ -142,7 +140,7 @@ export default function MessageUtils(): React.ReactNode {
     const sendSyncRequest = async (requestObject: any) => {
         let request = requestObject.request;
         try {
-            let requestHeader = new RequestHeader();
+            let requestHeader = new RequestHeader("");
             if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
                 requestHeader = requestObject.requestHeader;
             }
@@ -166,7 +164,7 @@ export default function MessageUtils(): React.ReactNode {
      */
     const sendRequest = (requestObject: any) => {
         let request = requestObject.request;
-        let requestHeader = new RequestHeader();
+        let requestHeader = new RequestHeader("");
         if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
             requestHeader = requestObject.requestHeader;
         }
@@ -199,7 +197,7 @@ export default function MessageUtils(): React.ReactNode {
      */
     const sendGetRequest = async (requestObject: any) => {
         try {
-            let requestHeader = new RequestHeader();
+            let requestHeader = new RequestHeader("");
             if(typeof requestObject.requestHeader!="undefined"&&requestObject.requestHeader!=null){
                 requestHeader = requestObject.requestHeader;
             }

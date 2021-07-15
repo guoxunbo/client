@@ -2,7 +2,6 @@ import { UrlConstant } from "@const/ConstDefine";
 import {Request} from "@api/Request";
 import MessageUtils from "@utils/MessageUtils";
 import RefTableManagerRequestBody from "./RefTableManagerRequestBody";
-import RefTableManagerRequestHeader from "./RefTableManagerRequestHeader";
 import RequestHeader from '@api/RequestHeader';
 
 export default class RefTableManagerRequest {
@@ -10,8 +9,7 @@ export default class RefTableManagerRequest {
     static sendGetDataRequest = (object) => {
         let requestBody = {};
         requestBody = RefTableManagerRequestBody.buildGetData(object.refTableName, object.parameters)
-        let requestHeader = new RequestHeader();
-        requestHeader.setMessageName("RefTableManage");
+        let requestHeader = new RequestHeader("RefTableManage");
         // @ts-ignore
         let request = new Request(requestBody, UrlConstant.RefTableManagerUrl);
         let requestObject = {
@@ -29,9 +27,8 @@ export default class RefTableManagerRequest {
     static sendGetOrgRequest = (object) => {
         let requestBody = {};
         requestBody = RefTableManagerRequestBody.buildGetData(object.refTableName, object.parameters)
-        let requestHeader = new RequestHeader();
+        let requestHeader = new RequestHeader("RefTableManage");
         requestHeader.setOrgRrn(0);
-        requestHeader.setMessageName("RefTableManage");
         // @ts-ignore
         let request = new Request(requestBody, UrlConstant.RefTableManagerUrl);
         let requestObject = {

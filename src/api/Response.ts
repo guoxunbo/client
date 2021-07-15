@@ -1,12 +1,9 @@
-import {ResponseHeader  } from "@api/ResponseHeader";
+import {ResponseHeader} from "@api/ResponseHeader";
 
-interface responseType{
-    header:any,body:any
+const Response: (responseHeader: object, responseBody: object) => { header: { transactionId: string; result: string; resultCode: string; parameters: string }; body: object } = (responseHeader:object, responseBody:object)=> {
+    let header = ResponseHeader(responseHeader);
+    let body = responseBody;
+    return {header,body}
 }
-
-function Response(this:responseType,responseHeader:object, responseBody:object) {
-    this.header = new ResponseHeader(responseHeader);
-    this.body = responseBody;
-};
 
 export {Response};

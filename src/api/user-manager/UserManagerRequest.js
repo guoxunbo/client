@@ -1,5 +1,4 @@
 import UserManagerRequestBody from "./UserManagerRequestBody";
-import UserManagerRequestHeader from "./UserManagerRequestHeader";
 import {Request} from "@api/Request";
 import { UrlConstant } from "@const/ConstDefine";
 import MessageUtils from "@utils/MessageUtils";
@@ -15,10 +14,9 @@ export default class UserManagerRequest {
     static sendLoginRequest = (object) => {
         let user = object.user;
         let requestBody = UserManagerRequestBody.buildLoginRequestBody(user.username, user.password);
-        let requestHeader = new RequestHeader();
+        let requestHeader = new RequestHeader("UserManage");
         requestHeader.setOrgRrn(user.org);
         requestHeader.setLanguage(user.language);
-        requestHeader.setMessageName("UserManage");
         // @ts-ignore
         let request = new Request(requestBody, UrlConstant.UserLoginUrl);
         let requestObject = {
@@ -32,8 +30,8 @@ export default class UserManagerRequest {
 
     static sendChangePassword = (object) => {
         let requestBody = UserManagerRequestBody.buildChangePwdBody(object.username, object.password, object.newPassword);
-        let requestHeader = new RequestHeader();
-        requestHeader.setMessageName("UserManage");
+        let requestHeader = new RequestHeader("UserManage");
+        // @ts-ignore
         let request = new Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
@@ -46,8 +44,8 @@ export default class UserManagerRequest {
 
     static sendResetPassword = (object) => {
         let requestBody = UserManagerRequestBody.buildResetPwdBody(object.username);
-        let requestHeader = new RequestHeader();
-        requestHeader.setMessageName("UserManage");
+        let requestHeader = new RequestHeader("UserManage");
+        // @ts-ignore
         let request = new Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
@@ -60,8 +58,8 @@ export default class UserManagerRequest {
 
     static sendMergeUserRequest = (object) => {
         let requestBody = UserManagerRequestBody.buildMergeUserBody(object.user);
-        let requestHeader = new RequestHeader();
-        requestHeader.setMessageName("UserManage");
+        let requestHeader = new RequestHeader("UserManage");
+        // @ts-ignore
         let request = new Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
@@ -74,10 +72,12 @@ export default class UserManagerRequest {
 
     static sendImportRequest = (file) => {
         let requestBody = UserManagerRequestBody.buildImport();
-        let requestHeader = new UserManagerRequestHeader();
-        let request = new Request(requestHeader, requestBody, UrlConstant.UserImportUrl);
+        let requestHeader = new RequestHeader("UserManage");
+        // @ts-ignore
+        let request = new Request(requestBody, UrlConstant.UserImportUrl);
         let requestObject = {
-            request: request
+            request: request,
+            requestHeader: requestHeader
         }
         const {sendImportData} = MessageUtils();
         sendImportData(requestObject, file);

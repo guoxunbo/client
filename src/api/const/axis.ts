@@ -31,7 +31,7 @@ const Fetch:any= (url: string, type: string, params: any, requestHeader:RequestH
     http.interceptors.response.use(
     response => {//响应格式编辑
         let responseX = response;
-        responseX.data.header = new ResponseHeader(response.data.header);
+        responseX.data.header = ResponseHeader(response.data.header);
         return responseX;
     },
     error => {

@@ -5,25 +5,18 @@ import uuid from 'react-native-uuid';
 export default class RequestHeader{
 
     transactionId;
-    /** @type {any} */
     messageName;
-    /** @type {any} */
-    orgName;
+    orgName: any;
     username;
     orgRrn;
     token;
-    /** @type {any} */
     language;
 
-    /**
-     * @param {any} [messageName]
-     * @param {any} [language]
-     */
-    constructor(messageName,language){
+    constructor(messageName: string){
         let sessionContext = SessionContext.getSessionContext();
         this.transactionId = uuid.v4();
         this.messageName = messageName;
-        this.language = language;
+        this.language = SessionContext.getLanguage();
         if (sessionContext) {
             this.orgRrn = sessionContext.orgRrn;
             this.username = sessionContext.username;
@@ -31,26 +24,12 @@ export default class RequestHeader{
         }
     }
 
-    /**
-     * @param {any} orgRrn
-     */
-    setOrgRrn(orgRrn){
+    setOrgRrn(orgRrn: any){
         this.orgRrn = orgRrn;
     }
 
-    /**
-     * @param {any} messageName
-     */
-    setMessageName(messageName){
-        this.messageName = messageName;
-    }
-
-    /**
-     * @param {any} language
-     */
-    setLanguage(language){
+    setLanguage(language: any){
         this.language = language;
     }
-
 
 }

@@ -1,5 +1,4 @@
 import RefListManagerRequestBody from "./RefListManagerRequestBody";
-import RefListManagerRequestHeader from "./RefListManagerRequestHeader";
 import { UrlConstant } from "@const/ConstDefine";
 import {Request} from "@api/Request";
 import MessageUtils from "@utils/MessageUtils";
@@ -16,8 +15,7 @@ export default class RefListManagerRequest {
         } else {
             requestBody = RefListManagerRequestBody.buildSystemData(referenceName)
         }
-        let requestHeader = new RequestHeader();
-        requestHeader.setMessageName("RefListManage");
+        let requestHeader = new RequestHeader("RefListManage");
         // @ts-ignore
         let request = new Request( requestBody, UrlConstant.RefListMangerUrl);
         let requestObject = {
@@ -31,9 +29,8 @@ export default class RefListManagerRequest {
 
     static sendGetLanguageRequest = (object) => {
         let requestBody = RefListManagerRequestBody.buildSystemData(SystemRefListName.Language)
-        let requestHeader = new RequestHeader();
+        let requestHeader = new RequestHeader("RefListManage");
         requestHeader.setOrgRrn(0);
-        requestHeader.setMessageName("RefListManage");
         // @ts-ignore
         let request = new Request( requestBody, UrlConstant.RefListMangerUrl);
         let requestObject = {
