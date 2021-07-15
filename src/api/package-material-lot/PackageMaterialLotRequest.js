@@ -15,9 +15,10 @@ export default class PackageMaterialLotRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
-    
+
     static sendPrintPackMLotRequest = (object) => {
         let requestBody = PackageMaterialLotRequestBody.buildPrintPackageMLot(object.materialLotId)
         let requestHeader = new PackageMaterialLotRequestHeader();
@@ -26,6 +27,7 @@ export default class PackageMaterialLotRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

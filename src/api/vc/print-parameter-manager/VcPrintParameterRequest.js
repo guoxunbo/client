@@ -14,7 +14,8 @@ export default class VcPrintParameterRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPrintPackingListRequest = (object)=>{
@@ -25,7 +26,8 @@ export default class VcPrintParameterRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPrintShippingListRequest = (object)=>{
@@ -36,7 +38,8 @@ export default class VcPrintParameterRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPrintPKListRequest = (object)=>{
@@ -47,7 +50,8 @@ export default class VcPrintParameterRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPrintPackingListAndCocRequest = (object)=>{
@@ -58,7 +62,8 @@ export default class VcPrintParameterRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendGetBoxParaRequest = (object)=>{
@@ -69,6 +74,7 @@ export default class VcPrintParameterRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

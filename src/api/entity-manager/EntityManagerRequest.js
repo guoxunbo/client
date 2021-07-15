@@ -25,9 +25,10 @@ export default class EntityManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
-    
+
     static sendUploadFileRequest = (object, file) => {
         let requestBody = EntityManagerRequestBody.buildUploadEntityFile(object.modelClass, object.values, object.filePropertyName);
         let requestHeader = new EntityManagerRequestHeader();
@@ -36,7 +37,8 @@ export default class EntityManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendImportData(requestObject, file);
+        const {sendImportData} = MessageUtils();
+        sendImportData(requestObject, file);
     }
 
     static sendDownloadFileRequest = (object) => {
@@ -47,7 +49,8 @@ export default class EntityManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendExpRequest(requestObject, object.fileName);
+        const {sendExpRequest} = MessageUtils();
+        sendExpRequest(requestObject, object.fileName);
     }
 
     static sendDeleteRequest = (object) => {
@@ -58,7 +61,8 @@ export default class EntityManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendStatusChangedRequest = (object) => {
@@ -69,7 +73,8 @@ export default class EntityManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

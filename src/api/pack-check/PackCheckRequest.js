@@ -5,7 +5,7 @@ import Request from "@api/Request";
 import MessageUtils from "@utils/MessageUtils";
 
 export default class PackCheckRequest {
-    
+
     static sendPackCheckRequest = (object) => {
         const {packCheckAction} = object;
         let requestBody = PackCheckRequestBody.buildPackCheck(packCheckAction)
@@ -15,6 +15,7 @@ export default class PackCheckRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

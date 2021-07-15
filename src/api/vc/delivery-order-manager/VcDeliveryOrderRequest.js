@@ -14,7 +14,8 @@ export default class VcDeliveryOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendApproveRequest = (object)=>{
@@ -25,7 +26,8 @@ export default class VcDeliveryOrderRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

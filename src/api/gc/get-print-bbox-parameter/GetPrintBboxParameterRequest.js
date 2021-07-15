@@ -15,7 +15,8 @@ export default class GetPrintBboxParameterRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

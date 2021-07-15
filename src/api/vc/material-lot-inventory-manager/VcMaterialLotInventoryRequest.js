@@ -2,7 +2,8 @@ import { UrlConstant } from "@const/ConstDefine";
 import MessageUtils from "@utils/MessageUtils";
 import VcMaterialLotInventoryRequestBody from "./VcMaterialLotInventoryRequestBody";
 import VcMaterialLotInventoryRequestHeader from "./VcMaterialLotInventoryRequestHeader";
-import Request from '@api/Request';
+import {Request} from '@api/Request';
+import RequestHeader from '@api/RequestHeader';
 
 export default class VcMaterialLotInventoryRequest {
 
@@ -14,7 +15,8 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendGetStockOutMLotByOrderRequest = (object) => {
@@ -25,6 +27,65 @@ export default class VcMaterialLotInventoryRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
+    }
+
+    static sendCheckInventoryRequest = (object)=>{
+        let requestBody = VcMaterialLotInventoryRequestBody.checkInventory(object.materialLots);
+        let requestHeader = new VcMaterialLotInventoryRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCInventoryManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
+    }
+
+    /**
+     * 出库
+     * @param {*} object
+     */
+    static sendStockOutSpareMLotRequest = (object) => {
+        let requestBody = VcMaterialLotInventoryRequestBody.buildStockOutSpareMLot(object.formObject);
+        let requestHeader = new VcMaterialLotInventoryRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCInventoryManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
+    }
+
+    /**
+     * 备品备件 退料入库
+     */
+     static sendReturnSpareMaterialLotRequest = (object) => {
+        let requestBody = VcMaterialLotInventoryRequestBody.buildReturnSpareMaterialLot(object.formObject);
+        let requestHeader = new VcMaterialLotInventoryRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCInventoryManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
+    }
+
+    /**
+     * 备品备件 创建入库
+     */
+    static sendCreateSpareMaterialLotRequest = (object) => {
+        let requestBody = VcMaterialLotInventoryRequestBody.buildCreateSpareMaterialLot(object.formObject);
+        let requestHeader = new VcMaterialLotInventoryRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCInventoryManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

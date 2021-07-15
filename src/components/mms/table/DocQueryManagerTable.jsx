@@ -38,10 +38,11 @@ export default class DocQueryManagerTable extends EntityListTable {
     }
 
     handleDelete = (record) => {
+        let self = this;
         let object = {
             documentId:record.name,
             success: function(responseBody) {
-                this.refreshDelete(record);
+                self.refreshDelete(record);
             }
         }
         DocQueryManagerRequest.sendDeleteDocumentRequest(object);

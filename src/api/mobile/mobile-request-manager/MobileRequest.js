@@ -15,9 +15,10 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
-    
+
     static sendStockInRequest = (object) => {
         const {materialLotId, storageId} = object;
         let requestBody = MobileRequestBody.buildStockIn(materialLotId, storageId);
@@ -27,12 +28,13 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 成品入库
-     * @param {*} object 
+     * @param {*} object
      */
     static sendStockInFinishGoodRequest = (object) => {
         const {materialLotId, storageId} = object;
@@ -43,7 +45,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendStockOutRequest = (object) => {
@@ -55,7 +58,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendStockOutByOrderRequest = (object) => {
@@ -66,7 +70,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendQueryWaitPackageMLotRequest = (object) => {
@@ -78,7 +83,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPackageMLotRequest = (object) => {
@@ -90,7 +96,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendQueryShipMLotByDocIdRequest = (object) => {
@@ -102,7 +109,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendShipMLotRequest = (object) => {
@@ -114,7 +122,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendCheckMLotInventoryRequest = (object) => {
@@ -126,7 +135,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPrintMLotsRequest = (object) => {
@@ -137,12 +147,13 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 转库
-     * @param {} object 
+     * @param {} object
      */
     static sendTransferInvRequest = (object) => {
         let requestBody = MobileRequestBody.buildTransferInv(object.materialLotId, object.fromStorageId, object.targetStorageId);
@@ -152,7 +163,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendVailadateTargetWarehouse = (object) => {
@@ -163,7 +175,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static vailadateFromWarehouse = (object) => {
@@ -174,7 +187,8 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     //批量转库
@@ -186,6 +200,7 @@ export default class MobileRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

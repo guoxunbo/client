@@ -83,7 +83,7 @@ export default class EntityForm extends Component {
     buildTabs = () => {
         const {entityViewFlag, table} = this.state;
         const tabs = table.tabs;
-
+        
         const tabPanels = [];
         const formItemLayout = {
             labelCol: {span: 6},
@@ -92,7 +92,7 @@ export default class EntityForm extends Component {
         if (Array.isArray(tabs)) {
             tabs.forEach((tab) => {
                 let tabPanel = new Tab(tab);
-                if (TabType.Table === tab.tabType ) {
+                if (TabType.Table === tab.tabType) {
                     if (entityViewFlag) {
                         tabPanels.push(tabPanel.buildTableTab(this.props.object, entityViewFlag));
                     }

@@ -20,8 +20,9 @@ export default class RoleManagerRequest {
             request: request,
             success: object.success
         }
-        
-        MessageUtils.sendRequest(requestObject);
+
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendDispatchAuthorityRequest = (object) => {
@@ -32,7 +33,8 @@ export default class RoleManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendDispatchUserRequest = (object) => {
@@ -43,12 +45,13 @@ export default class RoleManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 获取role以及树形菜单。用于分配权限使用
-     * @param object 请求参数 
+     * @param object 请求参数
      * @example {roleRrn: 1, success}
      */
     static sendGetRoleByRrnAndGetTreeAuthorityRequest = (object) => {
@@ -75,12 +78,13 @@ export default class RoleManagerRequest {
             requests: requests,
             success: object.success
         }
-        MessageUtils.sendTwoRequest(messageObject);
+        const {sendTwoRequest} = MessageUtils();
+        sendTwoRequest(messageObject);
     }
-    
+
     /**
      * 获取role以及所有用户。用于分配用户使用
-     * @param object 请求参数 
+     * @param object 请求参数
      * @example {roleRrn: 1, success}
      */
     static sendGetRoleByRrnAndGetAllUserRequest = (object) => {
@@ -108,7 +112,8 @@ export default class RoleManagerRequest {
             success: object.success
         }
 
-        MessageUtils.sendTwoRequest(messageObject);
+        const {sendTwoRequest} = MessageUtils();
+        sendTwoRequest(messageObject);
     }
 
 }

@@ -1,4 +1,5 @@
 import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import PropertyUtils from "@utils/PropertyUtils";
 
 const ActionType = {
     ValidationAndGetMLot:'ValidationAndGetWaitIqcMLot',
@@ -22,11 +23,15 @@ export default class MaterialLotIqcRequestBody {
 
     static buildIqc(materialLotCheckSheet) {
         let materialLotAction = new MaterialLotAction();
-        materialLotAction.setMaterialLotId(materialLotCheckSheet.materialLotId);
-        materialLotAction.setActionCode(materialLotCheckSheet.actionCode);
-        materialLotAction.setActionReason(materialLotCheckSheet.actionReason);
-        materialLotAction.setActionComment(materialLotCheckSheet.actionComment);
-        materialLotAction.setTransQty(materialLotCheckSheet.transQty);
+
+        PropertyUtils.copyProperties(materialLotCheckSheet, materialLotAction);
+
+        // let materialLotAction = new MaterialLotAction();
+        // materialLotAction.setMaterialLotId(materialLotCheckSheet.materialLotId);
+        // materialLotAction.setActionCode(materialLotCheckSheet.actionCode);
+        // materialLotAction.setActionReason(materialLotCheckSheet.actionReason);
+        // materialLotAction.setActionComment(materialLotCheckSheet.actionComment);
+        // materialLotAction.setTransQty(materialLotCheckSheet.transQty);
         return new MaterialLotIqcRequestBody(materialLotAction);
     }
 

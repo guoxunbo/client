@@ -47,6 +47,7 @@ export default class PrintUtils {
                 }
             }
         };
-        MessageUtils.sendGetRequest(requestObject);
+        const {sendGetRequest} = MessageUtils();
+        sendGetRequest(requestObject);
     }
 }

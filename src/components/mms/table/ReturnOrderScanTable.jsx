@@ -6,7 +6,6 @@ import ReturnMLotOrderScanTable from './ReturnMLotOrderScanTable';
 
 /**
  * 退料
- * 客户退回
  */
 export default class ReturnOrderScanTable extends ReturnMLotOrderScanTable {
 
@@ -34,6 +33,6 @@ export default class ReturnOrderScanTable extends ReturnMLotOrderScanTable {
                 NoticeUtils.showSuccess();
             }
         }
-        ReturnLotOrderRequest.sendReturnLotRequest(requestObject);
+        ReturnLotOrderRequest.sendReturnMLotByOrderRequest(requestObject);
     }
 }

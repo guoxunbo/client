@@ -8,7 +8,7 @@ export default class DocQueryManagerRequest {
 
     /**
      * 查询物料批次by单据
-     * @param {*} object 
+     * @param {*} object
      */
     static sendQueryMLotByOrderRequest = (object) => {
         let requestBody = DocQueryManagerRequestBody.buildQueryMLotByOrder(object.documentId);
@@ -20,12 +20,13 @@ export default class DocQueryManagerRequest {
             fail: object.fail
 
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 查询单据以及批次by批次号
-     * @param {*} object 
+     * @param {*} object
      */
      static sendQueryOrderByMLotIdRequest = (object) => {
         let requestBody = DocQueryManagerRequestBody.buildQueryOrderByMLotId(object.materialLotId, object.documentCategory);
@@ -36,12 +37,13 @@ export default class DocQueryManagerRequest {
             success: object.success,
             fail: object.fail
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 查询物料批次by单据
-     * @param {*} object 
+     * @param {*} object
      */
      static sendDeleteDocumentRequest = (object) => {
         let requestBody = DocQueryManagerRequestBody.buildDeleteDocument(object.documentId);
@@ -53,7 +55,8 @@ export default class DocQueryManagerRequest {
             fail: object.fail
 
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

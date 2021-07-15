@@ -8,7 +8,7 @@ export default class VcFinishGoodReservedRequest {
 
     /**
      * 获得物料批次by发货单
-     * @param {*} object 
+     * @param {*} object
      */
     static sendGetMaterialLot = (object)=>{
         let requestBody = VcFinishGoodReservedRequestBody.buildGetMaterialLot(object.documentLine);
@@ -18,7 +18,8 @@ export default class VcFinishGoodReservedRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendGetReservedMLotByStandardQty = (object)=>{
@@ -29,12 +30,13 @@ export default class VcFinishGoodReservedRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 备货
-     * @param {*} object 
+     * @param {*} object
      */
     static sentReserved = (object)=>{
         let requestBody = VcFinishGoodReservedRequestBody.buildReserved(object.documentLine, object.materialLotList, object.remake);
@@ -44,7 +46,8 @@ export default class VcFinishGoodReservedRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendPrintReservedOrder=(object)=>{
@@ -55,12 +58,13 @@ export default class VcFinishGoodReservedRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 取消备货
-     * @param {*} object 
+     * @param {*} object
      */
     static sentUnReserved=(object)=>{
         let requestBody = VcFinishGoodReservedRequestBody.buildUnReserved(object.materialLotList);
@@ -70,6 +74,7 @@ export default class VcFinishGoodReservedRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

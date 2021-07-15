@@ -28,7 +28,6 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
      * 全部拆包 以表格数据全部传递
      */
     unPackageAll = () => {
-        debugger;
         const {data} = this.state;
         data.forEach(d => {
             d.scaned = true;

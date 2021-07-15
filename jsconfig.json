@@ -12,7 +12,7 @@
           "@layouts/*": ["src/layouts/*"],
           "@pages/*": ["src/pages/*"],
           "@properties/*": ["src/properties/*"],
-          "@/*": ["src/*"],
+          "@/*": ["src/*"]
         }
     },
     "exclude": [

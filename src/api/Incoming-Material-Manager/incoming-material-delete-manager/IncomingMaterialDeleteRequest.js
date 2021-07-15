@@ -5,7 +5,7 @@ import IncomingMaterialDeleteBody from './IncomingMaterialDeleteRequestBody';
 import IncomingMaterialDeleteRequestHeader from './IncomingMaterialDeleteRequestHeader';
 
 export default class IncomingMaterialDeleteRequest {
-   
+
     static sendDeleteRequest = (object) => {
         let requestBody =  IncomingMaterialDeleteBody.buliedDelete(object.deleteNote, object.materialLotList);
         let requestHeader = new IncomingMaterialDeleteRequestHeader();
@@ -14,7 +14,8 @@ export default class IncomingMaterialDeleteRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

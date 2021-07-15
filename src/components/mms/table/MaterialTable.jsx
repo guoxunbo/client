@@ -9,6 +9,7 @@ import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import TableObject from '@api/dto/ui/Table';
 import ReceiveMaterialDialog from '@components/mms/dialog/ReceiveMaterialDialog';
 import NoticeUtils from '@utils/NoticeUtils';
+import IconUtils from '@utils/IconUtils';
 
 const TableName = {
     ReceiveMLot: "MMReceiveMLot"
@@ -37,6 +38,7 @@ export default class MaterialTable extends EntityListTable {
      * 创建btn组。不同的table对button的组合要求不一样时。可以重载其方法做处理
      */
     createButtonGroup = () => {
+        let self = this;
         let buttons = [];
         buttons.push(this.createAddButton());
         buttons.push(this.createImportButton());

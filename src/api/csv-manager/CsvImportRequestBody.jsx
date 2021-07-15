@@ -30,7 +30,7 @@ export default class CsvImportRequestBody {
         return new CsvImportRequestBody(undefined, dataList, ActionType.ImportSave);
     }
 
-    static buildSaveLabMLot(dataList) {
+    static buildSaveMLots(dataList) {
         let csvImportRequestBody = new CsvImportRequestBody()
         csvImportRequestBody.setMaterialLotList(dataList);
         return csvImportRequestBody;

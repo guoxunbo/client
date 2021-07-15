@@ -17,12 +17,13 @@ export default class SpareMaterialManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 导入
-     * @param {*} object 
+     * @param {*} object
      */
     static sendImportMaterialRequest = (object) => {
         let requestBody = SpareMaterialManagerRequestBody.buildImportMaterial(object.dataList);
@@ -32,7 +33,8 @@ export default class SpareMaterialManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     // /**
@@ -46,6 +48,7 @@ export default class SpareMaterialManagerRequest {
     //         request: request,
     //         success: object.success
     //     }
-    //     MessageUtils.sendRequest(requestObject);
+    //     const {sendRequest} = MessageUtils();
+    //     sendRequest(requestObject);
     // }
 }

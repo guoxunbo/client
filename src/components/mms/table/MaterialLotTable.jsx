@@ -12,6 +12,7 @@ import TableObject from '@api/dto/ui/Table';
 import { ActionType } from '@api/material-lot-manager/MaterialLotManagerRequestBody';
 import NoticeUtils from '@utils/NoticeUtils';
 import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
+import AuthorityButton from '@components/framework/button/AuthorityButton';
 
 const TableName = {
     MLotConsumeAction: "MMLotComsume"
@@ -47,9 +48,8 @@ export default class MaterialLotTable extends EntityListTable {
     }
 
     createPrintButton = () => {
-        return <Button key="print" type="primary" className="table-button" onClick={this.handlePrint}>
-                        {IconUtils.buildIcon("icon-barcode")}  {I18NUtils.getClientMessage(i18NCode.BtnPrint)}
-                    </Button>
+        return <AuthorityButton key="printMLotBtn" name="printMLotBtn" disabled="true" type="primary" className="table-button" icon="icon-barcode" i18NCode={I18NUtils.getClientMessage(i18NCode.BtnPrint)} onClick={this.handlePrint}/>
+
     }
 
     handlePrint=()=>{     
@@ -67,9 +67,7 @@ export default class MaterialLotTable extends EntityListTable {
     }
 
     createConsumeButton = () => {
-        return <Button key="consume" type="primary" className="table-button" onClick={() => this.handleAction(ActionType.Consume, TableName.MLotConsumeAction)}>
-                        {IconUtils.buildIcon("icon-consume")}  {I18NUtils.getClientMessage(i18NCode.BtnConsume)}
-                    </Button>
+        return <AuthorityButton key="comsumeMLotBtn" name="comsumeMLotBtn" disabled="true" type="primary" className="table-button" icon="icon-consume" i18NCode={I18NUtils.getClientMessage(i18NCode.BtnConsume)} onClick={() => this.handleAction(ActionType.Consume, TableName.MLotConsumeAction)}/>
     }
 
     handleAction = (action, tableName) => {

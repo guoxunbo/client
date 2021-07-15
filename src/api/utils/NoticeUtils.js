@@ -31,12 +31,12 @@ export default class NoticeUtils {
             message: message,
             duration: Application.notice.duration,
         });
-       
+
     }
 
     /**
      * 提醒框不会消失
-     * @param {}} message 
+     * @param {}} message
      */
     static showInfo(message) {
         notification["info"]({
@@ -59,7 +59,7 @@ export default class NoticeUtils {
             placement,
         });
     }
-} 
+}
 
 const placement = {
     topLeft:"topLeft",

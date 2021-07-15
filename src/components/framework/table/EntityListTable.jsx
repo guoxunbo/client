@@ -259,7 +259,7 @@ export default class EntityListTable extends Component {
     }
 
     createAddButton = () => {
-        return <AuthorityButton i18NCode={i18NCode.BtnAdd} key="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}/>
+        return <AuthorityButton i18NCode={i18NCode.BtnAdd} key="add" name="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}/>
     }
 
     /**
@@ -288,7 +288,7 @@ export default class EntityListTable extends Component {
      * 创建导出数据功能。基本功能具备
      */
     createExportDataButton = () => {
-        return <AuthorityButton i18NCode={i18NCode.BtnExp} key="exportData" type="primary" className="table-button" icon="file-excel" onClick={this.exportData}/>
+        return <AuthorityButton i18NCode={i18NCode.BtnExp} key="exportData" name="exportData" type="primary" className="table-button" icon="file-excel" onClick={this.exportData}/>
     }
 
     /**
@@ -297,7 +297,7 @@ export default class EntityListTable extends Component {
     createImportButton = () => {
         return (<Upload key="import" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
                     customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <AuthorityButton type="primary" className="table-button" icon="file-add" i18NCode={i18NCode.BtnImp}/>
+                    <AuthorityButton type="primary" name="import" className="table-button" icon="file-add" i18NCode={i18NCode.BtnImp}/>
                 </Upload>);
     }
 

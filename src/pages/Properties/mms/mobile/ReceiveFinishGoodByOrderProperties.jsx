@@ -35,11 +35,11 @@ export default class ReceiveFinishGoodByOrderProperties extends MobileProperties
         }
         let value = this.mobileForm.getFieldsValue();
         let requestObject = {
-            materialLots: materialLots,
+            materialLotList: materialLots,
             documentId:  value.docId,
             success: function(responseBody) {
                 self.handleReset();
-                NoticeUtils.showSuccess();
+                NoticeUtils.mobileShowSuccess(undefined, 'bottomRight');
             }
         }
         VcFinishGoodReceiveRequest.sendReceiveFinishGoodRequest(requestObject);

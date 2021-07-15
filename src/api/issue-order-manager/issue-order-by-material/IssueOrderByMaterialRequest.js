@@ -11,7 +11,7 @@ export default class IssueOrderByMaterialRequest {
 
     /**
      * 创建指定物料发料单
-     * @param {*} object 
+     * @param {*} object
      */
     static sendCreateIssueOrderByMaterialRequest = (object) => {
         let requestBody = IssueOrderByMaterialRequestBody.buildCreateIssueOrderByMaterial(object.materials);
@@ -21,12 +21,13 @@ export default class IssueOrderByMaterialRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 推荐指定物料发料单
-     * @param {*} object 
+     * @param {*} object
      */
     static sendRecommendIssueMaterialRequest = (object) => {
         let requestBody = IssueOrderByMaterialRequestBody.buildRecommendIssueMaterial(object.documentId);
@@ -36,12 +37,13 @@ export default class IssueOrderByMaterialRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 指定物料发料物料
-     * @param {} object 
+     * @param {} object
      */
     static sendIssueMaterialRequest = (object) => {
         let requestBody = IssueOrderByMaterialRequestBody.buildIssueMaterial(object.documentId, object.materialLots);
@@ -51,12 +53,13 @@ export default class IssueOrderByMaterialRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 获得物料库存数量
-     * @param {*} object 
+     * @param {*} object
      */
     static sendGetMaterialStockQtyRequest = (object) => {
         let requestBody = IssueOrderByMaterialRequestBody.buildGetMaterialStockQty(object.materials);
@@ -66,6 +69,7 @@ export default class IssueOrderByMaterialRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

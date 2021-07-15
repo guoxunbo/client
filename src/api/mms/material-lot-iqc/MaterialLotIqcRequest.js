@@ -14,7 +14,8 @@ export default class MaterialLotIqcRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendValidationAndGetWaitIQCMLotRequest = (object) => {
@@ -25,7 +26,8 @@ export default class MaterialLotIqcRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendBatchIqcRequest = (object) => {
@@ -36,7 +38,8 @@ export default class MaterialLotIqcRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

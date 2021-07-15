@@ -12,13 +12,13 @@ export default class MaterialLotInvManagerRequestBody {
 
     actionType;
     material;
+    materialLotAction;
 
     constructor(actionType, materialLot, materialLotAction){
         this.actionType = actionType;
         this.materialLot = materialLot;
         this.materialLotAction = materialLotAction;
     }
-
     /**
      * 物料批次出库
      * 扣除库存以及物料批次数量
