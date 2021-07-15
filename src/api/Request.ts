@@ -1,13 +1,10 @@
 import {baseURl} from "@const/ConstDefine"
 
-interface RequestType {
-    header: any,body:object,url:string
+const Request: (requestBody:object, requestUrl:string) => {body: object; url: string } = (requestBody:object, requestUrl:string)=> {
+    let body = requestBody;
+    let url = !requestUrl?baseURl:requestUrl;
+    return {body,url}
 }
-
-function Request (this: RequestType, requestBody:object, url:string){
-    this.body = requestBody;
-    this.url = !url?baseURl:url
-};
 
 export {Request};
 

@@ -11,7 +11,7 @@ export default class RefTableManagerRequest {
         requestBody = RefTableManagerRequestBody.buildGetData(object.refTableName, object.parameters)
         let requestHeader = new RequestHeader("RefTableManage");
         // @ts-ignore
-        let request = new Request(requestBody, UrlConstant.RefTableManagerUrl);
+        let request = Request(requestBody, UrlConstant.RefTableManagerUrl);
         let requestObject = {
             request: request,
             success: object.success,
@@ -30,7 +30,7 @@ export default class RefTableManagerRequest {
         let requestHeader = new RequestHeader("RefTableManage");
         requestHeader.setOrgRrn(0);
         // @ts-ignore
-        let request = new Request(requestBody, UrlConstant.RefTableManagerUrl);
+        let request = Request(requestBody, UrlConstant.RefTableManagerUrl);
         let requestObject = {
             request: request,
             success: object.success,

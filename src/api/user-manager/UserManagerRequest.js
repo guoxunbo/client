@@ -18,7 +18,7 @@ export default class UserManagerRequest {
         requestHeader.setOrgRrn(user.org);
         requestHeader.setLanguage(user.language);
         // @ts-ignore
-        let request = new Request(requestBody, UrlConstant.UserLoginUrl);
+        let request = Request(requestBody, UrlConstant.UserLoginUrl);
         let requestObject = {
             request: request,
             success: object.success,
@@ -32,7 +32,7 @@ export default class UserManagerRequest {
         let requestBody = UserManagerRequestBody.buildChangePwdBody(object.username, object.password, object.newPassword);
         let requestHeader = new RequestHeader("UserManage");
         // @ts-ignore
-        let request = new Request(requestBody, UrlConstant.UserManagerUrl);
+        let request = Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
             success: object.success,
@@ -46,7 +46,7 @@ export default class UserManagerRequest {
         let requestBody = UserManagerRequestBody.buildResetPwdBody(object.username);
         let requestHeader = new RequestHeader("UserManage");
         // @ts-ignore
-        let request = new Request(requestBody, UrlConstant.UserManagerUrl);
+        let request = Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
             success: object.success,
@@ -60,7 +60,7 @@ export default class UserManagerRequest {
         let requestBody = UserManagerRequestBody.buildMergeUserBody(object.user);
         let requestHeader = new RequestHeader("UserManage");
         // @ts-ignore
-        let request = new Request(requestBody, UrlConstant.UserManagerUrl);
+        let request = Request(requestBody, UrlConstant.UserManagerUrl);
         let requestObject = {
             request: request,
             success: object.success,
@@ -74,7 +74,7 @@ export default class UserManagerRequest {
         let requestBody = UserManagerRequestBody.buildImport();
         let requestHeader = new RequestHeader("UserManage");
         // @ts-ignore
-        let request = new Request(requestBody, UrlConstant.UserImportUrl);
+        let request = Request(requestBody, UrlConstant.UserImportUrl);
         let requestObject = {
             request: request,
             requestHeader: requestHeader

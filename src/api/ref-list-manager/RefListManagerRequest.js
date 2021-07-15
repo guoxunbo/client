@@ -17,7 +17,7 @@ export default class RefListManagerRequest {
         }
         let requestHeader = new RequestHeader("RefListManage");
         // @ts-ignore
-        let request = new Request( requestBody, UrlConstant.RefListMangerUrl);
+        let request = Request( requestBody, UrlConstant.RefListMangerUrl);
         let requestObject = {
             request: request,
             success: object.success,
@@ -32,7 +32,7 @@ export default class RefListManagerRequest {
         let requestHeader = new RequestHeader("RefListManage");
         requestHeader.setOrgRrn(0);
         // @ts-ignore
-        let request = new Request( requestBody, UrlConstant.RefListMangerUrl);
+        let request = Request( requestBody, UrlConstant.RefListMangerUrl);
         let requestObject = {
             request: request,
             success: object.success,

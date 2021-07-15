@@ -233,8 +233,12 @@ export default function MessageUtils() {
         if (typeof exception.resultCode!="undefined"&&exception.resultCode!=null) {
             error = exception.resultCode;
             let requestBody = MessageRequestBody.buildGetByKeyId(error, exception.parameters);
-            let requestHeader = new MessageRequestHeader();
-            let requestObject = new (Request as any)(requestHeader, requestBody, UrlConstant.MessageManagerUrl);
+            let requestHeader = new RequestHeader("MessageManage");
+            let request = Request(requestBody, UrlConstant.MessageManagerUrl);
+            let requestObject = {
+                request: request,
+                requestHeader: requestHeader
+            }
             let responseBody: any = async () => {
                 await sendSyncRequest(requestObject);
             };
