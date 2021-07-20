@@ -130,6 +130,7 @@ const i18NCode = {
     Location: "Location",
     remarks: "remarks",
     HoldReason: "HoldReason",
+    CancelReason: "CancelReason",
     ReleaseReason: "ReleaseReason",
     RemarksCannotEmpty: "RemarksCannotEmpty",
     PrintVboxQRCodeLabelFlag: "PrintVboxQRCodeLabelFlag",
@@ -770,6 +771,11 @@ const i18Messages = {
     HoldReason: {
         Chinese: "扣留原因",
         English: "HoldReason",
+        Res: ""
+    },
+    CancelReason: {
+        Chinese: "取消原因",
+        English: "CancelReason",
         Res: ""
     },
     ReleaseReason: {

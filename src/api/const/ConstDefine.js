@@ -126,6 +126,7 @@ const SystemRefListName = {
     RiskGrade: "RiskGrade",
     ExpressCompany: "ExpressCompany",
     ScrapReason: "ScrapReason",
+    CancelCheckReason: "CancelCheckReason"
 };
 
 const RefTableName = {

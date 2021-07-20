@@ -131,6 +131,7 @@ import GCMobileFinishLotStockInProperties from './pages/Properties/components/gc
 import GCMobileRawMaterialCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialCheckProperties';
 import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialReceiveProperties';
 import GCRWAttributeChangeProperties from './pages/Properties/components/GCRWAttributeChangeProperties';
+import GCCancelCheckProperties from './pages/Properties/components/GCCancelCheckProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -302,6 +303,12 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCheckProperties,
+  },
+  //取消检验
+  {
+    path: buildPath('GC/CancelCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCancelCheckProperties,
   },
   {
     path: buildPath('Wafer/GCWaferInStorage'),
