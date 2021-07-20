@@ -6,6 +6,28 @@ import Request from '../../Request';
 
 export default class MaterialLotManagerRequest {
 
+    static sendQueryMaterialLotIdOrLotIdRequest = (object) => {
+        let requestBody = MaterialLotManagerRequestBody.buildQueryMaterialLotIdOrLotId(object.tableRrn, object.queryLotId);
+        let requestHeader = new MaterialLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendGetCancelCheckRequest = (object) => {
+        let requestBody = MaterialLotManagerRequestBody.buildCancelCheck(object.materialLotList, object.cancelReason);
+        let requestHeader = new MaterialLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendGetJudgePackCaseItemListRequest = (object) => {
         let requestBody = MaterialLotManagerRequestBody.buildGetJudgePackCaseItemList();
         let requestHeader = new MaterialLotManagerRequestHeader();
