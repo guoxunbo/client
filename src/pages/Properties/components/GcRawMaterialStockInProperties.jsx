@@ -79,12 +79,6 @@ export default class GcRawMaterialStockInProperties extends EntityScanProperties
                         });
                         tableData = [];
                         materialLotList.forEach(materialLot => {
-                            // if (waitStockInRawMaterialList.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-                            //     materialLot.errorFlag = true;
-                            // }
-                            // if(materialLot.errorFlag){
-                            //     errorData.unshift(materialLot);
-                            // } else 
                             if(trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
                                 trueData.unshift(materialLot);
                             } else if(!data.startsWith("GCB")){

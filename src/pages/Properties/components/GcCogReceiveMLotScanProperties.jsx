@@ -110,6 +110,6 @@ export default class GcCogReceiveMLotScanProperties extends EntityScanProperties
     }
 
     buildOtherComponent = () => {
-      return <GcCogWaitReceiveMLotProperties ref={(waitForReceiveMLot) => { this.waitForReceiveMLot = waitForReceiveMLot }} tableRrn={467740} />
+      return <GcCogWaitReceiveMLotProperties ref={(waitForReceiveMLot) => { this.waitForReceiveMLot = waitForReceiveMLot }} tableRrn={this.props.waitReceiveTableRrn} />
   }
 }

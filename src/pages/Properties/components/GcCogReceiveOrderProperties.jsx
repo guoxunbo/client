@@ -45,7 +45,11 @@ export default class GcCogReceiveOrderProperties extends EntityProperties{
     }
 
     buildOtherComponent = () => {
-        return <GcCogReceiveMLotScanProperties orderTable={this.orderTable} tableRrn={467727} resetFlag={this.state.resetFlag} onSearch={this.getTableData.bind(this)}/>
+        return <GcCogReceiveMLotScanProperties orderTable={this.orderTable} 
+                              tableRrn={this.state.parameters.parameter1} 
+                              waitReceiveTableRrn={this.state.parameters.parameter2}
+                              resetFlag={this.state.resetFlag} 
+                              onSearch={this.getTableData.bind(this)}/>
     }
     
 }
