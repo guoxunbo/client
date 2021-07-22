@@ -35,7 +35,7 @@ export default class GCCancelCheckProperties  extends EntityScanProperties {
           queryLotId: queryLotId,
           success: function(responseBody) {
             let materialLot = responseBody.materialLot;
-            if (materialLot) {
+            if (materialLot && materialLot.objectRrn != null) {
               if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
                 tableData.unshift(materialLot);
               }
