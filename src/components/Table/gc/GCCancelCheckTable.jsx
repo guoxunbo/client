@@ -33,11 +33,11 @@ export default class GCCancelCheckTable extends EntityScanViewTable {
 
     createExpressInput = () => {
         return  <FormItem>
-                    <Row gutter={12}>
-                        <Col span={4} >
+                    <Row gutter={10}>
+                        <Col span={2} >
                             <span>{I18NUtils.getClientMessage(i18NCode.CancelReason)}:</span>
                         </Col>
-                        <Col span={8}>
+                        <Col span={4}>
                             <RefListField ref={(cancelReason) => { this.cancelReason = cancelReason }} referenceName={SystemRefListName.CancelCheckReason} />
                         </Col>
                     </Row>
