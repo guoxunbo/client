@@ -111,7 +111,7 @@ export default class GcIRAReceiveStockInTable extends EntityScanViewTable {
     twoScanIRAvalidation = (data) =>{
         let result = "";
         data.forEach((materialLot) => {
-            if(materialLot.materialType == "IRA" && materialLot.reserved8 != undefined && materialLot.scanFlag == undefined){
+            if(materialLot.materialType == "IRA" && materialLot.scanFlag == undefined){
                 result = materialLot.materialLotId;
                 return result;
             }
@@ -160,6 +160,33 @@ export default class GcIRAReceiveStockInTable extends EntityScanViewTable {
         return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.stockIn}>
                         {I18NUtils.getClientMessage(i18NCode.BtnStockIn)}
                     </Button>
+    }
+
+    refreshDelete = (records) => {
+        let datas = this.state.data;
+        let recordList = [];
+        if (!(records instanceof Array)) {
+            let lotId = records.lotId;
+            datas.forEach((item) => {
+                if(item.lotId == lotId){
+                    recordList.push(item);
+                }
+            });
+        } else {
+            recordList = records;
+        }
+        recordList.forEach((record) => {
+            let dataIndex = datas.indexOf(record);
+            if (dataIndex > -1 ) {
+                datas.splice(dataIndex, 1);
+            }
+        });
+        this.setState({
+            data: datas,
+            selectedRows: [],
+            selectedRowKeys: []
+        })
+        MessageUtils.showOperationSuccess();
     }
 
 }
