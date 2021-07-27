@@ -592,7 +592,7 @@ const i18Messages = {
         Res: ""
     },
     RepeatScanNumber: {
-        Chinese: "重复扫描笔数",
+        Chinese: "重复数",
         English: "RepeatScanNumber",
         Res: ""
     },
