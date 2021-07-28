@@ -11,6 +11,7 @@ export default class GcScrapRawMaterialWaitShipMLotProperties extends EntityProp
 
     buildTable = () => {
         return <ScrapRawMaterialWaitShipMLotTable 
+                                    pagination={true} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading} 

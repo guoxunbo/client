@@ -160,12 +160,12 @@ export default class GcMobileIRAReceiveStockInProperties extends MobilePropertie
             return;
         }
 
-        if (self.getErrorCount() > 0) {
+        if (self.orderTable.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
 
-        if (self.getRepeatScanCount() > 0) {
+        if (self.orderTable.getRepeatScanCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.MaterialLotIdRepeat));
             return;
         }
@@ -213,32 +213,6 @@ export default class GcMobileIRAReceiveStockInProperties extends MobilePropertie
         return errorData;
     }
 
-    getErrorCount = () => {
-        let materialLots = this.state.tableData;
-        let count = 0;
-        if(materialLots && materialLots.length > 0){
-            materialLots.forEach(tableData => {
-                if(tableData.errorFlag){
-                    count = count +1;
-                }
-            });
-        }
-        return count;
-    }
-
-    getRepeatScanCount = () => {
-        let materialLots = this.state.tableData;
-        let count = 0;
-        if(materialLots && materialLots.length > 0){
-            materialLots.forEach(tableData => {
-                if(tableData.scanSecondFlag){
-                    count = count +1;
-                }
-            });
-        }
-        return count;
-    }
-
     twoScanIRAvalidation = (tableData) =>{
         let result = "";
         tableData.forEach((materialLot) => {
@@ -263,6 +237,7 @@ export default class GcMobileIRAReceiveStockInProperties extends MobilePropertie
 
     buildTable = () => {
         return <MobileIRAReceiveStockInTable 
+                                    ref={(orderTable) => { this.orderTable = orderTable }} 
                                     pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
