@@ -133,6 +133,7 @@ import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/
 import GCRWAttributeChangeProperties from './pages/Properties/components/GCRWAttributeChangeProperties';
 import GCCancelCheckProperties from './pages/Properties/components/GCCancelCheckProperties';
 import GcIRAReceiveStockInProperties from './pages/Properties/components/GcIRAReceiveStockInProperties';
+import GcMobileIRAReceiveStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAReceiveStockInProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1031,6 +1032,12 @@ const routerConfig = [
     path: buildPath('Mobile/RawMaterialReceive'),
     layout: BlankLayout,
     component: GCMobileRawMaterialReceiveProperties,
+  },
+  //手持端IRA接收入库
+  {
+    path: buildPath('/Mobile/MobileIRAReceiveStockIn'),
+    layout: BlankLayout,
+    component: GcMobileIRAReceiveStockInProperties,
   },
   {
     path: '*',
