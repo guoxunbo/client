@@ -40,7 +40,7 @@ export default class GcScrapRawMaterialShipOrderProperties extends EntityPropert
     buildTable = () => {
         return <ScrapRawMaterialShipOrderTable scrollY={200} pagination={false} 
                                       ref={(orderTable) => { this.orderTable = orderTable }} 
-                                      asyncType={ActionType.AsyncMaterialIssueOrder} 
+                                      asyncType={ActionType.AsyncRawOtherShipOrder} 
                                       table={this.state.table} 
                                       data={this.state.tableData} 
                                       loading={this.state.loading} />
