@@ -170,7 +170,7 @@ export default class GcIRAReceiveStockInProperties extends EntityScanProperties{
         let errorData = new MaterialLot();
         errorData[rowKey] = data;
         errorData.errorFlag = true;
-        errorData.setMaterialLotId(data);
+        errorData.setLotId(data);
         return errorData;
     }
 

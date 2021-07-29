@@ -13,7 +13,7 @@ export default class MobileIRAReceiveStockInTable extends EntityScanViewTable {
 
     getRowClassName = (record, index) => {
         if (record.scanSecondFlag) {
-            return 'check-row'
+            return 'repeat-row'
         } else if (record.scanFlag) {
             return 'new-row';
         } else if(record.errorFlag){
@@ -41,7 +41,7 @@ export default class MobileIRAReceiveStockInTable extends EntityScanViewTable {
     }
 
     createRepeatScanNumberStatistic = () => {
-        return <Tag color="#001aff">{I18NUtils.getClientMessage(i18NCode.RepeatScanNumber)}：{this.getRepeatScanCount()}</Tag>
+        return <Tag color="#aa23df">{I18NUtils.getClientMessage(i18NCode.RepeatScanNumber)}：{this.getRepeatScanCount()}</Tag>
     }
 
     createMaterialLotsNumber = () => {
