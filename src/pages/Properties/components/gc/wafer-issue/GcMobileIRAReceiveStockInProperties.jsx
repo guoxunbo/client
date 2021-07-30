@@ -209,7 +209,7 @@ export default class GcMobileIRAReceiveStockInProperties extends MobilePropertie
         let errorData = new MaterialLot();
         errorData[rowKey] = data;
         errorData.errorFlag = true;
-        errorData.setMaterialLotId(data);
+        errorData.setLotId(data);
         return errorData;
     }
 
