@@ -1,9 +1,7 @@
-import { Col, Icon, Input, Row, Switch, Tag } from 'antd';
+import {Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
-import FormItem from 'antd/lib/form/FormItem';
 import EntityScanViewTable from '../EntityScanViewTable';
-import MessageUtils from '../../../api/utils/MessageUtils';
 
 /**
  * 原材料接收入库Table
@@ -13,7 +11,9 @@ export default class MobileRawMaterialReceiveTable extends EntityScanViewTable {
     static displayName = 'MobileRawMaterialReceiveTable';
 
     getRowClassName = (record, index) => {
-        if (record.errorFlag) {
+        if (record.scanFlag) {
+            return 'new-row';
+        } else if(record.errorFlag){
             return 'error-row';
         } else {
             if(index % 2 ===0) {

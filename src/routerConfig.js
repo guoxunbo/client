@@ -131,6 +131,9 @@ import GCMobileFinishLotStockInProperties from './pages/Properties/components/gc
 import GCMobileRawMaterialCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialCheckProperties';
 import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialReceiveProperties';
 import GCRWAttributeChangeProperties from './pages/Properties/components/GCRWAttributeChangeProperties';
+import GCCancelCheckProperties from './pages/Properties/components/GCCancelCheckProperties';
+import GcIRAReceiveStockInProperties from './pages/Properties/components/GcIRAReceiveStockInProperties';
+import GcMobileIRAReceiveStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAReceiveStockInProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -303,6 +306,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCheckProperties,
   },
+  //取消检验
+  {
+    path: buildPath('GC/CancelCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCancelCheckProperties,
+  },
   {
     path: buildPath('Wafer/GCWaferInStorage'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -436,6 +445,12 @@ const routerConfig = [
     path: buildPath('/RawMaterial/GCRawMaterialStockInChange'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRawMaterialStockInProperties,
+  },
+  //IRA接收入库
+  {
+    path: buildPath('/GC/IRAReceiveStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcIRAReceiveStockInProperties,
   },
   {
     path: buildPath('RawMaterial/GCRawMaterialScrap'),
@@ -1017,6 +1032,12 @@ const routerConfig = [
     path: buildPath('Mobile/RawMaterialReceive'),
     layout: BlankLayout,
     component: GCMobileRawMaterialReceiveProperties,
+  },
+  //手持端IRA接收入库
+  {
+    path: buildPath('/Mobile/MobileIRAReceiveStockIn'),
+    layout: BlankLayout,
+    component: GcMobileIRAReceiveStockInProperties,
   },
   {
     path: '*',

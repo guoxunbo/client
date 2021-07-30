@@ -134,6 +134,6 @@ export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanPro
     }
 
     buildOtherComponent = () => {
-      return <GcCOMWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={77147} />
+      return <GcCOMWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={this.props.waitTableRrn} />
     }
 }
