@@ -1,6 +1,10 @@
 import EntityForm from "@components/framework/form/EntityForm";
-import { Col, Form } from "antd";
+import { Col, Form, Row } from "antd";
+import SqlUtils from "@components/framework/utils/SqlUtils";
 import './MobileForm.scss';
+import I18NUtils from "@utils/I18NUtils";
+import { i18NCode } from "@const/i18n";
+import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 
 export default class MobileForm extends EntityForm {
     static displayName = 'MobileForm';
@@ -45,8 +49,26 @@ export default class MobileForm extends EntityForm {
         });
     } 
     
-    handleSearch = () => {
+    afterQuery = (responseBody) => {
 
+    }
+
+    handleSearch = () => {
+        var self = this;
+        this.props.form.validateFields((err, values) => {
+            if (err) {
+                return;
+            }
+            let whereClause = SqlUtils.buildWhereClause(this.state.queryFields, values);
+            let requestObject = {
+                tableRrn: this.state.tableRrn,
+                whereClause: whereClause,
+                success: function(responseBody) {
+                  self.afterQuery(responseBody);
+                }
+              }
+              TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        });
     }
     
     resetFormFileds() {
@@ -58,6 +80,17 @@ export default class MobileForm extends EntityForm {
 
     buildTabs = () => {
         
+    }
+
+    buildBasicSection =() => {
+        return (
+            <div>
+                <h2 className="section-title">{I18NUtils.getClientMessage(i18NCode.QueryInfo)}</h2>
+                <Row gutter={16}>
+                    {this.buildBasicSectionField()}
+                </Row>
+            </div>
+        )
     }
 
     buildBasicSectionField = () => {

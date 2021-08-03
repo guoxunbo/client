@@ -20,8 +20,8 @@ export default class PackageValidationRequest {
     }
     
     static sendValidationAppendPackRequest = (object) => {
-        const {materialLots, packagedMaterialLotId} = object;
-        let requestBody = PackageValidationRequestBody.buildValidationAppendBody(materialLots, packagedMaterialLotId)
+        const {materialLots, packagedMaterialLotId, packageType} = object;
+        let requestBody = PackageValidationRequestBody.buildValidationAppendBody(materialLots, packagedMaterialLotId, packageType)
         let requestHeader = new PackageValidationRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.ValidationPackMaterialLotsUrl);
         let requestObject = {

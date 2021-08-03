@@ -17,6 +17,8 @@ export default class MaterialLotAction {
     actionCode;
     actionReason;
     actionComment;
+
+    reservedQty;
    
     setMaterialLotId(materialLotId) {
         this.materialLotId = materialLotId;
@@ -26,20 +28,36 @@ export default class MaterialLotAction {
         this.transQty = transQty;
     }
     
+    setTargetWarehouseRrn(targetWarehouseRrn) {
+        this.targetWarehouseRrn = targetWarehouseRrn;
+    }
+
+    setTargetWarehouseId(targetWarehouseId) {
+        this.targetWarehouseId = targetWarehouseId;
+    }
+
     setTargetStorageRrn(targetStorageRrn) {
         this.targetStorageRrn = targetStorageRrn;
+    }
+
+    setTargetStorageId(targetStorageId) {
+        this.targetStorageId = targetStorageId;
     }
 
     setFromWarehouseRrn(fromWarehouseRrn) {
         this.fromWarehouseRrn = fromWarehouseRrn;
     }
 
+    setFromWarehouseId(fromWarehouseId){
+        this.fromWarehouseId = fromWarehouseId;
+    }
+
     setFromStorageRrn(fromStorageRrn) {
         this.fromStorageRrn = fromStorageRrn;
     }
 
-    setTargetWarehouseRrn(targetWarehouseRrn) {
-        this.targetWarehouseRrn = targetWarehouseRrn;
+    setFromStorageId(fromStorageId) {
+        this.fromStorageId = fromStorageId;
     }
  
     setActionCode(actionCode) {
@@ -52,5 +70,9 @@ export default class MaterialLotAction {
 
     setActionComment(actionComment) {
         this.actionComment = actionComment;
+    }
+
+    setReservedQty(reservedQty) {
+        this.reservedQty = reservedQty;
     }
 }

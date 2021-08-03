@@ -5,6 +5,8 @@ import PropertyUtils from "@utils/PropertyUtils";
 const ActionType = {
     Receive2Warehouse: "Receive2Warehouse",
     Consume: "Consume",
+    Print: "PrintLabel"
+
 }
 
 export default class MaterialLotManagerRequestBody {
@@ -31,10 +33,16 @@ export default class MaterialLotManagerRequestBody {
         return new MaterialLotManagerRequestBody(ActionType.Receive2Warehouse, materialLot, materialLotAction);
     }
 
+    static buildPrintMLot(formObject) {
+        let materialLot = new MaterialLot();
+        PropertyUtils.copyProperties(formObject, materialLot);
+        return new MaterialLotManagerRequestBody(ActionType.Print, materialLot);
+    }
+
     /**
      * 处理物料批次相关请求。
      * @param actionObject 
-     * @example {action: ActionType.Consume, materialLotAction: {transQty, actionCode...}, materialLotId: "111"}
+     * @example {action: ActionType.Consume, print materialLotAction: {transQty, actionCode...}, materialLotId: "111"}
      */
     static buildHandleMaterialLot(actionObject) {
         let materialLot = actionObject.materialLot;
@@ -43,7 +51,6 @@ export default class MaterialLotManagerRequestBody {
         PropertyUtils.copyProperties(actionObject.materialLotAction, materialLotAction);
         return new MaterialLotManagerRequestBody(actionObject.action, materialLot, materialLotAction);
     }
-
 }
 
 export {ActionType};

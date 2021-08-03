@@ -12,9 +12,7 @@ export default class IncomingMaterialImportProperties extends EntityScanProperti
     
     buildTable = () => {
         return (<IncomingMaterialImportTable 
-          {...this.getDefaultTableProps()}  /> 
-       
-          )
+                  {...this.getDefaultTableProps()}/>)
     }
 
 }

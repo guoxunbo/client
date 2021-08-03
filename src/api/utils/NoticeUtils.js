@@ -45,4 +45,25 @@ export default class NoticeUtils {
         });
     }
 
+    /**
+     * @param {*} placement 消息出现的位置
+     */
+    static mobileShowSuccess(message, placement) {
+        if (!message) {
+            message = I18NUtils.getClientMessage(i18NCode.OperationSucceed);
+        }
+        notification["success"]({
+            message: message,
+            duration: Application.notice.duration,
+            key: i18NCode.OperationSucceed,
+            placement,
+        });
+    }
 } 
+
+const placement = {
+    topLeft:"topLeft",
+    topRight:"topRight",
+    bottomLeft:"bottomLeft",
+    bottomRight:"bottomRight",
+}

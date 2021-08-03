@@ -269,7 +269,7 @@ export default class Field {
         } else if (this.displayType == DisplayType.userRefList) {
             return <RefListField onBlur={onBlur} initialValue={initialValue} field={this} referenceName={this.refListName} owner  disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.referenceTable) {
-            return <RefTableField onBlur={onBlur} initialValue={initialValue} field={this} form={this.form} disabled={this.disabled}/>
+            return <RefTableField onBlur={onBlur} initialValue={initialValue} field={this} form={this.form} disabled={this.disabled} afterChange={e => onPressEnter ? onPressEnter(e, this) : undefined}/>
         } else if (this.displayType == DisplayType.radio) {
             return <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
         }
@@ -408,6 +408,11 @@ export default class Field {
             // 只有当text的时候才支持正则
             if (this.namingRule) {
                 rule.pattern = this.namingRule;
+            }
+            rule.transform = (value) => {
+                if(value) {
+                    return value.toString();
+                }
             }
         }
 

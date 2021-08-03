@@ -18,6 +18,17 @@ export default class MaterialLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendPrintMaterialLotRequest = (object) => {
+        let requestBody = MaterialLotManagerRequestBody.buildPrintMLot(object.materialLot);
+        let requestHeader = new MaterialLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.MaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendMaterialLotActionRequest = (object) => {
         let requestBody = MaterialLotManagerRequestBody.buildHandleMaterialLot(object);
         let requestHeader = new MaterialLotManagerRequestHeader();
@@ -28,5 +39,4 @@ export default class MaterialLotManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
-
 }

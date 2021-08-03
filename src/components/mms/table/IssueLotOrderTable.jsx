@@ -2,7 +2,7 @@ import IssueOrderRequest from '@api/issue-order-manager/issue-lot-order/IssueOrd
 import EntityListTable from '@components/framework/table/EntityListTable';
 
 /**
- * 来料单显示
+ * 发往mes的发料(主材 辅材 成品)通用
  */
 export default class IssueLotOrderTable extends EntityListTable {
 
@@ -39,21 +39,12 @@ export default class IssueLotOrderTable extends EntityListTable {
         let object = {
             documentId: record.name,
             success: function(responseBody) {
-                let mLots = responseBody.materialLotList;
-                if(mLots){
-                    for(let i=0; i< mLots.length; i++){
-                        if(mLots[i].status != 'Wait'){
-                            mLots[i].rowClass = true;
-                            showData.push(mLots[i]);
-                        }else{
-                            showData.unshift(mLots[i]);
-                        }
-                    }
-                }
-                self.props.issueLotScanTable.setState({tableData: showData})
+                showData = responseBody.materialLotList;
+                
+                self.props.issueLotScanProperties.setState({tableData: showData})
             }
         }
-        IssueOrderRequest.sendGetIssueLotInfoRequest(object);
+        IssueOrderRequest.sendGetWaitMLotByOrderRequest(object);
     }
 
     /**

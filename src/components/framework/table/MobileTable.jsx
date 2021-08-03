@@ -17,12 +17,21 @@ export default class MobileTable extends EntityListTable {
 
     createTagGroup = () => {
         let tagList = [];
+        if(this.props.showScanedQtyFlag){
+            tagList.push(this.createScanedQty());
+        }
+
         tagList.push(this.createStatistic());
+
         return tagList;
     }
 
     createStatistic = () => {
         return <Tag key="totalNumber" color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{this.state.data.length}</Tag>
+    }
+
+    createScanedQty = () => {
+        return <Tag key="totalQty" color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.ScannedQty)}：{this.getScanedRows().length}</Tag>
     }
     
     /**

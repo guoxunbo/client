@@ -5,23 +5,12 @@ import I18NUtils from '@utils/I18NUtils';
 import NoticeUtils from '@utils/NoticeUtils';
 import { Button, Tag } from 'antd';
 
+/**
+ * 发往mes的发料(主材 辅材 成品)通用
+ */
 export default class IssueLotOrderScanTable extends EntityScanViewTable {
 
     static displayName = 'IssueLotOrderScanTable';
-
-    getRowClassName = (record, index) => {
-        if (record.rowClass) {
-            return 'ban-row';
-        }else if(record.scaned) {
-            return 'scaned-row';
-        }else {
-            if(index % 2 ===0) {
-                return 'even-row'; 
-            } else {
-                return ''; 
-            }
-        }
-    }
 
     createButtonGroup = () => {
         let buttons = [];
@@ -54,6 +43,7 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        self.setState({loading: true});
         let requestObject = {
             materialLots: materialLots,
             documentId:  doc.name,
@@ -66,9 +56,14 @@ export default class IssueLotOrderScanTable extends EntityScanViewTable {
                     self.props.onSearch();
                 }
                 NoticeUtils.showSuccess();
+            },
+            fail: function () {
+                self.setState({
+                    loading: false
+                });
             }
         }
-        IssueOrderRequest.sendIssueLotRequest(requestObject);
+        IssueOrderRequest.sendIssueMLotByDocRequest(requestObject);
     }
      /**
      * 接收数据不具备可删除等操作

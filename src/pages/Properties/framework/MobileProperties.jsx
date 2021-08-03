@@ -22,7 +22,7 @@ export default class MobileProperties extends EntityScanProperties{
     }
 
     buildTable = () => {
-        let parameters = this.props.match.params;
+        let parameters = this.state.parameters;
         if (!parameters || !parameters.parameter1) {
             return;
         }
@@ -47,9 +47,8 @@ export default class MobileProperties extends EntityScanProperties{
           tableData: [],
           loading: false
         });
-        console.log(this);
         this.form.resetFormFileds();
-      }
+    }
 
     buildButtons = () => {
         let buttons = [];
@@ -88,5 +87,4 @@ export default class MobileProperties extends EntityScanProperties{
           </div>
         );
       }
-
 }

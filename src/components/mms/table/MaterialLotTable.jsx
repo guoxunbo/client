@@ -10,6 +10,9 @@ import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import TableObject from '@api/dto/ui/Table';
 import { ActionType } from '@api/material-lot-manager/MaterialLotManagerRequestBody';
+import NoticeUtils from '@utils/NoticeUtils';
+import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
+import AuthorityButton from '@components/framework/button/AuthorityButton';
 
 const TableName = {
     MLotConsumeAction: "MMLotComsume"
@@ -38,15 +41,33 @@ export default class MaterialLotTable extends EntityListTable {
      */
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createPrintButton());
         buttons.push(this.createConsumeButton());
         buttons.push(this.createExportDataButton());
         return buttons;
     }
 
+    createPrintButton = () => {
+        return <AuthorityButton key="printMLotBtn" name="printMLotBtn" disabled="true" type="primary" className="table-button" icon="icon-barcode" i18NCode={I18NUtils.getClientMessage(i18NCode.BtnPrint)} onClick={this.handlePrint}/>
+
+    }
+
+    handlePrint=()=>{     
+        const selectedObject = this.getSingleSelectedRow();
+        if (!selectedObject) {
+            return;
+        }
+        let requestObject = {
+            materialLot: selectedObject,
+            success: function(responseBody) {
+                NoticeUtils.showSuccess();
+            }
+        }
+        MaterialLotManagerRequest.sendPrintMaterialLotRequest(requestObject);
+    }
+
     createConsumeButton = () => {
-        return <Button key="consume" type="primary" className="table-button" onClick={() => this.handleAction(ActionType.Consume, TableName.MLotConsumeAction)}>
-                        {IconUtils.buildIcon("icon-consume")}  {I18NUtils.getClientMessage(i18NCode.BtnConsume)}
-                    </Button>
+        return <AuthorityButton key="comsumeMLotBtn" name="comsumeMLotBtn" disabled="true" type="primary" className="table-button" icon="icon-consume" i18NCode={I18NUtils.getClientMessage(i18NCode.BtnConsume)} onClick={() => this.handleAction(ActionType.Consume, TableName.MLotConsumeAction)}/>
     }
 
     handleAction = (action, tableName) => {
@@ -85,15 +106,19 @@ export default class MaterialLotTable extends EntityListTable {
         })
     }
     
+    buildOperationColumn = () => {
+        
+    }
+
     /**
      * 物料批次不可更新和删除
      */
-    buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildBarCodeButton(record));
-        operations.push(this.buildQrCodeButton(record));
-        return operations;
-    }
+    // buildOperation = (record) => {
+    //     let operations = [];
+    //     operations.push(this.buildBarCodeButton(record));
+    //     operations.push(this.buildQrCodeButton(record));
+    //     return operations;
+    // }
 
     handlePrintOk = () => {
         this.setState({

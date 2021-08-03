@@ -3,7 +3,10 @@ import IncomingMaterialReceiveScanProperties from "./IncomingMaterialReceiveScan
 import IncomingMaterialReceiveTable from "@components/mms/table/IncomingMaterialReceiveTable";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
 
-//来料单
+/**
+ * 来料接收
+ * 实际接收数量，就是输入的数量
+ */
 export default class IncomingMaterialReceiveProperties extends EntityProperties{
 
     static displayName = 'IncomingMaterialReceiveProperties';

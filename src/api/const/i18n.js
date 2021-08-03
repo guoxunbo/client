@@ -21,6 +21,7 @@ const i18NCode = {
     NewPassword: "NewPassword",
     ConfirmPassword: "ConfirmPassword",
     BasicInfo: "BasicInfo",
+    QueryInfo: "QueryInfo",
     SelectOneRow: "SelectOneRow",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
@@ -110,8 +111,15 @@ const i18NCode = {
     BtnSplit: "BtnSplit",
     SplitQty: "SplitQty",
     MaterialLotId: "MaterialLotId",
-    PleaseInputQty: "PleaseInputTrueQty",
-
+    BtnApprove: "Approve",
+    BtnShip: "Ship",
+    BtnWeigth: 'BtnWeigth',
+    GrossWeightNotNull: 'GrossWeightNotNull',
+    BtnCreate: 'BtnCreate',
+    BtnBathchJudge: 'BtnBathchJudge',
+    PleaseScanAll: 'PleaseScanAll',
+    PleaseInputQueryCondition:"PleaseInputQueryCondition",
+    BtnAutoSeleced:"BtnAutoSeleced",
 }
 
 const i18Messages = {
@@ -213,6 +221,11 @@ const i18Messages = {
     BasicInfo: {
         Chinese: "基础信息",
         English: "BasicInfo",
+        Res: ""
+    },
+    QueryInfo: {
+        Chinese: "查询信息",
+        English: "QueryInfo",
         Res: ""
     },
     Ok: {
@@ -562,7 +575,7 @@ const i18Messages = {
         Res: ""
     },
     ScannedTotalQty:{
-        Chinese: "已扫描总颗数",
+        Chinese: "已扫描总数",
         English: "ScannedTotalQty",
         Res: ""
     },
@@ -641,12 +654,51 @@ const i18Messages = {
         English: "MaterialLotId",
         Res: "" 
     },
-    PleaseInputQty:{
-        Chinese: "请输入正确的数量",
-        English: "Please enter the correct amount",
+    Approve:{
+        Chinese: "审核",
+        English: "Approve",
         Res: "" 
-    }
-    
+    },
+    Ship:{
+        Chinese: "发货",
+        English: "Ship",
+        Res: "" 
+    },
+    BtnWeigth:{
+        Chinese: "称重",
+        English: "Weigth",
+        Res: ""
+    },
+    GrossWeightNotNull:{
+        Chinese: "毛重不能为空",
+        English: "GrossWeight Not Null",
+        Res: ""
+    },
+    BtnCreate:{
+        Chinese: "创建",
+        English: "Create",
+        Res: ""
+    },
+    BtnBathchJudge:{
+        Chinese: "批量判定",
+        English: "BathchJudge",
+        Res: ""
+    },
+    PleaseScanAll:{
+        Chinese: "请扫描所有",
+        English: "please Scan All",
+        Res: ""
+    },
+    PleaseInputQueryCondition:{
+        Chinese: "请输入查询条件",
+        English: "please Input Query Condition",
+        Res: ""
+    },
+    BtnAutoSeleced:{
+        Chinese: "自动挑选",
+        English: "auto seleced",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};

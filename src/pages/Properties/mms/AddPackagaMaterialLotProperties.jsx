@@ -12,6 +12,11 @@ export default class AddPackagaMaterialLotProperties extends EntityDoubleScanPro
 
     static displayName = 'AddPackagaMaterialLotProperties';
     
+    constructor(props) {
+        super(props);
+        this.state = {...this.state, packageType: this.state.parameters.parameter1};
+      }
+
     /**
      * 第二个条件查询之后，检索表格数据中是否含有该数据，如果有则不做任何操作
      *  如果没有则添加数据，并将数据的标志成newFlag
@@ -36,14 +41,15 @@ export default class AddPackagaMaterialLotProperties extends EntityDoubleScanPro
     
     validationPackgeRule(materialLot) {
         let self = this;
-        let {rowKey,tableData} = this.state;
-        let parentMaterialLotId = tableData[0].parentMaterialLotId;
+        let {rowKey,tableData,packageType} = this.state;
+        let boxMaterialLotId = tableData[0].boxMaterialLotId;
         if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
             materialLot.newFlag = true;
             tableData.push(materialLot);
         }
         let requestObject = {
-            packagedMaterialLotId: parentMaterialLotId,
+            packageType: packageType,
+            packagedMaterialLotId: boxMaterialLotId,
             materialLots: tableData,
             success: function() {
                 self.setState({ 

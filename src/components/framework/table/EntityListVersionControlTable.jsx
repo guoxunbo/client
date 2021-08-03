@@ -129,7 +129,7 @@ export default class EntityListVersionControlTable extends EntityListTable {
             }
         }
         let buttonKey = buttonCode;
-        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} key={buttonKey} icon={icon} onClick={() => this.handleUnFrozenOrFrozen(buttonCode)}/>
+        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} name={buttonKey} icon={icon} onClick={() => this.handleUnFrozenOrFrozen(buttonCode)}/>
     }
 
     /**
@@ -154,7 +154,7 @@ export default class EntityListVersionControlTable extends EntityListTable {
             }
         }
         let buttonKey = buttonCode;
-        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} key={buttonKey} icon={icon} onClick={() => this.handleActiveOrInActive(buttonCode)}/>
+        return <AuthorityButton i18NCode={buttonCode} disabled={buttonDisable} name={buttonKey} icon={icon} onClick={() => this.handleActiveOrInActive(buttonCode)}/>
     }
 
 }

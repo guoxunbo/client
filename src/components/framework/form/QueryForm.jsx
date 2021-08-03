@@ -1,9 +1,7 @@
 import { Form, Row, Col, Button, Icon } from 'antd';
 import './QueryForm.scss';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
-import { DateFormatType, SqlType, DataBaseType } from '@api/const/ConstDefine';
 import Field from '@api/dto/ui/Field';
-import moment from 'moment';
 import * as PropTypes from 'prop-types';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
@@ -66,7 +64,9 @@ class QueryForm extends React.Component {
     }
 
     handleSearch = e => {
-        e.preventDefault();
+        if(e){
+            e.preventDefault();
+        }
         var self = this;
         this.props.form.validateFields((err, values) => {
             if (err) {

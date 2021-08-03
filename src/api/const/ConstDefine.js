@@ -13,9 +13,9 @@ const getServerAddress = () => {
     // 默认是local开发地址
     let serverAddress = "http://127.0.0.1:8080";
     if (ENV_MODE === EnvMode.Prod) {
-        serverAddress = "http://10.39.0.53:10010";
+        serverAddress = "http://10.39.0.51:10010";
     } else if (ENV_MODE === EnvMode.Dev) {
-        serverAddress = "http://192.168.36.4:10010";
+        serverAddress = "http://10.39.0.49:10010";
     } else if (ENV_MODE === EnvMode.Test) {
         serverAddress = "http://10.39.0.49:10010";
     }
@@ -97,8 +97,16 @@ const UrlConstant = {
     MateiralLotIqcUrl: ModuleUrlConstant.MMS + "materialLotIQC",
     MMSIssueMLotByDocLineUrl: ModuleUrlConstant.MMS + "issueMLotByDocLine",
     MMSReturnMLotByDocUrl: ModuleUrlConstant.MMS + "returnMLotByDoc",
+    MMSCreateReturnMLotOrderUrl: ModuleUrlConstant.MMS + "createReturnMLotOrder",
+    MateiralLotOqcUrl: ModuleUrlConstant.MMS + "materialLotOQC",
     MMSDeliveryOrderSavetUrl: ModuleUrlConstant.MMS + "createDeliveryOrder",
-    MMSSplitMateraiLotUrl: ModuleUrlConstant.MMS + "splitMateraiLot",
+    MMSSplitMaterialLotUrl: ModuleUrlConstant.MMS + "splitMaterialLot",
+    StandardSplitMLotUrl: ModuleUrlConstant.MMS + "splitStandardMaterialLot",
+    MMSReleaseMateraiLotUrl: ModuleUrlConstant.MMS + "releaseMaterialLot",
+    MMSHoldMateraiLotUrl: ModuleUrlConstant.MMS + "holdMaterialLot",
+    MMSCreateIssueOrderUrl: ModuleUrlConstant.MMS + "createIssueOrder",
+    MMSIssueMaterialByOrderUrl: ModuleUrlConstant.MMS + "issueMaterialManager",
+
     
     //GC
     FinishGoodManageUrl: ModuleUrlConstant.GC + "finishGoodManage",
@@ -119,12 +127,39 @@ const UrlConstant = {
     VCIssueMLotByDocLineUrl: ModuleUrlConstant.VC + "issueMLotByDocLine",
     VCIssueMLotByDocUrl: ModuleUrlConstant.VC + "issueMLotByDoc",
     VCReturnMLotByDocUrl: ModuleUrlConstant.VC + "returnMLotByDoc",
-    VcDeliveryOrderImportUrl: ModuleUrlConstant.VC + "deliveryOrderImport",
+    VCAppendPackMaterialLotsUrl: ModuleUrlConstant.VC + "appendPackMaterialLots",
+    VCFinishGoodReceiveUrl: ModuleUrlConstant.VC + "receiveFinishGood",
+    VCFinishGoodReservedUrl: ModuleUrlConstant.VC + "finishGoodReserved",
+    VCGetPrintBoxParameterUrl: ModuleUrlConstant.VC + "getPrintBoxParameter",
+    VCMaterialLotStockInUrl: ModuleUrlConstant.VC + "stockInFinishGood",
+    VCMaterialLotStockOutUrl: ModuleUrlConstant.VC + "stockOut",
+    VCPackMaterialLotsUrl: ModuleUrlConstant.VC + "packMaterialLots",
+    VCProductManagerUrl: ModuleUrlConstant.VC + "productManager",
+    VCInventoryManagerUrl: ModuleUrlConstant.VC + "inventoryManager",
+    VCGetPrintParameterUrl: ModuleUrlConstant.VC + "printParameterManager",
+    VCPackCheckUrl: ModuleUrlConstant.VC + "packCheckManager",
+    VCUnPackMaterialLotsUrl: ModuleUrlConstant.VC + "unPackMaterialLots",
+    VCWeightMaterialLotUrl: ModuleUrlConstant.VC + "mlotWeight",
+    VCCsvImportManagerUrl: ModuleUrlConstant.VC + "csvImport",
+    VCRawMaterialManagerUrl: ModuleUrlConstant.VC + "rawMaterialManager",
+    VCMateiralLotIqcUrl: ModuleUrlConstant.VC + "materialLotIQC",
+    VCStorageManagerUrl: ModuleUrlConstant.VC + "storageManager",
+    VCStorageImportUrl: ModuleUrlConstant.VC + "storageImport",
+    VCMobileManagerUrl: ModuleUrlConstant.VC + "mobileManager",
+    VCLabMaterialImportUrl: ModuleUrlConstant.VC + "labMaterialImport",
+    VCLabMaterialManagertUrl: ModuleUrlConstant.VC + "labMaterialManager",
+    VCShipOutMLotUrl: ModuleUrlConstant.VC + "shipOut",
+    VCCreateIssueOrderUrl: ModuleUrlConstant.VC + "createIssueOrder",
+    VCIssueLabMLotManagerUrl: ModuleUrlConstant.VC + "issueLabMLotManager",
+    VCPrintExcelManagerUrl: ModuleUrlConstant.VC + "printExcel",
+    VCPartsMaterialManagerUrl: ModuleUrlConstant.VC + "partsMaterialManage",
+    VCQueryOrderManagerUrl: ModuleUrlConstant.VC + "queryOrderManager",
 
 };
 
 const SystemRefListName = {
-    Language: "Language"
+    Language: "Language",
+    ReelStandardQty: "ReelStandardQty"
 };
 
 const RefTableName = {

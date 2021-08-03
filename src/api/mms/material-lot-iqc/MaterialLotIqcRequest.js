@@ -17,4 +17,26 @@ export default class MaterialLotIqcRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendValidationAndGetWaitIQCMLotRequest = (object) => {
+        let requestBody = MaterialLotIqcRequestBody.buildValidationAndGetWaitIqcMLot(object.materialLots);
+        let requestHeader = new MaterialLotIqcRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCMateiralLotIqcUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendBatchIqcRequest = (object) => {
+        let requestBody = MaterialLotIqcRequestBody.buildBatchIqc(object.judgeMLotAndAction);
+        let requestHeader = new MaterialLotIqcRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCMateiralLotIqcUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

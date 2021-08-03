@@ -66,7 +66,7 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
             if (d.newFlag) {
                 waitToPackageLots.push(d);
             } else {
-                packedMaterialLotId = d.parentMaterialLotId;
+                packedMaterialLotId = d.boxMaterialLotId;
             }
         });
         if (waitToPackageLots.length === 0) {
@@ -86,7 +86,7 @@ export default class AddPackMaterialLotTable extends EntityScanViewTable {
                 let materialLotId = responseBody.materialLot.materialLotId;
                 let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
                 NoticeUtils.showSuccess(message);
-                self.handlePrint(responseBody.materialLot);
+                //self.handlePrint(responseBody.materialLot);
             }
         }
         AppendPackageMaterialLotRequest.sendAppendPackMaterialLotsRequest(requestObject)
