@@ -21,6 +21,7 @@ const i18NCode = {
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
+    MaterialLotIdRepeat: "MaterialLotIdRepeat",
     SelectAtLeastTwoRow: "SelectAtLeastTwoRow",
 
     ConfirmDelete: "ConfirmDelete",
@@ -96,6 +97,7 @@ const i18NCode = {
     Operation: "Operation",
     NoMatchingOrder: "NoMatchingOrder",
     ErrorNumber: "ErrorNumber",
+    RepeatScanNumber: "RepeatScanNumber",
     TotalStrokeCount: "TotalStrokeCount",
     TotalNumber : "TotalNumber",
     DataAlreadyExists: "DataAlreadyExists",
@@ -108,6 +110,7 @@ const i18NCode = {
     ThereScanFieldCanOnlyBeOne: "ThereScanFieldCanOnlyBeOne",
     AllBoxWeightMustBeEmpty: "AllBoxWeightMustBeEmpty",
     SearchFieldCannotEmpty: "SearchFieldCannotEmpty",
+    PleaseScanPackageId: "PleaseScanPackageId",
     BoxWeightCannotEmpty: "BoxWeightCannotEmpty",
     WeightMustBeNumber: "WeightMustBeNumber",
     BtnPreview: "Preview",
@@ -588,6 +591,16 @@ const i18Messages = {
         English: "ErrorNumber",
         Res: ""
     },
+    RepeatScanNumber: {
+        Chinese: "重复数",
+        English: "RepeatScanNumber",
+        Res: ""
+    },
+    MaterialLotIdRepeat: {
+        Chinese: "批次条码重复",
+        English: "MaterialLotIdRepeat",
+        Res: ""
+    },
     ErrorNumberMoreThanZero: {
         Chinese: "异常笔数大于0",
         English: "ErrorNumberMoreThanZero",
@@ -651,6 +664,11 @@ const i18Messages = {
     SearchFieldCannotEmpty: {
         Chinese: "查询条件不能为空",
         English: "Scan field cannot empty",
+        Res: ""
+    },
+    PleaseScanPackageId: {
+        Chinese: "请先扫描箱号",
+        English: "Please Scan Package Id",
         Res: ""
     },
     BoxWeightCannotEmpty: {

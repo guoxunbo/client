@@ -21,7 +21,7 @@ export default class GcRawMaterialSpareMLotProperties extends EntityScanProperti
         return <GcRawMaterialSpareMLotTable 
                             orderTable={this.props.spareOrderTable} 
                             rowKey={this.state.rowKey} 
-                            pagination={false} 
+                            pagination={true} 
                             table={this.state.table} 
                             data={this.state.tableData} 
                             unReservedQty={this.state.unReservedQty}

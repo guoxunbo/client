@@ -132,6 +132,10 @@ import GCMobileRawMaterialCheckProperties from './pages/Properties/components/gc
 import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialReceiveProperties';
 import GCRWAttributeChangeProperties from './pages/Properties/components/GCRWAttributeChangeProperties';
 import GCCancelCheckProperties from './pages/Properties/components/GCCancelCheckProperties';
+import GcIRAReceiveStockInProperties from './pages/Properties/components/GcIRAReceiveStockInProperties';
+import GcMobileIRAReceiveStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAReceiveStockInProperties';
+import GcMobileTransferBoxAndStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxAndStockInProperties';
+import GcMobileTransferBoxChangeStorageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxChangeStorageProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -443,6 +447,12 @@ const routerConfig = [
     path: buildPath('/RawMaterial/GCRawMaterialStockInChange'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRawMaterialStockInProperties,
+  },
+  //IRA接收入库
+  {
+    path: buildPath('/GC/IRAReceiveStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcIRAReceiveStockInProperties,
   },
   {
     path: buildPath('RawMaterial/GCRawMaterialScrap'),
@@ -1024,6 +1034,22 @@ const routerConfig = [
     path: buildPath('Mobile/RawMaterialReceive'),
     layout: BlankLayout,
     component: GCMobileRawMaterialReceiveProperties,
+  },
+  //手持端IRA接收入库
+  {
+    path: buildPath('/Mobile/MobileIRAReceiveStockIn'),
+    layout: BlankLayout,
+    component: GcMobileIRAReceiveStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileTransferBoxAndStockIn'),
+    layout: BlankLayout,
+    component: GcMobileTransferBoxAndStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileTransferBoxChangeStorage'),
+    layout: BlankLayout,
+    component: GcMobileTransferBoxChangeStorageProperties,
   },
   {
     path: '*',
