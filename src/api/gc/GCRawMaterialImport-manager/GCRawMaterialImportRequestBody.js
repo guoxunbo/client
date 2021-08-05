@@ -10,6 +10,7 @@ const ActionType = {
     QueryIssueRawMaterialLot: "QueryIssueRawMaterialLot",
     ScrapRawMLotShip: "ScrapRawMLotShip",
     GCUnRawMaterialSpare: "GCUnRawMaterialSpare",
+    MobileRawIssue: "MobileRawIssue",
 }
 
 export default class GCRawMaterialImportRequestBody {
@@ -46,6 +47,12 @@ export default class GCRawMaterialImportRequestBody {
         let body = new GCRawMaterialImportRequestBody(ActionType.RawIssue, materialLotList);
         body.documentLineList = documentLineList;
         body.issueWithDoc = issueWithDoc;
+        return body;
+    }
+
+    static buildMobileRawMaterialIssue(materialLotList, erpTime) {
+        let body = new GCRawMaterialImportRequestBody(ActionType.MobileRawIssue, materialLotList);
+        body.erpTime = erpTime;
         return body;
     }
 
