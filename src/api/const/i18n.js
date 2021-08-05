@@ -18,6 +18,7 @@ const i18NCode = {
     ConfirmDelete: "ConfirmDelete",
     BasicInfo: "BasicInfo",
     SelectOneRow: "SelectOneRow",
+    SelectERPTime: "SelectERPTime",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
     AddAtLeastOneRow: "AddAtLeastOneRow",
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
@@ -195,6 +196,7 @@ const i18NCode = {
     BtnMergeDocLine: "MergeDocLine",
     TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
     OrderTime: "OrderTime",
+    erpCreatedTime: "erpCreatedTime",
     SelectQty: "SelectQty",
     NeedQty: "NeedQty",
     EnterTheRequiredQtyPlease: "EnterTheRequiredQtyPlease",
@@ -319,6 +321,11 @@ const i18Messages = {
     SelectOneRow: {
         Chinese: "请选择一笔记录",
         English: "Please select one row",
+        Res: ""
+    },
+    SelectERPTime: {
+        Chinese: "请选择单据日期",
+        English: "Please select ERP time",
         Res: ""
     },
     SaveFirst: {
@@ -1124,6 +1131,11 @@ const i18Messages = {
     OrderTime: {
         Chinese: "下单时间",
         English: "Order Time",
+        Res: "" 
+    },
+    erpCreatedTime: {
+        Chinese: "单据日期",
+        English: "ERP Created Time",
         Res: "" 
     },
     VenderAddress:{
