@@ -34,7 +34,8 @@ export default class VcMaterialLotInventoryRequest {
         let request = new Request(requestHeader, requestBody, UrlConstant.VCInventoryManagerUrl);
         let requestObject = {
             request: request,
-            success: object.success
+            success: object.success,
+            fail:object.fail
         }
         MessageUtils.sendRequest(requestObject);
     }
@@ -44,7 +45,7 @@ export default class VcMaterialLotInventoryRequest {
      * @param {*} object 
      */
     static sendStockOutSpareMLotRequest = (object) => {
-        let requestBody = VcMaterialLotInventoryRequestBody.buildStockOutSpareMLot(object.formObject);
+        let requestBody = VcMaterialLotInventoryRequestBody.handleStockOutSpareMLot(object.formObject, object.formObject.actionType);
         let requestHeader = new VcMaterialLotInventoryRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.VCInventoryManagerUrl);
         let requestObject = {

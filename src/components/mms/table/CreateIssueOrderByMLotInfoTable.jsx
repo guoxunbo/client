@@ -1,4 +1,5 @@
 import IssueOrderRequest from '@api/issue-order-manager/issue-lot-order/IssueOrderRequest';
+import { i18NCode } from '@const/i18n';
 import I18NUtils from '@utils/I18NUtils';
 import NoticeUtils from '@utils/NoticeUtils';
 import CreateMLotDialog from '../dialog/CreateMLotDialog';

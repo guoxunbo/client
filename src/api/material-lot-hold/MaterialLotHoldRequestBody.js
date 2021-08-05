@@ -1,4 +1,5 @@
 import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import PropertyUtils from "@utils/PropertyUtils";
 
 export default class MaterialLotHoldRequestBody {
 
@@ -12,6 +13,7 @@ export default class MaterialLotHoldRequestBody {
         let materialLotActions = [];
         waitHoldMLotAndAction.forEach(waitHoldMLot => {
             let materialLotAction = new MaterialLotAction();
+            materialLotAction.setActionCode(waitHoldMLotAndAction.actionCode);
             materialLotAction.setActionReason(waitHoldMLotAndAction.actionReason);
             materialLotAction.setActionComment(waitHoldMLotAndAction.actionComment);
             materialLotAction.setMaterialLotId(waitHoldMLot.materialLotId);

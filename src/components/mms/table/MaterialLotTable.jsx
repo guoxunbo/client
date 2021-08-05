@@ -13,9 +13,16 @@ import { ActionType } from '@api/material-lot-manager/MaterialLotManagerRequestB
 import NoticeUtils from '@utils/NoticeUtils';
 import MaterialLotManagerRequest from '@api/material-lot-manager/MaterialLotManagerRequest';
 import AuthorityButton from '@components/framework/button/AuthorityButton';
+import PrintMLotDialog from '../dialog/PrintMLotDialog';
+import { Loading } from '@alifd/next';
 
 const TableName = {
-    MLotConsumeAction: "MMLotComsume"
+    MLotConsumeAction: "MMLotComsume",
+    MMPrintMLot: "MMPrintMLot",
+}
+const validationPrintFlag = {
+    Y:"true",
+    N:"false"
 }
 export default class MaterialLotTable extends EntityListTable {
 
@@ -32,7 +39,10 @@ export default class MaterialLotTable extends EntityListTable {
                                                             okText={this.state.okText} onOk={this.handlePrintOk} onCancel={this.handleCancelPrint} />);                                   
         
         children.push(<MaterialLotActionDialog key={MaterialLotActionDialog.displayName} ref={this.formRef} object={this.state.materialLotAction} visible={this.state.materialLotActionVisible} 
-                        action={this.state.action} table={this.state.materialLotActionTable} onOk={this.handleActionOk} onCancel={this.handleCancelAction} />);                                   
+                        action={this.state.action} table={this.state.materialLotActionTable} onOk={this.handleActionOk} onCancel={this.handleCancelAction} />); 
+        
+       children.push(<PrintMLotDialog key={PrintMLotDialog.displayName} ref={this.formRef} object={this.state.printMLotAction} visible={this.state.printMLotActionVisible} 
+                        validationPrintFlag={this.state.validationPrintFlag} table={this.state.printMLotActionTable} onOk={this.handlePrintMLotOK} onCancel={this.handleCancelPrintMLot} />);                                                                     
         return children;
     }
 
@@ -42,28 +52,41 @@ export default class MaterialLotTable extends EntityListTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createPrintButton());
+        buttons.push(this.createAdvancedPrintButton());
         buttons.push(this.createConsumeButton());
         buttons.push(this.createExportDataButton());
         return buttons;
     }
 
     createPrintButton = () => {
-        return <AuthorityButton key="printMLotBtn" name="printMLotBtn" disabled="true" type="primary" className="table-button" icon="icon-barcode" i18NCode={I18NUtils.getClientMessage(i18NCode.BtnPrint)} onClick={this.handlePrint}/>
+        return <AuthorityButton key="printMLotBtn" name="printMLotBtn" disabled="true" type="primary" className="table-button" icon="icon-barcode" i18NCode={I18NUtils.getClientMessage(i18NCode.BtnPrint)} onClick={()=>this.handlePrint(validationPrintFlag.Y)}/>
 
     }
 
-    handlePrint=()=>{     
+    createAdvancedPrintButton = () => {
+        return <AuthorityButton key="AdvancedPrintMLotBtn" name="AdvancedPrintMLotBtn" disabled="true" type="primary" className="table-button" icon="icon-barcode" i18NCode={I18NUtils.getClientMessage(i18NCode.BtnAdvancedPrint)} onClick={()=>this.handlePrint(validationPrintFlag.N)}/>
+
+    }
+
+    handlePrint=(validationPrintFlag)=>{     
         const selectedObject = this.getSingleSelectedRow();
         if (!selectedObject) {
             return;
         }
+        let self = this;
         let requestObject = {
-            materialLot: selectedObject,
+            name: TableName.MMPrintMLot,
             success: function(responseBody) {
-                NoticeUtils.showSuccess();
+                let printMLotAction = TableObject.buildDefaultModel(responseBody.table.fields, selectedObject);
+                self.setState({
+                        printMLotAction: printMLotAction,
+                        validationPrintFlag: validationPrintFlag,
+                        printMLotActionTable: responseBody.table,
+                        printMLotActionVisible: true,
+                });
             }
         }
-        MaterialLotManagerRequest.sendPrintMaterialLotRequest(requestObject);
+        TableManagerRequest.sendGetByNameRequest(requestObject);
     }
 
     createConsumeButton = () => {
@@ -106,6 +129,19 @@ export default class MaterialLotTable extends EntityListTable {
         })
     }
     
+    handlePrintMLotOK = () => {
+        this.setState({
+            printMLotActionVisible: false,
+            loading: false
+        })
+        NoticeUtils.showSuccess();
+    }
+    handleCancelPrintMLot = () => {
+        this.setState({
+            printMLotActionVisible: false
+        })
+    }
+
     buildOperationColumn = () => {
         
     }
@@ -116,7 +152,7 @@ export default class MaterialLotTable extends EntityListTable {
     // buildOperation = (record) => {
     //     let operations = [];
     //     operations.push(this.buildBarCodeButton(record));
-    //     operations.push(this.buildQrCodeButton(record));
+    //     operations.push(this.buildQrCodeButton(record));      
     //     return operations;
     // }
 

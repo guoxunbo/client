@@ -138,7 +138,6 @@ export default class MaterialLotReleaseTable extends EntityListTable{
     }
 
     releaseMLot =() => {
-        debugger;
         let selectedRows = this.getSelectedRows();
         if(selectedRows.length == 0){
             return;

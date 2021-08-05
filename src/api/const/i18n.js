@@ -120,6 +120,11 @@ const i18NCode = {
     PleaseScanAll: 'PleaseScanAll',
     PleaseInputQueryCondition:"PleaseInputQueryCondition",
     BtnAutoSeleced:"BtnAutoSeleced",
+    BtnAdvancedPrint: "BtnAdvancedPrint",
+    ScanedAtLeastOneRow: "ScanedAtLeastOneRow",
+    BtnRePrint: "RePrint",
+    BtnSync: "Sync",
+
 }
 
 const i18Messages = {
@@ -699,6 +704,26 @@ const i18Messages = {
         English: "auto seleced",
         Res: ""
     },
+    BtnAdvancedPrint:{
+        Chinese: "高级打印",
+        English: "Advanced Print",
+        Res: ""
+    },
+    ScanedAtLeastOneRow: {
+        Chinese: "请选择至少扫描一条记录",
+        English: "Please scaned at least one row",
+        Res: ""
+    },
+    RePrint: {
+        Chinese: "补打",
+        English: "RePrint",
+        Res: ""
+    },
+    Sync: {
+        Chinese: "同步",
+        English: "Sync",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};

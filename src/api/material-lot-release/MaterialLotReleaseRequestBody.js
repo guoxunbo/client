@@ -15,7 +15,6 @@ export default class MaterialLotReleaseRequestBody {
     }
     
     static buildReleaseMaterialLot(waitReleaseMLotAndAction){
-        debugger;
         let materialLotHolds = [];
         waitReleaseMLotAndAction.forEach(waitReleaseMLot => {
             materialLotHolds.push(waitReleaseMLot); 

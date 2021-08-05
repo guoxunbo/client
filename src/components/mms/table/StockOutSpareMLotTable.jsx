@@ -5,9 +5,8 @@ import { Button } from 'antd';
 import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import IconUtils from '@api/utils/IconUtils';
-import VcMaterialLotInventoryRequest from '@api/vc/material-lot-inventory-manager/VcMaterialLotInventoryRequest';
-import NoticeUtils from '@utils/NoticeUtils';
 import StockOutSpareMLotDialog from '../dialog/StockOutSpareMLotDialog';
+import { actionType } from '@api/vc/material-lot-inventory-manager/VcMaterialLotInventoryRequestBody';
 
 export default class StockOutSpareMLotTable extends EntityListTable {
 
@@ -25,44 +24,33 @@ export default class StockOutSpareMLotTable extends EntityListTable {
 
     createForm = () => {
         return  <StockOutSpareMLotDialog key={StockOutSpareMLotDialog.displayName} ref={this.formRef} object={this.state.formObject} visible={this.state.formVisible} 
-                                            table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
+                                            table={this.state.table} onOk={this.handleOk.bind(this)} onCancel={this.handleCancel}/>
     }
 
     createStockOutButton = () => {
-        return <Button key="pick" type="primary" className="table-button" onClick={this.handleStockOut}>
+        return <Button key="pick" type="primary" className="table-button" onClick={() => this.handleStockOut(actionType.StockOutPartsMLotByOrder)}>
                         {IconUtils.buildIcon("icon-lingliao")}{I18NUtils.getClientMessage(i18NCode.BtnStockOut)}
                     </Button>
     }
     
-    handleStockOut = () => {
+    handleStockOut = (action) => {
         let selectedRows = this.getSingleSelectedRow();
         let self = this;
         if (!selectedRows) {
             return;
         }
+        selectedRows.actionType = action;
         self.setState({
             formObject: selectedRows,
-            formVisible: true
+            formVisible: true,
         });
-        
+    }
 
-        // let selectedRows = this.getScanedRows();
-        // if (selectedRows.length == 0) {
-        //     return;
-        // }
-        // let documentLine = this.props.orderTable.getSingleSelectedRow();
-        // if (!documentLine) {
-        //     return;
-        // }
-
-        // let object ={
-        //     docId: documentLine.docId,
-        //     materialLots: selectedRows,
-        //     success: function(responseBody) {
-        //         NoticeUtils.showSuccess();
-        //     }
-        // }
-        // VcMaterialLotInventoryRequest.sendStockOutSpareMLotRequest(object);
+    handleOk = () =>{
+        this.setState({
+            formVisible : false,
+        });
+        this.props.queryData();
     }
 
 

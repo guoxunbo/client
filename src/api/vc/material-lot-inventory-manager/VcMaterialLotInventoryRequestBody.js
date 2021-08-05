@@ -5,8 +5,10 @@ import PropertyUtils from "@utils/PropertyUtils";
 const actionType = {
     Picks: "Picks",
     GetStockOutMLotByOrder:"GetStockOutMLotByOrder",
-    CheckInventory:"checkInventory",
-    StockOutPartsMlot:"StockOutPartsMlot",
+    CheckInventory:"CheckInventory",
+    StockOutPartsMLot:"StockOutPartsMLot",
+    StockOutPartsMLotByOrder:"StockOutPartsMLotByOrder",
+
     ReturnPartsWarehouse: "ReturnPartsWarehouse",
     CreateParts2Warehouse: "CreateParts2Warehouse",
 
@@ -55,9 +57,9 @@ export default class VcMaterialLotInventoryRequestBody {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
-            materialLotAction.setMaterialLotId(materialLot.materialLot);
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotAction.setTransQty(materialLot.actualQty)
-            materialLotAction.setFromWarehouseRrn(materialLot.lastWarehouseId);
+            materialLotAction.setFromWarehouseRrn(materialLot.lastWarehouseRrn);
             materialLotAction.setFromStorageRrn(materialLot.lastStorageRrn);
             materialLotActions.push(materialLotAction);
         });
@@ -79,21 +81,29 @@ export default class VcMaterialLotInventoryRequestBody {
         return new VcMaterialLotInventoryRequestBody(actionType.CreateParts2Warehouse, materialLot, materialLotActions);
     }
 
-    /**
-    * 备品备件 出库
-    * 出库扣库存
-    * @param {*} object 
-    * @returns 
-    */
-    static buildStockOutSpareMLot(formObject) {
-        let materialLotActions = [];
-        let materialLotAction = new MaterialLotAction();
-        materialLotAction.setTransQty(formObject.transQty);
-        materialLotActions.push(materialLotAction);
-       
-        let documentId = formObject.docId;
-        return new VcMaterialLotInventoryRequestBody(actionType.StockOutPartsMlot, undefined, materialLotActions, documentId);
+    static handleStockOutSpareMLot(formObject, action){
+        if(actionType.StockOutPartsMLot == action){
+            //备件出库
+            let materialLotActions = [];
+            let materialLotAction = new MaterialLotAction();
+            PropertyUtils.copyProperties(formObject, materialLotAction);
+            materialLotActions.push(materialLotAction);
+        
+            let materialLot = new MaterialLot();
+            PropertyUtils.copyProperties(formObject, materialLot);
+            return new VcMaterialLotInventoryRequestBody(actionType.StockOutPartsMLot, materialLot, materialLotActions, undefined);
+        }else if(actionType.StockOutPartsMLotByOrder == action){
+            //备件出库 by单据
+            let materialLotActions = [];
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setTransQty(formObject.transQty);
+            materialLotActions.push(materialLotAction);
+        
+            let documentId = formObject.docId;
+            return new VcMaterialLotInventoryRequestBody(actionType.StockOutPartsMLotByOrder, undefined, materialLotActions, documentId);
+        }
     }
+
 
     /**
      * 备品备件 退料入库
@@ -111,3 +121,4 @@ export default class VcMaterialLotInventoryRequestBody {
         return new VcMaterialLotInventoryRequestBody(actionType.ReturnPartsWarehouse, materialLot, materialLotActions);
     }
 }
+export {actionType};

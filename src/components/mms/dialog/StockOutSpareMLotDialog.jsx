@@ -11,9 +11,7 @@ export default class StockOutSpareMLotDialog extends EntityDialog {
             formObject: formObject,
             success: function(responseBody) {
                 if (self.props.onOk) {
-                    formObject.unHandledQty = formObject.unHandledQty - formObject.transQty;
-                    formObject.handledQty = formObject.handledQty + formObject.transQty;
-                    self.props.onOk(formObject);
+                    self.props.onOk();
                 }
             }
         };

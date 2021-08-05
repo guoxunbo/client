@@ -56,7 +56,7 @@ import CreateReturnLotOrderProperties from '@pages/Properties/mms/CreateReturnLo
 import ReturnLotOrderProperties from '@pages/Properties/mms/ReturnLotOrderProperties';
 import SpareMaterialProperties from '@pages/Properties/mms/SpareMaterialProperties';
 import StockOutSpareMLotProperties from '@pages/Properties/mms/StockOutSpareMLotProperties';
-import UseSpareMLotProperties from '@pages/Properties/mms/UseSpareMLotProperties';
+import ScrapSpareMaterialInventoryProperties from '@pages/Properties/mms/ScrapSpareMaterialInventoryProperties';
 import DocQueryManagerProperties from '@pages/Properties/mms/DocQueryManagerProperties';
 
 //gc
@@ -112,6 +112,14 @@ import MaterialLot from '@api/dto/mms/MaterialLot';
 import VcCheckProperties from '@pages/Properties/vc/VcCheckProperties';
 import ImportPartsMLotProperties from '@pages/Properties/mms/ImportPartsMLotProperties';
 import ReturnOrderProperties from '@pages/Properties/mms/ReturnOrderProperties';
+import EntityTreeProperties from '@pages/Properties/framework/EntityTreeProperties';
+import SpareMaterialInventoryProperties from '@pages/Properties/mms/SpareMaterialInventoryProperties';
+import VcPrintRYBoxLabelProperties from '@pages/Properties/vc/VcPrintRYBoxLabelProperties';
+import VcCheckByOrderProperties from '@pages/Properties/vc/VcCheckByOrderProperties';
+import VcQCApprovalProperties from '@pages/Properties/vc/VcQCApprovalProperties';
+import EntityScanProperties from '@pages/Properties/framework/EntityScanProperties';
+import CreateDeptReturnProperties from '@pages/Properties/mms/CreateDeptReturnProperties';
+import DeptReturnLotOrderProperties from '@pages/Properties/mms/DeptReturnLotOrderProperties';
 
 
 /**
@@ -324,6 +332,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
   },
+  {
+    path: buildPath('MQC/QCApprovalManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcQCApprovalProperties,
+  },
   //MES成品接收
   {
     path: buildPath('MMS/MESFinishGoodManager'),
@@ -407,6 +420,11 @@ const routerConfig = [
     path: buildPath('Pack/PrintCaseLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: VcPrintCaseLabelProperties,
+  },
+  {
+    path: buildPath('Pack/PrintRYBoxLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcPrintRYBoxLabelProperties,
   },
 
   //RMS
@@ -725,16 +743,6 @@ const routerConfig = [
     component: SpareMaterialProperties,
   },
   {
-    path: buildPath('MMS/PartsMLotInventoryManager'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: MaterialLotInventoryProperties,
-  },
-  {
-    path: buildPath('MMS/ScrapPartsMLot'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: UseSpareMLotProperties,
-  },
-  {
     path: buildPath('MMS/PartsMLotHisManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
@@ -744,11 +752,50 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: StockOutSpareMLotProperties,
   },
-
+  {
+    path: buildPath('MMS/PartsMaterialInventory'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: SpareMaterialInventoryProperties,
+  },
+  {
+    path: buildPath('MMS/ScrapPartsMaterialInventory'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: ScrapSpareMaterialInventoryProperties,
+  },
+  {
+    path: buildPath('MMS/PartsWarehouseManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  {
+    path: buildPath('WMS/CheckByOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcCheckByOrderProperties,
+  },
   {
     path: buildPath('MMS/DocQueryManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: DocQueryManagerProperties,
+  },
+  {
+    path: buildPath('MMS/CreateDeptReturn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CreateDeptReturnProperties,
+  },
+  {
+    path: buildPath('MMS/DeptReturnMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: DeptReturnLotOrderProperties,
+  },
+  {
+    path: buildPath('Monitoring/InterfaceHisManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityHistoryProperties,
+  },
+  {
+    path: buildPath('Monitoring/InterfaceFailManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   {
     path: '*',

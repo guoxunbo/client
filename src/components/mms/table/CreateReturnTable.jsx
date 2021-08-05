@@ -1,4 +1,4 @@
-import { Button } from '@alifd/next';
+import { Button } from 'antd';
 import ReturnLotOrderRequest from '@api/return-material-manager/ReturnLotOrderRequest';
 import EntityListTable from '@components/framework/table/EntityListTable';
 import { i18NCode } from '@const/i18n';
@@ -20,17 +20,27 @@ export default class CreateReturnTable extends EntityListTable {
     }
 
     createButtonGroup = () => {
-        return(<Button key="CreatePickOrder" type="primary" loading={this.state.loading} icon ="file-excel" onClick={this.CreateReturnOrder}>
+        let buttons = [];
+        buttons.push(this.creatReturnButton());
+        return buttons;
+    }
+
+    creatReturnButton = () => {
+        return <Button key="CreateReturnOrder" type="primary" className="table-button" icon="dropbox" onClick={this.CreateReturnOrder} loading={this.state.loading}>
                         {I18NUtils.getClientMessage(i18NCode.BtnCreate)}
-                </Button>)
+                    </Button>
     }
 
     CreateReturnOrder = () =>{
         let self = this ;
         let {data} = self.state;
+        if(data.length == 0){
+            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
         let nullReturnQtyFlag = false;
         data.map((d, index)=>{
-            if(d.reservedQty == null){
+            if(d.transQty == null){
                 nullReturnQtyFlag = true;
             }
         })

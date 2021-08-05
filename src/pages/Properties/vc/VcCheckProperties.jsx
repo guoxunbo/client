@@ -34,6 +34,9 @@ export default class VcCheckProperties extends EntityScanProperties{
          if (queryField.name === "lastWarehouseId") {
             this.warehouseEnterEvent(queryField, whereClause);
          }
+         if (queryField.name === "materialName") {
+            this.warehouseEnterEvent(queryField, whereClause);
+         }
 
          if (queryField.name === "materialLotId") {
             this.mLotIdEnterEvent(queryField);
@@ -46,8 +49,8 @@ export default class VcCheckProperties extends EntityScanProperties{
 
       warehouseEnterEvent = (queryField, whereClause)=>{
          let self = this;
-         let lastWarehouseId = self.form.props.form.getFieldValue(queryField.name);
-         if(!lastWarehouseId){
+         let queryFieldName = self.form.props.form.getFieldValue(queryField.name);
+         if(!queryFieldName){
             return;
          }
          let requestObject = {
@@ -64,6 +67,7 @@ export default class VcCheckProperties extends EntityScanProperties{
          TableManagerRequest.sendGetDataByRrnRequest(requestObject);
          self.form.props.form.setFieldsValue({
             lastWarehouseId:"",
+            materialName: ""
          });
          document.getElementById("materialLotId").focus();
       }
@@ -92,8 +96,10 @@ export default class VcCheckProperties extends EntityScanProperties{
                 mLot.scanedFlag = true;
                 if(mLot.currentQty != actualQty){
                   mLot.errorFlag = true;
+                }else{
+                  mLot.errorFlag = false;
                 }
-            }else if (mLot.materialLotId != objectFrom.materialLotId && mLot.errorFlag ){
+            }else if (mLot.materialLotId != objectFrom.materialLotId && mLot.errorFlag){
                showData.unshift(mLot);
 
             }else {

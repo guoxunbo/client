@@ -21,10 +21,6 @@ export default class MLotBatchJudgeIqcDialog extends EntityDialog {
 
         MaterialLotIqcRequest.sendBatchIqcRequest(object);
     }
-
-    buildForm = () => {
-        return <WrappedAdvancedEntityForm ref={(form) => this.entityForm = form} tableRrn={this.props.tableRrn} object={this.props.object} table={this.props.table} entityViewFlag={true}/>
-    }
 }
 
  

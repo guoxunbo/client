@@ -81,7 +81,15 @@ class PrintReturnOrderForm extends EntityForm {
                             {trArr}
                         </tbody>
                     </table>
-
+                    <table border="0" width="100%">
+                            <tr><td colspan="2">&nbsp;</td></tr>
+                            <tr>
+                                <td style={styles.tdFontSize}>制单人:{document.createdBy}</td>
+                                <td style={styles.tdFontSize}>审核人:</td>
+                                <td style={styles.tdFontSize}>领料人:</td>
+                                <td style={styles.tdFontSize}>发料人:</td>
+                            </tr>                    
+                        </table>
                 </div>
         )}
 }

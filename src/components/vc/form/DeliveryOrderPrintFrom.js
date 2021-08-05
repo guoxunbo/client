@@ -68,6 +68,7 @@ class DeliveryOrderPrintFrom extends EntityForm {
                                 <th colSpan = "2" style={styles.tdFontSize}>关务手册号</th> <th colSpan = "2" style={styles.tdFontSize} align ="left">{recordData.reserved9}</th>
                             </tr>
                             <tr> <th colSpan = "8" style={styles.tdFontSize}>物流相关信息</th> </tr>
+                            <tr> <th colSpan = "2" style={styles.tdFontSize}>PK类型  </th>   <th colSpan = "6" style={styles.tdFontSize} align ="left"></th></tr>
                             <tr> <th colSpan = "2" style={styles.tdFontSize}>承运人  </th>   <th colSpan = "6" style={styles.tdFontSize} align ="left">{recordData.reserved7}</th></tr>
                             <tr> <th colSpan = "2" style={styles.tdFontSize}>物流信息</th>   <th colSpan = "6" style={styles.tdFontSize} align ="left">{recordData.reserved8}</th></tr>
                             <tr> <th colSpan = "8" style={styles.tdFontSize}>具体要求</th> </tr>

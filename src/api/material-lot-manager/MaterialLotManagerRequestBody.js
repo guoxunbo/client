@@ -13,6 +13,12 @@ export default class MaterialLotManagerRequestBody {
 
     actionType;
     material;
+    materialLotAction;
+    validationPrintFlag;
+
+    setValidationPrintFlag(validationPrintFlag){
+        this.validationPrintFlag = validationPrintFlag;
+    }
 
     constructor(actionType, materialLot, materialLotAction){
         this.actionType = actionType;
@@ -33,10 +39,16 @@ export default class MaterialLotManagerRequestBody {
         return new MaterialLotManagerRequestBody(ActionType.Receive2Warehouse, materialLot, materialLotAction);
     }
 
-    static buildPrintMLot(formObject) {
+    static buildPrintMLot(formObject, validationPrintFlag) {
         let materialLot = new MaterialLot();
         PropertyUtils.copyProperties(formObject, materialLot);
-        return new MaterialLotManagerRequestBody(ActionType.Print, materialLot);
+
+        let materialLotAction = new MaterialLotAction();
+        PropertyUtils.copyProperties(formObject, materialLotAction);
+
+        let requestBody = new MaterialLotManagerRequestBody(ActionType.Print, materialLot, materialLotAction);
+        requestBody.setValidationPrintFlag(validationPrintFlag);
+        return requestBody;
     }
 
     /**

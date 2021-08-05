@@ -32,7 +32,10 @@ const DisplayType = {
     //单选
     radio: "radio",
     //文件
-    file: "file"
+    file: "file",
+    //超链接跳转
+    link:"link",
+    
 }
 
 const NumberType = [DisplayType.int, DisplayType.double];
@@ -189,6 +192,14 @@ export default class Field {
         return columnRender;
     }
 
+    buildLinkColumnRender(columnValue, record, index){
+        let columnRender = [];
+        if (columnValue) {
+            columnRender.push(<a href={columnValue} target="_blank" rel="noopener noreferrer">{columnValue}</a>)
+        }
+        return columnRender;
+    }
+
     buildColumn() {
         if (this.displayFlag && this.mainFlag) {
             // 文本靠左 数字靠右
@@ -202,11 +213,17 @@ export default class Field {
                 aligin = Aligin.center;
                 columnRender = (columnValue, record, index) => this.buildBooleanColumnRender(columnValue)
             }
-            // 当columnName是fileName的时候，直接就是超链接
+            // 当columnName是file的时候，上传或下载文件
             if (DisplayType.file === this.displayType) {
                 aligin = Aligin.center;
                 columnRender = (columnValue, record, index) => this.buildFileColumnRender(columnValue, record, index);
             }
+            //当columnName是link的时候，直接就是超链接
+            if (DisplayType.link === this.displayType) {
+                aligin = Aligin.center;
+                columnRender = (columnValue, record, index) => this.buildLinkColumnRender(columnValue, record, index);
+            }
+
             let column = {
                 key: this.name,
                 title: this.title,
@@ -248,7 +265,7 @@ export default class Field {
      */
     buildControl(edit, query, initialValue, onBlur, onPressEnter) {
         this.buildDisabled(edit, query);
-        if (this.displayType == DisplayType.text || this.displayType == DisplayType.file) {
+        if (this.displayType == DisplayType.text || this.displayType == DisplayType.file || this.displayType == DisplayType.link) {
             return <Input ref={node => (this.node = node)} onBlur={onBlur} onPressEnter={e => onPressEnter ? onPressEnter(e, this) : undefined} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.int) {
             return <InputNumber onBlur={onBlur} min={this.minValue} disabled={this.disabled}/>;
