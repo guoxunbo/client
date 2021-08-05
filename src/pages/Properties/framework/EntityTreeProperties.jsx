@@ -41,7 +41,7 @@ export default class EntityTreeProperties extends EntityProperties{
     }
 
     buildTable = () => {
-        return <EntityListTable {...this.getTableProps()}  />
+        return <EntityListTable {...this.getTableTreeProps()}  />
     }
 
 }

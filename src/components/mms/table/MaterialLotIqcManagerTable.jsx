@@ -36,7 +36,7 @@ export default class MaterialLotIqcManagerTable extends EntityListCheckTable{
     getRowSelection = (selectedRowKeys) => {
         const rowSelection = {
             columnWidth: Application.table.checkBox.width,
-            fixed: false,
+            fixed:true,
             selectedRowKeys,
             onChange: (selectedRowKeys, selectedRows) => {
                 //让选择框失效

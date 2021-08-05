@@ -10,6 +10,7 @@ import IconUtils from '@api/utils/IconUtils';
 import TransferMLotInventoryDialog from '@components/mms/dialog/TransferMLotInventoryDialog';
 import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
 import CheckMLotInventoryDialog from '@components/mms/dialog/CheckMLotInventoryDialog';
+import AuthorityButton from '@components/framework/button/AuthorityButton';
 
 const TableName = {
     MLotTransferInventory: "MMLotTransferInv",
@@ -71,9 +72,11 @@ export default class MaterialLotInventoryTable extends EntityListTable {
     }
 
     createTransferInvButton = () => {
-        return <Button key="transferInv" type="primary" className="table-button" onClick={this.handleTransferMLotInv}>
-                        {IconUtils.buildIcon("icon-zhongzhuanku")} {I18NUtils.getClientMessage(i18NCode.BtnStockTransfer)}
-                    </Button>
+        return <AuthorityButton key="MLotInvTransferInv" name="MLotInvTransferInv" 
+                        disabled="true" type="primary" className="table-button" icon="icon-zhongzhuanku" 
+                        i18NCode={I18NUtils.getClientMessage(i18NCode.BtnStockTransfer)} 
+                        onClick={this.handleTransferMLotInv}/>
+
     }
 
     handleTransferMLotInv = () => {
@@ -111,9 +114,11 @@ export default class MaterialLotInventoryTable extends EntityListTable {
     }
 
     createPickButton = () => {
-        return <Button key="pick" type="primary" className="table-button" onClick={this.handlePick}>
-                        {IconUtils.buildIcon("icon-lingliao")}{I18NUtils.getClientMessage("下架")}
-                    </Button>
+        return <AuthorityButton key="MLotInvPick" name="MLotInvPick" 
+                    disabled="true" type="primary" className="table-button" icon="icon-lingliao" 
+                    i18NCode={I18NUtils.getClientMessage("下架")} 
+                    onClick={this.handlePick}/>
+
     }
     
     /**
@@ -144,9 +149,10 @@ export default class MaterialLotInventoryTable extends EntityListTable {
     }
 
     buildCheckButton = (record) => {
-        return <Button key="check" style={{marginRight:'1px'}} onClick={() => this.handleCheck(record)} size="small" href="javascript:;">
-                     {IconUtils.buildIcon("icon-pandian")}
-                </Button>;
+        return <AuthorityButton key="MLotInvCheck" name="MLotInvCheck" 
+                    disabled="true" type="primary" 
+                    icon="icon-pandian" size="small"
+                    onClick={() => this.handleCheck(record)}/>
     }
 
     /**

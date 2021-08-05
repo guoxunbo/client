@@ -1,14 +1,22 @@
 import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import PropertyUtils from "@utils/PropertyUtils";
 
 const actionType ={ 
     PackageMLot: "PackageMLot",
     PrintPackageMLot: "PrintPackageMLot",
+    PrintRYBoxMLot: "PrintRYBoxMLot",
 }
 export default class PackageMaterialLotRequestBody {
 
+    actionType;
     materialLotActions;
     packageType;
     materialLotId;
+    validationPrintFlag
+
+    setValidationPrintFlag(validationPrintFlag){
+        this.validationPrintFlag = validationPrintFlag;
+    }
 
     constructor(actionType, materialLotActions, packageType, materialLotId) {
         this.actionType = actionType;
@@ -31,7 +39,25 @@ export default class PackageMaterialLotRequestBody {
         return new PackageMaterialLotRequestBody(actionType.PackageMLot, materialLotActions, packageType);
     }
 
-    static buildPrintPackageMLot(materialLotId) {
-        return new PackageMaterialLotRequestBody(actionType.PrintPackageMLot, undefined, undefined, materialLotId);
+    static buildPrintPackageMLot(materialLotId, materialLotAction, validationPrintFlag) {
+        let materialLotActions = [];
+        let action = new MaterialLotAction();
+        PropertyUtils.copyProperties(materialLotAction, action)
+        materialLotActions.push(action);
+
+        let packageMaterialLotRequestBody = new PackageMaterialLotRequestBody(actionType.PrintPackageMLot, materialLotActions, undefined, materialLotId);
+        packageMaterialLotRequestBody.setValidationPrintFlag(validationPrintFlag);
+        return packageMaterialLotRequestBody;
+    }
+
+    static buildPrintRYBoxMLot(materialLotId, materialLotAction, validationPrintFlag) {
+        let materialLotActions = [];
+        let action = new MaterialLotAction();
+        PropertyUtils.copyProperties(materialLotAction, action)
+        materialLotActions.push(action);
+
+        let packageMaterialLotRequestBody = new PackageMaterialLotRequestBody(actionType.PrintRYBoxMLot, materialLotActions, undefined, materialLotId);
+        packageMaterialLotRequestBody.setValidationPrintFlag(validationPrintFlag);
+        return packageMaterialLotRequestBody;
     }
 }

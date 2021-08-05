@@ -4,6 +4,11 @@ import VcMaterialLotInventoryRequest from '@api/vc/material-lot-inventory-manage
 /**
  * 接收/退料 备品备件
  */
+const PartsMaterialAction = {
+    Create:"Create",
+    Return:"Return",
+    Scrap:"Scrap"
+}
 export default class ReceiveSpareMaterialDialog extends EntityDialog {
     static displayName = 'ReceiveSpareMaterialDialog';
 
@@ -17,14 +22,16 @@ export default class ReceiveSpareMaterialDialog extends EntityDialog {
                 }
             }
         };
+        let action = this.props.partMaterialAction;
+        if(PartsMaterialAction.Create == action){
 
-        let receiveFlag = this.props.receiveFlag;
-        if(receiveFlag){
             VcMaterialLotInventoryRequest.sendCreateSpareMaterialLotRequest(object);
-        }else{
+        }else if(PartsMaterialAction.Return == action){
+
             VcMaterialLotInventoryRequest.sendReturnSpareMaterialLotRequest(object);
+        }else if(PartsMaterialAction.Scrap == action){
+            
+            VcMaterialLotInventoryRequest.sendCreateSpareMaterialLotRequest(object);
         }
     }
 }
-
-

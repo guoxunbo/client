@@ -17,7 +17,6 @@ export default class VcCheckTable extends EntityScanViewTable {
                 return ''; 
             }
         }
-        
     };
 
     handleCheck = () => {
@@ -26,6 +25,9 @@ export default class VcCheckTable extends EntityScanViewTable {
         let requestObject = {
             materialLots: scanedMaterialLots,
             success: function() {
+                self.refreshDelete(scanedMaterialLots);
+            },
+            fail: function(){
                 self.refreshDelete(scanedMaterialLots);
             }
         }

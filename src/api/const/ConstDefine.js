@@ -11,6 +11,7 @@ const EnvMode = {
  */
 const getServerAddress = () => {
     // 默认是local开发地址
+    //let serverAddress = "http://172.31.8.85:8080";
     let serverAddress = "http://127.0.0.1:8080";
     if (ENV_MODE === EnvMode.Prod) {
         serverAddress = "http://10.39.0.51:10010";
@@ -154,7 +155,7 @@ const UrlConstant = {
     VCPrintExcelManagerUrl: ModuleUrlConstant.VC + "printExcel",
     VCPartsMaterialManagerUrl: ModuleUrlConstant.VC + "partsMaterialManage",
     VCQueryOrderManagerUrl: ModuleUrlConstant.VC + "queryOrderManager",
-
+    VCSyncERPMaterialLot: ModuleUrlConstant.VC + "syncERPMaterialLot",
 };
 
 const SystemRefListName = {

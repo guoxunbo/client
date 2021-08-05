@@ -8,6 +8,7 @@ const actionType = {
 
     GetBoxParameter: "GetBoxParameter",
     GetPKListParameter: "GetPKListParameter",
+    GetRYBoxParameter: "GetRYBoxParameter",
 }
 
 export default class VcPrintParameterRequestBody {
@@ -47,6 +48,9 @@ export default class VcPrintParameterRequestBody {
     static buildGetBoxParameter(materialLotId) {
         return new VcPrintParameterRequestBody(actionType.GetBoxParameter, undefined, materialLotId);
     }
-
+    
+    static buildGetRYBoxParameter(materialLotId) {
+        return new VcPrintParameterRequestBody(actionType.GetRYBoxParameter, undefined, materialLotId);
+    }
     
 }

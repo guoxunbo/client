@@ -6,6 +6,9 @@ import EventUtils from '@api/utils/EventUtils';
 import Notification from '@api/utils/NoticeUtils';
 import IncomingMaterialImportRequest from '@api/Incoming-Material-Manager/IncomingMaterialImportRequest';
 import { i18NCode } from '@api/const/i18n';
+import SyncIncomingOrReturnMLotRequest from '@api/sync/incoming-return-mlot/SyncIncomingOrReturnMLotRequest';
+import { SyncActionType } from '@api/sync/incoming-return-mlot/SyncIncomingOrReturnMLotRequestBody';
+import NoticeUtils from '@api/utils/NoticeUtils';
 
 export default class IncomingMaterialImportTable extends EntityScanViewTable {
 
@@ -21,10 +24,17 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
      */
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createSyncButton());
         buttons.push(this.createImportButton());
         buttons.push(this.createSaveButton());
         buttons.push(this.createDeleteAllButton());
         return buttons;
+    }
+
+    createSyncButton = () => {
+        return (<Button key="Sync" type="primary" className="table-button" onClick={() => this.handleSync()} icon="import-o">
+                {I18NUtils.getClientMessage(i18NCode.BtnSync)}
+            </Button>)
     }
 
     createImportButton = () => {
@@ -44,6 +54,20 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         return  <Button key="delete" type="primary" className="table-button" onClick={() => this.deleteAllMaterialLot()} icon="delete-o">
                          {I18NUtils.getClientMessage(i18NCode.BtnReset)}
                 </Button>
+    }
+
+    handleSync = () =>{
+        let self = this;
+        let object = {
+            actionType: SyncActionType.SyncMainMLotIncomingOrReturn,
+            success:function () {
+                self.setState({
+                    loading: false,
+                }); 
+                NoticeUtils.showSuccess();
+            }
+        }
+        SyncIncomingOrReturnMLotRequest.sendSyncIncomingOrReturnRequest(object);
     }
 
     handleUpload = (option) => {

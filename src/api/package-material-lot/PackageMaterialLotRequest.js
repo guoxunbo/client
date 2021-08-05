@@ -19,7 +19,18 @@ export default class PackageMaterialLotRequest {
     }
     
     static sendPrintPackMLotRequest = (object) => {
-        let requestBody = PackageMaterialLotRequestBody.buildPrintPackageMLot(object.materialLotId)
+        let requestBody = PackageMaterialLotRequestBody.buildPrintPackageMLot(object.materialLotId, object.materialLotAction,object.validationPrintFlag)
+        let requestHeader = new PackageMaterialLotRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCPackMaterialLotsUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendPrintRYBoxMLotRequest = (object) => {
+        let requestBody = PackageMaterialLotRequestBody.buildPrintRYBoxMLot(object.materialLotId, object.materialLotAction,object.validationPrintFlag)
         let requestHeader = new PackageMaterialLotRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.VCPackMaterialLotsUrl);
         let requestObject = {
