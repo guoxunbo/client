@@ -36,9 +36,12 @@ export default class IssueByMLotOrderScanTable extends EntityScanViewTable {
     IssueMLot = () => {
         let self = this;
         let {data} = self.state;
-        let document = self.props.orderTable.getSingleSelectedRow();
         if (data.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        let document = self.props.orderTable.getSingleSelectedRow();
+        if (document == undefined) {
             return;
         }
 

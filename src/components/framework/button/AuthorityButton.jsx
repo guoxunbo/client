@@ -77,7 +77,7 @@ export default class AuthorityButton extends Component {
     }
 
     render() {
-        const {type, icon, i18NCode, name} = this.props;
+        const {type, icon, i18NCode, name, size, style, href} = this.props;
         const {loading} = this.state;
         //this.props.disabled是否启动权限管理， true 启动，false|underfined 不启动
         const propsDisabled = this.props.disabled;
@@ -90,12 +90,15 @@ export default class AuthorityButton extends Component {
                 key={name}
                 type={type || "primary"}
                 className={this.getClassName()}
-                icon={icon.startsWith("icon-")?"":icon}
+                icon={icon.startsWith("icon-") ? "": icon}
                 disabled={disabled}
+                size={size}
+                style={style}
+                href={href}
                 loading={loading || false}
                 onClick={() => this.handleClick()}
             >
-            {icon.startsWith("icon-")?IconUtils.buildIcon(icon):""}
+            {icon.startsWith("icon-") ? IconUtils.buildIcon(icon): ""}
             {I18NUtils.getClientMessage(i18NCode)}
         </Button>
     }

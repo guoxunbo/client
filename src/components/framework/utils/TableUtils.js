@@ -95,7 +95,7 @@ export default class TableUtils {
      */
     static buildColumn = (component, table) => {
         const fields = table.fields;
-        const {checkd} = component.state;
+        const {checked} = component.state;
         const {editFlag, currentTreeNode} = component.props;
         let columns = [];
         let scrollX = 0;
@@ -112,7 +112,7 @@ export default class TableUtils {
                 scrollX += column.width;
             }
         }
-        if (checkd) {
+        if (checked) {
             scrollX += Application.table.checkBox.width;
         }
         let operationColumn;

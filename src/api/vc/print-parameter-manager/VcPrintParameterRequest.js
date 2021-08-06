@@ -71,4 +71,15 @@ export default class VcPrintParameterRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendGetRYBoxParaRequest = (object)=>{
+        let requestBody = VcPrintParameterRequestBody.buildGetRYBoxParameter(object.materialLotId);
+        let requestHeader = new VcPrintParameterRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCGetPrintParameterUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

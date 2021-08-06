@@ -40,10 +40,9 @@ export default class MaterialTable extends EntityListTable {
     createButtonGroup = () => {
         let self = this;
         let buttons = [];
-        buttons.push(this.createAddButton());
-        buttons.push(this.createImportButton());
+        buttons.push(this.createAddAuthorityButton("AddRawMaterial"));
         buttons.push(this.createExportDataAndTemplateButton());
-        buttons.push(this.createReceiveMaterialLotButton());
+        //buttons.push(this.createReceiveMaterialLotButton());
         return buttons;
     }
 

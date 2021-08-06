@@ -7,6 +7,8 @@ const actionType ={
     ReturnMaterialLot: "ReturnMaterialLot",
     CreateReturnGoodsOrder:"CreateReturnGoodsOrder",
     ReturnGoods: "ReturnGoods",
+    CreateDeptReturnOrder: "CreateDeptReturnOrder",
+    DeptReturnMLot: "DeptReturnMLot",
 
 }
 export default class ReturnLotOrderRequestBody{
@@ -41,8 +43,8 @@ export default class ReturnLotOrderRequestBody{
         materialLots.forEach(mLot => {
            let materialLotAction = new MaterialLotAction();
            materialLotAction.setMaterialLotId(mLot.materialLotId);
-           materialLotAction.setTransQty(mLot.reservedQty);
-           materialLotAction.setActionReason(mLot.returnReason);
+           materialLotAction.setTransQty(mLot.transQty);
+           materialLotAction.setActionReason(mLot.actionReason);
            materialLotActionList.push(materialLotAction);
         });
        return new ReturnLotOrderRequestBody(actionType.CreateReturnMaterialLotOrder, undefined, undefined, materialLotActionList);
@@ -66,5 +68,34 @@ export default class ReturnLotOrderRequestBody{
             materialLotIdList.push(mLot.materialLotId);
         });
         return new ReturnLotOrderRequestBody(actionType.ReturnGoods, documentId, materialLotIdList);
+    }
+
+    static buildCreateDeptReturnOrder(materialLots){
+        const materialLotActionList = [];
+        materialLots.forEach(mLot => {
+           let materialLotAction = new MaterialLotAction();
+           materialLotAction.setMaterialLotId(mLot.materialLotId);
+           materialLotAction.setTransQty(mLot.transQty);
+           materialLotAction.setActionReason(mLot.actionReason);
+           materialLotAction.setActionComment(mLot.actionComment);
+           materialLotActionList.push(materialLotAction);
+        });
+       return new ReturnLotOrderRequestBody(actionType.CreateDeptReturnOrder, undefined, undefined, materialLotActionList);
+   }
+
+   static buildDeptReturnMLot(documentId, materialLots){
+        const materialLotIdList = [];
+        materialLots.forEach(mLot => {
+            materialLotIdList.push(mLot.materialLotId);
+        });
+        return new ReturnLotOrderRequestBody(actionType.DeptReturnMLot, documentId, materialLotIdList);
+    }
+
+    static sendGetReservedMLotRequest(documentId, materialLots){
+        const materialLotIdList = [];
+        materialLots.forEach(mLot => {
+            materialLotIdList.push(mLot.materialLotId);
+        });
+        return new ReturnLotOrderRequestBody(actionType.GetReservedMLot, documentId, materialLotIdList);
     }
 }

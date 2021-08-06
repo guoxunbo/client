@@ -6,6 +6,12 @@ import { Button } from "antd";
 import IconUtils from "@utils/IconUtils";
 import NoticeUtils from "@utils/NoticeUtils";
 import PackageMaterialLotRequest from "@api/package-material-lot/PackageMaterialLotRequest";
+import AuthorityButton from "@components/framework/button/AuthorityButton";
+
+const validationPrintFlag = {
+    Y:"true",
+    N:"false"
+}
 /**
  * 打印箱标签
  */
@@ -40,10 +46,11 @@ export default class VcPrintCaseLabelProperties extends EntityViewProperties{
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createPrintButton());
+        buttons.push(this.createAdvancedPrintButton());
         return buttons;
     }
 
-    handlePrint = () => {
+    handlePrint = (validationPrintFlag) => {
         let self = this;
         let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         if (!materialLotId) {
@@ -52,17 +59,29 @@ export default class VcPrintCaseLabelProperties extends EntityViewProperties{
         }
         let object = {
             materialLotId: materialLotId,
+            validationPrintFlag: validationPrintFlag,
             success: function(responseBody) {
-                self.resetData();
+                self.setState({
+                    formObject:[]
+                });
                 NoticeUtils.showSuccess();
+                self.form.resetFormFileds();
+                self.form.state.queryFields[0].node.focus();
             }
         }
         PackageMaterialLotRequest.sendPrintPackMLotRequest(object);
     }
 
     createPrintButton = () => {
-        return <Button key="print" type="primary" onClick={() => this.handlePrint()}>
+        return <Button key="print" type="primary" onClick={() => this.handlePrint(validationPrintFlag.Y)}>
              {IconUtils.buildIcon("icon-barcode")}{I18NUtils.getClientMessage(i18NCode.BtnPrint)}</Button>;
 
+    }
+
+    createAdvancedPrintButton = () => {
+        return <AuthorityButton key="AdvancedPrintBoxMLotBtn" name="AdvancedPrintBoxMLotBtn" 
+                disabled="true" type="primary" className="table-button" icon="icon-barcode" 
+                i18NCode={I18NUtils.getClientMessage(i18NCode.BtnRePrint)} 
+                onClick={() => this.handlePrint(validationPrintFlag.N)}/>
     }
 }

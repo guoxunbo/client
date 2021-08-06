@@ -1,10 +1,6 @@
 import React from 'react';
 
 import EntityListTable from '@components/framework/table/EntityListTable';
-import { Button } from 'antd';
-import I18NUtils from '@api/utils/I18NUtils';
-import NoticeUtils from '@utils/NoticeUtils';
-import AsyncManagerRequest from '@api/gc/async-manager/AsyncManagerRequest';
 import ProductDialog from '@components/mms/dialog/ProductDialog';
 
 
@@ -27,10 +23,8 @@ export default class ProductTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createAddButton());
-        buttons.push(this.createImportButton());
+        buttons.push(this.createAddAuthorityButton("AddProductMaterial"));
         buttons.push(this.createExportDataAndTemplateButton());
-       // buttons.push(this.createAsyncMESButton());
         return buttons;
     }
 }

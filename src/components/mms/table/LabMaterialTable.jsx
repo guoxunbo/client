@@ -26,7 +26,7 @@ export default class LabMaterialTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createAddButton());
+        buttons.push(this.createAddAuthorityButton("AddLabMaterial"));
         buttons.push(this.createImportButton());
         buttons.push(this.createExportDataAndTemplateButton());
         return buttons;

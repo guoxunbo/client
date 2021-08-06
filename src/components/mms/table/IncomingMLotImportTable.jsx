@@ -6,6 +6,9 @@ import EventUtils from '@api/utils/EventUtils';
 import Notification from '@api/utils/NoticeUtils';
 import IncomingMaterialImportRequest from '@api/Incoming-Material-Manager/IncomingMaterialImportRequest';
 import { i18NCode } from '@api/const/i18n';
+import SyncIncomingOrReturnMLotRequest from '@api/sync/incoming-return-mlot/SyncIncomingOrReturnMLotRequest';
+import { SyncActionType } from '@api/sync/incoming-return-mlot/SyncIncomingOrReturnMLotRequestBody';
+import NoticeUtils from '@api/utils/NoticeUtils';
 
 export default class IncomingMLotImportTable extends EntityScanViewTable {
 
@@ -21,10 +24,17 @@ export default class IncomingMLotImportTable extends EntityScanViewTable {
      */
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createSyncButton());
         buttons.push(this.createImportButton());
         buttons.push(this.createSaveButton());
         buttons.push(this.createDeleteAllButton());
         return buttons;
+    }
+
+    createSyncButton = () => {
+        return (<Button key="Sync" type="primary" className="table-button" onClick={() => this.handleSync()} icon="import-o">
+                {I18NUtils.getClientMessage(i18NCode.BtnSync)}
+            </Button>)
     }
 
     createImportButton = () => {
@@ -44,6 +54,23 @@ export default class IncomingMLotImportTable extends EntityScanViewTable {
         return  <Button key="delete" type="primary" className="table-button" onClick={() => this.deleteAllMaterialLot()} icon="delete-o">
                          {I18NUtils.getClientMessage(i18NCode.BtnReset)}
                 </Button>
+    }
+    
+    handleSync = () =>{
+        let self = this;
+        self.setState({
+            loading: true,
+        }); 
+        let object = {
+            actionType: SyncActionType.SyncIncomingOrReturn,
+            success:function () {
+                self.setState({
+                    loading: false,
+                }); 
+                NoticeUtils.showSuccess();
+            }
+        }
+        SyncIncomingOrReturnMLotRequest.sendSyncIncomingOrReturnRequest(object);
     }
 
     handleUpload = (option) => {
@@ -66,6 +93,7 @@ export default class IncomingMLotImportTable extends EntityScanViewTable {
         }
         IncomingMaterialImportRequest.sendSelectRequest(object, option.file);
     }
+    
     SaveButton = () => {
         const {data,table} = this.state;
         let self = this;

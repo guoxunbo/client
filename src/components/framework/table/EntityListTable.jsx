@@ -141,7 +141,7 @@ export default class EntityListTable extends Component {
                     <Button disabled={!hasDeleteBtnAuthority} icon="delete" size="small" type="danger"/>
                 </Popconfirm>;
     }
-    
+
     handleDelete = (record) => {
         TableUtils.handleDelete(this, record);
     } 
@@ -260,6 +260,12 @@ export default class EntityListTable extends Component {
 
     createAddButton = () => {
         return <AuthorityButton i18NCode={i18NCode.BtnAdd} key="add" name="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}/>
+    }
+
+    createAddAuthorityButton = (btnKey) => {
+        return <AuthorityButton i18NCode={i18NCode.BtnAdd} key={btnKey} name={btnKey} 
+                                type="primary" className="table-button" icon="plus" 
+                                onClick={() => this.handleAdd()} disabled={true}/>
     }
 
     /**

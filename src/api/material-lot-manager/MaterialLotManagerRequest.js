@@ -19,7 +19,7 @@ export default class MaterialLotManagerRequest {
     }
 
     static sendPrintMaterialLotRequest = (object) => {
-        let requestBody = MaterialLotManagerRequestBody.buildPrintMLot(object.materialLot);
+        let requestBody = MaterialLotManagerRequestBody.buildPrintMLot(object.materialLotAction, object.validationPrintFlag);
         let requestHeader = new MaterialLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.MaterialLotManagerUrl);
         let requestObject = {

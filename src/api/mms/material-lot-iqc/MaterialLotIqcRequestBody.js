@@ -4,17 +4,20 @@ import PropertyUtils from "@utils/PropertyUtils";
 const ActionType = {
     ValidationAndGetMLot:'ValidationAndGetWaitIqcMLot',
     BatchIqc:'BatchIqc',
+    IqcApproval:'IqcApproval',
 }
 export default class MaterialLotIqcRequestBody {
 
     actionType;
     materialLotIds;
     materialLotAction;
+    urlRemark;
 
-    constructor(materialLotAction, materialLotIds, materialLotActions) {
+    constructor(materialLotAction, materialLotIds, materialLotActions, urlRemark) {
         this.materialLotAction = materialLotAction;
         this.materialLotIds = materialLotIds;
         this.materialLotActions = materialLotActions;
+        this.urlRemark = urlRemark;
     }
     
     setActionType(actionType){
@@ -23,16 +26,8 @@ export default class MaterialLotIqcRequestBody {
 
     static buildIqc(materialLotCheckSheet) {
         let materialLotAction = new MaterialLotAction();
-
         PropertyUtils.copyProperties(materialLotCheckSheet, materialLotAction);
-
-        // let materialLotAction = new MaterialLotAction();
-        // materialLotAction.setMaterialLotId(materialLotCheckSheet.materialLotId);
-        // materialLotAction.setActionCode(materialLotCheckSheet.actionCode);
-        // materialLotAction.setActionReason(materialLotCheckSheet.actionReason);
-        // materialLotAction.setActionComment(materialLotCheckSheet.actionComment);
-        // materialLotAction.setTransQty(materialLotCheckSheet.transQty);
-        return new MaterialLotIqcRequestBody(materialLotAction);
+        return new MaterialLotIqcRequestBody(materialLotAction, undefined, undefined, materialLotCheckSheet.urlRemark);
     }
 
     /**
@@ -62,8 +57,27 @@ export default class MaterialLotIqcRequestBody {
             materialLotActions.push(materialLotAction);
         });
         
-        let materialLotIqcRequestBody =  new MaterialLotIqcRequestBody(undefined, undefined, materialLotActions);
+        let materialLotIqcRequestBody =  new MaterialLotIqcRequestBody(undefined, undefined, materialLotActions, judgeMLotsAndAction.urlRemark);
         materialLotIqcRequestBody.setActionType(ActionType.BatchIqc);
+        return materialLotIqcRequestBody;
+    }
+
+    /**
+     * iqc审核
+     * @param {*} actionObject 
+     * @param {*} formObjectList 操作对象的集合
+     * @returns 
+     */
+    static buildIqcApproval(actionObject, formObjectList) {
+        let materialLotActions = [];
+        formObjectList.forEach(data => {
+            let materialLotAction = new MaterialLotAction();
+            PropertyUtils.copyProperties(actionObject, materialLotAction);
+            materialLotAction.setMaterialLotId(data.materialLotId);
+            materialLotActions.push(materialLotAction);
+        });
+        let materialLotIqcRequestBody =  new MaterialLotIqcRequestBody(undefined, undefined, materialLotActions, undefined);
+        materialLotIqcRequestBody.setActionType(ActionType.IqcApproval);
         return materialLotIqcRequestBody;
     }
 }

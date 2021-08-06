@@ -101,7 +101,7 @@ export default class EntitySubTreeTable extends Component {
         TableUtils.openDialog(this, record);
     }
 
-    onChange = () => {
+    onChange = (pagination) => {
         TableUtils.onChange(this, pagination);
     }
 

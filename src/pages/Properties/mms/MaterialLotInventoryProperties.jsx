@@ -3,7 +3,7 @@ import MaterialLotInventoryTable from "@components/mms/table/MaterialLotInventor
 
 export default class MaterialLotInventoryProperties extends EntityProperties{
 
-    static displayName = 'MaterialStaMaterialPropertiestusModelProperties';
+    static displayName = 'MaterialLotInventoryProperties';
     
     buildTable = () => {
         return <MaterialLotInventoryTable {...this.getDefaultTableProps()}  />

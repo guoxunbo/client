@@ -56,8 +56,8 @@ const Application = {
         // 是否在条形码下方显示文字
         displayValue: true, 
         // 条形码 条之间的宽度
-        width: 3.0,
-        height: 100,
+        width: 1.5,
+        height: 50,
         margin: 0,
     }
 };

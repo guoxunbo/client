@@ -7,7 +7,6 @@ import I18NUtils from '@api/utils/I18NUtils';
 import { i18NCode } from '@api/const/i18n';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import TableObject from '@api/dto/ui/Table';
-import ReceiveMaterialDialog from '@components/mms/dialog/ReceiveMaterialDialog';
 import NoticeUtils from '@utils/NoticeUtils';
 import SpareMaterialDialog from '../dialog/SpareMaterialDialog';
 import ReceiveSpareMaterialDialog from '../dialog/ReceiveSpareMaterialDialog';
@@ -17,7 +16,8 @@ import EventUtils from '@utils/EventUtils';
 import SpareMaterialManagerRequest from '@api/spare-material-manager/SpareMaterialManagerRequest';
 
 const TableName = {
-    ReceiveMLot: "MMStockInPartsMLot"
+    ReceiveMLot: "MMStockInPartsMLot",
+    ScrapMLot: "ScrapPartMLot"
 }
 
 export default class SpareMaterialTable extends EntityListTable {
@@ -26,7 +26,7 @@ export default class SpareMaterialTable extends EntityListTable {
 
     constructor(props) {
         super(props);
-        this.state = {...this.state, ...{receiveMaterialTable: {fields: []}}, receiveFlag: 'true'};
+        this.state = {...this.state, ...{receiveMaterialTable: {fields: []}}, partMaterialAction: ''};
     }
 
     createForm = () => {
@@ -34,7 +34,7 @@ export default class SpareMaterialTable extends EntityListTable {
         childrens.push(<SpareMaterialDialog key={SpareMaterialDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);
         childrens.push(<ReceiveSpareMaterialDialog key={ReceiveSpareMaterialDialog.displayName} ref={this.formRef} object={this.state.receiveMaterialObject} visible={this.state.receiveMaterialFormVisible} 
-                                                            table={this.state.receiveMaterialTable} onOk={this.handleReceiveMaterialOk} onCancel={this.handleCancelReceiveMaterialLot} receiveFlag={this.state.receiveFlag}/>);                                   
+                                                            table={this.state.receiveMaterialTable} onOk={this.handleReceiveMaterialOk} onCancel={this.handleCancelReceiveMaterialLot} partMaterialAction={this.state.partMaterialAction}/>);                                   
         return childrens;
     }
 
@@ -45,7 +45,34 @@ export default class SpareMaterialTable extends EntityListTable {
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createReceiveMaterialLotButton());
         buttons.push(this.createReturnMaterialLotButton());
+        buttons.push(this.createScrapMaterialLotButton());
         return buttons;
+    }
+
+    createScrapMaterialLotButton = () => {
+        return <Button key="ScrapMLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleScrapMaterialLot("Scrap")}>{I18NUtils.getClientMessage("报废入库")}</Button>;
+    }
+
+    handleScrapMaterialLot = (actionType) => {
+        const selectedMaterial = this.getSingleSelectedRow();
+        if (!selectedMaterial) {
+            return;
+        }
+        let self = this;
+        let requestObject = {
+            name: TableName.ScrapMLot,
+            success: function(responseBody) {
+                let table = responseBody.table;
+                let receiveMaterialObject = TableObject.buildDefaultModel(table.fields, selectedMaterial);
+                self.setState({
+                    receiveMaterialTable: responseBody.table,
+                    receiveMaterialObject: receiveMaterialObject,
+                    receiveMaterialFormVisible: true,
+                    partMaterialAction: actionType
+                });
+            }
+        }
+        TableManagerRequest.sendGetByNameRequest(requestObject);
     }
 
     createImportButton = () => {
@@ -89,10 +116,10 @@ export default class SpareMaterialTable extends EntityListTable {
     }
 
     createReceiveMaterialLotButton = () => {
-        return <Button key="ReceiveMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot(true)}>{I18NUtils.getClientMessage("创建入库")}</Button>;
+        return <Button key="ReceiveMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot("Create")}>{I18NUtils.getClientMessage("创建入库")}</Button>;
     }
 
-    handleReceiveMaterialLot = (flag) => {
+    handleReceiveMaterialLot = (actionType) => {
         const selectedMaterial = this.getSingleSelectedRow();
         if (!selectedMaterial) {
             return;
@@ -103,12 +130,11 @@ export default class SpareMaterialTable extends EntityListTable {
             success: function(responseBody) {
                 let table = responseBody.table;
                 let receiveMaterialObject = TableObject.buildDefaultModel(table.fields, selectedMaterial);
-                receiveMaterialObject.targetWarehouseRrn = selectedMaterial.reserved29;
                 self.setState({
                     receiveMaterialTable: responseBody.table,
                     receiveMaterialObject: receiveMaterialObject,
                     receiveMaterialFormVisible : true,
-                    receiveFlag: flag
+                    partMaterialAction: actionType
                 });
             }
         }
@@ -116,7 +142,7 @@ export default class SpareMaterialTable extends EntityListTable {
     }
 
     createReturnMaterialLotButton = () => {
-        return <Button key="ReturnMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot(false)}>{I18NUtils.getClientMessage("退料入库")}</Button>;
+        return <Button key="ReturnMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot("Return")}>{I18NUtils.getClientMessage("退料入库")}</Button>;
     }
 
     handleReceiveMaterialOk = () => {
