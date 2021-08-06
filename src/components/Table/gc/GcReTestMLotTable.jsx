@@ -66,11 +66,11 @@ export default class GcReTestMLotTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
     reTest = () => {

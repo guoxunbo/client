@@ -1,6 +1,8 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Tag } from 'antd';
+import I18NUtils from '../../../api/utils/I18NUtils';
+import { i18NCode } from '../../../api/const/i18n';
 
 /**
  * 待接收的晶圆
@@ -18,7 +20,7 @@ export default class GcWaitForReceiveMLotUnitTable extends EntityScanViewTable {
     }
     
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
     createStatistic = () => {
@@ -31,7 +33,7 @@ export default class GcWaitForReceiveMLotUnitTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">片数：{qty}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
     }
 
     createTotalNumber = () => {
@@ -44,7 +46,7 @@ export default class GcWaitForReceiveMLotUnitTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     buildOperationColumn = () => {

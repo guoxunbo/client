@@ -1,6 +1,8 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Tag } from 'antd';
+import I18NUtils from '../../../api/utils/I18NUtils';
+import { i18NCode } from '../../../api/const/i18n';
 
 /**
  * 待重测发料的物料批次
@@ -24,7 +26,7 @@ export default class GcWaitForReTestMLotTable extends EntityScanViewTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     /**
@@ -35,7 +37,7 @@ export default class GcWaitForReTestMLotTable extends EntityScanViewTable {
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PackageQty)}：{this.state.data.length}</Tag>
     }
 
 }

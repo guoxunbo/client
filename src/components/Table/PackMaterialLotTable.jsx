@@ -32,10 +32,10 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
     createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PackageQty)}：{this.state.data.length}</Tag>
     }
 
     handlePrint = (materialLot) => {

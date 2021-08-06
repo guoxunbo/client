@@ -103,11 +103,11 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
     createErrorNumberStatistic = () => {
