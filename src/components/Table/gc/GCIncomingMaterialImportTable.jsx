@@ -143,12 +143,12 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotIdList.length}</Tag>
     }
 
     createErrorTag = () => {
         let errorInfoList = this.state.data.filter((d) => d.errorFlag && d.errorFlag === true);
-        return <Tag color="#D2480A">异常数量：{errorInfoList.length}</Tag>
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{errorInfoList.length}</Tag>
     }
 
     handleUpload = (option) => {
@@ -363,11 +363,11 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{this.state.data.length}</Tag>
     }
 
     createSaveButton = () => {
