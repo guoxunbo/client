@@ -114,7 +114,7 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{materialLotUnitList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotUnitList.length}</Tag>
     }
 
     createTotalNumber = () => {
@@ -125,11 +125,11 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{this.state.data.length}</Tag>
     }
 
     createDeleteButton = () => {

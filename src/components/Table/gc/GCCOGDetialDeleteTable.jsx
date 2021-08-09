@@ -86,7 +86,8 @@ export default class GCCOGDetialDeleteTable extends EntityListTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{CogDetialList.length}</Tag>
+        //箱数
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{CogDetialList.length}</Tag>
     }
 
     createTotalNumber = () => {
@@ -97,11 +98,13 @@ export default class GCCOGDetialDeleteTable extends EntityListTable {
                 count = count + data.chipQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        //颗数 
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
+        //包数
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PackageQty)}：{this.state.data.length}</Tag>
     }
 
     createDeleteButton = () => {

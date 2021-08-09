@@ -1,6 +1,8 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Tag } from 'antd';
+import I18NUtils from '../../../api/utils/I18NUtils';
+import { i18NCode } from '../../../api/const/i18n';
 
 /**
  * 待发料的晶圆
@@ -27,7 +29,7 @@ export default class GcWaitOutOrderIssueMLotUnitTable extends EntityScanViewTabl
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotIdList.length}</Tag>
     }
 
     createWaferCount = () => {
@@ -40,7 +42,7 @@ export default class GcWaitOutOrderIssueMLotUnitTable extends EntityScanViewTabl
                 }
             });
         }
-        return <Tag color="#2db7f5">片数：{qty}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
     }
 
     createTotalNumber = () => {
@@ -53,7 +55,7 @@ export default class GcWaitOutOrderIssueMLotUnitTable extends EntityScanViewTabl
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     buildOperationColumn = () => {
