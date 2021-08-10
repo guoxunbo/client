@@ -1,6 +1,6 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button, Tag } from 'antd';
+import { Button, Tag, Modal } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import StockInManagerRequest from '../../../api/gc/stock-in/StockInManagerRequest';
@@ -80,32 +80,51 @@ export default class GcIRAReceiveStockInTable extends EntityScanViewTable {
             return;
         }
 
-        if (self.getRepeatScanCount() > 0) {
-            Notification.showError(I18NUtils.getClientMessage(i18NCode.MaterialLotIdRepeat));
-            return;
-        }
-
         if(!this.validationStorageId(data)) {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.StorageCannotEmpty));
             return;
         }
-        
+
         let result = this.twoScanIRAvalidation(data);
         if(result != ""){
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.RawMaterialMustBeTwoScanValidate)+ ":" + result);
             return;
-        }
-       
-        let requestObject = {
-            materialLots: data,
-            success: function(responseBody) {
-                if (self.props.resetData) {
-                    self.props.resetData();
+        } 
+
+        if(self.getRepeatScanCount() > 0){
+            Modal.confirm({
+                title: '操作提示',
+                content: I18NUtils.getClientMessage(i18NCode.MaterialLotIdRepeat),
+                okText: '确认',
+                cancelText: '取消',
+                onOk:() => {
+                    let requestObject = {
+                        materialLots: data,
+                        success: function(responseBody) {
+                            if (self.props.resetData) {
+                                self.props.resetData();
+                            }
+                            MessageUtils.showOperationSuccess();
+                        }
+                    }
+                    StockInManagerRequest.sendStockInRequest(requestObject);
+                },
+                onCancel:() => {
+                    return;
                 }
-                MessageUtils.showOperationSuccess();
+            });
+        } else {
+            let requestObject = {
+                materialLots: data,
+                success: function(responseBody) {
+                    if (self.props.resetData) {
+                        self.props.resetData();
+                    }
+                    MessageUtils.showOperationSuccess();
+                }
             }
+            StockInManagerRequest.sendStockInRequest(requestObject);
         }
-        StockInManagerRequest.sendStockInRequest(requestObject);
     }
 
     twoScanIRAvalidation = (data) =>{
