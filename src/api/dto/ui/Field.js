@@ -101,6 +101,9 @@ export default class Field {
     node;
     // basicFields;
 
+    //是否省略显示
+    allLine
+
     /**
      * 构造方法
      * @param field 后台NBField类对应的实例化对象
@@ -230,6 +233,7 @@ export default class Field {
                 dataIndex: this.name,
                 align: aligin,
                 width: this.width,
+                ellipsis: this.allLine,
                 render: columnRender,
                 sorter: (a, b) => {
                     // 因为存在了字符串和数字等等一系列，故不能直接用a[this.name] - b[this.name]

@@ -9,6 +9,7 @@ const actionType ={
     ReturnGoods: "ReturnGoods",
     CreateDeptReturnOrder: "CreateDeptReturnOrder",
     DeptReturnMLot: "DeptReturnMLot",
+    GetReservedMLot: "GetReservedMLot",
 
 }
 export default class ReturnLotOrderRequestBody{
@@ -50,12 +51,12 @@ export default class ReturnLotOrderRequestBody{
        return new ReturnLotOrderRequestBody(actionType.CreateReturnMaterialLotOrder, undefined, undefined, materialLotActionList);
    }
 
-    static buildReturnMLotByOrder(documentId, materialLots){
+    static buildReturnMLotByOrder(documentLineId, materialLots){
         const materialLotIdList = [];
         materialLots.forEach(mLot => {
             materialLotIdList.push(mLot.materialLotId);
         });
-        return new ReturnLotOrderRequestBody(actionType.ReturnMaterialLot, documentId, materialLotIdList);
+        return new ReturnLotOrderRequestBody(actionType.ReturnMaterialLot, documentLineId, materialLotIdList);
     }
 
     static buildCreateReturnGoods(dataList){
@@ -91,11 +92,7 @@ export default class ReturnLotOrderRequestBody{
         return new ReturnLotOrderRequestBody(actionType.DeptReturnMLot, documentId, materialLotIdList);
     }
 
-    static sendGetReservedMLotRequest(documentId, materialLots){
-        const materialLotIdList = [];
-        materialLots.forEach(mLot => {
-            materialLotIdList.push(mLot.materialLotId);
-        });
-        return new ReturnLotOrderRequestBody(actionType.GetReservedMLot, documentId, materialLotIdList);
+    static buildGetReservedMLot(documentId){
+        return new ReturnLotOrderRequestBody(actionType.GetReservedMLot, documentId);
     }
 }
