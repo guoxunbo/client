@@ -6,6 +6,7 @@ import I18NUtils from "../../../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../../../api/const/i18n";
 import MobileIRAReceiveStockInTable from "../../../../../components/Table/gc/MobileIRAReceiveStockInTable";
 import MessageUtils from "../../../../../api/utils/MessageUtils";
+import { Modal } from 'antd';
 
 export default class GcMobileIRAReceiveStockInProperties extends MobileProperties{
 
@@ -165,11 +166,6 @@ export default class GcMobileIRAReceiveStockInProperties extends MobilePropertie
             return;
         }
 
-        if (self.orderTable.getRepeatScanCount() > 0) {
-            Notification.showError(I18NUtils.getClientMessage(i18NCode.MaterialLotIdRepeat));
-            return;
-        }
-
         if(!self.validationStorageId(tableData)) {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.StorageCannotEmpty));
             return;
@@ -181,7 +177,28 @@ export default class GcMobileIRAReceiveStockInProperties extends MobilePropertie
             return;
         }
        
-        let requestObject = {
+        if (self.orderTable.getRepeatScanCount() > 0) {
+            Modal.confirm({
+                title: '操作提示',
+                content: I18NUtils.getClientMessage(i18NCode.MaterialLotIdRepeat),
+                okText: '确认',
+                cancelText: '取消',
+                onOk:() => {
+                    let requestObject = {
+                        materialLots: tableData,
+                        success: function(responseBody) {            
+                            self.resetData();              
+                            MessageUtils.showOperationSuccess();
+                        }
+                    }
+                    StockInManagerRequest.sendStockInRequest(requestObject);
+                },
+                onCancel:() => {
+                    return;
+                }
+            });
+        } else {
+            let requestObject = {
             materialLots: tableData,
             success: function(responseBody) {            
                 self.resetData();              
@@ -189,6 +206,8 @@ export default class GcMobileIRAReceiveStockInProperties extends MobilePropertie
             }
         }
         StockInManagerRequest.sendStockInRequest(requestObject);
+        }
+        
     }
 
     showDataAlreadyExists = () => {
