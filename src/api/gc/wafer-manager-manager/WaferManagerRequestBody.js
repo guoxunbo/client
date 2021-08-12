@@ -9,6 +9,7 @@ const ActionType = {
     HKMLotReceive: "HKMLotReceive",
     CogReceive: "CogReceive",
     OutOrderIssue: "OutOrderIssue",
+    MobileGetWafer: "MobileGetWafer",
 }
 export default class WaferManagerRequestBody {
 
@@ -123,6 +124,13 @@ export default class WaferManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WaferManagerRequestBody(ActionType.CogReceive, documentLines, materialLotActions);
+    }
+
+    static buildMobileGetWaferByRrn(tableRrn, lotId) {
+        let body = new WaferManagerRequestBody(ActionType.MobileGetWafer);
+        body.tableRrn = tableRrn;
+        body.lotId = lotId;
+        return body;
     }
 }
 
