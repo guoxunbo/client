@@ -2,6 +2,8 @@ import { Tag } from 'antd';
 import EntityListCheckTable from '../EntityListCheckTable';
 import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
 import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedManagerRequest';
+import I18NUtils from '../../../api/utils/I18NUtils';
+import { i18NCode } from '../../../api/const/i18n';
 
 /**
  * 备货表格
@@ -92,10 +94,10 @@ export default class GcReservedCaseMLotTable extends EntityListCheckTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.selectedRows.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PackageQty)}：{this.state.selectedRows.length}</Tag>
     }
 }

@@ -108,7 +108,7 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotIdList.length}</Tag>
     }
 
     createWaferCount = () => {
@@ -121,7 +121,7 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">片数：{qty}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
     }
 
     createTotalNumber = () => {
@@ -134,7 +134,7 @@ export default class GcWaferIssueTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     issue = () => {
