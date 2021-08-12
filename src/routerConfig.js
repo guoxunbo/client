@@ -137,6 +137,7 @@ import GcMobileIRAReceiveStockInProperties from './pages/Properties/components/g
 import GcMobileTransferBoxAndStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxAndStockInProperties';
 import GcMobileTransferBoxChangeStorageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxChangeStorageProperties';
 import GcMobileRawMaterialIssueMLotScanProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialIssueMLotScanProperties';
+import GcMobileWaferIssueOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWaferIssueOutProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1056,6 +1057,11 @@ const routerConfig = [
     path: buildPath('Mobile/MobileRawMaterialIssue'),
     layout: BlankLayout,
     component: GcMobileRawMaterialIssueMLotScanProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileWaferIssueOut'),
+    layout: BlankLayout,
+    component: GcMobileWaferIssueOutProperties,
   },
   {
     path: '*',
