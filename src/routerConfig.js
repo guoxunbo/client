@@ -137,6 +137,8 @@ import GcMobileIRAReceiveStockInProperties from './pages/Properties/components/g
 import GcMobileTransferBoxAndStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxAndStockInProperties';
 import GcMobileTransferBoxChangeStorageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxChangeStorageProperties';
 import GcMobileRawMaterialIssueMLotScanProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialIssueMLotScanProperties';
+import GcMobileWaferIssueOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWaferIssueOutProperties';
+import GCWltOtherStockOutOrderProperties from './pages/Properties/components/GCWltOtherStockOutOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -415,6 +417,12 @@ const routerConfig = [
     path: buildPath('WLT/WltStockOutManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWltStockOutOrderProperties,
+  },
+    //WLT/CP其它出
+  {
+    path: buildPath('WLT/WltOtherStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWltOtherStockOutOrderProperties,
   },
   //晶圆出货标注
   {
@@ -1056,6 +1064,11 @@ const routerConfig = [
     path: buildPath('Mobile/MobileRawMaterialIssue'),
     layout: BlankLayout,
     component: GcMobileRawMaterialIssueMLotScanProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileWaferIssueOut'),
+    layout: BlankLayout,
+    component: GcMobileWaferIssueOutProperties,
   },
   {
     path: '*',

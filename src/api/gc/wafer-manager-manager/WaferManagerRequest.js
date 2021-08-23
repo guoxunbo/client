@@ -112,5 +112,16 @@ export default class WaferManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendMobileGetWaferRequest = (object) => {
+        let requestBody = WaferManagerRequestBody.buildMobileGetWaferByRrn(object.tableRrn, object.lotId);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 
