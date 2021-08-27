@@ -31,9 +31,15 @@ export default class MobileIRAReceiveStockInTable extends EntityScanViewTable {
         let tags = [];
         tags.push(this.createMaterialLotsNumber());
         tags.push(this.createTotalNumber());
+        tags.push(this.line());
+        tags.push(this.line());
         tags.push(this.createErrorNumberStatistic());
         tags.push(this.createRepeatScanNumberStatistic());
         return tags;
+    }
+
+    line = () =>{
+        return <br/>
     }
 
     createErrorNumberStatistic = () => {
