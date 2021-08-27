@@ -6,7 +6,9 @@ const ActionType = {
     Delete: "Delete",
     QuerySpareMLot: "QuerySpareMLot",
     GetSpareRawMLot: "GetSpareRawMLot",
+    GetSpareRawOutDoc: "GetSpareRawOutDoc",
     SpareRawMLot: "SpareRawMLot",
+    RawMaterialSpareOutDoc: "RawMaterialSpareOutDoc",
     QueryIssueRawMaterialLot: "QueryIssueRawMaterialLot",
     ScrapRawMLotShip: "ScrapRawMLotShip",
     GCUnRawMaterialSpare: "GCUnRawMaterialSpare",
@@ -82,9 +84,21 @@ export default class GCRawMaterialImportRequestBody {
         return body;
     }
 
+    static buildGetRawMaterialSpareOutDoc(materialLotList, pickQty) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.GetSpareRawOutDoc, materialLotList);
+        body.pickQty = pickQty;
+        return body;
+    }
+
     static buildSpareRawMaterialLot(materialLotList, docLineRrn) {
         let body =  new GCRawMaterialImportRequestBody(ActionType.SpareRawMLot, materialLotList);
         body.docLineRrn = docLineRrn;
+        return body;
+    }
+
+    static buildRawMaterialSpareOutDoc(materialLotList, pickQty) {
+        let body =  new GCRawMaterialImportRequestBody(ActionType.RawMaterialSpareOutDoc, materialLotList);
+        body.pickQty = pickQty;
         return body;
     }
 
