@@ -140,6 +140,7 @@ import GcMobileRawMaterialIssueMLotScanProperties from './pages/Properties/compo
 import GcMobileWaferIssueOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWaferIssueOutProperties';
 import GCWltOtherStockOutOrderProperties from './pages/Properties/components/GCWltOtherStockOutOrderProperties';
 import GcMobileRMAMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRMAMaterialReceiveProperties';
+import GCRawMaterialSpareOutDocProperties from './pages/Properties/components/GCRawMaterialSpareOutDocProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -317,6 +318,11 @@ const routerConfig = [
     path: buildPath('GC/CancelCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCancelCheckProperties,
+  },
+  {
+    path: buildPath('/GC/GCRawMaterialSpareOutDocManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialSpareOutDocProperties,
   },
   {
     path: buildPath('Wafer/GCWaferInStorage'),
