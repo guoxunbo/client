@@ -210,6 +210,7 @@ const i18NCode = {
     TapeMaterialCodeIsExisted: "TapeMaterialCodeIsExisted",
     IRABoxPrintLable: "IRABoxPrintLable",
     RawMaterialInventory: "RawMaterialInventory",
+    EnterRawMaterialSpareQtyPlease: "EnterRawMaterialSpareQtyPlease",
 }
 
 const i18Messages = {
@@ -1246,6 +1247,11 @@ const i18Messages = {
     RawMaterialInventory: {
         Chinese: "原材料盘点",
         English: "Raw Material Inventory",
+        Res: ""
+    },
+    EnterRawMaterialSpareQtyPlease: {
+        Chinese: "请输入原材料备料颗数",
+        English: "Enter Raw Material Spare Qty",
         Res: ""
     }
 }
