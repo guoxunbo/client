@@ -6,6 +6,7 @@ import FormItem from "antd/lib/form/FormItem";
 import EventUtils from "../../../api/utils/EventUtils";
 import GCRawMaterialImportRequest from "../../../api/gc/GCRawMaterialImport-manager/GCRawMaterialImportRequest";
 import MessageUtils from "../../../api/utils/MessageUtils";
+import { Notification } from '../../notice/Notice';
 
 
 export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
@@ -28,6 +29,35 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
         return buttons;
     }
 
+    createMissZeroQtyTag = () => {
+        const {selectedRows} = this.state;
+        let materialLotList = selectedRows;
+        let selectQty = 0;
+        if(materialLotList && materialLotList.length > 0){
+            materialLotList.forEach(data => {
+                selectQty = selectQty + data.currentQty*10000;
+            });
+        }
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.SelectQty)}：{selectQty/10000}</Tag>
+    }
+
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}:{this.state.data.length}</Tag>
+    }
+
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.currentQty != undefined) {
+                    count = count + data.currentQty*10000;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count/10000}</Tag>
+    }
+
     createNeedNumberInput = () => {
         return  <FormItem>
                     <Row gutter={4}>
@@ -43,14 +73,6 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
 
     spareMaterialConfirm = () => {
         let self = this;
-        let pickQty = this.pickQty.inputNumberRef.currentValue;
-        if (!pickQty) {
-            self.setState({ 
-                loading: false
-            });
-            return;
-        }
-
         let materialLotList = this.getSelectedRows();
         if (materialLotList.length === 0) {
             return;
@@ -62,10 +84,15 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            pickQty : pickQty,
             materialLotList : materialLotList,
             success: function(responseBody) {
-                self.resetData();
+                self.setState({
+                    selectedRows: [],
+                    selectedRowKeys: [],
+                });
+                if (self.props.resetData) {
+                    self.props.resetData();
+                }
                 MessageUtils.showOperationSuccess();
             }
         }
@@ -77,14 +104,12 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
         let rowKey = this.props.rowKey || DefaultRowKey;
         const {data} = this.state;
         let pickQty = this.pickQty.inputNumberRef.currentValue;
-        if (!pickQty) {
-            self.setState({ 
-                loading: false
-            });
+        if (pickQty == null || pickQty == "" || pickQty == undefined) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.EnterRawMaterialSpareQtyPlease));
             return;
         }
         if (data.length === 0 ) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.EnterTheRequiredQtyPlease));
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
 
@@ -131,19 +156,6 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
         });
     }
 
-    /**
-     * 清除选中的方法
-     */
-    resetData = () => {
-        this.setState({
-          selectedRowKeys: [],
-          selectedRows: [],
-          tableData: [],
-          loading: false,
-          resetFlag: true
-        });
-      }
-
     spareMaterialButton = () => {
         return <Button key="spareMaterial" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.spareMaterial}>
                    {I18NUtils.getClientMessage(i18NCode.BtnSpareMaterial)}
@@ -156,37 +168,8 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
                     </Button>
     }
 
-    createMissZeroQtyTag = () => {
-        //这里不是真正的所缺零数 是勾选数量
-        const {selectedRows} = this.state;
-        let materialLotList = selectedRows;
-        let selectQty = 0;
-        if(materialLotList && materialLotList.length > 0){
-            materialLotList.forEach(data => {
-                selectQty = selectQty + data.currentQty;
-            });
-        }
-        let missZeroQty = selectQty;
-        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.MissZeroQty)}：{missZeroQty}</Tag>
+    buildOperationColumn = () => {
     }
-
-    createStatistic = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}:{this.state.data.length}</Tag>
-    }
-
-    createTotalNumber = () => {
-        let materialLots = this.state.data;
-        let count = 0;
-        if(materialLots && materialLots.length > 0){
-            materialLots.forEach(data => {
-                if (data.currentQty != undefined) {
-                    count = count + data.currentQty*10000;
-                }
-            });
-        }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count/10000}</Tag>
-    }
-
 }
 
 const styles = {

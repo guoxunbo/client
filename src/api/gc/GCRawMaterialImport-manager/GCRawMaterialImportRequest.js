@@ -145,8 +145,8 @@ export default class GCRawMaterialImportRequest {
     }
 
     static sendRawMaterialSpareOutDoc = (object) => {
-        let {materialLotList, pickQty} = object;
-        let requestBody = GCRawMaterialImportRequestBody.buildRawMaterialSpareOutDoc(materialLotList, pickQty);
+        let {materialLotList} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildRawMaterialSpareOutDoc(materialLotList);
         let requestHeader = new GCRawMaterialImportRequestHeader();
         let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
         let requestObject = {

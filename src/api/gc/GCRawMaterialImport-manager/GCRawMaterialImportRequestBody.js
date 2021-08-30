@@ -96,9 +96,8 @@ export default class GCRawMaterialImportRequestBody {
         return body;
     }
 
-    static buildRawMaterialSpareOutDoc(materialLotList, pickQty) {
+    static buildRawMaterialSpareOutDoc(materialLotList) {
         let body =  new GCRawMaterialImportRequestBody(ActionType.RawMaterialSpareOutDoc, materialLotList);
-        body.pickQty = pickQty;
         return body;
     }
 
