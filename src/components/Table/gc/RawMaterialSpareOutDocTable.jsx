@@ -86,6 +86,7 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
         let requestObj = {
             materialLotList : materialLotList,
             success: function(responseBody) {
+                let spareCode = responseBody.spareCode;
                 self.setState({
                     selectedRows: [],
                     selectedRowKeys: [],
@@ -93,7 +94,7 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
-                MessageUtils.showOperationSuccess();
+                MessageUtils.showOperationSuccess(I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${spareCode}`);
             }
         }
         GCRawMaterialImportRequest.sendRawMaterialSpareOutDoc(requestObj);
