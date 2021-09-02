@@ -76,6 +76,7 @@ const i18NCode = {
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
     BtnScrapShip: "ScrapShip",
     BtnCancelSpareMaterial:"CancelSpareMaterial",
+    BtnImportSearch: "ImportSearch",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -211,6 +212,7 @@ const i18NCode = {
     IRABoxPrintLable: "IRABoxPrintLable",
     RawMaterialInventory: "RawMaterialInventory",
     EnterRawMaterialSpareQtyPlease: "EnterRawMaterialSpareQtyPlease",
+    TableDataMustBeEmpty: "TableDataMustBeEmpty",
 }
 
 const i18Messages = {
@@ -1252,6 +1254,16 @@ const i18Messages = {
     EnterRawMaterialSpareQtyPlease: {
         Chinese: "请输入原材料备料颗数",
         English: "Enter Raw Material Spare Qty",
+        Res: ""
+    },
+    ImportSearch: {
+        Chinese: "导入查询",
+        English: "ImportSearch",
+        Res: ""
+    },
+    TableDataMustBeEmpty: {
+        Chinese: "数据必须为空！",
+        English: "TableData Must Be Empty",
         Res: ""
     }
 }
