@@ -139,6 +139,10 @@ import GcMobileTransferBoxChangeStorageProperties from './pages/Properties/compo
 import GcMobileRawMaterialIssueMLotScanProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialIssueMLotScanProperties';
 import GcMobileWaferIssueOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWaferIssueOutProperties';
 import GCWltOtherStockOutOrderProperties from './pages/Properties/components/GCWltOtherStockOutOrderProperties';
+import GcMobileRMAMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRMAMaterialReceiveProperties';
+import GCRawMaterialSpareOutDocProperties from './pages/Properties/components/GCRawMaterialSpareOutDocProperties';
+import GcMobileWltOrCpWaferReceiveProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWltOrCpWaferReceiveProperties';
+import GcMobileMaterialLotWeighProperties from './pages/Properties/components/gc/wafer-issue/GcMobileMaterialLotWeighProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -316,6 +320,11 @@ const routerConfig = [
     path: buildPath('GC/CancelCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCancelCheckProperties,
+  },
+  {
+    path: buildPath('/GC/GCRawMaterialSpareOutDocManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialSpareOutDocProperties,
   },
   {
     path: buildPath('Wafer/GCWaferInStorage'),
@@ -1069,6 +1078,21 @@ const routerConfig = [
     path: buildPath('Mobile/MobileWaferIssueOut'),
     layout: BlankLayout,
     component: GcMobileWaferIssueOutProperties,
+  },
+  {
+    path: buildPath('Mobile/RMAMaterialReceive'),
+    layout: BlankLayout,
+    component: GcMobileRMAMaterialReceiveProperties,
+  },
+  {
+    path: buildPath('Mobile/WltOrCpWaferReceive'),
+    layout: BlankLayout,
+    component: GcMobileWltOrCpWaferReceiveProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotWeigh'),
+    layout: BlankLayout,
+    component: GcMobileMaterialLotWeighProperties,
   },
   {
     path: '*',
