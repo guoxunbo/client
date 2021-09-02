@@ -60,4 +60,10 @@ export default class MaterialLotUpdateRequestBody {
         return body;
     }
 
+    static buildImportSearch(tableRrn) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.UpdateLotInfo);
+        body.tableRrn = tableRrn;
+        return body;
+    }
+
 }
