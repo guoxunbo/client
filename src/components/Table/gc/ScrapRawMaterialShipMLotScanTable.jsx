@@ -119,7 +119,7 @@ export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTab
 
     createIssue = () => {
         return <Button key="scrapShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.scrapRawMaterialShip}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnScrapShip)}
+                        {I18NUtils.getClientMessage(i18NCode.BtnOtherShip)}
                     </Button>
     }
 
