@@ -24,6 +24,7 @@ const i18NCode = {
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
     MaterialLotIdRepeat: "MaterialLotIdRepeat",
     SelectAtLeastTwoRow: "SelectAtLeastTwoRow",
+    ConfirmSpare: "ConfirmSpare",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -1270,6 +1271,11 @@ const i18Messages = {
     TableDataMustBeEmpty: {
         Chinese: "数据必须为空！",
         English: "TableData Must Be Empty",
+        Res: ""
+    },
+    ConfirmSpare: {
+        Chinese: "确认备料！",
+        English: "Confirm Spare",
         Res: ""
     }
 }
