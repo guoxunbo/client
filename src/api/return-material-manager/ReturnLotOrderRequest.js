@@ -52,9 +52,9 @@ export default class ReturnLotOrderRequest {
      * @param {*} object 
      */
     static sendReturnMLotByOrderRequest = (object) => {
-        let requestBody = ReturnLotOrderRequestBody.buildReturnMLotByOrder(object.documentId, object.materialLots);
+        let requestBody = ReturnLotOrderRequestBody.buildReturnMLotByOrder(object.documentLineId, object.materialLots);
         let requestHeader = new ReturnLotOrderRequestHeader();
-        let request = new Request(requestHeader,requestBody, UrlConstant.MMSReturnMLotByDocUrl);
+        let request = new Request(requestHeader,requestBody, UrlConstant.VCReturnMLotByDocUrl);
         let requestObject = {
             request: request,
             success: object.success
@@ -129,9 +129,9 @@ export default class ReturnLotOrderRequest {
      * @param {} object 
      */
     static sendGetReservedMLotRequest = (object) => {
-        let requestBody = ReturnLotOrderRequestBody.buildGetReservedMLot(object.documentLine);
+        let requestBody = ReturnLotOrderRequestBody.buildGetReservedMLot(object.documentId);
         let requestHeader = new ReturnLotOrderRequestHeader();
-        let request = new Request(requestHeader,requestBody, UrlConstant.MMSReturnMLotByDocUrl);
+        let request = new Request(requestHeader,requestBody, UrlConstant.VCReturnMLotByDocUrl);
         let requestObject = {
             request: request,
             success: object.success

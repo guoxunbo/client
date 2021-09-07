@@ -31,9 +31,12 @@ export default class ReturnOrderTable extends EntityListTable {
         });
         let showData = [];
         let object = {
-            documentLine: record,
+            documentId: record.lineId,
             success: function(responseBody) {
-                showData = responseBody.materialLotList;
+                let materialLots = responseBody.materialLotList;
+                if(materialLots){
+                    showData = responseBody.materialLotList;
+                }
                 self.props.orderScanTable.setState({tableData: showData})
             }
         }
