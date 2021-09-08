@@ -1,4 +1,4 @@
-import { Button, Col, InputNumber, Row,Tag } from "antd";
+import { Button, Col, InputNumber, Row, Tag ,Modal} from "antd";
 import I18NUtils from "../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../api/const/i18n";
 import EntityListCheckTable from "../EntityListCheckTable";
@@ -30,6 +30,11 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
     }
 
     createMissZeroQtyTag = () => {
+        let selectQty = this.getSelectedQty()
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.SelectQty)}：{selectQty}</Tag>
+    }
+
+    getSelectedQty = () => {
         const {selectedRows} = this.state;
         let materialLotList = selectedRows;
         let selectQty = 0;
@@ -38,7 +43,7 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
                 selectQty = selectQty + data.currentQty*10000;
             });
         }
-        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.SelectQty)}：{selectQty/10000}</Tag>
+        return selectQty/10000;
     }
 
     createStatistic = () => {
@@ -72,11 +77,33 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
     }
 
     spareMaterialConfirm = () => {
-        let self = this;
         let materialLotList = this.getSelectedRows();
         if (materialLotList.length === 0) {
             return;
         }
+
+        let pickQty = this.pickQty.inputNumberRef.currentValue;
+        if (pickQty == null || pickQty == "" || pickQty == undefined) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.EnterRawMaterialSpareQtyPlease));
+            return;
+        }
+        if(this.getSelectedQty() > pickQty){
+            Modal.confirm({
+                title: 'ConfirmSpare',
+                content: I18NUtils.getClientMessage(i18NCode.ConfirmSpare),
+                okText: '确认',
+                cancelText: '取消',
+                onOk:() => {
+                    this.doSapreMaterial(materialLotList);
+                }
+            });
+        } else {
+            this.doSapreMaterial(materialLotList);
+        }
+    }
+
+    doSapreMaterial(materialLotList){
+        let self = this;
 
         self.setState({
             loading: true
@@ -114,6 +141,11 @@ export default class RawMaterialSpareOutDocTable extends EntityListCheckTable{
             return;
         }
 
+        self.setState({
+            selectedRows: [],
+            selectedRowKeys: [],
+        });
+        
         self.setState({
             loading: true
         });
