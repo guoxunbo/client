@@ -101,6 +101,13 @@ export default class MobileForm extends Component {
         return SqlType.Date; 
     }
 
+         getOracleDateType = (dateFormatType) => {
+            if (DateFormatType.DateTime == dateFormatType) {
+               return SqlType.DateTime;
+            } 
+            return SqlType.Date; 
+        }
+
     buildWhereClause = (formValues) => {
         const queryFields = this.state.queryFields;
         let whereClause = new StringBuffer();
