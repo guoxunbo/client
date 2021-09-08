@@ -35,7 +35,7 @@ export default class MobileMLotShipOrderTable extends EntityListTable {
         self.props.queryFrom.handleSearch();
     }
     erpCreatedBtn = () => {
-        return <Button key="queryData" type="primary" style={styles.tableButton} onClick={this.queryData}>查询</Button>
+        return <Button key="queryData" type="primary" style={styles.tableButton} onClick={this.queryData}>{I18NUtils.getClientMessage(i18NCode.BtnSearch)}</Button>
     }
 
     createStatistic = () => {

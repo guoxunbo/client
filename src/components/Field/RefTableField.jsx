@@ -23,7 +23,6 @@ export default class RefTableField extends Combox {
         let requestObject = {
             request: request,
             success: function(responseBody) {
-                debugger;
                 self.refTable = responseBody.referenceTable;
                 let data = [];
                 let textFileds = self.refTable.textField.split(",");
@@ -41,7 +40,6 @@ export default class RefTableField extends Combox {
                 }); 
                 var hash = {};
                 data = data.reduce(function(item, next) {
-                    debugger;
                     hash[next.key] ? '' : hash[next.key] = true && item.push(next);
                     return item
                 }, [])
@@ -57,7 +55,6 @@ export default class RefTableField extends Combox {
     }
 
     valueChanged = (sender, value) => {
-        debugger;
         if(sender == this){
             return;
         }

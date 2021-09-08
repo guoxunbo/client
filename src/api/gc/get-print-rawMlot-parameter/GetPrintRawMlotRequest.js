@@ -19,7 +19,6 @@ export default class GetPrintRawMlotRequest {
     }
 
     static sendIRABoxPrintLableRequest = (object) => {
-        debugger;
         let {materialLots} = object;
         let requestBody = GetPrintRawMlotRequestBody.buildGetIRABoxPrintParam(materialLots);
         let requestHeader = new GetPrintRawMlotRequestHeader();

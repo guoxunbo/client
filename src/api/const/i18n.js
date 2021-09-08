@@ -77,6 +77,7 @@ const i18NCode = {
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
     BtnScrapShip: "ScrapShip",
     BtnOtherShip: "OtherShip",
+    BtnOtherStockOut: "OtherStockOut",
     BtnCancelSpareMaterial:"CancelSpareMaterial",
     BtnImportSearch: "ImportSearch",
 
@@ -1247,6 +1248,11 @@ const i18Messages = {
         Chinese: "其它出库",
         English: "Other Ship",
         Res: ""     
+    },
+    OtherStockOut: {
+        Chinese: "材料/其他出",
+        English: "Other Stock Out",
+        Res: "材料/其他出"     
     },
     IRABoxPrintLable: {
         Chinese: "IRA箱号打印",
