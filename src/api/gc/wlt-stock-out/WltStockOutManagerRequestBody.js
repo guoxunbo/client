@@ -13,6 +13,8 @@ const actionType = {
     SaleShip: "SaleShip",
     GCRWAttributeChange: "GCRWAttributeChange",
     WltOtherStockOut: "WltOtherStockOut",
+    MobileWltStockOut: "MobileWltStockOut",
+    MobileSaleShip: "MobileSaleShip",
 }
 
 export default class WltStockOutManagerRequestBody {
@@ -166,6 +168,32 @@ export default class WltStockOutManagerRequestBody {
         });
         let body = new WltStockOutManagerRequestBody(actionType.SaleShip, documentLines, materialLotActions);
         body.checkSubCode = checkSubCode;
+        return body;
+    }
+
+    static buildMobileWltStockOut(materialLots, checkSubCode, erpTime) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.MobileWltStockOut, undefined, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        body.erpTime = erpTime;
+        return body;
+    }
+
+    static buildMobileSaleStockOut(materialLots, checkSubCode, erpTime) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.MobileSaleShip, undefined, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        body.erpTime = erpTime;
         return body;
     }
 

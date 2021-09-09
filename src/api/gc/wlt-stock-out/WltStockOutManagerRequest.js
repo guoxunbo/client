@@ -148,5 +148,29 @@ export default class WltStockOutManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+    
+    static sendMobileWltStockOutRequest = (object) => {
+        let {materialLots, checkSubCode, erpTime} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildMobileWltStockOut(materialLots, checkSubCode, erpTime);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendMobileSaleStockOutRequest = (object) => {
+        let {materialLots, checkSubCode, erpTime} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildMobileSaleStockOut(materialLots, checkSubCode, erpTime);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

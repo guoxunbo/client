@@ -24,6 +24,7 @@ const i18NCode = {
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
     MaterialLotIdRepeat: "MaterialLotIdRepeat",
     SelectAtLeastTwoRow: "SelectAtLeastTwoRow",
+    ConfirmSpare: "ConfirmSpare",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -75,6 +76,8 @@ const i18NCode = {
     BtnSpareMaterial: "SpareMaterial",
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
     BtnScrapShip: "ScrapShip",
+    BtnOtherShip: "OtherShip",
+    BtnOtherStockOut: "OtherStockOut",
     BtnCancelSpareMaterial:"CancelSpareMaterial",
     BtnImportSearch: "ImportSearch",
 
@@ -1241,6 +1244,16 @@ const i18Messages = {
         English: "Scrap Ship",
         Res: ""     
     },
+    OtherShip: {
+        Chinese: "其它出库",
+        English: "Other Ship",
+        Res: ""     
+    },
+    OtherStockOut: {
+        Chinese: "材料/其他出",
+        English: "Other Stock Out",
+        Res: "材料/其他出"     
+    },
     IRABoxPrintLable: {
         Chinese: "IRA箱号打印",
         English: "IRABox Print",
@@ -1264,6 +1277,11 @@ const i18Messages = {
     TableDataMustBeEmpty: {
         Chinese: "数据必须为空！",
         English: "TableData Must Be Empty",
+        Res: ""
+    },
+    ConfirmSpare: {
+        Chinese: "确认备料！",
+        English: "Confirm Spare",
         Res: ""
     }
 }

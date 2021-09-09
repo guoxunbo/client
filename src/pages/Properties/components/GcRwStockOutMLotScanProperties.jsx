@@ -43,7 +43,6 @@ export default class GcRwStockOutMLotScanProperties extends EntityScanProperties
           tableRrn: this.state.tableRrn,
           queryLotId: queryLotId,
           success: function(responseBody) {
-            debugger;
             let data = undefined;
             let materialLot = responseBody.materialLot;
             let materialLotId = materialLot.materialLotId;

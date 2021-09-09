@@ -9,6 +9,7 @@ import TableManagerRequest from '../../api/table-manager/TableManagerRequest';
 import Field from '../../api/dto/ui/Field';
 import moment from 'moment';
 import StringBuffer from '../../api/StringBuffer';
+import { Application } from '../../api/Application';
 
 export default class MobileForm extends Component {
     static displayName = 'MobileForm';
@@ -89,6 +90,23 @@ export default class MobileForm extends Component {
         }
         return value.toString();
     }
+
+    /**
+     * 根据moment不同的dateType获取对应的oracle的dateType
+     */
+    getOracleDateType = (dateFormatType) => {
+        if (DateFormatType.DateTime == dateFormatType) {
+            return SqlType.DateTime;
+        } 
+        return SqlType.Date; 
+    }
+
+         getOracleDateType = (dateFormatType) => {
+            if (DateFormatType.DateTime == dateFormatType) {
+               return SqlType.DateTime;
+            } 
+            return SqlType.Date; 
+        }
 
     buildWhereClause = (formValues) => {
         const queryFields = this.state.queryFields;
