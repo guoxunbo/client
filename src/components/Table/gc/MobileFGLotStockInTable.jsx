@@ -26,7 +26,7 @@ export default class MobileFGLotStockInTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        // buttons.push(this.createPrintLabelFlag());
+        buttons.push(this.createPrintLabelFlag());
         buttons.push(this.createMaterialLotsNumber());
         buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
@@ -83,11 +83,11 @@ export default class MobileFGLotStockInTable extends EntityScanViewTable {
 
     createPrintLabelFlag = () => {
         return  <FormItem>
-                    <Row gutter={12}>
-                        <Col span={2} >
-                            <span>{I18NUtils.getClientMessage(i18NCode.PrintWltLabelFlag)}:</span>
+                    <Row gutter={24}>
+                        <Col span={6} >
+                            <span style={styles.printLabel}>{I18NUtils.getClientMessage(i18NCode.PrintWltLabelFlag)}:</span>
                         </Col>
-                        <Col span={1}>
+                        <Col span={5}>
                             <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
                                         checkedChildren={<Icon type="printLabel" />} 
                                         unCheckedChildren={<Icon type="close" />} 
@@ -95,10 +95,10 @@ export default class MobileFGLotStockInTable extends EntityScanViewTable {
                                         disabled={this.disabled}
                                         checked={this.state.checked}/>
                         </Col>
-                        <Col span={3} >
-                            <span>{I18NUtils.getClientMessage(i18NCode.PrintCount)}:</span>
+                        <Col span={6} >
+                            <span style={styles.printLabel}>{I18NUtils.getClientMessage(i18NCode.PrintCount)}:</span>
                         </Col>
-                        <Col span={3}>
+                        <Col span={6}>
                             <Input ref={(printCount) => { this.printCount = printCount }} defaultValue={2} key="printCount" placeholder="打印份数"/>
                         </Col>
                     </Row>
@@ -149,7 +149,7 @@ export default class MobileFGLotStockInTable extends EntityScanViewTable {
 }
 
 const styles = {
-    tableButton: {
-        marginLeft:'20px'
+    printLabel: {
+        fontSize: '8px'
     }
 };

@@ -93,7 +93,7 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
         Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
         return;
       }
-      let printLabelFlag = "printLabel";
+      let printLabelFlag = self.orderTable.state.value;;
       let printCount = 2;
 
       if (tableData && tableData.length > 0) {

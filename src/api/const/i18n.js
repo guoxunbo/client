@@ -107,6 +107,7 @@ const i18NCode = {
     TotalNumber : "TotalNumber",
     DataAlreadyExists: "DataAlreadyExists",
     NoDeliveryOrder: "NoDeliveryOrder",
+    DocumentHasBeenBoundToTheExpress: "DocumentHasBeenBoundToTheExpress",
     StorageCannotEmpty: "StorageCannotEmpty",
     BtnDeleteAll: "DeleteAll",
     BtnWeigh: "Weigh",
@@ -637,6 +638,11 @@ const i18Messages = {
     NoDeliveryOrder: {
         Chinese: "没有出库单",
         English: "No delivery order",
+        Res: ""
+    },
+    DocumentHasBeenBoundToTheExpress: {
+        Chinese: "单据已经绑定快递单号",
+        English: "Document has been bound to the express",
         Res: ""
     },
     StorageCannotEmpty: {

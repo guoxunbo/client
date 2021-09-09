@@ -146,6 +146,7 @@ import GcMobileMaterialLotWeighProperties from './pages/Properties/components/gc
 import GcMobileMaterialLotReTestOrderProperties from './pages/Properties/components/gc/wafer-issue/GcMobileMaterialLotReTestOrderProperties';
 import GcMobileWltOrCpStockOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWltOrCpStockOutProperties';
 import GCMobileMLotIssueByOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueByOrderProperties';
+import GcMobileOldRecordExpressNumberProperties from './pages/Properties/components/gc/wafer-issue/GcMobileOldRecordExpressNumberProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1106,6 +1107,11 @@ const routerConfig = [
     path: buildPath('Mobile/WltOrCpStockOut'),
     layout: BlankLayout,
     component: GcMobileWltOrCpStockOutProperties,
+  },
+  {
+    path: buildPath('Mobile/OldRecordExpressNumber'),
+    layout: BlankLayout,
+    component: GcMobileOldRecordExpressNumberProperties,
   },
   {
     path: '*',
