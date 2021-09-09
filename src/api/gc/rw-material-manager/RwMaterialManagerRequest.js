@@ -43,7 +43,6 @@ export default class RwMaterialManagerRequest {
     }
 
     static sendValidateAndGetMaterialLotIdRequest = (object) => {
-        debugger;
         let {materialLotCode} = object;
         let requestBody = RwMaterialManagerRequestBody.buildValidateAndGetMaterialLotId(materialLotCode);
         let requestHeader = new RwMaterialManagerRequestHeader();

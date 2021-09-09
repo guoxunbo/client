@@ -82,7 +82,6 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
     }
 
     handleSubmit = () => {
-      debugger;
       const {tableData} = this.state;
       let self = this;
       if (!tableData || tableData.length == 0) {

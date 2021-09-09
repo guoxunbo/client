@@ -41,6 +41,10 @@ export default class MobileCobMLotReceiveOrderTable extends EntityListTable {
                     </Button>
     }
 
+    buildOperationColumn = () => {
+
+    }
+
 }
 
 const styles = {

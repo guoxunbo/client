@@ -47,7 +47,6 @@ export default class GCRawMaterialInventoryTable extends EntityScanViewTable {
             existMaterialLots: existMaterialLots,
             errorMaterialLots: errorMaterialLots,
             success: function() {
-                debugger;
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
