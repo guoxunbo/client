@@ -7,6 +7,7 @@ import MobileMLotIssueTable from "../../../../../components/Table/gc/MobileMLotI
 import WaferManagerRequest from "../../../../../api/gc/wafer-manager-manager/WaferManagerRequest";
 import TableManagerRequest from "../../../../../api/table-manager/TableManagerRequest";
 import MaterialLot from "../../../../../api/dto/mms/MaterialLot";
+import moment from "moment";
 
 export default class GCMobileMLotIssueByOrderProperties extends MobileProperties{
 
@@ -76,6 +77,16 @@ export default class GCMobileMLotIssueByOrderProperties extends MobileProperties
     handleSubmit = () => {
         const {tableData} = this.state;
         let self = this; 
+        let erpTime = self.dataTable.erpTime.picker.state.showDate;
+        if(moment.isMoment(erpTime)){
+            erpTime = erpTime.format("YYYY-MM-DD");
+        }
+
+        if (erpTime == "" || erpTime == null || erpTime == undefined) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectERPTime));
+            return;
+        }
+
         if (!tableData || tableData.length == 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
@@ -86,26 +97,29 @@ export default class GCMobileMLotIssueByOrderProperties extends MobileProperties
             return;
         }
 
-        let orders = this.props.orders;
-        if (orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-            return;
-        }
-
         let requestObject = {
-            documentLines : orders,
+            erpTime : erpTime,
             materialLots : tableData,
             issueWithDoc: "issueWithDoc",
             success: function(responseBody) {
-                if (self.props.resetData) {
-                    self.props.resetData();
-                    self.props.onSearch();
-                }
+                self.resetData();
                 MessageUtils.showOperationSuccess();
             }
         }
-        WaferManagerRequest.sendWaferIssueRequest(requestObject);
+        WaferManagerRequest.sendMobileWaferIssueRequest(requestObject);
     }
+
+    handleReset = () => {
+        let  self= this;
+        this.setState({ 
+          tableData: [],
+          loading: false
+        });
+        self.dataTable.erpTime.picker.setState({
+          value : "",
+        });
+        this.form.resetFormFileds();
+      }
 
     buildTable = () => {
         return <MobileMLotIssueTable ref={(dataTable) => { this.dataTable = dataTable }}  table={this.state.table} data={this.state.tableData} loading={this.state.loading} />

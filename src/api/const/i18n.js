@@ -77,6 +77,7 @@ const i18NCode = {
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
     BtnScrapShip: "ScrapShip",
     BtnOtherShip: "OtherShip",
+    BtnOtherStockOut: "OtherStockOut",
     BtnCancelSpareMaterial:"CancelSpareMaterial",
     BtnImportSearch: "ImportSearch",
 
@@ -106,6 +107,7 @@ const i18NCode = {
     TotalNumber : "TotalNumber",
     DataAlreadyExists: "DataAlreadyExists",
     NoDeliveryOrder: "NoDeliveryOrder",
+    DocumentHasBeenBoundToTheExpress: "DocumentHasBeenBoundToTheExpress",
     StorageCannotEmpty: "StorageCannotEmpty",
     BtnDeleteAll: "DeleteAll",
     BtnWeigh: "Weigh",
@@ -636,6 +638,11 @@ const i18Messages = {
     NoDeliveryOrder: {
         Chinese: "没有出库单",
         English: "No delivery order",
+        Res: ""
+    },
+    DocumentHasBeenBoundToTheExpress: {
+        Chinese: "单据已经绑定快递单号",
+        English: "Document has been bound to the express",
         Res: ""
     },
     StorageCannotEmpty: {
@@ -1247,6 +1254,11 @@ const i18Messages = {
         Chinese: "其它出库",
         English: "Other Ship",
         Res: ""     
+    },
+    OtherStockOut: {
+        Chinese: "材料/其他出",
+        English: "Other Stock Out",
+        Res: "材料/其他出"     
     },
     IRABoxPrintLable: {
         Chinese: "IRA箱号打印",

@@ -7,7 +7,6 @@ export default class GCRwStockOutTaggingUpdateProperties extends EntityPropertie
     static displayName = 'GCRwStockOutTaggingUpdateProperties';
 
     resetData = () => {
-      debugger;
       this.setState({
         selectedRowKeys: [],
         selectedRows: [],

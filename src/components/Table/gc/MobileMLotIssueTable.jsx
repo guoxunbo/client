@@ -1,7 +1,10 @@
-import { Tag } from 'antd';
+import { Col, DatePicker, Row, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
+import FormItem from 'antd/lib/form/FormItem';
+import locale from 'antd/lib/date-picker/locale/zh_CN';
+import { DateFormatType } from '../../../api/const/ConstDefine';
 
 export default class MobileMLotIssueTable extends EntityScanViewTable {
 
@@ -21,11 +24,25 @@ export default class MobileMLotIssueTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.erpCreatedTime());
         buttons.push(this.createMaterialLotsNumber());
         buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
         buttons.push(this.createErrorNumberStatistic());
         return buttons;
+    }
+
+    erpCreatedTime = () => {
+        return <FormItem>
+                    <Row gutter={16}>
+                        <Col span={6} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.erpCreatedTime)}:</span>
+                        </Col>
+                        <Col span={8}>
+                            <DatePicker ref={(erpTime) => { this.erpTime = erpTime }} locale={locale} showTime format={DateFormatType.Date} />
+                        </Col>
+                    </Row>
+                </FormItem>
     }
 
     getErrorCount = () => {
