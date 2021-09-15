@@ -80,6 +80,7 @@ const i18NCode = {
     BtnOtherStockOut: "OtherStockOut",
     BtnCancelSpareMaterial:"CancelSpareMaterial",
     BtnImportSearch: "ImportSearch",
+    BtnUnpackMLot: "UnpackMLot",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -113,6 +114,7 @@ const i18NCode = {
     BtnWeigh: "Weigh",
     CaseWeightNotScanned: "CaseWeightNotScanned",
     AddOneRowPlease: "AddOneRowPlease",
+    InconsistentScanningInformation: "InconsistentScanningInformation",
     ThereScanFieldCanOnlyBeOne: "ThereScanFieldCanOnlyBeOne",
     AllBoxWeightMustBeEmpty: "AllBoxWeightMustBeEmpty",
     SearchFieldCannotEmpty: "SearchFieldCannotEmpty",
@@ -673,6 +675,11 @@ const i18Messages = {
     AddOneRowPlease: {
         Chinese: "请先扫描箱号",
         English: "Add one row please",
+        Res: ""
+    },
+    InconsistentScanningInformation: {
+        Chinese: "扫描信息不一致",
+        English: "Inconsistent scanning information",
         Res: ""
     },
     AllBoxWeightMustBeEmpty: {
@@ -1278,6 +1285,11 @@ const i18Messages = {
     ImportSearch: {
         Chinese: "导入查询",
         English: "ImportSearch",
+        Res: ""
+    },
+    UnpackMLot: {
+        Chinese: "拆箱",
+        English: "UnpackMLot",
         Res: ""
     },
     TableDataMustBeEmpty: {
