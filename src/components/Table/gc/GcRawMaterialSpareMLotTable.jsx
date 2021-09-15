@@ -5,6 +5,7 @@ import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EventUtils from '../../../api/utils/EventUtils';
 import GCRawMaterialImportRequest from '../../../api/gc/GCRawMaterialImport-manager/GCRawMaterialImportRequest';
+import { Notification } from '../../notice/Notice';
 
 export default class GcRawMaterialSpareMLotTable extends EntityListCheckTable {
 
