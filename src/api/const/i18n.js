@@ -20,6 +20,7 @@ const i18NCode = {
     SelectOneRow: "SelectOneRow",
     SelectERPTime: "SelectERPTime",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
+    AllWafersCannotBeUnpack: "AllWafersCannotBeUnpack",
     AddAtLeastOneRow: "AddAtLeastOneRow",
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
     MaterialLotIdRepeat: "MaterialLotIdRepeat",
@@ -350,6 +351,11 @@ const i18Messages = {
     SelectAtLeastOneRow: {
         Chinese: "请选择至少一笔记录",
         English: "Please select at least one row",
+        Res: ""
+    },
+    AllWafersCannotBeUnpack: {
+        Chinese: "不能拆所有晶圆",
+        English: "All wafer cannot be unpack",
         Res: ""
     },
     ConfirmDelete: {

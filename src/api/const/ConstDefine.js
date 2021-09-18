@@ -79,6 +79,7 @@ const UrlConstant = {
     GCCheckInventoryUrl: ModuleUrlConstant.GC + "checkInventory",
     GCReTestUrl: ModuleUrlConstant.GC + "reTest",
     GCWaferManagerUrl: ModuleUrlConstant.GC + "waferManage",
+    GCWaferUnpackUrl: ModuleUrlConstant.GC + "waferUnpack",
     GCStockOutUrl: ModuleUrlConstant.GC + "stockOut",
     GCWltStockOutUrl: ModuleUrlConstant.GC + "wltStockOut",
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
