@@ -147,6 +147,7 @@ import GcMobileMaterialLotReTestOrderProperties from './pages/Properties/compone
 import GcMobileWltOrCpStockOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWltOrCpStockOutProperties';
 import GCMobileMLotIssueByOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueByOrderProperties';
 import GcMobileOldRecordExpressNumberProperties from './pages/Properties/components/gc/wafer-issue/GcMobileOldRecordExpressNumberProperties';
+import GcWaferUnpackMLotProperties from './pages/Properties/components/GcWaferUnpackMLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -344,6 +345,12 @@ const routerConfig = [
     path: buildPath('Wafer/GCCogEcretiveMaterialDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCogEcretiveMaterialDeleteProperties,
+  },
+  //wafer拆箱
+  {
+    path: buildPath('Wafer/WaferUnpackMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferUnpackMLotProperties,
   },
   //COB管理
   {
