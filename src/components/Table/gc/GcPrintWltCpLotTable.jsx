@@ -7,6 +7,7 @@ import IconUtils from '../../../api/utils/IconUtils';
 import GetPrintWltCpRequest from '../../../api/gc/get-print-wltcp-parameter/GetPrintWltCpRequest';
 import EventUtils from '../../../api/utils/EventUtils';
 import MessageUtils from '../../../api/utils/MessageUtils';
+import { Notification } from '../../notice/Notice';
 
 export default class GcPrintWltCpLotTable extends EntityScanViewTable {
 
