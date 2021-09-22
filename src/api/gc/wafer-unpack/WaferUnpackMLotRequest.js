@@ -17,4 +17,16 @@ export default class WaferUnpackMLotRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendCobRetestLabelAndMakeUpRequest = (object) => {
+        let {materialLot, printCount, printType} = object;
+        let requestBody = WaferUnpackMLotRequestBody.buildCobRetestLabelAndMakeUp(materialLot, printCount, printType);
+        let requestHeader = new WaferUnpackMLotRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferUnpackUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

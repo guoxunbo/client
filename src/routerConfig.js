@@ -148,6 +148,7 @@ import GcMobileWltOrCpStockOutProperties from './pages/Properties/components/gc/
 import GCMobileMLotIssueByOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueByOrderProperties';
 import GcMobileOldRecordExpressNumberProperties from './pages/Properties/components/gc/wafer-issue/GcMobileOldRecordExpressNumberProperties';
 import GcWaferUnpackMLotProperties from './pages/Properties/components/GcWaferUnpackMLotProperties';
+import GCCobRetestLabelAndMakeUpProperties from './pages/Properties/components/GCCobRetestLabelAndMakeUpProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -352,6 +353,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferUnpackMLotProperties,
   },
+    //COB重测标签补打
+    {
+      path: buildPath('Wafer/CobRetestLabelAndMakeUp'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component: GCCobRetestLabelAndMakeUpProperties,
+    },
   //COB管理
   {
     path: buildPath('COB/COBFinishGoodManager'),
