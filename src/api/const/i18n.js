@@ -32,6 +32,8 @@ const i18NCode = {
     SaveFirst: "SaveFirst",
     CheckItemList: "CheckItemList",
     BtnPrint: "Print",
+    BtnLotPrint: "LotPrint",
+    BtnCstPrint: "CstPrint",
     BtnDownload: "Download",
     BtnAdd: "Add",
     BtnOpen: "Open",
@@ -370,6 +372,16 @@ const i18Messages = {
     },
     Print: {
         Chinese: "打印",
+        English: "Print",
+        Res: ""
+    },
+    LotPrint: {
+        Chinese: "打印lot标签",
+        English: "Print",
+        Res: ""
+    },
+    CstPrint: {
+        Chinese: "打印cst标签",
         English: "Print",
         Res: ""
     },

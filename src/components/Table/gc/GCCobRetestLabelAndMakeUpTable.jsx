@@ -1,4 +1,3 @@
-
 import { Button, Col, Input, Row, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
@@ -6,16 +5,17 @@ import EntityScanViewTable from '../EntityScanViewTable';
 import IconUtils from '../../../api/utils/IconUtils';
 import EventUtils from '../../../api/utils/EventUtils';
 import MessageUtils from '../../../api/utils/MessageUtils';
-import RwMLotManagerRequest from '../../../api/gc/rw-manager/RwMLotManagerRequest';
+import WaferUnpackMLotRequest from '../../../api/gc/wafer-unpack/WaferUnpackMLotRequest';
 import { Notification } from '../../notice/Notice';
 
-export default class GcRwPrintLotLabelTable extends EntityScanViewTable {
+export default class GCCobRetestLabelAndMakeUpTable extends EntityScanViewTable {
 
-    static displayName = 'GcRwPrintLotLabelTable';
+    static displayName = 'GCCobRetestLabelAndMakeUpTable';
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createPrintButton());
+        buttons.push(this.createLotPrintButton());
+        buttons.push(this.createCstPrintButton());
         return buttons;
     }
 
@@ -66,12 +66,12 @@ export default class GcRwPrintLotLabelTable extends EntityScanViewTable {
                 </span>
             </Col>
             <Col span={3}>
-                <Input ref={(printCount) => { this.printCount = printCount }} defaultValue={2} key="printCount" placeholder="打印份数"/>
+                <Input ref={(printCount) => { this.printCount = printCount }} defaultValue={1} key="printCount" placeholder="打印份数"/>
             </Col>
         </Row>
     }
 
-    handlePrint = () => {
+    handleLotPrint = () => {
         const {data} = this.state;
         let self = this;
         if(data.length == 0){
@@ -89,19 +89,56 @@ export default class GcRwPrintLotLabelTable extends EntityScanViewTable {
             let requestObject = {
                 materialLot : data[0],
                 printCount: printCount,
+                printType: "",
                 success: function(responseBody) {
                     MessageUtils.showOperationSuccess();
                 }
             }
-            RwMLotManagerRequest.sendPrintRwReceiveLotLableRequest(requestObject);
+            WaferUnpackMLotRequest.sendCobRetestLabelAndMakeUpRequest(requestObject);
         }
     }
 
-    createPrintButton = () => {
-        return <Button key="print" type="primary" loading={this.state.loading} onClick={() => this.handlePrint()}>
-             {IconUtils.buildIcon("icon-barcode")}{I18NUtils.getClientMessage(i18NCode.BtnPrint)}</Button>;
+    handleCstPrint = () => {
+        const {data} = this.state;
+        let self = this;
+        if(data.length == 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        let printCount = this.printCount.state.value;
 
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+        
+        if (data && data.length > 0) {
+            let requestObject = {
+                materialLot : data[0],
+                printCount: printCount,
+                printType: "PRINT_LOT",
+                success: function(responseBody) {
+                    MessageUtils.showOperationSuccess();
+                }
+            }
+            WaferUnpackMLotRequest.sendCobRetestLabelAndMakeUpRequest(requestObject);
+        }
+    }
+
+    createLotPrintButton = () => {
+        return <Button key="print" type="primary" loading={this.state.loading} style={styles.tableButton}  onClick={() => this.handleLotPrint()}>
+             {IconUtils.buildIcon("icon-barcode")}{I18NUtils.getClientMessage(i18NCode.BtnLotPrint)}</Button>;
+    }
+
+    createCstPrintButton = () => {
+        return <Button key="print" type="primary" loading={this.state.loading} style={styles.tableButton} onClick={() => this.handleCstPrint()}>
+             {IconUtils.buildIcon("icon-barcode")}{I18NUtils.getClientMessage(i18NCode.BtnCstPrint)}</Button>;
     }
 
 }
 
+const styles = {
+    tableButton: {
+        marginLeft:'20px'
+    }
+};
