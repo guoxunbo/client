@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class StockOutManagerRequest {
 
     static sendStockOutRequest = (object) => {
-        let {documentLine, materialLots} = object;
-        let requestBody = StockOutManagerRequestBody.buildStockOut(documentLine, materialLots);
+        let {documentLineList, materialLots} = object;
+        let requestBody = StockOutManagerRequestBody.buildStockOut(documentLineList, materialLots);
         let requestHeader = new StockOutManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutUrl);
         let requestObject = {
