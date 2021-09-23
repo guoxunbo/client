@@ -47,11 +47,9 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
-        if (!documentLine) {
-            self.setState({ 
-                loading: false
-            });
+        let documentLineList = this.props.orderTable.state.data;
+        if (documentLineList.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
         let materialLots = this.state.data;
@@ -60,15 +58,13 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
             return;
         }
 
-
-
         self.setState({
             loading: true
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLine : documentLine,
+            documentLineList : documentLineList,
             materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {
