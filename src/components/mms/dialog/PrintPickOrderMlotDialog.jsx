@@ -1,11 +1,14 @@
 import  React from 'react';
 import EntityDialog from '@components/framework/dialog/EntityDialog';
-import PrintReturnOrderForm from '../form/PrintReturnOrderForm';
+import PrintPickMlotOrderForm from '../form/PrintPickMlotOrderForm';
 
+/**
+ * 批次领料单打印传递materialName，materialDesc
+ */
+export default class PrintPickOrderMlotDialog extends EntityDialog {
 
-export default class PrintReturnOrderDialog extends EntityDialog {
-
-    static displayName = 'PrintReturnOrderDialog';
+    
+    static displayName = 'PrintPickOrderMlotDialog';
 
     constructor(props) {
         super(props);
@@ -21,9 +24,8 @@ export default class PrintReturnOrderDialog extends EntityDialog {
     }
 
     buildForm = () => {
-        return <PrintReturnOrderForm
-                documentId = {this.props.documentId}
-                object = {this.props.object}
-                document = {this.props.document}/>
+        return <PrintPickMlotOrderForm
+                document = {this.props.document}
+                object = {this.props.object}/>
     }
 }

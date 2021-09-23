@@ -38,7 +38,9 @@ export default class CreateIssueOrderByMaterialProperties extends EntityProperti
         return <CreateIssueOrderByMaterialInfoProperties
                     tableRrn = {this.state.parameters.parameter1}
                     orderTable = {this.orderTable}
-                    ref= {(pickOrderProperties) => {this.pickOrderProperties = pickOrderProperties}}/>
+                    ref= {(pickOrderProperties) => {this.pickOrderProperties = pickOrderProperties}}
+                    materialLotCreateIssueOrderMaterDialogTableName={this.state.parameters.parameter2}
+                    />
     }
 
 }

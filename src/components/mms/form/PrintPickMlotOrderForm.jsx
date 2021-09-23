@@ -4,11 +4,11 @@ import SimpleBarCode from '@components/framework/code/SimpleBarCode';
 import { Form } from 'antd';
 
 /**
- * 打印退料料单
+ * 打印批次领料单
  */
-class PrintReturnOrderForm extends EntityForm {
+class PrintPickMlotOrderForm extends EntityForm {
 
-    static displayName = 'PrintReturnOrderForm';
+    static displayName = 'PrintPickMlotOrderForm';
 
     constructor(props) {
         super(props);
@@ -29,15 +29,12 @@ class PrintReturnOrderForm extends EntityForm {
     }
 
     buildTr = (mLot) => {
-        return(<tr>
-            <th colspan = "2" style={styles.tdFontSize}>{mLot.lastStorageId}</th> 
-            <th colspan = "2" style={styles.tdFontSize}>{mLot.materialLotId}</th> 
-            <th colspan = "2" style={styles.tdFontSize}>{mLot.materialName}</th> 
-            <th colspan = "2" style={styles.tdFontSize}>{mLot.currentQty}</th> 
-            <th colspan = "2" style={styles.tdFontSize}>{mLot.transQty}</th> 
-            <th colspan = "2" style={styles.tdFontSize}>{mLot.reserved14}</th>
-            <th colspan = "2" style={styles.tdFontSize}>{mLot.reserved24}</th> 
-        </tr>)
+        return  (<tr>
+                    <th colspan = "2" style={styles.tdFontSize}>{mLot.materialName}</th> 
+                    <th colspan = "2" style={styles.tdFontSize}>{mLot.materialDesc}</th> 
+                    <th colspan = "2" style={styles.tdFontSize}>{mLot.pickQty}</th>
+                    <th colspan = "2" style={styles.tdFontSize}>{mLot.storeUom}</th> 
+                </tr>)
             
     }
 
@@ -49,39 +46,41 @@ class PrintReturnOrderForm extends EntityForm {
     }
 
     buildPrintTable = () => {
+        debugger;
         let materialLots = this.props.object;
-        let documentId = this.props.documentId;
         let document = this.props.document;
         let trArr = this.forEachBuildTr(materialLots);
         return (<div id="printTable">
                     <table border="0" width="100%" cellspacing="0">
                         <tbody>
                             <tr>
-                                <th colspan = "8"><h3>退料单</h3></th> 
+                                <th colspan = "8"><h3>领料单</h3></th> 
                             </tr>                           
                             <tr>
                                 <th colspan = "2" style={styles.tdFontSize}>单号:</th>
                                 <th colspan = "2" ></th> 
                                 <th colspan = "2" ></th> 
-                                <th colspan = "2" style={styles.tdFontSize} aligh= "right"> {this.buildBarCode(documentId)} </th>
+                                <th colspan = "2" style={styles.tdFontSize} aligh= "right"> {this.buildBarCode(document.name)} </th>
                             </tr>
+
+                            <tr>
+                                <th colspan = "8">&nbsp;</th> 
+                            </tr>   
                         </tbody>
                     </table>
 
                     <table border="1" width="100%" cellspacing="0">
                         <tbody>
                             <tr>
-                                <th colspan = "2" style={styles.tdFontSize}>库位号</th> 
-                                <th colspan = "2" style={styles.tdFontSize}>物料批次号</th> 
                                 <th colspan = "2" style={styles.tdFontSize}>物料代码</th> 
-                                <th colspan = "2" style={styles.tdFontSize}>当前数量</th>
-                                <th colspan = "2" style={styles.tdFontSize}>退料数量</th>
-                                <th colspan = "2" style={styles.tdFontSize}>备注</th>
-                                <th colspan = "2" style={styles.tdFontSize}>运单号码</th> 
+                                <th colspan = "2" style={styles.tdFontSize}>物料描述</th> 
+                                <th colspan = "2" style={styles.tdFontSize}>领料数量</th> 
+                                <th colspan = "2" style={styles.tdFontSize}>单位</th> 
                             </tr>
                             {trArr}
                         </tbody>
                     </table>
+
                     <table border="0" width="100%">
                             <tr><td colspan="2">&nbsp;</td></tr>
                             <tr>
@@ -97,4 +96,4 @@ class PrintReturnOrderForm extends EntityForm {
 const styles = {
     tdFontSize:{fontSize:'12px', height:'30px'}
 }
-export default Form.create()(PrintReturnOrderForm);
+export default Form.create()(PrintPickMlotOrderForm);

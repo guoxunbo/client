@@ -77,8 +77,8 @@ export default class ReturnLotOrderRequestBody{
            let materialLotAction = new MaterialLotAction();
            materialLotAction.setMaterialLotId(mLot.materialLotId);
            materialLotAction.setTransQty(mLot.transQty);
-           materialLotAction.setActionReason(mLot.actionReason);
-           materialLotAction.setActionComment(mLot.actionComment);
+           materialLotAction.setActionReason(materialLots.actionReason);   //退料原因
+           materialLotAction.setActionComment(materialLots.actionComment);  //成本中心
            materialLotActionList.push(materialLotAction);
         });
        return new ReturnLotOrderRequestBody(actionType.CreateDeptReturnOrder, undefined, undefined, materialLotActionList);
