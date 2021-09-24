@@ -32,11 +32,12 @@ const ImportType = {
     GCRMAPureFinishProduct: "GCRMAPureFinishProduct",//RMA纯_成品-4
     GCSamsungPackingList: "GCSamsungPackingList",//三星packing list(-2CP未测)
 
+    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
     GCSensorCPMeasuredHuaLing: "GCSensorCPMeasuredHuaLing",//sensor CP已测（-2.1华领）
     GCSensorCPMeasuredKLT: "GCSensorCPMeasuredKLT",//sensor CP已测（KLT）
-    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
     GCSensorPackageReturnCogo: "GCSensorPackageReturnCogo",//sensor封装回货（积高-3未测）
-    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
+    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
+    
     GCFinishProductImport: "GCFinishProductImport",//成品导入模板
     GCSOCWaferUnmeasured: "GCSOCWaferUnmeasured",//SOC(-2.5,-2.55未测/-2.6已测)
 }
@@ -45,7 +46,9 @@ const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCSOCFinishProduct];
 const wltType = [ImportType.GCWLAUnmeasured];
 const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
                 ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26,
-                ImportType.GCSensorPackageReturn, ImportType.GCSOCWaferUnmeasured];
+                ImportType.GCSensorPackageReturn, ImportType.GCSOCWaferUnmeasured, ImportType.GCSensorCPMeasuredHuaLing,
+                ImportType.GCSensorCPMeasuredKLT, ImportType.GCSensorUnmeasured, ImportType.GCSensorPackageReturnCogo,
+                ImportType.GCSensorTplccSenBang];
 const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
 
 const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
