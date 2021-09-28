@@ -12,6 +12,20 @@ export default class MobileTable extends EntityListTable {
 
     static displayName = 'MobileTable';
 
+    getRowClassName = (record, index) => {
+        if (record.errorFlag) {
+            return 'error-row';
+        }if (record.scaned) {
+            return 'scaned-row';
+        }else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
+    
     createButtonGroup = () => {
     }
 

@@ -52,7 +52,7 @@ export default class ReturnLotOrderRequest {
      * @param {*} object 
      */
     static sendReturnMLotByOrderRequest = (object) => {
-        let requestBody = ReturnLotOrderRequestBody.buildReturnMLotByOrder(object.documentLineId, object.materialLots);
+        let requestBody = ReturnLotOrderRequestBody.buildReturnMLotByOrder(object.docId, object.materialLots);
         let requestHeader = new ReturnLotOrderRequestHeader();
         let request = new Request(requestHeader,requestBody, UrlConstant.VCReturnMLotByDocUrl);
         let requestObject = {
@@ -63,6 +63,7 @@ export default class ReturnLotOrderRequest {
     }
 
      /**
+      * RMA 来料导入
      * 创建退货单
      * 客户退回
      * @param {*} object 
@@ -79,14 +80,14 @@ export default class ReturnLotOrderRequest {
     }
     
     /**
-     * RMA退货
+     * RMA退货接收
      * 客户退回
      * @param {*} object 
      */
     static sendReturnGoodsRequest = (object) => {
         let requestBody = ReturnLotOrderRequestBody.buildReturnGoods(object.documentId, object.materialLots);
         let requestHeader = new ReturnLotOrderRequestHeader();
-        let request = new Request(requestHeader,requestBody, UrlConstant.MMSCreateReturnMLotOrderUrl);
+        let request = new Request(requestHeader,requestBody, UrlConstant.MMSReturnMLotByDocUrl);
         let requestObject = {
             request: request,
             success: object.success
@@ -125,11 +126,11 @@ export default class ReturnLotOrderRequest {
     }
 
     /**
-     * 根据单据匹配规则 获得物料批次信息
+     * 获得已经备货得物料批次
      * @param {} object 
      */
-    static sendGetReservedMLotRequest = (object) => {
-        let requestBody = ReturnLotOrderRequestBody.buildGetReservedMLot(object.documentId);
+    static sendGetStockUpRequest = (object) => {
+        let requestBody = ReturnLotOrderRequestBody.buildGetStockUp(object.documentId);
         let requestHeader = new ReturnLotOrderRequestHeader();
         let request = new Request(requestHeader,requestBody, UrlConstant.VCReturnMLotByDocUrl);
         let requestObject = {

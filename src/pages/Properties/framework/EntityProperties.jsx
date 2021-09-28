@@ -96,7 +96,7 @@ export default class EntityProperties extends Component {
     }
 
     buildTable = () => {
-      return  <EntityListTable {...this.getDefaultTableProps()}/>
+        return  <EntityListTable {...this.getDefaultTableProps()}/>
     }
 
     /**

@@ -29,7 +29,7 @@ export default class MaterialLotIqcRequest {
     }
 
     static sendBatchIqcRequest = (object) => {
-        let requestBody = MaterialLotIqcRequestBody.buildBatchIqc(object.judgeMLotAndAction);
+        let requestBody = MaterialLotIqcRequestBody.buildBatchIqc(object.judgeMLotAndAction, object.materialLots, object.checkSheetLines);
         let requestHeader = new MaterialLotIqcRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.VCMateiralLotIqcUrl);
         let requestObject = {

@@ -10,6 +10,7 @@ export default class CreateIssueOrderByMLotInfoProperties extends CreateIssueOrd
 
     buildTable=()=>{
         return( <CreateIssueOrderByMLotInfoTable
-                {...this.getDefaultTableProps()}/>)
+                {...this.getDefaultTableProps()}
+                createDeptIssueActionTableName = {this.props.createDeptIssueActionTableName}/>)
     }
 }

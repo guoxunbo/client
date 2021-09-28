@@ -3,7 +3,8 @@ const EnvMode = {
     Local: "LOCAL",
     Test: "TEST",
     Prod: "PROD",
-    Dev: "DEV"
+    Dev: "DEV",
+    Back: "BACK",
 }
 
 /**
@@ -16,9 +17,11 @@ const getServerAddress = () => {
     if (ENV_MODE === EnvMode.Prod) {
         serverAddress = "http://10.39.0.51:10010";
     } else if (ENV_MODE === EnvMode.Dev) {
-        serverAddress = "http://10.39.0.49:10010";
+        serverAddress = "http://10.39.0.111:10010";
     } else if (ENV_MODE === EnvMode.Test) {
         serverAddress = "http://10.39.0.49:10010";
+    } else if (ENV_MODE === EnvMode.Back){
+        serverAddress = "http://10.39.0.111:10010";
     }
     return serverAddress;
 }
@@ -156,6 +159,12 @@ const UrlConstant = {
     VCPartsMaterialManagerUrl: ModuleUrlConstant.VC + "partsMaterialManage",
     VCQueryOrderManagerUrl: ModuleUrlConstant.VC + "queryOrderManager",
     VCSyncERPMaterialLot: ModuleUrlConstant.VC + "syncERPMaterialLot",
+    VCRetryInterface: ModuleUrlConstant.VC + "retryInterface",
+    VCCheckMLotManager: ModuleUrlConstant.VC + "checkMLotManager",
+    VCScrapMLotManager: ModuleUrlConstant.VC + "scrapMLotManager",
+    VCCreateOrderManager: ModuleUrlConstant.VC + "createOrder",
+    VCStockUpManager: ModuleUrlConstant.VC + "stockUp",
+
 };
 
 const SystemRefListName = {

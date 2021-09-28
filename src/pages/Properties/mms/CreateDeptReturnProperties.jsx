@@ -15,6 +15,7 @@ export default class CreateDeptReturnProperties extends EntityScanProperties{
 
     buildTable=()=>{
         return( <CreateDeptReturnTable
-                {...this.getDefaultTableProps()}/>)
+                {...this.getDefaultTableProps()}
+                createDeptReturnActionTableName = {this.state.parameters.parameter1}/>)
     }
 }

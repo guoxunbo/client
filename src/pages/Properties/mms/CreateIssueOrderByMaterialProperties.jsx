@@ -37,6 +37,7 @@ export default class CreateIssueOrderByMaterialProperties extends EntityProperti
     buildOtherComponent = () => {
         return <CreateIssueOrderByMaterialInfoProperties
                     tableRrn = {this.state.parameters.parameter1}
+                    createDeptIssueActionTableName = {this.state.parameters.parameter2}
                     orderTable = {this.orderTable}
                     ref= {(pickOrderProperties) => {this.pickOrderProperties = pickOrderProperties}}/>
     }

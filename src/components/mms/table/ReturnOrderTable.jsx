@@ -31,16 +31,16 @@ export default class ReturnOrderTable extends EntityListTable {
         });
         let showData = [];
         let object = {
-            documentId: record.lineId,
+            documentId: record.name,
             success: function(responseBody) {
                 let materialLots = responseBody.materialLotList;
                 if(materialLots){
                     showData = responseBody.materialLotList;
                 }
-                self.props.orderScanTable.setState({tableData: showData})
+                self.props.orderScanProperties.setState({tableData: showData})
             }
         }
-        ReturnLotOrderRequest.sendGetReservedMLotRequest(object);
+        ReturnLotOrderRequest.sendGetStockUpRequest(object);
     }
 
     buildOperationColumn = () => {

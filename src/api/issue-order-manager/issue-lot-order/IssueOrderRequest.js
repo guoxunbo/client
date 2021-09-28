@@ -62,7 +62,7 @@ export default class IssueOrderRequest {
      * @param {*} object 
      */
     static sendCreateIssueMLotOrderRequest= (object) => {
-        let requestBody =  IssueOrderRequestBody.buildCreateIssueMLotOrder(object.materialLots);
+        let requestBody =  IssueOrderRequestBody.buildCreateIssueMLotOrder(object.materialLots, object.actionComment);
         let requestHeader = new IssueOrderRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.MMSCreateIssueOrderUrl);
         let requestObject = {

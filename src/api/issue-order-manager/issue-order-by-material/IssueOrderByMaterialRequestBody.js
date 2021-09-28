@@ -1,3 +1,5 @@
+import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+
 const ActionType = {
     CreateIssueOrderByMaterial: "CreateIssueOrderByMaterial",
     RecommendIssueOrder: "recommendIssueOrder",
@@ -10,7 +12,8 @@ export default class IssueOrderByMaterialRequestBody {
     actionType;
     materials;
     documentId;
-    materialLotIds
+    materialLotIds;
+    materialLotAction;
 
     constructor(actionType, materials, documentId, materialLotIds){
         this.actionType = actionType;
@@ -19,9 +22,18 @@ export default class IssueOrderByMaterialRequestBody {
         this.materialLotIds = materialLotIds;
     }
 
-    static buildCreateIssueOrderByMaterial(materials){
+    setMaterialLotAction(materialLotAction){
+        this.materialLotAction = materialLotAction;
+    }
 
-        return new IssueOrderByMaterialRequestBody(ActionType.CreateIssueOrderByMaterial, materials);
+    static buildCreateIssueOrderByMaterial(materials, actionComment){
+        let requestBody = new IssueOrderByMaterialRequestBody(ActionType.CreateIssueOrderByMaterial, materials);
+        
+        let materialLotAction = new MaterialLotAction();
+        materialLotAction.setActionComment(actionComment);
+        requestBody.setMaterialLotAction(materialLotAction);
+
+        return requestBody;
     }
 
     static buildRecommendIssueMaterial(documentId){

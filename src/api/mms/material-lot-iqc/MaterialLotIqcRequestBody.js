@@ -1,4 +1,5 @@
 import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import MLotCheckSheetLine from "@api/dto/mms/MLotCheckSheetLine";
 import PropertyUtils from "@utils/PropertyUtils";
 
 const ActionType = {
@@ -12,6 +13,7 @@ export default class MaterialLotIqcRequestBody {
     materialLotIds;
     materialLotAction;
     urlRemark;
+    checkSheetLineList;
 
     constructor(materialLotAction, materialLotIds, materialLotActions, urlRemark) {
         this.materialLotAction = materialLotAction;
@@ -22,6 +24,10 @@ export default class MaterialLotIqcRequestBody {
     
     setActionType(actionType){
         this.actionType = actionType;
+    }
+
+    setCheckSheetLineList(checkSheetLineList){
+        this.checkSheetLineList = checkSheetLineList;
     }
 
     static buildIqc(materialLotCheckSheet) {
@@ -44,11 +50,10 @@ export default class MaterialLotIqcRequestBody {
         materialLotIqcRequestBody.setActionType(ActionType.ValidationAndGetMLot);
         return materialLotIqcRequestBody;
     }
-
     
-    static buildBatchIqc(judgeMLotsAndAction) {
+    static buildBatchIqc(judgeMLotsAndAction, materialLots, checkSheetLines) {
         let materialLotActions = [];
-        judgeMLotsAndAction.forEach(data => {
+        materialLots.forEach(data => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(data.materialLotId);
             materialLotAction.setActionCode(judgeMLotsAndAction.actionCode);
@@ -56,9 +61,17 @@ export default class MaterialLotIqcRequestBody {
             materialLotAction.setActionComment(judgeMLotsAndAction.actionComment);
             materialLotActions.push(materialLotAction);
         });
-        
-        let materialLotIqcRequestBody =  new MaterialLotIqcRequestBody(undefined, undefined, materialLotActions, judgeMLotsAndAction.urlRemark);
+
+        let materialLotIqcRequestBody = new MaterialLotIqcRequestBody(undefined, undefined, materialLotActions, judgeMLotsAndAction.urlRemark);
         materialLotIqcRequestBody.setActionType(ActionType.BatchIqc);
+        
+        let mLotCheckSheetLines = [];
+        checkSheetLines.forEach(data => {
+            let mLotCheckSheetLine = new MLotCheckSheetLine();
+            PropertyUtils.copyProperties(data, mLotCheckSheetLine);
+            mLotCheckSheetLines.push(mLotCheckSheetLine);
+        })
+        materialLotIqcRequestBody.setCheckSheetLineList(mLotCheckSheetLines);
         return materialLotIqcRequestBody;
     }
 

@@ -27,6 +27,7 @@ export default class IncomingMLotImportTable extends EntityScanViewTable {
         buttons.push(this.createSyncButton());
         buttons.push(this.createImportButton());
         buttons.push(this.createSaveButton());
+        buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createDeleteAllButton());
         return buttons;
     }

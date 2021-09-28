@@ -2,7 +2,7 @@ import ReturnMLotOrderProperties from "./ReturnMLotOrderProperties";
 import ReturnLotOrderScanProperties from "./ReturnLotOrderScanProperties";
 
 /**
- * 退货
+ * RMA退货
  * 客户退回
  */
 export default class ReturnLotOrderProperties extends ReturnMLotOrderProperties{

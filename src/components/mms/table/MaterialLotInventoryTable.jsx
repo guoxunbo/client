@@ -11,6 +11,7 @@ import TransferMLotInventoryDialog from '@components/mms/dialog/TransferMLotInve
 import MaterialLotInvManagerRequest from '@api/material-lot-inv-manager/MaterialLotInvManagerRequest';
 import CheckMLotInventoryDialog from '@components/mms/dialog/CheckMLotInventoryDialog';
 import AuthorityButton from '@components/framework/button/AuthorityButton';
+import EventUtils from '@utils/EventUtils';
 
 const TableName = {
     MLotTransferInventory: "MMLotTransferInv",
@@ -38,8 +39,8 @@ export default class MaterialLotInventoryTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        // buttons.push(this.createStockOutButton());
-        buttons.push(this.createTransferInvButton());
+        //buttons.push(this.createStockOutButton());
+        //buttons.push(this.createTransferInvButton());
         buttons.push(this.createPickButton());
         buttons.push(this.createExportDataButton());
         return buttons;
@@ -143,9 +144,9 @@ export default class MaterialLotInventoryTable extends EntityListTable {
      * 库存不可删除，只能盘点
      */
     buildOperation = (record) => {
-        let operations = [];
-        operations.push(this.buildCheckButton(record));
-        return operations;
+        // let operations = [];
+        // operations.push(this.buildCheckButton(record));
+        // return operations;
     }
 
     buildCheckButton = (record) => {

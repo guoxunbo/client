@@ -35,7 +35,7 @@ export default class AuthorityButton extends Component {
     }
 
     handleClick = () => {
-        this.setState({loading: true});
+        this.setState({loading: false});
         const {onClick} = this.props;
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         if (onClick) {

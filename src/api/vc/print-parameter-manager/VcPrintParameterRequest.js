@@ -82,4 +82,34 @@ export default class VcPrintParameterRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    /**
+     * 发货通知单
+     * @param {} object 
+     */
+    static sendPrintDeliveryOrderRequest = (object)=>{
+        let requestBody = VcPrintParameterRequestBody.buildPrintDeliveryOrder(object.documentLineId);
+        let requestHeader = new VcPrintParameterRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCPrintExcelManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    /**
+     * 报废/退料单据
+     * @param {*} object 
+     */
+    static sendPrintRSAndScrapOrderRequest = (object)=>{
+        let requestBody = VcPrintParameterRequestBody.buildPrintRSAndScrapOrder(object.documentLineId);
+        let requestHeader = new VcPrintParameterRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCPrintExcelManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

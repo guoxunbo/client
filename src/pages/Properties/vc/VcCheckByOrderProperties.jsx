@@ -1,35 +1,32 @@
-import IssueOrderRequest from "@api/issue-order-manager/issue-lot-order/IssueOrderRequest";
+import VcCheckByOrderTable from "@components/vc/table/VcCheckByOrderTable";
 import EntityProperties from "../framework/EntityProperties";
 import VcCheckByOrderScanProperties from "./VcCheckByOrderScanProperties";
 
 /**
- * ERP盘点
+ * 根据单据盘点
  */
 export default class VcCheckByOrderProperties extends EntityProperties{
 
       static display = 'VcCheckByOrderProperties';
 
-      afterSelectRow = (entityTable, record, rowKey) => {
-            entityTable.setState({loading: false});
-            if(!record || record == undefined){
-                  return ;
-            }
-            let self = this;
-            let object = {
-                  documentId: record.name,
-                  success: function(responseBody) {
-                      let showData = responseBody.materialLotList;      
-                      self.scanProperties.setState({tableData: showData})
-                  }
-              }
-            IssueOrderRequest.sendGetWaitMLotByOrderRequest(object);
+      buildTable = () => {
+            return <VcCheckByOrderTable {...this.getDefaultTableProps()}
+            scanProperties = {this.scanProperties}
+            pagination={false} 
+            scrollY={200} 
+            ref={(orderTable) => {this.orderTable = orderTable}}/>
       }
 
+      buildGetDate= () =>{
+            this.handleSearch(this.state.whereClause)
+      }
+      
       buildOtherComponent = () => {
-         return <VcCheckByOrderScanProperties 
+            return <VcCheckByOrderScanProperties 
                   {...this.getDefaultTableProps()}
                   tableRrn = {this.state.parameters.parameter1}  
                   orderTable = {this.orderTable} 
-                  ref={(scanProperties) => { this.scanProperties = scanProperties}}/>
+                  ref={(scanProperties) => { this.scanProperties = scanProperties}}
+                  onSearch={this.buildGetDate.bind(this)}/>
       }
 }

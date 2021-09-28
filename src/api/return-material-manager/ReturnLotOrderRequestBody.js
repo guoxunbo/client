@@ -9,8 +9,8 @@ const actionType ={
     ReturnGoods: "ReturnGoods",
     CreateDeptReturnOrder: "CreateDeptReturnOrder",
     DeptReturnMLot: "DeptReturnMLot",
-    GetReservedMLot: "GetReservedMLot",
-
+    GetStockUpMLot: "GetStockUpMLot",
+    ValidateReservedMLot: "ValidateReservedMLot",
 }
 export default class ReturnLotOrderRequestBody{
 
@@ -18,6 +18,11 @@ export default class ReturnLotOrderRequestBody{
     documentId ;
     materialLotIdList;
     materialLotActionList;
+    materialLotList;
+
+    setMaterialLotList(materialLotList){
+        this.materialLotList = materialLotList;
+    }
 
     constructor(actionType, documentId, materialLotIdList, materialLotActionList, dataList){
         this.actionType =actionType;
@@ -44,19 +49,15 @@ export default class ReturnLotOrderRequestBody{
         materialLots.forEach(mLot => {
            let materialLotAction = new MaterialLotAction();
            materialLotAction.setMaterialLotId(mLot.materialLotId);
-           materialLotAction.setTransQty(mLot.transQty);
-           materialLotAction.setActionReason(mLot.actionReason);
            materialLotActionList.push(materialLotAction);
         });
        return new ReturnLotOrderRequestBody(actionType.CreateReturnMaterialLotOrder, undefined, undefined, materialLotActionList);
    }
 
-    static buildReturnMLotByOrder(documentLineId, materialLots){
-        const materialLotIdList = [];
-        materialLots.forEach(mLot => {
-            materialLotIdList.push(mLot.materialLotId);
-        });
-        return new ReturnLotOrderRequestBody(actionType.ReturnMaterialLot, documentLineId, materialLotIdList);
+    static buildReturnMLotByOrder(docId, materialLots){
+        let requestBody = new ReturnLotOrderRequestBody(actionType.ReturnMaterialLot, docId);
+        requestBody.setMaterialLotList(materialLots);
+        return requestBody;
     }
 
     static buildCreateReturnGoods(dataList){
@@ -92,7 +93,7 @@ export default class ReturnLotOrderRequestBody{
         return new ReturnLotOrderRequestBody(actionType.DeptReturnMLot, documentId, materialLotIdList);
     }
 
-    static buildGetReservedMLot(documentId){
-        return new ReturnLotOrderRequestBody(actionType.GetReservedMLot, documentId);
+    static buildGetStockUp(documentId){
+        return new ReturnLotOrderRequestBody(actionType.GetStockUpMLot, documentId);
     }
 }

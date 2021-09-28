@@ -15,20 +15,21 @@ export default class ReturnOrderScanTable extends ReturnMLotOrderScanTable {
     ReturnMLot = () => {
         let self = this;
         let materialLots = this.getScanned();
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
+        let document = this.props.orderTable.getSingleSelectedRow();
         if (materialLots.length === 0) {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
         let requestObject = {
             materialLots: materialLots,
-            documentLineId:  documentLine.lineId,
+            docId:  document.name,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.setState({
                         loading: false
                     });
                     self.props.resetData();
+                    self.props.onSearch();
                 }
                 NoticeUtils.showSuccess();
             }

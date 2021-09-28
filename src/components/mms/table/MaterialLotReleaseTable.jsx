@@ -1,5 +1,5 @@
 import CsvImportRequest from "@api/csv-manager/CsvImportRequest";
-import MaterialLotReleaseRequest from "@api/material-lot-release/MaterialLotReleaseRequest";
+import EntityListCheckTable from "@components/framework/table/EntityListCheckTable";
 import EntityListTable from "@components/framework/table/EntityListTable";
 import { DefaultRowKey } from "@const/ConstDefine";
 import { i18NCode } from "@const/i18n";
@@ -9,7 +9,7 @@ import NoticeUtils from "@utils/NoticeUtils";
 import { Button, Input, Upload } from "antd";
 import MaterialLotReleaseDialog from "../dialog/MaterialLotReleaseDialog";
 
-export default class MaterialLotReleaseTable extends EntityListTable{
+export default class MaterialLotReleaseTable extends EntityListCheckTable{
 
     static displayName = 'MaterialLotReleaseTable' ;
 
@@ -81,25 +81,13 @@ export default class MaterialLotReleaseTable extends EntityListTable{
         });        
     }
 
-    getRowClassName = (record, index) => {
-        const {selectedRows} = this.state;
-        if (selectedRows.indexOf(record) >= 0) {
-            return 'scaned-row';
-        } else {
-            if(index % 2 ===0) {
-                return 'even-row'; 
-            } else {
-                return ''; 
-            }
-        }
-    }
-
     buildOperationColumn =()=>{
 
     }
 
     createReleaseButton =()=>{
-        return <Button key="release" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.releaseMLot}>
+        return <Button key="release" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} 
+                        onClick={this.releaseMLot}>
                         {I18NUtils.getClientMessage(i18NCode.BtnRelease)}
                     </Button>
     }
@@ -146,7 +134,7 @@ export default class MaterialLotReleaseTable extends EntityListTable{
         this.setState({
             formVisible: true,
             formObject: selectedRows,
-            releaseActionTable : actionTable
+            releaseActionTable: actionTable
         });
     }
 

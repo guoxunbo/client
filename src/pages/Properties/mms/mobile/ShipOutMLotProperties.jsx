@@ -24,24 +24,32 @@ export default class ShipOutMLotProperties extends MobileProperties{
     }
 
     buildTable = () => {
-        return <MobileTable ref={(dataTable) => { this.dataTable = dataTable }} {...this.getDefaultTableProps()}  tableRrn={this.state.tableRrn} pagination={false} showScanedQtyFlag = {true}/>
+        let parameters = this.state.parameters;
+        if (!parameters || !parameters.parameter1) {
+            return;
+        }
+        return <MobileTable ref={(dataTable) => { this.dataTable = dataTable }} {...this.getDefaultTableProps()}  tableRrn={parameters.parameter1} pagination={false} showScanedQtyFlag = {true}/>
     }
 
     handleSubmit = () => {
         let self = this;
-        let value = this.mobileForm.getFieldsValue();
         let materialLots = this.dataTable.getScanedRows();
+        let {data} = this.dataTable.state;
         if(materialLots.length == 0){
             NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.PleaseScanOneMLot))
             return;
         }
-        
+        if(materialLots.length != data.length){
+            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.PleaseScanAll))
+            return;
+        }
+        let value = this.mobileForm.getFieldsValue();
         let requestObject = {
-            docLineId: value.docId,
+            docLineId: value.lineId,
             materialLots: materialLots,
             success: function(responseBody) {
                 self.handleReset();
-                NoticeUtils.mobileShowSuccess(undefined, 'bottomRight');       
+                NoticeUtils.mobileShowSuccess(undefined, 'bottomRight');
             }
         }
         VcStockOutRequest.sendStockOutRequest(requestObject);

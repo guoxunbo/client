@@ -223,7 +223,7 @@ export default class Field {
             }
             //当columnName是link的时候，直接就是超链接
             if (DisplayType.link === this.displayType) {
-                aligin = Aligin.center;
+                aligin = Aligin.left;
                 columnRender = (columnValue, record, index) => this.buildLinkColumnRender(columnValue, record, index);
             }
 

@@ -1,8 +1,13 @@
 import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import PropertyUtils from "@utils/PropertyUtils";
 
 const actionType={
     ReceiveMLot: "receiveMLot",
     StockIn: "stockIn",
+    StockInByOrder: "stockInByOrder",
+    ValidateStockInByOrder: "validateStockInByOrder",
+
+
     StockOut: "stockOut",
     StockOutByOrder: "stockOutByOrder",
     QueryPackageMLot: "queryPackageMLot",
@@ -53,7 +58,36 @@ export default class MobileRequestBody {
         materialLotAction.setTargetStorageId(storageId);
         return new MobileRequestBody(actionType.StockIn, undefined, materialLotAction);
     }
+
+    static buildValidateStockInByOrder(incomingOrderId, materialLots) {
+        let requestBody = new MobileRequestBody(actionType.ValidateStockInByOrder, incomingOrderId);
+        let materialLotActionList = [];
+        materialLots.forEach(mLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(mLot.materialLotId);
+            materialLotAction.setTransQty(mLot.currentQty);
+            materialLotAction.setTargetStorageId(mLot.targetStorageId);
+            //PropertyUtils.copyProperties(mLot, materialLotAction);
+            materialLotActionList.push(materialLotAction);
+        })
+        requestBody.setMaterialLotActions(materialLotActionList);
+        return requestBody;
+    }
     
+    static buildIncomingStockInByOrder(incomingOrderId, materialLots) {
+        let requestBody = new MobileRequestBody(actionType.StockInByOrder, incomingOrderId);
+        let materialLotActionList = [];
+        materialLots.forEach(mLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(mLot.materialLotId)
+            materialLotAction.setTargetStorageId(mLot.targetStorageId);
+            //PropertyUtils.copyProperties(mLot, materialLotAction);
+            materialLotActionList.push(materialLotAction);
+        })
+        requestBody.setMaterialLotActions(materialLotActionList);
+        return requestBody;
+    }
+
     static buildStockInFinishGood(materialLotId, storageId) {
         let materialLotAction = new MaterialLotAction();
         materialLotAction.setMaterialLotId(materialLotId)

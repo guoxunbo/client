@@ -124,7 +124,10 @@ const i18NCode = {
     ScanedAtLeastOneRow: "ScanedAtLeastOneRow",
     BtnRePrint: "RePrint",
     BtnSync: "Sync",
-
+    BtnCheckMLot: "CheckMLot",
+    BtnRecheckMLot: "RecheckMLot",
+    CannotCheck: "CannotCheck",
+    CannotReCheck: "CannotReCheck",
 }
 
 const i18Messages = {
@@ -723,7 +726,28 @@ const i18Messages = {
         Chinese: "同步",
         English: "Sync",
         Res: ""
+    },
+    CheckMLot: {
+        Chinese: "盘点",
+        English: "CheckMLot",
+        Res: ""
+    },
+    RecheckMLot: {
+        Chinese: "复盘",
+        English: "RecheckMLot",
+        Res: ""
+    },
+    CannotCheck: {
+        Chinese: "单据状态不允许进行盘点!",
+        English: "doc status can't check",
+        Res: ""
+    },
+    CannotReCheck: {
+        Chinese: "单据状态不允许进行复盘!",
+        English: "doc status can't recheck",
+        Res: ""
     }
+
 }
 
 export {i18Messages, i18NCode};
