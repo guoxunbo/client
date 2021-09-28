@@ -149,6 +149,7 @@ import GCMobileMLotIssueByOrderProperties from './pages/Properties/components/gc
 import GcMobileOldRecordExpressNumberProperties from './pages/Properties/components/gc/wafer-issue/GcMobileOldRecordExpressNumberProperties';
 import GcWaferUnpackMLotProperties from './pages/Properties/components/GcWaferUnpackMLotProperties';
 import GCCobRetestLabelAndMakeUpProperties from './pages/Properties/components/GCCobRetestLabelAndMakeUpProperties';
+import GCMobileMaterialLotQueryProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMaterialLotQueryProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1044,7 +1045,7 @@ const routerConfig = [
   {
     path: buildPath('Mobile/MaterialLotQuery'),
     layout: BlankLayout,
-    component: MobileProperties,
+    component: GCMobileMaterialLotQueryProperties,
   },
   {
     path: buildPath('Mobile/MaterialLotReceive'),
