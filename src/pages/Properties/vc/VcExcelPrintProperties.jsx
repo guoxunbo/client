@@ -12,6 +12,8 @@ const PrintType = {
     PrintPKList: "PrintPKList",
     PrintPackingListAndCoc: "PrintPackingListAndCoc",
 
+    PrintDeliveryOrder: "PrintDeliveryOrder",
+    PrintRSAndScrapOrder: "PrintRSAndScrapOrder",
 }
 /**
  * 打印标签
@@ -82,6 +84,12 @@ export default class VcExcelPrintProperties extends EntityViewProperties{
         }else if (PrintType.PrintPackingListAndCoc == printOrderType){
 
             VcPrintParameterRequest.sendPrintPackingListAndCocRequest(objectRequest);
+        }else if (PrintType.PrintDeliveryOrder == printOrderType){
+            
+            VcPrintParameterRequest.sendPrintDeliveryOrderRequest(objectRequest);
+        }else if(PrintType.PrintRSAndScrapOrder == printOrderType){
+
+            VcPrintParameterRequest.sendPrintRSAndScrapOrderRequest(objectRequest);
         }else{
             NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow))
         }

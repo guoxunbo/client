@@ -8,11 +8,11 @@ export default class MaterialLotReleaseProperties extends EntityProperties{
     
     resetData = () => {
         this.setState({
-          selectedRowKeys: [],
-          selectedRows: [],
-          tableData: [],
-          loading: false,
-          resetFlag: true
+            selectedRowKeys: [],
+            selectedRows: [],
+            tableData: [],
+            loading: false,
+            resetFlag: true
         });
     } 
 

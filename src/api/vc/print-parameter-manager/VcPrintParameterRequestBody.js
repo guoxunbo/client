@@ -5,6 +5,8 @@ const actionType = {
     PrintShippingListExcel: "PrintShippingList",
     PrintPKListExcel: "PrintPKList",
     PrintPackingListAndCocExcel:"PrintPackingListAndCoc",
+    PrintDeliveryOrder: "PrintDeliveryOrder",
+    PrintRSAndScrapOrder:"PrintRSAndScrapOrder",
 
     GetBoxParameter: "GetBoxParameter",
     GetPKListParameter: "GetPKListParameter",
@@ -51,6 +53,14 @@ export default class VcPrintParameterRequestBody {
     
     static buildGetRYBoxParameter(materialLotId) {
         return new VcPrintParameterRequestBody(actionType.GetRYBoxParameter, undefined, materialLotId);
+    }
+
+    static buildPrintDeliveryOrder(documentLineId) {
+        return new VcPrintParameterRequestBody(actionType.PrintDeliveryOrder, documentLineId);
+    }
+
+    static buildPrintRSAndScrapOrder(documentLineId) {
+        return new VcPrintParameterRequestBody(actionType.PrintRSAndScrapOrder, documentLineId);
     }
     
 }

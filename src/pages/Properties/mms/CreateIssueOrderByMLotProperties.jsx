@@ -26,6 +26,7 @@ export default class CreateIssueOrderByMLotProperties extends CreateLabMLotOrder
         return <CreateIssueOrderByMLotInfoProperties
                     tableRrn = {this.state.parameters.parameter1}
                     orderTable = {this.orderTable}
+                    createDeptIssueActionTableName = {this.state.parameters.parameter2}
                     ref= {(pickOrderProperties) => {this.pickOrderProperties = pickOrderProperties}}/>
     }
 }

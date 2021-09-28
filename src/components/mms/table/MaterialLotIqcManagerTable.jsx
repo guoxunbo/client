@@ -106,14 +106,21 @@ export default class MaterialLotIqcManagerTable extends EntityListCheckTable{
     }
 
     createForm = () => {
-        return  <MLotBatchJudgeIqcDialog key={MLotBatchJudgeIqcDialog.displayName} ref={this.formRef} object={this.state.formObject} visible={this.state.formVisible} 
-                                            table={this.state.actionTable} onOk={this.refresh} onCancel={this.handleCancel} />
+        return  <MLotBatchJudgeIqcDialog    
+                            key={MLotBatchJudgeIqcDialog.displayName} 
+                            ref={this.formRef} 
+                            object={this.state.formObject}  
+                            visible={this.state.formVisible} 
+                            table={this.state.actionTable} 
+                            materialLotQc = {this.props.materialLotQc}
+                            onOk={this.refresh} 
+                            onCancel={this.handleCancel} />
     }
 
     handleJudge = () => {
         let self = this;
-        let formObject = self.getSelectedRows();
-        if(formObject.length == 0){
+        let materialLots = self.getSelectedRows();
+        if(materialLots.length == 0){
             return;
         }
         let actionTable = self.props.actionTable;
@@ -124,23 +131,17 @@ export default class MaterialLotIqcManagerTable extends EntityListCheckTable{
                     self.setState({
                         formVisible: true ,
                         actionTable: responseBody.table,
-                        formObject: formObject,
+                        formObject: {materialLots: materialLots},
                     });
                 }
             }
             TableManagerRequest.sendGetByRrnRequest(object);
         }
-
-        // this.setState({
-        //     formVisible: true ,
-        //     actionTable: self.props.actionTable,
-        //     formObject: formObject,
-        // });
     }
 
     refresh = (data) => {
         this.setState({
-            formObject: [],
+            formObject: {},
             data:[],
             selectedRowKeys: [],
             selectedRows: [],

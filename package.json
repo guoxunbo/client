@@ -69,6 +69,7 @@
     "build": "cross-env ENV_MODE=PROD ice-scripts build",
     "build_dev": "cross-env ENV_MODE=DEV ice-scripts build",
     "build_test": "cross-env ENV_MODE=TEST ice-scripts build",
+    "build_back": "cross-env ENV_MODE=BACK ice-scripts build",
     "lint": "eslint . --ext '.js,.jsx' --fix"
   },
   "publishConfig": {

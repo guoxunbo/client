@@ -27,5 +27,6 @@ export default class ProductTable extends EntityListTable {
         buttons.push(this.createExportDataAndTemplateButton());
         return buttons;
     }
+
 }
 

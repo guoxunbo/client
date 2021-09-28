@@ -1,4 +1,5 @@
 import IncomingMaterialDeleteRequest from '@api/Incoming-Material-Manager/incoming-material-delete-manager/IncomingMaterialDeleteRequest';
+import AuthorityButton from '@components/framework/button/AuthorityButton';
 import EntityListTable from '@components/framework/table/EntityListTable';
 import { i18NCode } from '@const/i18n';
 import EventUtils from '@utils/EventUtils';
@@ -17,9 +18,12 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
         return buttons;
     }
 
-    buildOperationColumn = () => {
-        
+    buildOperation = (record) => {
+        return <Button key="edit" style={{marginRight:'1px'}} icon="edit" size="small" 
+                onClick={() => this.handleEdit(record)} loading={this.state.loading}
+                href="javascript:;"/>
     }
+
 
     createDeleteRemarkInput = () => {
         return <div style={styles.input}>
@@ -28,9 +32,10 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
     }
    
     createDeleteButton = () => {
-        return <Button key="delete" type="primary" style={styles.tableButton} loading={this.state.loading} icon="delete" onClick={this.deleteData}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnDelete)}
-                    </Button>
+        return <AuthorityButton key="IncomingMLotDelete" name= "IncomingMLotDelete" 
+                    i18NCode={i18NCode.BtnDelete} type="primary" 
+                    className="table-button" icon="delete" loading={this.state.loading}
+                    onClick={() => this.deleteData()} disabled={true}/>
     }
 
     deleteData =() => {
@@ -67,7 +72,7 @@ export default class IncomingMaterialDeleteTable extends EntityListTable {
                     }
                 }
                 IncomingMaterialDeleteRequest.sendDeleteRequest(requestObject);
-            }
+            },
         });
     }
 }

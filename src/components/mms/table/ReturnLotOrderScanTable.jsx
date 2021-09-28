@@ -5,7 +5,7 @@ import NoticeUtils from '@utils/NoticeUtils';
 import ReturnMLotOrderScanTable from './ReturnMLotOrderScanTable';
 
 /**
- * 退货
+ * RMA退货
  * 客户退回
  */
 export default class ReturnLotOrderScanTable extends ReturnMLotOrderScanTable {

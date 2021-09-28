@@ -13,7 +13,9 @@ export default class VcCheckProperties extends EntityScanProperties{
       static display = 'VcCheckProperties';
 
       buildTable = () => {
-         return <VcCheckTable {...this.getDefaultTableProps()}/>
+         return <VcCheckTable {...this.getDefaultTableProps()}
+                     pagination={false} 
+                     scrollY={200} />
       }
       
       queryData = (whereClause) => {
@@ -42,7 +44,7 @@ export default class VcCheckProperties extends EntityScanProperties{
             this.mLotIdEnterEvent(queryField);
          }
 
-         if (queryField.name === "actualQty") {
+         if (queryField.name === "transQty") {
             this.actualQtyEnterEvent(queryField);
          }
       }
@@ -77,12 +79,13 @@ export default class VcCheckProperties extends EntityScanProperties{
          if(!materialLotId){
             return;
          }
-         document.getElementById("actualQty").focus();
+         
+         document.getElementById("transQty").focus();
       }
 
       actualQtyEnterEvent = (queryField)=>{
-         let actualQty = this.form.props.form.getFieldValue(queryField.name);
-         if(!actualQty){
+         let transQty = this.form.props.form.getFieldValue(queryField.name);
+         if(!transQty){
             return;
          }
          let objectFrom = this.form.props.form.getFieldsValue();
@@ -91,10 +94,10 @@ export default class VcCheckProperties extends EntityScanProperties{
          let showData = [];
          tableData.map((mLot, index) => {
             if (mLot.materialLotId == objectFrom.materialLotId) {
-                mLot.actualQty = actualQty;
+                mLot.transQty = transQty;
                 scandMaterialLot = mLot;
                 mLot.scanedFlag = true;
-                if(mLot.currentQty != actualQty){
+                if(mLot.currentQty != transQty){
                   mLot.errorFlag = true;
                 }else{
                   mLot.errorFlag = false;
@@ -122,7 +125,7 @@ export default class VcCheckProperties extends EntityScanProperties{
       resetFrom = () =>{
          this.form.props.form.setFieldsValue({
             materialLotId: undefined,
-            actualQty: undefined
+            transQty: undefined
          });
          document.getElementById("materialLotId").focus();
       }

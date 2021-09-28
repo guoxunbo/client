@@ -34,21 +34,6 @@ export default class CreateReturnTable extends EntityListTable {
     CreateReturnOrder = () =>{
         let self = this ;
         let {data} = self.state;
-        if(data.length == 0){
-            NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
-            return;
-        }
-        let nullReturnQtyFlag = false;
-        data.map((d, index)=>{
-            if(d.transQty == null){
-                nullReturnQtyFlag = true;
-            }
-        })
-
-        if(nullReturnQtyFlag){
-            NoticeUtils.showInfo(I18NUtils.getClientMessage("退料数量不能为空"));
-            return;
-        }
         let objectRequest = {
             materialLots: data,
             success: function(responseBody){

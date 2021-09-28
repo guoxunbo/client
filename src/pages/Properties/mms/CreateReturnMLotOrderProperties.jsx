@@ -2,7 +2,7 @@ import CreateReturnTable from "@components/mms/table/CreateReturnTable";
 import EntityScanProperties from "@properties/framework/EntityScanProperties";
 
 /**
- * 创建退料单
+ * 创建退料单/退供应商
  */
 export default class CreateReturnMLotOrderProperties extends EntityScanProperties{
 

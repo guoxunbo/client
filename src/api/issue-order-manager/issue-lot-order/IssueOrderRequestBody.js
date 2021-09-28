@@ -1,3 +1,4 @@
+import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
 
 const actionType ={ 
     GetWaitIssueMLotByOrderId: "GetWaitIssueMLotByOrderId",
@@ -13,12 +14,17 @@ export default class IssueOrderRequestBody{
     documentId ;
     materialLotIdList;
     materialLots;
+    materialLotAction;
 
     constructor(actionType, documentId, materialLotIdList, materialLots){
         this.actionType =actionType;
         this.documentId = documentId;
         this.materialLotIdList = materialLotIdList;
         this.materialLots = materialLots;
+    }
+
+    setMaterialLotAction(materialLotAction){
+        this.materialLotAction = materialLotAction;
     }
 
     static buildGetWaitMLotByOrder(documentId){
@@ -37,8 +43,14 @@ export default class IssueOrderRequestBody{
         return new IssueOrderRequestBody(actionType.PrintIssueOrder, documentId);
     }
 
-    static buildCreateIssueMLotOrder(materialLots){
-        return new IssueOrderRequestBody(actionType.CreateIssueOrderByMLot, undefined, undefined, materialLots);
+    static buildCreateIssueMLotOrder(materialLots, actionComment){
+        let requestBody = new IssueOrderRequestBody(actionType.CreateIssueOrderByMLot, undefined, undefined, materialLots);
+        
+        let materialLotAction = new MaterialLotAction();
+        materialLotAction.setActionComment(actionComment);
+        requestBody.setMaterialLotAction(materialLotAction);
+
+        return requestBody
     }
 
     static buildIssueMaterialLotByOrder(documentId, materialLots){

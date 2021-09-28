@@ -27,12 +27,13 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         buttons.push(this.createSyncButton());
         buttons.push(this.createImportButton());
         buttons.push(this.createSaveButton());
+        buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createDeleteAllButton());
         return buttons;
     }
 
     createSyncButton = () => {
-        return (<Button key="Sync" type="primary" className="table-button" onClick={() => this.handleSync()} icon="import-o">
+        return (<Button key="Sync" type="primary" className="table-button" loading={this.state.loading} onClick={() => this.handleSync()} icon="import-o">
                 {I18NUtils.getClientMessage(i18NCode.BtnSync)}
             </Button>)
     }
@@ -45,13 +46,13 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
     }
 
     createSaveButton = () => {
-        return  <Button key="receive" type="primary" className="table-button" onClick={() => this.SaveButton()} icon="import-o">
+        return  <Button key="receive" type="primary" className="table-button" loading={this.state.loading} onClick={() => this.SaveButton()} icon="import-o">
                          {I18NUtils.getClientMessage(i18NCode.BtnImp)}
                 </Button>
     }
 
     createDeleteAllButton = () => {
-        return  <Button key="delete" type="primary" className="table-button" onClick={() => this.deleteAllMaterialLot()} icon="delete-o">
+        return  <Button key="delete" type="primary" className="table-button" loading={this.state.loading} onClick={() => this.deleteAllMaterialLot()} icon="delete-o">
                          {I18NUtils.getClientMessage(i18NCode.BtnReset)}
                 </Button>
     }
@@ -79,7 +80,7 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         let object = {
             fileName: fileName,
-            importTypeNbTable : "IncomingMaterialImport",
+            importTypeNbTable : this.props.incomingType,
             success: function(responseBody) {
                 let materialLotList = responseBody.dataList;
                 self.setState({
@@ -90,6 +91,7 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         }
         IncomingMaterialImportRequest.sendSelectRequest(object, option.file);
     }
+    
     SaveButton = () => {
         const {data,table} = this.state;
         let self = this;

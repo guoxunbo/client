@@ -12,6 +12,7 @@ export default class CreateIssueOrderByMaterialInfoProperties extends EntityProp
 
     buildTable=()=>{
         return( <CreateIssueOrderByMaterialInfoTable
-                {...this.getDefaultTableProps()}/>)
+                {...this.getDefaultTableProps()}
+                createDeptIssueActionTableName = {this.props.createDeptIssueActionTableName}/>)
     }
 }

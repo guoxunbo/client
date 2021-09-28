@@ -30,11 +30,18 @@ export default class MaterialLotStockInTable extends EntityScanViewTable {
     }
 
     stockInSuccess = () => {
-        this.setState({formVisible : false});
+        this.setState({formVisible : false,loading:false});
         if (this.props.resetData) {
             this.props.resetData();
         }
         NoticeUtils.showSuccess();
+    }
+
+    handleCancel = () => {
+        this.setState({
+            formVisible: false,
+            loading:false
+        })
     }
 
     stockIn = () => {
@@ -49,7 +56,8 @@ export default class MaterialLotStockInTable extends EntityScanViewTable {
             success: function(responseBody) {
                 self.setState({
                     formTable: responseBody.table,
-                    formVisible : true
+                    formVisible : true,
+                    loading:true
                 });
             }
         }

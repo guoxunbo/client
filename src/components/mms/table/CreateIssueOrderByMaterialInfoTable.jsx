@@ -6,6 +6,9 @@ import NoticeUtils from '@utils/NoticeUtils';
 import { Button } from 'antd';
 import CreateMLotDialog from '../dialog/CreateMLotDialog';
 import PrintPickOrderDialog from '../dialog/PrintPickOrderDialog';
+import TableManagerRequest from '@api/table-manager/TableManagerRequest';
+import CreateIssueOrderDialog from '../dialog/CreateIssueOrderDialog';
+import TableUtils from '@components/framework/utils/TableUtils';
 
 
 export default class CreateIssueOrderByMaterialInfoTable extends EntityListTable {
@@ -14,7 +17,7 @@ export default class CreateIssueOrderByMaterialInfoTable extends EntityListTable
 
     constructor(props){
         super(props);
-        this.state = {...this.state, formPrintObject:{}, document:[], formPrintVisible:false };
+        this.state = {...this.state, formPrintObject:{}, document:{}, formPrintVisible:false };
     }
 
     createButtonGroup = () => {
@@ -41,20 +44,25 @@ export default class CreateIssueOrderByMaterialInfoTable extends EntityListTable
             NoticeUtils.showInfo(I18NUtils.getClientMessage("领料数量不能为空"));
             return;
         }
-        let objectRequest = {
-            materials : data,
-            success: function(responseBody){
 
-                self.setState({
-                    formPrintVisible: true,
-                    formPrintObject:data,
-                    document:responseBody.document
-                })
-            }
-        }
-        IssueOrderByMaterialRequest.sendCreateIssueOrderByMaterialRequest(objectRequest);
+        this.openCreateIssueOrderDialog(data);
     }
     
+    openCreateIssueOrderDialog = (dataList) => {
+        let self = this;
+        let requestObject = {
+            name: this.props.createDeptIssueActionTableName, 
+            success: function(responseBody) {
+                self.setState({
+                    createIssueOrderObject: {materials: dataList},
+                    createIssueOrderVisible: true,
+                    createIssueOrderActionTable: responseBody.table
+                });  
+            }
+        }
+        TableManagerRequest.sendGetByNameRequest(requestObject); 
+    }
+
     buildOperation = (record) => {
         let operations = [];
         operations.push(this.buildEditButton(record));
@@ -72,16 +80,21 @@ export default class CreateIssueOrderByMaterialInfoTable extends EntityListTable
         childrens.push(<CreateMLotDialog key={CreateMLotDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);                               
         childrens.push(<PrintPickOrderDialog key={PrintPickOrderDialog.displayName} document={this.state.document} object={this.state.formPrintObject} 
-                                            visible={this.state.formPrintVisible} onOk={this.printOk} onCancel={this.printCancel}/>
-            )
+                                            visible={this.state.formPrintVisible} onOk={this.printOk} onCancel={this.printCancel}/>)
+        childrens.push(<CreateIssueOrderDialog key={CreateIssueOrderDialog.displayName} object={this.state.createIssueOrderObject}  table={this.state.createIssueOrderActionTable} 
+                visible={this.state.createIssueOrderVisible} onOk={this.createIssueOrderOk} onCancel={this.createIssueOrderCancel}/>)
         return childrens;
+    }
+
+    refresh = (dataObject) => {
+        TableUtils.refreshEdit(this, dataObject);
     }
 
     printOk = () => {
         this.setState({
             formPrintVisible: false,
             formPrintObject:{},
-            document:[]
+            document:{}
         });
     }
 
@@ -89,5 +102,30 @@ export default class CreateIssueOrderByMaterialInfoTable extends EntityListTable
         this.setState({
             formPrintVisible: false,
         });
+    }
+
+    createIssueOrderOk = (dialogObject) => {
+        let self = this;
+        let objectRequest = {
+            materials: dialogObject.materials,
+            actionComment: dialogObject.actionComment,
+            success: function(responseBody){
+                self.setState({
+                    createIssueOrderObject: {},
+                    createIssueOrderVisible: false,
+                    formPrintVisible: true,
+                    formPrintObject: dialogObject.materials,
+                    document: responseBody.document,
+                });     
+            }
+        }
+        IssueOrderByMaterialRequest.sendCreateIssueOrderByMaterialRequest(objectRequest);
+    }
+
+    createIssueOrderCancel = () => {
+        this.setState({
+            createIssueOrderObject: {},
+            createIssueOrderVisible: false,
+        });      
     }
 }

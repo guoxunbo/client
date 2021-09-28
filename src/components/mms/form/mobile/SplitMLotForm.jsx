@@ -15,7 +15,7 @@ export default class SplitMLotForm extends MobileForm {
 
     afterQuery = (responseBody) => {
         let materialLot = responseBody.dataList[0];
-        if (materialLot && materialLot.status != "IQC") {
+        if (materialLot) {
             this.props.form.setFieldsValue(materialLot);
         } else {
             NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));

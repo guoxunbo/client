@@ -91,6 +91,7 @@ import StockInFinishGoodProperties from '@pages/Properties/mms/mobile/StockInFin
 import ShipOutMLotProperties from '@pages/Properties/mms/mobile/ShipOutMLotProperties';
 import WeightMaterialLotProperties from '@pages/Properties/mms/mobile/WeightMaterialLotProperties';
 import PackCaseCheckMaterialLotProperties from '@pages/Properties/mms/mobile/PackCaseCheckMaterialLotProperties';
+import IncomingStockInByOrderProperties from '@pages/Properties/mms/mobile/IncomingStockInByOrderProperties';
 
 //vc
 import VcDeliveryOrderProperties from '@properties/vc/VcDeliveryOrderProperties';
@@ -120,6 +121,13 @@ import VcQCApprovalProperties from '@pages/Properties/vc/VcQCApprovalProperties'
 import EntityScanProperties from '@pages/Properties/framework/EntityScanProperties';
 import CreateDeptReturnProperties from '@pages/Properties/mms/CreateDeptReturnProperties';
 import DeptReturnLotOrderProperties from '@pages/Properties/mms/DeptReturnLotOrderProperties';
+import RetryInterfaceProperties from '@pages/Properties/mms/RetryInterfaceProperties';
+import VcScrapByOrderProperties from '@pages/Properties/vc/VcScrapByOrderProperties';
+import VcCreateOrderProperties from '@pages/Properties/vc/VcCreateOrderProperties';
+import DocStockUpProperties from '@pages/Properties/mms/DocStockUpProperties';
+import UpdateMLotProperties from '@pages/Properties/mms/mobile/UpdateMLotProperties';
+import CheckMLotProperties from '@pages/Properties/mms/mobile/CheckMLotProperties';
+import CheckOrderProperties from '@pages/Properties/mms/mobile/CheckOrderProperties';
 
 
 /**
@@ -539,6 +547,22 @@ const routerConfig = [
     component: PackCaseCheckMaterialLotProperties,
   },
   {
+    path: buildPath('MMS/Mobile/IncomingStockInByOrder'),
+    layout: BlankLayout,
+    component: IncomingStockInByOrderProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/CheckMLot'),
+    layout: BlankLayout,
+    component: CheckOrderProperties,
+  },
+  {
+    path: buildPath('MMS/Mobile/UpdateMLot'),
+    layout: BlankLayout,
+    component: UpdateMLotProperties,
+  },
+
+  {
     path: buildPath('MMS/ReturnMLotOrder'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: ReturnMLotOrderProperties,
@@ -788,6 +812,23 @@ const routerConfig = [
     component: DeptReturnLotOrderProperties,
   },
   {
+    path: buildPath('VC/ScrapByOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcScrapByOrderProperties,
+  },
+  {
+    path: buildPath('MMS/CreateCheckOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: VcCreateOrderProperties,
+  },
+  {
+    path: buildPath('MMS/DocStockUpManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: DocStockUpProperties,
+  },
+
+  //Monitoring
+  {
     path: buildPath('Monitoring/InterfaceHisManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityHistoryProperties,
@@ -795,7 +836,7 @@ const routerConfig = [
   {
     path: buildPath('Monitoring/InterfaceFailManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityProperties,
+    component: RetryInterfaceProperties,
   },
   {
     path: '*',

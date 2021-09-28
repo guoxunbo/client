@@ -31,6 +31,36 @@ export default class MobileRequest {
     }
 
     /**
+     * 来料根据单据入库验证
+     * @param {} object 
+     */
+    static sendValidateStockInByOrderRequest = (object) => {
+        let requestBody = MobileRequestBody.buildValidateStockInByOrder(object.incomingOrderId, object.materialLots);
+        let requestHeader = new MobileRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCMobileManagerUrl)
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    /**
+     * 来料根据单据入库
+     * @param {*} object 
+     */
+    static sendIncomingStockInByOrderRequest = (object) => {
+        let requestBody = MobileRequestBody.buildIncomingStockInByOrder(object.incomingOrderId, object.materialLots);
+        let requestHeader = new MobileRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCMobileManagerUrl)
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    /**
      * 成品入库
      * @param {*} object 
      */

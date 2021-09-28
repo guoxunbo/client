@@ -19,11 +19,11 @@ export default class ReturnMLotOrderScanProperties extends EntityScanProperties{
     queryData = (whereClause) => {
         const self = this;
         let mLots= this.state.tableData;
-        let queryMatlotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+        let queryMLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
         let flag = true;
         let showData = [];
         mLots.forEach(mLot => {
-            if(queryMatlotId === mLot.materialLotId){
+            if(queryMLotId === mLot.materialLotId){
                 flag = false ;
                 mLot.scaned = true;
                 showData.unshift(mLot);
