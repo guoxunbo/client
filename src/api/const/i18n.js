@@ -956,8 +956,8 @@ const i18Messages = {
         Res: "" 
     },
     WorkorderIdAndGradeCanEmpty: {
-        Chinese: "工单和等级不能都为空！",
-        English: "WorkorderId And Grade Cannot Empty!",
+        Chinese: "工单、等级和BoxId不能都为空！",
+        English: "WorkorderId , Grade And BoxId Cannot Empty!",
         Res: "" 
     },
     TransferBoxOrStorageCannotEmpty: {

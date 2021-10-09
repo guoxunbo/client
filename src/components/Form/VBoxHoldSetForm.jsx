@@ -12,7 +12,9 @@ export default class VBoxHoldSetForm extends EntityForm {
         let workorderRelation = this.props.object;
         let workorderId = workorderRelation.workOrderId;
         let grade = workorderRelation.grade;
-        if((workorderId == null || workorderId == "" || workorderId == undefined) && (grade == "" || grade == null || grade == undefined)){
+        let boxId = workorderRelation.boxId;
+        if((workorderId == null || workorderId == "" || workorderId == undefined) && (grade == "" || grade == null || grade == undefined)
+         && (boxId == "" || boxId == null || boxId == undefined)){
             Notification.showError(I18NUtils.getClientMessage(i18NCode.WorkorderIdAndGradeCanEmpty));
             return;
         }
