@@ -1,9 +1,9 @@
 import EntityProperties from "./entityProperties/EntityProperties";
-import GCIncomingMLotDeleteTable from "../../../components/Table/gc/GCIncomingMLotDeleteTable";
+import GCIncomingMLotPrintLabelTable from "../../../components/Table/gc/GCIncomingMLotPrintLabelTable";
 
-export default class GCIncomingMLotDeleteProperties  extends EntityProperties {
+export default class GCIncomingMLotPrintLabelProperties  extends EntityProperties {
 
-    static displayName = 'GCIncomingMLotDeleteProperties';
+    static displayName = 'GCIncomingMLotPrintLabelProperties';
 
     constructor(props) {
         super(props);
@@ -20,7 +20,7 @@ export default class GCIncomingMLotDeleteProperties  extends EntityProperties {
 
 
     buildTable = () => {
-        return <GCIncomingMLotDeleteTable
+        return <GCIncomingMLotPrintLabelTable
                                       pagination={true} 
                                       rowKey={this.state.rowKey} 
                                       ref={(showTable) => { this.showTable = showTable }} 
