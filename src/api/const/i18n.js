@@ -167,6 +167,7 @@ const i18NCode = {
     PoName: "PoName",
     PrintWltLabelFlag: "PrintWltLabelFlag",
     WorkorderIdAndGradeCanEmpty: "WorkorderIdAndGradeCanEmpty",
+    GradeMustMatchWorkedorderId: "GradeMustMatchWorkedorderId",
     TransferBoxOrStorageCannotEmpty: "TransferBoxOrStorageCannotEmpty",
     MatchErpDocLine: "MatchErpDocLine",
     ProductId: "ProductId",
@@ -958,6 +959,11 @@ const i18Messages = {
     WorkorderIdAndGradeCanEmpty: {
         Chinese: "工单、等级和BoxId不能都为空！",
         English: "WorkorderId , Grade And BoxId Cannot Empty!",
+        Res: "" 
+    },
+    GradeMustMatchWorkedorderId: {
+        Chinese: "等级必须匹配工单号！",
+        English: "Grade must match workedorderId!",
         Res: "" 
     },
     TransferBoxOrStorageCannotEmpty: {
