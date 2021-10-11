@@ -6,7 +6,6 @@ import { Notification } from '../../notice/Notice';
 import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
 import IncomingDeleteRequest from "../../../api/gc/incomingDelete-manager/IncomingDeleteRequest";
-import GetPrintWltVboxParameterRequest from "../../../api/gc/get-print-wltbox-parameter/GetPrintWltBoxParameterRequest";
 
 const TableName = {
     IncomingMLotDelete: "GCIncomingMLotDeleteTable"
@@ -18,7 +17,6 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createPrintButton());
         buttons.push(this.createDeleteButton());
         return buttons;
     }
@@ -83,27 +81,6 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
         });
     }
 
-    printLable = () => { 
-        const {data} = this.state;
-        let self = this;
-       
-        if (data && data.length > 0) {
-            self.setState({
-                loading: true
-            });
-            EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
-
-            let requestObject = {
-                materialLotUnitList : data,
-                success: function(responseBody) {
-                    MessageUtils.showOperationSuccess();
-                }
-            }
-            GetPrintWltVboxParameterRequest.sendQueryRequest(requestObject);
-        }
-
-    }
-
     createCogDetialNumber = () => {
         let materialLotUnits = this.state.data;
         let materialLotUnitList = [];
@@ -136,12 +113,6 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
         return <Button key="delete" type="primary" style={styles.tableButton} loading={this.state.loading} icon="delete" onClick={this.deleteData}>
                         {I18NUtils.getClientMessage(i18NCode.BtnDelete)}
                     </Button>
-    }
-
-    createPrintButton = () => {
-        return <Button key="print" type="primary" style={styles.tableButton} loading={this.state.loading} icon="print" onClick={this.printLable}>
-                    {I18NUtils.getClientMessage(i18NCode.PrintLable)}
-                </Button>
     }
 
     buildOperationColumn = () => {

@@ -15,6 +15,7 @@ const TableName = {
 
 const ImportType = {
     GCCOBFinishProduct: "GCCOBFinishProduct",//COB（-4成品）
+    GCCOBRawMaterialProduct: "GCCOBRawMaterialProduct",//COM原料导入
     GCSOCFinishProduct: "GCSOCFinishProduct",//SOC（-4成品）
     GCWLAUnmeasured: "GCWLAUnmeasured",//WLA未测（-2.5）
     GCFabSensor2Unmeasured: "GCFabSensor2Unmeasured",//FAB sensor(-2未测)
@@ -32,25 +33,29 @@ const ImportType = {
     GCRMAPureFinishProduct: "GCRMAPureFinishProduct",//RMA纯_成品-4
     GCSamsungPackingList: "GCSamsungPackingList",//三星packing list(-2CP未测)
 
+    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
     GCSensorCPMeasuredHuaLing: "GCSensorCPMeasuredHuaLing",//sensor CP已测（-2.1华领）
     GCSensorCPMeasuredKLT: "GCSensorCPMeasuredKLT",//sensor CP已测（KLT）
-    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
     GCSensorPackageReturnCogo: "GCSensorPackageReturnCogo",//sensor封装回货（积高-3未测）
-    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
+    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
+    
     GCFinishProductImport: "GCFinishProductImport",//成品导入模板
     GCSOCWaferUnmeasured: "GCSOCWaferUnmeasured",//SOC(-2.5,-2.55未测/-2.6已测)
+    GCMaskFinishProduct: "GCMaskFinishProduct",//Mask成品导入
 }
 
-const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCSOCFinishProduct];
-const wltType = [ImportType.GCWLAUnmeasured];
+const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct];
+const wltType = [ImportType.GCWLAUnmeasured, ImportType.GCMaskFinishProduct];
 const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
                 ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26,
-                ImportType.GCSensorPackageReturn, ImportType.GCSOCWaferUnmeasured];
+                ImportType.GCSensorPackageReturn, ImportType.GCSOCWaferUnmeasured, ImportType.GCSensorCPMeasuredHuaLing,
+                ImportType.GCSensorCPMeasuredKLT, ImportType.GCSensorUnmeasured, ImportType.GCSensorPackageReturnCogo,
+                ImportType.GCSensorTplccSenBang];
 const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
 
 const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
                            ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
-                           ImportType.GCSOCFinishProduct];
+                           ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct, ImportType.GCMaskFinishProduct];
 
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
@@ -163,8 +168,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.ChooseImportTypePlease));
             return;
         }
-        if(importType == "COB（-4成品）"){
-            importType = "GCCOBFinishProduct";
+        if(importType == "COM原料导入"){
+            importType = "GCCOBRawMaterialProduct";
         }
         if(tableData.length > 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImportedPleaseCleanAllBeforeSelectNewFile));
@@ -217,10 +222,14 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             warehouseId = 8142;
         } else if(warehouseId == "HK_STOCK" || warehouseId == "香港仓库"){
             warehouseId = 8150;
+        } else if(warehouseId == "BS_STOCK" || warehouseId == "保税仓库") {
+            warehouseId = 8151;
         }
 
         let location = data[0].reserved6;
-        if((location == "ZSH" && warehouseId == "8142") || (location == "SH" && warehouseId == "8143")){
+        if((location == "ZSH" && (warehouseId == "8142" || warehouseId == "8151")) 
+            || (location == "SH" && (warehouseId == "8143" || warehouseId == "8151")) 
+            || (location == "BS" && (warehouseId == "8142" || warehouseId == "8143"))){
             Modal.confirm({
                 title: '操作提示',
                 content: I18NUtils.getClientMessage(i18NCode.TheLocationAndWarehouseIsNotSame),
@@ -245,8 +254,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         let checkFourCodeFlag = this.state.value;
         let importType = this.props.propsFrom.props.form.getFieldValue(queryFields[0].name);
 
-        if(importType == "COB（-4成品）"){
-            importType = "GCCOBFinishProduct";
+        if(importType == "COM原料导入"){
+            importType = "GCCOBRawMaterialProduct";
         }
 
         if(warehouseId == 8142){
@@ -259,7 +268,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 materialLot.reserved13 = warehouseId;
                 materialLot.reserved14 = "ZHJ AZ6000";
             });
-        } else if(warehouseId == 8150){
+        } else if(warehouseId == 8150 || warehouseId == 8151){
             data.forEach(materialLot =>{
                 materialLot.reserved13 = warehouseId;
             });

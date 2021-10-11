@@ -7,6 +7,7 @@ const ActionType = {
     QueryMLot: "QueryMLot",
     CancelCheck: "CancelCheck",
     QueryMaterialLotIdOrLotId: "QueryMaterialLotIdOrLotId",
+    QueryData: "QueryData",
 }
 
 
@@ -73,6 +74,13 @@ export default class MaterialLotManagerRequestBody {
         let materialLotManagerRequestBody = new MaterialLotManagerRequestBody(ActionType.QueryMLot, undefined, undefined, queryLotId);
         materialLotManagerRequestBody.setTabRrn(tableRrn);
         return materialLotManagerRequestBody;    
+    }
+
+    static buildGetDataByLotIdOrMLotAndTableRrn(queryLotId, tableRrn) {
+        let body =  new MaterialLotManagerRequestBody(ActionType.QueryData);
+        body.queryLotId = queryLotId;
+        body.tableRrn = tableRrn;
+        return body;
     }
 
 }   

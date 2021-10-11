@@ -111,16 +111,14 @@ export default class GCMobileMLotShipScanProperties extends MobileProperties{
             Notification.showError(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
-        if (!documentLine) {
-            self.setState({ 
-                loading: false
-            });
+        let documentLineList = this.props.orderTable.state.data;
+        if (documentLineList.length === 0) {
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
 
         let requestObj = {
-            documentLine : documentLine,
+            documentLineList : documentLineList,
             materialLots : tableData,
             success: function(responseBody) {
                 if (self.props.resetData) {

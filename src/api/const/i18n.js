@@ -20,6 +20,7 @@ const i18NCode = {
     SelectOneRow: "SelectOneRow",
     SelectERPTime: "SelectERPTime",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
+    AllWafersCannotBeUnpack: "AllWafersCannotBeUnpack",
     AddAtLeastOneRow: "AddAtLeastOneRow",
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
     MaterialLotIdRepeat: "MaterialLotIdRepeat",
@@ -31,6 +32,8 @@ const i18NCode = {
     SaveFirst: "SaveFirst",
     CheckItemList: "CheckItemList",
     BtnPrint: "Print",
+    BtnLotPrint: "LotPrint",
+    BtnCstPrint: "CstPrint",
     BtnDownload: "Download",
     BtnAdd: "Add",
     BtnOpen: "Open",
@@ -80,6 +83,7 @@ const i18NCode = {
     BtnOtherStockOut: "OtherStockOut",
     BtnCancelSpareMaterial:"CancelSpareMaterial",
     BtnImportSearch: "ImportSearch",
+    BtnUnpackMLot: "UnpackMLot",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
@@ -107,11 +111,13 @@ const i18NCode = {
     TotalNumber : "TotalNumber",
     DataAlreadyExists: "DataAlreadyExists",
     NoDeliveryOrder: "NoDeliveryOrder",
+    DocumentHasBeenBoundToTheExpress: "DocumentHasBeenBoundToTheExpress",
     StorageCannotEmpty: "StorageCannotEmpty",
     BtnDeleteAll: "DeleteAll",
     BtnWeigh: "Weigh",
     CaseWeightNotScanned: "CaseWeightNotScanned",
     AddOneRowPlease: "AddOneRowPlease",
+    InconsistentScanningInformation: "InconsistentScanningInformation",
     ThereScanFieldCanOnlyBeOne: "ThereScanFieldCanOnlyBeOne",
     AllBoxWeightMustBeEmpty: "AllBoxWeightMustBeEmpty",
     SearchFieldCannotEmpty: "SearchFieldCannotEmpty",
@@ -161,6 +167,7 @@ const i18NCode = {
     PoName: "PoName",
     PrintWltLabelFlag: "PrintWltLabelFlag",
     WorkorderIdAndGradeCanEmpty: "WorkorderIdAndGradeCanEmpty",
+    GradeMustMatchWorkedorderId: "GradeMustMatchWorkedorderId",
     TransferBoxOrStorageCannotEmpty: "TransferBoxOrStorageCannotEmpty",
     MatchErpDocLine: "MatchErpDocLine",
     ProductId: "ProductId",
@@ -349,6 +356,11 @@ const i18Messages = {
         English: "Please select at least one row",
         Res: ""
     },
+    AllWafersCannotBeUnpack: {
+        Chinese: "不能拆所有晶圆",
+        English: "All wafer cannot be unpack",
+        Res: ""
+    },
     ConfirmDelete: {
         Chinese: "确定删除?",
         English: "Sure to delete?",
@@ -361,6 +373,16 @@ const i18Messages = {
     },
     Print: {
         Chinese: "打印",
+        English: "Print",
+        Res: ""
+    },
+    LotPrint: {
+        Chinese: "打印lot标签",
+        English: "Print",
+        Res: ""
+    },
+    CstPrint: {
+        Chinese: "打印cst标签",
         English: "Print",
         Res: ""
     },
@@ -639,6 +661,11 @@ const i18Messages = {
         English: "No delivery order",
         Res: ""
     },
+    DocumentHasBeenBoundToTheExpress: {
+        Chinese: "单据已经绑定快递单号",
+        English: "Document has been bound to the express",
+        Res: ""
+    },
     StorageCannotEmpty: {
         Chinese: "库位号不能为空",
         English: "Storage Cannot Empty",
@@ -667,6 +694,11 @@ const i18Messages = {
     AddOneRowPlease: {
         Chinese: "请先扫描箱号",
         English: "Add one row please",
+        Res: ""
+    },
+    InconsistentScanningInformation: {
+        Chinese: "扫描信息不一致",
+        English: "Inconsistent scanning information",
         Res: ""
     },
     AllBoxWeightMustBeEmpty: {
@@ -925,8 +957,13 @@ const i18Messages = {
         Res: "" 
     },
     WorkorderIdAndGradeCanEmpty: {
-        Chinese: "工单和等级不能都为空！",
-        English: "WorkorderId And Grade Cannot Empty!",
+        Chinese: "工单、等级和BoxId不能都为空！",
+        English: "WorkorderId , Grade And BoxId Cannot Empty!",
+        Res: "" 
+    },
+    GradeMustMatchWorkedorderId: {
+        Chinese: "等级必须匹配工单号！",
+        English: "Grade must match workedorderId!",
         Res: "" 
     },
     TransferBoxOrStorageCannotEmpty: {
@@ -1272,6 +1309,11 @@ const i18Messages = {
     ImportSearch: {
         Chinese: "导入查询",
         English: "ImportSearch",
+        Res: ""
+    },
+    UnpackMLot: {
+        Chinese: "拆箱",
+        English: "UnpackMLot",
         Res: ""
     },
     TableDataMustBeEmpty: {

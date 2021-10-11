@@ -1,19 +1,18 @@
-import EntityListTable from '../EntityListTable';
-import { Button, Input, Row, Col } from 'antd';
+import EntityScanViewTable from '../EntityScanViewTable';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
+import { Input, Row, Col, Button } from 'antd';
 import { Application } from '../../../api/Application';
 import { Notification } from '../../notice/Notice';
-import RecordExpressNumberRequest from '../../../api/gc/record-express-number/RecordExpressNumberRequest';
-import MessageUtils from '../../../api/utils/MessageUtils';
 
-export default class RecordExpressNumberOldTable extends EntityListTable {
 
-    static displayName = 'RecordExpressNumberOldTable';
+export default class MobileOldRecordExpressNumberTable extends EntityScanViewTable {
+
+    static displayName = 'MobileOldRecordExpressNumberTable';
 
     constructor(props) {
         super(props);
-        this.state = {...this.state, ...{recordCount:0}};
+        this.state = {...this.state};
     }
 
     componentWillReceiveProps = (props) => {
@@ -41,20 +40,20 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
         })
     }
 
+    createButtonGroup = () => {
+        let buttons = [];
+        buttons.push(this.searchBtn());
+        buttons.push(this.createExpressInput());
+        return buttons;
+    }
+
     componentDidMount=() => {
         this.expressNumber.focus();
     }
     
-    createButtonGroup = () => {
-        let buttons = [];
-        buttons.push(this.createExpressInput());
-        buttons.push(this.createRecordExpressButton());
-        return buttons;
-    }
-
     createExpressInput = () => {
-        return  <Row gutter={16}>
-            <Col span={6}>
+        return  <Row gutter={19}>
+            <Col span={16}>
                 <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} 
                         key="expressNumber" 
                         placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}
@@ -63,37 +62,13 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
         </Row>
     }
 
-    recordExpress = () => {
+    queryData = () => {
         let self = this;
-        let datas = this.state.data;
-        let recordedDatas = datas.filter((data) => data.expressNumber != undefined);
-        if (recordedDatas.length === 0){
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
-            return;
-        }
+        self.props.queryFrom.handleSearch();
+    }
 
-        let object = {
-            datas : recordedDatas,
-            success: function(responseBody) {
-                responseBody.documentLineList.forEach((deliveryOrder) => {
-                    let dataIndex = -1;
-                    datas.map((data, index) => {
-                        if (data.objectRrn == deliveryOrder.objectRrn) {
-                            dataIndex = index;
-                        }
-                    });
-                    datas.splice(dataIndex, 1, deliveryOrder);
-                });
-                self.setState({
-                    data: datas,
-                    formVisible: false,
-                    selectedRows: [],
-                    selectedRowKeys: []
-                }) 
-                MessageUtils.showOperationSuccess();
-            }
-        };
-        RecordExpressNumberRequest.sendOldRecordExpress(object);
+    searchBtn = () => {
+        return <Button key="queryData" type="primary" style={styles.tableButton} onClick={this.queryData}>{I18NUtils.getClientMessage(i18NCode.BtnSearch)}</Button>
     }
 
     onExpressInput = () => {
@@ -108,13 +83,11 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
             this.expressNumber.setState({value:""})
             return;
         }
-
         if(recordCount == datas.length){
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DocumentHasBeenBoundToTheExpress));
             this.expressNumber.setState({value:""})
             return;
         }
-
         datas[recordCount].expressNumber = expressNumber;
         datas.splice(recordCount, 1, datas[recordCount]);
         recordCount = recordCount + 1;
@@ -124,13 +97,6 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
             recordCount: recordCount
         });
     }
-
-    createRecordExpressButton = () => {
-        return <Button key="recordExpress" type="primary" style={styles.tableButton} icon="inbox" onClick={this.recordExpress}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnRecordExpress)}
-                    </Button>
-    }
-
 
     buildOperationColumn = () => {
         

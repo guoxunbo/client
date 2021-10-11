@@ -146,6 +146,11 @@ import GcMobileMaterialLotWeighProperties from './pages/Properties/components/gc
 import GcMobileMaterialLotReTestOrderProperties from './pages/Properties/components/gc/wafer-issue/GcMobileMaterialLotReTestOrderProperties';
 import GcMobileWltOrCpStockOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWltOrCpStockOutProperties';
 import GCMobileMLotIssueByOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueByOrderProperties';
+import GcMobileOldRecordExpressNumberProperties from './pages/Properties/components/gc/wafer-issue/GcMobileOldRecordExpressNumberProperties';
+import GcWaferUnpackMLotProperties from './pages/Properties/components/GcWaferUnpackMLotProperties';
+import GCCobRetestLabelAndMakeUpProperties from './pages/Properties/components/GCCobRetestLabelAndMakeUpProperties';
+import GCMobileMaterialLotQueryProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMaterialLotQueryProperties';
+import GCIncomingMLotPrintLabelProperties from './pages/Properties/components/GCIncomingMLotPrintLabelProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -344,6 +349,18 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCogEcretiveMaterialDeleteProperties,
   },
+  //wafer拆箱
+  {
+    path: buildPath('Wafer/WaferUnpackMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferUnpackMLotProperties,
+  },
+    //COB重测标签补打
+    {
+      path: buildPath('Wafer/CobRetestLabelAndMakeUp'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component: GCCobRetestLabelAndMakeUpProperties,
+    },
   //COB管理
   {
     path: buildPath('COB/COBFinishGoodManager'),
@@ -866,6 +883,11 @@ const routerConfig = [
     component: GCIncomingMaterialImportProperties,
   },
   {
+    path: buildPath('WMS/GCIncomingMLotPrintLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMLotPrintLabelProperties,
+  },
+  {
     path: buildPath('WMS/GCIncomingMLotDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
@@ -1029,7 +1051,7 @@ const routerConfig = [
   {
     path: buildPath('Mobile/MaterialLotQuery'),
     layout: BlankLayout,
-    component: MobileProperties,
+    component: GCMobileMaterialLotQueryProperties,
   },
   {
     path: buildPath('Mobile/MaterialLotReceive'),
@@ -1106,6 +1128,11 @@ const routerConfig = [
     path: buildPath('Mobile/WltOrCpStockOut'),
     layout: BlankLayout,
     component: GcMobileWltOrCpStockOutProperties,
+  },
+  {
+    path: buildPath('Mobile/OldRecordExpressNumber'),
+    layout: BlankLayout,
+    component: GcMobileOldRecordExpressNumberProperties,
   },
   {
     path: '*',
