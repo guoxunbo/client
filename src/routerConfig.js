@@ -150,6 +150,7 @@ import GcMobileOldRecordExpressNumberProperties from './pages/Properties/compone
 import GcWaferUnpackMLotProperties from './pages/Properties/components/GcWaferUnpackMLotProperties';
 import GCCobRetestLabelAndMakeUpProperties from './pages/Properties/components/GCCobRetestLabelAndMakeUpProperties';
 import GCMobileMaterialLotQueryProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMaterialLotQueryProperties';
+import GCIncomingMLotPrintLabelProperties from './pages/Properties/components/GCIncomingMLotPrintLabelProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -881,6 +882,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMaterialImportProperties,
   },
+  {
+    path: buildPath('WMS/GCIncomingMLotPrintLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMLotPrintLabelProperties,
+  },
   {
     path: buildPath('WMS/GCIncomingMLotDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
