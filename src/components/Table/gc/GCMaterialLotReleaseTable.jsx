@@ -1,4 +1,4 @@
-import { Button, Select, Input, Upload } from 'antd';
+import { Button, Select, Input, Upload, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
@@ -29,6 +29,7 @@ export default class GCMaterialLotReleaseTable extends EntityScanViewTable {
     createTagGroup = () => {
         let tags = [];
         tags.push(this.createLocationSelecctAndInputTag());
+        tags.push(this.createTotalQty());
         return tags;
     }
 
@@ -153,6 +154,10 @@ export default class GCMaterialLotReleaseTable extends EntityScanViewTable {
                     customRequest={(option) => this.importSearch(option)} showUploadList={false} >
                     <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImportSearch)}</Button>
                 </Upload>);
+    }
+
+    createTotalQty = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
 }

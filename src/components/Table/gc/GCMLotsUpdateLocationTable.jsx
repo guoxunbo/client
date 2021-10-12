@@ -1,4 +1,4 @@
-import { Button, Select, Input } from 'antd';
+import { Button, Select, Input, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
@@ -28,6 +28,7 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
     createTagGroup = () => {
         let tagList = [];
         tagList.push(this.createLocationSelecct());
+        tagList.push(this.createTotalQty());
         return tagList;
     }
 
@@ -121,6 +122,10 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
         return <Button key="update" type="primary" style={styles.tableButton} loading={this.state.loading} onClick={this.UpdateLocation}>
                         {IconUtils.buildIcon("edit")}{I18NUtils.getClientMessage(i18NCode.BtnUpdate)}
                     </Button>
+    }
+
+    createTotalQty = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
 }
