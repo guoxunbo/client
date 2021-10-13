@@ -26,6 +26,7 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
     createTagGroup = () => {
         let tags = [];
         tags.push(this.createDeleteRemarkInput());
+        tags.push(this.createTotalQty());
         return tags;
     }
 
@@ -70,6 +71,10 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
         return <Button key="update" type="primary" style={styles.tableButton} loading={this.state.loading} onClick={this.UpdateTreasuryNote}>
                         {IconUtils.buildIcon("edit")}{I18NUtils.getClientMessage(i18NCode.BtnUpdate)}
                     </Button>
+    }
+
+    createTotalQty = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
 }
