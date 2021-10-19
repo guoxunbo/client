@@ -279,6 +279,41 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         
+        if(RMAType.includes(importType)){
+            let requestObject = {
+                dataList: data,
+                success: function(responseBody) {
+                    debugger;
+                    let importFlag = responseBody.importFlag;
+                    if(importFlag) {
+                        Modal.confirm({
+                            title: '操作提示',
+                            content: I18NUtils.getClientMessage(i18NCode.TheMaterialLotIsExistedInStroage),
+                            okText: '确认',
+                            cancelText: '取消',
+                            onOk:() => {
+                                self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
+                            },
+                            onCancel:() => {
+                                self.setState({
+                                    loading: false
+                                }); 
+                                return;
+                            }
+                        });
+                    } else {
+                        self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
+                    }
+                }
+            }
+            IncomingImportRequest.sendValidateRmaRequest(requestObject);
+        } else {
+            self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
+        }
+    }
+
+    sendImportSaveRequest =(data, importType, checkFourCodeFlag) =>{
+        let self = this;
         let requestObject = {
             dataList: data,
             importType: importType,
