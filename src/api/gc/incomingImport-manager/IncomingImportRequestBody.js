@@ -1,6 +1,10 @@
 const MlotType = ["GCSamsungPackingList", "GCLCDCOGFinishProductEcretive", "GCLcdCogDetial", 
                  "GCRMAGoodProductImport", "GCRMACustomerReturnFinishProduct", "GCRMAPureFinishProduct"];
 
+const ActionType = {
+    ValidateRma: "ValidateRma",
+}
+                
 export default class IncomingImportRequestBody {
 
     fileName;
@@ -8,6 +12,7 @@ export default class IncomingImportRequestBody {
     materialLotList;
     materialLotUnitList;
     checkFourCodeFlag;
+    actionType;
 
     constructor(importType, materialLotList, materialLotUnitList, fileName, checkFourCodeFlag){
         this.importType = importType;
@@ -33,5 +38,11 @@ export default class IncomingImportRequestBody {
         }
     }
 
+    static buildValiadteRma(materialLotList) {
+        let body =  new IncomingImportRequestBody();
+        body.actionType = ActionType.ValidateRma;
+        body.materialLotList = materialLotList;
+        return body;
+    }
 
 }
