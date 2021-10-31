@@ -100,7 +100,7 @@ export default class ReturnLotOrderRequest {
      * @param {*} object 
      */
      static sendCreateDeptReturnOrderRequest = (object) => {
-        let requestBody = ReturnLotOrderRequestBody.buildCreateDeptReturnOrder(object.materialLots);
+        let requestBody = ReturnLotOrderRequestBody.buildCreateDeptReturnOrder(object.materialLots, object.materialLotAction);
         let requestHeader = new ReturnLotOrderRequestHeader();
         let request = new Request(requestHeader,requestBody, UrlConstant.MMSCreateReturnMLotOrderUrl);
         let requestObject = {

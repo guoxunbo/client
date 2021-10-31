@@ -8,6 +8,7 @@ export default class CreateDeptReturnDialog extends EntityDialog {
         var self = this;
         let object = {
             materialLots : self.props.object.materialLots,
+            materialLotAction: self.props.object,
             success: function(responseBody) {
                 if (self.props.onOk) {
                     self.props.onOk(responseBody.document);

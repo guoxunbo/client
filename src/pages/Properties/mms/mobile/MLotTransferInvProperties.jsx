@@ -43,6 +43,7 @@ export default class MLotTransferInvProperties extends MobileProperties{
         })
         if(flag){
             NoticeUtils.showInfo(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow))
+            return;
         }
         let object = {
             data: transferInvData,

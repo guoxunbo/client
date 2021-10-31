@@ -7,6 +7,7 @@ import MLotBatchJudgeIqcDialog from "../dialog/MLotBatchJudgeIqcDialog";
 import NoticeUtils from "@utils/NoticeUtils";
 import { Application } from "@api/Application";
 import TableManagerRequest from "@api/table-manager/TableManagerRequest";
+import MaterialLotIqcRequest from "@api/mms/material-lot-iqc/MaterialLotIqcRequest";
 
 /**
  * 带有选择框的table
@@ -29,8 +30,31 @@ export default class MaterialLotIqcManagerTable extends EntityListCheckTable{
         }
     };
 
-    buildOperationColumn = () => {
-        
+    buildOperationColumn =() =>{
+
+    }
+
+    buildStartQcButton = () => {
+        return (<Button key="StartIqc" type="primary" loading={this.state.loading} className="table-button" onClick={() => this.handleStartQc()}>
+                    {I18NUtils.getClientMessage("开始IQC")}
+                </Button>)
+    }
+
+    handleStartQc =() => {
+        let self = this;
+        let materialLots = self.getSelectedRows();
+        if(materialLots.length == 0){
+            return;
+        }
+        self.setState({loading: true})
+        let object = {
+            materialLots: materialLots,
+            success: function(responseBody) {
+                self.setState({loading: false})
+                NoticeUtils.showSuccess();
+            }
+        }
+        MaterialLotIqcRequest.sendStartIqcRequest(object);
     }
 
     getRowSelection = (selectedRowKeys) => {
@@ -99,7 +123,8 @@ export default class MaterialLotIqcManagerTable extends EntityListCheckTable{
 
         btns.push(<Tag color="#2db7f5" >{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{this.getSelectedRowsTotalQty()}</Tag>);      
 
-        btns.push(<Button key="bathchJudge" type="primary" className="table-button" icon="judge" onClick={this.handleJudge}>
+        btns.push(this.buildStartQcButton());
+        btns.push(<Button key="bathchJudge" type="primary" className="table-button" loading={this.state.loading} icon="judge" onClick={this.handleJudge}>
                         {I18NUtils.getClientMessage(i18NCode.BtnBathchJudge)}
                     </Button>);
         return btns;

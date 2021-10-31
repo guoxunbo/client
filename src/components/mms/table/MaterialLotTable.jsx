@@ -77,6 +77,7 @@ export default class MaterialLotTable extends EntityListTable {
         let requestObject = {
             name: TableName.MMPrintMLot,
             success: function(responseBody) {
+                debugger;
                 let printMLotAction = TableObject.buildDefaultModel(responseBody.table.fields, selectedObject);
                 self.setState({
                         printMLotAction: printMLotAction,

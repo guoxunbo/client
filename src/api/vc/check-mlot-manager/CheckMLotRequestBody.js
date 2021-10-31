@@ -6,6 +6,7 @@ const actionType = {
     RecheckMLotByOrder:"RecheckMLotByOrder",
     GetReservedMLot: "GetReservedMLot",
     GetRecheckMLot: "GetRecheckMLot",
+    SendMLotInvByERP:"SendMLotInvByERP",
 }
 export default class CheckMLotRequestBody {
 
@@ -64,5 +65,18 @@ export default class CheckMLotRequestBody {
 
     static buildGetWaitRecheckMLot(documentLine) {
         return new CheckMLotRequestBody(actionType.GetRecheckMLot, documentLine);
+    }
+    
+    static buildMLotInfoRequest(documentLine, materialLots) {
+        let materialLotActionList = []
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotAction.setTransQty(materialLot.transQty);
+            materialLotAction.setFromWarehouseRrn(materialLot.lastWarehouseRrn);
+            materialLotAction.setFromStorageRrn(materialLot.lastStorageRrn);
+            materialLotActionList.push(materialLotAction)
+        });
+        return new CheckMLotRequestBody(actionType.SendMLotInvByERP, documentLine, materialLotActionList);
     }
 }

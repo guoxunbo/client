@@ -15,7 +15,7 @@ const getMobileMode = () => {
 }
 
 const Application = {
-    name: 'VCIM-' + ENV_MODE,
+    name: 'FA-' + ENV_MODE,
     version: "1.0.5",
     timeOut: 60000,
     copyright: {

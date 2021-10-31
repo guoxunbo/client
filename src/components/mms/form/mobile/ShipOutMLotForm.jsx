@@ -14,50 +14,9 @@ export default class ShipMLotForm extends MobileForm {
     static displayName = 'ShipMLotForm';
 
     customFieldEnterEvent = (queryField, fieldEnter) => {
-        if (queryField.name === "lineId") {
-            fieldEnter[queryField.name] = () => this.docIdEnterEvent(queryField);
+        if (queryField.name === "materialLotId") {
+            fieldEnter[queryField.name] = () => this.handleSearch();
         }
-    }
-
-    docIdEnterEvent = (queryField) => {
-        let self = this;
-        this.props.form.validateFields((err, values) =>{
-            if(err){
-                return;
-            }
-            let whereClause = SqlUtils.buildWhereClause(this.state.queryFields, values);
-            let requestObject = {
-                tableRrn: this.state.tableRrn,
-                whereClause: whereClause,
-                success: function(responseBody) {
-                    let documentLines = responseBody.dataList;
-                    if(!documentLines || documentLines.length == 0){
-                        NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
-                        return
-                    }
-                    let object = {
-                        docLineId: documentLines[0].lineId,
-                        success: function(responseBody) {
-                            let data = responseBody.materialLots;
-                            let waitShipMLot = [];
-                            if(data){
-                                waitShipMLot = data;
-                            }
-                            self.props.dataTable.setState({data: waitShipMLot});
-                            let queryFields = self.state.queryFields;
-                            if (queryFields && Array.isArray(queryFields)) {
-                                let dataIndex = queryFields.indexOf(queryField);
-                                self.nextElementFocus(dataIndex, queryFields);
-                            }
-                        }
-                    }
-                    VcStockOutRequest.sendGetMaterialLot(object);
-                }
-              }
-              TableManagerRequest.sendGetDataByRrnRequest(requestObject);
-        });
-        
-        
     }
 
     handleSearch = () => {

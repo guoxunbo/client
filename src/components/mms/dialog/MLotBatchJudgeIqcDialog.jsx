@@ -14,7 +14,6 @@ export default class MLotBatchJudgeIqcDialog extends EntityDialog {
         let self = this;
         let editorTable = self.batchJudgeIqcFrom.wrappedComponentEditorTable;
         let {data} = editorTable.state;
-        debugger;
         let materialLots = this.props.object.materialLots;
         let noticeFlag = false;
         if (materialLots.length > 1) {

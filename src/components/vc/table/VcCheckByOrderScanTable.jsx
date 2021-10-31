@@ -32,6 +32,7 @@ export default class VcCheckByOrderScanTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createERPButton());
         buttons.push(this.createCheckButton());
         buttons.push(this.createRecheckButton());
         return buttons;
@@ -46,6 +47,39 @@ export default class VcCheckByOrderScanTable extends EntityListTable {
                     loading = {this.state.loading}
                     i18NCode={i18NCode.BtnCheckMLot} 
                     onClick={() => this.handleCheck()} disabled = {true}/>
+    }
+
+    /**
+     * 直接把库存数据抛送给ERP
+     * @returns 
+     */
+    createERPButton = () => {
+        return <AuthorityButton key="SendMLotInvERPBtn" 
+                    name="SendMLotInvERPBtn" 
+                    type="primary" 
+                    className="table-button" 
+                    icon="icon-pandian"
+                    loading = {this.state.loading}
+                    i18NCode={"ERP"} 
+                    onClick={() => this.handleERP()} disabled = {true}/>
+    }
+
+    handleERP = () => {
+        let self = this;
+        let documentLine = self.props.orderTable.getSingleSelectedRow();
+        if (!documentLine) return;
+
+        let {data} = self.state;
+        let requestObject = {
+            documentLine: documentLine,
+            materialLots: data,
+            success: function() {
+                self.props.onSearch();     
+                self.props.resetData();
+                NoticeUtils.showSuccess();
+            }
+        }
+        CheckMLotRequest.sendMLotInfoRequest(requestObject);
     }
 
     handleCheck = () => {

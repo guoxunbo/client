@@ -21,4 +21,5 @@ export default class IssueByMLotOrderScanProperties extends EntityScanProperties
                     orderTable={this.props.orderTable} 
         />
     }
+    
 }
