@@ -74,4 +74,16 @@ export default class CheckMLotRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendMLotInfoRequest = (object)=>{
+        let requestBody = CheckMLotRequestBody.buildMLotInfoRequest(object.documentLine, object.materialLots);
+        let requestHeader = new CheckMLotRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCCheckMLotManager);
+        let requestObject = {
+            request: request,
+            success: object.success,
+            fail: object.fail
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

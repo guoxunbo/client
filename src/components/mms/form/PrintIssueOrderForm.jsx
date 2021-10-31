@@ -55,13 +55,12 @@ class PrintIssueOrderForm extends EntityForm {
                     <table border="0" width="100%" cellspacing="0">
                         <tbody>
                             <tr>
-                                <th colspan = "8"><h3>发料单</h3></th> 
+                                <th colspan = "8"><h2>发料单</h2></th> 
                             </tr>                           
                             <tr>
-                                <th colspan = "2" style={styles.tdFontSize}>单号:</th>
-                                <th colspan = "2" ></th> 
-                                <th colspan = "2" ></th> 
-                                <th colspan = "2" style={styles.tdFontSize} aligh= "right"> {this.buildBarCode(document.name)} </th>
+                                <th colspan = "4" style={styles.tdFontSize}>单号:{this.buildBarCode(document.name)}</th>
+                                
+                                <th colspan = "4">成本中心:{document.reserved2}</th> 
                             </tr>
                         </tbody>
                     </table>

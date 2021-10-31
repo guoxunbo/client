@@ -32,13 +32,26 @@ export default class VcUnReservedMLotCheckTable extends EntityListCheckTable {
 
     unReserved =()=>{
         let self = this;
-        let selectMlot = self.getSelectedRows();
-        if(!selectMlot){
+        let selectMLots = self.getSelectedRows();
+        if(!selectMLots){
             return;
         }
+        //当前需卡控批次状态是否入库。
+        //卡控取消包装。
+        let mLots = selectMLots.filter(mLot => mLot.boxMaterialLotId != undefined);
+        if(mLots.length > 0 ){
+            NoticeUtils.showNotice(I18NUtils.getClientMessage("请先取消包装") + "："+ mLots[0].boxMaterialLotId);
+            return
+        }
+
+        let invMLots = selectMLots.filter(mLot => mLot.status != "In");
+        if(invMLots.length > 0 ){
+            NoticeUtils.showNotice(I18NUtils.getClientMessage("请先上架") + "：" + mLots[0].materialLotId);
+            return
+        }        
         let unReservedNote = this.input.state.value;
         let object ={
-            materialLotList: selectMlot,
+            materialLotList: selectMLots,
             remake: unReservedNote,
             success: function(responseBody) {
                 self.props.resetData();

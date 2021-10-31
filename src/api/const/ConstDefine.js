@@ -164,7 +164,8 @@ const UrlConstant = {
     VCScrapMLotManager: ModuleUrlConstant.VC + "scrapMLotManager",
     VCCreateOrderManager: ModuleUrlConstant.VC + "createOrder",
     VCStockUpManager: ModuleUrlConstant.VC + "stockUp",
-
+    VCUploadFileManager: ModuleUrlConstant.VC + "uploadFile",
+    DeleteDeliveryOrderManager: ModuleUrlConstant.VC + "deleteDeliveryOrder",
 };
 
 const SystemRefListName = {

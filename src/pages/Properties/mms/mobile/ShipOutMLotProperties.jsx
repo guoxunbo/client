@@ -24,15 +24,18 @@ export default class ShipOutMLotProperties extends MobileProperties{
     }
 
     buildTable = () => {
-        let parameters = this.state.parameters;
-        if (!parameters || !parameters.parameter1) {
-            return;
-        }
-        return <MobileTable ref={(dataTable) => { this.dataTable = dataTable }} {...this.getDefaultTableProps()}  tableRrn={parameters.parameter1} pagination={false} showScanedQtyFlag = {true}/>
+        return <MobileTable ref={(dataTable) => { this.dataTable = dataTable }} 
+                            {...this.getDefaultTableProps()}  tableRrn={this.state.tableRrn} 
+                            pagination={false} 
+                            showScanedQtyFlag = {true}/>
     }
 
     handleSubmit = () => {
         let self = this;
+        let documentLine = self.props.dataTable.getSingleSelectedRow();
+        if(!documentLine){
+            return;
+        }
         let materialLots = this.dataTable.getScanedRows();
         let {data} = this.dataTable.state;
         if(materialLots.length == 0){
@@ -45,7 +48,7 @@ export default class ShipOutMLotProperties extends MobileProperties{
         }
         let value = this.mobileForm.getFieldsValue();
         let requestObject = {
-            docLineId: value.lineId,
+            docLineId: documentLine.lineId,
             materialLots: materialLots,
             success: function(responseBody) {
                 self.handleReset();

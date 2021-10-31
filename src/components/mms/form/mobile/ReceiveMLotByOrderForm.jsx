@@ -96,7 +96,7 @@ export default class ReceiveMLotByOrderForm extends MobileForm {
 
         //发货单位
         QRCode.append(materialLot.reserved17);
-        return QRCode.toString();;
+        return QRCode.toString();
     }
 
     handleSearch = () => {

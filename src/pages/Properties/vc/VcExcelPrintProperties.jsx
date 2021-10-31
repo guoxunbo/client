@@ -95,5 +95,10 @@ export default class VcExcelPrintProperties extends EntityViewProperties{
         }
     }
 
-    
+    handleExcel = () =>{
+        
+       
+    }
+
+
 }

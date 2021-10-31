@@ -14,9 +14,20 @@ export default class VcCheckByOrderScanProperties extends EntityScanProperties{
             this.state= {...this.state, ...{showQueryFormButton: true}}
       }
 
+      resetData = () => {
+            this.setState({
+              selectedRowKeys: [],
+              selectedRows: [],
+              tableData: [],
+              loading: false,
+              resetFlag: true
+            });
+        }
+
       buildTable = () => {
             return <VcCheckByOrderScanTable {...this.getDefaultTableProps()}
             onSearch = {this.props.onSearch}
+            resetData = {this.resetData}
             orderTable = {this.props.orderTable}/>
       }
       

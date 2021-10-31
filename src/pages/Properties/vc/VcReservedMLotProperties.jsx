@@ -47,8 +47,7 @@ export default class VcReservedMLotProperties extends EntityProperties{
         return <VcReservedMLotTable
                         {...this.getDefaultTableProps()}
                         ref = {(orderTable) => {this.orderTable = orderTable}}
-                        scrollY={200} 
-                        pagination={false} 
+                        scrollY={300} 
                         materialLotScanProperties = {this.materialLotScanProperties}
                         resetData = {this.resetData}
                         />

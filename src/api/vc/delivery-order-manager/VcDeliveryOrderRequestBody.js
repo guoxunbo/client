@@ -1,7 +1,7 @@
 const actionType = {
     CreateDelivery : "createDelivery",
     ApproveDelivery :"approveDelivery",
-    CreateByReelDelivery : "createByReelDelivery",
+    Delete : "Delete",
 }
 export default class VcDeliveryOrderRequestBody {
 
@@ -9,13 +9,15 @@ export default class VcDeliveryOrderRequestBody {
     importTypeNbTable
     actionType;
     documentId;
+    deliveryLineId;
   
-    constructor(actionType, documentLineList, importTypeNbTable, documentId){
+    constructor(actionType, documentLineList, importTypeNbTable, documentId, deliveryLineId){
         this.actionType = actionType;
 
         this.documentLineList = documentLineList;
         this.importTypeNbTable = importTypeNbTable;
         this.documentId = documentId;
+        this.deliveryLineId = deliveryLineId;
     }
     
     static buildSave(documentLineList) {
@@ -24,6 +26,10 @@ export default class VcDeliveryOrderRequestBody {
 
     static buildApproveRequest(documentId) {
         return new VcDeliveryOrderRequestBody(actionType.ApproveDelivery, undefined, undefined, documentId);
+    }
+
+    static buildDeleteRequest(deliveryLineId) {
+        return new VcDeliveryOrderRequestBody(actionType.Delete, undefined, undefined, undefined, deliveryLineId);
     }
 
 }

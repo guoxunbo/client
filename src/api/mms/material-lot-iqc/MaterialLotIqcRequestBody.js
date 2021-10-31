@@ -6,6 +6,7 @@ const ActionType = {
     ValidationAndGetMLot:'ValidationAndGetWaitIqcMLot',
     BatchIqc:'BatchIqc',
     IqcApproval:'IqcApproval',
+    StartIqc:'StartIqc',
 }
 export default class MaterialLotIqcRequestBody {
 
@@ -91,6 +92,16 @@ export default class MaterialLotIqcRequestBody {
         });
         let materialLotIqcRequestBody =  new MaterialLotIqcRequestBody(undefined, undefined, materialLotActions, undefined);
         materialLotIqcRequestBody.setActionType(ActionType.IqcApproval);
+        return materialLotIqcRequestBody;
+    }
+
+    static buildStartIqcRequest(materialLots) {
+        let materialLotIds = [];
+        materialLots.forEach(data => {
+            materialLotIds.push(data.materialLotId);
+        });
+        let materialLotIqcRequestBody =  new MaterialLotIqcRequestBody(undefined, materialLotIds);
+        materialLotIqcRequestBody.setActionType(ActionType.StartIqc);
         return materialLotIqcRequestBody;
     }
 }

@@ -1,4 +1,6 @@
+import { Application } from '@api/Application';
 import IssueOrderRequest from '@api/issue-order-manager/issue-lot-order/IssueOrderRequest';
+import RefListManagerRequest from '@api/ref-list-manager/RefListManagerRequest';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import { i18NCode } from '@const/i18n';
 import I18NUtils from '@utils/I18NUtils';
@@ -96,9 +98,10 @@ export default class CreateIssueOrderByMLotInfoTable extends CreateIssueOrderByM
                     formPrintVisible: true,
                     formPrintObject: dialogObject.materialLots,
                     document: responseBody.document,
-                });     
+                });
             }
         }
         IssueOrderRequest.sendCreateIssueMLotOrderRequest(objectRequest);   
     }
+
 }

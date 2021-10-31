@@ -93,8 +93,20 @@ export default class VcDeliveryOrderTable extends EntityListTable {
         let operations = [];
         operations.push(this.buildEditButton(record));
         operations.push(this.buildPrintButton(record));
+        operations.push(this.buildDeletePopConfirm(record));
         return operations;
     }
+
+    handleDelete = (record) => {
+        let self = this;
+        let requestObject = {
+            deliveryLineId: record.lineId,
+            success: function(responseBody) {
+                self.refresh(responseBody.documentLine);
+            }
+        }
+        VcDeliveryOrderRequest.sendDeleteRequest(requestObject);
+    } 
 
     buildEditButton = (record) => {
         return <Button key="edit" style={{marginRight:'1px'}} icon="edit" size="small" 

@@ -28,4 +28,15 @@ export default class VcDeliveryOrderRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendDeleteRequest = (object)=>{
+        let requestBody = VcDeliveryOrderRequestBody.buildDeleteRequest(object.deliveryLineId);
+        let requestHeader = new VcDeliveryOrderRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.DeleteDeliveryOrderManager);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
 }

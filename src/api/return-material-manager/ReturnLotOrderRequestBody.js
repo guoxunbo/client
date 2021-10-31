@@ -1,4 +1,5 @@
 import MaterialLotAction from "@api/dto/mms/MaterialLotAction";
+import PropertyUtils from "@utils/PropertyUtils";
 
 const actionType ={ 
     ReturnLot: "ReturnMLot",
@@ -72,14 +73,14 @@ export default class ReturnLotOrderRequestBody{
         return new ReturnLotOrderRequestBody(actionType.ReturnGoods, documentId, materialLotIdList);
     }
 
-    static buildCreateDeptReturnOrder(materialLots){
+    static buildCreateDeptReturnOrder(materialLots, mLotAction){
         const materialLotActionList = [];
         materialLots.forEach(mLot => {
            let materialLotAction = new MaterialLotAction();
            materialLotAction.setMaterialLotId(mLot.materialLotId);
            materialLotAction.setTransQty(mLot.transQty);
-           materialLotAction.setActionReason(mLot.actionReason);
-           materialLotAction.setActionComment(mLot.actionComment);
+           materialLotAction.setActionReason(mLotAction.actionReason);
+           materialLotAction.setActionComment(mLotAction.actionComment);
            materialLotActionList.push(materialLotAction);
         });
        return new ReturnLotOrderRequestBody(actionType.CreateDeptReturnOrder, undefined, undefined, materialLotActionList);

@@ -49,4 +49,15 @@ export default class MaterialLotIqcRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendStartIqcRequest = (object) => {
+        let requestBody = MaterialLotIqcRequestBody.buildStartIqcRequest(object.materialLots);
+        let requestHeader = new MaterialLotIqcRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.VCMateiralLotIqcUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
