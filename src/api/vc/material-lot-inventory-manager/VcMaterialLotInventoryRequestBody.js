@@ -97,6 +97,8 @@ export default class VcMaterialLotInventoryRequestBody {
             let materialLotActions = [];
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setTransQty(formObject.transQty);
+            materialLotAction.setActionReason(formObject.actionReason);
+            materialLotAction.setActionComment(formObject.actionComment);
             materialLotActions.push(materialLotAction);
         
             let documentId = formObject.docId;

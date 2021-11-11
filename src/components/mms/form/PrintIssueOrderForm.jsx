@@ -50,6 +50,7 @@ class PrintIssueOrderForm extends EntityForm {
     buildPrintTable = () => {
         let materialLots = this.props.object;
         let document = this.props.document;
+        let costCenter = this.props.costCenter;
         let trArr = this.forEachBuildTr(materialLots);
         return (<div id="printTable">
                     <table border="0" width="100%" cellspacing="0">
@@ -60,7 +61,7 @@ class PrintIssueOrderForm extends EntityForm {
                             <tr>
                                 <th colspan = "4" style={styles.tdFontSize}>单号:{this.buildBarCode(document.name)}</th>
                                 
-                                <th colspan = "4">成本中心:{document.reserved2}</th> 
+                                <th colspan = "4">成本中心:{costCenter}</th> 
                             </tr>
                         </tbody>
                     </table>

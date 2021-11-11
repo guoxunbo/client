@@ -66,6 +66,9 @@ export default class Tab {
         const fields = this.fields;
         for (let f of fields) {
             let field = new Field(f, form);
+            if(formObject == undefined){
+                return;
+            }
             if (!field.basicFlag && field.displayFlag && field.name != DefaultOrderKey) {
                 children.push(<Col span={12} key={field.objectRrn}>
                     {field.buildFormItem(formLayout, false, undefined, formObject[field.name])}

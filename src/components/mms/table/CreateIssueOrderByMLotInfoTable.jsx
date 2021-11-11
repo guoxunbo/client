@@ -80,7 +80,7 @@ export default class CreateIssueOrderByMLotInfoTable extends CreateIssueOrderByM
         childrens.push(<CreateMLotDialog key={CreateMLotDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);                               
         childrens.push(<PrintIssueOrderDialog key={PrintIssueOrderDialog.displayName} document={this.state.document} object={this.state.formPrintObject} 
-                                            visible={this.state.formPrintVisible} onOk={this.printOk} onCancel={this.printCancel}/>)
+                                            visible={this.state.formPrintVisible} costCenter={this.state.costCenter} onOk={this.printOk} onCancel={this.printCancel}/>)
         childrens.push(<CreateIssueOrderDialog key={CreateIssueOrderDialog.displayName} object={this.state.createIssueOrderObject}  table={this.state.createIssueOrderActionTable} 
                 visible={this.state.createIssueOrderVisible} onOk={this.createIssueOrderOk} onCancel={this.createIssueOrderCancel}/>)
         return childrens;
@@ -98,6 +98,7 @@ export default class CreateIssueOrderByMLotInfoTable extends CreateIssueOrderByM
                     formPrintVisible: true,
                     formPrintObject: dialogObject.materialLots,
                     document: responseBody.document,
+                    costCenter: responseBody.costCenter,
                 });
             }
         }

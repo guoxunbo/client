@@ -24,6 +24,7 @@ export default class PrintIssueOrderDialog extends EntityDialog {
     buildForm = () => {
         return <PrintIssueOrderForm
                 document = {this.props.document}
-                object = {this.props.object}/>
+                object = {this.props.object}
+                costCenter = {this.props.costCenter}/>
     }
 }

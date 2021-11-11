@@ -51,12 +51,13 @@ class PrintReturnOrderForm extends EntityForm {
     buildPrintTable = () => {
         let materialLots = this.props.object;
         let documentId = this.props.documentId;
+        let orderName = this.props.orderName;
         let trArr = this.forEachBuildTr(materialLots);
         return (<div id="printTable">
                     <table border="0" width="100%" cellspacing="0">
                         <tbody>
                             <tr>
-                                <th colspan = "8"><h3>退料单</h3></th> 
+                                <th colspan = "8"><h3>{orderName}</h3></th> 
                             </tr>                           
                             <tr>
                                 <th colspan = "2" style={styles.tdFontSize}>单号:</th>

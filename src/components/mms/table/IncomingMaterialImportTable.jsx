@@ -24,18 +24,11 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
      */
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createSyncButton());
         buttons.push(this.createImportButton());
         buttons.push(this.createSaveButton());
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createDeleteAllButton());
         return buttons;
-    }
-
-    createSyncButton = () => {
-        return (<Button key="Sync" type="primary" className="table-button" loading={this.state.loading} onClick={() => this.handleSync()} icon="import-o">
-                {I18NUtils.getClientMessage(i18NCode.BtnSync)}
-            </Button>)
     }
 
     createImportButton = () => {
@@ -55,20 +48,6 @@ export default class IncomingMaterialImportTable extends EntityScanViewTable {
         return  <Button key="delete" type="primary" className="table-button" loading={this.state.loading} onClick={() => this.deleteAllMaterialLot()} icon="delete-o">
                          {I18NUtils.getClientMessage(i18NCode.BtnReset)}
                 </Button>
-    }
-
-    handleSync = () =>{
-        let self = this;
-        let object = {
-            actionType: SyncActionType.SyncMainMLotIncomingOrReturn,
-            success:function () {
-                self.setState({
-                    loading: false,
-                }); 
-                NoticeUtils.showSuccess();
-            }
-        }
-        SyncIncomingOrReturnMLotRequest.sendSyncIncomingOrReturnRequest(object);
     }
 
     handleUpload = (option) => {
