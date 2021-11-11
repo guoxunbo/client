@@ -2,15 +2,18 @@ import ReturnLotOrderRequest from '@api/return-material-manager/ReturnLotOrderRe
 import { i18NCode } from '@const/i18n';
 import I18NUtils from '@utils/I18NUtils';
 import NoticeUtils from '@utils/NoticeUtils';
-import CreateReturnTable from './CreateReturnTable';
 import CreateMLotDialog from '../dialog/CreateMLotDialog';
 import PrintReturnOrderDialog from '../dialog/PrintReturnOrderDialog';
 import TableManagerRequest from '@api/table-manager/TableManagerRequest';
 import CreateDeptReturnDialog from '../dialog/CreateDeptReturnDialog';
+import EntityListTable from '@components/framework/table/EntityListTable';
+import { Button, Upload } from 'antd';
+import EventUtils from '@utils/EventUtils';
+import VcImportExcelRequest from '@api/vc/import-excel-manager/VcImportExcelRequest';
 /**
  * 创建部门退料单
  */
-export default class CreateDeptReturnTable extends CreateReturnTable {
+export default class CreateDeptReturnTable extends EntityListTable {
 
     static displayName = 'CreateDeptReturnTable';
 
@@ -19,12 +22,42 @@ export default class CreateDeptReturnTable extends CreateReturnTable {
         this.state = {...this.state, documentId:'', formPrintObject:{}, document:{}, formPrintVisible:false};
     }
 
+    createButtonGroup = () => {
+        let buttons = [];
+        buttons.push(this.createImportButton());
+        buttons.push(this.creatDeptReturnButton());
+        return buttons;
+    }
+
+    handleUpload = (option) => {
+        const self = this;
+        const {table} = this.state;
+        self.setState({loading: true})
+        let requestObject = {
+            tableRrn: table.objectRrn,
+            success: function(responseBody) {
+                let dataList = responseBody.materialLotList;
+                if(!dataList || dataList.length == 0){
+                    NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+                }
+                self.setState({loading: false, data:dataList})
+            }
+        }
+        VcImportExcelRequest.sendImportExcelGetMLotRequest(requestObject, option.file);
+    }
+
+    creatDeptReturnButton = () => {
+        return <Button key="CreateReturnOrder" type="primary" className="table-button" icon="dropbox" onClick={this.CreateReturnOrder} loading={this.state.loading}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnCreate)}
+                    </Button>
+    }
+
     createForm = () => {
         let childrens = [];
         childrens.push(<CreateMLotDialog key={CreateMLotDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);                               
         childrens.push(<PrintReturnOrderDialog key={PrintReturnOrderDialog.displayName} documentId={this.state.documentId} object={this.state.formPrintObject} 
-                                            visible={this.state.formPrintVisible} onOk={this.printOk} onCancel={this.printOk}/>)
+                                            visible={this.state.formPrintVisible} orderName={"部门退料单"} onOk={this.printOk} onCancel={this.printOk}/>)
         childrens.push(<CreateDeptReturnDialog key={CreateDeptReturnDialog.displayName} ref={this.formRef} object={this.state.createDeptReturnObject} visible={this.state.createDeptReturnVisible} 
                 table={this.state.createDeptReturnActionTable} onOk={this.createDeptReturnOk} onCancel={this.createDeptReturnCancel} />);
         return childrens;
@@ -81,5 +114,22 @@ export default class CreateDeptReturnTable extends CreateReturnTable {
             }
         }
         TableManagerRequest.sendGetByNameRequest(requestObject); 
+    }
+
+    buildOperation = (record) => {
+        let operations = [];
+        operations.push(this.buildEditButton(record));
+        return operations;
+    }
+
+    printOk = () => {
+        this.setState({
+            formPrintVisible: false,
+            formPrintObject:{},
+            document:[]
+        });
+
+        this.props.resetData();
+        NoticeUtils.showSuccess();
     }
 }

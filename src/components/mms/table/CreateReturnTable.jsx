@@ -6,10 +6,8 @@ import I18NUtils from '@utils/I18NUtils';
 import NoticeUtils from '@utils/NoticeUtils';
 import CreateMLotDialog from '../dialog/CreateMLotDialog';
 import PrintReturnOrderDialog from '../dialog/PrintReturnOrderDialog';
-import CsvImportRequest from '@api/csv-manager/CsvImportRequest';
 import EventUtils from '@api/utils/EventUtils';
-import TableManagerRequest from '@api/table-manager/TableManagerRequest';
-import SqlUtils from '@components/framework/utils/SqlUtils';
+import VcImportExcelRequest from '@api/vc/import-excel-manager/VcImportExcelRequest';
 
 /**
  * 创建退料单 仓库退到供应商
@@ -25,33 +23,26 @@ export default class CreateReturnTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        //buttons.push(this.createImportButton());
+        buttons.push(this.createImportButton());
         buttons.push(this.creatReturnButton());
         return buttons;
     }
 
-    createImportButton = () => {
-        return  <Upload key="import" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
-                    customRequest={(option) => this.handleUpload(option)} showUploadList={false} >
-                    <Button type="primary" loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage(i18NCode.SelectFile)}</Button>
-                </Upload>;
-    }
-
     handleUpload = (option) => {
-        // const self = this;
-        // let fileName = option.file.name;
-        // self.setState({
-        //     loading: true
-        // });
-        // EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
-        // let requestObject = {
-        //     fileName: fileName,
-        //     importTypeNbTable : "VCCreateReturnOrder",
-        //     success: function(responseBody) {
-        //         let dataList = responseBody.dataList;
-        //     }
-        // }
-        // CsvImportRequest.sendImportRequest(requestObject, option.file);
+        const self = this;
+        const {table} = this.state;
+        self.setState({loading: true})
+        let requestObject = {
+            tableRrn: table.objectRrn,
+            success: function(responseBody) {
+                let dataList = responseBody.materialLotList;
+                if(!dataList || dataList.length == 0){
+                    NoticeUtils.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+                }
+                self.setState({loading: false, data:dataList})
+            }
+        }
+        VcImportExcelRequest.sendImportExcelGetMLotRequest(requestObject, option.file);
     }
 
     creatReturnButton = () => {
@@ -90,7 +81,7 @@ export default class CreateReturnTable extends EntityListTable {
         childrens.push(<CreateMLotDialog key={CreateMLotDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);                               
         childrens.push(<PrintReturnOrderDialog key={PrintReturnOrderDialog.displayName} documentId={this.state.documentId} object={this.state.formPrintObject} 
-                                            visible={this.state.formPrintVisible} onOk={this.printOk} onCancel={this.printOk}/>
+                                            visible={this.state.formPrintVisible} orderName={"退货单"} onOk={this.printOk} onCancel={this.printOk}/>
             )
         return childrens;
     }
@@ -106,9 +97,8 @@ export default class CreateReturnTable extends EntityListTable {
         NoticeUtils.showSuccess();
     }
 
-    buildOperation() {
-        let operations = [];
-        operations.push(this.buildEditButton(record));
-        return operations;
+    buildOperationColumn(scrollX) {
+       
     }
+
 }

@@ -130,6 +130,7 @@ import CheckMLotProperties from '@pages/Properties/mms/mobile/CheckMLotPropertie
 import CheckOrderProperties from '@pages/Properties/mms/mobile/CheckOrderProperties';
 import VcUploadFileProperties from '@pages/Properties/vc/VcUploadFileProperties';
 import ShipOutOrderProperties from '@pages/Properties/mms/mobile/ShipOutOrderProperties';
+import VcAddRmaInfoProperties from '@pages/Properties/vc/VcAddRmaInfoProperties';
 
 
 /**
@@ -831,7 +832,7 @@ const routerConfig = [
   {
     path: buildPath('MMS/AddRmaInfo'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: EntityScanProperties,
+    component: VcAddRmaInfoProperties,
   },
   {
     path: buildPath('VC/VCCustomerProduct'),
