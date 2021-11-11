@@ -223,6 +223,7 @@ const i18NCode = {
     RawMaterialInventory: "RawMaterialInventory",
     EnterRawMaterialSpareQtyPlease: "EnterRawMaterialSpareQtyPlease",
     TableDataMustBeEmpty: "TableDataMustBeEmpty",
+    TheMaterialLotIsExistedInStroage: "TheMaterialLotIsExistedInStroage",
 }
 
 const i18Messages = {
@@ -1324,6 +1325,11 @@ const i18Messages = {
     ConfirmSpare: {
         Chinese: "确认备料！",
         English: "Confirm Spare",
+        Res: ""
+    },
+    TheMaterialLotIsExistedInStroage: {
+        Chinese: "清单中已经存在在库的物料批次！",
+        English: "The MaterialLot is Existed in Stroage",
         Res: ""
     }
 }
