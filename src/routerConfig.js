@@ -151,6 +151,8 @@ import GcWaferUnpackMLotProperties from './pages/Properties/components/GcWaferUn
 import GCCobRetestLabelAndMakeUpProperties from './pages/Properties/components/GCCobRetestLabelAndMakeUpProperties';
 import GCMobileMaterialLotQueryProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMaterialLotQueryProperties';
 import GCIncomingMLotPrintLabelProperties from './pages/Properties/components/GCIncomingMLotPrintLabelProperties';
+import GCBondedWarehouseIncomingMaterialImportProperties from './pages/Properties/components/GCBondedWarehouseIncomingMaterialImportProperties';
+import GCBondedWarehouseWltStockOutOrderProperties from './pages/Properties/components/GCBondedWarehouseWltStockOutOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -891,6 +893,37 @@ const routerConfig = [
     path: buildPath('WMS/GCIncomingMLotDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
+  },
+  //BondedWarehouseManager
+  {
+    path: buildPath('BondedWarehouse/IncomingMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component:GCBondedWarehouseIncomingMaterialImportProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WltOrCpWaferReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPurchaseOutsoureReceiveProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WaferInStorageManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferStockInProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/LotPackage'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltPackMaterialLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WltStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCBondedWarehouseWltStockOutOrderProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WltOtherStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWltOtherStockOutOrderProperties,
   },
   //WarehouseManager
   {
