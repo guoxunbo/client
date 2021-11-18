@@ -206,6 +206,7 @@ const i18NCode = {
     CheckSubCodeFlag: "CheckSubCodeFlag",
     BtnMergeDocLine: "MergeDocLine",
     TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
+    BondProMustBeHK: "BondProMustBeHK",
     OrderTime: "OrderTime",
     erpCreatedTime: "erpCreatedTime",
     SelectQty: "SelectQty",
@@ -1170,6 +1171,11 @@ const i18Messages = {
     TheLocationAndWarehouseIsNotSame: {
         Chinese: "保税属性和仓库不一致，请确认是否导入！",
         English: "Location And WarehousId are not same!",
+        Res: "" 
+    },
+    BondProMustBeHK: {
+        Chinese: "保税属性必须是HK，请重新导入！",
+        English: "Bond Pro must be HK, please import again!",
         Res: "" 
     },
     OrderTime: {
