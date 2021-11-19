@@ -153,6 +153,7 @@ import GCMobileMaterialLotQueryProperties from './pages/Properties/components/gc
 import GCIncomingMLotPrintLabelProperties from './pages/Properties/components/GCIncomingMLotPrintLabelProperties';
 import GCBondedWarehouseIncomingMaterialImportProperties from './pages/Properties/components/GCBondedWarehouseIncomingMaterialImportProperties';
 import GCBondedWarehouseWltStockOutOrderProperties from './pages/Properties/components/GCBondedWarehouseWltStockOutOrderProperties';
+import GcBondedWarehouseWaferStockInProperties from './pages/Properties/components/GcBondedWarehouseWaferStockInProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -908,12 +909,17 @@ const routerConfig = [
   {
     path: buildPath('BondedWarehouse/WaferInStorageManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GcWaferStockInProperties,
+    component: GcBondedWarehouseWaferStockInProperties,
   },
   {
     path: buildPath('BondedWarehouse/LotPackage'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltPackMaterialLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/MaterialLotWeigh'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcMaterialLotWeighProperties,
   },
   {
     path: buildPath('BondedWarehouse/WltStockOut'),
@@ -924,6 +930,16 @@ const routerConfig = [
     path: buildPath('BondedWarehouse/WltOtherStockOut'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWltOtherStockOutOrderProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WaferCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCheckProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WLTStockOutCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltStockOutCheckProperties,
   },
   //WarehouseManager
   {
