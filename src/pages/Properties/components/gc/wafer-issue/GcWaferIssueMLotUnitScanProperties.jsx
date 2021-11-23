@@ -85,6 +85,15 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
         const self = this;
         let {rowKey,tableData} = this.state;
         let issueWithDoc = this.waferIssueTable.state.value;
+        if(tableData.length == 10){
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.MaterialLotIssueQtyCannotMoreThanTen));
+          self.setState({ 
+            tableData: tableData,
+            loading: false
+          });
+          self.form.resetFormFileds();
+          return;
+        }
         let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
         let orders = this.props.orderTable.state.data;
         if (issueWithDoc == "issueWithDoc" && orders.length == 0) {
@@ -178,6 +187,6 @@ export default class GcWaferIssueMLotUnitScanProperties extends EntityScanProper
     }
 
     buildOtherComponent = () => {
-      return <GcWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={70656} />
+      return <GcWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={this.props.waitIssueTableRrn} />
     }
 }

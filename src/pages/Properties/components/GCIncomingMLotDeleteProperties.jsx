@@ -3,7 +3,7 @@ import GCIncomingMLotDeleteTable from "../../../components/Table/gc/GCIncomingML
 
 export default class GCIncomingMLotDeleteProperties  extends EntityProperties {
 
-    static displayName = 'GCIncomingMaterialImportProperties';
+    static displayName = 'GCIncomingMLotDeleteProperties';
 
     constructor(props) {
         super(props);

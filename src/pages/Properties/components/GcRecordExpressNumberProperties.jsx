@@ -36,6 +36,7 @@ export default class GcRecordExpressNumberProperties extends EntityProperties{
     buildTable = () => {
         return <RecordExpressNumberTable 
                             table={this.state.table} 
+                            pagination={false}
                             data={this.state.tableData} 
                             loading={this.state.loading}
                             resetData={this.resetData.bind(this)}

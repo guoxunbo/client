@@ -15,6 +15,18 @@ export default class MaterialLotWeighTable extends EntityScanViewTable {
 
     static displayName = 'MaterialLotWeighTable';
 
+    getRowClassName = (record, index) => {
+        if (record.errorFlag) {
+            return 'error-row';
+        } else {
+            if(index % 2 ===0) {
+                return 'even-row'; 
+            } else {
+                return ''; 
+            }
+        }
+    };
+
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createWeighButton());
@@ -67,53 +79,65 @@ export default class MaterialLotWeighTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.BoxWeightCannotEmpty));
             return;
         }
-        let flag = false;
-        data.forEach(materialLot => {
-            let floatValue = materialLot.floatValue;
-            if(materialLot.theoryWeight){
-                let disWeight = Math.abs(materialLot.weight - materialLot.theoryWeight);
-                if(disWeight > floatValue){
-                    flag = true;
-                    return;
+
+        let requestObject = {
+            materialLots: data,
+            success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.resetData();
                 }
+                MessageUtils.showOperationSuccess();
             }
-        });
-        if(flag){
-            Modal.confirm({
-                title: 'Confirm',
-                content: I18NUtils.getClientMessage(i18NCode.WeightOutOfNormalRangeConfirmPlease),
-                okText: '确认',
-                cancelText: '取消',
-                onOk:() => {
-                    self.setState({
-                        loading: true
-                    });
-                    EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
-                    
-                    let requestObject = {
-                        materialLots: data,
-                        success: function(responseBody) {
-                            if (self.props.resetData) {
-                                self.props.resetData();
-                            }
-                            MessageUtils.showOperationSuccess();
-                        }
-                    }
-                    WeightManagerRequest.sendWeightRequest(requestObject);
-                }
-            });
-        } else {
-            let requestObject = {
-                materialLots: data,
-                success: function(responseBody) {
-                    if (self.props.resetData) {
-                        self.props.resetData();
-                    }
-                    MessageUtils.showOperationSuccess();
-                }
-            }
-            WeightManagerRequest.sendWeightRequest(requestObject);
         }
+        WeightManagerRequest.sendWeightRequest(requestObject);
+        
+        // let flag = false;
+        // data.forEach(materialLot => {
+        //     let floatValue = materialLot.floatValue;
+        //     if(materialLot.theoryWeight){
+        //         let disWeight = Math.abs(materialLot.weight - materialLot.theoryWeight);
+        //         if(disWeight > floatValue){
+        //             flag = true;
+        //             return;
+        //         }
+        //     }
+        // });
+        // if(flag){
+        //     Modal.confirm({
+        //         title: 'Confirm',
+        //         content: I18NUtils.getClientMessage(i18NCode.WeightOutOfNormalRangeConfirmPlease),
+        //         okText: '确认',
+        //         cancelText: '取消',
+        //         onOk:() => {
+        //             self.setState({
+        //                 loading: true
+        //             });
+        //             EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+                    
+        //             let requestObject = {
+        //                 materialLots: data,
+        //                 success: function(responseBody) {
+        //                     if (self.props.resetData) {
+        //                         self.props.resetData();
+        //                     }
+        //                     MessageUtils.showOperationSuccess();
+        //                 }
+        //             }
+        //             WeightManagerRequest.sendWeightRequest(requestObject);
+        //         }
+        //     });
+        // } else {
+        //     let requestObject = {
+        //         materialLots: data,
+        //         success: function(responseBody) {
+        //             if (self.props.resetData) {
+        //                 self.props.resetData();
+        //             }
+        //             MessageUtils.showOperationSuccess();
+        //         }
+        //     }
+        //     WeightManagerRequest.sendWeightRequest(requestObject);
+        // }
 
     }
 

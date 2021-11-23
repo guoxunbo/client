@@ -151,7 +151,8 @@ export default class EntityForm extends Component {
                     visible={this.props.visible} 
                     maskClosable={false} 
                     onOk={this.handleOk}
-                    onCancel={this.props.onCancel} 
+                    onCancel={this.props.onCancel}
+                    destroyOnClose={true} 
                     okText={okText}>
                     {this.buildForm()}
                 </Modal>

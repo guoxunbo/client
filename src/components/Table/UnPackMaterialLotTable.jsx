@@ -6,9 +6,8 @@ import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import MessageUtils from '../../api/utils/MessageUtils';
 import UnPackageMaterialLotRequest from '../../api/unpackage-material-lot/UnPackageMaterialLotRequest';
-import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
-import PrintUtils from '../../api/utils/PrintUtils';
 import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
+import EventUtils from '../../api/utils/EventUtils';
 
 /**
  * 拆包
@@ -49,8 +48,7 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
             success: function(responseBody) {
-                let url = PrintServiceUrl.Bbox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
+
             }
         }
         GetPrintBboxParameterRequest.sendQueryRequest(requestObject);
@@ -62,6 +60,12 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
             return;
         }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+        
         let requestObject = {
             packedLotDetails: waitToUnpackDetails,
             actionCode: "",
@@ -72,6 +76,9 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
                 if (self.props.resetData) {
                     self.props.resetData();
                 }
+                self.setState({
+                    loading: false
+                }); 
                 let materialLotId = unpackedMainMaterialLot.materialLotId;
                 let message = I18NUtils.getClientMessage(i18NCode.OperationSucceed) + `:${materialLotId}`;
                 MessageUtils.showOperationSuccess(message);
@@ -86,13 +93,13 @@ export default class UnPackMaterialLotTable extends EntityScanViewTable {
 
 
     createUnPackageAllButton = () => {
-        return <Button key="unpackageAll" type="primary" style={styles.tableButton} icon="dropbox" onClick={this.unPackageAll}>
+        return <Button key="unpackageAll" type="primary" style={styles.tableButton} loading={this.state.loading} icon="dropbox" onClick={this.unPackageAll}>
                         {I18NUtils.getClientMessage(i18NCode.BtnUnPackageAll)}
                     </Button>
     }
 
     createUnPackageButton = () => {
-        return <Button key="unpackage" type="primary" style={styles.tableButton} icon="dropbox" onClick={this.unPackagePartial}>
+        return <Button key="unpackage" type="primary" style={styles.tableButton} loading={this.state.loading} icon="dropbox" onClick={this.unPackagePartial}>
                         {I18NUtils.getClientMessage(i18NCode.BtnUnPackage)}
                     </Button>
     }

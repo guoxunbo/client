@@ -30,7 +30,7 @@ export default class GcMaterialLotStockInProperties extends EntityScanProperties
         }  
          // MB开头的则是中装箱号 扫描到MB开头的，则更新当前操作的物料批次的中装箱号
         let dataIndex = -1;
-        if (data.startsWith("MB") || data.startsWith("TB")) {
+        if (data.startsWith("MB") || data.startsWith("TB") || data.startsWith("CM")) {
             // console.log(currentHandleMLots);
             tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {
@@ -49,7 +49,7 @@ export default class GcMaterialLotStockInProperties extends EntityScanProperties
                 // scanRelaxBoxOrStorageFlag: true,
             });
             self.form.resetFormFileds();
-        } else if (data.startsWith("ZHJ") || data.startsWith("HJ") ) {
+        } else if (data.startsWith("ZHJ ") || data.startsWith("HJ ") ) {
             // ZHJ/HJ 开头的则是库位号 扫描到ZHJ/HJ开头的，则更新当前操作的物料批次的库位号
             tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {

@@ -35,7 +35,6 @@ export default class GCProductSubcodeSetTable extends EntityListTable {
     }
 
     handlesUpload = (option) => {
-        debugger;
         const self = this;
         const {table} = this.state;
         self.setState({

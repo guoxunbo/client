@@ -1,5 +1,5 @@
 import EntityListTable from "../EntityListTable";
-import { Button, Icon, Switch, Tag } from 'antd';
+import { Button, Icon, Modal, Switch, Tag } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Upload } from 'antd';
@@ -15,6 +15,7 @@ const TableName = {
 
 const ImportType = {
     GCCOBFinishProduct: "GCCOBFinishProduct",//COB（-4成品）
+    GCCOBRawMaterialProduct: "GCCOBRawMaterialProduct",//COM原料导入
     GCSOCFinishProduct: "GCSOCFinishProduct",//SOC（-4成品）
     GCWLAUnmeasured: "GCWLAUnmeasured",//WLA未测（-2.5）
     GCFabSensor2Unmeasured: "GCFabSensor2Unmeasured",//FAB sensor(-2未测)
@@ -32,24 +33,29 @@ const ImportType = {
     GCRMAPureFinishProduct: "GCRMAPureFinishProduct",//RMA纯_成品-4
     GCSamsungPackingList: "GCSamsungPackingList",//三星packing list(-2CP未测)
 
+    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
     GCSensorCPMeasuredHuaLing: "GCSensorCPMeasuredHuaLing",//sensor CP已测（-2.1华领）
     GCSensorCPMeasuredKLT: "GCSensorCPMeasuredKLT",//sensor CP已测（KLT）
-    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
     GCSensorPackageReturnCogo: "GCSensorPackageReturnCogo",//sensor封装回货（积高-3未测）
-    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
+    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
+    
     GCFinishProductImport: "GCFinishProductImport",//成品导入模板
+    GCSOCWaferUnmeasured: "GCSOCWaferUnmeasured",//SOC(-2.5,-2.55未测/-2.6已测)
+    GCMaskFinishProduct: "GCMaskFinishProduct",//Mask成品导入
 }
 
-const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCSOCFinishProduct];
-const wltType = [ImportType.GCWLAUnmeasured];
+const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct];
+const wltType = [ImportType.GCWLAUnmeasured, ImportType.GCMaskFinishProduct];
 const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
                 ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26,
-                ImportType.GCSensorPackageReturn];
+                ImportType.GCSensorPackageReturn, ImportType.GCSOCWaferUnmeasured, ImportType.GCSensorCPMeasuredHuaLing,
+                ImportType.GCSensorCPMeasuredKLT, ImportType.GCSensorUnmeasured, ImportType.GCSensorPackageReturnCogo,
+                ImportType.GCSensorTplccSenBang];
 const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
 
 const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
                            ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
-                           ImportType.GCSOCFinishProduct];
+                           ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct, ImportType.GCMaskFinishProduct];
 
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
@@ -143,12 +149,12 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotIdList.length}</Tag>
     }
 
     createErrorTag = () => {
         let errorInfoList = this.state.data.filter((d) => d.errorFlag && d.errorFlag === true);
-        return <Tag color="#D2480A">异常数量：{errorInfoList.length}</Tag>
+        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{errorInfoList.length}</Tag>
     }
 
     handleUpload = (option) => {
@@ -162,8 +168,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.ChooseImportTypePlease));
             return;
         }
-        if(importType == "COB（-4成品）"){
-            importType = "GCCOBFinishProduct";
+        if(importType == "COM原料导入"){
+            importType = "GCCOBRawMaterialProduct";
         }
         if(tableData.length > 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImportedPleaseCleanAllBeforeSelectNewFile));
@@ -192,9 +198,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
     }
 
     importData =() => {
-        const {data,table} = this.state;
-        let checkFourCodeFlag = this.state.value;
-        let self = this;
+        const {data} = this.state;
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
@@ -205,21 +209,55 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             return;
         }
         let queryFields = this.props.propsFrom.state.queryFields;
-        let importType = this.props.propsFrom.props.form.getFieldValue(queryFields[0].name);
         let warehouseId = this.props.propsFrom.props.form.getFieldValue(queryFields[1].name);
         if(warehouseId == "" || warehouseId == undefined){
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseWarehouseIdPlease));
             return;
         }
 
-        if(importType == "COB（-4成品）"){
-            importType = "GCCOBFinishProduct";
-        }
-        if(warehouseId == "ZJ_STOCK"){
+
+        if(warehouseId == "ZJ_STOCK" || warehouseId == "浙江仓库"){
             warehouseId = 8143;
-        } else if(warehouseId == "HK_STOCK"){
+        } else if(warehouseId == "SH_STOCK" || warehouseId == "上海仓库"){
+            warehouseId = 8142;
+        } else if(warehouseId == "HK_STOCK" || warehouseId == "香港仓库"){
             warehouseId = 8150;
+        } else if(warehouseId == "BS_STOCK" || warehouseId == "保税仓库") {
+            warehouseId = 8151;
         }
+
+        let location = data[0].reserved6;
+        if((location == "ZSH" && (warehouseId == "8142" || warehouseId == "8151")) 
+            || (location == "SH" && (warehouseId == "8143" || warehouseId == "8151")) 
+            || (location == "BS" && (warehouseId == "8142" || warehouseId == "8143"))){
+            Modal.confirm({
+                title: '操作提示',
+                content: I18NUtils.getClientMessage(i18NCode.TheLocationAndWarehouseIsNotSame),
+                okText: '确认',
+                cancelText: '取消',
+                onOk:() => {
+                    this.doSave(warehouseId);
+                },
+                onCancel:() => {
+                    return;
+                }
+            });
+        } else {
+            this.doSave(warehouseId);
+        }
+    }
+
+    doSave =(warehouseId) =>{
+        let self = this;
+        const {data,table} = this.state;
+        let queryFields = this.props.propsFrom.state.queryFields;
+        let checkFourCodeFlag = this.state.value;
+        let importType = this.props.propsFrom.props.form.getFieldValue(queryFields[0].name);
+
+        if(importType == "COM原料导入"){
+            importType = "GCCOBRawMaterialProduct";
+        }
+
         if(warehouseId == 8142){
             data.forEach(materialLot =>{
                 materialLot.reserved13 = warehouseId;
@@ -230,7 +268,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 materialLot.reserved13 = warehouseId;
                 materialLot.reserved14 = "ZHJ AZ6000";
             });
-        } else if(warehouseId == 8150){
+        } else if(warehouseId == 8150 || warehouseId == 8151){
             data.forEach(materialLot =>{
                 materialLot.reserved13 = warehouseId;
             });
@@ -241,6 +279,41 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         
+        if(RMAType.includes(importType)){
+            let requestObject = {
+                dataList: data,
+                success: function(responseBody) {
+                    debugger;
+                    let importFlag = responseBody.importFlag;
+                    if(importFlag) {
+                        Modal.confirm({
+                            title: '操作提示',
+                            content: I18NUtils.getClientMessage(i18NCode.TheMaterialLotIsExistedInStroage),
+                            okText: '确认',
+                            cancelText: '取消',
+                            onOk:() => {
+                                self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
+                            },
+                            onCancel:() => {
+                                self.setState({
+                                    loading: false
+                                }); 
+                                return;
+                            }
+                        });
+                    } else {
+                        self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
+                    }
+                }
+            }
+            IncomingImportRequest.sendValidateRmaRequest(requestObject);
+        } else {
+            self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
+        }
+    }
+
+    sendImportSaveRequest =(data, importType, checkFourCodeFlag) =>{
+        let self = this;
         let requestObject = {
             dataList: data,
             importType: importType,
@@ -335,11 +408,11 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{this.state.data.length}</Tag>
     }
 
     createSaveButton = () => {

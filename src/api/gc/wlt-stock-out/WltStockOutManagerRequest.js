@@ -6,9 +6,45 @@ import Request from '../../Request';
 
 export default class WltStockOutManagerRequest {
 
+    static sendGCRWAttributeChangeRequest = (object) => {
+        let {materialLots} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildGCRWAttributeChange(materialLots);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendWltStockOutRequest = (object) => {
+        let {documentLines, materialLots, checkSubCode} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildWltStockOut(documentLines, materialLots, checkSubCode);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendWltOtherStockOutRequest = (object) => {
         let {documentLines, materialLots} = object;
-        let requestBody = WltStockOutManagerRequestBody.buildWltStockOut(documentLines, materialLots);
+        let requestBody = WltStockOutManagerRequestBody.buildWltOtherStockOut(documentLines, materialLots);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendWltThreeSideShipRequest = (object) => {
+        let {documentLine, materialLots} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildThreeSideShip(documentLine, materialLots);
         let requestHeader = new WltStockOutManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
         let requestObject = {
@@ -43,8 +79,8 @@ export default class WltStockOutManagerRequest {
     }
 
     static sendStockOutTagRequest = (object) => {
-        let {materialLots, stockTagNote, customerName, stockOutType, poId} = object;
-        let requestBody = WltStockOutManagerRequestBody.buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId);
+        let {materialLots, stockTagNote, customerName, stockOutType, poId, address} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId, address);
         let requestHeader = new WltStockOutManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
         let requestObject = {
@@ -92,6 +128,42 @@ export default class WltStockOutManagerRequest {
     static sendValidateMlotMaterialNameRequest =(object) =>{
         let {materialLots} = object;
         let requestBody = WltStockOutManagerRequestBody.buildValidationMaterialName(materialLots);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendSaleStockOutRequest = (object) => {
+        let {documentLines, materialLots, checkSubCode} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildSaleStockOut(documentLines, materialLots, checkSubCode);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+    
+    static sendMobileWltStockOutRequest = (object) => {
+        let {materialLots, checkSubCode, erpTime} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildMobileWltStockOut(materialLots, checkSubCode, erpTime);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendMobileSaleStockOutRequest = (object) => {
+        let {materialLots, checkSubCode, erpTime} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildMobileSaleStockOut(materialLots, checkSubCode, erpTime);
         let requestHeader = new WltStockOutManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
         let requestObject = {

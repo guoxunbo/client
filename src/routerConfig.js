@@ -90,6 +90,71 @@ import COBFinishGoodProperties from './pages/Properties/components/COBFinishGood
 import GCUnConfirmWaferTrackSetProperties from './pages/Properties/components/GCUnConfirmWaferTrackSetProperties';
 import GcRMAMaterialLotReceiveProperties from './pages/Properties/components/GcRMAMaterialLotReceiveProperties';
 import COBPackMaterialLotProperties from './pages/Properties/components/COBPackMaterialLotProperties';
+import GcRMAMLotLabelPrintProperties from './pages/Properties/components/GcRMAMLotLabelPrintProperties';
+import GcRawMaterialReceiveProperties from './pages/Properties/components/GcRawMaterialReceiveProperties';
+import GcWaferIssueOutOrderProperties from './pages/Properties/components/gc/wafer-issue/GcWaferIssueOutOrderProperties';
+import GcFTOutOrderIssueUnitScanProperties from './pages/Properties/components/gc/wafer-issue/GcFTOutOrderIssueUnitScanProperties';
+import GcRawMaterialIssueOrderProperties from './pages/Properties/components/GcRawMaterialIssueOrderProperties';
+import GcRawMaterialStockInProperties from './pages/Properties/components/GcRawMaterialStockInProperties';
+import GCRawMaterialScrapProperties from './pages/Properties/components/GCRawMaterialScrapProperties';
+import GCUpdateMLotInfoProperties from './pages/Properties/components/GCUpdateMLotInfoProperties';
+import GcErpDocLineMergeProperties from './pages/Properties/components/GcErpDocLineMergeProperties';
+import GcRwMLotLabelPrintProperties from './pages/Properties/components/GcRwMLotLabelPrintProperties';
+import GCRwFinishGoodProperties from './pages/Properties/components/GCRwFinishGoodProperties';
+import MobileHome from './pages/Mobile/MobileHome';
+import MobileProperties from './pages/Properties/components/mobile/MobileProperties';
+import GCRwPrintLotLabelProperties from './pages/Properties/components/GCRwPrintLotLabelProperties';
+import GCMobileReceiveFGProperties from './pages/Properties/components/gc/wafer-issue/GCMobileReceiveFGProperties';
+import GCRwStockOutTagProperties from './pages/Properties/components/GCRwStockOutTagProperties';
+import GCRwStockOutTaggingUpdateProperties from './pages/Properties/components/GCRwStockOutTaggingUpdateProperties';
+import GCRwStockOutOrderProperties from './pages/Properties/components/GCRwStockOutOrderProperties';
+import CSTPackMaterialLotProperties from './pages/Properties/components/CSTPackMaterialLotProperties';
+import GCRwTapeScanReceiveProperties from './pages/Properties/components/GCRwTapeScanReceiveProperties';
+import GCRwBladeScanReceiveProperties from './pages/Properties/components/GCRwBladeScanReceiveProperties';
+import GCRwMaterialSpareProperties from './pages/Properties/components/GCRwMaterialSpareProperties';
+import GcRwMaterialIssueScanProperties from './pages/Properties/components/GcRwMaterialIssueScanProperties';
+import GCRwStockOutTagging2Properties from './pages/Properties/components/GCRwStockOutTagging2Properties';
+import GCRawMaterialDeleteProperties from './pages/Properties/components/GCRawMaterialDeleteProperties';
+import GCRawMaterialSpareOrderProperties from './pages/Properties/components/GCRawMaterialSpareOrderProperties';
+import GcScrapRawMaterialShipOrderProperties from './pages/Properties/components/GcScrapRawMaterialShipOrderProperties';
+import GCRawMaterialRePrintProperties from './pages/Properties/components/GCRawMaterialRePrintProperties';
+import GCUnRawMaterialSpareProperties from './pages/Properties/components/GCUnRawMaterialSpareProperties';
+import GCMobileMLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotStockInProperties';
+import GCRawMaterialInventoryProperties from './pages/Properties/components/GCRawMaterialInventoryProperties';
+import GCMobileMLotCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotCheckProperties';
+import GCMobileMLotReceiveOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotReceiveOrderProperties';
+import GCMobileMLotIssueOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueOrderProperties';
+import GCMobileMLotShipOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotShipOrderProperties';
+import GCRwMaterialCancelSpareProperties from './pages/Properties/components/GCRwMaterialCancelSpareProperties';
+import WltLotPackCaseCheckProperties from './pages/Properties/components/WLTLotPackCaseCheckProperties';
+import GCMobileFinishLotStockInProperties from './pages/Properties/components/gc/wafer-issue/GCMobileFinishLotStockInProperties';
+import GCMobileRawMaterialCheckProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialCheckProperties';
+import GCMobileRawMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialReceiveProperties';
+import GCRWAttributeChangeProperties from './pages/Properties/components/GCRWAttributeChangeProperties';
+import GCCancelCheckProperties from './pages/Properties/components/GCCancelCheckProperties';
+import GcIRAReceiveStockInProperties from './pages/Properties/components/GcIRAReceiveStockInProperties';
+import GcMobileIRAReceiveStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAReceiveStockInProperties';
+import GcMobileTransferBoxAndStockInProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxAndStockInProperties';
+import GcMobileTransferBoxChangeStorageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileTransferBoxChangeStorageProperties';
+import GcMobileRawMaterialIssueMLotScanProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialIssueMLotScanProperties';
+import GcMobileWaferIssueOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWaferIssueOutProperties';
+import GCWltOtherStockOutOrderProperties from './pages/Properties/components/GCWltOtherStockOutOrderProperties';
+import GcMobileRMAMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRMAMaterialReceiveProperties';
+import GCRawMaterialSpareOutDocProperties from './pages/Properties/components/GCRawMaterialSpareOutDocProperties';
+import GcMobileWltOrCpWaferReceiveProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWltOrCpWaferReceiveProperties';
+import GcMobileMaterialLotWeighProperties from './pages/Properties/components/gc/wafer-issue/GcMobileMaterialLotWeighProperties';
+import GcMobileMaterialLotReTestOrderProperties from './pages/Properties/components/gc/wafer-issue/GcMobileMaterialLotReTestOrderProperties';
+import GcMobileWltOrCpStockOutProperties from './pages/Properties/components/gc/wafer-issue/GcMobileWltOrCpStockOutProperties';
+import GCMobileMLotIssueByOrderProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMLotIssueByOrderProperties';
+import GcMobileOldRecordExpressNumberProperties from './pages/Properties/components/gc/wafer-issue/GcMobileOldRecordExpressNumberProperties';
+import GcWaferUnpackMLotProperties from './pages/Properties/components/GcWaferUnpackMLotProperties';
+import GCCobRetestLabelAndMakeUpProperties from './pages/Properties/components/GCCobRetestLabelAndMakeUpProperties';
+import GCMobileMaterialLotQueryProperties from './pages/Properties/components/gc/wafer-issue/GCMobileMaterialLotQueryProperties';
+import GCIncomingMLotPrintLabelProperties from './pages/Properties/components/GCIncomingMLotPrintLabelProperties';
+import GCBondedWarehouseIncomingMaterialImportProperties from './pages/Properties/components/GCBondedWarehouseIncomingMaterialImportProperties';
+import GCBondedWarehouseWltStockOutOrderProperties from './pages/Properties/components/GCBondedWarehouseWltStockOutOrderProperties';
+import GcBondedWarehouseWaferStockInProperties from './pages/Properties/components/GcBondedWarehouseWaferStockInProperties';
+
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -244,6 +309,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcWaferIssueOrderProperties,
   },
+  //WLA、CP无订单晶圆发料
+  {
+    path: buildPath('Wafer/GCWaferIssueOutOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferIssueOutOrderProperties,
+  },
   //COM型号晶圆发料
   {
     path: buildPath('Wafer/GCCOMWaferIssue'),
@@ -254,6 +325,17 @@ const routerConfig = [
     path: buildPath('Wafer/GCWaferCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCheckProperties,
+  },
+  //取消检验
+  {
+    path: buildPath('GC/CancelCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCancelCheckProperties,
+  },
+  {
+    path: buildPath('/GC/GCRawMaterialSpareOutDocManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialSpareOutDocProperties,
   },
   {
     path: buildPath('Wafer/GCWaferInStorage'),
@@ -270,6 +352,18 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCogEcretiveMaterialDeleteProperties,
   },
+  //wafer拆箱
+  {
+    path: buildPath('Wafer/WaferUnpackMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferUnpackMLotProperties,
+  },
+    //COB重测标签补打
+    {
+      path: buildPath('Wafer/CobRetestLabelAndMakeUp'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component: GCCobRetestLabelAndMakeUpProperties,
+    },
   //COB管理
   {
     path: buildPath('COB/COBFinishGoodManager'),
@@ -306,6 +400,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcRMAMaterialLotReceiveProperties,
   },
+  //RMA标签补打
+  {
+    path: buildPath('RMA/GCRMALabelPrintManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRMAMLotLabelPrintProperties,
+  },
   {
     path: buildPath('FT/GCFTMateriLotStockIn'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -317,6 +417,11 @@ const routerConfig = [
     component: GcFTWaferIssueOrderProperties,
   },
   {
+    path: buildPath('FT/GCFTOutOrderWaferIssue'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFTOutOrderIssueUnitScanProperties,
+  },
+  {
     path: buildPath('FT/GCFTStockOutManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCFTStockOutOrderProperties,
@@ -326,6 +431,12 @@ const routerConfig = [
     path: buildPath('WLT/WLTPackCaseCheck'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltPackCaseCheckProperties,
+  },
+  //WLT Lot装箱检
+  {
+    path: buildPath('WLT/WLTLotPackCaseCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltLotPackCaseCheckProperties,
   },
   //WLT出货检
   {
@@ -339,6 +450,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWltStockOutOrderProperties,
   },
+    //WLT/CP其它出
+  {
+    path: buildPath('WLT/WltOtherStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWltOtherStockOutOrderProperties,
+  },
   //晶圆出货标注
   {
     path: buildPath('Wafer/WaferStockOutTagManager'),
@@ -350,17 +467,157 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCCPStockOutTaggingProperties,
   },
+  //原材料
+  {
+    path: buildPath('RawMaterial/GCRawMaterialReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialReceiveProperties,
+  },
+  {
+    path: buildPath('RawMaterial/GCRawMaterialIssue'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialIssueOrderProperties,
+  },
+  {
+    path: buildPath('RawMaterial/GCRawMaterialStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialStockInProperties,
+  },
+  //原材料入库位调整
+  {
+    path: buildPath('/RawMaterial/GCRawMaterialStockInChange'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRawMaterialStockInProperties,
+  },
+  //IRA接收入库
+  {
+    path: buildPath('/GC/IRAReceiveStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcIRAReceiveStockInProperties,
+  },
+  {
+    path: buildPath('RawMaterial/GCRawMaterialScrap'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialScrapProperties,
+  },
+  //原材料报废出库
+  {
+    path: buildPath('RawMaterial/GCScrapRawMaterialShip'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcScrapRawMaterialShipOrderProperties,
+  },
+  //原材料补打标签
+  {
+    path: buildPath('RawMaterial/GCRawMaterialRePrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialRePrintProperties,
+  },
   //取消晶圆出货标注
   {
     path: buildPath('Wafer/WaferUnStockOutTagManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWaferUnStockOutTaggingProperties,
   },
+  //ERP单据合并
+  {
+    path: buildPath('GC/GCErpDocLineMergeManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcErpDocLineMergeProperties,
+  },
+   //RW发料标签补打
+  {
+    path: buildPath('GC/GCRwMLotIssueLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRwMLotLabelPrintProperties,
+  },
+  //RW接收Lot标签补打
+  {
+    path: buildPath('GC/GCRwMLotReceiveLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwPrintLotLabelProperties,
+  },
+  //RW产线接收入库
+  {
+    path: buildPath('GC/GCRWFinishGoodManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwFinishGoodProperties,
+  },
+  //RW出货标注
+  {
+    path: buildPath('GC/GCRwStockOutTagManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwStockOutTagProperties,
+  },
+  //RW取消标注及修改
+  {
+    path: buildPath('GC/GCRwStockOutTagUpdateManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwStockOutTaggingUpdateProperties,
+  },
+  //RW属性转换
+  {
+    path: buildPath('GC/GCRWAttributeChange'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRWAttributeChangeProperties,
+  },
+  //RW出货
+  {
+    path: buildPath('GC/GCRWMLotStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwStockOutOrderProperties,
+  },
+  //Tape接收
+  {
+    path: buildPath('GC/GCRwTapeScanReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwTapeScanReceiveProperties,
+  },
+  //Blade接收
+  {
+    path: buildPath('GC/RwBladeScanReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwBladeScanReceiveProperties,
+  },
+  //RW材料备料
+  {
+    path: buildPath('GC/GCRwMaterialSpareManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwMaterialSpareProperties,
+  },
+  //RW材料备料取消
+  {
+    path: buildPath('GC/GCRwMaterialCancelSpareManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwMaterialCancelSpareProperties,
+  },
+  //原材料备料
+  {
+    path: buildPath('GC/GCRawMaterialSpareManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialSpareOrderProperties,
+  },
+  //取消原材料备料
+  {
+    path: buildPath('GC/GCUnRawMaterialSpare'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnRawMaterialSpareProperties,
+  },
+  //Rw材料发料
+  {
+    path: buildPath('GC/GCRwMaterialIssueManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcRwMaterialIssueScanProperties,
+  },
   //GC产品型号二级代码设定
   {
     path: buildPath('GC/GCProductSubcodeSetManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCProductSubcodeSetProperties,
+  },
+  {
+    path: buildPath('GC/GCVenderAndAddressManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   //GC产品型号转换
   {
@@ -415,6 +672,18 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  //工作站管理
+  {
+    path: buildPath('MMS/MMSWorkOrderStationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  //标签模板管理
+  {
+    path: buildPath('MMS/MMSLabelTemplateManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
   {
     path: buildPath('GC/GCProductNumberRelationManager'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -436,6 +705,24 @@ const routerConfig = [
     path: buildPath('GC/GCRawMaterialImport'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialImportProperties  ,
+  },
+    //原材料盘点
+    {
+      path: buildPath('GC/GCRawMaterialInventoryManager'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component: GCRawMaterialInventoryProperties,
+    },
+  //LOT预Hold设置
+  {
+    path: buildPath('GC/GCLotFutureHoldSetManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
+  },
+  //Wafer Hold设置
+  {
+    path: buildPath('GC/GCWaferHoldRelationManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: EntityProperties,
   },
   //MES成品接收
   {
@@ -599,9 +886,60 @@ const routerConfig = [
     component: GCIncomingMaterialImportProperties,
   },
   {
+    path: buildPath('WMS/GCIncomingMLotPrintLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMLotPrintLabelProperties,
+  },
+  {
     path: buildPath('WMS/GCIncomingMLotDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
+  },
+  //BondedWarehouseManager
+  {
+    path: buildPath('BondedWarehouse/IncomingMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component:GCBondedWarehouseIncomingMaterialImportProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WltOrCpWaferReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPurchaseOutsoureReceiveProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WaferInStorageManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcBondedWarehouseWaferStockInProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/LotPackage'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltPackMaterialLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/MaterialLotWeigh'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcMaterialLotWeighProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WltStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCBondedWarehouseWltStockOutOrderProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WltOtherStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWltOtherStockOutOrderProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WaferCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCheckProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/WLTStockOutCheck'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: WltStockOutCheckProperties,
   },
   //WarehouseManager
   {
@@ -623,6 +961,11 @@ const routerConfig = [
     path: buildPath('GC/GCMaterialLotListHold'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCMaterialLotListHoldProperties,
+  },
+  {
+    path: buildPath('Warehouse/GCUpdateMLotInfo'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUpdateMLotInfoProperties,
   },
   {
     path: buildPath('Warehouse/GCMaterialLotRelease'),
@@ -686,6 +1029,24 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCPrintWltCpLotProperties,
   },
+  //RW标签打印
+  {
+    path: buildPath('GC/GCCSTPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: CSTPackMaterialLotProperties,
+  },
+  //RW出货箱标签
+  {
+    path: buildPath('GC/GCRWStockOutTagging'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRwStockOutTagging2Properties,
+  },
+  //原材料删除
+  {
+    path: buildPath('WMS/GCRawMaterialDeleteManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialDeleteProperties,
+  },
   //RTM
   {
     path: buildPath('RTM/DynaxAnalyseManager'),
@@ -702,6 +1063,125 @@ const routerConfig = [
     path: buildPath('Rms/RecipeManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+
+  //MobileMenu of WMS
+  {
+    path: 'MobileHome',
+    layout: BlankLayout,
+    component: MobileHome,
+  },
+
+  {
+    path: buildPath('Mobile/MESFinishGoodManager'),
+    layout: BlankLayout,
+    component: GCMobileReceiveFGProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotStockIn'),
+    layout: BlankLayout,
+    component: GCMobileMLotStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotCheck'),
+    layout: BlankLayout,
+    component: GCMobileMLotCheckProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileWaferCheck'),
+    layout: BlankLayout,
+    component: GCMobileMLotCheckProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileRawMaterialCheck'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialCheckProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotQuery'),
+    layout: BlankLayout,
+    component: GCMobileMaterialLotQueryProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotReceive'),
+    layout: BlankLayout,
+    component: GCMobileMLotReceiveOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotIssue'),
+    layout: BlankLayout,
+    component: GCMobileMLotIssueByOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotShip'),
+    layout: BlankLayout,
+    component: GCMobileMLotShipOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/WltCpFinishLotStockIn'),
+    layout: BlankLayout,
+    component: GCMobileFinishLotStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/RawMaterialReceive'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialReceiveProperties,
+  },
+  //手持端IRA接收入库
+  {
+    path: buildPath('/Mobile/MobileIRAReceiveStockIn'),
+    layout: BlankLayout,
+    component: GcMobileIRAReceiveStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileTransferBoxAndStockIn'),
+    layout: BlankLayout,
+    component: GcMobileTransferBoxAndStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileTransferBoxChangeStorage'),
+    layout: BlankLayout,
+    component: GcMobileTransferBoxChangeStorageProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileRawMaterialIssue'),
+    layout: BlankLayout,
+    component: GcMobileRawMaterialIssueMLotScanProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileWaferIssueOut'),
+    layout: BlankLayout,
+    component: GcMobileWaferIssueOutProperties,
+  },
+  {
+    path: buildPath('Mobile/RMAMaterialReceive'),
+    layout: BlankLayout,
+    component: GcMobileRMAMaterialReceiveProperties,
+  },
+  {
+    path: buildPath('Mobile/WltOrCpWaferReceive'),
+    layout: BlankLayout,
+    component: GcMobileWltOrCpWaferReceiveProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotWeigh'),
+    layout: BlankLayout,
+    component: GcMobileMaterialLotWeighProperties,
+  },
+  {
+    path: buildPath('Mobile/MaterialLotReTestOrder'),
+    layout: BlankLayout,
+    component: GcMobileMaterialLotReTestOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/WltOrCpStockOut'),
+    layout: BlankLayout,
+    component: GcMobileWltOrCpStockOutProperties,
+  },
+  {
+    path: buildPath('Mobile/OldRecordExpressNumber'),
+    layout: BlankLayout,
+    component: GcMobileOldRecordExpressNumberProperties,
   },
   {
     path: '*',

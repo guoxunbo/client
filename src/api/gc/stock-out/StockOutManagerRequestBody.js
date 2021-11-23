@@ -19,15 +19,17 @@ export default class StockOutManagerRequestBody {
         this.queryMaterialLot = queryMaterialLot;
     }
     
-    static buildStockOut(documentLine, materialLots) {
+    static buildStockOut(documentLineList, materialLots) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
-
-        return new StockOutManagerRequestBody(actionType.StockOut, documentLine, materialLotActions, undefined);
+        let body = new StockOutManagerRequestBody(actionType.StockOut);
+        body.documentLineList = documentLineList;
+        body.materialLotActions = materialLotActions;
+        return body;
     }
 
     static buildValidateMaterial(queryMaterialLot, materialLots) {

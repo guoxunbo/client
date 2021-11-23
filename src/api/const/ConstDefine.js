@@ -2,7 +2,7 @@
 const ServerAddress = {
     NewbiestUrl : "http://127.0.0.1:8080",
     // NewbiestUrl : "http://172.16.15.188:8080",
-    // NewbiestUrl : "http://10.181.160.18:8080",
+    // NewbiestUrl : "http://10.181.160.18:10010",
     // NewbiestUrl : "http://10.181.160.31:10010",
     Envirment: "TEST"
 }
@@ -79,6 +79,7 @@ const UrlConstant = {
     GCCheckInventoryUrl: ModuleUrlConstant.GC + "checkInventory",
     GCReTestUrl: ModuleUrlConstant.GC + "reTest",
     GCWaferManagerUrl: ModuleUrlConstant.GC + "waferManage",
+    GCWaferUnpackUrl: ModuleUrlConstant.GC + "waferUnpack",
     GCStockOutUrl: ModuleUrlConstant.GC + "stockOut",
     GCWltStockOutUrl: ModuleUrlConstant.GC + "wltStockOut",
     GCStockInUrl: ModuleUrlConstant.GC + "stockIn",
@@ -96,8 +97,10 @@ const UrlConstant = {
     GCIncomingImportUrl: ModuleUrlConstant.GC + "IncomingImport",
     GCIncomingMaterialSave: ModuleUrlConstant.GC + "IncomingMaterialSave",
     GCIncomingMaterialDelete: ModuleUrlConstant.GC + "IncomingMaterialDelete",
+    GCIncomingMaterialValidate: ModuleUrlConstant.GC + "IncomingImportValidate",
     GCProductSubcodeManagerUrl: ModuleUrlConstant.GC + "productSubcodeSet",
     GCUpdateMaterialLotManagerUrl: ModuleUrlConstant.GC + "updateMaterialLot",
+    GCMLotImportSearchManagerUrl: ModuleUrlConstant.GC + "mLotImportSearch",
     GCGetMLotCodePrintParameterUrl: ModuleUrlConstant.GC + "getMLotCodePrintParameter",
     GCPrintWltCpLotUrl: ModuleUrlConstant.GC + "printWltCpLot",
     GCProductSubcodeImportManagerUrl: ModuleUrlConstant.GC + "productSubcodeImport",
@@ -110,6 +113,11 @@ const UrlConstant = {
     GCUnConfirmWaferTrackSetUrl: ModuleUrlConstant.GC + "unConfirmWaferTrackSet",
     GCRmaMaterialLotManagerUrl: ModuleUrlConstant.GC + "RmaMaterialLotManager",
     GCGetPrintCOBboxParameterUrl: ModuleUrlConstant.GC + "getPrintCOBboxParameter",
+    GCTempCpDataImportUrl: ModuleUrlConstant.GC + "tempCpDataImport",
+    GCErpDocLineMergeManageUrl: ModuleUrlConstant.GC + "erpDocLineMerge",
+    GCRwMaterialLotManageUrl: ModuleUrlConstant.GC + "rwMaterialLotManager",
+    GCRwMaterialManageUrl: ModuleUrlConstant.GC + "rwMaterialManager",
+    GCRawMlotPrintManageUrl: ModuleUrlConstant.GC + "rawMlotPrintManager",
 };
 
 const SystemRefListName = {
@@ -119,6 +127,9 @@ const SystemRefListName = {
     StockOutType: "StockOutType",
     HKPrintType: "HKPrintType",
     RiskGrade: "RiskGrade",
+    ExpressCompany: "ExpressCompany",
+    ScrapReason: "ScrapReason",
+    CancelCheckReason: "CancelCheckReason"
 };
 
 const RefTableName = {
@@ -127,6 +138,7 @@ const RefTableName = {
     POIdList: "POIdList",
     CPPoListByMaterialNameAndVender: "CPPoListByMaterialNameAndVender",
     GCWaferMaterialByName: "GCWaferMaterialByName",
+    AddressByMaterialName: "AddressByMaterialName",
 };
 
 /**

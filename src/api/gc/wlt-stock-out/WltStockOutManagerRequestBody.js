@@ -9,6 +9,12 @@ const actionType = {
     ValidateVender: "ValidateVender",
     GetMLot: "GetMLot",
     ValidateMaterialName: "ValidateMaterialName",
+    ThreeSideShip: "ThreeSideShip",
+    SaleShip: "SaleShip",
+    GCRWAttributeChange: "GCRWAttributeChange",
+    WltOtherStockOut: "WltOtherStockOut",
+    MobileWltStockOut: "MobileWltStockOut",
+    MobileSaleShip: "MobileSaleShip",
 }
 
 export default class WltStockOutManagerRequestBody {
@@ -23,9 +29,11 @@ export default class WltStockOutManagerRequestBody {
     poId;
     tableRrn;
     queryLotId;
+    documentLine;
+    address;
 
 
-    constructor(actionType, documentLines, materialLotActions, queryMaterialLot, stockTagNote, customerName,stockOutType, poId){
+    constructor(actionType, documentLines, materialLotActions, queryMaterialLot, stockTagNote, customerName,stockOutType, poId, address){
         this.actionType = actionType;
         this.documentLines = documentLines;
         this.materialLotActions = materialLotActions;
@@ -34,17 +42,49 @@ export default class WltStockOutManagerRequestBody {
         this.customerName = customerName;
         this.stockOutType = stockOutType;
         this.poId = poId;
+        this.address = address; 
     }
     
-    static buildWltStockOut(documentLines, materialLots) {
+    static buildGCRWAttributeChange(materialLots) {
+        let  body = new WltStockOutManagerRequestBody(actionType.GCRWAttributeChange);
+        body.materialLots = materialLots;
+        return body;
+    }
+
+    static buildWltStockOut(documentLines, materialLots, checkSubCode) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
+        let body = new WltStockOutManagerRequestBody(actionType.WltStockOut, documentLines, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        return body;
+    }
 
-        return new WltStockOutManagerRequestBody(actionType.WltStockOut, documentLines, materialLotActions, undefined);
+    static buildWltOtherStockOut(documentLines, materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.WltOtherStockOut, documentLines, materialLotActions);
+        return body;
+    }
+
+    static buildThreeSideShip(documentLine, materialLots) {
+        let body = new WltStockOutManagerRequestBody(actionType.ThreeSideShip);
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        body.materialLotActions = materialLotActions;
+        body.documentLine = documentLine;
+        return body;
     }
 
     static buildValidateMLot(queryMaterialLot, materialLots) {
@@ -67,14 +107,15 @@ export default class WltStockOutManagerRequestBody {
         return new WltStockOutManagerRequestBody(actionType.queryTagMlotUnit, undefined, materialLotActions);
     }
 
-    static buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId) {
+    static buildStockOutTagging(materialLots, stockTagNote, customerName, stockOutType, poId, address) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
-        return new WltStockOutManagerRequestBody(actionType.StockOutTag, undefined, materialLotActions, undefined, stockTagNote, customerName, stockOutType, poId);
+        let body = new WltStockOutManagerRequestBody(actionType.StockOutTag, undefined, materialLotActions, undefined, stockTagNote, customerName, stockOutType, poId, address);
+        return body;
     }
 
     static buildUnstockOutTagging(materialLots) {
@@ -116,6 +157,44 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WltStockOutManagerRequestBody(actionType.ValidateMaterialName, undefined, materialLotActions);
+    }
+
+    static buildSaleStockOut(documentLines, materialLots, checkSubCode) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.SaleShip, documentLines, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        return body;
+    }
+
+    static buildMobileWltStockOut(materialLots, checkSubCode, erpTime) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.MobileWltStockOut, undefined, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        body.erpTime = erpTime;
+        return body;
+    }
+
+    static buildMobileSaleStockOut(materialLots, checkSubCode, erpTime) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.MobileSaleShip, undefined, materialLotActions);
+        body.checkSubCode = checkSubCode;
+        body.erpTime = erpTime;
+        return body;
     }
 
 }

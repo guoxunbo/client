@@ -7,7 +7,10 @@ const ActionType = {
     GetWaitIssueMLot: "GetWaitIssueMLot",
     PurchaseOutsoureReceive: "PurchaseOutsoureReceive",
     HKMLotReceive: "HKMLotReceive",
-    CogReceive: "CogReceive"
+    CogReceive: "CogReceive",
+    OutOrderIssue: "OutOrderIssue",
+    MobileGetWafer: "MobileGetWafer",
+    MobileIssue: "MobileIssue",
 }
 export default class WaferManagerRequestBody {
 
@@ -18,6 +21,7 @@ export default class WaferManagerRequestBody {
     whereClause;
     issueWithDoc;
     unPlanLot;
+    receiveWithDoc;
 
 
     constructor(actionType, documentLines, materialLotActions, tableRrn, whereClause, issueWithDoc, unPlanLot){
@@ -29,16 +33,21 @@ export default class WaferManagerRequestBody {
         this.issueWithDoc = issueWithDoc;
         this.unPlanLot = unPlanLot;
     }
+
+    setReceiveWithDoc(receiveWithDoc){
+        this.receiveWithDoc = receiveWithDoc;
+    }
     
-    static buildReceive(documentLines, materialLots) {
+    static buildReceive(documentLines, materialLots, receiveWithDoc) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
-
-        return new WaferManagerRequestBody(ActionType.Receive, documentLines, materialLotActions);
+        let body = new WaferManagerRequestBody(ActionType.Receive, documentLines, materialLotActions);
+        body.setReceiveWithDoc(receiveWithDoc);
+        return body;
     }
 
     static buildValidationWaferIssue(documentLines, materialLots) {
@@ -61,6 +70,28 @@ export default class WaferManagerRequestBody {
         });
 
         return new WaferManagerRequestBody(ActionType.Issue, documentLines, materialLotActions, undefined, undefined, issueWithDoc, unPlanLot);
+    }
+
+    static buildMobileIssue(erpTime, materialLots, issueWithDoc, unPlanLot) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WaferManagerRequestBody(ActionType.MobileIssue, undefined, materialLotActions, undefined, undefined, issueWithDoc, unPlanLot);
+        body.erpTime = erpTime;
+        return body;
+    }
+
+    static buildOutOrderIssue(materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new WaferManagerRequestBody(ActionType.OutOrderIssue, undefined, materialLotActions);
     }
 
     static buildValidationWaitIssueWafer(materialLots) {
@@ -106,6 +137,13 @@ export default class WaferManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new WaferManagerRequestBody(ActionType.CogReceive, documentLines, materialLotActions);
+    }
+
+    static buildMobileGetWaferByRrn(tableRrn, lotId) {
+        let body = new WaferManagerRequestBody(ActionType.MobileGetWafer);
+        body.tableRrn = tableRrn;
+        body.lotId = lotId;
+        return body;
     }
 }
 

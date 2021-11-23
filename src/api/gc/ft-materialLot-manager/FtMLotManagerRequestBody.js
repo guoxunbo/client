@@ -9,6 +9,7 @@ const ActionType = {
     FtIssue: "FtIssue",
     ValidateMLot: "ValidateMLot",
     FTStockOut: "FTStockOut",
+    FTOutOrderIssue: "FTOutOrderIssue",
 }
 
 export default class FtMLotManagerRequestBody {
@@ -87,6 +88,19 @@ export default class FtMLotManagerRequestBody {
         requestBody.setMaterialLotActions(materialLotActions);
         requestBody.setDocumentLines(documentLines);
         requestBody.setIssueWithDoc(issueWithDoc);
+        return requestBody;
+    }
+
+    
+    static buildUnitOutOrderIssue(materialLotUnitList) {
+        let materialLotActions = [];
+        materialLotUnitList.forEach(materialLotUnit => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLotUnit.unitId);
+            materialLotActions.push(materialLotAction);
+        });
+        let requestBody = new FtMLotManagerRequestBody(ActionType.FTOutOrderIssue);
+        requestBody.setMaterialLotActions(materialLotActions);
         return requestBody;
     }
 

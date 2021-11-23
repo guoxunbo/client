@@ -4,8 +4,6 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
 import IconUtils from '../../../api/utils/IconUtils';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl , PrintBboxCount} from '../../../api/gc/GcConstDefine';
 import { Notification } from '../../notice/Notice';
 import GetPrintBoxQRCodeParameterRequest from '../../../api/gc/get-print-boxRQCode-parameter/GetPrintBoxQRCodeParameterRequest';
 import EventUtils from "../../../api/utils/EventUtils";
@@ -48,8 +46,6 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
             let requestObject = {
                 materialLot : data[0],   
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.BoxQRCode;
-                    PrintUtils.printWithBtIbForWeb(url, responseBody.parameterMap, PrintBboxCount);
                     MessageUtils.showOperationSuccess();
                 }
             }
@@ -73,11 +69,6 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
                 materialLot : data[0],   
                 printVboxLabelFlag: printVboxLabelFlag,
                 success: function(responseBody) {
-                    let url = PrintServiceUrl.BoxQRCode;
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        let printCount = parameter.printCount;
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, parseInt(printCount));
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }
@@ -110,7 +101,6 @@ export default class GcPrintQRCodeLabelTable extends EntityScanViewTable {
     }
 
     handleChange = (checkedChildren) => {
-        debugger;
         if(checkedChildren){
             this.setState({ 
                 value: "check",

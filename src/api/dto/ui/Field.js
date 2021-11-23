@@ -11,6 +11,7 @@ import { i18NCode } from '../../const/i18n';
 
 import moment from 'moment';
 import EntityManagerRequest from '../../entity-manager/EntityManagerRequest';
+import EventUtils from '../../utils/EventUtils';
 
 const { RangePicker} = DatePicker;
 const FormItem = Form.Item;
@@ -235,6 +236,11 @@ export default class Field {
     buildStyle = (query) => {
         
     }
+
+    dateChange = (date, dateStr) => {
+        EventUtils.getEventEmitter().emit(EventUtils.getEventNames.ComboxValueChanged, this, dateStr);
+    }
+
     /**
      * 根据不同的DisplayType创建不同的组件
      *  因为refList refTable是对select重新封装。故此处需要自己初始化值
@@ -245,7 +251,7 @@ export default class Field {
     buildControl(edit, query, initialValue, onBlur, onPressEnter) {
         this.buildDisabled(edit, query);
         if (this.displayType == DisplayType.text || this.displayType == DisplayType.file) {
-            return <Input ref={node => (this.node = node)} onBlur={onBlur} onPressEnter={onPressEnter} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
+            return <Input ref={node => (this.node = node)} onBlur={onBlur} onPressEnter={e => onPressEnter ? onPressEnter(e, this) : undefined} placeholder = {this.placeHolder} style={this.upperFlag ? styles.textUppercaseStyle : undefined} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.int) {
             return <InputNumber onBlur={onBlur} min={this.minValue} disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.double) {
@@ -253,7 +259,7 @@ export default class Field {
         } else if (this.displayType == DisplayType.password) {
             return <Input onBlur={onBlur} placeholder = {this.placeHolder} type="password" disabled={this.disabled}/>;
         } else if (this.displayType == DisplayType.calendar) {
-            return <DatePicker onBlur={onBlur} locale={locale} disabled={this.disabled}/>
+            return <DatePicker onBlur={onBlur} locale={locale} disabled={this.disabled} onChange={this.dateChange}/>
         } else if (this.displayType == DisplayType.calendarFromTo) {
             return query ? <RangePicker locale={locale} disabled={this.disabled}/> : <DatePicker locale={locale} disabled={this.disabled}/> ;
         } else if (this.displayType == DisplayType.datetime) {
@@ -279,7 +285,7 @@ export default class Field {
      * @param query 是否是queryForm queryForm的是否必输根据queryRequireFlag决定
      * @param initialValue 初始值
      */
-    buildFormItem = (formItemProperties, edit, query, initialValue) => {
+    buildFormItem = (formItemProperties, edit, query, initialValue, onPrecessEnter) => {
         //处理formItemPorperties TODO暂时不支持file上传组件检验
         if (!formItemProperties) {
             formItemProperties = {};
@@ -297,12 +303,13 @@ export default class Field {
                 initialValue: initialValue,
                 valuePropName: valuePropName,
             })
-          (
-            this.buildControl(edit, query, initialValue)
-          )}
+            (
+            this.buildControl(edit, query, initialValue, undefined, onPrecessEnter)
+            )}
         </FormItem>);
     }
 
+    
     /**
      * 对initialValue在不同的displayType上做不同的封装
      */

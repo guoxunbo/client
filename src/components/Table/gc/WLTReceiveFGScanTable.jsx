@@ -5,8 +5,6 @@ import FinishGoodInvManagerRequest from '../../../api/gc/finish-good-manager/Fin
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
-import PrintUtils from '../../../api/utils/PrintUtils';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import EventUtils from '../../../api/utils/EventUtils';
 
 export default class WLTReceiveFGScanTable extends EntityScanViewTable {
@@ -63,7 +61,7 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
                 </span>
             </Col>
             <Col span={3}>
-                <Input ref={(printCount) => { this.printCount = printCount }} value={2} key="printCount" placeholder="打印份数"/>
+                <Input ref={(printCount) => { this.printCount = printCount }} defaultValue={2} key="printCount" placeholder="打印份数"/>
             </Col>
         </Row>
     }
@@ -120,15 +118,12 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
             let requestObject = {
                 mesPackedLots: data,
                 printLabel: printLabelFlag,
+                printCount: printCount,
                 success: function(responseBody) {
                     if (self.props.resetData) {
                         self.props.onSearch();
                         self.props.resetData();
                     }
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        let url = PrintServiceUrl.WltLotId;
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, printCount);
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }
@@ -189,7 +184,6 @@ export default class WLTReceiveFGScanTable extends EntityScanViewTable {
     }
 
     refreshDelete = (records) => {
-        debugger;
         let datas = this.state.data;
         let recordList = [];
         if (!(records instanceof Array)) {

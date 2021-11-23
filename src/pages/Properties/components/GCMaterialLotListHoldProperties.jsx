@@ -15,7 +15,6 @@ export default class GCMaterialLotListHoldProperties  extends EntityScanProperti
     }
 
     queryData = (whereClause) => {
-      debugger;
       const self = this;
       let {rowKey,tableData} = this.state;
       let requestObject = {

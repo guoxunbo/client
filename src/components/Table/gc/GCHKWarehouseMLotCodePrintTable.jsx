@@ -43,7 +43,6 @@ export default class GCHKWarehouseMLotCodePrintTable extends EntityListTable {
     }
 
     printLable = () => { 
-        debugger;
         const {data} = this.state;
         let self = this;
         let printType = this.printType.state.value;

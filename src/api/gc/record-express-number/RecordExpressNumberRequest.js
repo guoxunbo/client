@@ -19,7 +19,7 @@ export default class RecordExpressNumberRequest {
     }
 
     static sendAutoRecordExpress = (object) => {
-        let requestBody = RecordExpressNumberRequestBody.buildAutoRecordExpress(object.datas, object.serviceMode, object.payMode);
+        let requestBody = RecordExpressNumberRequestBody.buildAutoRecordExpress(object.datas, object.serviceMode, object.payMode, object.orderTime);
         let requestHeader = new RecordExpressNumberRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
         let requestObject = {
@@ -30,7 +30,7 @@ export default class RecordExpressNumberRequest {
     }
 
     static sendManualRecordExpress = (object) => {
-        let requestBody = RecordExpressNumberRequestBody.buildManualRecordExpress(object.expressNumber, object.datas);
+        let requestBody = RecordExpressNumberRequestBody.buildManualRecordExpress(object.expressNumber, object.datas, object.expressCompany);
         let requestHeader = new RecordExpressNumberRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
         let requestObject = {
@@ -52,7 +52,7 @@ export default class RecordExpressNumberRequest {
     }
     
     static sendQueryPrintParameterRequest = (object) => {
-        let requestBody = RecordExpressNumberRequestBody.buildPrintObliqueLabel(object.datas, object.expressNumber);
+        let requestBody = RecordExpressNumberRequestBody.buildPrintObliqueLabel(object.datas);
         let requestHeader = new RecordExpressNumberRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
         let requestObject = {

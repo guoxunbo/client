@@ -21,6 +21,13 @@ export default class RetestManagerRequestBody {
         return new RetestManagerRequestBody(documentLines, materialLotActions);
     }
 
+    static buildMobileRetest(materialLotList, erpTime, actionType) {
+        let body = new RetestManagerRequestBody(undefined, materialLotList);
+        body.erpTime = erpTime;
+        body.actionType = "MobileRetest";
+        return body;
+    }
+
 }
 
 

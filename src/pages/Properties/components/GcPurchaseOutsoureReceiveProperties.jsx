@@ -101,6 +101,6 @@ export default class GcPurchaseOutsoureReceiveProperties extends EntityScanPrope
     }
 
     buildOtherComponent = () => {
-      return <GcWaitPurchaseOutsoureReceiveProperties ref={(waitPurchaseOutsoureReceiveProperties) => { this.waitPurchaseOutsoureReceiveProperties = waitPurchaseOutsoureReceiveProperties }} tableRrn={75233} />
+      return <GcWaitPurchaseOutsoureReceiveProperties ref={(waitPurchaseOutsoureReceiveProperties) => { this.waitPurchaseOutsoureReceiveProperties = waitPurchaseOutsoureReceiveProperties }} tableRrn={this.state.parameters.parameter1} />
   }
 }

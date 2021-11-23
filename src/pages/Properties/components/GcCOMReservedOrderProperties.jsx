@@ -49,7 +49,7 @@ export default class GcCOMReservedOrderProperties extends EntityProperties{
         return <GcCOMReservedMLotProperties 
                   ref={(reservedLotTable) => { this.reservedLotTable = reservedLotTable }} 
                   orderTable={this.orderTable} 
-                  tableRrn={464433} 
+                  tableRrn={this.state.parameters.parameter1}
                   resetFlag={this.state.resetFlag}
                   onSearch={this.getTableData.bind(this)}>
                   </GcCOMReservedMLotProperties>

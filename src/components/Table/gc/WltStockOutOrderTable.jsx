@@ -5,7 +5,7 @@ import EntityListTable from '../EntityListTable';
 import EventUtils from '../../../api/utils/EventUtils';
 
 /**
- * 单据表单
+ * RW单据表单
  */
 export default class WltStockOutOrderTable extends EntityListTable {
 

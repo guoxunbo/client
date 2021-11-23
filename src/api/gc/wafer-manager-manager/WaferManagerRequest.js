@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class WaferManagerRequest {
 
     static sendReceiveWaferRequest = (object) => {
-        let {documentLines, materialLots} = object;
-        let requestBody = WaferManagerRequestBody.buildReceive(documentLines, materialLots);
+        let {documentLines, materialLots, receiveWithDoc} = object;
+        let requestBody = WaferManagerRequestBody.buildReceive(documentLines, materialLots, receiveWithDoc);
         let requestHeader = new WaferManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {
@@ -33,6 +33,18 @@ export default class WaferManagerRequest {
     static sendWaferIssueRequest = (object) => {
         let {documentLines, materialLots, issueWithDoc, unPlanLot} = object;
         let requestBody = WaferManagerRequestBody.buildIssue(documentLines, materialLots, issueWithDoc, unPlanLot);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendMobileWaferIssueRequest = (object) => {
+        let {erpTime, materialLots, issueWithDoc, unPlanLot} = object;
+        let requestBody = WaferManagerRequestBody.buildMobileIssue(erpTime, materialLots, issueWithDoc, unPlanLot);
         let requestHeader = new WaferManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {
@@ -92,6 +104,29 @@ export default class WaferManagerRequest {
     static sendCogReceiveMLotRequest = (object) => {
         let {documentLines, materialLots} = object;
         let requestBody = WaferManagerRequestBody.buildCogMLotReceive(documentLines, materialLots);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendWaferOutOrderIssueRequest = (object) => {
+        let {materialLots} = object;
+        let requestBody = WaferManagerRequestBody.buildOutOrderIssue(materialLots);
+        let requestHeader = new WaferManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendMobileGetWaferRequest = (object) => {
+        let requestBody = WaferManagerRequestBody.buildMobileGetWaferByRrn(object.tableRrn, object.lotId);
         let requestHeader = new WaferManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {

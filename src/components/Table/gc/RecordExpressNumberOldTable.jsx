@@ -66,7 +66,7 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
     recordExpress = () => {
         let self = this;
         let datas = this.state.data;
-        let recordedDatas = datas.filter((data) => data.reserved2 != undefined);
+        let recordedDatas = datas.filter((data) => data.expressNumber != undefined);
         if (recordedDatas.length === 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
@@ -75,7 +75,7 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
         let object = {
             datas : recordedDatas,
             success: function(responseBody) {
-                responseBody.deliveryOrderList.forEach((deliveryOrder) => {
+                responseBody.documentLineList.forEach((deliveryOrder) => {
                     let dataIndex = -1;
                     datas.map((data, index) => {
                         if (data.objectRrn == deliveryOrder.objectRrn) {
@@ -109,7 +109,13 @@ export default class RecordExpressNumberOldTable extends EntityListTable {
             return;
         }
 
-        datas[recordCount].reserved2 = expressNumber;
+        if(recordCount == datas.length){
+            Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DocumentHasBeenBoundToTheExpress));
+            this.expressNumber.setState({value:""})
+            return;
+        }
+
+        datas[recordCount].expressNumber = expressNumber;
         datas.splice(recordCount, 1, datas[recordCount]);
         recordCount = recordCount + 1;
         this.expressNumber.setState({value:""})

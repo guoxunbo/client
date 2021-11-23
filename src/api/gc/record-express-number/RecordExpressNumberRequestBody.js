@@ -18,29 +18,32 @@ export default class RecordExpressNumberRequestBody {
     expressNumber;
     materialLots;
     wayBillNumber;
+    expressCompany;
 
     constructor(actionType){
         this.actionType = actionType;
     }
 
-    static buildOldRecordExpress(deliveryOrderList) {
+    static buildOldRecordExpress(documentLineList) {
         let body = new RecordExpressNumberRequestBody(ActionType.OldRecordOrder);
-        body.deliveryOrderList = deliveryOrderList;
+        body.documentLineList = documentLineList;
         return body;
     }
 
-    static buildAutoRecordExpress(materialLots, serviceMode, payMode) {
+    static buildAutoRecordExpress(materialLots, serviceMode, payMode, orderTime) {
         let body = new RecordExpressNumberRequestBody(ActionType.AutoOrder);
         body.materialLots = materialLots;
         body.serviceMode = serviceMode;
         body.payMode = payMode;
+        body.orderTime = orderTime;
         return body;
     }
 
-    static buildManualRecordExpress(expressNumber, materialLots) {
+    static buildManualRecordExpress(expressNumber, materialLots, expressCompany) {
         let body = new RecordExpressNumberRequestBody(ActionType.ManualOrder);
         body.expressNumber = expressNumber;
         body.materialLots = materialLots;
+        body.expressCompany = expressCompany;
         return body;
     }
 
@@ -50,10 +53,9 @@ export default class RecordExpressNumberRequestBody {
         return body;
     }
 
-    static buildPrintObliqueLabel(materialLots, expressNumber) {
+    static buildPrintObliqueLabel(materialLots) {
         let body = new RecordExpressNumberRequestBody(ActionType.QueryPrintParameter);
         body.materialLots = materialLots;
-        body.expressNumber = expressNumber;
         return body;
     }
     

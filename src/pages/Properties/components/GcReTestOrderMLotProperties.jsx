@@ -105,6 +105,6 @@ export default class GcReTestOrderMLotProperties extends EntityScanProperties{
     }
 
     buildOtherComponent = () => {
-      return <GcWaitForReTestMLotProperties ref={(waitForReTestMLotsProperties) => { this.waitForReTestMLotsProperties = waitForReTestMLotsProperties }} tableRrn={9914} />
+      return <GcWaitForReTestMLotProperties ref={(waitForReTestMLotsProperties) => { this.waitForReTestMLotsProperties = waitForReTestMLotsProperties }} tableRrn={this.props.waitRetestTableRrn} />
   }
 }

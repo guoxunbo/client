@@ -67,7 +67,6 @@ export default class WaferStockOutTaggingTable extends EntityListCheckTable {
     }
     
     handleTagSuccess = () => {
-        debugger;
         this.materialLots = [],
         this.setState({
             selectedRows: [],

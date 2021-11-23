@@ -18,16 +18,11 @@ export default class GcUnConfirmWaferTrackSetTable extends EntityListTable {
     createForm = () => {
         return  <GCUnConfirmWaferTrackSetForm visible={this.state.formVisible} 
                                      width={600}
-                                     unConfirmWaferSet={this.state.editorObject}
+                                     wafer={this.state.editorObject}
                                      onOk={this.handleSuccess} 
                                      onCancel={this.handleCancel}/>
     }
 
-    // createForm = () => {
-    //     const WrappedAdvancedEntityForm = Form.create()(GCWaferSetForm);
-    //     return  <WrappedAdvancedEntityForm ref={this.formRef}  object={this.state.editorObject} visible={this.state.formVisible} 
-    //                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />
-    // }
     
     handleSuccess = () => {
         this.setState({

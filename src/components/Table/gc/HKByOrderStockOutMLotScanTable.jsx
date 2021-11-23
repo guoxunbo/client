@@ -49,10 +49,11 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
             return;
         }
 
-        let orderTable = this.props.orderTable;
-        let orders = orderTable.state.data;
-        if (orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+        let documentLine = this.props.orderTable.getSingleSelectedRow();
+        if (!documentLine) {
+            self.setState({ 
+                loading: false
+            });
             return;
         }
 
@@ -68,7 +69,7 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLines : orders,
+            documentLine : documentLine,
             materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {
@@ -104,7 +105,7 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createWaferNumber = () => {
@@ -121,7 +122,7 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">箱数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }
 
     createErrorNumberStatistic = () => {

@@ -7,7 +7,7 @@ import GetPrintWltBboxParameterRequestHeader from './GetPrintWltBboxParameterReq
 export default class GetPrintWltBboxParameterRequest {
 
     static sendQueryRequest = (object) => {
-        let requestBody = GetPrintWltBboxParameterRequestBody.buildQuery(object.materialLotRrn);
+        let requestBody = GetPrintWltBboxParameterRequestBody.buildQuery(object.materialLotRrn, object.printCount);
         let requestHeader = new GetPrintWltBboxParameterRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCGetPrintWltBboxParameterUrl);
         let requestObject = {

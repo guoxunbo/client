@@ -3,12 +3,9 @@ import { Button, Tag, Input,Modal } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
-import { PrintServiceUrl } from '../../../api/gc/GcConstDefine';
 import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
-import PrintUtils from '../../../api/utils/PrintUtils';
 import IncomingDeleteRequest from "../../../api/gc/incomingDelete-manager/IncomingDeleteRequest";
-import GetPrintWltVboxParameterRequest from "../../../api/gc/get-print-wltbox-parameter/GetPrintWltBoxParameterRequest";
 
 const TableName = {
     IncomingMLotDelete: "GCIncomingMLotDeleteTable"
@@ -20,7 +17,6 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createPrintButton());
         buttons.push(this.createDeleteButton());
         return buttons;
     }
@@ -85,31 +81,6 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
         });
     }
 
-    printLable = () => { 
-        const {data} = this.state;
-        let self = this;
-       
-        if (data && data.length > 0) {
-            self.setState({
-                loading: true
-            });
-            EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
-
-            let requestObject = {
-                materialLotUnitList : data,
-                success: function(responseBody) {
-                    let url = PrintServiceUrl.WltBox;
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, 1);
-                    });
-                    MessageUtils.showOperationSuccess();
-                }
-            }
-            GetPrintWltVboxParameterRequest.sendQueryRequest(requestObject);
-        }
-
-    }
-
     createCogDetialNumber = () => {
         let materialLotUnits = this.state.data;
         let materialLotUnitList = [];
@@ -120,7 +91,7 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{materialLotUnitList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotUnitList.length}</Tag>
     }
 
     createTotalNumber = () => {
@@ -131,23 +102,17 @@ export default class GCIncomingMLotDeleteTable extends EntityListTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
-        return <Tag color="#2db7f5">片数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{this.state.data.length}</Tag>
     }
 
     createDeleteButton = () => {
         return <Button key="delete" type="primary" style={styles.tableButton} loading={this.state.loading} icon="delete" onClick={this.deleteData}>
                         {I18NUtils.getClientMessage(i18NCode.BtnDelete)}
                     </Button>
-    }
-
-    createPrintButton = () => {
-        return <Button key="print" type="primary" style={styles.tableButton} loading={this.state.loading} icon="print" onClick={this.printLable}>
-                    {I18NUtils.getClientMessage(i18NCode.PrintLable)}
-                </Button>
     }
 
     buildOperationColumn = () => {

@@ -1,11 +1,12 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button } from 'antd';
+import { Button, Upload } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import StockInManagerRequest from '../../../api/gc/stock-in/StockInManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Notification } from '../../notice/Notice';
+import EventUtils from '../../../api/utils/EventUtils';
 
 /**
  * 入库
@@ -17,6 +18,7 @@ export default class StockInStorageTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStatistic());
+        buttons.push(this.createImportButton());
         buttons.push(this.createStockInButton());
         return buttons;
     }
@@ -33,6 +35,11 @@ export default class StockInStorageTable extends EntityScanViewTable {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.StorageCannotEmpty));
             return;
         }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
        
         let requestObject = {
             materialLots: data,
@@ -57,8 +64,35 @@ export default class StockInStorageTable extends EntityScanViewTable {
         return flag;
     }
 
+    handlesUpload = (option) => {
+        const self = this;
+        const {data} = this.state;
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+
+        let object = {
+            success: function(responseBody) {
+                self.setState({
+                    loading: false
+                });
+               MessageUtils.showOperationSuccess();
+            }
+        }
+        StockInManagerRequest.sendImportRequest(object, option.file);
+    }
+
+    createImportButton = () => {
+        return (<Upload key="import" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+                    customRequest={(option) => this.handlesUpload(option)} showUploadList={false} >
+                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} >{I18NUtils.getClientMessage(i18NCode.BtnImp)}</Button>
+                </Upload>);
+    }
+
     createStockInButton = () => {
-        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" onClick={this.stockIn}>
+        return <Button key="packCaseCheck" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.stockIn}>
                         {I18NUtils.getClientMessage(i18NCode.BtnStockIn)}
                     </Button>
     }

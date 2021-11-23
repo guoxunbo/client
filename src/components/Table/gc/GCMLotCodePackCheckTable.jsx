@@ -17,7 +17,7 @@ export default class GCMLotCodePackCheckTable extends EntityScanViewTable {
 
     constructor(props) {
         super(props);
-        this.state = {...this.state, ...{formTable: {fields: []}},...{checked:true},...{value: "check"}};
+        this.state = {...this.state, ...{formTable: {fields: []}}};
     }
 
     getRowClassName = (record, index) => {

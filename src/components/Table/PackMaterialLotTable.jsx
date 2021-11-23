@@ -6,9 +6,7 @@ import EntityScanViewTable from './EntityScanViewTable';
 import { Notification } from '../notice/Notice';
 import PackageMaterialLotRequest from '../../api/package-material-lot/PackageMaterialLotRequest';
 import MessageUtils from '../../api/utils/MessageUtils';
-import { PrintServiceUrl, PrintBboxCount } from '../../api/gc/GcConstDefine';
 import GetPrintBboxParameterRequest from '../../api/gc/get-print-bbox-parameter/GetPrintBboxParameterRequest';
-import PrintUtils from '../../api/utils/PrintUtils';
 import { Tag } from 'antd';
 
 /**
@@ -34,18 +32,16 @@ export default class PackMaterialLotTable extends EntityScanViewTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
     createStatistic = () => {
-        return <Tag color="#2db7f5">包数：{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PackageQty)}：{this.state.data.length}</Tag>
     }
 
     handlePrint = (materialLot) => {
         let requestObject = {
             materialLotRrn : materialLot.objectRrn,    
             success: function(responseBody) {
-                let url = PrintServiceUrl.Bbox;
-                PrintUtils.printWithBtIbForWeb(url, responseBody.parameters, PrintBboxCount);
             }
         }
         GetPrintBboxParameterRequest.sendQueryRequest(requestObject);

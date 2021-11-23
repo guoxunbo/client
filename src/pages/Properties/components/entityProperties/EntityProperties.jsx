@@ -27,7 +27,9 @@ export default class EntityProperties extends Component {
         loading: true,
         selectedRowKeys:[],
         selectedRows:[],
-        rowKey: DefaultRowKey
+        rowKey: DefaultRowKey,
+          // 不是从菜单上指定properties此处会没值。
+        parameters: this.props.match ? this.props.match.params : {}
       };
     }
 
@@ -101,7 +103,8 @@ export default class EntityProperties extends Component {
       return (
         <div className="properties-page">
           <div className="router-body">
-            <WrappedAdvancedQueryForm showButton={showQueryFormButton} searchTxt={this.state.searchTxt} handleReset={this.resetData.bind(this)} 
+            <WrappedAdvancedQueryForm showButton={showQueryFormButton} 
+                                      searchTxt={this.state.searchTxt} handleReset={this.resetData.bind(this)} 
                                       wrappedComponentRef={(form) => this.form = form} 
                                       tableRrn={this.state.tableRrn} onSearch={this.handleSearch.bind(this)} />
             {showQueryFormButton ? <Divider/> : ""}                      

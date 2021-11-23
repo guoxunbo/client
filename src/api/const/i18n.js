@@ -8,6 +8,7 @@ const i18NCode = {
     Edit: "Edit",
     Ok: "Ok",
     Cancel: "Cancel",
+    CancelSpare: "CancelSpare",
     OperationSucceed: "OperationSucceed",
     TwoPwdIsNotInconsistent: "TwoPwdIsNotInconsistent",
     Username: "Username",
@@ -17,15 +18,22 @@ const i18NCode = {
     ConfirmDelete: "ConfirmDelete",
     BasicInfo: "BasicInfo",
     SelectOneRow: "SelectOneRow",
+    SelectERPTime: "SelectERPTime",
     SelectAtLeastOneRow: "SelectAtLeastOneRow",
+    AllWafersCannotBeUnpack: "AllWafersCannotBeUnpack",
     AddAtLeastOneRow: "AddAtLeastOneRow",
     ErrorNumberMoreThanZero: "ErrorNumberMoreThanZero",
+    MaterialLotIdRepeat: "MaterialLotIdRepeat",
+    SelectAtLeastTwoRow: "SelectAtLeastTwoRow",
+    ConfirmSpare: "ConfirmSpare",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
     SaveFirst: "SaveFirst",
     CheckItemList: "CheckItemList",
     BtnPrint: "Print",
+    BtnLotPrint: "LotPrint",
+    BtnCstPrint: "CstPrint",
     BtnDownload: "Download",
     BtnAdd: "Add",
     BtnOpen: "Open",
@@ -46,6 +54,7 @@ const i18NCode = {
     BtnPackage: "Package",
     BtnUnPackage: "UnPackage",
     BtnUnPackageAll: "UnPackageAll",
+    BtnShipOut: "ShipOut",
 
     BtnAppendPackage: "AppendPackage",
     BtnStockIn: "StockIn",
@@ -63,12 +72,23 @@ const i18NCode = {
     BtnBind: "Bind",
     BtnTagging: "Tagging",
     BtnUnTagging: "UnTagging",
+    BtnIssue: "Issue",
+    BtnAutoPick: "AutoPick",
+    BtnSaleShip: "SaleShip",
+    BtnAddShipOrder: "AddShipOrder",
+    BtnSpareMaterial: "SpareMaterial",
+    BtnSpareMaterialConfirm: "SpareMaterialConfirm",
+    BtnScrapShip: "ScrapShip",
+    BtnOtherShip: "OtherShip",
+    BtnOtherStockOut: "OtherStockOut",
+    BtnCancelSpareMaterial:"CancelSpareMaterial",
+    BtnImportSearch: "ImportSearch",
+    BtnUnpackMLot: "UnpackMLot",
 
     ExpressNumber: "ExpressNumber",
     BtnRecordExpress: "RecordExpress",
     BtnManualRecordExpress: "ManualRecordExpress",
     BtnCancelExpress: "CancelExpress",
-    BtnManualRecordExpress: "ManualRecordExpress",
     BtnPrintObliqueLabel: "PrintObliqueLabel",
     BtnCancelWayBillOrder: "CancelWayBillOrder",
 
@@ -86,18 +106,22 @@ const i18NCode = {
     Operation: "Operation",
     NoMatchingOrder: "NoMatchingOrder",
     ErrorNumber: "ErrorNumber",
+    RepeatScanNumber: "RepeatScanNumber",
     TotalStrokeCount: "TotalStrokeCount",
     TotalNumber : "TotalNumber",
     DataAlreadyExists: "DataAlreadyExists",
     NoDeliveryOrder: "NoDeliveryOrder",
+    DocumentHasBeenBoundToTheExpress: "DocumentHasBeenBoundToTheExpress",
     StorageCannotEmpty: "StorageCannotEmpty",
     BtnDeleteAll: "DeleteAll",
     BtnWeigh: "Weigh",
     CaseWeightNotScanned: "CaseWeightNotScanned",
     AddOneRowPlease: "AddOneRowPlease",
+    InconsistentScanningInformation: "InconsistentScanningInformation",
     ThereScanFieldCanOnlyBeOne: "ThereScanFieldCanOnlyBeOne",
     AllBoxWeightMustBeEmpty: "AllBoxWeightMustBeEmpty",
     SearchFieldCannotEmpty: "SearchFieldCannotEmpty",
+    PleaseScanPackageId: "PleaseScanPackageId",
     BoxWeightCannotEmpty: "BoxWeightCannotEmpty",
     WeightMustBeNumber: "WeightMustBeNumber",
     BtnPreview: "Preview",
@@ -120,6 +144,7 @@ const i18NCode = {
     Location: "Location",
     remarks: "remarks",
     HoldReason: "HoldReason",
+    CancelReason: "CancelReason",
     ReleaseReason: "ReleaseReason",
     RemarksCannotEmpty: "RemarksCannotEmpty",
     PrintVboxQRCodeLabelFlag: "PrintVboxQRCodeLabelFlag",
@@ -135,12 +160,14 @@ const i18NCode = {
     ExpressNumberCannotEmpty: "ExpressNumberCannotEmpty",
     CustomerName: "CustomerName",
     StockOutType: "StockOutType",
+    VenderAddress: "VenderAddress",
     CustomerNameCannotEmpty: "CustomerNameCannotEmpty",
     StockOutTypeCannotEmpty: "StockOutTypeCannotEmpty",
     PoIdCannotEmpty: "PoIdCannotEmpty",
     PoName: "PoName",
     PrintWltLabelFlag: "PrintWltLabelFlag",
     WorkorderIdAndGradeCanEmpty: "WorkorderIdAndGradeCanEmpty",
+    GradeMustMatchWorkedorderId: "GradeMustMatchWorkedorderId",
     TransferBoxOrStorageCannotEmpty: "TransferBoxOrStorageCannotEmpty",
     MatchErpDocLine: "MatchErpDocLine",
     ProductId: "ProductId",
@@ -170,6 +197,34 @@ const i18NCode = {
     ExceptionClassify: "ExceptionClassify",
     RiskGrade: "RiskGrade",
     AllSelectWaferId: "AllSelectWaferId",
+    MaterialLotIssueQtyCannotMoreThanTen: "MaterialLotIssueQtyCannotMoreThanTen",
+    ExpressCompany: "ExpressCompany",
+    ExpressCompanyCannotEmpty: "ExpressCompanyCannotEmpty",
+    BtnThreeSideShip: "ThreeSideShip",
+    ChooseThreeSideShipOrderPlease: "ChooseThreeSideShipOrderPlease",
+    ScrapReason: "ScrapReason",
+    CheckSubCodeFlag: "CheckSubCodeFlag",
+    BtnMergeDocLine: "MergeDocLine",
+    TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
+    BondProMustBeHK: "BondProMustBeHK",
+    OrderTime: "OrderTime",
+    erpCreatedTime: "erpCreatedTime",
+    SelectQty: "SelectQty",
+    NeedQty: "NeedQty",
+    EnterTheRequiredQtyPlease: "EnterTheRequiredQtyPlease",
+    Abbreviation: "Abbreviation",
+    CustomerIdentificaion: "CustomerIdentificaion",
+    CustomerIdentificaionCannotEmpty: "CustomerIdentificaionCannotEmpty",
+    ShipOrderId: "ShipOrderId",
+    EnterTheShipOrdderIdPlease: "EnterTheShipOrdderIdPlease",
+    ChooseTapeSizePlease: "ChooseTapeSizePlease",
+    RawMaterialMustBeTwoScanValidate: "RawMaterialMustBeTwoScanValidate",
+    TapeMaterialCodeIsExisted: "TapeMaterialCodeIsExisted",
+    IRABoxPrintLable: "IRABoxPrintLable",
+    RawMaterialInventory: "RawMaterialInventory",
+    EnterRawMaterialSpareQtyPlease: "EnterRawMaterialSpareQtyPlease",
+    TableDataMustBeEmpty: "TableDataMustBeEmpty",
+    TheMaterialLotIsExistedInStroage: "TheMaterialLotIsExistedInStroage",
 }
 
 const i18Messages = {
@@ -273,9 +328,19 @@ const i18Messages = {
         English: "Cancel",
         Res: ""
     },
+    CancelSpare: {
+        Chinese: "取消备料",
+        English: "CancelSpare",
+        Res: ""
+    },
     SelectOneRow: {
         Chinese: "请选择一笔记录",
         English: "Please select one row",
+        Res: ""
+    },
+    SelectERPTime: {
+        Chinese: "请选择单据日期",
+        English: "Please select ERP time",
         Res: ""
     },
     SaveFirst: {
@@ -293,6 +358,11 @@ const i18Messages = {
         English: "Please select at least one row",
         Res: ""
     },
+    AllWafersCannotBeUnpack: {
+        Chinese: "不能拆所有晶圆",
+        English: "All wafer cannot be unpack",
+        Res: ""
+    },
     ConfirmDelete: {
         Chinese: "确定删除?",
         English: "Sure to delete?",
@@ -305,6 +375,16 @@ const i18Messages = {
     },
     Print: {
         Chinese: "打印",
+        English: "Print",
+        Res: ""
+    },
+    LotPrint: {
+        Chinese: "打印lot标签",
+        English: "Print",
+        Res: ""
+    },
+    CstPrint: {
+        Chinese: "打印cst标签",
         English: "Print",
         Res: ""
     },
@@ -548,6 +628,16 @@ const i18Messages = {
         English: "ErrorNumber",
         Res: ""
     },
+    RepeatScanNumber: {
+        Chinese: "重复数",
+        English: "RepeatScanNumber",
+        Res: ""
+    },
+    MaterialLotIdRepeat: {
+        Chinese: "批次条码重复",
+        English: "MaterialLotIdRepeat",
+        Res: ""
+    },
     ErrorNumberMoreThanZero: {
         Chinese: "异常笔数大于0",
         English: "ErrorNumberMoreThanZero",
@@ -571,6 +661,11 @@ const i18Messages = {
     NoDeliveryOrder: {
         Chinese: "没有出库单",
         English: "No delivery order",
+        Res: ""
+    },
+    DocumentHasBeenBoundToTheExpress: {
+        Chinese: "单据已经绑定快递单号",
+        English: "Document has been bound to the express",
         Res: ""
     },
     StorageCannotEmpty: {
@@ -603,6 +698,11 @@ const i18Messages = {
         English: "Add one row please",
         Res: ""
     },
+    InconsistentScanningInformation: {
+        Chinese: "扫描信息不一致",
+        English: "Inconsistent scanning information",
+        Res: ""
+    },
     AllBoxWeightMustBeEmpty: {
         Chinese: "所有的箱重量必须为空！",
         English: "All box weight must be empty",
@@ -611,6 +711,11 @@ const i18Messages = {
     SearchFieldCannotEmpty: {
         Chinese: "查询条件不能为空",
         English: "Scan field cannot empty",
+        Res: ""
+    },
+    PleaseScanPackageId: {
+        Chinese: "请先扫描箱号",
+        English: "Please Scan Package Id",
         Res: ""
     },
     BoxWeightCannotEmpty: {
@@ -733,6 +838,11 @@ const i18Messages = {
         English: "HoldReason",
         Res: ""
     },
+    CancelReason: {
+        Chinese: "取消原因",
+        English: "CancelReason",
+        Res: ""
+    },
     ReleaseReason: {
         Chinese: "释放原因",
         English: "ReleaseReason",
@@ -849,8 +959,13 @@ const i18Messages = {
         Res: "" 
     },
     WorkorderIdAndGradeCanEmpty: {
-        Chinese: "工单和等级不能都为空！",
-        English: "WorkorderId And Grade Cannot Empty!",
+        Chinese: "工单、等级和BoxId不能都为空！",
+        English: "WorkorderId , Grade And BoxId Cannot Empty!",
+        Res: "" 
+    },
+    GradeMustMatchWorkedorderId: {
+        Chinese: "等级必须匹配工单号！",
+        English: "Grade must match workedorderId!",
         Res: "" 
     },
     TransferBoxOrStorageCannotEmpty: {
@@ -1001,6 +1116,226 @@ const i18Messages = {
     AllSelectWaferId: {
         Chinese: "全选Wafer Id",
         English: "AllSelect WaferId",
+        Res: ""
+    },
+    Issue: {
+        Chinese: "发料",
+        English: "Issue",
+        Res: "" 
+    },
+    MaterialLotIssueQtyCannotMoreThanTen: {
+        Chinese: "发料数量不能超过10箱！",
+        English: "Issue Qty Cannot More Than Ten",
+        Res: "" 
+    },
+    ExpressCompany: {
+        Chinese: "快递公司",
+        English: "ExpressCompany",
+        Res: "" 
+    },
+    ExpressCompanyCannotEmpty: {
+        Chinese: "快递公司不能为空!",
+        English: "ExpressCompany Cannot Empty!",
+        Res: "" 
+    },
+    ThreeSideShip: {
+        Chinese: "三方销售",
+        English: "ThreeSide Ship",
+        Res: "" 
+    },
+    ChooseThreeSideShipOrderPlease: {
+        Chinese: "请选择三方销售单!",
+        English: "Choose ThreeSide ShipOrder Please!",
+        Res: "" 
+    },
+    ScrapReason: {
+        Chinese: "报废原因",
+        English: "Scrap Reason",
+        Res: "" 
+    },
+    CheckSubCodeFlag: {
+        Chinese: "检验二级代码",
+        English: "Check SubCode",
+        Res: "" 
+    },
+    MergeDocLine: {
+        Chinese: "合单",
+        English: "Merge DocLine",
+        Res: "" 
+    },
+    SelectAtLeastTwoRow: {
+        Chinese: "请至少选择两笔数据！",
+        English: "Select At Least Two Row!",
+        Res: "" 
+    },
+    TheLocationAndWarehouseIsNotSame: {
+        Chinese: "保税属性和仓库不一致，请确认是否导入！",
+        English: "Location And WarehousId are not same!",
+        Res: "" 
+    },
+    BondProMustBeHK: {
+        Chinese: "保税属性必须是HK，请重新导入！",
+        English: "Bond Pro must be HK, please import again!",
+        Res: "" 
+    },
+    OrderTime: {
+        Chinese: "下单时间",
+        English: "Order Time",
+        Res: "" 
+    },
+    erpCreatedTime: {
+        Chinese: "单据日期",
+        English: "ERP Created Time",
+        Res: "" 
+    },
+    VenderAddress:{
+        Chinese: "供应商地址",
+        English: "Vender Address",
+        Res: "" 
+    },
+    AutoPick: {
+        Chinese: "自动挑选",
+        English: "Auto Pick",
+        Res: "" 
+    },
+    SelectQty: {
+        Chinese: "所选颗数",
+        English: "Select Qty",
+        Res: "" 
+    },
+    NeedQty: {
+        Chinese: "所需数量",
+        English: "Need Qty",
+        Res: ""    
+    },
+    EnterTheRequiredQtyPlease: {
+        Chinese: "请输入所需数量!",
+        English: "Enter the requiredQty Please",
+        Res: ""    
+    },
+    Abbreviation: {
+        Chinese: "简称",
+        English: "Abbreviation",
+        Res: ""    
+    },
+    CustomerIdentificaion: {
+        Chinese: "客户标识",
+        English: "Customer Identificaion",
+        Res: ""    
+    },
+    CustomerIdentificaionCannotEmpty: {
+        Chinese: "客户标识不能为空!",
+        English: "Customer Identificaion Cannot Empty!",
+        Res: ""    
+    },
+    SaleShip: {
+        Chinese: "销售出",
+        English: "SaleShip",
+        Res: ""     
+    },
+    AddShipOrder: {
+        Chinese: "添加发货单",
+        English: "SaleShip",
+        Res: ""     
+    },
+    ShipOrderId: {
+        Chinese: "发货单号",
+        English: "ShipOrderId",
+        Res: ""     
+    },
+    EnterTheShipOrdderIdPlease: {
+        Chinese: "请输入发货单号！",
+        English: "Enter the shipOrdderId Please!",
+        Res: ""       
+    },
+    ShipOut: {
+        Chinese: "出货",
+        English: "Ship Out",
+        Res: ""       
+    },
+    SpareMaterial: {
+        Chinese: "备料",
+        English: "Spare Material",
+        Res: ""     
+    },
+    CancelSpareMaterial:{
+        Chinese: "取消备料",
+        English: "Cancel Spare Material",
+        Res: "" 
+    },
+    ChooseTapeSizePlease: {
+        Chinese: "请选择Tape尺寸！",
+        English: "Choose TapeSize Please!",
+        Res: ""    
+    },
+    RawMaterialMustBeTwoScanValidate: {
+        Chinese: "原材料必须扫描两次做验证",
+        English: "RawMaterial must be two scan validate",
+        Res: ""    
+    },
+    SpareMaterialConfirm: {
+        Chinese: "确认备料",
+        English: "Spare material confirm",
+        Res: ""     
+    },
+    TapeMaterialCodeIsExisted: {
+        Chinese: "Tape原材料批次已经存在！",
+        English: "Tape material code is existed!",
+        Res: ""     
+    },
+    ScrapShip: {
+        Chinese: "报废出库",
+        English: "Scrap Ship",
+        Res: ""     
+    },
+    OtherShip: {
+        Chinese: "其它出库",
+        English: "Other Ship",
+        Res: ""     
+    },
+    OtherStockOut: {
+        Chinese: "材料/其他出",
+        English: "Other Stock Out",
+        Res: "材料/其他出"     
+    },
+    IRABoxPrintLable: {
+        Chinese: "IRA箱号打印",
+        English: "IRABox Print",
+        Res: ""     
+    },
+    RawMaterialInventory: {
+        Chinese: "原材料盘点",
+        English: "Raw Material Inventory",
+        Res: ""
+    },
+    EnterRawMaterialSpareQtyPlease: {
+        Chinese: "请输入原材料备料颗数",
+        English: "Enter Raw Material Spare Qty",
+        Res: ""
+    },
+    ImportSearch: {
+        Chinese: "导入查询",
+        English: "ImportSearch",
+        Res: ""
+    },
+    UnpackMLot: {
+        Chinese: "拆箱",
+        English: "UnpackMLot",
+        Res: ""
+    },
+    TableDataMustBeEmpty: {
+        Chinese: "数据必须为空！",
+        English: "TableData Must Be Empty",
+        Res: ""
+    },
+    ConfirmSpare: {
+        Chinese: "确认备料！",
+        English: "Confirm Spare",
+        Res: ""
+    },
+    TheMaterialLotIsExistedInStroage: {
+        Chinese: "清单中已经存在在库的物料批次！",
+        English: "The MaterialLot is Existed in Stroage",
         Res: ""
     }
 }

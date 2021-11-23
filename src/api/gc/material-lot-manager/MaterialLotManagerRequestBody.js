@@ -5,6 +5,9 @@ const ActionType = {
     GetPackCaseCheckList: "GetPackCaseCheckList",
     GetWltPackCaseCheckList: "GetWltPackCaseCheckList",
     QueryMLot: "QueryMLot",
+    CancelCheck: "CancelCheck",
+    QueryMaterialLotIdOrLotId: "QueryMaterialLotIdOrLotId",
+    QueryData: "QueryData",
 }
 
 
@@ -29,6 +32,18 @@ export default class MaterialLotManagerRequestBody {
 
     setTabRrn(tableRrn) {
         this.tableRrn = tableRrn;
+    }
+
+    static buildQueryMaterialLotIdOrLotId(tableRrn, queryLotId) {
+        let requestBody = new MaterialLotManagerRequestBody(ActionType.QueryMaterialLotIdOrLotId, undefined, undefined, queryLotId);
+        requestBody.setTabRrn(tableRrn);
+        return requestBody;
+    }
+
+    static buildCancelCheck(materialLotList, cancelReason) {
+        let requestBody = new MaterialLotManagerRequestBody(ActionType.CancelCheck, materialLotList);
+        requestBody.cancelReason = cancelReason; 
+        return requestBody;
     }
 
     static buildGetJudgePackCaseItemList() {
@@ -61,5 +76,12 @@ export default class MaterialLotManagerRequestBody {
         return materialLotManagerRequestBody;    
     }
 
+    static buildGetDataByLotIdOrMLotAndTableRrn(queryLotId, tableRrn) {
+        let body =  new MaterialLotManagerRequestBody(ActionType.QueryData);
+        body.queryLotId = queryLotId;
+        body.tableRrn = tableRrn;
+        return body;
+    }
+
 }   
-export {JudgeGrade}
+export {ActionType}

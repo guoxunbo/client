@@ -19,12 +19,14 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
     }
 
     componentWillReceiveProps = (props) => {
-        debugger;
         this.buildForm();
-        const {visible, unConfirmWaferSet} = props;
+        const {visible, wafer} = props;
         let self = this;
+        if(wafer){
+            this.validateWaferDefaultCheck(wafer.waferId);
+        }
         if (visible) {
-            this.setUnConfirmWaferTrackSetForm(unConfirmWaferSet);
+            this.setUnConfirmWaferTrackSetForm(wafer);
         } else {
             self.setState({
                 selectedRows: [],
@@ -40,7 +42,7 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>{I18NUtils.getClientMessage(i18NCode.SerialNumber)}:</span>
                         </Col>
                         <Col span={8}>
-                            <Input ref={(serialNumber) => { this.serialNumber = serialNumber }} key="serialNumber"/>
+                            <Input ref={(serialNumber) => { this.serialNumber = serialNumber }} defaultValue={this.props.wafer.serialNumber} key="serialNumber"/>
                         </Col>
                     </Row>
                     <Row gutter={12}>
@@ -48,7 +50,7 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>{I18NUtils.getClientMessage(i18NCode.LotId)}:</span>
                         </Col>
                         <Col span={8}>
-                            <Input ref={(lotId) => { this.lotId = lotId }}/>
+                            <Input ref={(lotId) => { this.lotId = lotId }} defaultValue={this.props.wafer.lotId}/>
                         </Col>
                     </Row>
                     <Row gutter={12}>
@@ -56,7 +58,7 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>{I18NUtils.getClientMessage(i18NCode.TestSite)}:</span>
                         </Col>
                         <Col span={8}>
-                            <Input ref={(testSite) => { this.testSite = testSite }}/>
+                            <Input ref={(testSite) => { this.testSite = testSite }} defaultValue={this.props.wafer.testSite}/>
                         </Col>
                     </Row>
                     <Row gutter={12}>
@@ -64,7 +66,7 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>{I18NUtils.getClientMessage(i18NCode.ModelId)}:</span>
                         </Col>
                         <Col span={8}>
-                            <Input ref={(modelId) => { this.modelId = modelId }}/>
+                            <Input ref={(modelId) => { this.modelId = modelId }} defaultValue={this.props.wafer.modelId}/>
                         </Col>
                     </Row>
                     <Row gutter={24}>
@@ -72,7 +74,7 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>{I18NUtils.getClientMessage(i18NCode.ExceptionClassify)}:</span>
                         </Col>
                         <Col span={8}>
-                            <Input ref={(exceptionClassify) => { this.exceptionClassify = exceptionClassify }}/>
+                            <Input ref={(exceptionClassify) => { this.exceptionClassify = exceptionClassify }} defaultValue={this.props.wafer.exceptionClassify}/>
                         </Col>
                     </Row>
                     <Row gutter={24}>
@@ -80,7 +82,7 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>{I18NUtils.getClientMessage(i18NCode.RiskGrade)}:</span>
                         </Col>
                         <Col span={8}>
-                            <RefListField ref={(riskGrade) => { this.riskGrade = riskGrade }} referenceName={SystemRefListName.RiskGrade} />
+                            <RefListField ref={(riskGrade) => { this.riskGrade = riskGrade }} referenceName={SystemRefListName.RiskGrade} value={this.props.wafer.riskGrade}/>
                         </Col>
                     </Row>
                     <Row gutter={8}>
@@ -92,7 +94,7 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
 
     handleOk= () => {
         let self = this;
-        let waferSet = self.props.unConfirmWaferSet;
+        let waferSet = self.props.wafer;
         let serialNumber = self.serialNumber.state.value;
         let lotId = self.lotId.state.value;
         let testSite = self.testSite.state.value;
@@ -139,31 +141,31 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>01:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer1) => { this.wafer1 = wafer1 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer1) => { this.wafer1 = wafer1 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer01}/>
                         </Col>
                         <Col span={2} >
                             <span>02:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer2) => { this.wafer2 = wafer2 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer2) => { this.wafer2 = wafer2 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer02}/>
                         </Col>
                         <Col span={2} >
                             <span>03:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer3) => { this.wafer3 = wafer3 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer3) => { this.wafer3 = wafer3 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer03}/>
                         </Col>
                         <Col span={2} >
                             <span>04:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer4) => { this.wafer4 = wafer4 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer4) => { this.wafer4 = wafer4 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer04}/>
                         </Col>
                         <Col span={2} >
                             <span>05:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer5) => { this.wafer5 = wafer5 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer5) => { this.wafer5 = wafer5 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer05}/>
                         </Col>
                 </Row>
                 <Row gutter={20}>
@@ -171,31 +173,31 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>06:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer6) => { this.wafer6 = wafer6 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer6) => { this.wafer6 = wafer6 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer06}/>
                         </Col>
                         <Col span={2} >
                             <span>07:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer7) => { this.wafer7 = wafer7 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer7) => { this.wafer7 = wafer7 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer07}/>
                         </Col>
                         <Col span={2} >
                             <span>08:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer8) => { this.wafer8 = wafer8 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer8) => { this.wafer8 = wafer8 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer08}/>
                         </Col>
                         <Col span={2} >
                             <span>09:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer9) => { this.wafer9 = wafer9 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer9) => { this.wafer9 = wafer9 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer09}/>
                         </Col>
                         <Col span={2} >
                             <span>10:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer10) => { this.wafer10 = wafer10 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer10) => { this.wafer10 = wafer10 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer10}/>
                         </Col>
                 </Row>
                 <Row gutter={20}>
@@ -203,31 +205,31 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>11:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer11) => { this.wafer11 = wafer11 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer11) => { this.wafer11 = wafer11 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer11}/>
                         </Col>
                         <Col span={2} >
                             <span>12:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer12) => { this.wafer12 = wafer12 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer12) => { this.wafer12 = wafer12 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer12}/>
                         </Col>
                         <Col span={2} >
                             <span>13:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer13) => { this.wafer13 = wafer13 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer13) => { this.wafer13 = wafer13 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer13}/>
                         </Col>
                         <Col span={2} >
                             <span>14:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer14) => { this.wafer14 = wafer14 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer14) => { this.wafer14 = wafer14 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer14}/>
                         </Col>
                         <Col span={2} >
                             <span>15:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer15) => { this.wafer15 = wafer15 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer15) => { this.wafer15 = wafer15 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer15}/>
                         </Col>
                 </Row>
                 <Row gutter={20}>
@@ -235,31 +237,31 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>16:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer16) => { this.wafer16 = wafer16 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer16) => { this.wafer16 = wafer16 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer16}/>
                         </Col>
                         <Col span={2} >
                             <span>17:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer17) => { this.wafer17 = wafer17 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer17) => { this.wafer17 = wafer17 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer17}/>
                         </Col>
                         <Col span={2} >
                             <span>18:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer18) => { this.wafer18 = wafer18 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer18) => { this.wafer18 = wafer18 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer18}/>
                         </Col>
                         <Col span={2} >
                             <span>19:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer19) => { this.wafer19 = wafer19 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer19) => { this.wafer19 = wafer19 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer19}/>
                         </Col>
                         <Col span={2} >
                             <span>20:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer20) => { this.wafer20 = wafer20 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer20) => { this.wafer20 = wafer20 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer20}/>
                         </Col>
                 </Row>
                 <Row gutter={20}>
@@ -267,31 +269,31 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                             <span>21:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer21) => { this.wafer21 = wafer21 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer21) => { this.wafer21 = wafer21 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer21}/>
                         </Col>
                         <Col span={2} >
                             <span>22:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer22) => { this.wafer22 = wafer22 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer22) => { this.wafer22 = wafer22 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer22}/>
                         </Col>
                         <Col span={2} >
                             <span>23:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer23) => { this.wafer23 = wafer23 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer23) => { this.wafer23 = wafer23 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer23}/>
                         </Col>
                         <Col span={2} >
                             <span>24:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer24) => { this.wafer24 = wafer24 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer24) => { this.wafer24 = wafer24 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer24}/>
                         </Col>
                         <Col span={2} >
                             <span>25:</span>
                         </Col>
                         <Col span={2}>
-                            <Switch ref={(wafer25) => { this.wafer25 = wafer25 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled}/>
+                            <Switch ref={(wafer25) => { this.wafer25 = wafer25 }} checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} disabled={this.disabled} defaultChecked={this.state.wafer25}/>
                         </Col>
                 </Row>
             </div>
@@ -299,7 +301,6 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
     }
 
     setUnConfirmWaferTrackSetForm(waferInfo) {
-        debugger;
         let self = this;
         let waferIdList = [];
         let serialNumber = waferInfo.serialNumber;
@@ -494,7 +495,6 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
     }
     
     selectChange() {
-        debugger;
         let self = this;
         if(this.validateWaferCheckedAll()){
             this.setWaferIdSelctFalse(self);
@@ -528,7 +528,6 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
     }
 
     setWaferIdSelctFalse(self) {
-        debugger;
         if(self.wafer1){
             self.wafer1.rcSwitch.setState({checked: false});
             self.wafer2.rcSwitch.setState({checked: false});
@@ -573,6 +572,41 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
                 falg = true;
         }
         return falg;
+    }
+
+    validateWaferDefaultCheck(waferId) {
+        let self = this;
+        let waferIdList = [];
+        if(waferId){
+            waferIdList = waferId.split(",");
+            waferIdList.forEach(wafer => {
+                if(wafer == "01"){self.setState({wafer01: true});}
+                if(wafer == "02"){self.setState({wafer02: true});}
+                if(wafer == "03"){self.setState({wafer03: true});}
+                if(wafer == "04"){self.setState({wafer04: true});}
+                if(wafer == "05"){self.setState({wafer05: true});}
+                if(wafer == "06"){self.setState({wafer06: true});}
+                if(wafer == "07"){self.setState({wafer07: true});}
+                if(wafer == "08"){self.setState({wafer08: true});}
+                if(wafer == "09"){self.setState({wafer09: true});}
+                if(wafer == "10"){self.setState({wafer10: true});}
+                if(wafer == "11"){self.setState({wafer11: true});}
+                if(wafer == "12"){self.setState({wafer12: true});}
+                if(wafer == "13"){self.setState({wafer13: true});}
+                if(wafer == "14"){self.setState({wafer14: true});}
+                if(wafer == "15"){self.setState({wafer15: true});}
+                if(wafer == "16"){self.setState({wafer16: true});}
+                if(wafer == "17"){self.setState({wafer17: true});}
+                if(wafer == "18"){self.setState({wafer18: true});}
+                if(wafer == "19"){self.setState({wafer19: true});}
+                if(wafer == "20"){self.setState({wafer20: true});}
+                if(wafer == "21"){self.setState({wafer21: true});}
+                if(wafer == "22"){self.setState({wafer22: true});}
+                if(wafer == "23"){self.setState({wafer23: true});}
+                if(wafer == "24"){self.setState({wafer24: true});}
+                if(wafer == "25"){self.setState({wafer25: true});}
+            });
+        }
     }
 }
 

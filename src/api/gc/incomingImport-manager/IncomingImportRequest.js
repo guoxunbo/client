@@ -28,4 +28,14 @@ export default class IncomingImportRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendValidateRmaRequest = (object) => {
+        let requestBody = IncomingImportRequestBody.buildValiadteRma(object.dataList);
+        let requestHeader = new IncomingImportRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCIncomingMaterialValidate);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

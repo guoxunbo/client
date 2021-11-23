@@ -29,12 +29,26 @@ export default class GCRawMaterialImportTable extends EntityListTable {
     createTagGroup = () => {
         let tagList = [];
         tagList.push(this.createMaterialLotsNumber());
+        tagList.push(this.createTotalNumber());
         return tagList;
+    }
+
+    createTotalNumber = () => {
+        let materialLots = this.state.data;
+        let count = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.currentQty != undefined) {
+                    count = count + data.currentQty*10000;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count/10000}</Tag>
     }
 
 
     createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}:{this.state.data.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}:{this.state.data.length}</Tag>
     }
     
     handleUpload = (option) => {

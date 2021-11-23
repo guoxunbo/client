@@ -32,16 +32,16 @@ export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanPro
         const self = this;
         let {rowKey,tableData} = this.state;
         let waitForIssueMLotUnitProperties = this.waitForIssueMLotUnitProperties.state.tableData;
-
+        let issueWithDoc = this.comWaferIssueTable.state.value;
         let orders = this.props.orderTable.state.data;
-        // if (orders.length == 0) {
-        //   Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-        //   self.setState({ 
-        //     tableData: tableData,
-        //     loading: false
-        //   });
-        //   return;
-        // }
+        if (issueWithDoc == "issueWithDoc" && orders.length == 0) {
+          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+          self.setState({ 
+            tableData: tableData,
+            loading: false
+          });
+          return;
+        }
         let requestObject = {
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
@@ -124,6 +124,7 @@ export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanPro
     buildTable = () => {
         return <GcCOMWaferIssueTable orderTable={this.props.orderTable} pagination={false} 
                                     table={this.state.table} 
+                                    ref={(comWaferIssueTable) => { this.comWaferIssueTable = comWaferIssueTable }}
                                     data={this.state.tableData} 
                                     loading={this.state.loading} 
                                     resetData={this.resetData.bind(this)}
@@ -133,6 +134,6 @@ export default class GcCOMWaferIssueMLotUnitScanProperties extends EntityScanPro
     }
 
     buildOtherComponent = () => {
-      return <GcCOMWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={77147} />
+      return <GcCOMWaitForIssueMLotUnitProperties ref={(waitForIssueMLotUnitProperties) => { this.waitForIssueMLotUnitProperties = waitForIssueMLotUnitProperties }} tableRrn={this.props.waitTableRrn} />
     }
 }

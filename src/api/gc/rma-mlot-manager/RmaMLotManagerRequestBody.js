@@ -2,16 +2,19 @@ import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 
 const ActionType = {
     Receive: "Receive",
+    Print: "Print",
 }
 
 export default class RmaMLotManagerRequestBody {
 
     actionType;
+    materialLots;
     materialLotActions;
     printLabel;
 
-    constructor(actionType){
+    constructor(actionType, materialLots){
         this.actionType = actionType;
+        this.materialLots = materialLots;
     }
     
     setMaterialLotActions(materialLotActions) {
@@ -33,6 +36,10 @@ export default class RmaMLotManagerRequestBody {
         requestBody.setMaterialLotActions(materialLotActions);
         requestBody.setPrintLabelFlag(printLabel);
         return requestBody;
+    }
+
+    static buildGetPrintParam(materialLots) {
+        return new RmaMLotManagerRequestBody(ActionType.Print, materialLots);
     }
 
 }

@@ -1,4 +1,4 @@
-import { Button, Select, Input } from 'antd';
+import { Button, Select, Input, Tag, Upload } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
@@ -21,6 +21,8 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createImportSearchButton());
+        buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createUpdateButton());
         return buttons;
     }
@@ -28,6 +30,7 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
     createTagGroup = () => {
         let tagList = [];
         tagList.push(this.createLocationSelecct());
+        tagList.push(this.createTotalQty());
         return tagList;
     }
 
@@ -116,11 +119,49 @@ export default class GCMLotsUpdateLocationTable extends EntityScanViewTable {
         }
         MaterialLotUpdateRequest.sendUpdateLocationRequest(requestObject);
     }
+    
+    importSearch = (option) => {
+        const self = this;
+        const {table} = this.state;
+        let tableData = this.state.data;
+        if(tableData.length > 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.TableDataMustBeEmpty));
+            return;
+        }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+        
+        let object = {
+            tableRrn: table.objectRrn,
+            success: function(responseBody) {
+                let materialLotList = responseBody.materialLotList;
+                self.setState({
+                    data: materialLotList,
+                    loading: false
+                });           
+            }
+        }
+        MaterialLotUpdateRequest.sendImportSearchRequest(object, option.file);
+    }
+
+    createImportSearchButton = () => {
+        return (<Upload key="importSearch" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+                    customRequest={(option) => this.importSearch(option)} showUploadList={false} >
+                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImportSearch)}</Button>
+                </Upload>);
+    }
 
     createUpdateButton = () => {
         return <Button key="update" type="primary" style={styles.tableButton} loading={this.state.loading} onClick={this.UpdateLocation}>
                         {IconUtils.buildIcon("edit")}{I18NUtils.getClientMessage(i18NCode.BtnUpdate)}
                     </Button>
+    }
+
+    createTotalQty = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
 }

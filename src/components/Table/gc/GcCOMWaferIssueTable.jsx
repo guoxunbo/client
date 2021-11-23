@@ -1,6 +1,6 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button } from 'antd';
+import { Button, Icon, Switch } from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
@@ -18,6 +18,11 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
 
     static displayName = 'GcCOMWaferIssueTable';
 
+    constructor(props) {
+        super(props);
+        this.state = {...this.state,...{checked:true},...{value: "issueWithDoc"}};
+    }
+
     getRowClassName = (record, index) => {
         // 如果是扫描到不存在的批次，则进行高亮显示
         if (record.errorFlag) {
@@ -29,7 +34,6 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
                 return ''; 
             }
         }
-        
     };
 
     createButtonGroup = () => {
@@ -40,11 +44,40 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
 
     createTagGroup = () => {
         let tagList = [];
+        // tagList.push(this.createIssueWithDocFlag());
         tagList.push(this.createMaterialLotsNumber());
         tagList.push(this.createWaferCount());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
+    }
+
+    createIssueWithDocFlag = () => {
+        return <span style={{display: 'flex'}}>
+            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.MatchErpDocLine)}:</span>
+            <span style = {{marginLeft:"10px"}}>
+                <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
+                        checkedChildren={<Icon type="issueWithDoc" />} 
+                        unCheckedChildren={<Icon type="close" />} 
+                        onChange={this.handleChange} 
+                        disabled={this.disabled}
+                        checked={this.state.checked}/>
+            </span>
+        </span>
+    }
+
+    handleChange = (checkedChildren) => {
+        if(checkedChildren){
+            this.setState({ 
+                value: "issueWithDoc",
+                checked: true
+            });
+        } else {
+            this.setState({ 
+                value: "",
+                checked: false
+            });
+        }
     }
     
     getErrorCount = () => {
@@ -74,7 +107,7 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">箱数：{materialLotIdList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materialLotIdList.length}</Tag>
     }
 
     createWaferCount = () => {
@@ -87,7 +120,7 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">片数：{qty}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
     }
 
     createTotalNumber = () => {
@@ -100,7 +133,7 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">颗数：{count}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     issue = () => {
@@ -109,12 +142,13 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
+        let issueWithDoc = this.state.value;
         let orderTable = this.props.orderTable;
         let orders = orderTable.state.data;
-        // if (orders.length === 0) {
-        //     Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-        //     return;
-        // }
+        if (issueWithDoc == "issueWithDoc" && orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+            return;
+        }
         
         let materialLots = this.state.data;
         if (materialLots.length === 0) {
@@ -129,6 +163,7 @@ export default class GcCOMWaferIssueTable extends EntityScanViewTable {
         let requestObject = {
             documentLines : orders,
             materialLots : materialLots,
+            issueWithDoc: issueWithDoc,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
