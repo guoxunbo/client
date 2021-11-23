@@ -206,6 +206,7 @@ const i18NCode = {
     CheckSubCodeFlag: "CheckSubCodeFlag",
     BtnMergeDocLine: "MergeDocLine",
     TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
+    BondProMustBeHK: "BondProMustBeHK",
     OrderTime: "OrderTime",
     erpCreatedTime: "erpCreatedTime",
     SelectQty: "SelectQty",
@@ -223,6 +224,7 @@ const i18NCode = {
     RawMaterialInventory: "RawMaterialInventory",
     EnterRawMaterialSpareQtyPlease: "EnterRawMaterialSpareQtyPlease",
     TableDataMustBeEmpty: "TableDataMustBeEmpty",
+    TheMaterialLotIsExistedInStroage: "TheMaterialLotIsExistedInStroage",
 }
 
 const i18Messages = {
@@ -1171,6 +1173,11 @@ const i18Messages = {
         English: "Location And WarehousId are not same!",
         Res: "" 
     },
+    BondProMustBeHK: {
+        Chinese: "保税属性必须是HK，请重新导入！",
+        English: "Bond Pro must be HK, please import again!",
+        Res: "" 
+    },
     OrderTime: {
         Chinese: "下单时间",
         English: "Order Time",
@@ -1324,6 +1331,11 @@ const i18Messages = {
     ConfirmSpare: {
         Chinese: "确认备料！",
         English: "Confirm Spare",
+        Res: ""
+    },
+    TheMaterialLotIsExistedInStroage: {
+        Chinese: "清单中已经存在在库的物料批次！",
+        English: "The MaterialLot is Existed in Stroage",
         Res: ""
     }
 }

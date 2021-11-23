@@ -8,7 +8,6 @@ import { Notification } from '../../notice/Notice';
 import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
 
-
 const TableName = {
     IncomingMaterialImport: "GCIncomingMaterialImport"
 }
@@ -57,9 +56,9 @@ const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProdu
                            ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
                            ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct, ImportType.GCMaskFinishProduct];
 
-export default class GCIncomingMaterialImportTable extends EntityListTable {
+export default class GCBondedWarehouseIncomingMaterialImportTable extends EntityListTable {
 
-    static displayName = 'GCIncomingMaterialImportTable';
+    static displayName = 'GCBondedWarehouseIncomingMaterialImportTable';
 
     constructor(props) {
         super(props);
@@ -227,16 +226,14 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         }
 
         let location = data[0].reserved6;
-        if((location == "ZSH" && (warehouseId == "8142" || warehouseId == "8151")) 
-            || (location == "SH" && (warehouseId == "8143" || warehouseId == "8151")) 
-            || (location == "BS" && (warehouseId == "8142" || warehouseId == "8143"))){
+        if(!(location == "HK" &&  warehouseId == "8151")){
             Modal.confirm({
                 title: '操作提示',
-                content: I18NUtils.getClientMessage(i18NCode.TheLocationAndWarehouseIsNotSame),
+                content: I18NUtils.getClientMessage(i18NCode.BondProMustBeHK),
                 okText: '确认',
                 cancelText: '取消',
                 onOk:() => {
-                    this.doSave(warehouseId);
+                    
                 },
                 onCancel:() => {
                     return;
@@ -283,7 +280,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             let requestObject = {
                 dataList: data,
                 success: function(responseBody) {
-                    debugger;
                     let importFlag = responseBody.importFlag;
                     if(importFlag) {
                         Modal.confirm({
