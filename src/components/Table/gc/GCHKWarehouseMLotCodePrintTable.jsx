@@ -66,12 +66,6 @@ export default class GCHKWarehouseMLotCodePrintTable extends EntityListTable {
                 printType: printType,
                 materialLotList : data,    
                 success: function(responseBody) {
-                    responseBody.parameterMapList.forEach((parameter) => {
-                        let printCount = parameter.printCount;
-                        let portId = parseInt(parameter.portId);
-                        let url = "http://127.0.0.1:" + portId + "/Integration/wms-print-MLotCode/Execute";
-                        PrintUtils.MultiPrintWithBtIbForWeb(url, parameter, parseInt(printCount));
-                    });
                     MessageUtils.showOperationSuccess();
                 }
             }
