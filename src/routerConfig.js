@@ -941,6 +941,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltStockOutCheckProperties,
   },
+  {
+    path: buildPath('BondedWarehouse/PrintWltCpLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCPrintWltCpLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/IncomingMLotDelete'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMLotDeleteProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
