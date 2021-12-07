@@ -96,6 +96,7 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
       let printLabelFlag = self.orderTable.state.value;;
       let printCount = 2;
 
+      self.setState({loading: true});
       if (tableData && tableData.length > 0) {
         let requestObject = {
             mesPackedLots: tableData,
@@ -104,6 +105,9 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
             success: function(responseBody) {
               self.handleReset();
               MessageUtils.showOperationSuccess();
+            },
+            fail: function () {
+              self.setState({loading: false});
             }
         }
         FinishGoodInvManagerRequest.sendWLTReceiveRequest(requestObject);
