@@ -23,7 +23,8 @@ export default class FinishGoodInvManagerRequest {
         let request = new Request(requestHeader, requestBody, UrlConstant.FinishGoodManageUrl);
         let requestObject = {
             request: request,
-            success: object.success
+            success: object.success,
+            fail: object.fail
         }
         MessageUtils.sendRequest(requestObject);
     }
