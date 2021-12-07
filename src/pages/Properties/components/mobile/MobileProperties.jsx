@@ -70,14 +70,14 @@ export default class MobileProperties extends EntityScanProperties{
       buttons.push(
           <Col span={10} className="table-button">
               <Form.Item key="submitBtn" >
-                  <Button block type="primary" onClick={this.handleSubmit}>{I18NUtils.getClientMessage(i18NCode.Ok)}</Button>
+                  <Button block type="primary" onClick={this.handleSubmit} loading={this.state.loading}>{I18NUtils.getClientMessage(i18NCode.Ok)}</Button>
               </Form.Item>
           </Col>
       );
       buttons.push(
           <Col span={10} className="table-button">
               <Form.Item key="returnBtn" >
-                  <Button block type="primary" onClick={this.handleReset}>{I18NUtils.getClientMessage(i18NCode.BtnReset)}</Button>
+                  <Button block type="primary" onClick={this.handleReset} loading={this.state.loading}>{I18NUtils.getClientMessage(i18NCode.BtnReset)}</Button>
               </Form.Item>
           </Col>
       );
