@@ -225,8 +225,14 @@ export default class GCBondedWarehouseIncomingMaterialImportTable extends Entity
             warehouseId = 8151;
         }
 
-        let location = data[0].reserved6;
-        if(!(location == "HK" &&  warehouseId == "8151")){
+        let flag = false;
+        data.forEach(d => {
+            if(!(d.reserved6 == "HK" &&  warehouseId == "8151")){
+                flag = true;
+            } 
+        })
+
+        if(flag){
             Modal.confirm({
                 title: '操作提示',
                 content: I18NUtils.getClientMessage(i18NCode.BondProMustBeHK),
