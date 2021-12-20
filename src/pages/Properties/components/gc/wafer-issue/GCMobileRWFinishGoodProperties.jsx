@@ -1,16 +1,17 @@
 import MobileProperties from "../../mobile/MobileProperties";
-import MobileFGLotStockInTable from "../../../../../components/Table/gc/MobileFGLotStockInTable";
 import TableManagerRequest from "../../../../../api/table-manager/TableManagerRequest";
 import MaterialLot from "../../../../../api/dto/mms/MaterialLot";
 import { Notification } from "../../../../../components/notice/Notice";
 import I18NUtils from "../../../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../../../api/const/i18n";
-import FinishGoodInvManagerRequest from "../../../../../api/gc/finish-good-manager/FinishGoodInvManagerRequest";
 import MessageUtils from "../../../../../api/utils/MessageUtils";
+import RwMLotManagerRequest from "../../../../../api/gc/rw-manager/RwMLotManagerRequest";
+import EventUtils from "../../../../../api/utils/EventUtils";
+import MobileFGLotStockInTable from "../../../../../components/Table/gc/MobileFGLotStockInTable";
 
-export default class GCMobileFinishLotStockInProperties extends MobileProperties{
+export default class GCMobileRWFinishGoodProperties extends MobileProperties{
 
-    static displayName = 'GCMobileFinishLotStockInProperties';
+    static displayName = 'GCMobileRWFinishGoodProperties';
     
     constructor(props) {
       super(props);
@@ -27,9 +28,7 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
         success: function(responseBody) {
           let queryDatas = responseBody.dataList;
           let data = undefined;
-
           if (queryDatas && queryDatas.length > 0) {
-          //GC要求扫描错误的放到最上面显示，扫描正确的显示在错误信息的下方
             let errorData = [];
             let trueData = [];
             tableData.forEach(data => {
@@ -48,7 +47,7 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
                     cstIdList.push(data.cstId);
                     scanSeq = scanSeq + 1;
                 }
-            });
+              });
             }
             queryDatas.forEach(data => {
               if (trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
@@ -79,26 +78,31 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
-    }
+    } 
 
     handleSubmit = () => {
-      const {tableData} = this.state;
-      let self = this;
+      const self = this;
+      const {tableData} = self.state;
       if (!tableData || tableData.length == 0) {
-          Notification.showError(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-          return;
+        Notification.showError(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
+        return;
       }
 
       if (self.orderTable.getErrorCount() > 0) {
         Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
         return;
       }
-      let printLabelFlag = self.orderTable.state.value;;
-      let printCount = 2;
+      let printLabelFlag = self.orderTable.state.value;
+      let printCount = self.orderTable.printCount.state.value;
 
-      self.setState({loading: true});
+      self.setState({
+          loading: true
+      });
+      EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+
       if (tableData && tableData.length > 0) {
-        let requestObject = {
+          let self = this;
+          let requestObject = {
             mesPackedLots: tableData,
             printLabel: printLabelFlag,
             printCount: printCount,
@@ -109,14 +113,17 @@ export default class GCMobileFinishLotStockInProperties extends MobileProperties
             fail: function () {
               self.setState({loading: false});
             }
-        }
-        FinishGoodInvManagerRequest.sendWLTReceiveRequest(requestObject);
+          }
+          RwMLotManagerRequest.sendRwFinishReceiveRequest(requestObject);
       }
     }
 
     buildTable = () => {
-        return <MobileFGLotStockInTable ref={(orderTable) => { this.orderTable = orderTable }}  table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <MobileFGLotStockInTable 
+                    ref={(orderTable) => { this.orderTable = orderTable }}  
+                    table={this.state.table} 
+                    data={this.state.tableData} 
+                    loading={this.state.loading} />
     }
-
 
 }
