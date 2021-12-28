@@ -154,6 +154,7 @@ import GCIncomingMLotPrintLabelProperties from './pages/Properties/components/GC
 import GCBondedWarehouseIncomingMaterialImportProperties from './pages/Properties/components/GCBondedWarehouseIncomingMaterialImportProperties';
 import GCBondedWarehouseWltStockOutOrderProperties from './pages/Properties/components/GCBondedWarehouseWltStockOutOrderProperties';
 import GcBondedWarehouseWaferStockInProperties from './pages/Properties/components/GcBondedWarehouseWaferStockInProperties';
+import GCMobileRWFinishGoodProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRWFinishGoodProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -941,6 +942,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: WltStockOutCheckProperties,
   },
+  {
+    path: buildPath('BondedWarehouse/PrintWltCpLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCPrintWltCpLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/IncomingMLotDelete'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMLotDeleteProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
@@ -1121,6 +1132,11 @@ const routerConfig = [
     path: buildPath('Mobile/WltCpFinishLotStockIn'),
     layout: BlankLayout,
     component: GCMobileFinishLotStockInProperties,
+  },
+  {
+    path: buildPath('Mobile/RWFinishGood'),
+    layout: BlankLayout,
+    component: GCMobileRWFinishGoodProperties,
   },
   {
     path: buildPath('Mobile/RawMaterialReceive'),
