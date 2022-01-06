@@ -23,10 +23,11 @@ export default class GCMaterialLotListHoldProperties  extends EntityScanProperti
         success: function(responseBody) {
           let queryDatas = responseBody.dataList;
           if (queryDatas && queryDatas.length > 0) {
-            let materialLot = queryDatas[0];
-            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-              tableData.unshift(materialLot);
-            }
+            queryDatas.forEach(materialLot => {
+              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                tableData.unshift(materialLot);
+              }
+            });
             self.setState({ 
               tableData: tableData,
               loading: false
