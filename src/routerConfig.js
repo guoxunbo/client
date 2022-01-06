@@ -155,6 +155,7 @@ import GCBondedWarehouseIncomingMaterialImportProperties from './pages/Propertie
 import GCBondedWarehouseWltStockOutOrderProperties from './pages/Properties/components/GCBondedWarehouseWltStockOutOrderProperties';
 import GcBondedWarehouseWaferStockInProperties from './pages/Properties/components/GcBondedWarehouseWaferStockInProperties';
 import GCMobileRWFinishGoodProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRWFinishGoodProperties';
+import GcMobileRawMaterialStockInChangeProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialStockInChangeProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1198,6 +1199,11 @@ const routerConfig = [
     path: buildPath('Mobile/OldRecordExpressNumber'),
     layout: BlankLayout,
     component: GcMobileOldRecordExpressNumberProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileRawMaterialStockInChange'),
+    layout: BlankLayout,
+    component: GcMobileRawMaterialStockInChangeProperties,
   },
   {
     path: '*',
