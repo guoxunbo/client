@@ -4,6 +4,7 @@ export default class MaterialLotAction {
     transQty;
     fromWarehouseRrn;
     fromWarehouseId;
+    reserved4;
 
     fromStorageRrn;
     fromStorageId;
@@ -52,5 +53,9 @@ export default class MaterialLotAction {
 
     setActionComment(actionComment) {
         this.actionComment = actionComment;
+    }
+
+    setReserved4(reserved4){
+        this.reserved4 = reserved4;
     }
 }

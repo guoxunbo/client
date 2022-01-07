@@ -1,9 +1,8 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
-import GcReTestMLotTable from "../../../components/Table/gc/GcReTestMLotTable";
-import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import MaterialLot from "../../../api/dto/mms/MaterialLot";
 import GcWaitForReceiveMLotUnitProperties from "./GcWaitForReceiveMLotUnitProperties";
 import GcReceiveMLotUnitTable from "../../../components/Table/gc/GcReceiveMLotUnitTable";
+import WaferManagerRequest from "../../../api/gc/wafer-manager-manager/WaferManagerRequest";
 
 export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanProperties{
 
@@ -28,14 +27,15 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
+        let queryFields = this.form.state.queryFields;
+        let lotId = this.form.props.form.getFieldValue(queryFields[0].name);
         let waitForReceiveMLotUnitProperties = this.waitForReceiveMLotUnitProperties.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,
-          whereClause: whereClause,
+          lotId: lotId,
           success: function(responseBody) {
-            let queryDatas = responseBody.dataList;
-            let data = undefined;
-            if (queryDatas && queryDatas.length > 0) {
+            let materialLot = responseBody.materialLot;
+            if (materialLot && materialLot.objectRrn > 0) {
               let errorData = [];
               let trueData = [];
               tableData.forEach(data => {
@@ -46,16 +46,14 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
                 }
               });
               tableData = [];
-              queryDatas.forEach(data => {
-                if (waitForReceiveMLotUnitProperties.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  data.errorFlag = true;
-                }
-                if(data.errorFlag){
-                  errorData.unshift(data);
-                } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  trueData.unshift(data);
-                }
-              });
+              if (waitForReceiveMLotUnitProperties.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                materialLot.errorFlag = true;
+              }
+              if(materialLot.errorFlag){
+                errorData.unshift(materialLot);
+              } else if(trueData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
+              }
               errorData.forEach(data => {
                 tableData.push(data);
               });
@@ -63,7 +61,7 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
                 tableData.push(data);
               });
             } else {
-              data = new MaterialLot();
+              let data = new MaterialLot();
               let lotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
               data[rowKey] = lotId;
               data.setLotId(lotId);
@@ -80,7 +78,7 @@ export default class GcWaferReceiveOrderMLotUnitProperties extends EntityScanPro
             self.form.resetFormFileds();
           }
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+        WaferManagerRequest.sendQueryCOBMaterialLotRequest(requestObject);
     }
 
     resetOrderData = (orderTable) => {
