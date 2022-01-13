@@ -156,6 +156,7 @@ import GCBondedWarehouseWltStockOutOrderProperties from './pages/Properties/comp
 import GcBondedWarehouseWaferStockInProperties from './pages/Properties/components/GcBondedWarehouseWaferStockInProperties';
 import GCMobileRWFinishGoodProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRWFinishGoodProperties';
 import GcMobileRawMaterialStockInChangeProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialStockInChangeProperties';
+import GCHNWarehouseImportProperties from './pages/Properties/components/GCHNWarehouseImportProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -952,6 +953,32 @@ const routerConfig = [
     path: buildPath('BondedWarehouse/IncomingMLotDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
+  },
+    //HuNanWarehouseManager
+  {
+      path: buildPath('HNWarehouse/IncomingMaterialImport'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component:GCHNWarehouseImportProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/Receive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKWarehouseReceiveProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/PackMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: PackageMaterialLotProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/Reserved'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMReservedOrderProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/StockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCFTStockOutOrderProperties,
   },
   //WarehouseManager
   {
