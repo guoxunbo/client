@@ -155,6 +155,8 @@ import GCBondedWarehouseIncomingMaterialImportProperties from './pages/Propertie
 import GCBondedWarehouseWltStockOutOrderProperties from './pages/Properties/components/GCBondedWarehouseWltStockOutOrderProperties';
 import GcBondedWarehouseWaferStockInProperties from './pages/Properties/components/GcBondedWarehouseWaferStockInProperties';
 import GCMobileRWFinishGoodProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRWFinishGoodProperties';
+import GcMobileRawMaterialStockInChangeProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialStockInChangeProperties';
+import GCHNWarehouseImportProperties from './pages/Properties/components/GCHNWarehouseImportProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -952,6 +954,32 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
   },
+    //HuNanWarehouseManager
+  {
+      path: buildPath('HNWarehouse/IncomingMaterialImport'),
+      layout: HeaderAsideFooterResponsiveLayout,
+      component:GCHNWarehouseImportProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/Receive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKWarehouseReceiveProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/PackMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: PackageMaterialLotProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/Reserved'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMReservedOrderProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/StockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCFTStockOutOrderProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
@@ -1198,6 +1226,11 @@ const routerConfig = [
     path: buildPath('Mobile/OldRecordExpressNumber'),
     layout: BlankLayout,
     component: GcMobileOldRecordExpressNumberProperties,
+  },
+  {
+    path: buildPath('Mobile/MobileRawMaterialStockInChange'),
+    layout: BlankLayout,
+    component: GcMobileRawMaterialStockInChangeProperties,
   },
   {
     path: '*',

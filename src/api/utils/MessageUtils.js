@@ -158,6 +158,21 @@ export default class MessageUtils {
                 if (object.headers.authorization) {
                     SessionContext.saveToken(object.headers.authorization);
                 }
+                //TODO GC客制化业务 如果有相关标识则前端进行打印-----
+                if(response.body.clientPrint && response.body.clientPrint == true){
+                    if(response.body.parameterMapList && response.body.parameterMapList.length > 0){
+                        let parameterMapList = response.body.parameterMapList;
+                        parameterMapList.forEach(data => {
+                            self.sendGetRequest(data)
+                        });
+                    }
+                    if(response.body.parameterMap && JSON.stringify(response.body.parameterMap) != JSON.stringify({})){
+                        self.sendGetRequest(response.body.parameterMap);
+                    }
+                   
+                }
+                //---------
+
                 if (requestObject.success) {
                     requestObject.success(response.body);
                 } else {

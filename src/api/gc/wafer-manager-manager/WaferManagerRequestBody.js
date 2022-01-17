@@ -11,6 +11,7 @@ const ActionType = {
     OutOrderIssue: "OutOrderIssue",
     MobileGetWafer: "MobileGetWafer",
     MobileIssue: "MobileIssue",
+    QueryCOBReceiveMLot: "QueryCOBReceiveMLot",
 }
 export default class WaferManagerRequestBody {
 
@@ -43,6 +44,7 @@ export default class WaferManagerRequestBody {
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotAction.setReserved4(materialLot.reserved4);
             materialLotActions.push(materialLotAction)
         });
         let body = new WaferManagerRequestBody(ActionType.Receive, documentLines, materialLotActions);
@@ -141,6 +143,13 @@ export default class WaferManagerRequestBody {
 
     static buildMobileGetWaferByRrn(tableRrn, lotId) {
         let body = new WaferManagerRequestBody(ActionType.MobileGetWafer);
+        body.tableRrn = tableRrn;
+        body.lotId = lotId;
+        return body;
+    }
+
+    static buildQueryCOBReceiveMaterialLot(tableRrn, lotId) {
+        let body = new WaferManagerRequestBody(ActionType.QueryCOBReceiveMLot);
         body.tableRrn = tableRrn;
         body.lotId = lotId;
         return body;
