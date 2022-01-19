@@ -8,7 +8,6 @@ export default class HNWarehouseImportRequest {
     
 
     static sendHNWarehouseImportRequest = (object) => {
-        debugger;
         let requestBody = HNWarehouseImportRequestBody.buildHNWarehouseImportInfo(object.importType, object.dataList);
         let requestHeader = new HNWarehouseImportRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCHNWarehouseImportSaveUrl);
