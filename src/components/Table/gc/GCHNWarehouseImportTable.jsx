@@ -14,7 +14,7 @@ const TableName = {
 }
 
 const ImportType = {
-    HNWarehouseImport : "HNWarehouseImport",
+    HNWarehouseImport : "HNWarehouseImport", //成品导入
 }
 
 const resetLocationType = [ImportType.HNWarehouseImport];

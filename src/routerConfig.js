@@ -158,6 +158,7 @@ import GCMobileRWFinishGoodProperties from './pages/Properties/components/gc/waf
 import GcMobileRawMaterialStockInChangeProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialStockInChangeProperties';
 import GCHNWarehouseImportProperties from './pages/Properties/components/GCHNWarehouseImportProperties';
 import HNWarehousePackageMaterialLotProperties from './pages/Properties/components/HNWarehousePackageMaterialLotProperties';
+import GCRWBoxLabelPrintProperties from './pages/Properties/components/GCRWBoxLabelPrintProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -786,6 +787,11 @@ const routerConfig = [
     path: buildPath('Doc/OldRecordExpressNumber'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOldRecordExpressNumberProperties,
+  },
+  {
+    path: buildPath('GC/RWBoxLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRWBoxLabelPrintProperties,
   },
   //Hong Kong Warehouse香港仓
   {
