@@ -14,7 +14,6 @@ export default class HNWarehouseImportRequestBody {
     }
 
     static buildHNWarehouseImportInfo(importType, materialLotList) {
-        debugger;
         if(MlotType.includes(importType)){
             return new HNWarehouseImportRequestBody(importType, materialLotList);
         } else {
