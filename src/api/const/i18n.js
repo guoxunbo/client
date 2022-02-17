@@ -226,6 +226,9 @@ const i18NCode = {
     EnterRawMaterialSpareQtyPlease: "EnterRawMaterialSpareQtyPlease",
     TableDataMustBeEmpty: "TableDataMustBeEmpty",
     TheMaterialLotIsExistedInStroage: "TheMaterialLotIsExistedInStroage",
+    TheInputDataDoesNotMeetTheRequirements: "TheInputDataDoesNotMeetTheRequirements",
+    TrueQtyCannotBeEmpty: "TrueQtyCannotBeEmpty",
+    TrueQty: "TrueQty",
 }
 
 const i18Messages = {
@@ -1342,6 +1345,21 @@ const i18Messages = {
     FtImp: {
         Chinese: "FT导入",
         English: "FT Import",
+        Res: ""
+    },
+    TheInputDataDoesNotMeetTheRequirements: {
+        Chinese: "输入数据不符合要求！",
+        English: "The input data does not meet the requirements",
+        Res: ""
+    },
+    TrueQtyCannotBeEmpty: {
+        Chinese: "实际数量不能为空！",
+        English: "True Qty cannot be empty",
+        Res: ""
+    },
+    TrueQty: {
+        Chinese: "实际数量",
+        English: "True Qty",
         Res: ""
     }
 }

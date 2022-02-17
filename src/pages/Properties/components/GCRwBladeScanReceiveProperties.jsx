@@ -20,7 +20,9 @@ export default class GCRwBladeScanReceiveProperties extends EntityScanProperties
       let {tableData, scanBladeLotIdFlag, handleMLot} = this.state;
       let queryFields = this.form.state.queryFields;
       let bladeMaterialCode = this.form.props.form.getFieldValue(queryFields[0].name);
-      if(bladeMaterialCode == undefined || bladeMaterialCode == "" || bladeMaterialCode == null){
+      let inputTrueQty = self.bladeTable.inputTrueQty.inputNumberRef.state.value;
+      if((bladeMaterialCode == undefined || bladeMaterialCode == "" || bladeMaterialCode == null) && 
+       (inputTrueQty == undefined || inputTrueQty == "" || inputTrueQty == null)){
         return;
       }
       if(scanBladeLotIdFlag){
@@ -69,6 +71,19 @@ export default class GCRwBladeScanReceiveProperties extends EntityScanProperties
           bladeMaterialCode: bladeMaterialCode,
           success: function(responseBody) {
               let materialLot = responseBody.materialLot;
+
+              //获取 实际数量 输入框中的数据
+              if( inputTrueQty && inputTrueQty > 0){
+                materialLot.currentQty = inputTrueQty;
+                materialLot.receiveQty = inputTrueQty;
+              } else if(inputTrueQty == undefined) {
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.TrueQtyCannotBeEmpty));
+                return;
+              } else {
+                Notification.showNotice(I18NUtils.getClientMessage(i18NCode.TheInputDataDoesNotMeetTheRequirements) + inputTrueQty);
+                return;
+              }
+
               //临时用数据序号做为主键
               let objectRrn = tableData.length;
               materialLot.objectRrn = objectRrn;
@@ -89,7 +104,9 @@ export default class GCRwBladeScanReceiveProperties extends EntityScanProperties
     }
 
     buildTable = () => {
-        return <GCRwBladeScanReceiveTable pagination={false} 
+        return <GCRwBladeScanReceiveTable 
+                                    ref={(bladeTable) => {this.bladeTable = bladeTable}}
+                                    pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
