@@ -7,7 +7,7 @@ import MessageUtils from '../../utils/MessageUtils';
 export default class RelayBoxStockInManagerRequest {
 
     static sendQueryBoxRequest = (object) => {
-        let reqreuestBody = RelayBoxStockInManagerRequestBody.buildQueryBox(object.materialLotId);
+        let reqreuestBody = RelayBoxStockInManagerRequestBody.buildQueryBox(object.materialLotId, object.tableRrn);
         let requestHeader = new RelayBoxStockInManagerRequestHeader();
         let request = new Request(requestHeader, reqreuestBody, UrlConstant.GCRelayBoxStockInUrl);
         let requestObject = {
