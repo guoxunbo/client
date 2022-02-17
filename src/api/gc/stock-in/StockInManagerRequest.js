@@ -53,6 +53,17 @@ export default class StockInManagerRequest {
         MessageUtils.sendImportData(requestObject, file);
     }
 
+    static sendFtImportRequest = (object, file) => {
+        let requestBody = new StockInManagerRequestBody();
+        let requestHeader = new StockInManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCTempFtDataImportUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendImportData(requestObject, file);
+    }
+
     static sendQueryRawMaterialRequest = (object) => {
         let requestBody = StockInManagerRequestBody.buildQueryRawMaterial(object.materialLotId, object.tableRrn);
         let requestHeader = new StockInManagerRequestHeader();

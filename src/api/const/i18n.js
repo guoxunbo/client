@@ -40,6 +40,7 @@ const i18NCode = {
     BtnClose: "Close",
     BtnWatch: "Watch",
     BtnImp: "Imp",
+    BtnFtImp: "FtImp",
     BtnExp: "Exp",
     BtnCheck: "Check",
     BtnJudge: "Judge",
@@ -1336,6 +1337,11 @@ const i18Messages = {
     TheMaterialLotIsExistedInStroage: {
         Chinese: "清单中已经存在在库的物料批次！",
         English: "The MaterialLot is Existed in Stroage",
+        Res: ""
+    },
+    FtImp: {
+        Chinese: "FT导入",
+        English: "FT Import",
         Res: ""
     }
 }
