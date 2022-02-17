@@ -19,6 +19,7 @@ export default class StockInStorageTable extends EntityScanViewTable {
         let buttons = [];
         buttons.push(this.createStatistic());
         buttons.push(this.createImportButton());
+        buttons.push(this.createFtImportButton());
         buttons.push(this.createStockInButton());
         return buttons;
     }
@@ -84,10 +85,37 @@ export default class StockInStorageTable extends EntityScanViewTable {
         StockInManagerRequest.sendImportRequest(object, option.file);
     }
 
+    ftHandlesUpload = (option) => {
+        const self = this;
+        const {data} = this.state;
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+
+        let object = {
+            success: function(responseBody) {
+                self.setState({
+                    loading: false
+                });
+               MessageUtils.showOperationSuccess();
+            }
+        }
+        StockInManagerRequest.sendFtImportRequest(object, option.file);
+    }
+
     createImportButton = () => {
         return (<Upload key="import" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
                     customRequest={(option) => this.handlesUpload(option)} showUploadList={false} >
                     <Button type="primary" style={styles.tableButton} loading={this.state.loading} >{I18NUtils.getClientMessage(i18NCode.BtnImp)}</Button>
+                </Upload>);
+    }
+
+    createFtImportButton = () => {
+        return (<Upload key="import" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+                    customRequest={(option) => this.ftHandlesUpload(option)} showUploadList={false} >
+                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} >{I18NUtils.getClientMessage(i18NCode.BtnFtImp)}</Button>
                 </Upload>);
     }
 
