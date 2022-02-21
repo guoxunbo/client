@@ -74,6 +74,7 @@ export default class GcMobileTransferBoxChangeStorageProperties extends MobilePr
             // 物料批次，需要请求后台做查询
             let requestObject = {
                 materialLotId: data,
+                tableRrn: this.state.tableRrn,
                 success: function(responseBody) {
                     let materialLot = responseBody.materialLot;
                     if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
