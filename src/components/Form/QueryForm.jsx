@@ -13,7 +13,8 @@ import { i18NCode } from '../../api/const/i18n';
 /**
  * 不展开的时候最大的查询数目
  */
-const unExpendMaxSize = 9;
+const unExpendMaxSize = 16;
+const JudgeType = ["Y", "N"];
 
 class QueryForm extends React.Component {
     static displayName = 'QueryForm';
@@ -67,7 +68,7 @@ class QueryForm extends React.Component {
         let i = 0;
         queryFields.forEach((field) => {
             children.push(
-                <Col span={8} key={field.name} style={{ display: i < count ? 'block' : 'none' }}>
+                <Col span={6} key={field.name} style={{ display: i < count ? 'block' : 'none' }}>
                     {field.buildFormItem(undefined, false, true, field.defaultValue)}
                 </Col>,
             );
@@ -110,11 +111,16 @@ class QueryForm extends React.Component {
         for (let queryField of queryFields) {
             let fieldName = queryField.name;
             let fieldValue = formValues[fieldName];
-            if (fieldValue && fieldValue != "") {
+            if (fieldValue && fieldValue != "" && fieldValue != "ALL") {
                 if (!firstFlag) {
                     whereClause.append(SqlType.And);
                 }
-                whereClause.append(fieldName);
+                if(fieldName && fieldName == "desc"){
+                    //此处为客制化入库备注查询，后续优化下拉查询框再做优化
+                    whereClause.append("reserved4");
+                } else {
+                    whereClause.append(fieldName);
+                }
                 // 如果是个数组。则需要用>= 以及<=了 两位数当前肯定是个时间
                 if (Array.isArray(fieldValue) && fieldValue.length == 2) {
                     whereClause.append(SqlType.Gt);
@@ -146,15 +152,21 @@ class QueryForm extends React.Component {
                             whereClause.append(SqlType.Like);
                             //加/g表示全部替换
                             fieldValue = fieldValue.replace(/\*/g, '%');
+                        } else if(fieldValue == "Y"){
+                            whereClause.append(SqlType.IsNotNull);
+                        } else if(fieldValue == "N"){
+                            whereClause.append(SqlType.IsNull);
                         } else {
                             whereClause.append(SqlType.Eq);
                         }
                     }
-                    if (!fieldValue.startsWith(SqlType.toDate)) {
+                    if (!fieldValue.startsWith(SqlType.toDate) && !JudgeType.includes(fieldValue)) {
                         whereClause.append("'")
                     } 
-                    whereClause.append(fieldValue);
-                    if (!fieldValue.startsWith(SqlType.toDate)) {
+                    if(!JudgeType.includes(fieldValue)){
+                        whereClause.append(fieldValue);
+                    }
+                    if (!fieldValue.startsWith(SqlType.toDate) && !JudgeType.includes(fieldValue)) {
                         whereClause.append("'")
                     } 
                 }
