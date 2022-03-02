@@ -1,5 +1,5 @@
 const MlotType = ["GCSamsungPackingList", "GCLCDCOGFinishProductEcretive", "GCLcdCogDetial", 
-                 "GCRMAGoodProductImport", "GCRMACustomerReturnFinishProduct", "GCRMAPureFinishProduct"];
+                 "GCRMAGoodProductImport", "GCWltRMAGoodProductImport", "GCRMACustomerReturnFinishProduct", "GCRMAPureFinishProduct"];
 
 const ActionType = {
     ValidateRma: "ValidateRma",
