@@ -12,6 +12,7 @@ const ActionType = {
     AsyncMaterialIssueOrder : "AsyncMaterialIssueOrder",
     AsyncWltShipOrder: "AsyncWltShipOrder",
     AsyncRawOtherShipOrder: "AsyncRawOtherShipOrder",
+    AsyncFtReTestIssueOrder : "AsyncFtReTestIssueOrder",
 }
 
 export default class AsyncManagerRequestBody {
