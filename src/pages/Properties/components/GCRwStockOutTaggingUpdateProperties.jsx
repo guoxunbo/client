@@ -1,8 +1,8 @@
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import GCRwStockOutTaggingUpdateTable from "../../../components/Table/gc/GCRwStockOutTaggingUpdateTable";
-import EntityProperties from "./entityProperties/EntityProperties";
+import EntityScanProperties from "./entityProperties/EntityScanProperties";
 
-export default class GCRwStockOutTaggingUpdateProperties extends EntityProperties{
+export default class GCRwStockOutTaggingUpdateProperties extends EntityScanProperties{
 
     static displayName = 'GCRwStockOutTaggingUpdateProperties';
 

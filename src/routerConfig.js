@@ -159,6 +159,7 @@ import GcMobileRawMaterialStockInChangeProperties from './pages/Properties/compo
 import GCHNWarehouseImportProperties from './pages/Properties/components/GCHNWarehouseImportProperties';
 import HNWarehousePackageMaterialLotProperties from './pages/Properties/components/HNWarehousePackageMaterialLotProperties';
 import GCRWBoxLabelPrintProperties from './pages/Properties/components/GCRWBoxLabelPrintProperties';
+import GcFtReTestOrderProperties from './pages/Properties/components/GcFtReTestOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -771,6 +772,12 @@ const routerConfig = [
     path: buildPath('Doc/ReTestOrderManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcReTestOrderProperties,
+  },
+  //FT真空包重测
+  {
+    path: buildPath('Retest/GCFtVboxRetest'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFtReTestOrderProperties,
   },
   {
     path: buildPath('Doc/RecordExpressNumber'),
