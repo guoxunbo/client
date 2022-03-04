@@ -284,7 +284,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             let requestObject = {
                 dataList: data,
                 success: function(responseBody) {
-                    debugger;
                     let importFlag = responseBody.importFlag;
                     if(importFlag) {
                         Modal.confirm({
