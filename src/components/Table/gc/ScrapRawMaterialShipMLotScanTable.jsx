@@ -84,8 +84,8 @@ export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTab
             return;
         }
 
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
-        if (!documentLine) {
+        let documentLineList = self.props.orderTable.state.data;
+        if (!documentLineList) {
             self.setState({ 
                 loading: false
             });
@@ -104,7 +104,7 @@ export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTab
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObject = {
-            documentLine : documentLine,
+            documentLineList : documentLineList,
             materialLotList : materialLotList,
             success: function(responseBody) {
                 if (self.props.resetData) {
