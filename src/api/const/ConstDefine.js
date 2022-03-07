@@ -114,6 +114,7 @@ const UrlConstant = {
     GCRmaMaterialLotManagerUrl: ModuleUrlConstant.GC + "RmaMaterialLotManager",
     GCGetPrintCOBboxParameterUrl: ModuleUrlConstant.GC + "getPrintCOBboxParameter",
     GCTempCpDataImportUrl: ModuleUrlConstant.GC + "tempCpDataImport",
+    GCTempFtDataImportUrl: ModuleUrlConstant.GC + "tempFtDataImport",
     GCErpDocLineMergeManageUrl: ModuleUrlConstant.GC + "erpDocLineMerge",
     GCRwMaterialLotManageUrl: ModuleUrlConstant.GC + "rwMaterialLotManager",
     GCRwMaterialManageUrl: ModuleUrlConstant.GC + "rwMaterialManager",
@@ -194,7 +195,9 @@ const SqlType = {
     Lt: " <= ",
     toDate: "to_date",
     DateTime: "YYYY-MM-DD HH24:mi:ss",
-    Date: "YYYY-MM-DD"
+    Date: "YYYY-MM-DD",
+    IsNotNull: " is not null",
+    IsNull: " is null ",
 }
 
 

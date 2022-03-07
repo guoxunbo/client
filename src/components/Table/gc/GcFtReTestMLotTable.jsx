@@ -1,21 +1,17 @@
+
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button, Icon, Switch } from 'antd';
+import { Button } from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
+import RetestManagerRequest from '../../../api/gc/retest-manager/RetestManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import { Tag } from 'antd';
 import EventUtils from '../../../api/utils/EventUtils';
-import GCRawMaterialImportRequest from '../../../api/gc/GCRawMaterialImport-manager/GCRawMaterialImportRequest';
 
-export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTable {
+export default class GcFtReTestMLotTable extends EntityScanViewTable {
 
-    static displayName = 'ScrapRawMaterialShipMLotScanTable';
-
-    constructor(props) {
-        super(props);
-        this.state = {...this.state};
-    }
+    static displayName = 'GcFtReTestMLotTable';
 
     getRowClassName = (record, index) => {
         if (record.errorFlag) {
@@ -31,16 +27,16 @@ export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTab
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createIssue());
+        buttons.push(this.createReTest());
         return buttons;
     }
 
     createTagGroup = () => {
-        let tagList = [];
-        tagList.push(this.createMaterialLotsNumber());
-        tagList.push(this.createTotalNumber());
-        tagList.push(this.createErrorNumberStatistic());
-        return tagList;
+        let tags = [];
+        tags.push(this.createStatistic());
+        tags.push(this.createTotalNumber());
+        tags.push(this.createErrorNumberStatistic());
+        return tags;
     }
     
     getErrorCount = () => {
@@ -60,40 +56,37 @@ export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTab
         return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.ErrorNumber)}：{this.getErrorCount()}</Tag>
     }
 
-    createMaterialLotsNumber = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
-    }
-
     createTotalNumber = () => {
-        let materialLotUnits = this.state.data;
+        let materialLots = this.state.data;
         let count = 0;
-        if(materialLotUnits && materialLotUnits.length > 0){
-            materialLotUnits.forEach(data => {
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
                 if (data.currentQty != undefined) {
-                    count = count + data.currentQty*10000;
+                    count = count + data.currentQty;
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalNumber)}：{count/10000}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
-    scrapRawMaterialShip = () => {
+    createStatistic = () => {
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+    }
+
+    reTest = () => {
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
-
-        let documentLineList = self.props.orderTable.state.data;
-        if (!documentLineList) {
-            self.setState({ 
-                loading: false
-            });
+        let orderTable = this.props.orderTable;
+        let orders = orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
-
-        let materialLotList = this.state.data;
-        if (materialLotList.length === 0) {
+        let materialLots = this.state.data;
+        if (materialLots.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
@@ -102,10 +95,9 @@ export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTab
             loading: true
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
-
         let requestObject = {
-            documentLineList : documentLineList,
-            materialLotList : materialLotList,
+            documentLines : orders,
+            materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();
@@ -114,12 +106,12 @@ export default class ScrapRawMaterialShipMLotScanTable extends EntityScanViewTab
                 MessageUtils.showOperationSuccess();
             }
         }
-        GCRawMaterialImportRequest.sendScrapRawMaterialShipRequest(requestObject);
+        RetestManagerRequest.sendFtRetestRequest(requestObject);
     }
 
-    createIssue = () => {
-        return <Button key="scrapShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.scrapRawMaterialShip}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnOtherShip)}
+    createReTest = () => {
+        return <Button key="reTest" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.reTest}>
+                        发料
                     </Button>
     }
 

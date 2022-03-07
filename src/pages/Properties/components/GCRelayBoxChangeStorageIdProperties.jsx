@@ -23,7 +23,7 @@ export default class GCRelayBoxChangeStorageIdProperties extends EntityScanPrope
 
          // MB开头的则是中装箱号，请求后台查询出所有该中转箱下的真空包
         let dataIndex = -1;
-        if ((data.startsWith("MB") || data.startsWith("TB") || data.startsWith("CM")) && data.split(".").length == 1) {
+        if ((data.startsWith("MB") || data.startsWith("TB") || data.startsWith("CM") || data.startsWith("ZTB")) && data.split(".").length == 1) {
             let requestObject = {
                 relayBoxId: data,
                 success: function(responseBody) {
@@ -70,6 +70,7 @@ export default class GCRelayBoxChangeStorageIdProperties extends EntityScanPrope
             // 物料批次，需要请求后台做查询
             let requestObject = {
                 materialLotId: data,
+                tableRrn: this.state.tableRrn,
                 success: function(responseBody) {
                     let materialLot = responseBody.materialLot;
                     if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {

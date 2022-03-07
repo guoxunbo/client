@@ -92,16 +92,38 @@ export default class GCRwTapeScanReceiveTable extends EntityScanViewTable {
                     </Button>
     }
 
+    // refreshDelete = (records) => {
+    //     let datas = this.state.data;
+    //     let recordList = [];
+    //     if (!(records instanceof Array)) {
+    //         let tapeMaterialCode = records.tapeMaterialCode;
+    //         datas.forEach((item) => {
+    //             if(item.tapeMaterialCode == tapeMaterialCode){
+    //                 recordList.push(item);
+    //             }
+    //         });
+    //     } else {
+    //         recordList = records;
+    //     }
+    //     recordList.forEach((record) => {
+    //         let dataIndex = datas.indexOf(record);
+    //         if (dataIndex > -1 ) {
+    //             datas.splice(dataIndex, 1);
+    //         }
+    //     });
+    //     this.setState({
+    //         data: datas,
+    //         selectedRows: [],
+    //         selectedRowKeys: []
+    //     })
+    //     MessageUtils.showOperationSuccess();
+    // }
+
     refreshDelete = (records) => {
         let datas = this.state.data;
         let recordList = [];
         if (!(records instanceof Array)) {
-            let tapeMaterialCode = records.tapeMaterialCode;
-            datas.forEach((item) => {
-                if(item.tapeMaterialCode == tapeMaterialCode){
-                    recordList.push(item);
-                }
-            });
+            recordList.push(records);
         } else {
             recordList = records;
         }

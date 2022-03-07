@@ -1,4 +1,4 @@
-import { Button, Tag} from 'antd';
+import { Button, Col, InputNumber, Row, Tag} from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from '../../../api/utils/MessageUtils';
@@ -6,6 +6,7 @@ import EventUtils from '../../../api/utils/EventUtils';
 import EntityScanViewTable from '../EntityScanViewTable';
 import { Notification } from '../../notice/Notice';
 import RwMaterialManagerRequest from '../../../api/gc/rw-material-manager/RwMaterialManagerRequest';
+import FormItem from 'antd/lib/form/FormItem';
 
 /**
  * Blade辅料接收
@@ -21,6 +22,7 @@ export default class GCRwBladeScanReceiveTable extends EntityScanViewTable {
     
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createTrueQtyInput());
         buttons.push(this.createTapeReceiveButton());
         return buttons;
     }
@@ -63,6 +65,19 @@ export default class GCRwBladeScanReceiveTable extends EntityScanViewTable {
             }
         };
         RwMaterialManagerRequest.sendReceiveBladeMaterial(object);
+    }
+
+    createTrueQtyInput = () => {
+        return  <FormItem>
+                    <Row gutter={4}>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.TrueQty)}:</span>
+                        </Col>
+                        <Col span={2}>
+                            <InputNumber ref={(inputTrueQty) => { this.inputTrueQty = inputTrueQty }} disabled={this.disabled} defaultValue={10}/>
+                        </Col>
+                    </Row>
+                </FormItem>
     }
 
     createTapeReceiveButton = () => {

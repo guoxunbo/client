@@ -12,19 +12,21 @@ export default class RelayBoxStockInManagerRequestBody {
     materialLotId;
     relayBoxStockInModels;
     relayBoxId;
+    tableRrn;
 
-    constructor(actionType, materialLotId, relayBoxId){
+    constructor(actionType, materialLotId, relayBoxId, tableRrn){
         this.actionType = actionType;
         this.materialLotId = materialLotId;
         this.relayBoxId = relayBoxId;
+        this.tableRrn = tableRrn;
     }
 
     setRelayBoxStockInModels(relayBoxStockInModels) {
         this.relayBoxStockInModels = relayBoxStockInModels;
     }
 
-    static buildQueryBox(materialLotId) {
-        return new RelayBoxStockInManagerRequestBody(ActionType.QueryBox, materialLotId);
+    static buildQueryBox(materialLotId, tableRrn) {
+        return new RelayBoxStockInManagerRequestBody(ActionType.QueryBox, materialLotId, undefined, tableRrn);
     }
 
     static buildQueryRelayBox(relayBoxId) {

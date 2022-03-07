@@ -12,6 +12,7 @@ const ActionType = {
     StockOut: "StockOut",
     RWBoxPrint: "RWBoxPrint",
     RWStockOutPrint: "RWStockOutPrint",
+    RWBoxLabelPrint: "RWBoxLabelPrint",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -125,6 +126,12 @@ export default class RwMLotManagerRequestBody {
 
     static buildRWStockOutPrintParameter(materialLotRrn) {
         let body = new RwMLotManagerRequestBody(ActionType.RWStockOutPrint);
+        body.materialLotRrn = materialLotRrn;
+        return body;
+    }
+
+    static buildRWBoxLabelPrintParameter(materialLotRrn) {
+        let body = new RwMLotManagerRequestBody(ActionType.RWBoxLabelPrint);
         body.materialLotRrn = materialLotRrn;
         return body;
     }

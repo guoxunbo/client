@@ -157,6 +157,10 @@ import GcBondedWarehouseWaferStockInProperties from './pages/Properties/componen
 import GCMobileRWFinishGoodProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRWFinishGoodProperties';
 import GcMobileRawMaterialStockInChangeProperties from './pages/Properties/components/gc/wafer-issue/GcMobileRawMaterialStockInChangeProperties';
 import GCHNWarehouseImportProperties from './pages/Properties/components/GCHNWarehouseImportProperties';
+import HNWarehousePackageMaterialLotProperties from './pages/Properties/components/HNWarehousePackageMaterialLotProperties';
+import GCRWBoxLabelPrintProperties from './pages/Properties/components/GCRWBoxLabelPrintProperties';
+import GcFtReTestOrderProperties from './pages/Properties/components/GcFtReTestOrderProperties';
+import GCMobileRawMaterialOtherShipProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialOtherShipProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -770,6 +774,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcReTestOrderProperties,
   },
+  //FT真空包重测
+  {
+    path: buildPath('Retest/GCFtVboxRetest'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFtReTestOrderProperties,
+  },
   {
     path: buildPath('Doc/RecordExpressNumber'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -785,6 +795,11 @@ const routerConfig = [
     path: buildPath('Doc/OldRecordExpressNumber'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcOldRecordExpressNumberProperties,
+  },
+  {
+    path: buildPath('GC/RWBoxLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRWBoxLabelPrintProperties,
   },
   //Hong Kong Warehouse香港仓
   {
@@ -968,7 +983,7 @@ const routerConfig = [
   {
     path: buildPath('HNWarehouse/PackMLot'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: PackageMaterialLotProperties,
+    component: HNWarehousePackageMaterialLotProperties,
   },
   {
     path: buildPath('HNWarehouse/Reserved'),
@@ -1150,6 +1165,11 @@ const routerConfig = [
     path: buildPath('Mobile/MaterialLotIssue'),
     layout: BlankLayout,
     component: GCMobileMLotIssueByOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/RawMaterialOtherShip'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialOtherShipProperties,
   },
   {
     path: buildPath('Mobile/MaterialLotShip'),
