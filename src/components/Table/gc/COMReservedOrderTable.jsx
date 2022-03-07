@@ -1,5 +1,12 @@
 import EntityListTable from '../EntityListTable';
 import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedManagerRequest';
+import { i18NCode } from '../../../api/const/i18n';
+import { SystemRefListName } from '../../../api/const/ConstDefine';
+import RefListField from '../../Field/RefListField';
+import { Col, Row } from 'antd';
+import FormItem from 'antd/lib/form/FormItem';
+import I18NUtils from '../../../api/utils/I18NUtils';
+
 
 export default class COMReservedOrderTable extends EntityListTable {
 
@@ -18,11 +25,31 @@ export default class COMReservedOrderTable extends EntityListTable {
         }
     };
 
+    createTagGroup = () => {
+        let tags = [];
+        tags.push(this.createStockLocationInput());
+        return tags;
+    }
+
+    createStockLocationInput = () => {
+        return  <FormItem>
+                    <Row gutter={10}>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.StockLocation)}:</span>
+                        </Col>
+                        <Col span={4}>
+                            <RefListField ref={(stockLocation) => { this.stockLocation = stockLocation }} referenceName={SystemRefListName.StockLocation} />
+                        </Col>
+                    </Row>
+                </FormItem>
+    }
+
     /**
      * 行点击事件
      */
     selectRow = (record) => {
         let self = this;
+        let stockLocation = self.stockLocation.state.value;
         let selectedRows = [];
         selectedRows.push(record);
         this.setState({
@@ -31,6 +58,7 @@ export default class COMReservedOrderTable extends EntityListTable {
         let object = {
             docLineRrn: record.objectRrn,
             tableRrn: this.props.reservedLotTable.state.table.objectRrn,
+            stockLocation: stockLocation,
             success: function(responseBody) {
                 let materialLotList = responseBody.materialLotList;
                 self.getPackedRuleList(record, materialLotList);

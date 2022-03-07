@@ -131,7 +131,8 @@ const SystemRefListName = {
     RiskGrade: "RiskGrade",
     ExpressCompany: "ExpressCompany",
     ScrapReason: "ScrapReason",
-    CancelCheckReason: "CancelCheckReason"
+    CancelCheckReason: "CancelCheckReason",
+    StockLocation: "StockLocation",
 };
 
 const RefTableName = {

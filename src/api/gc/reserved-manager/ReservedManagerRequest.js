@@ -3,12 +3,11 @@ import ReservedManagerRequestBody from './ReservedManagerRequestBody';
 import {UrlConstant} from '../../const/ConstDefine';
 import MessageUtils from '../../utils/MessageUtils';
 import Request from '../../Request';
-import { object } from 'prop-types';
 
 export default class ReservedManagerRequest {
 
     static sendGetMaterialLot = (object) => {
-        let requestBody = ReservedManagerRequestBody.buildGetMaterialLot(object.docLineRrn, object.tableRrn);
+        let requestBody = ReservedManagerRequestBody.buildGetMaterialLot(object.docLineRrn, object.tableRrn, object.stockLocation);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {
