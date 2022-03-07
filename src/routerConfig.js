@@ -161,6 +161,7 @@ import HNWarehousePackageMaterialLotProperties from './pages/Properties/componen
 import GCRWBoxLabelPrintProperties from './pages/Properties/components/GCRWBoxLabelPrintProperties';
 import GcFtReTestOrderProperties from './pages/Properties/components/GcFtReTestOrderProperties';
 import GCMobileRawMaterialOtherShipProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialOtherShipProperties';
+import GCFTPackageMaterialLotProperties from './pages/Properties/components/GCFTPackageMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1036,6 +1037,11 @@ const routerConfig = [
     path: buildPath('Pack/PackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackageMaterialLotProperties,
+  },
+  {
+    path: buildPath('Pack/FTPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCFTPackageMaterialLotProperties,
   },
   {
     path: buildPath('Pack/AddPackMaterialLot'),
