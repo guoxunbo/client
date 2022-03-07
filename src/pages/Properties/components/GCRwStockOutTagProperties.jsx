@@ -18,6 +18,7 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
         resetFlag: true
       });
       this.form.resetFormFileds();
+      this.resetComBoxData(null);
     }
 
     queryData = (whereClause) => {
@@ -26,6 +27,7 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
         success: function(responseBody) {
+          self.resetComBoxData(responseBody.dataList);
           self.setState({
             tableData: responseBody.dataList,
             loading: false
@@ -33,6 +35,60 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    }
+
+    /**
+     * 重新赋值下拉框
+     */
+    resetComBoxData = (data) =>{
+        let gradeField = this.form.state.queryFields[6]
+        let gradeNode = gradeField.node;
+        
+        let secondLevelField = this.form.state.queryFields[7];
+        let secondLevelNode = secondLevelField.node;
+
+        if(!data || data.length == 0){
+            gradeNode.queryData();
+            secondLevelNode.queryData();
+            return;
+        }
+
+        let gradeList = [];
+        let gradeRefData = [];
+
+        let secondLevelList = [];
+        let secondLevelRefData = [];
+
+        // 获取相关字段的值
+        data.forEach((d,index) => {
+            if(gradeList.indexOf(d[gradeField.name]) == -1){
+                gradeList.push(d[gradeField.name]);
+            }
+
+            if(secondLevelList.indexOf(d[secondLevelField.name]) == -1){
+              secondLevelList.push(d[secondLevelField.name]);
+            }
+        });
+
+        // 组装数据
+        gradeList.forEach((d,index) => {
+            let gradeObject = {};
+            // whereClause 得到的值是 key,显示的值是 value
+            gradeObject.key = d;
+            gradeObject.value = d;
+            gradeRefData.push(gradeObject);
+        })
+
+        secondLevelList.forEach(d => {
+            let secondLevelObject = {};
+            secondLevelObject.key = d;
+            secondLevelObject.value = d;
+            secondLevelRefData.push(secondLevelObject);
+        })
+
+        gradeNode.setState({data:gradeRefData});
+        secondLevelNode.setState({data:secondLevelRefData});        
+     
     }
 
     buildTable = () => {
