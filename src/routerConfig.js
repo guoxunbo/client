@@ -160,6 +160,8 @@ import GCHNWarehouseImportProperties from './pages/Properties/components/GCHNWar
 import HNWarehousePackageMaterialLotProperties from './pages/Properties/components/HNWarehousePackageMaterialLotProperties';
 import GCRWBoxLabelPrintProperties from './pages/Properties/components/GCRWBoxLabelPrintProperties';
 import GcFtReTestOrderProperties from './pages/Properties/components/GcFtReTestOrderProperties';
+import GCMobileRawMaterialOtherShipProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialOtherShipProperties';
+import GCFTPackageMaterialLotProperties from './pages/Properties/components/GCFTPackageMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1037,6 +1039,11 @@ const routerConfig = [
     component: PackageMaterialLotProperties,
   },
   {
+    path: buildPath('Pack/FTPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCFTPackageMaterialLotProperties,
+  },
+  {
     path: buildPath('Pack/AddPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: AddPackagaMaterialLotProperties,
@@ -1164,6 +1171,11 @@ const routerConfig = [
     path: buildPath('Mobile/MaterialLotIssue'),
     layout: BlankLayout,
     component: GCMobileMLotIssueByOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/RawMaterialOtherShip'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialOtherShipProperties,
   },
   {
     path: buildPath('Mobile/MaterialLotShip'),
