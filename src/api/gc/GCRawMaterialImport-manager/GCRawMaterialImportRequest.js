@@ -169,8 +169,8 @@ export default class GCRawMaterialImportRequest {
     }
 
     static sendScrapRawMaterialShipRequest = (object) => {
-        let {documentLine, materialLotList} = object;
-        let requestBody = GCRawMaterialImportRequestBody.buildScrapRawMaterialShip(documentLine, materialLotList);
+        let {documentLineList, materialLotList} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildScrapRawMaterialShip(documentLineList, materialLotList);
         let requestHeader = new GCRawMaterialImportRequestHeader();
         let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
         let requestObject = {
@@ -180,5 +180,16 @@ export default class GCRawMaterialImportRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendMobileRawMaterialOtherShipRequest = (object) => {
+        let {erpTime, materialLotList} = object;
+        let requestBody = GCRawMaterialImportRequestBody.buildMobileRawMaterialOtherShip(erpTime, materialLotList);
+        let requestHeader = new GCRawMaterialImportRequestHeader();
+        let request = new Request(requestHeader,requestBody,UrlConstant.GCRawMaterialImportSaveDateUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
     
 }
