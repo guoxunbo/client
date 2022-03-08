@@ -77,6 +77,7 @@ const i18NCode = {
     BtnAutoPick: "AutoPick",
     BtnSaleShip: "SaleShip",
     BtnAddShipOrder: "AddShipOrder",
+    BtnCancelShipOrder: "CancelShipOrder",
     BtnSpareMaterial: "SpareMaterial",
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
     BtnScrapShip: "ScrapShip",
@@ -1240,7 +1241,12 @@ const i18Messages = {
     },
     AddShipOrder: {
         Chinese: "添加发货单",
-        English: "SaleShip",
+        English: "AddSaleShip",
+        Res: ""     
+    },
+    CancelShipOrder: {
+        Chinese: "取消发货单",
+        English: "CancelSaleShip",
         Res: ""     
     },
     ShipOrderId: {

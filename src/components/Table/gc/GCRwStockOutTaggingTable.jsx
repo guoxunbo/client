@@ -1,6 +1,7 @@
-import { Button, Col, InputNumber, Row, Tag } from "antd";
+import { Button, Col, InputNumber, Row, Tag, Upload } from "antd";
 import FormItem from "antd/lib/form/FormItem";
 import { i18NCode } from "../../../api/const/i18n";
+import MaterialLotUpdateRequest from "../../../api/gc/materialLot-update-manager/MaterialLotUpdateRequest";
 import RwMLotManagerRequest from "../../../api/gc/rw-manager/RwMLotManagerRequest";
 import EventUtils from "../../../api/utils/EventUtils";
 import I18NUtils from "../../../api/utils/I18NUtils";
@@ -43,6 +44,8 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createExportDataAndTemplateButton());
+        buttons.push(this.createImportSearchButton());
         buttons.push(this.createAutoPickButton());
         buttons.push(this.createTagButton());
         return buttons;
@@ -209,6 +212,40 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
             selectedRowKeys: selectedRowKeys,
             selectedRows: selectedRows
         });
+    }
+
+    importSearch = (option) => {
+        const self = this;
+        const {table} = this.state;
+        let tableData = this.state.data;
+        if(tableData.length > 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.TableDataMustBeEmpty));
+            return;
+        }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+        
+        let object = {
+            tableRrn: table.objectRrn,
+            success: function(responseBody) {
+                let materialLotList = responseBody.materialLotList;
+                self.setState({
+                    data: materialLotList,
+                    loading: false
+                });           
+            }
+        }
+        MaterialLotUpdateRequest.sendImportSearchRequest(object, option.file);
+    }
+
+    createImportSearchButton = () => {
+        return (<Upload key="importSearch" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+                    customRequest={(option) => this.importSearch(option)} showUploadList={false} >
+                    <Button type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-add">{I18NUtils.getClientMessage(i18NCode.BtnImportSearch)}</Button>
+                </Upload>);
     }
 
     createTagButton = () => {
