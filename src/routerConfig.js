@@ -996,6 +996,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCFTStockOutOrderProperties,
   },
+  {
+    path: buildPath('HNWarehouse/SampleCollectionStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWltOtherStockOutOrderProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
