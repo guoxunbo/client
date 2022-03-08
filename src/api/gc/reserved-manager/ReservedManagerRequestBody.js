@@ -34,8 +34,10 @@ export default class ReservedManagerRequestBody {
         this.packageRule = packageRule;
     }
     
-    static buildGetMaterialLot(docLineRrn, tableRrn) {
-        return new ReservedManagerRequestBody(ActionType.GetMLot, docLineRrn, tableRrn);
+    static buildGetMaterialLot(docLineRrn, tableRrn, stockLocation) {
+        let body = new ReservedManagerRequestBody(ActionType.GetMLot, docLineRrn, tableRrn);
+        body.stockLocation = stockLocation;
+        return body;
     }
     
     static buildGetMaterialLotAndUser(tableRrn,whereClause) {
