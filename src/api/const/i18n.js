@@ -77,6 +77,7 @@ const i18NCode = {
     BtnAutoPick: "AutoPick",
     BtnSaleShip: "SaleShip",
     BtnAddShipOrder: "AddShipOrder",
+    BtnCancelShipOrder: "CancelShipOrder",
     BtnSpareMaterial: "SpareMaterial",
     BtnSpareMaterialConfirm: "SpareMaterialConfirm",
     BtnScrapShip: "ScrapShip",
@@ -229,6 +230,7 @@ const i18NCode = {
     TheInputDataDoesNotMeetTheRequirements: "TheInputDataDoesNotMeetTheRequirements",
     TrueQtyCannotBeEmpty: "TrueQtyCannotBeEmpty",
     TrueQty: "TrueQty",
+    StockLocation: "StockLocation",
 }
 
 const i18Messages = {
@@ -1239,7 +1241,12 @@ const i18Messages = {
     },
     AddShipOrder: {
         Chinese: "添加发货单",
-        English: "SaleShip",
+        English: "AddSaleShip",
+        Res: ""     
+    },
+    CancelShipOrder: {
+        Chinese: "取消发货单",
+        English: "CancelSaleShip",
         Res: ""     
     },
     ShipOrderId: {
@@ -1361,7 +1368,12 @@ const i18Messages = {
         Chinese: "实际数量",
         English: "True Qty",
         Res: ""
-    }
+    },
+    StockLocation: {
+        Chinese: "货架归属地",
+        English: "StockLocation",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};
