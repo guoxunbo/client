@@ -269,7 +269,7 @@ export default class Field {
         } else if (this.displayType == DisplayType.sysRefList) {
             return <RefListField initialValue={initialValue} field={this} referenceName={this.refListName}  disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.userRefList) {
-            return <RefListField onBlur={onBlur} initialValue={initialValue} field={this} referenceName={this.refListName} owner  disabled={this.disabled}/>
+            return <RefListField ref={node => (this.node = node)} onBlur={onBlur} initialValue={initialValue} field={this} referenceName={this.refListName} owner  disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.referenceTable) {
             return <RefTableField onBlur={onBlur} initialValue={initialValue} field={this} form={this.form} disabled={this.disabled}/>
         } else if (this.displayType == DisplayType.radio) {

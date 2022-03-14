@@ -1,7 +1,6 @@
 export default class UnConfirmWaferSet {
 
     objectRrn;
-    serialNumber;
     lotId;
     waferId;
     testSite;
@@ -13,10 +12,6 @@ export default class UnConfirmWaferSet {
         this.objectRrn = objectRrn;
     }
     
-    setSerialNumber(serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
     setLotId(lotId) {
         this.lotId = lotId;
     }

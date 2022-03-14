@@ -26,7 +26,7 @@ export default class GCMobileMLotStockInProperties extends MobileProperties{
         }  
          // MB开头的则是中装箱号 扫描到MB开头的，则更新当前操作的物料批次的中装箱号
         let dataIndex = -1;
-        if (data.startsWith("MB") || data.startsWith("TB") || data.startsWith("CM")) {
+        if (data.startsWith("MB") || data.startsWith("TB") || data.startsWith("CM") || data.startsWith("ZTB") || data.startsWith("ZCB")) {
             tableData.forEach((materialLot) => {
                 tableData.map((data, index) => {
                     if (data[rowKey] == materialLot[rowKey]) {

@@ -7,6 +7,8 @@ const ActionType = {
     StockOutTag: "StockOutTag",
     UnStockOutTag: "UnStockOutTag",
     AddShipOrderId: "AddShipOrderId",
+    CancelShipOrderId: "CancelShipOrderId",
+    PreView: "PreView",
     QueryMLot: "QueryMLot",
     ValidateMLot: "ValidateMLot",
     StockOut: "StockOut",
@@ -100,6 +102,16 @@ export default class RwMLotManagerRequestBody {
     static buildMLotAddShipOrderId(materialLotList, shipOrderId) {
         let body = new RwMLotManagerRequestBody(ActionType.AddShipOrderId, materialLotList);
         body.shipOrderId = shipOrderId;
+        return body;
+    }
+
+    static buildMLotCancelShipOrderId(materialLotList) {
+        let body = new RwMLotManagerRequestBody(ActionType.CancelShipOrderId, materialLotList);
+        return body;
+    }
+
+    static buildMLotPreViewMLot(materialLotList) {
+        let body = new RwMLotManagerRequestBody(ActionType.PreView, materialLotList);
         return body;
     }
 

@@ -159,6 +159,9 @@ import GcMobileRawMaterialStockInChangeProperties from './pages/Properties/compo
 import GCHNWarehouseImportProperties from './pages/Properties/components/GCHNWarehouseImportProperties';
 import HNWarehousePackageMaterialLotProperties from './pages/Properties/components/HNWarehousePackageMaterialLotProperties';
 import GCRWBoxLabelPrintProperties from './pages/Properties/components/GCRWBoxLabelPrintProperties';
+import GcFtReTestOrderProperties from './pages/Properties/components/GcFtReTestOrderProperties';
+import GCMobileRawMaterialOtherShipProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialOtherShipProperties';
+import GCFTPackageMaterialLotProperties from './pages/Properties/components/GCFTPackageMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -772,6 +775,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcReTestOrderProperties,
   },
+  //FT真空包重测
+  {
+    path: buildPath('Retest/GCFtVboxRetest'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcFtReTestOrderProperties,
+  },
   {
     path: buildPath('Doc/RecordExpressNumber'),
     layout: HeaderAsideFooterResponsiveLayout,
@@ -987,6 +996,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCFTStockOutOrderProperties,
   },
+  {
+    path: buildPath('HNWarehouse/SampleCollectionStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWltOtherStockOutOrderProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
@@ -1028,6 +1042,11 @@ const routerConfig = [
     path: buildPath('Pack/PackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: PackageMaterialLotProperties,
+  },
+  {
+    path: buildPath('Pack/FTPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCFTPackageMaterialLotProperties,
   },
   {
     path: buildPath('Pack/AddPackMaterialLot'),
@@ -1157,6 +1176,11 @@ const routerConfig = [
     path: buildPath('Mobile/MaterialLotIssue'),
     layout: BlankLayout,
     component: GCMobileMLotIssueByOrderProperties,
+  },
+  {
+    path: buildPath('Mobile/RawMaterialOtherShip'),
+    layout: BlankLayout,
+    component: GCMobileRawMaterialOtherShipProperties,
   },
   {
     path: buildPath('Mobile/MaterialLotShip'),
