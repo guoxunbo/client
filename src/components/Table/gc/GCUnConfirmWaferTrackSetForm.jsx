@@ -39,14 +39,6 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
         return  <FormItem>
                     <Row gutter={12}>
                         <Col span={4} >
-                            <span>{I18NUtils.getClientMessage(i18NCode.SerialNumber)}:</span>
-                        </Col>
-                        <Col span={8}>
-                            <Input ref={(serialNumber) => { this.serialNumber = serialNumber }} defaultValue={this.props.wafer.serialNumber} key="serialNumber"/>
-                        </Col>
-                    </Row>
-                    <Row gutter={12}>
-                        <Col span={4} >
                             <span>{I18NUtils.getClientMessage(i18NCode.LotId)}:</span>
                         </Col>
                         <Col span={8}>
@@ -95,7 +87,6 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
     handleOk= () => {
         let self = this;
         let waferSet = self.props.wafer;
-        let serialNumber = self.serialNumber.state.value;
         let lotId = self.lotId.state.value;
         let testSite = self.testSite.state.value;
         let modelId = self.modelId.state.value;
@@ -103,7 +94,6 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
         let riskGrade = self.riskGrade.state.value;
         let waferId = this.getWaferIdInfo();
         if(waferSet.objectRrn){
-            waferSet.serialNumber = serialNumber;
             waferSet.lotId = lotId;
             waferSet.testSite =testSite;
             waferSet.mdelId = modelId;
@@ -112,7 +102,6 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
             waferSet.waferId = waferId;
         } else {
             waferSet = new UnConfirmWaferSet();
-            waferSet.setSerialNumber(serialNumber);
             waferSet.setLotId(lotId);
             waferSet.setTestSite(testSite);
             waferSet.setModelId(modelId);
@@ -303,16 +292,12 @@ export default class GCUnConfirmWaferTrackSetForm extends EntityForm {
     setUnConfirmWaferTrackSetForm(waferInfo) {
         let self = this;
         let waferIdList = [];
-        let serialNumber = waferInfo.serialNumber;
         let lotId = waferInfo.lotId;
         let testSite = waferInfo.testSite;
         let modelId = waferInfo.modelId;
         let exceptionClassify = waferInfo.exceptionClassify;
         let riskGrade = waferInfo.riskGrade;
         let waferId = waferInfo.waferId;
-        if(self.serialNumber){
-            self.serialNumber.setState({value: serialNumber});
-        }
         if(self.lotId){
             self.lotId.setState({value: lotId});
         }
