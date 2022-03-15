@@ -120,6 +120,7 @@ const UrlConstant = {
     GCRwMaterialManageUrl: ModuleUrlConstant.GC + "rwMaterialManager",
     GCRawMlotPrintManageUrl: ModuleUrlConstant.GC + "rawMlotPrintManager",
     GCHNWarehouseImportSaveUrl: ModuleUrlConstant.GC + "HNWarehouseImportSave",
+    GCIRAPackageUrl: ModuleUrlConstant.GC + "IRAPackageManager",
 };
 
 const SystemRefListName = {
