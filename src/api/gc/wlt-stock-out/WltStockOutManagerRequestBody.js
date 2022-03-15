@@ -13,6 +13,7 @@ const actionType = {
     SaleShip: "SaleShip",
     GCRWAttributeChange: "GCRWAttributeChange",
     WltOtherStockOut: "WltOtherStockOut",
+    HNSampleCollectionStockOut: "HNSampleCollectionStockOut",
     MobileWltStockOut: "MobileWltStockOut",
     MobileSaleShip: "MobileSaleShip",
 }
@@ -71,6 +72,17 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         let body = new WltStockOutManagerRequestBody(actionType.WltOtherStockOut, documentLines, materialLotActions);
+        return body;
+    }
+
+    static buildHNSampleCollectionStockOut(documentLines, materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.HNSampleCollectionStockOut, documentLines, materialLotActions);
         return body;
     }
 

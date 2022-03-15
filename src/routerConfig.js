@@ -163,6 +163,8 @@ import GcFtReTestOrderProperties from './pages/Properties/components/GcFtReTestO
 import GCMobileRawMaterialOtherShipProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialOtherShipProperties';
 import GCFTPackageMaterialLotProperties from './pages/Properties/components/GCFTPackageMaterialLotProperties';
 import GCIRAPackingProperties from './pages/Properties/components/GCIRAPackingProperties';
+import GCHNSampleCollectionStockOutOrderProperties from './pages/Properties/components/GCHNSampleCollectionStockOutOrderProperties';
+
 /**
  * 构建url ?表示可选参数
  * @param {*} url 
@@ -999,7 +1001,7 @@ const routerConfig = [
   {
     path: buildPath('HNWarehouse/SampleCollectionStockOut'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GCWltOtherStockOutOrderProperties,
+    component: GCHNSampleCollectionStockOutOrderProperties,
   },
   //WarehouseManager
   {
