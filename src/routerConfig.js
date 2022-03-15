@@ -162,6 +162,7 @@ import GCRWBoxLabelPrintProperties from './pages/Properties/components/GCRWBoxLa
 import GcFtReTestOrderProperties from './pages/Properties/components/GcFtReTestOrderProperties';
 import GCMobileRawMaterialOtherShipProperties from './pages/Properties/components/gc/wafer-issue/GCMobileRawMaterialOtherShipProperties';
 import GCFTPackageMaterialLotProperties from './pages/Properties/components/GCFTPackageMaterialLotProperties';
+import GCIRAPackingProperties from './pages/Properties/components/GCIRAPackingProperties';
 import GCHNSampleCollectionStockOutOrderProperties from './pages/Properties/components/GCHNSampleCollectionStockOutOrderProperties';
 
 /**
@@ -1129,6 +1130,12 @@ const routerConfig = [
     path: buildPath('Rms/RecipeManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  //IRA装箱
+  {
+    path: buildPath('RawMaterial/GCIRAPacking'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIRAPackingProperties,
   },
 
   //MobileMenu of WMS
