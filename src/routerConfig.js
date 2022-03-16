@@ -164,6 +164,7 @@ import GCMobileRawMaterialOtherShipProperties from './pages/Properties/component
 import GCFTPackageMaterialLotProperties from './pages/Properties/components/GCFTPackageMaterialLotProperties';
 import GCIRAPackingProperties from './pages/Properties/components/GCIRAPackingProperties';
 import GCHNSampleCollectionStockOutOrderProperties from './pages/Properties/components/GCHNSampleCollectionStockOutOrderProperties';
+import GCCOBWaferStockOutTagProperties from './pages/Properties/components/GCCOBWaferStockOutTagProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -557,6 +558,12 @@ const routerConfig = [
     path: buildPath('GC/GCRwStockOutTagManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRwStockOutTagProperties,
+  },
+  //RW晶圆出货标注
+  {
+    path: buildPath('GC/GCCOBWaferStockOutTagManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCOBWaferStockOutTagProperties,
   },
   //RW取消标注及修改
   {

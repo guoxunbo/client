@@ -15,6 +15,9 @@ const ActionType = {
     RWBoxPrint: "RWBoxPrint",
     RWStockOutPrint: "RWStockOutPrint",
     RWBoxLabelPrint: "RWBoxLabelPrint",
+    COBWaferQuery: "COBWaferQuery",
+    WaferAutoPick: "WaferAutoPick",
+    WaferStockOutTag: "WaferStockOutTag",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -68,6 +71,48 @@ export default class RwMLotManagerRequestBody {
         return new RwMLotManagerRequestBody(ActionType.AutoPick, materialLotList, pickQty);
     }
 
+    /**
+     * 自动挑选
+     * @param materialLotUnitList 
+     * @returns 
+     */
+    static buildAutoPickTagMLotUnit(materialLotUnitList, pickQty) {
+        let body = new RwMLotManagerRequestBody(ActionType.WaferAutoPick);
+        body.materialLotUnitList = materialLotUnitList;
+        body.pickQty = pickQty;
+        return body;
+    }
+
+     /**
+     * 根据表单和查询条件获取
+     * @param tableRrn 
+     * @param whereClause 
+     * @returns 
+     */
+    static buildQueryCobWaferMLotUnit(tableRrn, whereClause) {
+        let body = new RwMLotManagerRequestBody(ActionType.COBWaferQuery);
+        body.tableRrn = tableRrn;
+        body.whereClause = whereClause;
+        return body;
+    }
+
+        /**
+     * 标注
+     * @param materialLotList 
+     * @param abbreviation 
+     * @param customerName 
+     * @param remarks 
+     * @returns 
+     */
+    static buildCOBMLotUnitStockTagging(materialLotUnitList, abbreviation, customerName, remarks) {
+        let body = new RwMLotManagerRequestBody(ActionType.WaferStockOutTag);
+        body.materialLotUnitList = materialLotUnitList;
+        body.abbreviation = abbreviation;
+        body.customerName = customerName;
+        body.remarks = remarks;
+        return body;
+    }
+        
     /**
      * 标注
      * @param materialLotList 

@@ -53,6 +53,42 @@ export default class RwMLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendCOBWaferStockTagQueryRequest = (object) => {
+        let {tableRrn, whereClause} = object;
+        let requestBody = RwMLotManagerRequestBody.buildQueryCobWaferMLotUnit(tableRrn, whereClause);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendAutoPickTagMLotUnitRequest = (object) => {
+        let {materialLotUnitList, pickQty} = object;
+        let requestBody = RwMLotManagerRequestBody.buildAutoPickTagMLotUnit(materialLotUnitList, pickQty);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendCOBStockOutTagRequest = (object) => {
+        let {materialLotUnitList, abbreviation, customerName, remarks} = object;
+        let requestBody = RwMLotManagerRequestBody.buildCOBMLotUnitStockTagging(materialLotUnitList, abbreviation, customerName, remarks);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendRwStockOutTagRequest = (object) => {
         let {materialLotList, abbreviation, customerName, remarks} = object;
         let requestBody = RwMLotManagerRequestBody.buildRwMLotStockTagging(materialLotList, abbreviation, customerName, remarks);
