@@ -46,11 +46,11 @@ export default class IssueByMaterialOrderScanTable extends EntityScanViewTable {
             documentId: document.name,
             materialLots: data,
             success: function(){
-                self.setState({
-                    formPrintObject: data,
-                    documentId: document.name,
-                    formVisible: true,
-                })
+                // self.setState({
+                //     formPrintObject: data,
+                //     documentId: document.name,
+                //     formVisible: true,
+                // })
                 self.setState({
                     loading: false
                 });
@@ -63,12 +63,12 @@ export default class IssueByMaterialOrderScanTable extends EntityScanViewTable {
 
     }
 
-    createForm = () => {
-        let childrens = [];
-        childrens.push(<PrintIssueOrderDialog key={PrintIssueOrderDialog.displayName} ref={this.formRef} object={this.state.formPrintObject} documentId = {this.state.documentId} visible={this.state.formVisible} 
-                                                         onOk={this.handleCancel} onCancel={this.handleCancel} />);                               
-        return childrens;
-    }
+    // createForm = () => {
+    //     let childrens = [];
+    //     childrens.push(<PrintIssueOrderDialog key={PrintIssueOrderDialog.displayName} ref={this.formRef} object={this.state.formPrintObject} documentId = {this.state.documentId} visible={this.state.formVisible} 
+    //                                                      onOk={this.handleCancel} onCancel={this.handleCancel} />);                               
+    //     return childrens;
+    // }
 
     handleCancel = ()=>{
         this.setState({

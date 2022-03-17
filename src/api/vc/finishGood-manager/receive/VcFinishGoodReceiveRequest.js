@@ -14,7 +14,8 @@ export default class VcFinishGoodReceiveRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendReceiveFinishGoodRequest = (object) => {
@@ -25,7 +26,8 @@ export default class VcFinishGoodReceiveRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 

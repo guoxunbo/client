@@ -19,7 +19,8 @@ export default class TableManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -35,7 +36,8 @@ export default class TableManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -50,7 +52,8 @@ export default class TableManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -65,7 +68,8 @@ export default class TableManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
@@ -81,7 +85,8 @@ export default class TableManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendExpRequest(requestObject, object.fileName);
+        const {sendExpRequest} = MessageUtils();
+        sendExpRequest(requestObject, object.fileName);
     }
 
     static sendImportRequest = (object, file) => {
@@ -92,7 +97,8 @@ export default class TableManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendImportData(requestObject, file);
+        const {sendImportData} = MessageUtils();
+        sendImportData(requestObject, file);
     }
 
 }

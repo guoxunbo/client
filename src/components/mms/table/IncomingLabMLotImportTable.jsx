@@ -31,7 +31,7 @@ export default class IncomingLabMLotImportTable extends CsvImportTable {
                 NoticeUtils.showSuccess();
             }
         }
-        CsvImportRequest.sendSaveLabMLotRequest(requestObject);
+        CsvImportRequest.sendSaveMLotsRequest(requestObject);
     }
 
 }

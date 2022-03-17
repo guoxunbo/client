@@ -15,7 +15,8 @@ export default class MaterialLotReleaseRequest{
             request: request,
             success: object.success
         }
-        MessageUtils.sendImportData(requestObject, file); 
+        const {sendImportData} = MessageUtils();
+        sendImportData(requestObject, file);
     }
 
     static sendReleaseMLot = (object) =>{
@@ -26,8 +27,9 @@ export default class MaterialLotReleaseRequest{
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject); 
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
-    
+
 }

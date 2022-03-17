@@ -8,7 +8,7 @@ import Request from '@api/Request';
 
 //来料接收
 export default class IncomingMaterialReceiveRequest {
-   
+
     static sendReceiveRequest = (object) => {
         let requestBody =  IncomingMaterialReceiveRequestBody.sendReceiveRequest(object.documentId, object.materialLotList);
         let requestHeader = new IncomingMaterialReceiveRequestHeader();
@@ -17,7 +17,8 @@ export default class IncomingMaterialReceiveRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendGetMaterialLot = (object) => {
@@ -28,8 +29,9 @@ export default class IncomingMaterialReceiveRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
-    
+
 }

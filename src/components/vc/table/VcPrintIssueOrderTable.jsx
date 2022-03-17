@@ -23,7 +23,6 @@ export default class VcPrintIssueOrderTable extends EntityListTable {
         let self = this ;
         let materialLots = self.state.data;
         let document = self.props.document;
-        debugger;
         self.setState({
             document: document,
             formObject: materialLots,

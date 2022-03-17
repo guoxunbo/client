@@ -17,6 +17,7 @@ export default class RawMaterialManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

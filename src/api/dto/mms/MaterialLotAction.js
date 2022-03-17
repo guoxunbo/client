@@ -17,6 +17,8 @@ export default class MaterialLotAction {
     actionCode;
     actionReason;
     actionComment;
+
+    reservedQty;
    
     setMaterialLotId(materialLotId) {
         this.materialLotId = materialLotId;
@@ -36,6 +38,10 @@ export default class MaterialLotAction {
 
     setTargetStorageRrn(targetStorageRrn) {
         this.targetStorageRrn = targetStorageRrn;
+    }
+
+    setTargetStorageId(targetStorageId) {
+        this.targetStorageId = targetStorageId;
     }
 
     setFromWarehouseRrn(fromWarehouseRrn) {
@@ -64,5 +70,9 @@ export default class MaterialLotAction {
 
     setActionComment(actionComment) {
         this.actionComment = actionComment;
+    }
+
+    setReservedQty(reservedQty) {
+        this.reservedQty = reservedQty;
     }
 }

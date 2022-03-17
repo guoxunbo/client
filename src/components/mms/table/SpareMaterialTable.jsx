@@ -17,7 +17,7 @@ import EventUtils from '@utils/EventUtils';
 import SpareMaterialManagerRequest from '@api/spare-material-manager/SpareMaterialManagerRequest';
 
 const TableName = {
-    ReceiveMLot: "MMReceiveMLot"
+    ReceiveMLot: "MMStockInPartsMLot"
 }
 
 export default class SpareMaterialTable extends EntityListTable {
@@ -26,7 +26,7 @@ export default class SpareMaterialTable extends EntityListTable {
 
     constructor(props) {
         super(props);
-        this.state = {...this.state, ...{receiveMaterialTable: {fields: []}}};
+        this.state = {...this.state, ...{receiveMaterialTable: {fields: []}}, receiveFlag: 'true'};
     }
 
     createForm = () => {
@@ -34,7 +34,7 @@ export default class SpareMaterialTable extends EntityListTable {
         childrens.push(<SpareMaterialDialog key={SpareMaterialDialog.displayName} ref={this.formRef} object={this.state.editorObject} visible={this.state.formVisible} 
                                                         table={this.state.table} onOk={this.refresh} onCancel={this.handleCancel} />);
         childrens.push(<ReceiveSpareMaterialDialog key={ReceiveSpareMaterialDialog.displayName} ref={this.formRef} object={this.state.receiveMaterialObject} visible={this.state.receiveMaterialFormVisible} 
-                                                            table={this.state.receiveMaterialTable} onOk={this.handleReceiveMaterialOk} onCancel={this.handleCancelReceiveMaterialLot} />);                                   
+                                                            table={this.state.receiveMaterialTable} onOk={this.handleReceiveMaterialOk} onCancel={this.handleCancelReceiveMaterialLot} receiveFlag={this.state.receiveFlag}/>);                                   
         return childrens;
     }
 
@@ -44,6 +44,7 @@ export default class SpareMaterialTable extends EntityListTable {
         buttons.push(this.createImportButton());
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createReceiveMaterialLotButton());
+        buttons.push(this.createReturnMaterialLotButton());
         return buttons;
     }
 
@@ -88,10 +89,10 @@ export default class SpareMaterialTable extends EntityListTable {
     }
 
     createReceiveMaterialLotButton = () => {
-        return <Button key="ReceiveMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot()}>{I18NUtils.getClientMessage(i18NCode.BtnReceiveMaterialLot)}</Button>;
+        return <Button key="ReceiveMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot(true)}>{I18NUtils.getClientMessage("创建入库")}</Button>;
     }
 
-    handleReceiveMaterialLot = () => {
+    handleReceiveMaterialLot = (flag) => {
         const selectedMaterial = this.getSingleSelectedRow();
         if (!selectedMaterial) {
             return;
@@ -102,14 +103,20 @@ export default class SpareMaterialTable extends EntityListTable {
             success: function(responseBody) {
                 let table = responseBody.table;
                 let receiveMaterialObject = TableObject.buildDefaultModel(table.fields, selectedMaterial);
+                receiveMaterialObject.targetWarehouseRrn = selectedMaterial.reserved29;
                 self.setState({
                     receiveMaterialTable: responseBody.table,
                     receiveMaterialObject: receiveMaterialObject,
-                    receiveMaterialFormVisible : true
+                    receiveMaterialFormVisible : true,
+                    receiveFlag: flag
                 });
             }
         }
         TableManagerRequest.sendGetByNameRequest(requestObject);
+    }
+
+    createReturnMaterialLotButton = () => {
+        return <Button key="ReturnMaterialLot" type="primary" className="table-button" icon="plus" onClick={() => this.handleReceiveMaterialLot(false)}>{I18NUtils.getClientMessage("退料入库")}</Button>;
     }
 
     handleReceiveMaterialOk = () => {
@@ -125,9 +132,3 @@ export default class SpareMaterialTable extends EntityListTable {
         });
     }
 }
-
-// const styles = {
-//     tableButton: {
-//         marginLeft:'20px'
-//     }
-// };

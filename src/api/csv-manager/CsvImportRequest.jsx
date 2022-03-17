@@ -5,11 +5,11 @@ import CsvImportRequestBody from './CsvImportRequestBody';
 import CsvImportRequestBodyHeader from './CsvImportRequestHeader';
 
 export default class CsvImportRequest {
-   
+
     /**
      * 导入数据
-     * @param {*} object 
-     * @param {*} file 
+     * @param {*} object
+     * @param {*} file
      */
     static sendImportRequest = (object, file) => {
         let requestBody =  CsvImportRequestBody.buildImport(object.importTypeNbTable)
@@ -19,12 +19,13 @@ export default class CsvImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendImportData(requestObject,file);
+        const {sendImportData} = MessageUtils();
+        sendImportData(requestObject, file);
     }
 
     /**
      * 批量保存原料物料
-     * @param {} object 
+     * @param {} object
      */
     static sendSaveRawMaterialRequest = (object) => {
         let requestBody = CsvImportRequestBody.buildSaveRawMaterial(object.dataList);
@@ -34,12 +35,13 @@ export default class CsvImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 批量保存成品物料
-     * @param {} object 
+     * @param {} object
      */
      static sendSaveProductRequest = (object) => {
         let requestBody = CsvImportRequestBody.buildSaveProduct(object.dataList);
@@ -49,21 +51,23 @@ export default class CsvImportRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 保存实验室物料批次
-     * @param {} object 
+     * @param {} object
      */
-    static sendSaveLabMLotRequest = (object) => {
-        let requestBody = CsvImportRequestBody.buildSaveLabMLot(object.dataList);
+    static sendSaveMLotsRequest = (object) => {
+        let requestBody = CsvImportRequestBody.buildSaveMLots(object.dataList);
         let requestHeader = new CsvImportRequestBodyHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.VCIncomingMaterialImportSaveDateUrl);
         let requestObject = {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 }

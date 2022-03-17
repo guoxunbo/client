@@ -14,7 +14,8 @@ export default class MaterialLotManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     static sendJudgePackedMaterialLotRequest = (object) => {
@@ -26,7 +27,8 @@ export default class MaterialLotManagerRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
 }

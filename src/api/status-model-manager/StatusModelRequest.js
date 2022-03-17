@@ -16,13 +16,14 @@ export default class StatusModelRequest {
             request: request,
             success: object.success
         }
-        MessageUtils.sendRequest(requestObject);
+        const {sendRequest} = MessageUtils();
+        sendRequest(requestObject);
     }
 
     /**
      * 获取statusModel以及所有事件。用于分配事件使用
      *  因为statusModel会有很多不同的类别，比如物料的，设备的，载具的，故此处需要传递具体的eventModelClass
-     * @param object 请求参数 
+     * @param object 请求参数
      * @example {stausModelRrn: 1, eventModelClass:"com.newbiest.mms.state.model.MaterialEvent", success}
      */
     static sendGetRoleByRrnAndGetAllEventRequest = (object) => {
@@ -49,6 +50,7 @@ export default class StatusModelRequest {
             requests: requests,
             success: object.success
         }
-        MessageUtils.sendTwoRequest(messageObject);
+        const {sendTwoRequest} = MessageUtils();
+        sendTwoRequest(messageObject);
     }
 }

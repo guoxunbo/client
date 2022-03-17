@@ -35,11 +35,11 @@ export default class EqpRecipeTable extends EntityListVersionControlTable {
     }
 
     createDownloadButton = () => {
-        return <AuthorityButton i18NCode={"下达"} key="add" type="primary" className="table-button" icon="download" onClick={() => this.handleAdd()}/>
+        return <AuthorityButton i18NCode={"下达"} name="down" type="primary" className="table-button" icon="download" onClick={() => this.handleAdd()}/>
     }
 
     createGoldenButton = () => {
-        return <AuthorityButton i18NCode={"Golden"} key="add" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}/>
+        return <AuthorityButton i18NCode={"Golden"} name="gold" type="primary" className="table-button" icon="plus" onClick={() => this.handleAdd()}/>
     }
     
     createEntitySubTreeTable = (record, currentTreeNode) => {
