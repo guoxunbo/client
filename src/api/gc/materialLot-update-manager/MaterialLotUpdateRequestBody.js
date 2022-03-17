@@ -5,7 +5,8 @@ const ActionType = {
     HoldMaterialLot: "HoldMLot",
     ReleaseMaterialLot: "ReleaseMLot",
     QueryReferenceList: "QueryReferenceList",
-    UpdateLotInfo: "UpdateLotInfo"
+    ImportQueryMLot: "ImportQueryMLot",
+    ImportQueryMLotUnit: "ImportQueryMLotUnit",
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -61,9 +62,14 @@ export default class MaterialLotUpdateRequestBody {
     }
 
     static buildImportSearch(tableRrn) {
-        let body = new MaterialLotUpdateRequestBody(ActionType.UpdateLotInfo);
+        let body = new MaterialLotUpdateRequestBody(ActionType.ImportQueryMLot);
         body.tableRrn = tableRrn;
         return body;
     }
 
+    static buildMLotUnitImportSearch(tableRrn) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.ImportQueryMLotUnit);
+        body.tableRrn = tableRrn;
+        return body;
+    }
 }
