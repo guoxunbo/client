@@ -165,6 +165,7 @@ import GCFTPackageMaterialLotProperties from './pages/Properties/components/GCFT
 import GCIRAPackingProperties from './pages/Properties/components/GCIRAPackingProperties';
 import GCHNSampleCollectionStockOutOrderProperties from './pages/Properties/components/GCHNSampleCollectionStockOutOrderProperties';
 import GCCOBWaferStockOutTagProperties from './pages/Properties/components/GCCOBWaferStockOutTagProperties';
+import GCIRAUnPackageProperties from './pages/Properties/components/GCIRAUnPackageProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1143,6 +1144,12 @@ const routerConfig = [
     path: buildPath('RawMaterial/GCIRAPacking'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIRAPackingProperties,
+  },
+  //IRA拆箱
+  {
+    path: buildPath('RawMaterial/GCIRAUnPackage'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIRAUnPackageProperties,
   },
 
   //MobileMenu of WMS
