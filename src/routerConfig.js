@@ -166,6 +166,7 @@ import GCIRAPackingProperties from './pages/Properties/components/GCIRAPackingPr
 import GCHNSampleCollectionStockOutOrderProperties from './pages/Properties/components/GCHNSampleCollectionStockOutOrderProperties';
 import GCCOBWaferStockOutTagProperties from './pages/Properties/components/GCCOBWaferStockOutTagProperties';
 import GCIRAUnPackageProperties from './pages/Properties/components/GCIRAUnPackageProperties';
+import GcOtherShipReservedOrderProperties from './pages/Properties/components/GcOtherShipReservedOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -768,6 +769,11 @@ const routerConfig = [
     path: buildPath('Doc/COMReservedManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCOMReservedOrderProperties,
+  },
+  {
+    path: buildPath('Doc/OtherShipReservedManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOtherShipReservedOrderProperties,
   },
   {
     path: buildPath('Doc/ReservedCaseManager'),
