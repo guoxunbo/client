@@ -18,7 +18,7 @@ export default class ReservedManagerRequest {
     }
 
     static sendGetOtherShipReservedMLot = (object) => {
-        let requestBody = ReservedManagerRequestBody.buildGetMaterialLot(object.docLineRrn, object.tableRrn, object.stockLocation);
+        let requestBody = ReservedManagerRequestBody.GetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {
