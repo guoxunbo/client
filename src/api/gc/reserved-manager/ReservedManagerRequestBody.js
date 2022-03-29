@@ -2,8 +2,10 @@ import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 
 const ActionType = {
     GetMLot : "GetMLot",
+    GetOtherShipReservedMLot : "GetOtherShipReservedMLot",
     GetMLotAndUser : "GetMLotAndUser",
     Reserved : "Reserved",
+    OtherShipReserved : "OtherShipReserved",
     UnReserved: "UnReserved",
     GetPackedMLots: "GetPackedMLots",
     GetAutoPackMLot: "GetAutoPackMLot",
@@ -39,7 +41,23 @@ export default class ReservedManagerRequestBody {
         body.stockLocation = stockLocation;
         return body;
     }
+
+    static GetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation) {
+        let body = new ReservedManagerRequestBody(ActionType.GetOtherShipReservedMLot, docLineRrn, tableRrn);
+        body.stockLocation = stockLocation;
+        return body;
+    }
     
+    static buildOtherShipReserved(docLineRrn, materialLots, stockNote) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new ReservedManagerRequestBody(ActionType.OtherShipReserved, docLineRrn, undefined, materialLotActions, stockNote);
+    }
+
     static buildGetMaterialLotAndUser(tableRrn,whereClause) {
         return new ReservedManagerRequestBody(ActionType.GetMLotAndUser, undefined, tableRrn, undefined, undefined, whereClause);
     }
