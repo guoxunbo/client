@@ -167,6 +167,7 @@ import GCHNSampleCollectionStockOutOrderProperties from './pages/Properties/comp
 import GCCOBWaferStockOutTagProperties from './pages/Properties/components/GCCOBWaferStockOutTagProperties';
 import GCIRAUnPackageProperties from './pages/Properties/components/GCIRAUnPackageProperties';
 import GcOtherShipReservedOrderProperties from './pages/Properties/components/GcOtherShipReservedOrderProperties';
+import GCSensorRmaIncomingMLotImportProperties from './pages/Properties/components/GCSensorRmaIncomingMLotImportProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -915,11 +916,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRelayBoxChangeStorageIdProperties,
   },
-  {
-    path: buildPath('WMS/IncomingMaterialImport'),
-    layout: HeaderAsideFooterResponsiveLayout,
-    component: GCIncomingMaterialImportProperties,
-  },
+  {
+    path: buildPath('WMS/IncomingMaterialImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCIncomingMaterialImportProperties,
+  },
+  {
+    path: buildPath('WMS/SensorRMAIncomingMLotImport'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCSensorRmaIncomingMLotImportProperties,
+  },
   {
     path: buildPath('WMS/GCIncomingMLotPrintLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
