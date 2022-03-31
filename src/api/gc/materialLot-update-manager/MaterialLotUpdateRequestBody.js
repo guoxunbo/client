@@ -7,6 +7,7 @@ const ActionType = {
     QueryReferenceList: "QueryReferenceList",
     ImportQueryMLot: "ImportQueryMLot",
     ImportQueryMLotUnit: "ImportQueryMLotUnit",
+    UpdateLotInfo: "UpdateLotInfo",
 }
 
 export default class MaterialLotUpdateRequestBody {
