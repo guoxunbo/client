@@ -1017,6 +1017,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCHNSampleCollectionStockOutOrderProperties,
   },
+  {
+    path: buildPath('HNWarehouse/AddPackageManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: AddPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/UnboxManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: UnPackagaMaterialLotProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
