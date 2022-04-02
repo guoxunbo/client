@@ -120,7 +120,7 @@ export default class GCRWAttributeChangeTable extends EntityListCheckTable {
                 });           
             }
         }
-        MaterialLotUpdateRequest.sendImportSearchRequest(object, option.file);
+        MaterialLotUpdateRequest.sendRwImportSearchRequest(object, option.file);
     }
 
    setSelectMLot = (record) => {
