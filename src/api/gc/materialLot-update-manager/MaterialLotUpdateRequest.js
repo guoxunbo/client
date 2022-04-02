@@ -107,4 +107,15 @@ export default class MaterialLotUpdateRequest {
         }
         MessageUtils.sendImportData(requestObject, file);
     }
+
+    static sendRwImportSearchRequest = (object, file) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildRwImportSearch(object.tableRrn);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCMLotImportSearchManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendImportData(requestObject, file);
+    }
 }

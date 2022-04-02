@@ -8,6 +8,7 @@ const ActionType = {
     ImportQueryMLot: "ImportQueryMLot",
     ImportQueryMLotUnit: "ImportQueryMLotUnit",
     UpdateLotInfo: "UpdateLotInfo",
+    RwImportQueryMLot: "RwImportQueryMLot",
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -64,6 +65,12 @@ export default class MaterialLotUpdateRequestBody {
 
     static buildImportSearch(tableRrn) {
         let body = new MaterialLotUpdateRequestBody(ActionType.ImportQueryMLot);
+        body.tableRrn = tableRrn;
+        return body;
+    }
+
+    static buildRwImportSearch(tableRrn) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.RwImportQueryMLot);
         body.tableRrn = tableRrn;
         return body;
     }
