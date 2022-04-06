@@ -232,6 +232,7 @@ const i18NCode = {
     TrueQtyCannotBeEmpty: "TrueQtyCannotBeEmpty",
     TrueQty: "TrueQty",
     StockLocation: "StockLocation",
+    ImportExceptionAndReImport: "ImportExceptionAndReImport",
 }
 
 const i18Messages = {
@@ -1380,6 +1381,11 @@ const i18Messages = {
         English: "StockLocation",
         Res: ""
     },
+    ImportExceptionAndReImport: {
+        Chinese: "导入异常，请重新导入！",
+        English: "Import Exception And ReImport",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};
