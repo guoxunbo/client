@@ -320,15 +320,22 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             checkFourCodeFlag: checkFourCodeFlag,
             success: function(responseBody) {
                 let importCode = responseBody.importCode;
-                self.setState({
-                    data: [],
-                    loading: false
-                }); 
-                let message =  I18NUtils.getClientMessage(i18NCode.OperationSucceed);
-                if(importCode != null || importCode != undefined){
-                    message = message + `:${importCode}`;
+                if(importCode == "" || importCode == null || importCode == undefined){
+                    self.setState({
+                        loading: false
+                    }); 
+                    Notification.showError(I18NUtils.getClientMessage(i18NCode.ImportExceptionAndReImport));
+                } else {
+                    self.setState({
+                        data: [],
+                        loading: false
+                    }); 
+                    let message =  I18NUtils.getClientMessage(i18NCode.OperationSucceed);
+                    if(importCode != null || importCode != undefined){
+                        message = message + `:${importCode}`;
+                    }
+                    MessageUtils.showOperationSuccess(message);
                 }
-                MessageUtils.showOperationSuccess(message);
             }
         }
         IncomingImportRequest.sendImportRequest(requestObject);
