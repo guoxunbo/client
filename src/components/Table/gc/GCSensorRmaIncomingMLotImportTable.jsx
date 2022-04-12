@@ -10,57 +10,12 @@ import EventUtils from "../../../api/utils/EventUtils";
 
 
 const TableName = {
-    IncomingMaterialImport: "GCIncomingMaterialImport"
+    GCRMAGoodProductImport: "GCRMAGoodProductImport"
 }
 
-const ImportType = {
-    GCCOBFinishProduct: "GCCOBFinishProduct",//COB（-4成品）
-    GCCOBRawMaterialProduct: "GCCOBRawMaterialProduct",//COM原料导入
-    GCSOCFinishProduct: "GCSOCFinishProduct",//SOC（-4成品）
-    GCWLAUnmeasured: "GCWLAUnmeasured",//WLA未测（-2.5）
-    GCFabSensor2Unmeasured: "GCFabSensor2Unmeasured",//FAB sensor(-2未测)
-    GCLCDCPUnmeasured25: "GCLCDCPUnmeasured25",//LCD CP未测（-2.5未测）
-    GCFabLCD1UnmeasuredPTC: "GCFabLCD1UnmeasuredPTC",//FAB LCD(-1未测PTC)
-    GCFabLCD1UnmeasuredSilterra: "GCFabLCD1UnmeasuredSilterra",//FAB LCD(-1未测Silterra)
-    GCFabSensor1Unmeasured: "GCFabSensor1Unmeasured",//FAB sensor(-1未测)
-    GCLCDCPMeasured26: "GCLCDCPMeasured26",//LCD CP已测（-2.6已测）
-    GCLCDCOGFinishProductEcretive: "GCLCDCOGFinishProductEcretive",//LCD（COG成品-ECRETIVE）
-    GCWLTPackageReturn: "GCWLTPackageReturn",//WLT封装回货（-3）
-    GCLcdCogDetial: "GCLcdCogDetial",//LCD(COG成品-明细)
-    GCSensorPackageReturn: "GCSensorPackageReturn",//sensor封装回货（-3未测）
-    GCRMAGoodProductImport: "GCRMAGoodProductImport",//Sensor RMA良品_-3.5导入
-    GCWltRMAGoodProductImport: "GCWltRMAGoodProductImport",//Wlt RMA良品_-3.5导入
-    GCRMACustomerReturnFinishProduct: "GCRMACustomerReturnFinishProduct",//RMA_客户退货_成品
-    GCRMAPureFinishProduct: "GCRMAPureFinishProduct",//RMA纯_成品-4
-    GCSamsungPackingList: "GCSamsungPackingList",//三星packing list(-2CP未测)
+export default class GCSensorRmaIncomingMLotImportTable extends EntityListTable {
 
-    GCSensorUnmeasured: "GCSensorUnmeasured",//sensor未测(-2未测)
-    GCSensorCPMeasuredHuaLing: "GCSensorCPMeasuredHuaLing",//sensor CP已测（-2.1华领）
-    GCSensorCPMeasuredKLT: "GCSensorCPMeasuredKLT",//sensor CP已测（KLT）
-    GCSensorPackageReturnCogo: "GCSensorPackageReturnCogo",//sensor封装回货（积高-3未测）
-    GCSensorTplccSenBang: "GCSensorTplccSenBang",//sensor-tplcc（森邦-3.5）
-    
-    GCFinishProductImport: "GCFinishProductImport",//成品导入模板
-    GCSOCWaferUnmeasured: "GCSOCWaferUnmeasured",//SOC(-2.5,-2.55未测/-2.6已测)
-    GCMaskFinishProduct: "GCMaskFinishProduct",//Mask成品导入
-}
-
-const ComType = [ImportType.GCCOBFinishProduct, ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct];
-const wltType = [ImportType.GCWLAUnmeasured, ImportType.GCMaskFinishProduct];
-const CpType = [ImportType.GCFabSensor2Unmeasured, ImportType.GCLCDCPUnmeasured25, ImportType.GCFabLCD1UnmeasuredPTC,
-                ImportType.GCFabLCD1UnmeasuredSilterra, ImportType.GCFabSensor1Unmeasured,ImportType.GCLCDCPMeasured26,
-                ImportType.GCSensorPackageReturn, ImportType.GCSOCWaferUnmeasured, ImportType.GCSensorCPMeasuredHuaLing,
-                ImportType.GCSensorCPMeasuredKLT, ImportType.GCSensorUnmeasured, ImportType.GCSensorPackageReturnCogo,
-                ImportType.GCSensorTplccSenBang];
-const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCWltRMAGoodProductImport,ImportType.GCRMACustomerReturnFinishProduct, ImportType.GCRMAPureFinishProduct];
-
-const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCWltRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
-                           ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
-                           ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct, ImportType.GCMaskFinishProduct];
-
-export default class GCIncomingMaterialImportTable extends EntityListTable {
-
-    static displayName = 'GCIncomingMaterialImportTable';
+    static displayName = 'GCSensorRmaIncomingMLotImportTable';
 
     constructor(props) {
         super(props);
@@ -169,8 +124,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             Notification.showInfo(I18NUtils.getClientMessage(i18NCode.ChooseImportTypePlease));
             return;
         }
-        if(importType == "COM原料导入"){
-            importType = "GCCOBRawMaterialProduct";
+        if(importType == "Sensor良品RMA"){
+            importType = "GCRMAGoodProductImport";
         }
         if(tableData.length > 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImportedPleaseCleanAllBeforeSelectNewFile));
@@ -187,8 +142,7 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             fileName: fileName,
             success: function(responseBody) {
                 let materialLotList = responseBody.dataList;
-                let bondedProperty = responseBody.bondedProperty;
-                materialLotList = self.getMaterialLotListByImportType(importType, bondedProperty, fileName, materialLotList);
+                materialLotList = self.getMaterialLotListByImportType(fileName, materialLotList);
                 self.setState({
                     data: materialLotList,
                     loading: false
@@ -215,7 +169,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseWarehouseIdPlease));
             return;
         }
-
 
         if(warehouseId == "ZJ_STOCK" || warehouseId == "浙江仓库"){
             warehouseId = 8143;
@@ -255,8 +208,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         let checkFourCodeFlag = this.state.value;
         let importType = this.props.propsFrom.props.form.getFieldValue(queryFields[0].name);
 
-        if(importType == "COM原料导入"){
-            importType = "GCCOBRawMaterialProduct";
+        if(importType == "Sensor良品RMA"){
+            importType = "GCRMAGoodProductImport";
         }
 
         if(warehouseId == 8142){
@@ -280,36 +233,32 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
         
-        if(RMAType.includes(importType)){
-            let requestObject = {
-                dataList: data,
-                success: function(responseBody) {
-                    let importFlag = responseBody.importFlag;
-                    if(importFlag) {
-                        Modal.confirm({
-                            title: '操作提示',
-                            content: I18NUtils.getClientMessage(i18NCode.TheMaterialLotIsExistedInStroage),
-                            okText: '确认',
-                            cancelText: '取消',
-                            onOk:() => {
-                                self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
-                            },
-                            onCancel:() => {
-                                self.setState({
-                                    loading: false
-                                }); 
-                                return;
-                            }
-                        });
-                    } else {
-                        self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
-                    }
+        let requestObject = {
+            dataList: data,
+            success: function(responseBody) {
+                let importFlag = responseBody.importFlag;
+                if(importFlag) {
+                    Modal.confirm({
+                        title: '操作提示',
+                        content: I18NUtils.getClientMessage(i18NCode.TheMaterialLotIsExistedInStroage),
+                        okText: '确认',
+                        cancelText: '取消',
+                        onOk:() => {
+                            self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
+                        },
+                        onCancel:() => {
+                            self.setState({
+                                loading: false
+                            }); 
+                            return;
+                        }
+                    });
+                } else {
+                    self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
                 }
             }
-            IncomingImportRequest.sendValidateRmaRequest(requestObject);
-        } else {
-            self.sendImportSaveRequest(data, importType, checkFourCodeFlag);
         }
+        IncomingImportRequest.sendValidateRmaRequest(requestObject);
     }
 
     sendImportSaveRequest =(data, importType, checkFourCodeFlag) =>{
@@ -320,22 +269,15 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
             checkFourCodeFlag: checkFourCodeFlag,
             success: function(responseBody) {
                 let importCode = responseBody.importCode;
-                if(importCode == "" || importCode == null || importCode == undefined){
-                    self.setState({
-                        loading: false
-                    }); 
-                    Notification.showError(I18NUtils.getClientMessage(i18NCode.ImportExceptionAndReImport));
-                } else {
-                    self.setState({
-                        data: [],
-                        loading: false
-                    }); 
-                    let message =  I18NUtils.getClientMessage(i18NCode.OperationSucceed);
-                    if(importCode != null || importCode != undefined){
-                        message = message + `:${importCode}`;
-                    }
-                    MessageUtils.showOperationSuccess(message);
+                self.setState({
+                    data: [],
+                    loading: false
+                }); 
+                let message =  I18NUtils.getClientMessage(i18NCode.OperationSucceed);
+                if(importCode != null || importCode != undefined){
+                    message = message + `:${importCode}`;
                 }
+                MessageUtils.showOperationSuccess(message);
             }
         }
         IncomingImportRequest.sendImportRequest(requestObject);
@@ -350,9 +292,11 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         }
     }
     
-    getMaterialLotListByImportType = (importType, bondedProperty, fileName, materialLotList) => {
+    getMaterialLotListByImportType = (fileName, materialLotList) => {
         materialLotList.forEach(materialLot =>{
             materialLot.reserved47 = fileName;
+            materialLot.lotId = materialLot.reserved30;
+            materialLot.materialLotId = materialLot.reserved31;
             if(materialLot.currentQty && isNaN(materialLot.currentQty)){
                 materialLot.errorFlag = true;
             }
@@ -360,40 +304,6 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
                 materialLot.errorFlag = true;
             }
         });
-        if(!resetLocationType.includes(importType)){
-            materialLotList.forEach(materialLot =>{
-                materialLot.reserved6 = bondedProperty;
-            });
-        }
-        if(ComType.includes(importType)){
-            materialLotList.forEach(materialLot =>{
-                materialLot.lotId = materialLot.materialLotId;
-            });
-        } else if(RMAType.includes(importType)){
-            materialLotList.forEach(materialLot =>{
-                materialLot.lotId = materialLot.reserved30;
-                materialLot.materialLotId = materialLot.reserved31;
-            });
-        } else if(wltType.includes(importType) || CpType.includes(importType)){
-            materialLotList.forEach(materialLot =>{
-                let fabLotId = materialLot.reserved30.split(".")[0];
-                let waferId = materialLot.reserved31;
-                if(waferId.length < 2){
-                    waferId = "0" + waferId;
-                }
-                materialLot.unitId = fabLotId +"-"+ waferId;
-            });
-        } else if(ImportType.GCWLTPackageReturn == importType){
-            materialLotList.forEach(materialLot =>{
-                let fabLotId = materialLot.reserved30.split(".")[0];
-                let waferId = materialLot.reserved31;
-                if(waferId.length < 2){
-                    waferId = "0" + waferId;
-                }
-                materialLot.unitId = fabLotId +"-"+ waferId;
-                materialLot.lotId = fabLotId;
-            });
-        }
         return materialLotList;
     }
 
