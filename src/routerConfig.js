@@ -870,6 +870,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: HKByOrderStockOutProperties,
   },
+  {
+    path: buildPath('HKWarehouse/UnReservedMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnReservedMaterialLotProperties,
+  },
   //WMS
   {
     path: buildPath('WMS/WarehouseManager'),
