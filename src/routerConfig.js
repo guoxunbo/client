@@ -169,6 +169,7 @@ import GCIRAUnPackageProperties from './pages/Properties/components/GCIRAUnPacka
 import GcOtherShipReservedOrderProperties from './pages/Properties/components/GcOtherShipReservedOrderProperties';
 import GCSensorRmaIncomingMLotImportProperties from './pages/Properties/components/GCSensorRmaIncomingMLotImportProperties';
 import HNWarehouseMaterialLotStockInProperties from './pages/Properties/components/HNWarehouseMaterialLotStockInProperties';
+import HNWarehouseMaterialLotWeighProperties from './pages/Properties/components/HNWarehouseMaterialLotWeighProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1053,6 +1054,11 @@ const routerConfig = [
     path: buildPath('HNWarehouse/MaterialLotStockIn'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: HNWarehouseMaterialLotStockInProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/MaterialLotWeigh'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseMaterialLotWeighProperties,
   },
   //WarehouseManager
   {
