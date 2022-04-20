@@ -16,6 +16,7 @@ export default class GcFTWaitReceiveMaterialLotTable extends EntityScanViewTable
         let buttons = [];
         buttons.push(this.createWaferIdNumber());
         buttons.push(this.createTotalNumber());
+        buttons.push(this.createExportDataButton());
         return buttons;
     }
     

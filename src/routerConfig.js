@@ -168,6 +168,7 @@ import GCCOBWaferStockOutTagProperties from './pages/Properties/components/GCCOB
 import GCIRAUnPackageProperties from './pages/Properties/components/GCIRAUnPackageProperties';
 import GcOtherShipReservedOrderProperties from './pages/Properties/components/GcOtherShipReservedOrderProperties';
 import GCSensorRmaIncomingMLotImportProperties from './pages/Properties/components/GCSensorRmaIncomingMLotImportProperties';
+import HNWarehouseMaterialLotStockInProperties from './pages/Properties/components/HNWarehouseMaterialLotStockInProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1047,6 +1048,11 @@ const routerConfig = [
     path: buildPath('HNWarehouse/UnboxManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/MaterialLotStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseMaterialLotStockInProperties,
   },
   //WarehouseManager
   {
