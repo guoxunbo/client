@@ -32,14 +32,6 @@ export default class GcFTOutOrderIssueUnitScanProperties extends EntityScanPrope
             tableData: tableData,
             loading: false
           });
-        } else if(tableData.length == 10){
-          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.MaterialLotIssueQtyCannotMoreThanTen));
-          self.setState({ 
-            tableData: tableData,
-            loading: false
-          });
-          self.form.resetFormFileds();
-          return;
         } else {
           let waitForIssueMLotUnitData = this.ftWaitForIssueUnitProperties.state.tableData;
           let requestObject = {
