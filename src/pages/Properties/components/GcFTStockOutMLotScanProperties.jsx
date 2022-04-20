@@ -48,14 +48,33 @@ export default class GcFTStockOutMLotScanProperties extends EntityScanProperties
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
               let materialLot = queryDatas[0];
+              let errorData = [];
               let trueData = [];
               tableData.forEach(data => {
-                if(!data.errorFlag){
+                if(data.errorFlag){
+                  errorData.push(data);
+                } else {
                   trueData.push(data);
                 }
-            });
+              });
+              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
+              }
+              tableData = [];
+              errorData.forEach(data => {
+                tableData.push(data);
+              });
+              trueData.forEach(data => {
+                tableData.push(data);
+              });
+
+              self.setState({ 
+                tableData: tableData,
+                loading: false
+              });
+              self.form.resetFormFileds();
               //验证箱中的产品、等级等信息是否一致
-              self.validationWltMLot(materialLot, trueData);
+              // self.validationWltMLot(materialLot, trueData);
             } else {
                 let data = new MaterialLot();
                 data[rowKey] = materialLotId;

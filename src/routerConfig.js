@@ -870,6 +870,21 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: HKByOrderStockOutProperties,
   },
+  {
+    path: buildPath('HKWarehouse/ReservedMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMReservedOrderProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/OtherShipReservedMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOtherShipReservedOrderProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/UnReservedMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnReservedMaterialLotProperties,
+  },
   //WMS
   {
     path: buildPath('WMS/WarehouseManager'),

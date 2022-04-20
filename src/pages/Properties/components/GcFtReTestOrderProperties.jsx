@@ -35,7 +35,13 @@ export default class GcFtReTestOrderProperties extends EntityProperties{
     }
 
     buildTable = () => {
-        return <FtRetestOrderTable scrollY={200} ref={(orderTable) => { this.orderTable = orderTable }} pagination={false} asyncType={ActionType.AsyncFtReTestIssueOrder} table={this.state.table} data={this.state.tableData} loading={this.state.loading} />
+        return <FtRetestOrderTable scrollY={200} 
+                                  ref={(orderTable) => { this.orderTable = orderTable }} 
+                                  pagination={false} 
+                                  asyncType={ActionType.AsyncWaferIssueOrder} 
+                                  table={this.state.table} 
+                                  data={this.state.tableData} 
+                                  loading={this.state.loading} />
     }
 
     buildOtherComponent = () => {
