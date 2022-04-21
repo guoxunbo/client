@@ -170,6 +170,7 @@ import GcOtherShipReservedOrderProperties from './pages/Properties/components/Gc
 import GCSensorRmaIncomingMLotImportProperties from './pages/Properties/components/GCSensorRmaIncomingMLotImportProperties';
 import HNWarehouseMaterialLotStockInProperties from './pages/Properties/components/HNWarehouseMaterialLotStockInProperties';
 import HNWarehouseMaterialLotWeighProperties from './pages/Properties/components/HNWarehouseMaterialLotWeighProperties';
+import HNWarehouseRecordExpressNumberProperties from './pages/Properties/components/HNWarehouseRecordExpressNumberProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1059,6 +1060,11 @@ const routerConfig = [
     path: buildPath('HNWarehouse/MaterialLotWeigh'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: HNWarehouseMaterialLotWeighProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/RecordExpressNumber'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseRecordExpressNumberProperties,
   },
   //WarehouseManager
   {
