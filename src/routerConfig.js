@@ -1072,6 +1072,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: HNWarehouseErpDocLineMergeProperties,
   },
+  {
+    path: buildPath('HNWarehouse/PrintCaseLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPrintCaseLabelProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
