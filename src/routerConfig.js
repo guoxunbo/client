@@ -171,6 +171,7 @@ import GCSensorRmaIncomingMLotImportProperties from './pages/Properties/componen
 import HNWarehouseMaterialLotStockInProperties from './pages/Properties/components/HNWarehouseMaterialLotStockInProperties';
 import HNWarehouseMaterialLotWeighProperties from './pages/Properties/components/HNWarehouseMaterialLotWeighProperties';
 import HNWarehouseRecordExpressNumberProperties from './pages/Properties/components/HNWarehouseRecordExpressNumberProperties';
+import HNWarehouseErpDocLineMergeProperties from './pages/Properties/components/HNWarehouseErpDocLineMergeProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1065,6 +1066,11 @@ const routerConfig = [
     path: buildPath('HNWarehouse/RecordExpressNumber'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: HNWarehouseRecordExpressNumberProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/ErpDocLineMerge'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseErpDocLineMergeProperties,
   },
   //WarehouseManager
   {

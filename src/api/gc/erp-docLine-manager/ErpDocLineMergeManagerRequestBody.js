@@ -1,6 +1,7 @@
 
 const ActionType = {
     MergeDoc: "MergeDoc",
+    HNWarehouseMergeDoc: "HNWarehouseMergeDoc",
 }
 
 export default class ErpDocLineMergeManagerRequestBody {
@@ -19,6 +20,10 @@ export default class ErpDocLineMergeManagerRequestBody {
      */
     static buildMergeDocLine(documentLines) {
         return new ErpDocLineMergeManagerRequestBody(ActionType.MergeDoc, documentLines);
+    }
+
+    static buildHNWarehouseMergeDocLine(documentLines) {
+        return new ErpDocLineMergeManagerRequestBody(ActionType.HNWarehouseMergeDoc, documentLines);
     }
 
 }
