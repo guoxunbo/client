@@ -28,8 +28,30 @@ export default class ReservedManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendHNWarehouseGetOtherShipReservedMLot = (object) => {
+        let requestBody = ReservedManagerRequestBody.buildHNWarehouseGetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation);
+        let requestHeader = new ReservedManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendOtherShipReserved= (object) => {
         let requestBody = ReservedManagerRequestBody.buildOtherShipReserved(object.docLineRrn, object.materialLots, object.stockNote);
+        let requestHeader = new ReservedManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendHNwarehouseOtherShipReserved= (object) => {
+        let requestBody = ReservedManagerRequestBody.buildHNwarehouseOtherShipReserved(object.docLineRrn, object.materialLots, object.stockNote);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {
