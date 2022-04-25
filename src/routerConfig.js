@@ -173,6 +173,7 @@ import HNWarehouseMaterialLotWeighProperties from './pages/Properties/components
 import HNWarehouseRecordExpressNumberProperties from './pages/Properties/components/HNWarehouseRecordExpressNumberProperties';
 import HNWarehouseErpDocLineMergeProperties from './pages/Properties/components/HNWarehouseErpDocLineMergeProperties';
 import HNWarehouseWltOtherStockOutOrderProperties from './pages/Properties/components/HNWarehouseWltOtherStockOutOrderProperties';
+import HNWarehouseOtherShipReservedOrderProperties from './pages/Properties/components/HNWarehouseOtherShipReservedOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1082,6 +1083,11 @@ const routerConfig = [
     path: buildPath('HNWarehouse/WltOtherStockOut'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: HNWarehouseWltOtherStockOutOrderProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/OtherShipReserved'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseOtherShipReservedOrderProperties,
   },
   //WarehouseManager
   {
