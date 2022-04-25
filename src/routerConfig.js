@@ -1089,6 +1089,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: HNWarehouseOtherShipReservedOrderProperties,
   },
+  {
+    path: buildPath('HNWarehouse/UnReservedMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnReservedMaterialLotProperties,
+  },
   //WarehouseManager
   {
     path: buildPath('Warehouse/GCMLotsUpdateTreasuryNote'),
