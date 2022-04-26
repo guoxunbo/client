@@ -11,8 +11,6 @@ import EventUtils from '../../../api/utils/EventUtils';
 import EntityListCheckTable from '../EntityListCheckTable';
 import FormItem from 'antd/lib/form/FormItem';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
-import moment from 'moment';
-
 
 export default class HNWarehouseRecordExpressNumberTable extends EntityListCheckTable {
 
@@ -47,12 +45,16 @@ export default class HNWarehouseRecordExpressNumberTable extends EntityListCheck
             recordCount: 0
         })
     }
+
+    componentDidMount=() => {
+        this.expressNumber.focus();
+    }
     
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createExpressInput());
         buttons.push(this.createStatistic());
-        buttons.push(this.createRecordExpressButton());
+        buttons.push(this.createManualRecordExpressButton());
         buttons.push(this.createCancelExpressButton());
         buttons.push(this.createPrintObliqueLabelButton());
 
@@ -61,24 +63,18 @@ export default class HNWarehouseRecordExpressNumberTable extends EntityListCheck
 
     createExpressInput = () => {
         return <FormItem>
-                  <Row gutter={18}>
+                  <Row gutter={16}>
                     <Col span={2} >
-                        <span>{I18NUtils.getClientMessage(i18NCode.ServiceType)}:</span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.ExpressCompany)}:</span>
                     </Col>
                     <Col span={4}>
-                        <RefListField ref={(serviceMode) => { this.serviceMode = serviceMode }} value={"20"} referenceName={SystemRefListName.ExpressServiceMode} />
+                        <RefListField ref={(expressCompany) => { this.expressCompany = expressCompany }} referenceName={SystemRefListName.ExpressCompany}/>
                     </Col>
                     <Col span={2} >
-                        <span>{I18NUtils.getClientMessage(i18NCode.PayType)}:</span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.ExpressNumber)}:</span>
                     </Col>
                     <Col span={4}>
-                        <RefListField ref={(payMode) => { this.payMode = payMode }}  value={"10"} referenceName={SystemRefListName.ExpressPayMode} />
-                    </Col>
-                    <Col span={2} >
-                        <span>{I18NUtils.getClientMessage(i18NCode.OrderTime)}:</span>
-                    </Col>
-                    <Col span={4}>
-                        <DatePicker ref={(orderTime) => { this.orderTime = orderTime }} locale={locale} showTime format={DateFormatType.DateTime} />
+                        <Input ref={(expressNumber) => { this.expressNumber = expressNumber }} key="expressNumber" placeholder={I18NUtils.getClientMessage(i18NCode.ExpressNumber)}/>
                     </Col>
                 </Row>
         </FormItem>
@@ -88,20 +84,22 @@ export default class HNWarehouseRecordExpressNumberTable extends EntityListCheck
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
 
-    recordAutoExpress = () => {
+    recordManualExpress = () => {
         let self = this;
-        let orderTime = this.orderTime.picker.state.value;
-        if(moment.isMoment(orderTime)){
-            orderTime = orderTime.format("YYYY-MM-DD HH:mm");
-        }
-
         let datas = this.getSelectedRows();
         if (datas.length === 0){
             return;
         }
-        let serviceMode = this.serviceMode.state.value;
-        let payMode = this.payMode.state.value;
-
+        let expressNumber = self.expressNumber.state.value;
+        let expressCompany = self.expressCompany.state.value;
+        if (expressNumber == "" || expressNumber == null || expressNumber == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressNumberCannotEmpty));
+            return;
+        }
+        if (expressCompany == "" || expressCompany == null || expressCompany == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ExpressCompanyCannotEmpty));
+            return;
+        }
         self.setState({
             loading: true
         });
@@ -109,9 +107,8 @@ export default class HNWarehouseRecordExpressNumberTable extends EntityListCheck
         
         let object = {
             datas : datas,
-            serviceMode: serviceMode,
-            payMode: payMode,
-            orderTime: orderTime,
+            expressNumber: expressNumber,
+            expressCompany: expressCompany,
             success: function(responseBody) {
                 self.setState({
                     data: [],
@@ -119,10 +116,13 @@ export default class HNWarehouseRecordExpressNumberTable extends EntityListCheck
                     selectedRows: [],
                     selectedRowKeys: []
                 }) 
+                self.expressNumber.setState({
+                    value : "",
+                });
                 MessageUtils.showOperationSuccess();
             }
         };
-        RecordExpressNumberRequest.sendAutoRecordExpress(object);
+        RecordExpressNumberRequest.sendManualRecordExpress(object);
     }
 
     cancelExpress = () => {
@@ -174,16 +174,16 @@ export default class HNWarehouseRecordExpressNumberTable extends EntityListCheck
         }
     }
 
-    createRecordExpressButton = () => {
-        return <Button key="recordExpress" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.recordAutoExpress}>
-                        {I18NUtils.getClientMessage(i18NCode.BtnRecordExpress)}
-                    </Button>
-    }
-
     createPrintObliqueLabelButton = () => {
         return <Button key="print" type="primary"  style={styles.tableButton} loading={this.state.loading} icon="barcode" onClick={() => this.printObliqueLabel()}>
                         {I18NUtils.getClientMessage(i18NCode.BtnPrintObliqueLabel)}
                     </Button>;
+    }
+
+    createManualRecordExpressButton = () => {
+        return <Button key="manaulRecordExpress" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.recordManualExpress}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnManualRecordExpress)}
+                    </Button>
     }
 
     createCancelExpressButton = () => {
