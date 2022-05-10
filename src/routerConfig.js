@@ -174,6 +174,7 @@ import HNWarehouseRecordExpressNumberProperties from './pages/Properties/compone
 import HNWarehouseErpDocLineMergeProperties from './pages/Properties/components/HNWarehouseErpDocLineMergeProperties';
 import HNWarehouseWltOtherStockOutOrderProperties from './pages/Properties/components/HNWarehouseWltOtherStockOutOrderProperties';
 import HNWarehouseOtherShipReservedOrderProperties from './pages/Properties/components/HNWarehouseOtherShipReservedOrderProperties';
+import GCSamsungOuterBoxLabelPrintProperties from './pages/Properties/components/GCSamsungOuterBoxLabelPrintProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -824,6 +825,11 @@ const routerConfig = [
     path: buildPath('GC/RWBoxLabelPrint'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRWBoxLabelPrintProperties,
+  },
+  {
+    path: buildPath('GC/SamsungOuterBoxLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCSamsungOuterBoxLabelPrintProperties,
   },
   //Hong Kong Warehouse香港仓
   {
