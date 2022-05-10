@@ -73,6 +73,17 @@ export default class RecordExpressNumberRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendSamsungOuterBoxLabelPrintRequest = (object) => {
+        let requestBody = RecordExpressNumberRequestBody.buildSamsungOuterBoxLabelPrint(object.documentLineList, object.printCount);
+        let requestHeader = new RecordExpressNumberRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendGetWayBillNumberRequest = (object) => {
         let requestBody = RecordExpressNumberRequestBody.buildQueryWayBillNumber(object.wayBillNumber);
         let requestHeader = new RecordExpressNumberRequestHeader();

@@ -8,6 +8,7 @@ const ActionType = {
     ObliqueLabelPrint: "ObliqueLabelPrint",
     BatchCancelOrder: "BatchCancelOrder",
     QueryOrderInfo: "QueryOrderInfo",
+    SamsungOuterBoxLabelPrint: "SamsungOuterBoxLabelPrint",
 }
 
 export default class RecordExpressNumberRequestBody {
@@ -62,6 +63,13 @@ export default class RecordExpressNumberRequestBody {
     static buildObliqueLabelPrint(materialLots) {
         let body = new RecordExpressNumberRequestBody(ActionType.ObliqueLabelPrint);
         body.materialLots = materialLots;
+        return body;
+    }
+    
+    static buildSamsungOuterBoxLabelPrint(documentLineList, printCount) {
+        let body = new RecordExpressNumberRequestBody(ActionType.SamsungOuterBoxLabelPrint);
+        body.documentLineList = documentLineList;
+        body.printCount = printCount;
         return body;
     }
     
