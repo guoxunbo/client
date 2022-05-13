@@ -29,6 +29,7 @@ export default class GcFTStockOutMLotScanTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStockOut());
+        buttons.push(this.createSaleShip());
         return buttons;
     }
 
@@ -79,6 +80,48 @@ export default class GcFTStockOutMLotScanTable extends EntityScanViewTable {
         FtMLotManagerRequest.sendFTStockOutRequest(requestObj);
     }
 
+    /**
+     * 销售出
+     * @returns 
+     */
+    saleShip = () => {
+        let self = this;
+        if (this.getErrorCount() > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
+
+        let orders = this.props.orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+            return;
+        }
+
+        let materialLots = this.state.data;
+        if (materialLots.length === 0 ) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+
+        let requestObj = {
+            documentLines : orders,
+            materialLots : materialLots,
+            success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.onSearch();
+                    self.props.resetData();
+                }
+                MessageUtils.showOperationSuccess();
+            }
+        }
+        FtMLotManagerRequest.sendFTSaleStockOutRequest(requestObj);
+    }    
+
     getErrorCount = () => {
         let materialLots = this.state.data;
         let count = 0;
@@ -116,6 +159,12 @@ export default class GcFTStockOutMLotScanTable extends EntityScanViewTable {
     createStockOut = () => {
         return <Button key="stockOut" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.stockOut}>
                         发货
+                    </Button>
+    }
+
+    createSaleShip = () => {
+        return <Button key="saleShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.saleShip}>
+                       {I18NUtils.getClientMessage(i18NCode.BtnSaleShip)}
                     </Button>
     }
 }

@@ -36,7 +36,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStockOut());
-        buttons.push(this.createThreeSideShip());
+        // buttons.push(this.createThreeSideShip());
         buttons.push(this.createOtherShip());
         return buttons;
     }
@@ -120,6 +120,10 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
         WltStockOutManagerRequest.sendWltStockOutRequest(requestObj);
     }
 
+    /**
+     * 销售出与三方销售合并
+     * @returns 
+     */
     saleShip = () => {
         let self = this;
         if (this.getErrorCount() > 0) {
@@ -127,11 +131,14 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
             return;
         }
         let checkSubCode = this.state.value;
-
-        let orderTable = this.props.orderTable;
-        let orders = orderTable.state.data;
-        if (orders.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+        let documentLine = this.props.orderTable.getSingleSelectedRow();
+        if (!documentLine) {
+            self.setState({ 
+                loading: false
+            });
+            return;
+        } else if(documentLine.reserved31 != 'ERP_SOA'){
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseSideShipOrderPlease));
             return;
         }
 
@@ -147,7 +154,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLines : orders,
+            documentLine : documentLine,
             materialLots : materialLots,
             checkSubCode: checkSubCode,
             success: function(responseBody) {
@@ -158,7 +165,7 @@ export default class GcWltStockOutMLotScanTable extends EntityScanViewTable {
                 MessageUtils.showOperationSuccess();
             }
         }
-        WltStockOutManagerRequest.sendSaleStockOutRequest(requestObj);
+        WltStockOutManagerRequest.sendSaleAndthreeSideStockOutRequest(requestObj);
     }
 
     //三方销售

@@ -3,6 +3,7 @@ import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 const actionType = {
     StockOut: "StockOut",
     Validation: "validation",
+    SaleShip: "SaleShip",
 }
 
 export default class StockOutManagerRequestBody {
@@ -27,6 +28,19 @@ export default class StockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         let body = new StockOutManagerRequestBody(actionType.StockOut);
+        body.documentLineList = documentLineList;
+        body.materialLotActions = materialLotActions;
+        return body;
+    }
+
+    static buildComSaleShip(documentLineList, materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new StockOutManagerRequestBody(actionType.SaleShip);
         body.documentLineList = documentLineList;
         body.materialLotActions = materialLotActions;
         return body;
