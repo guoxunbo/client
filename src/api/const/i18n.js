@@ -205,6 +205,7 @@ const i18NCode = {
     ExpressCompanyCannotEmpty: "ExpressCompanyCannotEmpty",
     BtnThreeSideShip: "ThreeSideShip",
     ChooseThreeSideShipOrderPlease: "ChooseThreeSideShipOrderPlease",
+    ChooseSideShipOrderPlease: "ChooseSideShipOrderPlease",
     ScrapReason: "ScrapReason",
     CheckSubCodeFlag: "CheckSubCodeFlag",
     BtnMergeDocLine: "MergeDocLine",
@@ -1154,6 +1155,11 @@ const i18Messages = {
     ChooseThreeSideShipOrderPlease: {
         Chinese: "请选择三方销售单!",
         English: "Choose ThreeSide ShipOrder Please!",
+        Res: "" 
+    },
+    ChooseSideShipOrderPlease: {
+        Chinese: "请选择销售单!",
+        English: "Choose ShipOrder Please!",
         Res: "" 
     },
     ScrapReason: {

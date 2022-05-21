@@ -1,11 +1,9 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import MaterialLot from "../../../api/dto/mms/MaterialLot";
-import WltStockOutManagerRequest from "../../../api/gc/wlt-stock-out/WltStockOutManagerRequest";
 import { Notification } from "../../../components/notice/Notice";
 import I18NUtils from "../../../api/utils/I18NUtils";
 import { i18NCode } from "../../../api/const/i18n";
 import GcFTStockOutMLotScanTable from "../../../components/Table/gc/GcFTStockOutMLotScanTable";
-import FtMLotManagerRequest from "../../../api/gc/ft-materialLot-manager/FtMLotManagerRequest";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 
 export default class GcFTStockOutMLotScanProperties extends EntityScanProperties{
@@ -73,8 +71,6 @@ export default class GcFTStockOutMLotScanProperties extends EntityScanProperties
                 loading: false
               });
               self.form.resetFormFileds();
-              //验证箱中的产品、等级等信息是否一致
-              // self.validationWltMLot(materialLot, trueData);
             } else {
                 let data = new MaterialLot();
                 data[rowKey] = materialLotId;
@@ -92,50 +88,6 @@ export default class GcFTStockOutMLotScanProperties extends EntityScanProperties
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
-    }
-
-    validationWltMLot = (materialLot, materialLots) => {
-      let self = this;
-      let {rowKey,tableData} = this.state;
-      let requestObject = {
-        queryMaterialLot : materialLot,
-        materialLots: materialLots,
-        success: function(responseBody) {
-            if(responseBody.falg){
-              let errorData = [];
-              let trueData = [];
-              tableData.forEach(data => {
-                if(data.errorFlag){
-                  errorData.push(data);
-                } else {
-                  trueData.push(data);
-                }
-            });
-            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-              trueData.unshift(materialLot);
-            }
-            tableData = [];
-            errorData.forEach(data => {
-              tableData.push(data);
-            });
-            trueData.forEach(data => {
-              tableData.push(data);
-            });
-          } else {
-            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-              materialLot.errorFlag = true;
-              tableData.unshift(materialLot);
-            }
-          }
-          
-          self.setState({ 
-            tableData: tableData,
-            loading: false
-          });
-          self.form.resetFormFileds();
-        }
-      }
-      FtMLotManagerRequest.sendValidationRequest(requestObject);
     }
 
     buildTable = () => {
