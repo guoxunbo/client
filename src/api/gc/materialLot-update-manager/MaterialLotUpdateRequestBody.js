@@ -9,6 +9,7 @@ const ActionType = {
     ImportQueryMLotUnit: "ImportQueryMLotUnit",
     UpdateLotInfo: "UpdateLotInfo",
     RwImportQueryMLot: "RwImportQueryMLot",
+    UpdateMRBComments: "UpdateMRBComments",
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -31,6 +32,13 @@ export default class MaterialLotUpdateRequestBody {
         this.reason = reason;
         this.remarks = remarks;
         this.referenceName = referenceName;
+    }
+
+    static buildUpdateMRBCommentsInfo(materialLotList, mrbComments) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.UpdateMRBComments);
+        body.materialLotList = materialLotList;
+        body.mrbComments = mrbComments;
+        return body;
     }
 
     static buildUpdateInfo(treasuryeNote, materialLotList) {

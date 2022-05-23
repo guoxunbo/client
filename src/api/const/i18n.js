@@ -98,6 +98,7 @@ const i18NCode = {
     BtnUnBind: "UnBind",
     BtnDelete: "Delete",
     BtnUpdate: "Update",
+    BtnMRB: "MRB",
     DataNotFound: "DataNotFound",
     Collapse: "Collapse",
     TransferItem: "Item",
@@ -234,6 +235,7 @@ const i18NCode = {
     TrueQty: "TrueQty",
     StockLocation: "StockLocation",
     ImportExceptionAndReImport: "ImportExceptionAndReImport",
+    PleaseChooseCancelReason: "PleaseChooseCancelReason",
 }
 
 const i18Messages = {
@@ -1391,7 +1393,12 @@ const i18Messages = {
         Chinese: "导入异常，请重新导入！",
         English: "Import Exception And ReImport",
         Res: ""
-    }
+    },
+    PleaseChooseCancelReason: {
+        Chinese: "请选择取消原因！",
+        English: "Please Choose Cancel Reason!",
+        Res: ""
+    },
 }
 
 export {i18Messages, i18NCode};
