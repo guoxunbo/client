@@ -10,6 +10,7 @@ const ActionType = {
     UpdateLotInfo: "UpdateLotInfo",
     RwImportQueryMLot: "RwImportQueryMLot",
     UpdateMRBComments: "UpdateMRBComments",
+    SaveShipHis: "SaveShipHis",
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -43,6 +44,10 @@ export default class MaterialLotUpdateRequestBody {
 
     static buildUpdateInfo(treasuryeNote, materialLotList) {
         return new MaterialLotUpdateRequestBody(ActionType.UpdateTreasuryNote, treasuryeNote, materialLotList);
+    }
+
+    static buildSaveShipHisInfo(materialLotList) {
+        return new MaterialLotUpdateRequestBody(ActionType.SaveShipHis, undefined, materialLotList);
     }
 
     static buildQuery(materialLotId) {

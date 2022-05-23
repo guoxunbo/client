@@ -130,4 +130,15 @@ export default class MaterialLotUpdateRequest {
         }
         MessageUtils.sendImportData(requestObject, file);
     }
+
+    static sendSaveMLotShipHisRequest = (object) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildSaveShipHisInfo(object.materialLotList);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

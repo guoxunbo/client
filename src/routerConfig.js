@@ -176,6 +176,7 @@ import HNWarehouseWltOtherStockOutOrderProperties from './pages/Properties/compo
 import HNWarehouseOtherShipReservedOrderProperties from './pages/Properties/components/HNWarehouseOtherShipReservedOrderProperties';
 import GCSamsungOuterBoxLabelPrintProperties from './pages/Properties/components/GCSamsungOuterBoxLabelPrintProperties';
 import LCDPackMaterialLotProperties from './pages/Properties/components/LCDPackMaterialLotProperties';
+import GCPackageMLotShipHisProperties from './pages/Properties/components/GCPackageMLotShipHisProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -477,6 +478,12 @@ const routerConfig = [
     path: buildPath('WLT/WltStockOutManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWltStockOutOrderProperties,
+  },
+  //WLT/CP出货
+  {
+    path: buildPath('GC/PackageMLotShipHisManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCPackageMLotShipHisProperties,
   },
     //WLT/CP其它出
   {
