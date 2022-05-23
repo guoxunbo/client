@@ -175,6 +175,7 @@ import HNWarehouseErpDocLineMergeProperties from './pages/Properties/components/
 import HNWarehouseWltOtherStockOutOrderProperties from './pages/Properties/components/HNWarehouseWltOtherStockOutOrderProperties';
 import HNWarehouseOtherShipReservedOrderProperties from './pages/Properties/components/HNWarehouseOtherShipReservedOrderProperties';
 import GCSamsungOuterBoxLabelPrintProperties from './pages/Properties/components/GCSamsungOuterBoxLabelPrintProperties';
+import LCDPackMaterialLotProperties from './pages/Properties/components/LCDPackMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -408,6 +409,12 @@ const routerConfig = [
     path: buildPath('COB/COBPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: COBPackMaterialLotProperties,
+  },
+  //LCD成品装箱
+  {
+    path: buildPath('LCD/LCDPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: LCDPackMaterialLotProperties,
   },
   //FT相关
   {
