@@ -22,6 +22,7 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
         buttons.push(this.createImportSearchButton());
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createUpdateButton());
+        buttons.push(this.createUpdateMRBCommentsButton());
         return buttons;
     }
     
@@ -34,7 +35,8 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
 
     createDeleteRemarkInput = () => {
         return <div style={styles.input}>
-            <Input ref={(input) => { this.input = input }} key="treasuryeNote" placeholder="入库备注" />
+            <Input style={styles.inputText} ref={(input) => { this.input = input }} key="treasuryeNote" placeholder="入库备注" />
+            <Input style={styles.inputText} ref={(inputMRB) => {this.inputMRB = inputMRB}} key="inputMRB" placeholder="MRB结论"/>
         </div>
     }
 
@@ -96,6 +98,33 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
         MaterialLotUpdateRequest.sendImportSearchRequest(object, option.file);
     }
 
+    UpdateMRBComments = () => {
+        debugger;
+        const self =this;
+        const {data} = self.state;
+        const inputMRB = self.inputMRB.state.value;
+        if(data.length == 0){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+        let requestObject = {
+            materialLotList: data,
+            mrbComments: inputMRB,
+            success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.resetData();
+                };
+                self.inputMRB.setState({value:""})
+                MessageUtils.showOperationSuccess();
+            }
+        }
+        MaterialLotUpdateRequest.sendUpdateMRBCommentsRequest(requestObject);
+    }
+
     createImportSearchButton = () => {
         return (<Upload key="importSearch" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
                     customRequest={(option) => this.importSearch(option)} showUploadList={false} >
@@ -109,6 +138,12 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
                     </Button>
     }
 
+    createUpdateMRBCommentsButton = () => {
+        return <Button key="MRBComments" type="primary" style={styles.tableButton} loading={this.state.loading} onClick={this.UpdateMRBComments}>
+                    {IconUtils.buildIcon("edit")}{I18NUtils.getClientMessage(i18NCode.BtnMRB)}
+        </Button>
+    }
+
     createTotalQty = () => {
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalStrokeCount)}：{this.state.data.length}</Tag>
     }
@@ -117,7 +152,13 @@ export default class GCMLotsUpdateTreasuryNoteTable extends EntityScanViewTable 
 
 const styles = {
     input: {
-        width: 300
+        width: 620,
+        display: 'inline'
+    },
+    inputText: {
+        width: 300,
+        marginRight: 10,
+        float: 'left'
     },
     tableButton: {
         marginLeft:'20px'
