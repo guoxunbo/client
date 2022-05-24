@@ -13,6 +13,7 @@ const actionType = {
     SaleShip: "SaleShip",
     GCRWAttributeChange: "GCRWAttributeChange",
     WltOtherStockOut: "WltOtherStockOut",
+    WltOtherShipByOrder: "WltOtherShipByOrder",
     HNSampleCollectionStockOut: "HNSampleCollectionStockOut",
     HNWarehouseWltOtherStockOut: "HNWarehouseWltOtherStockOut",
     MobileWltStockOut: "MobileWltStockOut",
@@ -74,6 +75,19 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         let body = new WltStockOutManagerRequestBody(actionType.WltOtherStockOut, documentLines, materialLotActions);
+        return body;
+    }
+
+    static buildWltShipByOrder(documentLine, materialLots) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        let body = new WltStockOutManagerRequestBody(actionType.WltOtherShipByOrder);
+        body.documentLine = documentLine;
+        body.materialLotActions = materialLotActions;
         return body;
     }
 
