@@ -33,6 +33,7 @@ export default class GcWltOtherStockOutMLotScanTable extends EntityScanViewTable
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createStockOut());
+        buttons.push(this.createShipByOrder());
         return buttons;
     }
 
@@ -82,6 +83,43 @@ export default class GcWltOtherStockOutMLotScanTable extends EntityScanViewTable
             }
         }
         WltStockOutManagerRequest.sendWltOtherStockOutRequest(requestObj);
+    }
+
+    shipByOrder = () => {
+        let self = this;
+        if (this.getErrorCount() > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
+
+        let documentLine = self.props.orderTable.getSingleSelectedRow();
+        if (!documentLine) {
+            return;
+        }
+
+        let materialLots = this.state.data;
+        if (materialLots.length === 0 ) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+
+        let requestObj = {
+            documentLine : documentLine,
+            materialLots : materialLots,
+            success: function(responseBody) {
+                if (self.props.resetData) {
+                    self.props.onSearch();
+                    self.props.resetData();
+                }
+                MessageUtils.showOperationSuccess();
+            }
+        }
+        WltStockOutManagerRequest.sendWltShipByOrderRequest(requestObj);
     }
 
     getErrorCount = () => {
@@ -134,6 +172,13 @@ export default class GcWltOtherStockOutMLotScanTable extends EntityScanViewTable
                         材料/其他出
                     </Button>
     }
+
+    createShipByOrder = () => {
+        return <Button key="shipByOrder" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.shipByOrder}>
+                        依订单出货
+                    </Button>
+    }
+
 
 }
 

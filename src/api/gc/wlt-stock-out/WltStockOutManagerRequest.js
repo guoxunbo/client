@@ -42,6 +42,18 @@ export default class WltStockOutManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendWltShipByOrderRequest = (object) => {
+        let {documentLine, materialLots} = object;
+        let requestBody = WltStockOutManagerRequestBody.buildWltShipByOrder(documentLine, materialLots);
+        let requestHeader = new WltStockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCWltStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendHNSampleCollectionStockOutRequest = (object) => {
         let {documentLines, materialLots} = object;
         let requestBody = WltStockOutManagerRequestBody.buildHNSampleCollectionStockOut(documentLines, materialLots);
