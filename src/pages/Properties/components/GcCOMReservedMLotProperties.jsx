@@ -19,7 +19,7 @@ export default class GcCOMReservedMLotProperties extends EntityScanProperties{
 
     buildTable = () => {
         return <GcCOMReservedMLotTable 
-                            pagination={false}
+                            pagination={true}
                             rowKey={this.state.rowKey} 
                             orderTable={this.props.orderTable} 
                             table={this.state.table} 
