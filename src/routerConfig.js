@@ -178,6 +178,7 @@ import GCSamsungOuterBoxLabelPrintProperties from './pages/Properties/components
 import LCDPackMaterialLotProperties from './pages/Properties/components/LCDPackMaterialLotProperties';
 import GCPackageMLotShipHisProperties from './pages/Properties/components/GCPackageMLotShipHisProperties';
 import GCBondedWarehouseInTransitMaterialLotReceiveProperties from './pages/Properties/components/GCBondedWarehouseInTransitMaterialLotReceiveProperties';
+import GCBondedWarehousePackMaterialLotsProperties from './pages/Properties/components/GCBondedWarehousePackMaterialLotsProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1038,6 +1039,11 @@ const routerConfig = [
     path: buildPath('BondedWarehouse/InTransitMaterialLotReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCBondedWarehouseInTransitMaterialLotReceiveProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/PackMaterialLots'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCBondedWarehousePackMaterialLotsProperties,
   },
     //HuNanWarehouseManager
   {
