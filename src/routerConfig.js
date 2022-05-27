@@ -1045,6 +1045,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCBondedWarehousePackMaterialLotsProperties,
   },
+  {
+    path: buildPath('BondedWarehouse/MLotsSaleReserved'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMReservedOrderProperties,
+  },
     //HuNanWarehouseManager
   {
       path: buildPath('HNWarehouse/IncomingMaterialImport'),
