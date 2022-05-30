@@ -179,6 +179,7 @@ import LCDPackMaterialLotProperties from './pages/Properties/components/LCDPackM
 import GCPackageMLotShipHisProperties from './pages/Properties/components/GCPackageMLotShipHisProperties';
 import GCBondedWarehouseInTransitMaterialLotReceiveProperties from './pages/Properties/components/GCBondedWarehouseInTransitMaterialLotReceiveProperties';
 import GCBondedWarehousePackMaterialLotsProperties from './pages/Properties/components/GCBondedWarehousePackMaterialLotsProperties';
+import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/BSWMLotsSaleStockOutOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1049,6 +1050,11 @@ const routerConfig = [
     path: buildPath('BondedWarehouse/MLotsSaleReserved'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcCOMReservedOrderProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/MLotsSaleStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: BSWMLotsSaleStockOutOrderProperties,
   },
     //HuNanWarehouseManager
   {
