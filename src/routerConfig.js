@@ -1061,6 +1061,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: AddPackagaMaterialLotProperties,
   },
+  {
+    path: buildPath('BondedWarehouse/Unbox'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: UnPackagaMaterialLotProperties,
+  },
     //HuNanWarehouseManager
   {
       path: buildPath('HNWarehouse/IncomingMaterialImport'),
