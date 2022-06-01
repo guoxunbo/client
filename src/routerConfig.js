@@ -180,6 +180,7 @@ import GCPackageMLotShipHisProperties from './pages/Properties/components/GCPack
 import GCBondedWarehouseInTransitMaterialLotReceiveProperties from './pages/Properties/components/GCBondedWarehouseInTransitMaterialLotReceiveProperties';
 import GCBondedWarehousePackMaterialLotsProperties from './pages/Properties/components/GCBondedWarehousePackMaterialLotsProperties';
 import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/BSWMLotsSaleStockOutOrderProperties';
+import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDocLineMergeProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1065,6 +1066,11 @@ const routerConfig = [
     path: buildPath('BondedWarehouse/Unbox'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/ErpDocLineMerge'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: BSWErpDocLineMergeProperties,
   },
     //HuNanWarehouseManager
   {
