@@ -1072,6 +1072,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: BSWErpDocLineMergeProperties,
   },
+  {
+    path: buildPath('BondedWarehouse/PrintCaseLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPrintCaseLabelProperties,
+  },
     //HuNanWarehouseManager
   {
       path: buildPath('HNWarehouse/IncomingMaterialImport'),
