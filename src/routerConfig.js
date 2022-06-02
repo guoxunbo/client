@@ -181,6 +181,7 @@ import GCBondedWarehouseInTransitMaterialLotReceiveProperties from './pages/Prop
 import GCBondedWarehousePackMaterialLotsProperties from './pages/Properties/components/GCBondedWarehousePackMaterialLotsProperties';
 import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/BSWMLotsSaleStockOutOrderProperties';
 import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDocLineMergeProperties';
+import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -975,6 +976,11 @@ const routerConfig = [
     path: buildPath('WMS/GCIncomingMLotPrintLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotPrintLabelProperties,
+  },
+  {
+    path: buildPath('WMS/GCWaferPrintLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWaferPrintLabelProperties,
   },
   {
     path: buildPath('WMS/GCIncomingMLotDelete'),
