@@ -10,6 +10,8 @@ const ActionType = {
     FTStockOut: "FTStockOut",
     FTOutOrderIssue: "FTOutOrderIssue",
     SaleShip: "SaleShip",
+    BSWFTStockOut: "BSWFTStockOut",
+    BSWSaleShip: "BSWSaleShip",
 }
 
 export default class FtMLotManagerRequestBody {
@@ -119,6 +121,32 @@ export default class FtMLotManagerRequestBody {
 
     static buildFTSaleShip(documentLines, materialLots) {
         let body = new FtMLotManagerRequestBody(ActionType.SaleShip);
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        body.setMaterialLotActions(materialLotActions);
+        body.setDocumentLines(documentLines);
+        return body;
+    }
+
+    static buildBSWFTStockOut(documentLines, materialLots) {
+        let body = new FtMLotManagerRequestBody(ActionType.BSWFTStockOut);
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        body.setMaterialLotActions(materialLotActions);
+        body.setDocumentLines(documentLines);
+        return body;
+    }
+
+    static buildBSWFTSaleShip(documentLines, materialLots) {
+        let body = new FtMLotManagerRequestBody(ActionType.BSWSaleShip);
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();

@@ -96,10 +96,15 @@ export default class StockInStorageTable extends EntityScanViewTable {
 
         let object = {
             success: function(responseBody) {
+                let messageInfo = responseBody.messageInfo;
                 self.setState({
                     loading: false
                 });
-               MessageUtils.showOperationSuccess();
+                if(messageInfo == "" || messageInfo == null || messageInfo == undefined){
+                    MessageUtils.showOperationSuccess();
+                } else {
+                    Notification.showError(messageInfo);
+                }
             }
         }
         StockInManagerRequest.sendFtImportRequest(object, option.file);

@@ -178,6 +178,10 @@ import GCSamsungOuterBoxLabelPrintProperties from './pages/Properties/components
 import LCDPackMaterialLotProperties from './pages/Properties/components/LCDPackMaterialLotProperties';
 import GCPackageMLotShipHisProperties from './pages/Properties/components/GCPackageMLotShipHisProperties';
 import GCBondedWarehouseInTransitMaterialLotReceiveProperties from './pages/Properties/components/GCBondedWarehouseInTransitMaterialLotReceiveProperties';
+import GCBondedWarehousePackMaterialLotsProperties from './pages/Properties/components/GCBondedWarehousePackMaterialLotsProperties';
+import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/BSWMLotsSaleStockOutOrderProperties';
+import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDocLineMergeProperties';
+import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -974,6 +978,11 @@ const routerConfig = [
     component: GCIncomingMLotPrintLabelProperties,
   },
   {
+    path: buildPath('WMS/GCWaferPrintLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCWaferPrintLabelProperties,
+  },
+  {
     path: buildPath('WMS/GCIncomingMLotDelete'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
@@ -1038,6 +1047,41 @@ const routerConfig = [
     path: buildPath('BondedWarehouse/InTransitMaterialLotReceive'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCBondedWarehouseInTransitMaterialLotReceiveProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/PackMaterialLots'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCBondedWarehousePackMaterialLotsProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/MLotsSaleReserved'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCOMReservedOrderProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/MLotsSaleStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: BSWMLotsSaleStockOutOrderProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/AddPackage'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: AddPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/Unbox'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: UnPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/ErpDocLineMerge'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: BSWErpDocLineMergeProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/PrintCaseLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPrintCaseLabelProperties,
   },
     //HuNanWarehouseManager
   {
