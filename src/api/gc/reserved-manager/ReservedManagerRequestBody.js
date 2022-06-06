@@ -12,6 +12,8 @@ const ActionType = {
     GetPackedRuleList: "GetPackedRuleList",
     HNWarehouseGetOtherShipReservedMLot : "HNWarehouseGetOtherShipReservedMLot",
     HNWarehouseOtherShipReserved: "HNWarehouseOtherShipReserved",
+    BSWGetOtherShipReservedMLot : "BSWGetOtherShipReservedMLot",
+    BSWOtherShipReserved: "BSWOtherShipReserved",
 }
 export default class ReservedManagerRequestBody {
 
@@ -55,6 +57,12 @@ export default class ReservedManagerRequestBody {
         body.stockLocation = stockLocation;
         return body;
     }
+
+    static buildBSWGetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation) {
+        let body = new ReservedManagerRequestBody(ActionType.BSWGetOtherShipReservedMLot, docLineRrn, tableRrn);
+        body.stockLocation = stockLocation;
+        return body;
+    }
     
     static buildOtherShipReserved(docLineRrn, materialLots, stockNote) {
         let materialLotActions = [];
@@ -74,6 +82,16 @@ export default class ReservedManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         return new ReservedManagerRequestBody(ActionType.HNWarehouseOtherShipReserved, docLineRrn, undefined, materialLotActions, stockNote);
+    }
+
+    static buildBSWOtherShipReserved(docLineRrn, materialLots, stockNote) {
+        let materialLotActions = [];
+        materialLots.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction)
+        });
+        return new ReservedManagerRequestBody(ActionType.BSWOtherShipReserved, docLineRrn, undefined, materialLotActions, stockNote);
     }
 
     static buildGetMaterialLotAndUser(tableRrn,whereClause) {
