@@ -182,6 +182,7 @@ import GCBondedWarehousePackMaterialLotsProperties from './pages/Properties/comp
 import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/BSWMLotsSaleStockOutOrderProperties';
 import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDocLineMergeProperties';
 import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
+import BSWOtherShipReservedOrderProperties from './pages/Properties/components/BSWOtherShipReservedOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1082,6 +1083,11 @@ const routerConfig = [
     path: buildPath('BondedWarehouse/PrintCaseLabel'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcPrintCaseLabelProperties,
+  },
+  {
+    path: buildPath('BondedWarehouse/MLotsOtherShipReserved'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: BSWOtherShipReservedOrderProperties,
   },
     //HuNanWarehouseManager
   {
