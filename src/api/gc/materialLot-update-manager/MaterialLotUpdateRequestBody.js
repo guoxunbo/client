@@ -9,6 +9,8 @@ const ActionType = {
     ImportQueryMLotUnit: "ImportQueryMLotUnit",
     UpdateLotInfo: "UpdateLotInfo",
     RwImportQueryMLot: "RwImportQueryMLot",
+    UpdateMRBComments: "UpdateMRBComments",
+    SaveShipHis: "SaveShipHis",
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -33,8 +35,19 @@ export default class MaterialLotUpdateRequestBody {
         this.referenceName = referenceName;
     }
 
+    static buildUpdateMRBCommentsInfo(materialLotList, mrbComments) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.UpdateMRBComments);
+        body.materialLotList = materialLotList;
+        body.mrbComments = mrbComments;
+        return body;
+    }
+
     static buildUpdateInfo(treasuryeNote, materialLotList) {
         return new MaterialLotUpdateRequestBody(ActionType.UpdateTreasuryNote, treasuryeNote, materialLotList);
+    }
+
+    static buildSaveShipHisInfo(materialLotList) {
+        return new MaterialLotUpdateRequestBody(ActionType.SaveShipHis, undefined, materialLotList);
     }
 
     static buildQuery(materialLotId) {

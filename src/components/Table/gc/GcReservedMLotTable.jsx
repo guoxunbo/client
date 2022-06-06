@@ -13,7 +13,7 @@ import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedMan
  */
 export default class GcReservedMLotTable extends EntityListCheckTable {
 
-    static displayName = 'GcStockOutMLotTable';
+    static displayName = 'GcReservedMLotTable';
 
     createButtonGroup = () => {
         let buttons = [];

@@ -6,6 +6,18 @@ import { UrlConstant } from "../../const/ConstDefine";
 
 export default class MaterialLotUpdateRequest {
     
+    static sendUpdateMRBCommentsRequest = (object) => {
+        debugger;
+        let requestBody = MaterialLotUpdateRequestBody.buildUpdateMRBCommentsInfo(object.materialLotList, object.mrbComments);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendUpdateRequest = (object) => {
         let requestBody = MaterialLotUpdateRequestBody.buildUpdateInfo(object.treasuryeNote, object.materialLotList);
         let requestHeader = new MaterialLotUpdateRequestHeader();
@@ -117,5 +129,16 @@ export default class MaterialLotUpdateRequest {
             success: object.success
         }
         MessageUtils.sendImportData(requestObject, file);
+    }
+
+    static sendSaveMLotShipHisRequest = (object) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildSaveShipHisInfo(object.materialLotList);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
     }
 }

@@ -73,8 +73,9 @@ export default class FtMLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
-    static sendValidationRequest = (object) => {
-        let requestBody = FtMLotManagerRequestBody.buildValidateMLot(object.queryMaterialLot, object.materialLots);
+    static sendFTStockOutRequest = (object) => {
+        let {documentLines, materialLots} = object;
+        let requestBody = FtMLotManagerRequestBody.buildFTStockOut(documentLines, materialLots);
         let requestHeader = new FtMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCftMaterialLotManagerUrl);
         let requestObject = {
@@ -84,9 +85,9 @@ export default class FtMLotManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
-    static sendFTStockOutRequest = (object) => {
+    static sendFTSaleStockOutRequest = (object) => {
         let {documentLines, materialLots} = object;
-        let requestBody = FtMLotManagerRequestBody.buildFTStockOut(documentLines, materialLots);
+        let requestBody = FtMLotManagerRequestBody.buildFTSaleShip(documentLines, materialLots);
         let requestHeader = new FtMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCftMaterialLotManagerUrl);
         let requestObject = {

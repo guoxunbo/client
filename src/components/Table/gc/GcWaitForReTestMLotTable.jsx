@@ -15,6 +15,7 @@ export default class GcWaitForReTestMLotTable extends EntityScanViewTable {
         let buttons = [];
         buttons.push(this.createStatistic());
         buttons.push(this.createTotalNumber());
+        buttons.push(this.createExportDataButton());
         return buttons;
     }
     

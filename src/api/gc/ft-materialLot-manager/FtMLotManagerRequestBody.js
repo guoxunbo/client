@@ -7,9 +7,9 @@ const ActionType = {
     StockIn: "StockIn",
     QueryWaitIssueUnit: "QueryWaitIssueUnit",
     FtIssue: "FtIssue",
-    ValidateMLot: "ValidateMLot",
     FTStockOut: "FTStockOut",
     FTOutOrderIssue: "FTOutOrderIssue",
+    SaleShip: "SaleShip",
 }
 
 export default class FtMLotManagerRequestBody {
@@ -104,8 +104,8 @@ export default class FtMLotManagerRequestBody {
         return requestBody;
     }
 
-    static buildValidateMLot(queryMaterialLot, materialLots) {
-        let body = new FtMLotManagerRequestBody(ActionType.ValidateMLot);
+    static buildFTStockOut(documentLines, materialLots) {
+        let body = new FtMLotManagerRequestBody(ActionType.FTStockOut);
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
@@ -113,12 +113,12 @@ export default class FtMLotManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         body.setMaterialLotActions(materialLotActions);
-        body.setQueryMaterialLot(queryMaterialLot);
+        body.setDocumentLines(documentLines);
         return body;
     }
 
-    static buildFTStockOut(documentLines, materialLots) {
-        let body = new FtMLotManagerRequestBody(ActionType.FTStockOut);
+    static buildFTSaleShip(documentLines, materialLots) {
+        let body = new FtMLotManagerRequestBody(ActionType.SaleShip);
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();

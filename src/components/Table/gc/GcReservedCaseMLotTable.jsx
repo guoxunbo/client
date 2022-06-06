@@ -10,7 +10,7 @@ import { i18NCode } from '../../../api/const/i18n';
  */
 export default class GcReservedCaseMLotTable extends EntityListCheckTable {
 
-    static displayName = 'GcStockOutMLotTable';
+    static displayName = 'GcReservedCaseMLotTable';
     
     /**
      * 重写此方法。因为当前的Table不是从props传递。

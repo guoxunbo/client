@@ -168,6 +168,16 @@ import GCCOBWaferStockOutTagProperties from './pages/Properties/components/GCCOB
 import GCIRAUnPackageProperties from './pages/Properties/components/GCIRAUnPackageProperties';
 import GcOtherShipReservedOrderProperties from './pages/Properties/components/GcOtherShipReservedOrderProperties';
 import GCSensorRmaIncomingMLotImportProperties from './pages/Properties/components/GCSensorRmaIncomingMLotImportProperties';
+import HNWarehouseMaterialLotStockInProperties from './pages/Properties/components/HNWarehouseMaterialLotStockInProperties';
+import HNWarehouseMaterialLotWeighProperties from './pages/Properties/components/HNWarehouseMaterialLotWeighProperties';
+import HNWarehouseRecordExpressNumberProperties from './pages/Properties/components/HNWarehouseRecordExpressNumberProperties';
+import HNWarehouseErpDocLineMergeProperties from './pages/Properties/components/HNWarehouseErpDocLineMergeProperties';
+import HNWarehouseWltOtherStockOutOrderProperties from './pages/Properties/components/HNWarehouseWltOtherStockOutOrderProperties';
+import HNWarehouseOtherShipReservedOrderProperties from './pages/Properties/components/HNWarehouseOtherShipReservedOrderProperties';
+import GCSamsungOuterBoxLabelPrintProperties from './pages/Properties/components/GCSamsungOuterBoxLabelPrintProperties';
+import LCDPackMaterialLotProperties from './pages/Properties/components/LCDPackMaterialLotProperties';
+import GCPackageMLotShipHisProperties from './pages/Properties/components/GCPackageMLotShipHisProperties';
+import GCBondedWarehouseInTransitMaterialLotReceiveProperties from './pages/Properties/components/GCBondedWarehouseInTransitMaterialLotReceiveProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -402,6 +412,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: COBPackMaterialLotProperties,
   },
+  //LCD成品装箱
+  {
+    path: buildPath('LCD/LCDPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: LCDPackMaterialLotProperties,
+  },
   //FT相关
   {
     path: buildPath('FT/GCFTMateriLotReceive'),
@@ -463,6 +479,12 @@ const routerConfig = [
     path: buildPath('WLT/WltStockOutManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCWltStockOutOrderProperties,
+  },
+  //WLT/CP出货
+  {
+    path: buildPath('GC/PackageMLotShipHisManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCPackageMLotShipHisProperties,
   },
     //WLT/CP其它出
   {
@@ -819,6 +841,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRWBoxLabelPrintProperties,
   },
+  {
+    path: buildPath('GC/SamsungOuterBoxLabelPrint'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCSamsungOuterBoxLabelPrintProperties,
+  },
   //Hong Kong Warehouse香港仓
   {
     path: buildPath('HKWarehouse/GCWaferCheckManager'),
@@ -1007,6 +1034,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCIncomingMLotDeleteProperties,
   },
+  {
+    path: buildPath('BondedWarehouse/InTransitMaterialLotReceive'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCBondedWarehouseInTransitMaterialLotReceiveProperties,
+  },
     //HuNanWarehouseManager
   {
       path: buildPath('HNWarehouse/IncomingMaterialImport'),
@@ -1047,6 +1079,46 @@ const routerConfig = [
     path: buildPath('HNWarehouse/UnboxManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/MaterialLotStockIn'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseMaterialLotStockInProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/MaterialLotWeigh'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseMaterialLotWeighProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/RecordExpressNumber'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseRecordExpressNumberProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/ErpDocLineMerge'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseErpDocLineMergeProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/PrintCaseLabel'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcPrintCaseLabelProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/WltOtherStockOut'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseWltOtherStockOutOrderProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/OtherShipReserved'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HNWarehouseOtherShipReservedOrderProperties,
+  },
+  {
+    path: buildPath('HNWarehouse/UnReservedMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnReservedMaterialLotProperties,
   },
   //WarehouseManager
   {
