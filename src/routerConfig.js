@@ -1089,6 +1089,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: BSWOtherShipReservedOrderProperties,
   },
+  {
+    path: buildPath('BondedWarehouse/UnReservedMLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCUnReservedMaterialLotProperties,
+  },
     //HuNanWarehouseManager
   {
       path: buildPath('HNWarehouse/IncomingMaterialImport'),
