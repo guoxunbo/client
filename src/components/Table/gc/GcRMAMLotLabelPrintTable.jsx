@@ -75,6 +75,7 @@ export default class GcRMAMLotLabelPrintTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
         let requestObject = {
             materialLots : materialLots,
+            printCount : printCount,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

@@ -11,10 +11,12 @@ export default class RmaMLotManagerRequestBody {
     materialLots;
     materialLotActions;
     printLabel;
+    printCount;
 
-    constructor(actionType, materialLots){
+    constructor(actionType, materialLots, printCount){
         this.actionType = actionType;
         this.materialLots = materialLots;
+        this.printCount = printCount;
     }
     
     setMaterialLotActions(materialLotActions) {
@@ -38,8 +40,8 @@ export default class RmaMLotManagerRequestBody {
         return requestBody;
     }
 
-    static buildGetPrintParam(materialLots) {
-        return new RmaMLotManagerRequestBody(ActionType.Print, materialLots);
+    static buildGetPrintParam(materialLots, printCount) {
+        return new RmaMLotManagerRequestBody(ActionType.Print, materialLots, printCount);
     }
 
 }
