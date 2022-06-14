@@ -1,4 +1,4 @@
-import { Button, Select, Input, Upload, Tag } from 'antd';
+import { Button, Select, Input, Upload, Tag, Row, Col} from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import { Notification } from '../../notice/Notice';
@@ -6,6 +6,11 @@ import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
 import EntityScanViewTable from "../EntityScanViewTable";
 import MaterialLotUpdateRequest from '../../../api/gc/materialLot-update-manager/MaterialLotUpdateRequest';
+import FormItem from 'antd/lib/form/FormItem';
+import RefListField from '../../Field/RefListField';
+import SelectPoField from '../../Field/SelectPoField';
+import { RefTableName, SystemRefListName } from '../../../api/const/ConstDefine';
+import RefTableField from '../../Field/RefTableField';
 
 const { Option} = Select;
 
@@ -28,50 +33,75 @@ export default class GCMaterialLotHoldTable extends EntityScanViewTable {
 
     createTagGroup = () => {
         let tags = [];
-        tags.push(this.createLocationSelecctAndInputTag());
+        tags.push(this.creatHodInfoTag());
         tags.push(this.createTotalQty());
         return tags;
     }
 
-    componentWillMount = () => {
-        let self = this;
-        let requestObject = {
-            referenceName: "GCHoldReasonList",
-            success: function(responseBody) {
-              self.setState({
-                holdReasonList: responseBody.referenceList
-              });
-            }
-          }
-        MaterialLotUpdateRequest.sendGetReferenceListRequest(requestObject);
-    }
+    // componentWillMount = () => {
+    //     let self = this;
+    //     let requestObject = {
+    //         referenceName: "GCHoldReasonList",
+    //         success: function(responseBody) {
+    //           self.setState({
+    //             holdReasonList: responseBody.referenceList
+    //           });
+    //         }
+    //       }
+    //     MaterialLotUpdateRequest.sendGetReferenceListRequest(requestObject);
+    // }
 
-    createLocationSelecctAndInputTag = () => {
-        const {holdReasonList} = this.state;
-        if(holdReasonList || holdReasonList != undefined){
-            const options = holdReasonList.map(d => <Option key={d.key}>{d.value}</Option>);
-            return <span style={{display: 'flex'}}>
-                <span style={{marginLeft:"10px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.HoldReason)}:</span>
-                <span style = {{marginLeft:"10px"}}>
-                    <Select
-                    showSearch
-                    allowClear
-                    value={this.state.value}
-                    style={{ width: 200}}
-                    onChange={this.handleChange}
-                    disabled={this.props.disabled}
-                    onBlur={this.props.onBlur}
-                    placeholder="扣留原因">
-                    {options} 
-                 </Select>
-              </span>
+    // createLocationSelecctAndInputTag = () => {
+    //     const {holdReasonList} = this.state;
+    //     if(holdReasonList || holdReasonList != undefined){
+    //         const options = holdReasonList.map(d => <Option key={d.key}>{d.value}</Option>);
+    //         return <span style={{display: 'flex'}}>
+    //             <span style={{marginLeft:"10px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.HoldReason)}:</span>
+    //             <span style = {{marginLeft:"10px"}}>
+    //                 <Select
+    //                 showSearch
+    //                 allowClear
+    //                 value={this.state.value}
+    //                 style={{ width: 200}}
+    //                 onChange={this.handleChange}
+    //                 disabled={this.props.disabled}
+    //                 onBlur={this.props.onBlur}
+    //                 placeholder="扣留原因">
+    //                 {options} 
+    //              </Select>
+    //           </span>
 
-              <span style={{marginLeft:"30px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
-              <span style = {{marginLeft:"10px"}}>
-                <Input ref={(input) => { this.input = input }} style={{ width: 300}} key="remarks" placeholder="备注" />
-              </span>
-            </span>
-        }
+    //           <span style={{marginLeft:"30px", fontSize:"19px"}}>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
+    //           <span style = {{marginLeft:"10px"}}>
+    //             <Input ref={(input) => { this.input = input }} style={{ width: 300}} key="remarks" placeholder="备注" />
+    //           </span>
+    //         </span>
+    //     }
+    // }
+
+    creatHodInfoTag = () => {
+        return  <FormItem>
+                    <Row gutter={24}>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.HoldReason)}:</span>
+                        </Col>
+                        <Col span={4}>
+                            <RefListField ref={(holdReason) => { this.holdReason = holdReason }} owner referenceName={"GCHoldReasonList"}/>
+                        </Col>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
+                        </Col>
+                        <Col span={4}>
+                            <Input ref={(remarks) => { this.remarks = remarks }} key="remarks" placeholder="备注"/>
+                        </Col>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.HoldType)}:</span>
+                        </Col>
+                        <Col span={4}>
+                            <RefListField ref={(holdType) => { this.holdType = holdType }} owner referenceName={"HoldClassify"} />
+                        </Col>
+                    </Row>
+                </FormItem>
     }
 
     handleChange = (currentValue) => {
@@ -84,16 +114,24 @@ export default class GCMaterialLotHoldTable extends EntityScanViewTable {
     }
 
     hold =() => {
+        debugger;
         const {data,table} = this.state;
         let self = this;
-        let remarks = this.input.state.value;
-        let holdReason = this.state.value;
+        let remarks = this.remarks.state.value;
+        let holdReason = this.holdReason.state.value;
+        let holdType = this.holdType.state.value;
+
         if(data.length == 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
         if(holdReason == "" || holdReason == undefined){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.PleaseChooseHoldReason));
+            return;
+        }
+
+        if(holdType == "" || holdType == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.PleaseChooseHoldType));
             return;
         }
 
@@ -106,6 +144,7 @@ export default class GCMaterialLotHoldTable extends EntityScanViewTable {
             materialLotList: data,
             reason: holdReason,
             remarks: remarks,
+            holdType: holdType,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();
