@@ -53,7 +53,7 @@ export default class MaterialLotUpdateRequest {
     }
 
     static sendHoldMaterialLotRequest = (object) => {
-        let requestBody = MaterialLotUpdateRequestBody.buildHoldInfo(object.materialLotList, object.reason, object.remarks);
+        let requestBody = MaterialLotUpdateRequestBody.buildHoldInfo(object.materialLotList, object.reason, object.remarks, object.holdType);
         let requestHeader = new MaterialLotUpdateRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCUpdateMaterialLotManagerUrl);
         let requestObject = {
