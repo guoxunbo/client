@@ -922,6 +922,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: AddPackagaMaterialLotProperties,
   },
+  {
+    path: buildPath('HKWarehouse/UnPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: UnPackagaMaterialLotProperties,
+  },
   //WMS
   {
     path: buildPath('WMS/WarehouseManager'),
