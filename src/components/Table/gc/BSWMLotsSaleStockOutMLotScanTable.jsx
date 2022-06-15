@@ -28,7 +28,7 @@ export default class BSWMLotsSaleStockOutMLotScanTable extends EntityScanViewTab
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStockOut());
+        // buttons.push(this.createStockOut());
         buttons.push(this.createSaleShip());
         return buttons;
     }
@@ -164,7 +164,7 @@ export default class BSWMLotsSaleStockOutMLotScanTable extends EntityScanViewTab
 
     createSaleShip = () => {
         return <Button key="saleShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.saleShip}>
-                       {I18NUtils.getClientMessage(i18NCode.BtnSaleShip)}
+                       发货/销售出
                     </Button>
     }
 }
