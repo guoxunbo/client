@@ -44,15 +44,15 @@ export default class HKWarehouseManagerRequestBody {
         return new HKWarehouseManagerRequestBody(actionType.HKStockOut, documentLines, materialLotActions);
     }
 
-    static buildHKByOrderStockOut(documentLine, materialLots) {
+    static buildHKByOrderStockOut(documentLines, materialLots) {
         let body = new HKWarehouseManagerRequestBody(actionType.HKByOrderStockOut);
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
-            materialLotActions.push(materialLotAction);
+            materialLotActions.push(materialLotAction)
         });
-        body.documentLine = documentLine;
+        body.documentLines = documentLines;
         body.materialLotActions = materialLotActions;
         return body;
     }
