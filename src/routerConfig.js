@@ -183,6 +183,7 @@ import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/B
 import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDocLineMergeProperties';
 import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
 import BSWOtherShipReservedOrderProperties from './pages/Properties/components/BSWOtherShipReservedOrderProperties';
+import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobilIRAPackingProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1458,6 +1459,11 @@ const routerConfig = [
     path: buildPath('Mobile/MobileRawMaterialStockInChange'),
     layout: BlankLayout,
     component: GcMobileRawMaterialStockInChangeProperties,
+  },
+  {
+    path: buildPath('Mobile/IRAPacking'),
+    layout: BlankLayout,
+    component: GcMobilIRAPackingProperties,
   },
   {
     path: '*',
