@@ -49,11 +49,10 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
             return;
         }
 
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
-        if (!documentLine) {
-            self.setState({ 
-                loading: false
-            });
+        let orderTable = this.props.orderTable;
+        let orders = orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
 
@@ -69,7 +68,7 @@ export default class HKByOrderStockOutMLotScanTable extends EntityScanViewTable 
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLine : documentLine,
+            documentLines : orders,
             materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {

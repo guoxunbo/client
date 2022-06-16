@@ -58,8 +58,13 @@ export default class MaterialLotUpdateRequestBody {
         return new MaterialLotUpdateRequestBody(ActionType.UpdateLocation, undefined, materialLotList, undefined, location, undefined, remarks);
     }
 
-    static buildHoldInfo(materialLotList, reason, remarks) {
-        return new MaterialLotUpdateRequestBody(ActionType.HoldMaterialLot, undefined, materialLotList, undefined, undefined, reason, remarks);
+    static buildHoldInfo(materialLotList, reason, remarks, holdType) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.HoldMaterialLot);
+        body.materialLotList = materialLotList;
+        body.reason = reason;
+        body.remarks = remarks;
+        body.holdType = holdType;
+        return body;
     }
     
     static buildReleaseInfo(materialLotList, reason, remarks) {

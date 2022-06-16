@@ -148,6 +148,8 @@ const i18NCode = {
     Location: "Location",
     remarks: "remarks",
     HoldReason: "HoldReason",
+    HoldType: "HoldType",
+    PleaseChooseHoldType: "PleaseChooseHoldType",
     CancelReason: "CancelReason",
     ReleaseReason: "ReleaseReason",
     RemarksCannotEmpty: "RemarksCannotEmpty",
@@ -834,6 +836,11 @@ const i18Messages = {
         English: "Choose ReleaseReason Please!",
         Res: ""
     },
+    PleaseChooseHoldType: {
+        Chinese: "请选择扣留类型!",
+        English: "Choose HoldType Please!",
+        Res: ""
+    },
     Location: {
         Chinese: "保税属性",
         English: "Location",
@@ -857,6 +864,11 @@ const i18Messages = {
     ReleaseReason: {
         Chinese: "释放原因",
         English: "ReleaseReason",
+        Res: ""
+    },
+    HoldType: {
+        Chinese: "HOLD分类",
+        English: "HoldType",
         Res: ""
     },
     RemarksCannotEmpty: {

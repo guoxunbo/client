@@ -29,7 +29,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createStockOut());
+        // buttons.push(this.createStockOut());
         buttons.push(this.createSaleShip());
         return buttons;
     }
@@ -80,7 +80,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
     }
 
     /**
-     * 销售出
+     * 正常出货与销售出集中到一个按钮
      * @returns 
      */
      saleShip = () => {
@@ -161,7 +161,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
 
     createSaleShip = () => {
         return <Button key="saleShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.saleShip}>
-                       {I18NUtils.getClientMessage(i18NCode.BtnSaleShip)}
+                       发货/销售出
                     </Button>
     }
 }
