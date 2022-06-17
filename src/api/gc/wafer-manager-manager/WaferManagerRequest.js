@@ -102,8 +102,8 @@ export default class WaferManagerRequest {
     }
 
     static sendCogReceiveMLotRequest = (object) => {
-        let {documentLines, materialLots} = object;
-        let requestBody = WaferManagerRequestBody.buildCogMLotReceive(documentLines, materialLots);
+        let {documentLines, materialLots, receiveWithDoc} = object;
+        let requestBody = WaferManagerRequestBody.buildCogMLotReceive(documentLines, materialLots, receiveWithDoc);
         let requestHeader = new WaferManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCWaferManagerUrl);
         let requestObject = {

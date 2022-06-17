@@ -1,29 +1,27 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import MaterialLot from "../../../api/dto/mms/MaterialLot";
-import GcCogReceiveMLotScanTable from "../../../components/Table/gc/GcCogReceiveMLotScanTable";
-import GcCogWaitReceiveMLotProperties from "./GcCogWaitReceiveMLotProperties";
+import GcTransferShipMLotTable from "../../../components/Table/gc/GcTransferShipMLotTable";
 
-export default class GcCogReceiveMLotScanProperties extends EntityScanProperties{
+export default class GcGcTransferShipMLotProperties extends EntityScanProperties{
 
-    static displayName = 'GcCogReceiveMLotScanProperties';
+    static displayName = 'GcGcTransferShipMLotProperties';
     
     constructor(props) {
         super(props);
         this.state = {...this.state, ...{showQueryFormButton: false}};
     }
-    
+
     componentWillReceiveProps = (props) => {
       const {resetFlag} = props;
       if (resetFlag) {
-        this.form.handleReset();
+          this.form.handleReset();
       }
     }
 
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
-        let waitForReceiveMLot = this.waitForReceiveMLot.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,
           whereClause: whereClause,
@@ -31,6 +29,7 @@ export default class GcCogReceiveMLotScanProperties extends EntityScanProperties
             let queryDatas = responseBody.dataList;
             let data = undefined;
             if (queryDatas && queryDatas.length > 0) {
+              let materialLot = queryDatas[0];
               let errorData = [];
               let trueData = [];
               tableData.forEach(data => {
@@ -40,17 +39,10 @@ export default class GcCogReceiveMLotScanProperties extends EntityScanProperties
                   trueData.push(data);
                 }
               });
+              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
+              }
               tableData = [];
-              queryDatas.forEach(data => {
-                if (waitForReceiveMLot.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  data.errorFlag = true;
-                }
-                if(data.errorFlag){
-                  errorData.unshift(data);
-                } else if(trueData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
-                  trueData.unshift(data);
-                }
-              });
               errorData.forEach(data => {
                 tableData.push(data);
               });
@@ -67,37 +59,27 @@ export default class GcCogReceiveMLotScanProperties extends EntityScanProperties
                 tableData.unshift(data);
               }
             }
-           
             self.setState({ 
               tableData: tableData,
               loading: false
             });
-            self.form.resetFormFileds();
+            self.form.resetFormFileds();  
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
 
-    resetOrderData = (orderTable) => {
-      orderTable.setState({
-        data: [],
-        loading: false,
-        resetFlag: true
-      });
-  }
-
     buildTable = () => {
-        return <GcCogReceiveMLotScanTable orderTable={this.props.orderTable} pagination={false} 
-                                    table={this.state.table} 
-                                    data={this.state.tableData} 
-                                    loading={this.state.loading} 
-                                    resetData={this.resetData.bind(this)}
-                                    resetFlag={this.state.resetFlag}
-                                    onSearch={this.props.onSearch}
-                                    />
+        return <GcTransferShipMLotTable 
+                            orderTable={this.props.orderTable} 
+                            pagination={false} 
+                            table={this.state.table} 
+                            data={this.state.tableData} 
+                            loading={this.state.loading} 
+                            resetData={this.resetData.bind(this)}
+                            resetFlag={this.state.resetFlag}
+                            onSearch={this.props.onSearch}
+                            />
     }
 
-    buildOtherComponent = () => {
-      return <GcCogWaitReceiveMLotProperties ref={(waitForReceiveMLot) => { this.waitForReceiveMLot = waitForReceiveMLot }} tableRrn={this.props.waitReceiveTableRrn} />
-  }
 }
