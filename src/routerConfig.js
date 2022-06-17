@@ -184,6 +184,7 @@ import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDo
 import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
 import BSWOtherShipReservedOrderProperties from './pages/Properties/components/BSWOtherShipReservedOrderProperties';
 import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobilIRAPackingProperties';
+import GcTransferOrderProperties from './pages/Properties/components//GcTransferOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -719,6 +720,11 @@ const routerConfig = [
     path: buildPath('GC/GCMLotDocRuleManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  {
+    path: buildPath('GC/GCTransferOrderShip'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcTransferOrderProperties,
   },
   //工作站管理
   {

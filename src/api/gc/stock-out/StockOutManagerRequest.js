@@ -42,5 +42,16 @@ export default class StockOutManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendTransferShipRequest = (object) => {
+        let {documentLine, materialLots, warehouseId} = object;
+        let requestBody = StockOutManagerRequestBody.buildTransferShip(documentLine, materialLots, warehouseId);
+        let requestHeader = new StockOutManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCStockOutUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 
