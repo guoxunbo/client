@@ -3,9 +3,6 @@ import TableManagerRequest from "../../../api/table-manager/TableManagerRequest"
 import MaterialLot from "../../../api/dto/mms/MaterialLot";
 import GcCogReceiveMLotScanTable from "../../../components/Table/gc/GcCogReceiveMLotScanTable";
 import GcCogWaitReceiveMLotProperties from "./GcCogWaitReceiveMLotProperties";
-import { Notification } from "../../../components/notice/Notice";
-import I18NUtils from "../../../api/utils/I18NUtils";
-import { i18NCode } from "../../../api/const/i18n";
 
 export default class GcCogReceiveMLotScanProperties extends EntityScanProperties{
 
@@ -26,15 +23,6 @@ export default class GcCogReceiveMLotScanProperties extends EntityScanProperties
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
-        let orders = this.props.orderTable.state.data;
-        if (orders.length == 0) {
-          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-          self.setState({ 
-            tableData: tableData,
-            loading: false
-          });
-          return;
-        }
         let waitForReceiveMLot = this.waitForReceiveMLot.state.tableData;
         let requestObject = {
           tableRrn: this.state.tableRrn,

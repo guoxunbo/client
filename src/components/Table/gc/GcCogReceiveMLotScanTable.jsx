@@ -1,6 +1,6 @@
 
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button } from 'antd';
+import { Button , Icon, Switch} from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
@@ -31,11 +31,45 @@ export default class GcCogReceiveMLotScanTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        buttons.push(this.createMaterialLotsNumber());
-        buttons.push(this.createTotalNumber());
-        buttons.push(this.createErrorNumberStatistic());
         buttons.push(this.createReceive());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tagList = [];
+        tagList.push(this.createReceiveWithDocFlag());
+        tagList.push(this.createMaterialLotsNumber());
+        tagList.push(this.createTotalNumber());
+        tagList.push(this.createErrorNumberStatistic());
+        return tagList;
+    }
+
+    createReceiveWithDocFlag = () => {
+        return <span style={{display: 'flex'}}>
+            <span style={{marginLeft:"30px", fontSize:"16px"}}>{I18NUtils.getClientMessage(i18NCode.MatchErpDocLine)}:</span>
+            <span style = {{marginLeft:"10px"}}>
+                <Switch ref={(checkedChildren) => { this.checkedChildren = checkedChildren }} 
+                        checkedChildren={<Icon type="receiveWithDoc" />} 
+                        unCheckedChildren={<Icon type="close" />} 
+                        onChange={this.handleChange} 
+                        disabled={this.disabled}
+                        checked={this.state.checked}/>
+            </span>
+        </span>
+    }
+
+    handleChange = (checkedChildren) => {
+        if(checkedChildren){
+            this.setState({ 
+                value: "receiveWithDoc",
+                checked: true
+            });
+        } else {
+            this.setState({ 
+                value: "",
+                checked: false
+            });
+        }
     }
     
     getErrorCount = () => {
@@ -78,9 +112,10 @@ export default class GcCogReceiveMLotScanTable extends EntityScanViewTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
+        let receiveWithDoc = this.state.value;
         let orderTable = this.props.orderTable;
         let orders = orderTable.state.data;
-        if (orders.length === 0) {
+        if (receiveWithDoc == "receiveWithDoc" && orders.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
@@ -97,6 +132,7 @@ export default class GcCogReceiveMLotScanTable extends EntityScanViewTable {
         let requestObject = {
             documentLines : orders,
             materialLots : materialLots,
+            receiveWithDoc: receiveWithDoc,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();

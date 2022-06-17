@@ -131,14 +131,16 @@ export default class WaferManagerRequestBody {
     
     }
 
-    static buildCogMLotReceive(documentLines, materialLots) {
+    static buildCogMLotReceive(documentLines, materialLots, receiveWithDoc) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
             materialLotAction.setMaterialLotId(materialLot.materialLotId);
             materialLotActions.push(materialLotAction)
         });
-        return new WaferManagerRequestBody(ActionType.CogReceive, documentLines, materialLotActions);
+        let body = new WaferManagerRequestBody(ActionType.CogReceive, documentLines, materialLotActions);
+        body.setReceiveWithDoc(receiveWithDoc);
+        return body;
     }
 
     static buildMobileGetWaferByRrn(tableRrn, lotId) {
