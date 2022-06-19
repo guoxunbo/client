@@ -205,5 +205,17 @@ export default class RwMLotManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendCOBMLotAutoPackRequest = (object) => {
+        let {materialLotList} = object;
+        let requestBody = RwMLotManagerRequestBody.buildCOBMLotAutoPack(materialLotList);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 
