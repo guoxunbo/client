@@ -185,6 +185,7 @@ import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPr
 import BSWOtherShipReservedOrderProperties from './pages/Properties/components/BSWOtherShipReservedOrderProperties';
 import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobilIRAPackingProperties';
 import GcTransferOrderProperties from './pages/Properties/components//GcTransferOrderProperties';
+import GCCobMLotAutoPackProperties from './pages/Properties/components/GCCobMLotAutoPackProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -771,6 +772,11 @@ const routerConfig = [
     path: buildPath('GC/GCLotFutureHoldSetManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  {
+    path: buildPath('GC/GCCobMLotAutoPackManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCobMLotAutoPackProperties,
   },
   //Wafer Hold设置
   {
