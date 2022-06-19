@@ -32,11 +32,13 @@ export default class RefTableField extends Combox {
                     textFileds.map(textField => {
                         displayValue.push(d[textField.trim()]);
                     });
-                    let refData = {
-                        key: d[self.refTable.keyField],
-                        value: displayValue.join("/")
-                    };
-                    data.push(refData);
+                    if(displayValue[0] != undefined){
+                        let refData = {
+                            key: d[self.refTable.keyField],
+                            value: displayValue.join("/")
+                        };
+                        data.push(refData);
+                    }
                 }); 
                 var hash = {};
                 data = data.reduce(function(item, next) {
