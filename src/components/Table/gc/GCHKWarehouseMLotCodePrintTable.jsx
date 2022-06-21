@@ -64,7 +64,7 @@ export default class GCHKWarehouseMLotCodePrintTable extends EntityListTable {
 
             let requestObject = {
                 printType: printType,
-                materialLotList : data,    
+                materialLot : data[0],
                 success: function(responseBody) {
                     MessageUtils.showOperationSuccess();
                 }
