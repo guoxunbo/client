@@ -5,7 +5,6 @@ import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import MessageUtils from "../../../api/utils/MessageUtils";
 import EventUtils from "../../../api/utils/EventUtils";
-import PrintUtils from '../../../api/utils/PrintUtils';
 import { Notification } from '../../notice/Notice';
 import GetMLotCodePrintParameterRequest from "../../../api/gc/get-print-mlot-parameter/GetMLotCodePrintParameterRequest";
 import { SystemRefListName } from "../../../api/const/ConstDefine";
@@ -105,6 +104,9 @@ export default class GCHKWarehouseMLotCodePrintTable extends EntityListTable {
         return <Button key="print" type="primary" style={styles.tableButton} loading={this.state.loading} icon="print" onClick={this.printLable}>
                         {I18NUtils.getClientMessage(i18NCode.PrintLable)}
                     </Button>
+    }
+
+    buildOperationColumn = () => {
     }
     
 }

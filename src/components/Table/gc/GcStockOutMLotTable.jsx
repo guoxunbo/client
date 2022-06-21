@@ -108,7 +108,7 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLineList : orders,
+            documentLineList : documentLineList,
             materialLots : materialLots,
             success: function(responseBody) {
                 if (self.props.resetData) {
