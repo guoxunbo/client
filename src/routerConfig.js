@@ -946,6 +946,16 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: HKLCDPackMaterialLotProperties,
   },
+  {
+    path: buildPath('HKWarehouse/HKComStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOrderProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKCOBReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferReceiveOrderProperties,
+  },
   //WMS
   {
     path: buildPath('WMS/WarehouseManager'),
