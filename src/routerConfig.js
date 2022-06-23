@@ -186,6 +186,7 @@ import BSWOtherShipReservedOrderProperties from './pages/Properties/components/B
 import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobilIRAPackingProperties';
 import GcTransferOrderProperties from './pages/Properties/components//GcTransferOrderProperties';
 import GCCobMLotAutoPackProperties from './pages/Properties/components/GCCobMLotAutoPackProperties';
+import HKLCDPackMaterialLotProperties from './pages/Properties/components/HKLCDPackMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -939,6 +940,21 @@ const routerConfig = [
     path: buildPath('HKWarehouse/UnPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('HK/LCDPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKLCDPackMaterialLotProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKComStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOrderProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKCOBReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferReceiveOrderProperties,
   },
   //WMS
   {
