@@ -187,6 +187,8 @@ import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-
 import GcTransferOrderProperties from './pages/Properties/components//GcTransferOrderProperties';
 import GCCobMLotAutoPackProperties from './pages/Properties/components/GCCobMLotAutoPackProperties';
 import HKLCDPackMaterialLotProperties from './pages/Properties/components/HKLCDPackMaterialLotProperties';
+import GcMobileIRAUnPackageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAUnPackageProperties';
+import GcMobileIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAPackingProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1491,7 +1493,12 @@ const routerConfig = [
   {
     path: buildPath('Mobile/IRAPacking'),
     layout: BlankLayout,
-    component: GcMobilIRAPackingProperties,
+    component: GcMobileIRAPackingProperties,
+  },
+  {
+    path: buildPath('Mobile/IRAUnPackage'),
+    layout: BlankLayout,
+    component: GcMobileIRAUnPackageProperties,
   },
   {
     path: '*',

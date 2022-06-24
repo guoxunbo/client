@@ -11,9 +11,9 @@ import EventUtils from "../../../../../api/utils/EventUtils";
 
 const PackageType = "IRAPackCase";
 
-export default class GcMobilIRAPackingProperties extends MobileProperties{
+export default class GcMobileIRAPackingProperties extends MobileProperties{
 
-    static displayName = 'GcMobilIRAPackingProperties';
+    static displayName = 'GcMobileIRAPackingProperties';
     
     constructor(props) {
         super(props);
@@ -21,7 +21,6 @@ export default class GcMobilIRAPackingProperties extends MobileProperties{
     }
     
     queryData = (whereClause) => {
-        debugger;
         const self = this;
         let requestObject = {
           tableRrn: this.state.tableRrn,
