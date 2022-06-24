@@ -188,6 +188,7 @@ import GCCobMLotAutoPackProperties from './pages/Properties/components/GCCobMLot
 import HKLCDPackMaterialLotProperties from './pages/Properties/components/HKLCDPackMaterialLotProperties';
 import GcMobileIRAUnPackageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAUnPackageProperties';
 import GcMobileIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAPackingProperties';
+import GcHKCheckProperties from './pages/Properties/components/GcHKCheckProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -870,7 +871,7 @@ const routerConfig = [
   {
     path: buildPath('HKWarehouse/GCWaferCheckManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GcCheckProperties,
+    component: GcHKCheckProperties,
   },
   {
     path: buildPath('HKWarehouse/GCMLotCodePrintManager'),
