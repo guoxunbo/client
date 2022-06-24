@@ -1,21 +1,19 @@
-
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button, Tag } from 'antd';
+import { Button, Row, Col ,Tag} from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import StockOutManagerRequest from '../../../api/gc/stock-out/StockOutManagerRequest';
 import MessageUtils from '../../../api/utils/MessageUtils';
 import EventUtils from '../../../api/utils/EventUtils';
-/**
- * 重测发料的物料批次表格
- */
-export default class GcStockOutMLotTable extends EntityScanViewTable {
+import FormItem from 'antd/lib/form/FormItem';
+import RefListField from '../../Field/RefListField';
 
-    static displayName = 'GcStockOutMLotTable';
+export default class GcTransferShipMLotTable extends EntityScanViewTable {
+
+    static displayName = 'GcTransferShipMLotTable';
 
     getRowClassName = (record, index) => {
-        // 如果是扫描到不存在的批次，则进行高亮显示
         if (record.errorFlag) {
             return 'error-row';
         } else {
@@ -29,17 +27,30 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
-        // buttons.push(this.createStockOut());
-        buttons.push(this.createSaleShip());
+        buttons.push(this.createStockOut());
         return buttons;
     }
 
     createTagGroup = () => {
         let tagList = [];
+        tagList.push(this.createExpressInput());
         tagList.push(this.createStatistic());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
+    }
+
+    createExpressInput = () => {
+        return <FormItem>
+                  <Row gutter={16}>
+                    <Col span={2} >
+                        <span>{I18NUtils.getClientMessage(i18NCode.WarehouseId)}:</span>
+                    </Col>
+                    <Col span={4}>
+                        <RefListField ref={(warehouseId) => { this.warehouseId = warehouseId }} owner referenceName = "WarehouseIdList" />
+                    </Col>
+                </Row>
+        </FormItem>
     }
 
     stockOut = () => {
@@ -48,14 +59,23 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
-        let documentLineList = this.props.orderTable.state.data;
-        if (documentLineList.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
+        let documentLine = this.props.orderTable.getSingleSelectedRow();
+        if (!documentLine) {
+            self.setState({ 
+                loading: false
+            });
             return;
         }
+        
         let materialLots = this.state.data;
         if (materialLots.length === 0 ) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
+            return;
+        }
+
+        let warehouseId = this.warehouseId.state.value;
+        if(warehouseId == "" || warehouseId == undefined || warehouseId == null){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.ChooseWarehouseIdPlease));
             return;
         }
 
@@ -65,8 +85,9 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLineList : documentLineList,
+            documentLine : documentLine,
             materialLots : materialLots,
+            warehouseId: warehouseId,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();
@@ -75,51 +96,9 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
                 MessageUtils.showOperationSuccess();
             }
         }
-
-        StockOutManagerRequest.sendStockOutRequest(requestObj);
+        StockOutManagerRequest.sendTransferShipRequest(requestObj);
     }
 
-    /**
-     * 正常出货与销售出集中到一个按钮
-     * @returns 
-     */
-     saleShip = () => {
-        let self = this;
-        if (this.getErrorCount() > 0) {
-            Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
-            return;
-        }
-
-        let documentLineList = this.props.orderTable.state.data;
-        if (documentLineList.length === 0) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
-            return;
-        }
-
-        let materialLots = this.state.data;
-        if (materialLots.length === 0 ) {
-            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
-            return;
-        }
-
-        self.setState({
-            loading: true
-        });
-        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
-
-        let requestObj = {
-            documentLineList : documentLineList,
-            materialLots : materialLots,
-            success: function(responseBody) {
-                if (self.props.resetData) {
-                    self.props.onSearch();
-                    self.props.resetData();
-                }
-                MessageUtils.showOperationSuccess();
-            }
-        }
-        StockOutManagerRequest.sendSaleShipRequest(requestObj);
-    } 
 
     getErrorCount = () => {
         let materialLots = this.state.data;
@@ -156,12 +135,6 @@ export default class GcStockOutMLotTable extends EntityScanViewTable {
     createStockOut = () => {
         return <Button key="stockOut" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.stockOut}>
                         发货
-                    </Button>
-    }
-
-    createSaleShip = () => {
-        return <Button key="saleShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.saleShip}>
-                       发货/销售出
                     </Button>
     }
 }

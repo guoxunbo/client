@@ -184,6 +184,9 @@ import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDo
 import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
 import BSWOtherShipReservedOrderProperties from './pages/Properties/components/BSWOtherShipReservedOrderProperties';
 import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobilIRAPackingProperties';
+import GcTransferOrderProperties from './pages/Properties/components//GcTransferOrderProperties';
+import GCCobMLotAutoPackProperties from './pages/Properties/components/GCCobMLotAutoPackProperties';
+import HKLCDPackMaterialLotProperties from './pages/Properties/components/HKLCDPackMaterialLotProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -720,6 +723,11 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
   },
+  {
+    path: buildPath('GC/GCTransferOrderShip'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcTransferOrderProperties,
+  },
   //工作站管理
   {
     path: buildPath('MMS/MMSWorkOrderStationManager'),
@@ -765,6 +773,11 @@ const routerConfig = [
     path: buildPath('GC/GCLotFutureHoldSetManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: EntityProperties,
+  },
+  {
+    path: buildPath('GC/GCCobMLotAutoPackManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCCobMLotAutoPackProperties,
   },
   //Wafer Hold设置
   {
@@ -927,6 +940,21 @@ const routerConfig = [
     path: buildPath('HKWarehouse/UnPackMaterialLot'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: UnPackagaMaterialLotProperties,
+  },
+  {
+    path: buildPath('HK/LCDPackMaterialLot'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: HKLCDPackMaterialLotProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKComStockOutManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcOrderProperties,
+  },
+  {
+    path: buildPath('HKWarehouse/HKCOBReceiveManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcWaferReceiveOrderProperties,
   },
   //WMS
   {

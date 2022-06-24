@@ -3,8 +3,6 @@ import StockOutCheckRequestBody from './StockOutCheckRequestBody';
 import {UrlConstant} from '../../const/ConstDefine';
 import MessageUtils from '../../utils/MessageUtils';
 import Request from '../../Request';
-import TableManagerRequestBody from '../../table-manager/TableManagerRequestBody';
-import TableManagerRequestHeader from '../../table-manager/TableManagerRequestHeader';
 
 export default class StockOutCheckRequest {
 

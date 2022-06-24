@@ -171,6 +171,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
         }
         if(importType == "COM原料导入"){
             importType = "GCCOBRawMaterialProduct";
+        } else if(importType == "COB（-4成品）"){
+            importType = "GCCOBFinishProduct";
         }
         if(tableData.length > 0){
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.DataNotImportedPleaseCleanAllBeforeSelectNewFile));

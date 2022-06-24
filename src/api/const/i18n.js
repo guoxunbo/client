@@ -238,6 +238,7 @@ const i18NCode = {
     StockLocation: "StockLocation",
     ImportExceptionAndReImport: "ImportExceptionAndReImport",
     PleaseChooseCancelReason: "PleaseChooseCancelReason",
+    WarehouseId: "WarehouseId",
 }
 
 const i18Messages = {
@@ -1411,6 +1412,11 @@ const i18Messages = {
         English: "Please Choose Cancel Reason!",
         Res: ""
     },
+    WarehouseId: {
+        Chinese: "仓库",
+        English: "WarehouseID",
+        Res: ""
+    }
 }
 
 export {i18Messages, i18NCode};

@@ -25,15 +25,6 @@ export default class HKByOrderStockOutMLotScanProperties extends EntityScanPrope
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
-        let orders = this.props.orderTable.state.data;
-        if (orders.length == 0) {
-          Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectAtLeastOneRow));
-          self.setState({ 
-            tableData: tableData,
-            loading: false
-          });
-          return;
-        }
         let queryFields = this.form.state.queryFields;
         let queryLotId = "";
         if (queryFields.length === 1) {
@@ -55,13 +46,25 @@ export default class HKByOrderStockOutMLotScanProperties extends EntityScanPrope
                 tableData.unshift(data);
               }
             } else {
+              let errorData = [];
               let trueData = [];
               tableData.forEach(data => {
-                if(!data.errorFlag){
+                if(data.errorFlag){
+                  errorData.push(data);
+                } else {
                   trueData.push(data);
                 }
-            });
-              self.validationWltMLot(materialLot, trueData);
+              });
+              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
+              }
+              tableData = [];
+              errorData.forEach(data => {
+                tableData.push(data);
+              });
+              trueData.forEach(data => {
+                tableData.push(data);
+              });
             }
             self.setState({ 
               tableData: tableData,
@@ -71,50 +74,6 @@ export default class HKByOrderStockOutMLotScanProperties extends EntityScanPrope
           }
         }
         HKWarehouseManagerRequest.sendGetMaterialLotByRrnRequest(requestObject);
-    }
-
-    validationWltMLot = (materialLot, materialLots) => {
-      let self = this;
-      let {rowKey,tableData} = this.state;
-      let requestObject = {
-        queryMaterialLot : materialLot,
-        materialLots: materialLots,
-        success: function(responseBody) {
-            if(responseBody.falg){
-              let errorData = [];
-              let trueData = [];
-              tableData.forEach(data => {
-                if(data.errorFlag){
-                  errorData.push(data);
-                } else {
-                  trueData.push(data);
-                }
-            });
-            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-              trueData.unshift(materialLot);
-            }
-            tableData = [];
-            errorData.forEach(data => {
-              tableData.push(data);
-            });
-            trueData.forEach(data => {
-              tableData.push(data);
-            });
-          } else {
-            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
-              materialLot.errorFlag = true;
-              tableData.unshift(materialLot);
-            }
-          }
-          
-          self.setState({ 
-            tableData: tableData,
-            loading: false
-          });
-          self.form.resetFormFileds();
-        }
-      }
-      HKWarehouseManagerRequest.sendValidationRequest(requestObject);
     }
 
     buildTable = () => {

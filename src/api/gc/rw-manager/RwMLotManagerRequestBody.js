@@ -18,6 +18,7 @@ const ActionType = {
     COBWaferQuery: "COBWaferQuery",
     WaferAutoPick: "WaferAutoPick",
     WaferStockOutTag: "WaferStockOutTag",
+    CobAutoPack: "CobAutoPack"
 }
 
 export default class RwMLotManagerRequestBody {
@@ -190,6 +191,12 @@ export default class RwMLotManagerRequestBody {
     static buildRWBoxLabelPrintParameter(materialLotRrn) {
         let body = new RwMLotManagerRequestBody(ActionType.RWBoxLabelPrint);
         body.materialLotRrn = materialLotRrn;
+        return body;
+    }
+
+    static buildCOBMLotAutoPack(materialLotList) {
+        let body = new RwMLotManagerRequestBody(ActionType.CobAutoPack);
+        body.materialLotList = materialLotList;
         return body;
     }
 }
