@@ -183,12 +183,12 @@ import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/B
 import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDocLineMergeProperties';
 import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
 import BSWOtherShipReservedOrderProperties from './pages/Properties/components/BSWOtherShipReservedOrderProperties';
-import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobilIRAPackingProperties';
 import GcTransferOrderProperties from './pages/Properties/components//GcTransferOrderProperties';
 import GCCobMLotAutoPackProperties from './pages/Properties/components/GCCobMLotAutoPackProperties';
 import HKLCDPackMaterialLotProperties from './pages/Properties/components/HKLCDPackMaterialLotProperties';
 import GcMobileIRAUnPackageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAUnPackageProperties';
 import GcMobileIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAPackingProperties';
+import GcHKCheckProperties from './pages/Properties/components/GcHKCheckProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -871,7 +871,7 @@ const routerConfig = [
   {
     path: buildPath('HKWarehouse/GCWaferCheckManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GcCheckProperties,
+    component: GcHKCheckProperties,
   },
   {
     path: buildPath('HKWarehouse/GCMLotCodePrintManager'),
