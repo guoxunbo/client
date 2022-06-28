@@ -168,6 +168,11 @@ export default class GCCOBWaferStockOutTagTable extends EntityListCheckTable {
             return;
         }
 
+        this.setState({
+            selectedRows: [],
+            selectedRowKeys: [],
+        });
+
         self.setState({
             loading: true
         });
