@@ -17,6 +17,17 @@ export default class ErpDocLineMergeManagerRequest {
         MessageUtils.sendRequest(requestObject);
     }
 
+    static sendUnMergeOrderRequest = (object) => {
+        let requestBody = ErpDocLineMergeManagerRequestBody.buildUnMergeDocLine(object.documentLines);
+        let requestHeader = new ErpDocLineMergeManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCErpDocLineMergeManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
     static sendHNWarehouseMergeDocRequest = (object) => {
         let requestBody = ErpDocLineMergeManagerRequestBody.buildHNWarehouseMergeDocLine(object.documentLines);
         let requestHeader = new ErpDocLineMergeManagerRequestHeader();

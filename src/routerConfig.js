@@ -189,6 +189,7 @@ import HKLCDPackMaterialLotProperties from './pages/Properties/components/HKLCDP
 import GcMobileIRAUnPackageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAUnPackageProperties';
 import GcMobileIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAPackingProperties';
 import GcHKCheckProperties from './pages/Properties/components/GcHKCheckProperties';
+import GcCancelErpMergeOrderProperties from './pages/Properties/components/GcCancelErpMergeOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -570,6 +571,12 @@ const routerConfig = [
     path: buildPath('GC/GCErpDocLineMergeManager'),
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcErpDocLineMergeProperties,
+  },
+  //ERP取消合单
+  {
+    path: buildPath('GC/CancelErpMergeOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCancelErpMergeOrderProperties,
   },
    //RW发料标签补打
   {

@@ -212,6 +212,7 @@ const i18NCode = {
     ScrapReason: "ScrapReason",
     CheckSubCodeFlag: "CheckSubCodeFlag",
     BtnMergeDocLine: "MergeDocLine",
+    BtnUnMergeDocLine: "UnMergeDocLine",
     TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
     BondProMustBeHK: "BondProMustBeHK",
     OrderTime: "OrderTime",
@@ -1190,6 +1191,11 @@ const i18Messages = {
     MergeDocLine: {
         Chinese: "合单",
         English: "Merge DocLine",
+        Res: "" 
+    },
+    UnMergeDocLine: {
+        Chinese: "取消合单",
+        English: "UnMergeOrder",
         Res: "" 
     },
     SelectAtLeastTwoRow: {
