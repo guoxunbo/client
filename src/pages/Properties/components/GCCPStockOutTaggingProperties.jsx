@@ -25,7 +25,8 @@ export default class GCCPStockOutTaggingProperties extends EntityScanProperties{
         success: function(responseBody) {
           self.setState({
             tableData: responseBody.dataList,
-            loading: false
+            loading: false,
+            resetFlag: true
           });
         }
       }
@@ -37,6 +38,7 @@ export default class GCCPStockOutTaggingProperties extends EntityScanProperties{
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
+                                    resetFlag={this.state.resetFlag} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading}
