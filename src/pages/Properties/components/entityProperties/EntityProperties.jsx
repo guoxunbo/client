@@ -60,7 +60,8 @@ export default class EntityProperties extends Component {
         success: function(responseBody) {
           self.setState({
             tableData: responseBody.dataList,
-            loading: false
+            loading: false,
+            whereClause: whereClause
           });
         }
       }
@@ -85,7 +86,9 @@ export default class EntityProperties extends Component {
                                   selectedRows={this.state.selectedRows} 
                                   table={this.state.table} 
                                   data={this.state.tableData} 
-                                  loading={this.state.loading}/>
+                                  loading={this.state.loading}
+                                  whereClause= {this.state.whereClause}
+                                  />
     }
 
     /**
