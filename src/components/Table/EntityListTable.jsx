@@ -294,6 +294,7 @@ export default class EntityListTable extends Component {
      */
     exportData = () => {
         const {table} = this.state;
+        const {whereClause} = this.props;
         let language = SessionContext.getLanguage();
 
         let fileName = table.name;
@@ -307,6 +308,7 @@ export default class EntityListTable extends Component {
         }
         let object = {
             tableRrn: table.objectRrn,
+            whereClause: whereClause,
             fileName: fileName + ".xls",
         }
         TableManagerRequest.sendExportRequest(object);
