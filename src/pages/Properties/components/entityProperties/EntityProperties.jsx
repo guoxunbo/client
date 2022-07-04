@@ -52,17 +52,21 @@ export default class EntityProperties extends Component {
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
     
+    afterQuery = (responseBody, whereClause) => {
+        this.setState({
+          tableData: responseBody.dataList,
+          loading: false,
+          whereClause: whereClause
+        });
+    }
+
     queryData = (whereClause) => {
       const self = this;
       let requestObject = {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
         success: function(responseBody) {
-          self.setState({
-            tableData: responseBody.dataList,
-            loading: false,
-            whereClause: whereClause
-          });
+          self.afterQuery(responseBody, whereClause);
         }
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
@@ -81,15 +85,15 @@ export default class EntityProperties extends Component {
     }
     
     buildTable = () => {
-        return  <EntityListTable rowKey={this.state.rowKey} 
-                                  selectedRowKeys={this.state.selectedRowKeys} 
-                                  selectedRows={this.state.selectedRows} 
-                                  table={this.state.table} 
-                                  data={this.state.tableData} 
-                                  loading={this.state.loading}
-                                  whereClause= {this.state.whereClause}
-                                  />
-    }
+      return  <EntityListTable rowKey={this.state.rowKey} 
+                                selectedRowKeys={this.state.selectedRowKeys} 
+                                selectedRows={this.state.selectedRows} 
+                                table={this.state.table} 
+                                data={this.state.tableData} 
+                                loading={this.state.loading}
+                                whereClause= {this.state.whereClause}
+                                />
+  }
 
     /**
      * 当页面不止是表格和queryForm的时候，可以继承该方法继续实现

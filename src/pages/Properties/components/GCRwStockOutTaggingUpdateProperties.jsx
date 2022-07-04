@@ -26,7 +26,8 @@ export default class GCRwStockOutTaggingUpdateProperties extends EntityScanPrope
           self.resetComBoxData(responseBody.dataList);
           self.setState({
             tableData: responseBody.dataList,
-            loading: false
+            loading: false,
+            resetFlag: true
           });
         }
       }
@@ -106,6 +107,7 @@ export default class GCRwStockOutTaggingUpdateProperties extends EntityScanPrope
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
                                     table={this.state.table} 
+                                    resetFlag={this.state.resetFlag} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading} 
                                     onSearch={this.queryData}
