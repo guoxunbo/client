@@ -197,6 +197,20 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
         MaterialLotUpdateRequest.sendImportSearchRequest(object, option.file);
     }
 
+    exportData = () => {
+        const {table} = this.state;
+        let tableData = this.state.data;
+        if(tableData.length == 0){
+            return;
+        }
+        let object = {
+            tableName: "GCCOBWaferStockOutTag",
+            fileName: table.labelZh + ".xls",
+            materialLotList: tableData
+        }
+        MaterialLotUpdateRequest.sendExportRequest(object);
+    }
+
     createStatistic = () => {
         return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
     }

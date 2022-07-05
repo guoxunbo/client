@@ -51,7 +51,29 @@ export default class EntityProperties extends Component {
       }
       TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
-    
+
+    getWareHouseId = (dataList) => {
+        dataList.forEach(data => {
+            let warehouseRrn = data.reserved13;
+            if(warehouseRrn){
+              if(warehouseRrn == "8142"){
+                data.reserved13 = "SH_STOCK";
+              } else if(warehouseRrn == "8143"){
+                data.reserved13 = "ZJ_STOCK";
+              } else if(warehouseRrn == "8150"){
+                data.reserved13 = "HK_STOCK";
+              } else if(warehouseRrn == "8151"){
+                data.reserved13 = "BS_STOCK";
+              } else if(warehouseRrn == "8152"){
+                data.reserved13 = "HN_STOCK";
+              } else if(warehouseRrn == "8153"){
+                data.reserved13 = "IC_STOCK";
+              } else if(warehouseRrn == "8247"){
+                data.reserved13 = "SPARE_STOCK";
+              }
+            }
+        });
+    }
     afterQuery = (responseBody, whereClause) => {
         this.setState({
           tableData: responseBody.dataList,

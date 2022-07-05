@@ -18,7 +18,7 @@ export default class GcReceiveMLotUnitTable extends EntityScanViewTable {
 
     constructor(props) {
         super(props);
-        this.state = {...this.state};
+        this.state = {...this.state,...{checked:true},...{value: "receiveWithDoc"}};
     }
 
     getRowClassName = (record, index) => {
