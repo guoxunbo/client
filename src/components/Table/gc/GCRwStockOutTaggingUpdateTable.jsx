@@ -109,11 +109,6 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
         if (materialLots.length === 0 ) {
             return;
         }
-
-        // self.setState({
-        //     loading: true
-        // });
-        // EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
         
         let requestObject = {
             materialLotList : materialLots,
