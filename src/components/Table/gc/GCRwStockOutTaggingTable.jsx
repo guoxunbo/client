@@ -253,7 +253,7 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
             return;
         }
         let object = {
-            tableName: "GCCOBWaferStockOutTag",
+            tableName: "GCCobStockOutTagUnitExport",
             fileName: table.labelZh + ".xls",
             materialLotList: tableData
         }
