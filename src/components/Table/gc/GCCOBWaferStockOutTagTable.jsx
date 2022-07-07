@@ -46,7 +46,6 @@ export default class GCCOBWaferStockOutTagTable extends EntityListCheckTable {
         let buttons = [];
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createImportSearchButton());
-        buttons.push(this.createAutoPickButton());
         buttons.push(this.createTagButton());
         return buttons;
     }
@@ -63,12 +62,17 @@ export default class GCCOBWaferStockOutTagTable extends EntityListCheckTable {
 
     createNeedNumberInput = () => {
         return  <FormItem>
-                    <Row gutter={4}>
+                    <Row gutter={6}>
                         <Col span={2} >
                             <span>{I18NUtils.getClientMessage(i18NCode.NeedQty)}:</span>
                         </Col>
                         <Col span={2}>
                             <InputNumber ref={(pickQty) => { this.pickQty = pickQty }} disabled={this.disabled}/>
+                        </Col>
+                        <Col span={2}>
+                            <Button key="autoPick" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.autoPick}>
+                                {I18NUtils.getClientMessage(i18NCode.BtnAutoPick)}
+                            </Button>
                         </Col>
                     </Row>
                 </FormItem>
@@ -82,11 +86,11 @@ export default class GCCOBWaferStockOutTagTable extends EntityListCheckTable {
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Button>
     }
 
     createWaferNumber = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{this.state.data.length}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{this.state.data.length}</Button>
     }
 
     createStatistic = () => {
@@ -99,7 +103,7 @@ export default class GCCOBWaferStockOutTagTable extends EntityListCheckTable {
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{lotIdList.length}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{lotIdList.length}</Button>
     }
 
     createSelectCurrentQty = () => {
@@ -111,7 +115,7 @@ export default class GCCOBWaferStockOutTagTable extends EntityListCheckTable {
                 selectQty = selectQty + data.currentQty;
             });
         }
-        return <Tag color="#D2480A">{I18NUtils.getClientMessage(i18NCode.SelectQty)}：{selectQty}</Tag>
+        return <Button type="primary" style={{marginLeft:'20px',backgroundColor:'tomato', border:0}}>{I18NUtils.getClientMessage(i18NCode.SelectQty)}：{selectQty}</Button>
     }
 
     createForm = () => {
