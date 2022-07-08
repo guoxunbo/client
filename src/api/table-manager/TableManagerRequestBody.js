@@ -45,13 +45,14 @@ export default class TableManagerRequestBody {
         return new TableManagerRequestBody(ActionType.GetData, table);
     }
     
-    static buildExport(objectRrn, expTemplate) {
+    static buildExport(objectRrn, expTemplate, whereClause) {
         let actionType = ActionType.ExpData;
         if (expTemplate) {
             actionType = ActionType.ExpTemplate;
         }
         let table = new Table();
         table.setObjectRrn(objectRrn);
+        table.setWhereClause(whereClause);
         return new TableManagerRequestBody(actionType, table);
     }
 

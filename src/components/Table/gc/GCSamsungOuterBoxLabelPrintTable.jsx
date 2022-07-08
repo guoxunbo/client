@@ -67,6 +67,9 @@ export default class GCSamsungOuterBoxLabelPrintTable extends EntityListCheckTab
                     </Button>
     }
 
+    buildOperationColumn = () => {
+        
+    }
 }
 
 const styles = {

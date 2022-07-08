@@ -15,7 +15,6 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
         let buttons = [];
         buttons.push(this.createExportDataAndTemplateButton());
         buttons.push(this.createImportSearchButton());
-        buttons.push(this.createAddShipOrderButton());
         buttons.push(this.createCancelShipOrderButton());
         buttons.push(this.createPreviewButton());
         buttons.push(this.createCancelStockOutButton());
@@ -33,12 +32,17 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
     
     createAddShipOrderInput = () => {
         return  <FormItem>
-                    <Row gutter={6}>
+                    <Row gutter={10}>
                         <Col span={2} >
                             <span>{I18NUtils.getClientMessage(i18NCode.ShipOrderId)}:</span>
                         </Col>
                         <Col span={4}>
                             <Input ref={(shipOrderId) => { this.shipOrderId = shipOrderId }} key="shipOrderId" placeholder="发货单号" />
+                        </Col>
+                        <Col span={1}>
+                            <Button key="addShipOrder" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.AddShipOrder}>
+                                {I18NUtils.getClientMessage(i18NCode.BtnAddShipOrder)}
+                            </Button>
                         </Col>
                     </Row>
                 </FormItem>
@@ -109,12 +113,6 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
         if (materialLots.length === 0 ) {
             return;
         }
-
-        // self.setState({
-        //     loading: true
-        // });
-        // EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
-        
         let requestObject = {
             materialLotList : materialLots,
             success: function(responseBody) {
@@ -197,8 +195,22 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
         MaterialLotUpdateRequest.sendImportSearchRequest(object, option.file);
     }
 
+    exportData = () => {
+        const {table} = this.state;
+        let tableData = this.state.data;
+        if(tableData.length == 0){
+            return;
+        }
+        let object = {
+            tableName: "GCCobStockOutTagUpdateUnitExport",
+            fileName: table.labelZh + ".xls",
+            materialLotList: tableData
+        }
+        MaterialLotUpdateRequest.sendExportRequest(object);
+    }
+
     createStatistic = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Button>
     }
 
     createWaferNumber = () => {
@@ -211,7 +223,7 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Button>
     }
 
     createTotalNumber = () => {
@@ -222,7 +234,7 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Button>
     }
 
     buildOperationColumn = () => {

@@ -31,7 +31,8 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
           self.setState({
             tableData: responseBody.dataList,
             loading: false,
-            resetFlag: true
+            resetFlag: true,
+            whereClause: whereClause
           });
         }
       }
@@ -113,6 +114,7 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading}
+                                    whereClause={this.state.whereClause}
                                     onSearch={this.queryData.bind(this)} 
                                     resetData={this.resetData.bind(this)}/>
     }

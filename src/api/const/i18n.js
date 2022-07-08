@@ -409,7 +409,7 @@ const i18Messages = {
         Res: ""
     },
     Add: {
-        Chinese: "添加",
+        Chinese: "查询",
         English: "Add",
         Res: ""
     },
