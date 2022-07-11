@@ -11,7 +11,7 @@ export default class Logo extends PureComponent {
       <div className="logo">
         <Link to="/" className="logo-text">
           <img src={logo}/>{'    '}
-          {Application.name}
+          {Application.name + "-" + ServerAddress.Envirment}
         </Link>
         
       </div>

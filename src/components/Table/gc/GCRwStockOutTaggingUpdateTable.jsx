@@ -32,7 +32,7 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
     
     createAddShipOrderInput = () => {
         return  <FormItem>
-                    <Row gutter={10}>
+                    <Row gutter={20}>
                         <Col span={2} >
                             <span>{I18NUtils.getClientMessage(i18NCode.ShipOrderId)}:</span>
                         </Col>
@@ -45,7 +45,81 @@ export default class GCRwStockOutTaggingUpdateTable extends EntityListCheckTable
                             </Button>
                         </Col>
                     </Row>
+                    <Row gutter={20}>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.CustomerIdentificaion)}:</span>
+                        </Col>
+                        <Col span={4}>
+                            <Input ref={(customerName) => { this.customerName = customerName }} key="customerName" placeholder="客户名称"/>
+                        </Col>
+                        <Col span={2} >
+                            <span>ODM:</span>
+                        </Col>
+                        <Col span={4}>
+                            <Input ref={(abbreviation) => { this.abbreviation = abbreviation }} key="abbreviation" placeholder="ODM"/>
+                        </Col>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.remarks)}:</span>
+                        </Col>
+                        <Col span={4}>
+                            <Input ref={(remarks) => { this.remarks = remarks }} key="remarks" placeholder="备注"/>
+                        </Col>
+                        <Col span={1}>
+                            <Button key="updateTagInfo" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.TagUpdate}>
+                                {I18NUtils.getClientMessage(i18NCode.BtnTagUpdate)}
+                            </Button>
+                        </Col>
+                    </Row>
                 </FormItem>
+    }
+
+    TagUpdate = () => {
+        let self = this;
+        let materialLotList = this.getSelectedRows();
+        if (materialLotList.length === 0 ) {
+            return;
+        }
+
+        let customerName = this.customerName.state.value;
+        let abbreviation = this.abbreviation.state.value;
+        let remarks = this.remarks.state.value;
+
+        if(customerName == "" || customerName == null ||  customerName == undefined){
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.CustomerIdentificaionCannotEmpty));
+            return;
+        }
+
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
+        
+        let requestObject = {
+            materialLotList : materialLotList,
+            customerName: customerName,
+            abbreviation: abbreviation,
+            remarks: remarks,
+            success: function(responseBody) {
+                self.setState({
+                    selectedRowKeys: [],
+                    selectedRows: [],
+                });
+                self.customerName.setState({
+                    value: "",
+                });
+                self.abbreviation.setState({
+                    value: "",
+                });
+                self.remarks.setState({
+                    value: "",
+                });
+                if (self.props.resetData) {
+                    self.props.resetData();
+                    self.props.onSearch();
+                }
+            }
+        }
+        RwMLotManagerRequest.sendStockOutTagUpdateRequest(requestObject);
     }
 
     UnstockOutTag = () => {

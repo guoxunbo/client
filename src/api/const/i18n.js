@@ -77,6 +77,7 @@ const i18NCode = {
     BtnAutoPick: "AutoPick",
     BtnSaleShip: "SaleShip",
     BtnAddShipOrder: "AddShipOrder",
+    BtnTagUpdate: "TagUpdate",
     BtnCancelShipOrder: "CancelShipOrder",
     BtnPreview: "Preview",
     BtnSpareMaterial: "SpareMaterial",
@@ -1421,6 +1422,11 @@ const i18Messages = {
     WarehouseId: {
         Chinese: "仓库",
         English: "WarehouseID",
+        Res: ""
+    },
+    TagUpdate: {
+        Chinese: "标注修改",
+        English: "TagUpdate",
         Res: ""
     }
 }
