@@ -19,7 +19,8 @@ const ActionType = {
     COBWaferQuery: "COBWaferQuery",
     WaferAutoPick: "WaferAutoPick",
     WaferStockOutTag: "WaferStockOutTag",
-    CobAutoPack: "CobAutoPack"
+    CobAutoPack: "CobAutoPack",
+    TagUpdate: "TagUpdate",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -212,6 +213,15 @@ export default class RwMLotManagerRequestBody {
     static buildCOBMLotAutoPack(materialLotList) {
         let body = new RwMLotManagerRequestBody(ActionType.CobAutoPack);
         body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildStockTagUpdate(materialLotList, customerName, abbreviation, remarks) {
+        let body = new RwMLotManagerRequestBody(ActionType.TagUpdate);
+        body.setMaterialLotAction(materialLotList);
+        body.abbreviation = abbreviation;
+        body.customerName = customerName;
+        body.remarks = remarks;
         return body;
     }
 }

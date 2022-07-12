@@ -8,6 +8,7 @@ import I18NUtils from "../../../api/utils/I18NUtils";
 import MessageUtils from "../../../api/utils/MessageUtils";
 import { Notification } from "../../notice/Notice";
 import EntityListCheckTable from "../EntityListCheckTable";
+import RWStockOutTagMLotForm from "./RWStockOutTagMLotForm";
 import RWStockOutTagUpdateMLotForm from "./RWStockOutTagUpdateMLotForm";
 
 export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
@@ -116,14 +117,6 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
         }
         return <Button type="primary" style={{marginLeft:'20px',backgroundColor:'tomato', border:0}}>{I18NUtils.getClientMessage(i18NCode.SelectQty)}：{selectQty}</Button>
     }
-
-    createForm = () => {
-        return  <RWStockOutTagUpdateMLotForm visible={this.state.formVisible} 
-                                     materialLots={this.state.materialLots}
-                                     width={1440}
-                                     onOk={this.handleTagSuccess} 
-                                     onCancel={this.handleCancel}/>
-    }
     
     handleTagSuccess = () => {
         this.materialLots = [],
@@ -216,7 +209,7 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
             success: function(responseBody) {
                 let materialLotInfo = responseBody.materialLotList;
                 self.setState({
-                    formVisible : true,
+                    viewformVisible : true,
                     materialLotInfo: materialLotInfo,
                 }); 
             }
@@ -225,16 +218,24 @@ export default class GCRwStockOutTaggingTable extends EntityListCheckTable {
     }
 
     createForm = () => {
-        return  <RWStockOutTagUpdateMLotForm visible={this.state.formVisible} 
-                                     materialLotInfo={this.state.materialLotInfo}
-                                     width={1440}
-                                     onOk={this.handleCancel} 
-                                     onCancel={this.handleCancel}/>
+        if(this.state.viewformVisible){
+            return  <RWStockOutTagUpdateMLotForm visible={this.state.viewformVisible} 
+            materialLotInfo={this.state.materialLotInfo}
+            width={1440}
+            onOk={this.handlePreviewCancel} 
+            onCancel={this.handlePreviewCancel}/>
+        } else {
+            return  <RWStockOutTagMLotForm visible={this.state.formVisible} 
+            materialLots={this.state.materialLots}
+            width={1440}
+            onOk={this.handleTagSuccess} 
+            onCancel={this.handleCancel}/>
+        }
     }
 
-    handleCancel = (e) => {
+    handlePreviewCancel = (e) => {
         this.setState({
-            formVisible: false,
+            viewformVisible: false,
         })
     }
 
