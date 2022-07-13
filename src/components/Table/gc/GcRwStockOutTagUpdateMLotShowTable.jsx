@@ -4,6 +4,7 @@ import EntityListTable from '../EntityListTable';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import "../../Form/QueryForm.scss";
+import MaterialLotUpdateRequest from '../../../api/gc/materialLot-update-manager/MaterialLotUpdateRequest';
 
 const TableName = {
     GCRwStockOutTagUpdateMLotShow: "GCRwStockOutTagUpdateMLotShow",
@@ -60,12 +61,27 @@ export default class GcRwStockOutTagUpdateMLotShowTable extends EntityListTable 
         }
         TableManagerRequest.sendGetByNameRequest(requestObject);
     }
+
+    exportData = () => {
+        const {table} = this.state;
+        let tableData = this.state.data;
+        if(tableData.length == 0){
+            return;
+        }
+        let object = {
+            tableName: "GCRwStockOutTagUpdateMLotShow",
+            fileName: table.labelZh + ".xls",
+            materialLotList: tableData
+        }
+        MaterialLotUpdateRequest.sendPreviewExportRequest(object);
+    }
     
     createButtonGroup = () => {
         let buttons = [];
         buttons.push(this.createBoxQty());
         buttons.push(this.createWaferNumber());
         buttons.push(this.createTotalNumber());
+        buttons.push(this.createExportDataAndTemplateButton());
         return buttons;
     }
 

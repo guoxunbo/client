@@ -153,6 +153,17 @@ export default class MaterialLotUpdateRequest {
         MessageUtils.sendExpRequest(requestObject, object.fileName);
     }
 
+    static sendPreviewExportRequest = (object) => {
+        let requestBody = MaterialLotUpdateRequestBody.buildPreviewExport(object.tableName, object.materialLotList);
+        let requestHeader = new MaterialLotUpdateRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCExcelExportManagerUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendExpRequest(requestObject, object.fileName);
+    }
+
     static sendCobUnitExportRequest = (object) => {
         let requestBody = MaterialLotUpdateRequestBody.buildCobUnitExport(object.tableName, object.materialLotUnitList);
         let requestHeader = new MaterialLotUpdateRequestHeader();

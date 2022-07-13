@@ -13,6 +13,7 @@ const ActionType = {
     SaveShipHis: "SaveShipHis",
     ExpCobData: "ExpCobData",
     ExpCobUnitData: "ExpCobUnitData",
+    ExpCobPreviewData: "ExpCobPreviewData",
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -103,6 +104,13 @@ export default class MaterialLotUpdateRequestBody {
 
     static buildExport(tableName, materialLotList) {
         let body = new MaterialLotUpdateRequestBody(ActionType.ExpCobData);
+        body.tableName = tableName;
+        body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildPreviewExport(tableName, materialLotList) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.ExpCobPreviewData);
         body.tableName = tableName;
         body.materialLotList = materialLotList;
         return body;
