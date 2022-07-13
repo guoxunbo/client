@@ -57,19 +57,19 @@ export default class EntityProperties extends Component {
             let warehouseRrn = data.reserved13;
             if(warehouseRrn){
               if(warehouseRrn == "8142"){
-                data.reserved13 = "SH_STOCK";
+                data.reserved13 = "上海仓库";
               } else if(warehouseRrn == "8143"){
-                data.reserved13 = "ZJ_STOCK";
+                data.reserved13 = "浙江仓库";
               } else if(warehouseRrn == "8150"){
-                data.reserved13 = "HK_STOCK";
+                data.reserved13 = "香港仓库";
               } else if(warehouseRrn == "8151"){
-                data.reserved13 = "BS_STOCK";
+                data.reserved13 = "保税仓库";
               } else if(warehouseRrn == "8152"){
-                data.reserved13 = "HN_STOCK";
+                data.reserved13 = "湖南仓库";
               } else if(warehouseRrn == "8153"){
-                data.reserved13 = "IC_STOCK";
+                data.reserved13 = "格科微电子仓库";
               } else if(warehouseRrn == "8247"){
-                data.reserved13 = "SPARE_STOCK";
+                data.reserved13 = "备件仓库";
               }
             }
         });

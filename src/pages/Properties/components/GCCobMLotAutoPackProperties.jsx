@@ -8,12 +8,21 @@ export default class GCCobMLotAutoPackProperties  extends EntityScanProperties {
 
     queryData = (whereClause) => {
       const self = this;
+      let {rowKey,tableData} = self.state;
       let requestObject = {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
         success: function(responseBody) {
+          let dataList = responseBody.dataList;
+          if(dataList && dataList.length > 0){
+            let materialLot = dataList[0];
+            if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+              tableData.unshift(materialLot);
+            }
+          }
+          self.form.resetFormFileds();
           self.setState({
-            tableData: responseBody.dataList,
+            tableData: tableData,
             loading: false
           });
         }

@@ -1,10 +1,10 @@
 import { Button } from 'antd';
 import MessageUtils from '../../../api/utils/MessageUtils';
-import EntityListCheckTable from '../EntityListCheckTable';
 import EventUtils from '../../../api/utils/EventUtils';
 import RwMLotManagerRequest from '../../../api/gc/rw-manager/RwMLotManagerRequest';
+import EntityScanViewTable from '../EntityScanViewTable';
 
-export default class GCCobMLotAutoPackTable extends EntityListCheckTable {
+export default class GCCobMLotAutoPackTable extends EntityScanViewTable {
 
     static displayName = 'GCRawMaterialInventoryTable';
 
@@ -21,7 +21,7 @@ export default class GCCobMLotAutoPackTable extends EntityListCheckTable {
 
     autoPack = () => {
         let self = this;
-        let materialLotList = self.getSelectedRows();
+        let materialLotList = self.state.data;
         if (materialLotList.length === 0 ) {
             return;
         }
@@ -47,9 +47,6 @@ export default class GCCobMLotAutoPackTable extends EntityListCheckTable {
         return <Button key="autoPack" type="primary" style={styles.tableButton} icon="inbox" loading={this.state.loading} onClick={this.autoPack}>
                         包装
                     </Button>
-    }
-
-    buildOperationColumn = () => {
     }
 
 }
