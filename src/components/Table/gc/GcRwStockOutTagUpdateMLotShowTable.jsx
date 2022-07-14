@@ -1,4 +1,4 @@
-import {Tag} from 'antd';
+import {Tag, Button} from 'antd';
 import TableManagerRequest from '../../../api/table-manager/TableManagerRequest';
 import EntityListTable from '../EntityListTable';
 import I18NUtils from '../../../api/utils/I18NUtils';
@@ -86,7 +86,16 @@ export default class GcRwStockOutTagUpdateMLotShowTable extends EntityListTable 
     }
 
     createBoxQty = () => {
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{this.state.data.length}</Tag>
+        let materialLots = this.state.data;
+        let qty = 0;
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (data.scanSeq != undefined) {
+                    qty = qty + data.scanSeq;
+                }
+            });
+        }
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{qty}</Button>
     }
 
     createWaferNumber = () => {
@@ -99,7 +108,7 @@ export default class GcRwStockOutTagUpdateMLotShowTable extends EntityListTable 
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.PieceQty)}：{qty}</Button>
     }
 
     createTotalNumber = () => {
@@ -110,11 +119,15 @@ export default class GcRwStockOutTagUpdateMLotShowTable extends EntityListTable 
                 count = count + data.currentQty;
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}:{count}</Tag>
+        return <Button type="primary" style={styles.tableButton}>{I18NUtils.getClientMessage(i18NCode.TotalQty)}:{count}</Button>
     }
 
     buildOperationColumn = () => {
         
     }
-
 }
+const styles = {
+    tableButton: {
+        marginLeft:'20px'
+    }
+};
