@@ -44,7 +44,7 @@ export default class GcTransferShipMLotTable extends EntityScanViewTable {
         return <FormItem>
                   <Row gutter={16}>
                     <Col span={2} >
-                        <span>{I18NUtils.getClientMessage(i18NCode.WarehouseId)}:</span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.TraferWarehouseId)}:</span>
                     </Col>
                     <Col span={4}>
                         <RefListField ref={(warehouseId) => { this.warehouseId = warehouseId }} owner referenceName = "WarehouseIdList" />

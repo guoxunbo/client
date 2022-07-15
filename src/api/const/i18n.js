@@ -240,7 +240,7 @@ const i18NCode = {
     StockLocation: "StockLocation",
     ImportExceptionAndReImport: "ImportExceptionAndReImport",
     PleaseChooseCancelReason: "PleaseChooseCancelReason",
-    WarehouseId: "WarehouseId",
+    TraferWarehouseId: "TraferWarehouseId",
 }
 
 const i18Messages = {
@@ -1419,9 +1419,9 @@ const i18Messages = {
         English: "Please Choose Cancel Reason!",
         Res: ""
     },
-    WarehouseId: {
-        Chinese: "仓库",
-        English: "WarehouseID",
+    TraferWarehouseId: {
+        Chinese: "转入仓库",
+        English: "TraferWarehouseId",
         Res: ""
     },
     TagUpdate: {
