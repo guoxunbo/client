@@ -1,16 +1,9 @@
 import GcPrintVBoxLabelTable from "../../../components/Table/gc/GcPrintVBoxLabelTable";
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 
-const rowKey = "packedLotRrn";
-
 export default class GcPrintVBoxLabelProperties extends EntityScanProperties{
 
     static displayName = 'GcPrintVBoxLabelProperties';
-
-    constructor(props) {
-        super(props);
-        this.state= {...this.state,...{rowKey:rowKey}}
-    }
 
     buildTable = () => {
         return <GcPrintVBoxLabelTable pagination={false} rowKey={this.state.rowKey} 
