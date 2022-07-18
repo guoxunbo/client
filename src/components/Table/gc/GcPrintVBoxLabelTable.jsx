@@ -22,12 +22,12 @@ export default class GcPrintVBoxLabelTable extends EntityScanViewTable {
         const {data} = this.state;
         if (data && data.length > 0) {
             let requestObject = {
-                mesPackedLots : data,    
+                materialLotList : data,    
                 success: function(responseBody) {
                     MessageUtils.showOperationSuccess();
                 }
             }
-            GetPrintVboxParameterRequest.sendQueryRequest(requestObject);
+            GetPrintVboxParameterRequest.sendPrintLabelRequest(requestObject);
         }
     }
 
