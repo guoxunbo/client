@@ -102,6 +102,52 @@ export default class EntityProperties extends Component {
       this.queryData(whereClause);
     }
 
+    resetReferenceData = (data, fileName) =>{
+      debugger;
+      if(!data || data.length == 0 || fileName == null){
+        return;
+      }
+      let queryFields = this.form.state.queryFields;
+      if (queryFields && Array.isArray(queryFields)) {
+       let targetIndex = -1;
+       queryFields.map((queryField, index) => {
+           if (queryField.name == fileName) {
+            targetIndex = index;
+           }
+       });
+       if(targetIndex == -1){
+        return;
+       }
+
+       let referenceField = this.form.state.queryFields[targetIndex];
+       let referenceNode = referenceField.node;
+       if((!data || data.length == 0) && referenceNode != undefined){
+          referenceNode.queryData();
+          return;
+       }
+
+       let referenceList = [];
+       let referenceData = [];
+       data.forEach((d,index) => {
+        let value = d[referenceField.name];
+        if(value == undefined || value == null || value == ""){
+        } else {
+          if(referenceList.indexOf(value) == -1){
+            referenceList.push(value);
+          }
+        }
+       });
+
+       referenceList.forEach((d,index) => {
+           let refObject = {};
+           refObject.key = d;
+           refObject.value = d;
+           referenceData.push(refObject);
+       })
+       referenceNode.setState({data:referenceData});
+     } 
+ }
+
     resetData = () => {
       
     }
