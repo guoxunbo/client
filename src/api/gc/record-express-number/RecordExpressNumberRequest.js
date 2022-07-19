@@ -19,7 +19,7 @@ export default class RecordExpressNumberRequest {
     }
 
     static sendAutoRecordExpress = (object) => {
-        let requestBody = RecordExpressNumberRequestBody.buildAutoRecordExpress(object.datas, object.serviceMode, object.payMode, object.orderTime);
+        let requestBody = RecordExpressNumberRequestBody.buildAutoRecordExpress(object.datas, object.serviceMode, object.payMode, object.orderTime, object.customerType);
         let requestHeader = new RecordExpressNumberRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCRecordExpressUrl);
         let requestObject = {

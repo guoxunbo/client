@@ -136,6 +136,7 @@ const SystemRefListName = {
     ScrapReason: "ScrapReason",
     CancelCheckReason: "CancelCheckReason",
     StockLocation: "StockLocation",
+    CustomerType:"CustomerType",
 };
 
 const RefTableName = {
