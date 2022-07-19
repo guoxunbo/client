@@ -45,8 +45,22 @@ export default class StockOutCheckTable extends EntityScanViewTable {
         let tagList = [];
         tagList.push(this.createCheckExpressFlag());
         tagList.push(this.createStatistic());
+        tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
+    }
+
+    createTotalNumber = () => {
+        let materialLotUnits = this.state.data;
+        let count = 0;
+        if(materialLotUnits && materialLotUnits.length > 0){
+            materialLotUnits.forEach(data => {
+                if (data.currentQty != undefined) {
+                    count = count + data.currentQty;
+                }
+            });
+        }
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.TotalQty)}：{count}</Tag>
     }
 
     createStatistic = () => {
