@@ -31,19 +31,35 @@ export default class GcStockOutOrderMLotProperties extends EntityScanProperties{
           whereClause: whereClause,
           success: function(responseBody) {
             let queryDatas = responseBody.dataList;
-            let data = undefined;
             if (queryDatas && queryDatas.length > 0) {
               let materialLot = queryDatas[0];
+              let errorData = [];
               let trueData = [];
               tableData.forEach(data => {
-                if(!data.errorFlag){
+                if(data.errorFlag){
+                  errorData.push(data);
+                } else {
                   trueData.push(data);
                 }
-            });
-              //验证箱中的所有真空包是否全部备货并且验证箱信息是否符合出条件
-              self.validationMaterialLot(materialLot, trueData);
+              });
+              if (tableData.filter(d => d[rowKey] === materialLot[rowKey]).length === 0) {
+                trueData.unshift(materialLot);
+              }
+              tableData = [];
+              errorData.forEach(data => {
+                tableData.push(data);
+              });
+              trueData.forEach(data => {
+                tableData.push(data);
+              });
+
+              self.setState({ 
+                tableData: tableData,
+                loading: false
+              });
+              self.form.resetFormFileds();
             } else {
-              data = new MaterialLot();
+              let data = new MaterialLot();
               let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
               data[rowKey] = materialLotId;
               data.setMaterialLotId(materialLotId);

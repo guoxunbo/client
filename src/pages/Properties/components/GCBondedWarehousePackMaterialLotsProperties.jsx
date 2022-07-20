@@ -21,6 +21,7 @@ export default class GCBondedWarehousePackMaterialLotsProperties extends EntityS
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
               self.validationPackgeRule(queryDatas[0]);
+              self.queryNodeFocus();
             } else {
               self.showDataNotFound();
             }

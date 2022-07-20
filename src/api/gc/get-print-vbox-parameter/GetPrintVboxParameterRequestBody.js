@@ -1,27 +1,19 @@
 const ActionType = {
-    queryVbox : "queryVbox",
     printLable: "printLable"
 }
 
 export default class GetPrintVboxParameterRequestBody {
 
     actionType;
-    mesPackedLots;
+    materialLotList;
 
-    constructor(actionType, mesPackedLots){
+    constructor(actionType, materialLotList){
         this.actionType = actionType;
-        this.mesPackedLots = mesPackedLots;
+        this.materialLotList = materialLotList;
     }
 
-    static buildQuery(mesPackedLots) {
-        return new GetPrintVboxParameterRequestBody(ActionType.printLable, mesPackedLots);
-    }
-
-    static buildQueryVboxInfo(tableRrn, vboxId) {
-        let body = new GetPrintVboxParameterRequestBody(ActionType.queryVbox);
-        body.tableRrn = tableRrn;
-        body.vboxId = vboxId;
-        return body;
+    static buildPrintLabel(materialLotList) {
+        return new GetPrintVboxParameterRequestBody(ActionType.printLable, materialLotList);
     }
 }
 

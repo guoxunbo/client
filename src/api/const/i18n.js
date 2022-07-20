@@ -241,6 +241,7 @@ const i18NCode = {
     ImportExceptionAndReImport: "ImportExceptionAndReImport",
     PleaseChooseCancelReason: "PleaseChooseCancelReason",
     TraferWarehouseId: "TraferWarehouseId",
+    CustomerType : "CustomerType",
 }
 
 const i18Messages = {
@@ -1427,6 +1428,11 @@ const i18Messages = {
     TagUpdate: {
         Chinese: "标注修改",
         English: "TagUpdate",
+        Res: ""
+    },
+    CustomerType: {
+        Chinese: "账套类型",
+        English: "CustomerType",
         Res: ""
     }
 }

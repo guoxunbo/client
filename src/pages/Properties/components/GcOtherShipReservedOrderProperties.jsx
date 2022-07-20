@@ -18,6 +18,7 @@ export default class GcOtherShipReservedOrderProperties extends EntityProperties
           loading: false,
           resetFlag: true
         });
+        this.resetReferenceData(null, null);
     }
 
     getTableData = () => {
@@ -34,6 +35,15 @@ export default class GcOtherShipReservedOrderProperties extends EntityProperties
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+    }
+
+    afterQuery = (responseBody, whereClause) => {
+      this.resetReferenceData(responseBody.dataList, "reserved8");
+      this.setState({
+        tableData: responseBody.dataList,
+        loading: false,
+        whereClause: whereClause
+      });
     }
     
     buildTable = () => {
