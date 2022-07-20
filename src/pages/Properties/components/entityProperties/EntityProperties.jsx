@@ -103,7 +103,6 @@ export default class EntityProperties extends Component {
     }
 
     resetReferenceData = (data, fileName) =>{
-      debugger;
       if(!data || data.length == 0 || fileName == null){
         return;
       }
