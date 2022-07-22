@@ -242,6 +242,7 @@ const i18NCode = {
     PleaseChooseCancelReason: "PleaseChooseCancelReason",
     TraferWarehouseId: "TraferWarehouseId",
     CustomerType : "CustomerType",
+    TreasuryNote : "TreasuryNote",
 }
 
 const i18Messages = {
@@ -1433,6 +1434,11 @@ const i18Messages = {
     CustomerType: {
         Chinese: "账套类型",
         English: "CustomerType",
+        Res: ""
+    }, 
+    TreasuryNote: {
+        Chinese: "入库备注",
+        English: "TreasuryNote",
         Res: ""
     }
 }
