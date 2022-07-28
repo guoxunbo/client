@@ -39,4 +39,26 @@ export default class FinishGoodInvManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendLSGeadeQueryRequest = (object) => {
+        let requestBody = FinishGoodManagerRequestBody.buildLSGeadeQuery(object.tableRrn);
+        let requestHeader = new FinishGoodManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.FinishGoodManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
+
+    static sendLSGeadeReceiveRequest = (object) => {
+        let requestBody = FinishGoodManagerRequestBody.LSGeadeReceive(object.mesPackedLots);
+        let requestHeader = new FinishGoodManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.FinishGoodManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }

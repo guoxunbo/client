@@ -26,6 +26,8 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createQueryLSGradeButton());
+        buttons.push(this.createReceiveLSGradeButton());
         buttons.push(this.createDeleteAllButton());
         buttons.push(this.createReceiveButton());
         return buttons;
@@ -39,10 +41,15 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
     }
 
     receive = () => {
+        debugger;
         const {data} = this.state;
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
+            return;
+        }
+        if (self.validateMLotExistLSGrade()) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.CannotReceiveLSGradeVBox));
             return;
         }
         self.setState({
@@ -67,6 +74,94 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
             }
             FinishGoodInvManagerRequest.sendReceiveRequest(requestObject);
         }
+    }
+
+    LSGradeQuery = () => {
+        const {data, table} = this.state;
+        let self = this;
+        if (data && data.length > 0) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.DataIsNotNullPleaseReceive));
+            return;
+        }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+        
+        let requestObject = {
+            tableRrn: table.objectRrn,
+            success: function(responseBody) {
+                let packedLotList = responseBody.packedLotList;
+                if (packedLotList && packedLotList.length > 0) {
+                    self.setState({
+                        data: packedLotList,
+                        loading: false
+                    }); 
+                    MessageUtils.showOperationSuccess();
+                } else {
+                    Notification.showInfo(I18NUtils.getClientMessage(i18NCode.DataNotFound));
+                }
+            }
+        }
+        FinishGoodInvManagerRequest.sendLSGeadeQueryRequest(requestObject);
+    }
+
+
+
+    LSGradeReceive = () => {
+        debugger;
+        const {data} = this.state;
+        let self = this;
+        if (self.validateMLotExistUnLSGrade()) {
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.LSGradeVBoxCanDoLSReceive));
+            return;
+        }
+        self.setState({
+            loading: true
+        });
+        EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => this.setState({loading: false}));
+        
+        if (data && data.length > 0) {
+            let self = this;
+            let requestObject = {
+                mesPackedLots: data,
+                success: function(responseBody) {
+                    if (self.props.resetData) {
+                        self.props.onSearch();
+                        self.props.resetData();
+                    }
+                    self.setState({
+                        loading: false
+                    }); 
+                    MessageUtils.showOperationSuccess();
+                }
+            }
+            FinishGoodInvManagerRequest.sendLSGeadeReceiveRequest(requestObject);
+        }
+    }
+
+    validateMLotExistLSGrade(){
+        let flag = false;
+        let materialLots = this.state.data;
+        materialLots.forEach(data => {
+            let grade = data.grade;
+            if(grade && grade == "LS"){
+                flag = true;
+            }
+        });
+        return flag;
+    }
+
+    validateMLotExistUnLSGrade(){
+        let flag = false;
+        let materialLots = this.state.data;
+        materialLots.forEach(data => {
+            let grade = data.grade;
+            if(grade == undefined || grade != "LS"){
+                flag = true;
+            }
+        });
+        return flag;
     }
 
     createStatistic = () => {
@@ -112,6 +207,17 @@ export default class MesReceiveFGScanTable extends EntityScanViewTable {
                     </Button>
     }
 
+    createQueryLSGradeButton = () => {
+        return <Button key="lsGradeQuery" type="primary" style={styles.tableButton} loading={this.state.loading} icon="plus" onClick={this.LSGradeQuery}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnLSGradeQuery)}
+                    </Button>
+    }
+
+    createReceiveLSGradeButton = () => {
+        return <Button key="lsGradeReceive" type="primary" style={styles.tableButton} loading={this.state.loading} icon="import" onClick={this.LSGradeReceive}>
+                        {I18NUtils.getClientMessage(i18NCode.BtnLSGradeReceive)}
+                    </Button>
+    }
 }
 
 const styles = {
