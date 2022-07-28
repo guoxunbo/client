@@ -26,6 +26,9 @@ const i18NCode = {
     MaterialLotIdRepeat: "MaterialLotIdRepeat",
     SelectAtLeastTwoRow: "SelectAtLeastTwoRow",
     ConfirmSpare: "ConfirmSpare",
+    DataIsNotNullPleaseReceive: "DataIsNotNullPleaseReceive",
+    LSGradeVBoxCanDoLSReceive: "LSGradeVBoxCanDoLSReceive",
+    CannotReceiveLSGradeVBox: "CannotReceiveLSGradeVBox",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -56,6 +59,8 @@ const i18NCode = {
     BtnUnPackage: "UnPackage",
     BtnUnPackageAll: "UnPackageAll",
     BtnShipOut: "ShipOut",
+    BtnLSGradeQuery: "LSGradeQuery",
+    BtnLSGradeReceive: "LSGradeReceive",
 
     BtnAppendPackage: "AppendPackage",
     BtnStockIn: "StockIn",
@@ -242,6 +247,7 @@ const i18NCode = {
     PleaseChooseCancelReason: "PleaseChooseCancelReason",
     TraferWarehouseId: "TraferWarehouseId",
     CustomerType : "CustomerType",
+    TreasuryNote : "TreasuryNote",
 }
 
 const i18Messages = {
@@ -1433,6 +1439,36 @@ const i18Messages = {
     CustomerType: {
         Chinese: "账套类型",
         English: "CustomerType",
+        Res: ""
+    }, 
+    TreasuryNote: {
+        Chinese: "入库备注",
+        English: "TreasuryNote",
+        Res: ""
+    },
+    LSGradeQuery: {
+        Chinese: "全选LS等级",
+        English: "LSGradeQuery",
+        Res: ""
+    },
+    LSGradeReceive:{
+        Chinese: "LS等级接收",
+        English: "LSGradeReceive",
+        Res: ""
+    },
+    DataIsNotNullPleaseReceive: {
+        Chinese: "请先接收已扫描真空包再查询！",
+        English: "LSGradeReceive",
+        Res: ""
+    },
+    LSGradeVBoxCanDoLSReceive: {
+        Chinese: "LS等级真空包才能做LS等级接收！",
+        English: "LSGradeVBoxCanDoLSReceive",
+        Res: ""
+    },
+    CannotReceiveLSGradeVBox: {
+        Chinese: "不能接收LS等级真空包！",
+        English: "LSGradeVBoxOnlyLSReceive",
         Res: ""
     }
 }

@@ -18,7 +18,7 @@ export default class ReservedManagerRequest {
     }
 
     static sendGetOtherShipReservedMLot = (object) => {
-        let requestBody = ReservedManagerRequestBody.GetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation);
+        let requestBody = ReservedManagerRequestBody.GetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation, object.treasuryNote);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {
@@ -29,7 +29,7 @@ export default class ReservedManagerRequest {
     }
 
     static sendHNWarehouseGetOtherShipReservedMLot = (object) => {
-        let requestBody = ReservedManagerRequestBody.buildHNWarehouseGetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation);
+        let requestBody = ReservedManagerRequestBody.buildHNWarehouseGetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation, object.treasuryNote);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {
@@ -40,7 +40,7 @@ export default class ReservedManagerRequest {
     }
 
     static sendBSWGetOtherShipReservedMLot = (object) => {
-        let requestBody = ReservedManagerRequestBody.buildBSWGetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation);
+        let requestBody = ReservedManagerRequestBody.buildBSWGetOtherShipReservedMLot(object.docLineRrn, object.tableRrn, object.stockLocation, object.treasuryNote);
         let requestHeader = new ReservedManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCReservedUrl);
         let requestObject = {
