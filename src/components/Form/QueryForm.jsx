@@ -156,14 +156,14 @@ class QueryForm extends React.Component {
                             whereClause.append(SqlType.IsNotNull);
                         } else if(fieldValue == "N"){
                             whereClause.append(SqlType.IsNull);
-                        } if(fieldValue.indexOf(',') != -1){
+                        } if(!fieldValue.startsWith(SqlType.toDate) && fieldValue.indexOf(',') != -1){
                             whereClause.append(SqlType.In);
                         } else {
                             whereClause.append(SqlType.Eq);
                         }
                     }
                     //当前只支持两个数据IN查询
-                    if(fieldValue.indexOf(',') != -1){
+                    if(!fieldValue.startsWith(SqlType.toDate) && fieldValue.indexOf(',') != -1){
                         let valueArr = fieldValue.split(",");
                         whereClause.append("('" + valueArr[0] + "'," + "'" + valueArr[1] + "')");
                     } else {
