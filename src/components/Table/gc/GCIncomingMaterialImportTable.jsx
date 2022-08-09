@@ -259,6 +259,8 @@ export default class GCIncomingMaterialImportTable extends EntityListTable {
 
         if(importType == "COM原料导入"){
             importType = "GCCOBRawMaterialProduct";
+        } else if(importType == "COB（-4成品）"){
+            importType = "GCCOBFinishProduct";
         }
 
         if(warehouseId == 8142){
