@@ -2,7 +2,6 @@ import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import PackageValidationRequest from "../../../api/package-validation/PackageValidationRequest";
 import COBPackMaterialLotTable from "../../../components/Table/gc/COBPackMaterialLotTable";
-import { Notification } from '../../../components/notice/Notice';
 
 const PackageType = "COBPackCase";
 
@@ -19,6 +18,7 @@ export default class COBPackMaterialLotProperties extends EntityScanProperties{
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
               self.validationPackgeRule(queryDatas[0]);
+              self.queryNodeFocus();
             } else {
               self.showDataNotFound();
             }

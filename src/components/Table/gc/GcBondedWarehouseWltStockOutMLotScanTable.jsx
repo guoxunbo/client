@@ -35,8 +35,8 @@ export default class GcBondedWarehouseWltStockOutMLotScanTable extends EntitySca
 
     createButtonGroup = () => {
         let buttons = [];
+        buttons.push(this.createStockOut());
         buttons.push(this.createSaleShip());
-        buttons.push(this.createThreeSideShip());
         return buttons;
     }
 
@@ -78,10 +78,7 @@ export default class GcBondedWarehouseWltStockOutMLotScanTable extends EntitySca
         }
     }
 
-    /**
-     * 销售出
-     */
-    saleShip = () => {
+    stockOut = () => {
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
@@ -119,16 +116,20 @@ export default class GcBondedWarehouseWltStockOutMLotScanTable extends EntitySca
                 MessageUtils.showOperationSuccess();
             }
         }
-        WltStockOutManagerRequest.sendSaleStockOutRequest(requestObj);
+        WltStockOutManagerRequest.sendWltStockOutRequest(requestObj);
     }
 
-     //三方销售
-     threeSideShip = () => {
+     /**
+     * 销售出与三方销售合并
+     * @returns 
+     */
+      saleShip = () => {
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
+        let checkSubCode = this.state.value;
         let documentLine = this.props.orderTable.getSingleSelectedRow();
         if (!documentLine) {
             self.setState({ 
@@ -136,7 +137,7 @@ export default class GcBondedWarehouseWltStockOutMLotScanTable extends EntitySca
             });
             return;
         } else if(documentLine.reserved31 != 'ERP_SOA'){
-            Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseThreeSideShipOrderPlease));
+            Notification.showError(I18NUtils.getClientMessage(i18NCode.ChooseSideShipOrderPlease));
             return;
         }
 
@@ -154,6 +155,7 @@ export default class GcBondedWarehouseWltStockOutMLotScanTable extends EntitySca
         let requestObj = {
             documentLine : documentLine,
             materialLots : materialLots,
+            checkSubCode: checkSubCode,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();
@@ -162,7 +164,7 @@ export default class GcBondedWarehouseWltStockOutMLotScanTable extends EntitySca
                 MessageUtils.showOperationSuccess();
             }
         }
-        WltStockOutManagerRequest.sendWltThreeSideShipRequest(requestObj);
+        WltStockOutManagerRequest.sendSaleAndthreeSideStockOutRequest(requestObj);
     }
 
     getErrorCount = () => {
@@ -216,9 +218,9 @@ export default class GcBondedWarehouseWltStockOutMLotScanTable extends EntitySca
                     </Button>
     }
 
-    createThreeSideShip = () => {
-        return <Button key="threeSideShip" type="primary" style={styles.tableButton} loading={this.state.loading} icon="inbox" onClick={this.threeSideShip}>
-                       {I18NUtils.getClientMessage(i18NCode.BtnThreeSideShip)}
+    createStockOut = () => {
+        return <Button key="stockOut" type="primary" style={styles.tableButton} loading={this.state.loading} icon="file-excel" onClick={this.stockOut}>
+                        材料/其他出
                     </Button>
     }
 }

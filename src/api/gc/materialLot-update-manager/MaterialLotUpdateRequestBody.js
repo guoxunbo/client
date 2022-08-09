@@ -11,6 +11,9 @@ const ActionType = {
     RwImportQueryMLot: "RwImportQueryMLot",
     UpdateMRBComments: "UpdateMRBComments",
     SaveShipHis: "SaveShipHis",
+    ExpCobData: "ExpCobData",
+    ExpCobUnitData: "ExpCobUnitData",
+    ExpCobPreviewData: "ExpCobPreviewData",
 }
 
 export default class MaterialLotUpdateRequestBody {
@@ -96,6 +99,27 @@ export default class MaterialLotUpdateRequestBody {
     static buildMLotUnitImportSearch(tableRrn) {
         let body = new MaterialLotUpdateRequestBody(ActionType.ImportQueryMLotUnit);
         body.tableRrn = tableRrn;
+        return body;
+    }
+
+    static buildExport(tableName, materialLotList) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.ExpCobData);
+        body.tableName = tableName;
+        body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildPreviewExport(tableName, materialLotList) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.ExpCobPreviewData);
+        body.tableName = tableName;
+        body.materialLotList = materialLotList;
+        return body;
+    }
+    
+    static buildCobUnitExport(tableName, materialLotUnitList) {
+        let body = new MaterialLotUpdateRequestBody(ActionType.ExpCobUnitData);
+        body.tableName = tableName;
+        body.materialLotUnitList = materialLotUnitList;
         return body;
     }
 }

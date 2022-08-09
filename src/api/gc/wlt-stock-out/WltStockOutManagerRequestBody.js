@@ -9,7 +9,6 @@ const actionType = {
     ValidateVender: "ValidateVender",
     GetMLot: "GetMLot",
     ValidateMaterialName: "ValidateMaterialName",
-    ThreeSideShip: "ThreeSideShip",
     SaleShip: "SaleShip",
     GCRWAttributeChange: "GCRWAttributeChange",
     WltOtherStockOut: "WltOtherStockOut",
@@ -110,20 +109,6 @@ export default class WltStockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         let body = new WltStockOutManagerRequestBody(actionType.HNWarehouseWltOtherStockOut, documentLines, materialLotActions);
-        return body;
-    }
-
-
-    static buildThreeSideShip(documentLine, materialLots) {
-        let body = new WltStockOutManagerRequestBody(actionType.ThreeSideShip);
-        let materialLotActions = [];
-        materialLots.forEach(materialLot => {
-            let materialLotAction = new MaterialLotAction();
-            materialLotAction.setMaterialLotId(materialLot.materialLotId);
-            materialLotActions.push(materialLotAction)
-        });
-        body.materialLotActions = materialLotActions;
-        body.documentLine = documentLine;
         return body;
     }
 

@@ -183,12 +183,13 @@ import BSWMLotsSaleStockOutOrderProperties from './pages/Properties/components/B
 import BSWErpDocLineMergeProperties from './pages/Properties/components/BSWErpDocLineMergeProperties';
 import GCWaferPrintLabelProperties from './pages/Properties/components/GCWaferPrintLabelProperties';
 import BSWOtherShipReservedOrderProperties from './pages/Properties/components/BSWOtherShipReservedOrderProperties';
-import GcMobilIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobilIRAPackingProperties';
 import GcTransferOrderProperties from './pages/Properties/components//GcTransferOrderProperties';
 import GCCobMLotAutoPackProperties from './pages/Properties/components/GCCobMLotAutoPackProperties';
 import HKLCDPackMaterialLotProperties from './pages/Properties/components/HKLCDPackMaterialLotProperties';
 import GcMobileIRAUnPackageProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAUnPackageProperties';
 import GcMobileIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAPackingProperties';
+import GcHKCheckProperties from './pages/Properties/components/GcHKCheckProperties';
+import GcCancelErpMergeOrderProperties from './pages/Properties/components/GcCancelErpMergeOrderProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -571,6 +572,12 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GcErpDocLineMergeProperties,
   },
+  //ERP取消合单
+  {
+    path: buildPath('GC/CancelErpMergeOrder'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GcCancelErpMergeOrderProperties,
+  },
    //RW发料标签补打
   {
     path: buildPath('GC/GCRwMLotIssueLabelPrint'),
@@ -871,7 +878,7 @@ const routerConfig = [
   {
     path: buildPath('HKWarehouse/GCWaferCheckManager'),
     layout: HeaderAsideFooterResponsiveLayout,
-    component: GcCheckProperties,
+    component: GcHKCheckProperties,
   },
   {
     path: buildPath('HKWarehouse/GCMLotCodePrintManager'),

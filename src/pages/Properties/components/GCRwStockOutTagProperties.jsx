@@ -22,7 +22,7 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
     }
 
     queryData = (whereClause) => {
-      const self = this;
+      let self = this;
       let requestObject = {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
@@ -30,7 +30,9 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
           self.resetComBoxData(responseBody.dataList);
           self.setState({
             tableData: responseBody.dataList,
-            loading: false
+            loading: false,
+            resetFlag: true,
+            whereClause: whereClause
           });
         }
       }
@@ -107,10 +109,12 @@ export default class GCRwStockOutTagProperties extends EntityScanProperties{
         return <GCRwStockOutTaggingTable pagination={false} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
-                                    selectedRows={this.state.selectedRows} 
+                                    selectedRows={this.state.selectedRows}
+                                    resetFlag={this.state.resetFlag} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading}
+                                    whereClause={this.state.whereClause}
                                     onSearch={this.queryData.bind(this)} 
                                     resetData={this.resetData.bind(this)}/>
     }

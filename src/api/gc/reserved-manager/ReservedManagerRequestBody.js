@@ -46,21 +46,24 @@ export default class ReservedManagerRequestBody {
         return body;
     }
 
-    static GetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation) {
+    static GetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation, treasuryNote) {
         let body = new ReservedManagerRequestBody(ActionType.GetOtherShipReservedMLot, docLineRrn, tableRrn);
         body.stockLocation = stockLocation;
+        body.treasuryNote = treasuryNote;
         return body;
     }
 
-    static buildHNWarehouseGetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation) {
+    static buildHNWarehouseGetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation, treasuryNote) {
         let body = new ReservedManagerRequestBody(ActionType.HNWarehouseGetOtherShipReservedMLot, docLineRrn, tableRrn);
         body.stockLocation = stockLocation;
+        body.treasuryNote = treasuryNote;
         return body;
     }
 
-    static buildBSWGetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation) {
+    static buildBSWGetOtherShipReservedMLot(docLineRrn, tableRrn, stockLocation, treasuryNote) {
         let body = new ReservedManagerRequestBody(ActionType.BSWGetOtherShipReservedMLot, docLineRrn, tableRrn);
         body.stockLocation = stockLocation;
+        body.treasuryNote = treasuryNote;
         return body;
     }
     

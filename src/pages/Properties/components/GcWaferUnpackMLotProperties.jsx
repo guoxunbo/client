@@ -47,6 +47,7 @@ export default class GcWaferUnpackMLotProperties extends EntityScanProperties{
                 resetFlag: true,
             });
             self.form.resetFormFileds();
+            self.queryNodeFocus();
           }
         }
         TableManagerRequest.sendGetDataByRrnRequest(requestObject);

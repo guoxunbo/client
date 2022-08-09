@@ -26,6 +26,9 @@ const i18NCode = {
     MaterialLotIdRepeat: "MaterialLotIdRepeat",
     SelectAtLeastTwoRow: "SelectAtLeastTwoRow",
     ConfirmSpare: "ConfirmSpare",
+    DataIsNotNullPleaseReceive: "DataIsNotNullPleaseReceive",
+    LSGradeVBoxCanDoLSReceive: "LSGradeVBoxCanDoLSReceive",
+    CannotReceiveLSGradeVBox: "CannotReceiveLSGradeVBox",
 
     ConfirmDelete: "ConfirmDelete",
     ConfirmCancel: "ConfirmCancel",
@@ -56,6 +59,8 @@ const i18NCode = {
     BtnUnPackage: "UnPackage",
     BtnUnPackageAll: "UnPackageAll",
     BtnShipOut: "ShipOut",
+    BtnLSGradeQuery: "LSGradeQuery",
+    BtnLSGradeReceive: "LSGradeReceive",
 
     BtnAppendPackage: "AppendPackage",
     BtnStockIn: "StockIn",
@@ -77,6 +82,7 @@ const i18NCode = {
     BtnAutoPick: "AutoPick",
     BtnSaleShip: "SaleShip",
     BtnAddShipOrder: "AddShipOrder",
+    BtnTagUpdate: "TagUpdate",
     BtnCancelShipOrder: "CancelShipOrder",
     BtnPreview: "Preview",
     BtnSpareMaterial: "SpareMaterial",
@@ -212,6 +218,7 @@ const i18NCode = {
     ScrapReason: "ScrapReason",
     CheckSubCodeFlag: "CheckSubCodeFlag",
     BtnMergeDocLine: "MergeDocLine",
+    BtnUnMergeDocLine: "UnMergeDocLine",
     TheLocationAndWarehouseIsNotSame: "TheLocationAndWarehouseIsNotSame",
     BondProMustBeHK: "BondProMustBeHK",
     OrderTime: "OrderTime",
@@ -238,7 +245,9 @@ const i18NCode = {
     StockLocation: "StockLocation",
     ImportExceptionAndReImport: "ImportExceptionAndReImport",
     PleaseChooseCancelReason: "PleaseChooseCancelReason",
-    WarehouseId: "WarehouseId",
+    TraferWarehouseId: "TraferWarehouseId",
+    CustomerType : "CustomerType",
+    TreasuryNote : "TreasuryNote",
 }
 
 const i18Messages = {
@@ -408,7 +417,7 @@ const i18Messages = {
         Res: ""
     },
     Add: {
-        Chinese: "添加",
+        Chinese: "查询",
         English: "Add",
         Res: ""
     },
@@ -1192,6 +1201,11 @@ const i18Messages = {
         English: "Merge DocLine",
         Res: "" 
     },
+    UnMergeDocLine: {
+        Chinese: "取消合单",
+        English: "UnMergeOrder",
+        Res: "" 
+    },
     SelectAtLeastTwoRow: {
         Chinese: "请至少选择两笔数据！",
         English: "Select At Least Two Row!",
@@ -1412,9 +1426,49 @@ const i18Messages = {
         English: "Please Choose Cancel Reason!",
         Res: ""
     },
-    WarehouseId: {
-        Chinese: "仓库",
-        English: "WarehouseID",
+    TraferWarehouseId: {
+        Chinese: "转入仓库",
+        English: "TraferWarehouseId",
+        Res: ""
+    },
+    TagUpdate: {
+        Chinese: "标注修改",
+        English: "TagUpdate",
+        Res: ""
+    },
+    CustomerType: {
+        Chinese: "账套类型",
+        English: "CustomerType",
+        Res: ""
+    }, 
+    TreasuryNote: {
+        Chinese: "入库备注",
+        English: "TreasuryNote",
+        Res: ""
+    },
+    LSGradeQuery: {
+        Chinese: "全选LS等级",
+        English: "LSGradeQuery",
+        Res: ""
+    },
+    LSGradeReceive:{
+        Chinese: "LS等级接收",
+        English: "LSGradeReceive",
+        Res: ""
+    },
+    DataIsNotNullPleaseReceive: {
+        Chinese: "请先接收已扫描真空包再查询！",
+        English: "LSGradeReceive",
+        Res: ""
+    },
+    LSGradeVBoxCanDoLSReceive: {
+        Chinese: "LS等级真空包才能做LS等级接收！",
+        English: "LSGradeVBoxCanDoLSReceive",
+        Res: ""
+    },
+    CannotReceiveLSGradeVBox: {
+        Chinese: "不能接收LS等级真空包！",
+        English: "LSGradeVBoxOnlyLSReceive",
         Res: ""
     }
 }

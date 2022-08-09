@@ -3,7 +3,7 @@ import ReservedManagerRequest from '../../../api/gc/reserved-manager/ReservedMan
 import { i18NCode } from '../../../api/const/i18n';
 import { SystemRefListName } from '../../../api/const/ConstDefine';
 import RefListField from '../../Field/RefListField';
-import { Col, Row } from 'antd';
+import { Col, Row, Input} from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
 import I18NUtils from '../../../api/utils/I18NUtils';
 
@@ -39,6 +39,12 @@ export default class BSWOtherShipReservedOrderTable extends EntityListTable {
                         <Col span={4}>
                             <RefListField ref={(stockLocation) => { this.stockLocation = stockLocation }} referenceName={SystemRefListName.StockLocation} />
                         </Col>
+                        <Col span={2} >
+                            <span>{I18NUtils.getClientMessage(i18NCode.TreasuryNote)}:</span>
+                        </Col>
+                        <Col span={4}>
+                            <Input ref={(treasuryNote) => { this.treasuryNote = treasuryNote }} style={{ width: 300}} key="treasuryNote" placeholder="入库备注" />
+                        </Col>
                     </Row>
                 </FormItem>
     }
@@ -49,6 +55,7 @@ export default class BSWOtherShipReservedOrderTable extends EntityListTable {
     selectRow = (record) => {
         let self = this;
         let stockLocation = self.stockLocation.state.value;
+        let treasuryNote = self.treasuryNote.state.value;
         let selectedRows = [];
         selectedRows.push(record);
         this.setState({
@@ -58,6 +65,7 @@ export default class BSWOtherShipReservedOrderTable extends EntityListTable {
             docLineRrn: record.objectRrn,
             tableRrn: this.props.reservedLotTable.state.table.objectRrn,
             stockLocation: stockLocation,
+            treasuryNote: treasuryNote,
             success: function(responseBody) {
                 let materialLotList = responseBody.materialLotList;
                 self.getPackedRuleList(record, materialLotList);

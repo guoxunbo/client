@@ -217,5 +217,17 @@ export default class RwMLotManagerRequest {
         }
         MessageUtils.sendRequest(requestObject);
     }
+
+    static sendStockOutTagUpdateRequest = (object) => {
+        let {materialLotList, customerName, abbreviation, remarks} = object;
+        let requestBody = RwMLotManagerRequestBody.buildStockTagUpdate(materialLotList, customerName, abbreviation, remarks);
+        let requestHeader = new RwMLotManagerRequestHeader();
+        let request = new Request(requestHeader, requestBody, UrlConstant.GCRwMaterialLotManageUrl);
+        let requestObject = {
+            request: request,
+            success: object.success
+        }
+        MessageUtils.sendRequest(requestObject);
+    }
 }
 

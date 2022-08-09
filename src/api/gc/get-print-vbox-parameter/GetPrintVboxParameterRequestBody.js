@@ -1,15 +1,20 @@
+const ActionType = {
+    printLable: "printLable"
+}
+
 export default class GetPrintVboxParameterRequestBody {
 
-    mesPackedLots;
+    actionType;
+    materialLotList;
 
-    constructor(mesPackedLots){
-        this.mesPackedLots = mesPackedLots;
+    constructor(actionType, materialLotList){
+        this.actionType = actionType;
+        this.materialLotList = materialLotList;
     }
 
-    static buildQuery(mesPackedLots) {
-        return new GetPrintVboxParameterRequestBody(mesPackedLots);
+    static buildPrintLabel(materialLotList) {
+        return new GetPrintVboxParameterRequestBody(ActionType.printLable, materialLotList);
     }
-
 }
 
 

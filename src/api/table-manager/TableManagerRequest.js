@@ -74,7 +74,7 @@ export default class TableManagerRequest {
      * @param expTemplate 是否是导出模板标识
      */
     static sendExportRequest = (object, expTemplate) => {
-        let requestBody = TableManagerRequestBody.buildExport(object.tableRrn, expTemplate);
+        let requestBody = TableManagerRequestBody.buildExport(object.tableRrn, expTemplate, object.whereClause);
         let requestHeader = new TableManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.ExporttUrl);
         let requestObject = {

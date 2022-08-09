@@ -100,6 +100,7 @@ const UrlConstant = {
     GCIncomingMaterialValidate: ModuleUrlConstant.GC + "IncomingImportValidate",
     GCProductSubcodeManagerUrl: ModuleUrlConstant.GC + "productSubcodeSet",
     GCUpdateMaterialLotManagerUrl: ModuleUrlConstant.GC + "updateMaterialLot",
+    GCExcelExportManagerUrl: ModuleUrlConstant.GC + "gcExport",
     GCMLotImportSearchManagerUrl: ModuleUrlConstant.GC + "mLotImportSearch",
     GCGetMLotCodePrintParameterUrl: ModuleUrlConstant.GC + "getMLotCodePrintParameter",
     GCPrintWltCpLotUrl: ModuleUrlConstant.GC + "printWltCpLot",
@@ -135,6 +136,7 @@ const SystemRefListName = {
     ScrapReason: "ScrapReason",
     CancelCheckReason: "CancelCheckReason",
     StockLocation: "StockLocation",
+    CustomerType:"CustomerType",
 };
 
 const RefTableName = {

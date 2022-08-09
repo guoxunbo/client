@@ -57,7 +57,7 @@ export default class StockOutManagerRequestBody {
         return new StockOutManagerRequestBody(actionType.Validation, undefined, materialLotActions, queryMaterialLot);
     }
 
-    static buildTransferShip(documentLine, materialLots, warehouseId) {
+    static buildTransferShip(documentLineList, materialLots, warehouseId) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
@@ -65,7 +65,7 @@ export default class StockOutManagerRequestBody {
             materialLotActions.push(materialLotAction)
         });
         let body = new StockOutManagerRequestBody(actionType.TransferShip);
-        body.documentLine = documentLine;
+        body.documentLineList = documentLineList;
         body.materialLotActions = materialLotActions;
         body.warehouseId = warehouseId;
         return body;

@@ -30,7 +30,8 @@ export default class GCCOBWaferStockOutTagProperties extends EntityScanPropertie
           self.resetComBoxData(responseBody.materialLotList);
           self.setState({
             tableData: responseBody.materialLotUnitList,
-            loading: false
+            loading: false,
+            resetFlag: true
           });
         }
       }
@@ -108,6 +109,7 @@ export default class GCCOBWaferStockOutTagProperties extends EntityScanPropertie
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
+                                    resetFlag={this.state.resetFlag} 
                                     table={this.state.table} 
                                     data={this.state.tableData} 
                                     loading={this.state.loading}

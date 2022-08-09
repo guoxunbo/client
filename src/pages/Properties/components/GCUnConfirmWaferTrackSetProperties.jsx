@@ -23,7 +23,7 @@ export default class GCUnConfirmWaferTrackSetProperties extends EntityProperties
     }
 
     buildTable = () => {
-        return <GcUnConfirmWaferTrackSetTable pagination={false} 
+        return <GcUnConfirmWaferTrackSetTable pagination={true} 
                                     rowKey={this.state.rowKey} 
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 

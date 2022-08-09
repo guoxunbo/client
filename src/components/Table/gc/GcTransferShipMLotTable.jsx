@@ -44,7 +44,7 @@ export default class GcTransferShipMLotTable extends EntityScanViewTable {
         return <FormItem>
                   <Row gutter={16}>
                     <Col span={2} >
-                        <span>{I18NUtils.getClientMessage(i18NCode.WarehouseId)}:</span>
+                        <span>{I18NUtils.getClientMessage(i18NCode.TraferWarehouseId)}:</span>
                     </Col>
                     <Col span={4}>
                         <RefListField ref={(warehouseId) => { this.warehouseId = warehouseId }} owner referenceName = "WarehouseIdList" />
@@ -54,16 +54,15 @@ export default class GcTransferShipMLotTable extends EntityScanViewTable {
     }
 
     stockOut = () => {
+        debugger;
         let self = this;
         if (this.getErrorCount() > 0) {
             Notification.showError(I18NUtils.getClientMessage(i18NCode.ErrorNumberMoreThanZero));
             return;
         }
-        let documentLine = this.props.orderTable.getSingleSelectedRow();
-        if (!documentLine) {
-            self.setState({ 
-                loading: false
-            });
+        let orders = this.props.orderTable.state.data;
+        if (orders.length === 0) {
+            Notification.showNotice(I18NUtils.getClientMessage(i18NCode.SelectOneRow));
             return;
         }
         
@@ -85,7 +84,7 @@ export default class GcTransferShipMLotTable extends EntityScanViewTable {
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
 
         let requestObj = {
-            documentLine : documentLine,
+            documentLineList : orders,
             materialLots : materialLots,
             warehouseId: warehouseId,
             success: function(responseBody) {

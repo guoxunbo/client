@@ -3,6 +3,8 @@ const ActionType = {
     COMReceive: "COMReceive",
     WLTReceive: "WLTReceive",
     COBReceive: "COBReceive",
+    LSGradeQuery: "LSGradeQuery",
+    LSGradeReceive: "LSGradeReceive",
 }
 
 export default class FinishGoodManagerRequestBody {
@@ -47,5 +49,14 @@ export default class FinishGoodManagerRequestBody {
         return new FinishGoodManagerRequestBody(mesPackedLots, undefined, ActionType.COBReceive);
     }
 
+    static buildLSGeadeQuery(tableRrn) {
+        let body =  new FinishGoodManagerRequestBody(undefined, undefined, ActionType.LSGradeQuery);
+        body.tableRrn = tableRrn;
+        return body;
+    }
+
+    static LSGeadeReceive(mesPackedLots) {
+        return new FinishGoodManagerRequestBody(mesPackedLots, undefined, ActionType.LSGradeReceive);
+    }
 }
 

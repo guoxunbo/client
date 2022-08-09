@@ -1,3 +1,4 @@
+import MaterialLotAction from "../../dto/mms/MaterialLotAction";
 
 const ActionType = {
     GetPrintParameter: "getPrintParameter",
@@ -18,7 +19,8 @@ const ActionType = {
     COBWaferQuery: "COBWaferQuery",
     WaferAutoPick: "WaferAutoPick",
     WaferStockOutTag: "WaferStockOutTag",
-    CobAutoPack: "CobAutoPack"
+    CobAutoPack: "CobAutoPack",
+    TagUpdate: "TagUpdate",
 }
 
 export default class RwMLotManagerRequestBody {
@@ -136,7 +138,19 @@ export default class RwMLotManagerRequestBody {
      * @returns 
      */
     static buildRwMLotUnStockTagging(materialLotList) {
-        return new RwMLotManagerRequestBody(ActionType.UnStockOutTag, materialLotList);
+        let body = new RwMLotManagerRequestBody(ActionType.UnStockOutTag);
+        body.setMaterialLotAction(materialLotList);
+        return body;
+    }
+    
+    setMaterialLotAction(materialLotList){
+        let materialLotActions = [];
+        materialLotList.forEach(materialLot => {
+            let materialLotAction = new MaterialLotAction();
+            materialLotAction.setMaterialLotId(materialLot.materialLotId);
+            materialLotActions.push(materialLotAction);
+        });
+        this.materialLotActions = materialLotActions;
     }
 
     /**
@@ -146,13 +160,15 @@ export default class RwMLotManagerRequestBody {
      * @returns 
      */
     static buildMLotAddShipOrderId(materialLotList, shipOrderId) {
-        let body = new RwMLotManagerRequestBody(ActionType.AddShipOrderId, materialLotList);
+        let body = new RwMLotManagerRequestBody(ActionType.AddShipOrderId);
+        body.setMaterialLotAction(materialLotList);
         body.shipOrderId = shipOrderId;
         return body;
     }
 
     static buildMLotCancelShipOrderId(materialLotList) {
-        let body = new RwMLotManagerRequestBody(ActionType.CancelShipOrderId, materialLotList);
+        let body = new RwMLotManagerRequestBody(ActionType.CancelShipOrderId);
+        body.setMaterialLotAction(materialLotList);
         return body;
     }
 
@@ -197,6 +213,15 @@ export default class RwMLotManagerRequestBody {
     static buildCOBMLotAutoPack(materialLotList) {
         let body = new RwMLotManagerRequestBody(ActionType.CobAutoPack);
         body.materialLotList = materialLotList;
+        return body;
+    }
+
+    static buildStockTagUpdate(materialLotList, customerName, abbreviation, remarks) {
+        let body = new RwMLotManagerRequestBody(ActionType.TagUpdate);
+        body.setMaterialLotAction(materialLotList);
+        body.abbreviation = abbreviation;
+        body.customerName = customerName;
+        body.remarks = remarks;
         return body;
     }
 }

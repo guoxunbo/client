@@ -19,14 +19,21 @@ export default class GCRwStockOutTaggingUpdateProperties extends EntityScanPrope
     
     queryData = (whereClause) => {
       const self = this;
+      let tableData = [];
       let requestObject = {
         tableRrn: this.state.tableRrn,
         whereClause: whereClause,
         success: function(responseBody) {
-          self.resetComBoxData(responseBody.dataList);
+          tableData = responseBody.dataList;
+          self.resetComBoxData(tableData);
+          if(tableData && tableData.length > 0){
+            self.getWareHouseId(tableData);
+          }
           self.setState({
-            tableData: responseBody.dataList,
-            loading: false
+            tableData: tableData,
+            loading: false,
+            resetFlag: true,
+            whereClause: whereClause
           });
         }
       }
@@ -106,7 +113,9 @@ export default class GCRwStockOutTaggingUpdateProperties extends EntityScanPrope
                                     selectedRowKeys={this.state.selectedRowKeys} 
                                     selectedRows={this.state.selectedRows} 
                                     table={this.state.table} 
+                                    resetFlag={this.state.resetFlag} 
                                     data={this.state.tableData} 
+                                    whereClause={this.state.whereClause}
                                     loading={this.state.loading} 
                                     onSearch={this.queryData}
                                     resetData={this.resetData.bind(this)}/>

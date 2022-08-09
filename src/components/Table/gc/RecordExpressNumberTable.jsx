@@ -99,6 +99,12 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
                     <Col span={4}>
                         <DatePicker ref={(orderTime) => { this.orderTime = orderTime }} locale={locale} showTime format={DateFormatType.DateTime} />
                     </Col>
+                    <Col span={2} >
+                        <span>{I18NUtils.getClientMessage(i18NCode.CustomerType)}:</span>
+                    </Col>
+                    <Col span={4}>
+                        <RefListField ref={(customerType) => { this.customerType = customerType }} referenceName={SystemRefListName.CustomerType}/>
+                    </Col>
                 </Row>
         </FormItem>
     }
@@ -120,6 +126,7 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
         }
         let serviceMode = this.serviceMode.state.value;
         let payMode = this.payMode.state.value;
+        let customerType = this.customerType.state.value;
 
         self.setState({
             loading: true
@@ -131,6 +138,7 @@ export default class RecordExpressNumberTable extends EntityListCheckTable {
             serviceMode: serviceMode,
             payMode: payMode,
             orderTime: orderTime,
+            customerType: customerType,
             success: function(responseBody) {
                 self.setState({
                     data: [],

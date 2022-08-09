@@ -18,6 +18,7 @@ export default class PackageMaterialLotProperties extends EntityScanProperties{
             let queryDatas = responseBody.dataList;
             if (queryDatas && queryDatas.length > 0) {
               self.validationPackgeRule(queryDatas[0]);
+              self.queryNodeFocus();
             } else {
               self.showDataNotFound();
             }

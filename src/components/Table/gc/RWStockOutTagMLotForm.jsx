@@ -1,7 +1,6 @@
 import  React from 'react';
 import { DefaultRowKey } from '../../../api/const/ConstDefine';
 import EntityForm from '../../Form/EntityForm';
-import WltStockOutManagerRequest from '../../../api/gc/wlt-stock-out/WltStockOutManagerRequest';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';

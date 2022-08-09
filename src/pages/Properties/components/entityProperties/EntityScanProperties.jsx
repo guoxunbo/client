@@ -30,6 +30,12 @@ export default class EntityScanProperties extends EntityProperties {
       });
     }
 
+    queryNodeFocus = () => {
+      if (this.form.state.queryFields[0]) {
+        this.form.state.queryFields[0].node.focus();
+      }
+    }
+
     /**
      * 焦点全部失焦
      */
