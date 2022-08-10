@@ -39,7 +39,7 @@ export default class GCFTStockOutOrderProperties extends EntityProperties{
     }
 
     afterQuery = (responseBody, whereClause) => {
-      this.resetReferenceData(responseBody.dataList, "reserved8");
+      this.resetReferenceData(responseBody.dataList, "reserved12");
       this.setState({
         tableData: responseBody.dataList,
         loading: false,
