@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Switch } from 'antd';
+import { Button, Col, Form, Input, Row, Switch, Tag} from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
@@ -47,6 +47,9 @@ export default class GCMLotCodePackCheckTable extends EntityScanViewTable {
     createTagGroup = () => {
         let tagList = [];
         tagList.push(this.createMLotCodeCheckTag());
+        tagList.push(this.createBoxNumber());
+        tagList.push(this.createPackageQty());
+        tagList.push(this.createTotalNumber());
         return tagList;
     }
 
