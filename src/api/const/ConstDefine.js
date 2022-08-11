@@ -203,6 +203,7 @@ const SqlType = {
     Date: "YYYY-MM-DD",
     IsNotNull: " is not null",
     IsNull: " is null ",
+    In: " IN ",
 }
 
 

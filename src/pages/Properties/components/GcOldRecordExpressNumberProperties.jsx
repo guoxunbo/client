@@ -1,12 +1,11 @@
-import EntityProperties from "./entityProperties/EntityProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
 import RecordExpressNumberOldTable from "../../../components/Table/gc/RecordExpressNumberOldTable";
+import EntityScanProperties from "./entityProperties/EntityScanProperties";
 
-export default class GcOldRecordExpressNumberProperties extends EntityProperties{
+export default class GcOldRecordExpressNumberProperties extends EntityScanProperties{
 
     static displayName = 'GcOldRecordExpressNumberProperties';
     
-
     resetData = () => {
       this.setState({
         selectedRowKeys: [],
@@ -17,20 +16,21 @@ export default class GcOldRecordExpressNumberProperties extends EntityProperties
       });
     }
 
-    getTableData = () => {
-        const self = this;
-        let requestObject = {
-          tableRrn: this.state.tableRrn,
-          success: function(responseBody) {
-            self.setState({
-              tableData: responseBody.dataList,
-              table: responseBody.table,
-              loading: false
-            }); 
-            self.form.handleSearch();
-          }
+    queryData = (whereClause) => {
+      const self = this;
+      let {rowKey,tableData} = this.state;
+      let requestObject = {
+        tableRrn: this.state.tableRrn,
+        whereClause: whereClause,
+        success: function(responseBody) {
+          let queryDatas = responseBody.dataList;
+          self.setState({ 
+            tableData: queryDatas,
+            loading: false
+          });
         }
-        TableManagerRequest.sendGetDataByRrnRequest(requestObject);
+      }
+      TableManagerRequest.sendGetDataByRrnRequest(requestObject);
     }
 
     buildTable = () => {

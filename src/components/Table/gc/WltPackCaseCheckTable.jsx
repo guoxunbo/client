@@ -1,4 +1,4 @@
-import { Button, Form } from 'antd';
+import { Button, Tag, Form } from 'antd';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
 import EntityScanViewTable from '../EntityScanViewTable';
@@ -27,6 +27,14 @@ export default class WltPackCaseCheckTable extends EntityScanViewTable {
         buttons.push(this.createJudgePassButton());
         buttons.push(this.createJudgeNgButton());
         return buttons;
+    }
+
+    createTagGroup = () => {
+        let tags = [];
+        tags.push(this.createBoxNumber());
+        tags.push(this.createPackageQty());
+        tags.push(this.createTotalNumber());
+        return tags;
     }
 
     createForm = () => {
