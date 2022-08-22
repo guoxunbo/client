@@ -55,8 +55,10 @@ export default class FtMLotManagerRequestBody {
         this.queryMaterialLot = queryMaterialLot;
     }
     
-    static buildReceive(materialLotUnitList) {
-        return new FtMLotManagerRequestBody(ActionType.Receive, materialLotUnitList);
+    static buildReceive(materialLotList) {
+        let body = new FtMLotManagerRequestBody(ActionType.Receive);
+        body.materialLotList = materialLotList;
+        return body;
     }
 
     static buildQueryStockInMLot(unitId, tableRrn) {

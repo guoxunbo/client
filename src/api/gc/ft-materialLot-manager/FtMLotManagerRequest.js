@@ -7,8 +7,8 @@ import Request from '../../Request';
 export default class FtMLotManagerRequest {
 
     static sendReceiveUnitRequest = (object) => {
-        let {materialLotUnitList} = object;
-        let requestBody = FtMLotManagerRequestBody.buildReceive(materialLotUnitList);
+        let {materialLotList} = object;
+        let requestBody = FtMLotManagerRequestBody.buildReceive(materialLotList);
         let requestHeader = new FtMLotManagerRequestHeader();
         let request = new Request(requestHeader, requestBody, UrlConstant.GCftMaterialLotManagerUrl);
         let requestObject = {

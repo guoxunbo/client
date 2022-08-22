@@ -59,16 +59,16 @@ export default class GcFTMaterialLotReceiveTable extends EntityScanViewTable {
     }
 
     createBoxNumber = () => {
-        let materialLotUnits = this.state.data;
-        let lotIdList = [];
-        if(materialLotUnits && materialLotUnits.length > 0){
-            materialLotUnits.forEach(data => {
-                if (lotIdList.indexOf(data.lotId) == -1) {
-                    lotIdList.push(data.lotId);
+        let materialLots = this.state.data;
+        let materiallotIdList = [];
+        if(materialLots && materialLots.length > 0){
+            materialLots.forEach(data => {
+                if (materiallotIdList.indexOf(data.materialLotId) == -1) {
+                    materiallotIdList.push(data.materialLotId);
                 }
             });
         }
-        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{lotIdList.length}</Tag>
+        return <Tag color="#2db7f5">{I18NUtils.getClientMessage(i18NCode.BoxQty)}：{materiallotIdList.length}</Tag>
     }
 
     createPieceQty = () => {
@@ -95,8 +95,8 @@ export default class GcFTMaterialLotReceiveTable extends EntityScanViewTable {
             return;
         }
 
-        let materialLotUnitList = this.state.data;
-        if (materialLotUnitList.length === 0) {
+        let materialLotList = this.state.data;
+        if (materialLotList.length === 0) {
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
@@ -106,7 +106,7 @@ export default class GcFTMaterialLotReceiveTable extends EntityScanViewTable {
         });
         EventUtils.getEventEmitter().on(EventUtils.getEventNames().ButtonLoaded, () => self.setState({loading: false}));
         let requestObject = {
-            materialLotUnitList : materialLotUnitList,
+            materialLotList : materialLotList,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.resetData();

@@ -1,8 +1,8 @@
 import EntityScanProperties from "./entityProperties/EntityScanProperties";
 import TableManagerRequest from "../../../api/table-manager/TableManagerRequest";
-import MaterialLotUnit from "../../../api/dto/mms/MaterialLotUnit";
 import GcFTWaitReceiveMaterialLotProperties from "./GcFTWaitReceiveMaterialLotProperties";
 import GcFTMaterialLotReceiveTable from "../../../components/Table/gc/GcFTMaterialLotReceiveTable";
+import MaterialLot from "../../../api/dto/mms/MaterialLot";
 
 export default class GcFTMaterialLotReceiveProperties extends EntityScanProperties{
 
@@ -20,9 +20,6 @@ export default class GcFTMaterialLotReceiveProperties extends EntityScanProperti
       }
     }
 
-    /**
-     * 扫描的晶圆如果不存在要异常显示。
-     */
     queryData = (whereClause) => {
         const self = this;
         let {rowKey,tableData} = this.state;
@@ -61,10 +58,10 @@ export default class GcFTMaterialLotReceiveProperties extends EntityScanProperti
                 tableData.push(data);
               });
             } else {
-              data = new MaterialLotUnit();
-              let unitId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
-              data[rowKey] = unitId;
-              data.setUnitId(unitId);
+              data = new MaterialLot();
+              let materialLotId = self.form.props.form.getFieldValue(self.form.state.queryFields[0].name);
+              data[rowKey] = materialLotId;
+              data.setMaterialLotId(materialLotId);
               data.errorFlag = true;
               if (tableData.filter(d => d[rowKey] === data[rowKey]).length === 0) {
                 tableData.unshift(data);
