@@ -105,6 +105,7 @@ class QueryForm extends React.Component {
     }
 
     buildWhereClause = (formValues) => {
+        debugger;
         const queryFields = this.state.queryFields;
         let whereClause = new StringBuffer();
         let firstFlag = true;
@@ -156,24 +157,33 @@ class QueryForm extends React.Component {
                             whereClause.append(SqlType.IsNotNull);
                         } else if(fieldValue == "N"){
                             whereClause.append(SqlType.IsNull);
+                        } else if(!fieldValue.startsWith(SqlType.toDate) && fieldValue.indexOf(',') != -1){
+                            whereClause.append(SqlType.In);
                         } else {
                             whereClause.append(SqlType.Eq);
                         }
                     }
-                    if (!fieldValue.startsWith(SqlType.toDate) && !JudgeType.includes(fieldValue)) {
-                        whereClause.append("'")
-                    } 
-                    if(!JudgeType.includes(fieldValue)){
-                        whereClause.append(fieldValue);
+                    //当前只支持两个数据IN查询
+                    if(!fieldValue.startsWith(SqlType.toDate) && fieldValue.indexOf(',') != -1){
+                        let valueArr = fieldValue.split(",");
+                        whereClause.append("('" + valueArr[0] + "'," + "'" + valueArr[1] + "')");
+                    } else {
+                        if (!fieldValue.startsWith(SqlType.toDate) && !JudgeType.includes(fieldValue)) {
+                            whereClause.append("'")
+                        } 
+                        if(!JudgeType.includes(fieldValue)){
+                            whereClause.append(fieldValue);
+                        }
+                        if (!fieldValue.startsWith(SqlType.toDate) && !JudgeType.includes(fieldValue)) {
+                            whereClause.append("'")
+                        } 
                     }
-                    if (!fieldValue.startsWith(SqlType.toDate) && !JudgeType.includes(fieldValue)) {
-                        whereClause.append("'")
-                    } 
                 }
                 firstFlag = false;
             }
         }
-        return whereClause.toString();
+        let   a   = whereClause.toString();
+        return a;
     }
 
     handleSearch = e => {

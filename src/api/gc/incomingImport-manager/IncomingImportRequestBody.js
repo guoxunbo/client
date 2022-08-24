@@ -1,4 +1,4 @@
-const MlotType = ["GCSamsungPackingList", "GCLCDCOGFinishProductEcretive", "GCLcdCogDetial", 
+const MlotType = ["GCSamsungPackingList", "GCLCDCOGFinishProductEcretive", "GCLcdCogDetial", "GCFinishProductImport",
                  "GCRMAGoodProductImport", "GCWltRMAGoodProductImport", "GCRMACustomerReturnFinishProduct", "GCRMAPureFinishProduct"];
 
 const ActionType = {
