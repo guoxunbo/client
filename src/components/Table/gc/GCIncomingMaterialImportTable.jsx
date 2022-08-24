@@ -56,7 +56,7 @@ const RMAType = [ImportType.GCRMAGoodProductImport, ImportType.GCWltRMAGoodProdu
 
 const resetLocationType = [ImportType.GCWLAUnmeasured, ImportType.GCRMAGoodProductImport, ImportType.GCWltRMAGoodProductImport, ImportType.GCRMACustomerReturnFinishProduct, 
                            ImportType.GCRMAPureFinishProduct, ImportType.GCCOBFinishProduct, ImportType.GCLCDCOGFinishProductEcretive,
-                           ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct, ImportType.GCMaskFinishProduct];
+                           ImportType.GCSOCFinishProduct, ImportType.GCCOBRawMaterialProduct, ImportType.GCMaskFinishProduct, ImportType.GCFinishProductImport];
 
 export default class GCIncomingMaterialImportTable extends EntityListTable {
 
