@@ -190,6 +190,7 @@ import GcMobileIRAUnPackageProperties from './pages/Properties/components/gc/waf
 import GcMobileIRAPackingProperties from './pages/Properties/components/gc/wafer-issue/GcMobileIRAPackingProperties';
 import GcHKCheckProperties from './pages/Properties/components/GcHKCheckProperties';
 import GcCancelErpMergeOrderProperties from './pages/Properties/components/GcCancelErpMergeOrderProperties';
+import GCTapeInventoryProperties from './pages/Properties/components/GCTapeInventoryProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -771,12 +772,18 @@ const routerConfig = [
     layout: HeaderAsideFooterResponsiveLayout,
     component: GCRawMaterialImportProperties  ,
   },
-    //原材料盘点
-    {
-      path: buildPath('GC/GCRawMaterialInventoryManager'),
-      layout: HeaderAsideFooterResponsiveLayout,
-      component: GCRawMaterialInventoryProperties,
-    },
+  //原材料盘点
+  {
+    path: buildPath('GC/GCRawMaterialInventoryManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCRawMaterialInventoryProperties,
+  },
+  //Tape盘点
+  {
+    path: buildPath('GC/GCTapeInventoryManager'),
+    layout: HeaderAsideFooterResponsiveLayout,
+    component: GCTapeInventoryProperties,
+  },
   //LOT预Hold设置
   {
     path: buildPath('GC/GCLotFutureHoldSetManager'),
