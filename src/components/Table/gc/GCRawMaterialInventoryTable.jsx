@@ -110,7 +110,7 @@ export default class GCRawMaterialInventoryTable extends EntityScanViewTable {
 
     createCheckButton = () => {
         return <Button key="check" type="primary" style={styles.tableButton} onClick={() => this.handleCheck()}>
-                 {IconUtils.buildIcon("icon-pandian")} {I18NUtils.getClientMessage(i18NCode.RawMaterialInventory)}
+                 {IconUtils.buildIcon("icon-pandian")} {"盘点"}
                 </Button>;
     }
 
