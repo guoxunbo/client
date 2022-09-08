@@ -1,5 +1,5 @@
 import EntityScanViewTable from '../EntityScanViewTable';
-import { Button, Tag } from 'antd';
+import { Button, Tag, Col, Input, Row} from 'antd';
 import { Notification } from '../../notice/Notice';
 import I18NUtils from '../../../api/utils/I18NUtils';
 import { i18NCode } from '../../../api/const/i18n';
@@ -39,11 +39,25 @@ export default class GcWltOtherStockOutMLotScanTable extends EntityScanViewTable
 
     createTagGroup = () => {
         let tagList = [];
+        tagList.push(this.createInput());
         tagList.push(this.createStatistic());
         tagList.push(this.createWaferNumber());
         tagList.push(this.createTotalNumber());
         tagList.push(this.createErrorNumberStatistic());
         return tagList;
+    }
+
+    createInput = () => {
+        return  <Row gutter={8}>
+            <Col span={3} >
+                <span style={{marginLeft:"5px", fontSize:"19px"}}>
+                    {I18NUtils.getClientMessage(i18NCode.SubCode)}:
+                </span>
+            </Col>
+            <Col span={5}>
+                <Input ref={(subCode) => { this.subCode = subCode }} key="subCode" placeholder="二级代码"/>
+            </Col>
+        </Row>
     }
 
     stockOut = () => {
@@ -102,6 +116,7 @@ export default class GcWltOtherStockOutMLotScanTable extends EntityScanViewTable
             Notification.showNotice(I18NUtils.getClientMessage(i18NCode.AddAtLeastOneRow));
             return;
         }
+        let subCode = this.subCode.state.value;
 
         self.setState({
             loading: true
@@ -111,6 +126,7 @@ export default class GcWltOtherStockOutMLotScanTable extends EntityScanViewTable
         let requestObj = {
             documentLine : documentLine,
             materialLots : materialLots,
+            subCode: subCode,
             success: function(responseBody) {
                 if (self.props.resetData) {
                     self.props.onSearch();

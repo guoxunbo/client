@@ -77,7 +77,7 @@ export default class WltStockOutManagerRequestBody {
         return body;
     }
 
-    static buildWltShipByOrder(documentLine, materialLots) {
+    static buildWltShipByOrder(documentLine, materialLots, subCode) {
         let materialLotActions = [];
         materialLots.forEach(materialLot => {
             let materialLotAction = new MaterialLotAction();
@@ -87,6 +87,7 @@ export default class WltStockOutManagerRequestBody {
         let body = new WltStockOutManagerRequestBody(actionType.WltOtherShipByOrder);
         body.documentLine = documentLine;
         body.materialLotActions = materialLotActions;
+        body.subCode = subCode;
         return body;
     }
 
