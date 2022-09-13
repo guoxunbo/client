@@ -191,6 +191,7 @@ import GcMobileIRAPackingProperties from './pages/Properties/components/gc/wafer
 import GcHKCheckProperties from './pages/Properties/components/GcHKCheckProperties';
 import GcCancelErpMergeOrderProperties from './pages/Properties/components/GcCancelErpMergeOrderProperties';
 import GCTapeInventoryProperties from './pages/Properties/components/GCTapeInventoryProperties';
+import GcMobileFTMaterialReceiveProperties from './pages/Properties/components/gc/wafer-issue/GcMobileFTMaterialReceiveProperties';
 
 /**
  * 构建url ?表示可选参数
@@ -1478,6 +1479,11 @@ const routerConfig = [
     path: buildPath('Mobile/WltOrCpWaferReceive'),
     layout: BlankLayout,
     component: GcMobileWltOrCpWaferReceiveProperties,
+  },
+  {
+    path: buildPath('Mobile/FTMaterialReceive'),
+    layout: BlankLayout,
+    component: GcMobileFTMaterialReceiveProperties,
   },
   {
     path: buildPath('Mobile/MaterialLotWeigh'),
