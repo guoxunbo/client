@@ -248,6 +248,7 @@ const i18NCode = {
     TraferWarehouseId: "TraferWarehouseId",
     CustomerType : "CustomerType",
     TreasuryNote : "TreasuryNote",
+    SubCode: "SubCode",
 }
 
 const i18Messages = {
@@ -1469,6 +1470,11 @@ const i18Messages = {
     CannotReceiveLSGradeVBox: {
         Chinese: "不能接收LS等级真空包！",
         English: "LSGradeVBoxOnlyLSReceive",
+        Res: ""
+    },
+    SubCode: {
+        Chinese: "二级代码",
+        English: "SubCode",
         Res: ""
     }
 }
